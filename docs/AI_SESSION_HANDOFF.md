@@ -1,81 +1,51 @@
 # AI session handoff (living document)
 
-Updated 2026-10-17 · Codex · P1 / approved character canon / opening and Elias review.
+Updated 2026-10-17 · Codex · Five-chapter screenplay review.
 
-## Screenplay audit milestone — 2026-10-17
+## Current workstream and stopping point
 
-Active branch `codex/screenplay-continuity-review`, stacked on verified `30e13f87f64e46c152dad2034a2a8c2c3e152dc6`. Owner merged PR #30: main `052859a984d7db599282914cbc300cc8cecc887b`; source `2e3863e16d882560dde87ba3bf018c5b6a29016d`. All 11 files reviewed; `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md` completed with chapter-by-chapter findings, detailed Elias comparison, owner decision matrix and small PR sequence. Claimed: new screenplay audit and own continuity updates only; package and application files remain unchanged. Next: finish full QA, verify docs/package preservation, push final review checkpoint; owner reviews N1 cue gate/presentation before runtime edits. Clinical flags remain pending. Prior full QA passed; package ten-payload byte counts/SHA256 all match; whitespace check passed; current TestRunner 131/0 and boot OK, audio/full sequence still running. API PR inventory remains blocked. Earlier full-screenplay-missing statements below are historical, superseded by PR #30.
+All 11 PR #30 package files reviewed against main; chapter audit, detailed Elias mapping, owner decision matrix and small PR sequence completed in `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`. No runtime or package modifications in this workstream. Full QA running; gameplay131/0 and boot OK, audio/sequence pending. New owner instruction: Mara is a significant recurring patient introduced in Chapter2; placement approved only, clinical logic pending. Next: record this canon amendment, reconcile Ch1 planning and write Chapter2 Mara crosswalk preserving supplied dossier facts. Audit QA audio334/0; sequence pending.
 
-## Previous objective and exact stopping point
+## Verified repository state
 
-Authorized work is complete for review: P1 pure catalog/profile validation; PR #27 conflict resolution; D1–D3 canon and minimal metadata reconciliation; six corrected character reference candidates/provenance; Chapter 1 opening alignment and Elias screenplay-summary comparison; permanent shared continuity rules. Final full QA passed. Current action is merging the synchronized P1 documentation checkpoint into this stacked branch and saving final verified remote state. No new implementation is started.
+- Active branch `codex/screenplay-continuity-review`, stacked on `codex/character-canon-opening-cont-1` verified `30e13f87f64e46c152dad2034a2a8c2c3e152dc6`.
+- Latest verified review remote **634c29b07b8d0c8f39ae7033bdcb856ec53b668c**; final handoff commit follows. Resolve final SHA using `git ls-remote origin refs/heads/codex/screenplay-continuity-review`.
+- Main **052859a984d7db599282914cbc300cc8cecc887b**: owner-merged PR #30. Source `assets/ashcroft-creative-references` **2e3863e16d882560dde87ba3bf018c5b6a29016d**. Main merged into feature normally; no agent main push/PR merge/history rewrite.
+- PR #27 conflicts resolved on authorized original branch at `412b5010c8ccd8ba0e19e983b4346b5d90482d34`, subsequently owner-merged main `6d2dd2d3ec1bebf3624a706da2f864efd711206e`. PR #29 P0 also merged.
+- P1 feature remote **74715227bf5581b09a3b2746870082576fffe71f**. Pure validator/15 tests only; no provider, UI, catalog registration, personality meter or save bump. P1/canon changes are inherited dependencies, not new audit changes.
+- Draft review PR attempt and open-PR inventory failed: `Post "https://api.github.com/graphql": Forbidden`. Git works. Draft body local `/workspace/screenplay-audit-pr.md`, reconstructible from audit. Target preceding canon branch; retarget only after dependencies merge. No new PR URL claimed; check owner-created PRs before duplicating. Hosted CI unobserved.
 
-## Branches and verified remote checkpoints
+## Files and last completed milestones
 
-- Active branch: `codex/character-canon-opening-cont-1`, stacked on **`codex/protagonist-schema-p1`**. Target a canon/docs/reference draft PR to that P1 branch to keep its scope separate; P1 targets main. Do not create a duplicate if the owner already opened one.
-- Latest verified canon/reference remote checkpoint before this final merge: **`25a4dfe9a52a4a36d39ab52fdeea4de696d6a428`** “Save six corrected character reference candidates with provenance”. A final docs-only merge/checkpoint follows it; resolve its tip using `git ls-remote origin refs/heads/codex/character-canon-opening-cont-1`.
-- P1 final verified remote: **`74715227bf5581b09a3b2746870082576fffe71f`**; implementation originated at `16b9761d8528f807caa8f10d76fcfeb9db7b5683`, then main sync `97580bf4a92f0ba5ebc8f7e6aea6b25854208cf8`. P1 import and both pre/post-sync TestRunner runs passed 131/0.
-- Latest verified main: **`6d2dd2d3ec1bebf3624a706da2f864efd711206e`**, owner’s PR #27 merge. PR #29 previously merged P0 at `dd247be`. No agent main push or PR merge.
-- Owner-confirmed PR #27: https://github.com/biancaalexis132-png/ForensicWard_Game/pull/27. Conflicts fixed and original branch ordinary fast-forward push verified at **`412b5010c8ccd8ba0e19e983b4346b5d90482d34`**, subsequently merged by owner.
-- New draft PR creation is blocked: `gh pr create --draft` returned `Post https://api.github.com/graphql: Forbidden`. Enforced runtime policy lacks `api.github.com`; Git fetch/push works. A domain requirement is already saved in cloud draft, not applied. Do not request duplicate credentials or bypass proxy. New PR/review/hosted CI inventory remains unverified.
+This review: new `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`; availability addenda in `CHAPTER1_OPENING_ALIGNMENT.md` and `ELIAS_EVALUATION_DRAFT_COMPARISON.md`; four continuity/status docs. Claims only these docs; no scene/clinical/audio/zone shared file claimed. Git diff from starting checkpoint confirms source package and runtime unchanged.
 
-## Last completed milestones and files
+Audit identifies: early daytime unease, unexamined motor observation recording, pending-vs-completed exam note mismatch, mandatory hypothesis vs unresolved records path, sign-out bypasses, Jordan/Mara conflict, missing later clinical cases/branch graphs, unapproved corroboration/reveal protocols, four-source ambiguity and overlapping endings. Ch2–5 remain planned in campaign data. Existing F1 chapter archive, F2 streaming and v3 checksum/migrations preserved.
 
-### P1 — implemented, no runtime integration
+Earlier complete work (inherited): D1–D3 decision/canon docs and Rahman direction-only profession correction; six inspected candidate reference sheets with hashes/exact prompts (not approved models/faces/clinical animation); opening/Elias summary reviews; permanent both-agent continuity AGENTS §9/CLAUDE. Originals preserved. Detailed history remains append-only in AI_HANDOFF and Git.
 
-`ProtagonistSchemas` / `ProtagonistValidator` (`scripts/protagonist/` + UIDs), `scripts/tests/test_protagonist.gd` + UID, synthetic fixtures under `scripts/tests/fixtures/protagonist/`, `docs/design/PROTAGONIST_INPUT_CONTRACT.md`, proposal/ID docs. Strict fixed psychiatrist role, optional selections, category-specific globally unique IDs, exact versions, Unicode/length/shape/pronoun validation; inputs and run state unchanged. No production option catalog, ContentRegistry hook, autoload/provider, creator UI, personality meter, save version or migration. Current save remains v3.
+## Validation and known failures
 
-### PR #27 — conflicts resolved and merged by owner
+- Standard runner: `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`; `/tmp/forensic-screenplay-qa.log`, session82146. Final result pending at this checkpoint, do not claim complete yet.
+- TestRunner131/0, boot OK; all ten manifest payload byte counts and SHA256 match. `git diff --check` and preservation diff passed.
+- Prior combined full QA passed: Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, audio334/0 and full Chapter1. Prior audio cleanup failure was fixed in PR27 without changing runtime sound behavior; not hidden or skipped.
+- Headless does not validate Mac Metal, input, listening, first25-minute pacing, clinical correctness or 8GB performance. Expected negative-save warnings/nonfatal Python socket ResourceWarnings may appear.
 
-Continuity add/add conflicts preserved both soundtrack and visual/protagonist records; append-only logs retained. Subsequent main/PR #29 merge retained all work. One existing flaky audio assertion was diagnosed: a 3.4s clip took 3.466–3.804s to free under Dummy audio. Bounded actual-player cleanup wait replaced the fixed 3.6s wait, retaining leak/object-count checks; no runtime sound behavior changed. This fix is now on main via PR #27.
+## Outstanding owner approvals and dependencies
 
-### D1–D3 canon — recorded, not blanket visual/clinical approval
+Audit matrix C1/N1–N7: clinical Elias findings/unknowns/risk/plan/actions; exact arrival/Bennett script and late cue presentation/gate; unresolved-record completion and sign-out safety policy; second patient identity/legal facts/Mara placement; Concordance/titles/Ch2–5 arcs; anomaly evidence protocols/F3 and C6 Bleed/C7 pharmacology gates; endings/eligibility/four-source facts. D4–D9 remain open (history,02:17,Mara voice,W3,boards,missing approved v1.1 bible). Candidate visual designs need owner/artist review.
 
-Owner’s exact decision record: `docs/design/decisions/2026-10-17_CHARACTER_IDENTITIES_APPROVAL.md`. Authoritative `CHARACTER_VISUAL_CANON.md`, `CHARACTER_REFERENCE_REGENERATION.md`, GDD amendments and dated addendum to `VISUAL_PRODUCTION_REVIEW.md`. Reference README marks six legacy individual portraits superseded as production references, preserving originals. `audio/voice_profiles.json` changes **only** Rahman’s direction from Clinical pharmacist to Consultant psychiatrist; voice `af_aoede`, speed/language/FX/recordings/IDs unchanged. Hale staff title already correct; no speculative Rahman staff entry/permissions/trust/intro added.
+Already approved: fixed psychiatrist/equivalent competence, moderate personal life/emergent personality, hospital-first opening, D1–D3 casting/roles. Do not ask those again or infer broader clinical approval. The new proposed bible does not replace missing approved private sources. Ch2–5 clinical slots need actual authoring, not extrapolation.
 
-Six candidate sheets plus `.gdignore`, README, exact prompts and SHA-256/dimensions/source-hash manifest: `assets/creative_references/Visual_References/Individual_Characters/Regenerated_2026_10_17/`. Total 12,569,341 bytes. Four views/five expression studies visually inspected per sheet. Voss/Elias/Mara initial unsupported text/ID/property details corrected before packaging. Exact faces, costume/insignia details, age interpretation, technical scale/orthography/anatomy, rights and likeness remain owner/artist review. Not models, scene replacements or clinical findings. Original project portraits unchanged. Initial generated passes remain local `/workspace/generated_images` only; final candidates/prompts are recoverable from Git. Manifest identifies rejected initial output hashes; no need to recover those to continue.
+GitHub API restriction blocks PR/review/CI coordination; use supported environment configuration if owner enables domain, not token requests or proxy bypass. Cloud onboarding skill catalog currently returns no skills; earlier Godot install/start/domain draft saved, publication not claimed. Correct Godot installed outside checkout; system4.6.3 rejected by runner. No private Claude assets assumed.
 
-### Opening and Elias — comparisons/proposals only
+## Exact resume steps
 
-`docs/design/CHAPTER1_OPENING_ALIGNMENT.md` records approved hospital-drama opening and phased changes. Confirmed by isolated real-Main probe: acquiring `clue_access` can emit `ch1_w0b_unease` during day shift with zero Elias observations/notes. Proposed gating is **not implemented**. Preserve `beat_b6_intercom` day 1 + night + 15 in-game minutes, `pt_elias_ward`, beat IDs and provenance. No change to existing chapter scenes, dialogue, patient definitions, clinical rules or SaveManager.
-
-`docs/design/ELIAS_EVALUATION_DRAFT_COMPARISON.md` maps exact existing keys, examination/MSE/risk/formulation gaps, missing assets and approval points. Owner confirmed full screenplay is in ChatGPT, not Git/PR, and will supply standalone text. Line-by-line review is deferred until supplied; current summary mapping is complete. Pending row added to `docs/clinical_review_log.md`; existing flags unchanged. No finding without exam, no mutism-as-refusal, no normal suicide-risk inference from silence, no symptom-causes-supernatural logic.
-
-### Permanent continuity rules
-
-`AGENTS.md` §9 and `CLAUDE.md` explicit both-agent scope supplement existing rules. Update living handoff/progress after every significant milestone/test/failure, before large work/PR, at warnings and before stopping; never finish multiple substantial tasks without a checkpoint. Verify remote SHA after coherent feature pushes. All historical append-only entries remain.
-
-## Tests and evidence
-
-Command from repo root: `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`.
-
-- **Final combined QA:** exit **0**, `All executed checks passed`, tree with runtime/P1 content at `e585061111d3703318fae4655a675e1a2b9f0926`; only docs and Godot-ignored reference assets changed afterward. Python content 6/6, manifest 3/3, mock music client 3/3; pharmacology 0 failures; QA 19/0/0; GLB **138/138**; TestRunner **131/0**; main boot OK; audio **334/0**; complete Chapter 1 sequence at 63.7s. Log local `/tmp/forensic-final-merged-qa.log`.
-- **Synchronized P1:** TestRunner **131/0**, exit 0, no script errors; `/tmp/forensic-p1-synced-tests.log`. Same P1 module/test bytes as final combined QA.
-- **Asset integrity:** six PNG decodes, dimensions/byte counts, candidate hashes and original-source hashes verified; exact metadata diff proves only Rahman direction changes in voice profiles.
-- **Opening diagnostic:** real-Main/public EvidenceManager probe confirmed the early unease trigger. Final isolated harness exit 0 without teardown errors; `/tmp/forensic-opening-probe.gd` and `.log` are local only. Reproduction logic is described in the opening proposal. Not a manual navigation/pacing check.
-- `git diff --check` passed. No chapter/patient/dialogue/clinical-rule/save-manager/scene change relative to main. Expected negative-save warnings and nonfatal Python socket ResourceWarnings only.
-- Earlier pre-#27 run reached gameplay 131/0 but audio 270/1 from the diagnosed old cleanup timer; superseded by merged fix and final pass, not hidden. Earlier PR #27 initial audio 333/1 likewise corrected and passed 334/0.
-- Hosted CI unobserved. Mac Metal/rendering, mouse feel, listening, actual first-25-minute pacing, clinical correctness and memory/frame time are **not validated** by these checks.
-
-## Approvals, dependencies and known blockers
-
-Approved: D1 Rahman Consultant Psychiatrist; D2 Hale Security Director; D3 written casting authority (Bennett Black woman, Rahman South Asian woman); fixed psychiatrist protagonist, moderate personal life and emergent personality; realistic gradual opening direction; bounded P1 validation scope.
-
-Pending: **D4–D9**, exact production faces/technical art/rights; Mara voice; full clinical screenplay and specific clinical findings/rules; F0 C2 Concordance/titles, C6 Bleed, C7 pharmacology clue gates, remaining C4 staff roles, C11 original music export and precise anomaly mechanism. No approval invented. Missing private v1.1 bible must be provided, not recreated. Stage 6/environment and soundtrack follow-ups remain their owners’ work; new geometry/cues/3D production not started.
-
-API policy blocks PR automation; apply saved `api.github.com` setting through supported environment configuration, then retry existing auth. Godot 4.7 is installed outside checkout at the command path above; system `godot` is 4.6.3 and is rejected by the runner. No persistent service required. Installation/start instructions are saved in the environment draft; publication not claimed.
-
-## Repository state and exact resume steps
-
-All intended code/docs/reference assets are committed/pushed at the verified checkpoints above; the final documentation merge/checkpoint must be verified before ending. No app implementation remains half-written. Ignored `.godot` cache retained; no temporary/macOS/secret files committed. Exact current tip is obtained via `git ls-remote`; this file cannot contain its own commit SHA.
-
-1. Read AGENTS, CLAUDE, this handoff, progress/status and newest append-only entry. `git fetch origin refs/heads/main:refs/remotes/origin/main`; compare before editing. Do not reset/rewrite existing commits.
-2. Check `git status --short`, `git ls-files -u`, and `git merge-tree --write-tree HEAD origin/main`; there should be no pending conflicts after final checkpoint. Verify both feature remote SHAs with `git ls-remote`.
-3. Review P1 as a small PR to main. Review canon/continuity/reference/opening docs as a stacked PR to `codex/protagonist-schema-p1` (or retarget after P1 merges). Prepared descriptions are local `/workspace/p1-protagonist-pr.md` and `/workspace/canon-opening-pr.md`; committed changes/handoff contain enough to reconstruct them. If API is still blocked, report it; do not invent a PR URL or duplicate owner-created PR.
-4. Owner reviews candidate faces/wardrobe and technical cleanup, D4–D9 and opening implementation slices. Do not swap models or implement the proposed early-unease gate without the relevant reviewed change scope.
-5. When standalone Elias screenplay arrives, compare its actual lines to the stable IDs/paths in `ELIAS_EVALUATION_DRAFT_COMPARISON.md`. Keep clinical flags pending until explicit item approval; update the clinical review log only with genuine owner review.
-6. P2 provider/v4 migration is a future bounded task: capture a real v3 save first, preserve v1/v2/v3 compatibility and preflight atomic validation. Do not start a major persistence rewrite or derive personality classes/clinical competence from background.
-7. Continue checkpointing before new substantial tasks; owner merges all PRs. End with the CODEX SESSION HANDOFF fields and verified remote SHA.
+1. Read AGENTS/CLAUDE/current handoff/status/latest append-only entry. `git fetch origin refs/heads/main:refs/remotes/origin/main`; verify branch tip with `git ls-remote`, status and conflicts before editing.
+2. Read `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`, especially C1/N1–N7 and PR sequence. Package source is now present; do not wait for standalone Elias text again.
+3. Check owner-created PRs/review comments and active file claims when API permits. Review this docs diff against preceding canon branch; keep P1/canon dependencies separate.
+4. Recommended first runtime PR after N1 review: add `intercom_heard` prerequisite to existing `beat_b6_unease` plus tests for day/no cue,15min intercom, both clue orders, once-only save/reload. Decide exact stinger/shutter treatment and already-fired saves first. Never gate supernatural truth on patient findings. No F3 implementation or clinical activation authorized by this audit.
+5. Continue exact clinical/script approvals in small slices from audit roadmap; keep all pending flags, existing IDs/provenance and late timing. Never mark Ch2–5 playable from manuscript alone.
+6. Checkpoint each milestone and before new substantial work. Commit/push feature only, verify remote SHA; owner merges. No uncommitted application work to recover; ignored caches/local logs are not required project assets.
 
 ## Preserved soundtrack workstream record
 

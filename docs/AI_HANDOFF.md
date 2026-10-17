@@ -57,6 +57,12 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 · Codex · Mara placement instruction checkpoint
+
+- Latest verified review remote `634c29b07b8d0c8f39ae7033bdcb856ec53b668c`. Owner explicitly approves significant recurring Mara introduction in Ch2, superseding draft Ch1 slot; clinical history/risk/collateral must be preserved, all medical logic pending. No runtime files claimed.
+- Audit complete; current full QA gameplay131/0, audio334/0, sequence pending. Next documentation-only task: canon amendment, Ch1 planning reconciliation and Mara Ch2 crosswalk using supplied facts; no invented missing dossier details.
+
+
 ### 2026-10-17 · Codex · Five-chapter audit completed milestone
 
 - Branch `codex/screenplay-continuity-review`; latest verified remote `8ba20b6a1894d6adcafc7b8a460b605e94c1422b`. All 11 package files reviewed; new `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md` contains detailed Ch1/Elias mapping, Ch2–5 scene/branch gaps, F1/F2/save contract, owner decision matrix and eight-stage PR sequence. Earlier opening/Elias comparisons receive availability addenda only.
