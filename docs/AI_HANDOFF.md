@@ -17,7 +17,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 playable | `claude/chapter1-playable` (PR #7) | Claude | `60ed74fe882385535425f2038add243f93cc4b9e` | `scripts/world/**`, `scripts/autoload/WorldStateManager.gd`, `data/world_chapter1.json`, `scenes/world/Chapter1Ward.tscn`, `scripts/tests/test_world.gd`, `docs/CHAPTER1_PLAYABLE.md` | Integration branch merged in; awaiting review |
 | Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
 | Sprint 3 story, evidence, shift | `claude/sprint-03-evidence-shift` (draft PR, base `claude/sprint-02-ehr-interview`) | Claude | see newest log entry | `scripts/narrative/**`, `data/story_chapter1.json`, `scripts/ui/EvidenceBoard.gd`, `scripts/world/AudioZoneTracker.gd`, `scripts/tests/test_sprint3.gd`; small edits to `scripts/main/Main.gd`, `scripts/autoload/EventBus.gd`, `scripts/ui/{HUD,PauseMenu}.gd` | Awaiting review |
-| Audio production | `claude/audio-production` | Claude (separate session) | none pushed yet | `audio/**`, `tools/audio/**`, `systems/audio/**`, `scenes/audio/**`, `tests/audio/**`, `docs/AUDIO*.md` | Active, not on GitHub yet |
+| Audio production, original soundtrack | `claude/audio-production` (draft PR to `main`, based on `claude/remove-appledouble-metadata`) | Claude | `ab613f16ecbec0e3f774090de22f56dfe9cb9607` | `audio/**`, `assets/audio/**` (`.import` sidecars only; recordings untouched), `tools/audio/**`, `systems/audio/**`, `tests/audio/**`, `tests/qa/test_audio_manifest.py`, `docs/AUDIO*.md`; small edits to `scripts/ui/PauseMenu.gd` and `scenes/ui/PauseMenu.tscn` | Awaiting owner review; merge PR #15 first |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -62,6 +62,49 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 19:55 UTC · Claude Code · Audio: original soundtrack
+
+- **Branch:** `claude/audio-production` (based on `claude/remove-appledouble-metadata` at `9af90fc`, which is `main` at `782f642` plus PR #15)
+- **Latest verified commit:** `ab613f16ecbec0e3f774090de22f56dfe9cb9607` "Skip macOS AppleDouble files when AudioDirector loads narrative data"
+- **Confirmed on GitHub:** `git ls-remote origin claude/audio-production` printed `ab613f1` at 19:52 UTC; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push). Merge PR #15 first; this branch contains its two commits.
+- **State:** finished; waits on the owner's listening review on the Mac
+
+**Accomplished**
+- The five tracks in `assets/audio/music/` play through `AudioDirector`, unmodified: main theme for the main menu, alternate theme for a cinematic, emotional theme for emotional scenes, narrative theme for exploration, credits theme for the ending. Details and the trigger events are in `docs/AUDIO.md` → Soundtrack.
+
+**Files modified**
+- `audio/cues.json`: five `mus_*` cues (levelled to about -20 LUFS with `volume_db`), `music_states.exploration`, `music_contexts` (`main_menu`, `cinematic`, `emotional`, `ending_credits`), exploration music for corridor and nursing station by day, events `music_main_menu`, `music_cinematic`, `music_emotional_begin`/`_end`, `music_credits`.
+- `systems/audio/AudioDirector.gd`: music contexts (stacked, stop/duck ambience, play-once contexts end themselves), location music that fades out in rooms without a state, `loop_crossfade` and `tail_fade` + `repeat_after` repeats, context duck added to dialogue duck, `._*` skipped in `_load_narrative`.
+- `scripts/ui/PauseMenu.gd`, `scenes/ui/PauseMenu.tscn`: Audio section with Master, Music, Dialogue, Sound effects and Ambience sliders and a reduce-startling-audio toggle, all through `AudioDirector.set_setting`. Panel is 200 px taller.
+- `tools/audio/build_manifest.py`, `tests/qa/test_audio_manifest.py`: manifest also covers `assets/audio/`; references through music states and contexts; contexts validated.
+- `audio/manifest.json`, `docs/AUDIO_MANIFEST.md`: five soundtrack entries (regenerated). `assets/audio/music/*.ogg.import`: committed import sidecars (`loop=false`).
+- `tests/audio/TestAudio.gd`, `docs/AUDIO.md`.
+
+**Unfinished**
+- none in code. Nothing fires `music_main_menu`, `music_cinematic`, `music_emotional_begin`/`_end` or `music_credits` yet: there is no title screen, cinematic or credits scene, and no story beat is marked emotional.
+
+**Known errors**
+- none
+
+**Tests** (on `ab613f1`)
+- `python3 tests/qa/run.py --godot <4.7-stable linux, SHA-512 verified>` on `21cba85`: exit 0; QA_RESULT 19 passed / 0 failed / 0 skipped; sprint tests 80 passed / 0 failed; AUDIO_RESULT 271 passed / 0 failed (211 before); GLB validation 92 assets, 0 failures; Python content 6/6, audio manifest 3/3, music pipeline OK.
+- `ab613f1` only adds the `._*` skip: `godot --headless --path . res://tests/audio/TestAudio.tscn` gave 271 passed / 0 failed, also with a planted `data/narrative/._probe.json`.
+- CI: not observed yet
+- Headless uses the Dummy audio driver: playback, timing, fades and ducks are checked, not how anything sounds.
+
+**Dependencies not available to remote agents**
+- Listening review of the mix, the loop crossfades and the exploration level needs the owner's Mac. `build_manifest.py` needs `soundfile`, `numpy`, `scipy` (`tools/audio/requirements.txt`).
+
+**Next steps**
+1. Owner: merge PR #15, then review this PR; play the corridor by day and check the narrative theme sits under the ambience (`mus_narrative` `volume_db` in `audio/cues.json`).
+2. Owner: record the soundtrack's authorship and licence; the manifest entries say it is still to be confirmed.
+3. Whoever builds the title screen, cinematics, credits or an emotional story beat: fire the matching event from the table in `docs/AUDIO.md` → Soundtrack (for example `EventBus.narrative_event_fired.emit("music_main_menu", {})`), or call `AudioDirector.start_music_context`.
+4. Optional: decide whether night exploration should get music; today night is deliberately silent.
+
+**Notes for the other agent**
+- Do not re-encode or normalize files in `assets/audio/music/`; change levels with `volume_db` in `audio/cues.json`. `music_main_theme.m4a` is an unused duplicate (Godot cannot import `.m4a`).
 
 ### 2026-10-17 19:30 UTC · Claude Code · CI fix: macOS AppleDouble files
 
