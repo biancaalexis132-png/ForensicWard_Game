@@ -59,6 +59,13 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 · Codex · V2 line-reference review milestone
+
+- Branch `codex/revised-screenplays-v2-review`; latest verified remote `84257e24970ded8e7195aea9b46b876610ad933f`. Main/source `1dbd26a96288d7947ebd6a90b151ba1f6a0fc2a6`, all five v2 files fully read and compared in new `REVISED_SCREENPLAYS_V2_TECHNICAL_REVIEW.md` with exact source line ranges, code anchors, all12 acceptance-test mappings and foundations-first PR sequence.
+- Important gaps: Mara35 SI/HI summary vs79 no HI inference/new source-specific clinical facts; Ch3 explicitly static continuous route, no teleport; old scenes/transport not mapped; crash checkpoint vs preserving durable observations needs journal/atomic policy; current EvidenceManager lacks source independence/status model. Clinical flags unchanged; source packages/runtime preserved. Earlier spec gets dated availability correction only.
+- Current standard QA session79985 `/tmp/forensic-revised-v2-qa.log`: gameplay131/0, boot OK, audio/sequence pending. Next verify docs/preservation, push milestone, draft PR then final QA/handoff. No new system/model/effect implementation.
+
+
 ### 2026-10-17 · Codex · Revised screenplay v2 intake checkpoint
 
 - Branch `codex/revised-screenplays-v2-review`, from owner-merged screenplay base `ca7488980be3dd4d065810ae2f75cc6741727906` (PR32); main now `1dbd26a96288d7947ebd6a90b151ba1f6a0fc2a6`, five v2 files available. Requested docs/revised-screenplays-v2 branch absent; no blocker because main has package. Latest previously verified inspection remote e36e155.
