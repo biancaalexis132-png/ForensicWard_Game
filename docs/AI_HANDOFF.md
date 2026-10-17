@@ -18,6 +18,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
 | Sprint 3 story, evidence, shift | `claude/sprint-03-evidence-shift` (draft PR, base `claude/sprint-02-ehr-interview`) | Claude | see newest log entry | `scripts/narrative/**`, `data/story_chapter1.json`, `scripts/ui/EvidenceBoard.gd`, `scripts/world/AudioZoneTracker.gd`, `scripts/tests/test_sprint3.gd`; small edits to `scripts/main/Main.gd`, `scripts/autoload/EventBus.gd`, `scripts/ui/{HUD,PauseMenu}.gd` | Awaiting review |
 | Audio production, original soundtrack | `claude/audio-production` (PR #18, draft) | Claude | `ab613f16ecbec0e3f774090de22f56dfe9cb9607` | `audio/**`, `assets/audio/**` (`.import` sidecars only; recordings untouched), `tools/audio/**`, `systems/audio/**`, `tests/audio/**`, `tests/qa/test_audio_manifest.py`, `docs/AUDIO*.md`; small edits to `scripts/ui/PauseMenu.gd` and `scenes/ui/PauseMenu.tscn` | Awaiting owner review and listening on the Mac |
+| Foundation F0 audit | `claude/f0-foundation-audit` (draft PR to `main`) | Claude | `06fd50ad534dc0fb4847800eaf59b7bf6b513076` | `docs/F0_FOUNDATION_AUDIT.md` only (plus this file) | Awaiting owner review of the architecture; F1 starts after it |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -62,6 +63,42 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 20:30 UTC · Claude Code · Foundation F0 audit
+
+- **Branch:** `claude/f0-foundation-audit` (based on `main` at `d21cff7`)
+- **Latest verified commit:** `06fd50ad534dc0fb4847800eaf59b7bf6b513076` "Add F0 foundation audit and five-chapter architecture proposal"
+- **Confirmed on GitHub:** see `git ls-remote origin claude/f0-foundation-audit`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; docs only, waiting on owner review
+
+**Accomplished**
+- `docs/F0_FOUNDATION_AUDIT.md`: implemented-vs-planned inventory, contradictions C1–C14 (Ward Zero canon, act names, player title, staff roles, Psychosomatic Bleed, pharmacology clue gates, stale PROJECT_STATUS), id scan (74 ids, no duplicates), proposed campaign/zone/anomaly architecture, reuse table, zone loading plan, clinical vs supernatural separation rules, F1–F3 scopes with acceptance tests, open approvals.
+
+**Files modified**
+- `docs/F0_FOUNDATION_AUDIT.md`: new.
+- `docs/AI_HANDOFF.md`: this entry and a workstream row.
+
+**Unfinished**
+- none. `docs/PROJECT_STATUS.md` is stale (C14) but deliberately not edited here, to avoid conflicting with PR #19; F1 rewrites it.
+
+**Known errors**
+- none. Noted for F1: `tools/godot/validate_glb_imports.gd` does not skip `._*.glb` (local Mac only); `SaveManager.load_game` compares the checksum after migrating, so the first real migration needs the order fixed.
+
+**Tests** (on `d21cff7`, the tree this branch adds docs to)
+- `GODOT=<4.7-stable linux, SHA-512 verified> python3 tests/qa/run.py`: exit 0; Python 6/6, 3/3, 3/3; TestQA 19/0/0; GLB 112/112; TestRunner 80/0; TestAudio 271/0.
+- CI: not observed yet for this branch
+
+**Dependencies not available to remote agents**
+- none for F0. Mac checks listed in the audit stay untested.
+
+**Next steps**
+1. Owner reviews `docs/F0_FOUNDATION_AUDIT.md` and answers the approvals in its section 9.
+2. After approval and after PR #19 merges: F1 on a new branch `claude/f1-campaign-contract` per section 8.
+
+**Notes for the other agent**
+- This branch and PR #19 both add an entry at the top of this log; whichever merges second resolves it by keeping both entries.
+- Do not start F1–F3 structural changes before the owner approves F0 in the F0 thread or PR.
 
 ### 2026-10-17 19:55 UTC · Claude Code · Audio: original soundtrack
 
