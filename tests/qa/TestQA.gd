@@ -34,35 +34,49 @@ func _ready() -> void:
 	GameState.from_dict(snapshot)
 	check(GameState.has_item("qa_key") and GameState.pinned_clues == ["qa_clue"], "progress survives serialization round trip")
 	GameState.reset()
+	check(GameState.day == 1 and GameState.shift == "day", "reset starts day 1, day shift")
+	GameState.advance_shift()
+	check(GameState.day == 1 and GameState.shift == "night", "end shift advances day to night")
+	check(TimeManager.get_shift() == "night", "GameState clock is TimeManager's clock")
+	GameState.advance_shift()
+	check(GameState.day == 2 and GameState.shift == "day", "end shift advances night to next day")
+	GameState.reset()
 	var main_path: String = ProjectSettings.get_setting("application/run/main_scene")
 	var packed := load(main_path) as PackedScene
 	check(packed != null, "configured main scene loads")
 	if packed != null:
 		var main := packed.instantiate()
 		add_child(main)
-		await get_tree().process_frame
-		check(not PharmacologyEngine.get_state("PT-001").is_empty(), "boot admits sample patient")
-		var label := main.get_node_or_null("HUD/StatusLabel") as Label
-		check(label != null and "PT-001" in label.text, "demo HUD displays admitted patient")
-		press(main, KEY_N)
-		check(GameState.day == 1 and GameState.shift == "night", "end shift advances day to night")
-		press(main, KEY_N)
-		check(GameState.day == 2 and GameState.shift == "day", "end shift advances night to next day")
-		press(main, KEY_R)
-		check(PharmacologyEngine.get_patient("PT-001").doses.get("clozapine") == 300.0, "demo order updates dose")
-		press(main, KEY_O)
-		check(GameState.objectivity == 90.0, "demo drains objectivity")
-		press(main, KEY_P)
-		check(GameState.objectivity == 100.0, "demo restores objectivity")
+		for i in 3:
+			await get_tree().physics_frame
+		check(ContentRegistry.is_valid, "game content validates at boot")
+		var player := main.get_node_or_null("Player") as FirstPersonController
+		check(player != null and player.input_enabled, "player controller spawned with control")
+		if player != null:
+			var start := player.global_position
+			Input.action_press("move_forward")
+			for i in 45:
+				await get_tree().physics_frame
+			Input.action_release("move_forward")
+			check(player.global_position.distance_to(start) > 0.5, "player movement: walks forward")
+		var interactables := main.find_children("*", "Interactable", true, false)
+		check(interactables.size() >= 5, "world contains interactables (%d)" % interactables.size())
+		var door: Interactable = null
+		for node in interactables:
+			if (node as Interactable).interactable_id.begins_with("door_"):
+				door = node
+				break
+		check(door != null, "world contains an interactable door")
+		if door != null and player != null:
+			var heard: Array[String] = []
+			var on_interacted := func(id: String) -> void: heard.append(id)
+			EventBus.interacted.connect(on_interacted)
+			door.interact(player)
+			EventBus.interacted.disconnect(on_interacted)
+			check(heard == [door.interactable_id], "world object interaction reaches EventBus")
 		main.queue_free()
 		await get_tree().process_frame
-	print("SKIP: player movement — no player controller or scene in this revision")
-	print("SKIP: world object interaction — no interactable implementation in this revision")
-	print("QA_RESULT passed=%d failed=%d skipped=2" % [passed, failed])
+	GameState.reset()
+	SaveManager.reset_all()
+	print("QA_RESULT passed=%d failed=%d skipped=0" % [passed, failed])
 	get_tree().quit(1 if failed else 0)
-
-func press(target: Node, keycode: Key) -> void:
-	var event := InputEventKey.new()
-	event.keycode = keycode
-	event.pressed = true
-	target.call("_unhandled_input", event)

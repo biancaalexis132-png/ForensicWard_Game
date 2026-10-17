@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1",
+  "review_state": "CATALOG_ONLY_CONTENT_NOT_VALIDATED",
+  "items": [
+    {
+      "id": "ref_sims_7",
+      "title": "Sims' Symptoms in the Mind, 7th ed",
+      "use": "descriptive_psychopathology"
+    },
+    {
+      "id": "ref_kaplan_12",
+      "title": "Kaplan & Sadock's Synopsis of Psychiatry, 12th ed",
+      "use": "diagnostic_reasoning"
+    },
+    {
+      "id": "ref_stahl_prescriber_2024",
+      "title": "Stahl's Prescriber's Guide, 2024",
+      "use": "drug_reference"
+    },
+    {
+      "id": "ref_maudsley_15",
+      "title": "The Maudsley Prescribing Guidelines in Psychiatry, 15th ed",
+      "use": "prescribing_and_monitoring"
+    }
+  ]
+}

@@ -1,48 +1,38 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=12 format=3]
 
-[ext_resource type="Script" path="res://scenes/main/Main.gd" id="1_main"]
-
-[sub_resource type="Environment" id="Environment_ward"]
-background_mode = 1
-background_color = Color(0.02, 0.03, 0.04, 1)
-ambient_light_source = 2
-ambient_light_color = Color(0.3, 0.35, 0.4, 1)
-ambient_light_energy = 0.4
-fog_enabled = true
-fog_density = 0.03
-
-[sub_resource type="BoxMesh" id="BoxMesh_floor"]
-size = Vector3(10, 0.2, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_bed"]
-size = Vector3(1, 0.6, 2)
+[ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/world/Chapter1Ward.tscn" id="2_world"]
+[ext_resource type="PackedScene" path="res://scenes/player/FirstPersonController.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="4_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/InfoPanel.tscn" id="5_info"]
+[ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="6_pause"]
+[ext_resource type="PackedScene" path="res://scenes/ui/EHRScreen.tscn" id="7_ehr"]
+[ext_resource type="PackedScene" path="res://scenes/ui/InterviewScreen.tscn" id="8_interview"]
+[ext_resource type="PackedScene" path="res://scenes/ui/EvidenceBoard.tscn" id="9_evidence"]
+[ext_resource type="Script" path="res://scripts/narrative/ChapterDirector.gd" id="10_director"]
+[ext_resource type="Script" path="res://scripts/world/AudioZoneTracker.gd" id="11_audio_zones"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ward")
+[node name="World" parent="." instance=ExtResource("2_world")]
 
-[node name="Floor" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_floor")
+[node name="Player" parent="." instance=ExtResource("3_player")]
 
-[node name="Bed" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
-mesh = SubResource("BoxMesh_bed")
+[node name="HUD" parent="." instance=ExtResource("4_hud")]
 
-[node name="CeilingLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-light_color = Color(0.85, 0.95, 1, 1)
-shadow_enabled = true
-omni_range = 8.0
+[node name="EHRScreen" parent="." instance=ExtResource("7_ehr")]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.94, 0.342, 0, -0.342, 0.94, 0, 2.5, 5)
+[node name="InterviewScreen" parent="." instance=ExtResource("8_interview")]
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="EvidenceBoard" parent="." instance=ExtResource("9_evidence")]
 
-[node name="StatusLabel" type="Label" parent="HUD"]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 1200.0
-offset_bottom = 800.0
+[node name="ChapterDirector" type="Node" parent="."]
+script = ExtResource("10_director")
+
+[node name="AudioZoneTracker" type="Node" parent="."]
+script = ExtResource("11_audio_zones")
+
+[node name="InfoPanel" parent="." instance=ExtResource("5_info")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_pause")]

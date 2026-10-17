@@ -10,12 +10,16 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Sprint 1 foundation | `claude/sprint-01-foundation` (PR #1) | Claude | `f626aad7be1c9a443762a5b2cd3591601c1b14bc` | Whole branch; waits on integration plan | Awaiting owner review and merge |
+| Sprints 1–3 integration | `claude/integration-sprints-1-3` (draft PR to `main`) | Claude | `99c2eaf453e13d44932f73a7c7f30ad54a18bf3e` | `README.md` (merge resolution), `docs/INTEGRATION_SPRINTS_1_3.md`, `docs/PROJECT_STATUS.md`, this file. Otherwise no edits beyond the merge | Awaiting owner review and merge; replaces PRs #1, #6, #7, #8 |
+| Sprint 1 integration | `claude/integrate-sprint-01` (draft PR) | Claude | `8ca85bce79f08f19ce75e00c33502a4e4af14146` | `project.godot`, `scripts/autoload/EventBus.gd`, `scripts/autoload/GameState.gd`, `scenes/main/Main.*`, `scripts/main/Main.gd`, `tests/qa/run.py`, `tests/qa/TestQA.gd`, `docs/TESTING.md` | Awaiting owner review and merge |
+| Sprint 1 foundation | `claude/sprint-01-foundation` (PR #1) | Claude | `f626aad7be1c9a443762a5b2cd3591601c1b14bc` | Superseded by the integration PR | Close after the integration PR merges |
+| Environment art | `claude/environment-production` (PR #6) | Claude | `e321b4a7f8d60f8b4400ea668959c25ac6b122e0` | `tools/blender/**`, `tools/godot/validate_glb_imports.gd`, `assets/blender/**`, `assets/exports/**`, `assets/asset_manifest/**`, `assets/renders/**`, `docs/ENVIRONMENT_*.md` | Stages 1–2 done; Stages 3–8 next |
+| Chapter 1 playable | `claude/chapter1-playable` (PR #7) | Claude | `60ed74fe882385535425f2038add243f93cc4b9e` | `scripts/world/**`, `scripts/autoload/WorldStateManager.gd`, `data/world_chapter1.json`, `scenes/world/Chapter1Ward.tscn`, `scripts/tests/test_world.gd`, `docs/CHAPTER1_PLAYABLE.md` | Integration branch merged in; awaiting review |
+| Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
+| Sprint 3 story, evidence, shift | `claude/sprint-03-evidence-shift` (draft PR, base `claude/sprint-02-ehr-interview`) | Claude | see newest log entry | `scripts/narrative/**`, `data/story_chapter1.json`, `scripts/ui/EvidenceBoard.gd`, `scripts/world/AudioZoneTracker.gd`, `scripts/tests/test_sprint3.gd`; small edits to `scripts/main/Main.gd`, `scripts/autoload/EventBus.gd`, `scripts/ui/{HUD,PauseMenu}.gd` | Awaiting review |
 | Audio production | `claude/audio-production` | Claude (separate session) | none pushed yet | `audio/**`, `tools/audio/**`, `systems/audio/**`, `scenes/audio/**`, `tests/audio/**`, `docs/AUDIO*.md` | Active, not on GitHub yet |
-| Environment art | `claude/environment-production` | Claude (separate session) | none pushed yet | Blender sources, exported `.glb`, environment scenes (paths to be recorded by that session at its first push) | Active, not on GitHub yet |
-| Handoff system | `claude/ai-handoff-system` | Claude | `8e64eafb7ef7e8a68153852f97807eaee576dae4` (base) | `AGENTS.md`, `CLAUDE.md`, `docs/PROJECT_STATUS.md`, `docs/AI_HANDOFF.md` | Draft PR |
 
-Unclaimed high-conflict files that need an agreed plan before editing: `project.godot`, `autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
+High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
 ## Entry template
 
@@ -58,6 +62,232 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 17:40 UTC · Claude Code · Sprints 1–3 integration
+
+- **Branch:** `claude/integration-sprints-1-3` (based on `claude/chapter1-playable` at `b11f58c`, with `main` at `f6efda8` merged in)
+- **Latest verified commit:** `99c2eaf453e13d44932f73a7c7f30ad54a18bf3e` "Merge main (audio PR #5) into the Sprints 1-3 integration branch"
+- **Confirmed on GitHub:** `git ls-remote origin claude/integration-sprints-1-3` printed `99c2eaf` at 17:25 UTC; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- Checked every source branch with `git merge-base --is-ancestor`: `claude/chapter1-playable` already contained PRs #1, #8, #6, #9 and #10. Only `main`'s PR #5 (audio) was missing. Merged `origin/main` into a new branch from `claude/chapter1-playable`; no cherry-picks, no rewritten history.
+- Compared every file on each source branch with the integrated tree. Nothing functional is missing; see `docs/INTEGRATION_SPRINTS_1_3.md` → Functionality check.
+
+**Files modified**
+- `README.md`: merge conflict resolved (integrated layout plus `main`'s audio, music AI and agent-rules entries).
+- `docs/INTEGRATION_SPRINTS_1_3.md`: new. Branch provenance, conflict resolution, per-file preservation check, full test report, open items.
+- `docs/PROJECT_STATUS.md`, `docs/AI_HANDOFF.md`: this branch's rows and entry.
+
+**Unfinished**
+- none in this branch.
+
+**Known errors**
+- none. Expected warnings come only from negative tests (save tamper, note validation, locked dialogue choice).
+
+**Tests** (on `99c2eaf`)
+- `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64` (4.7.stable.official.5b4e0cb0f, SHA-512 verified): exit 0. JSON 4 OK, audio manifest 3 OK, music AI 3 OK, TestPharmacology 0 failures (8 cases), TestQA 19 passed / 0 failed / 0 skipped, `.glb` validation 58/58, TestRunner 80 passed / 0 failed, boot OK, TestAudio 211 passed, Ch1 audio sequence done.
+- Blender 5.0.1 (`bpy`, Python 3.11) re-ran `tools/blender/build_stage1_modular.py`, `build_stage1_props.py`, `build_stage2_chapter1.py` in a scratch copy: STAGE1 OK 25, PROPS OK 26, STAGE2 OK 7; rebuilt exports pass `.glb` validation 58/58. 8 rebuilt `.glb` differ byte-wise from the committed ones with identical glTF structure; committed files left unchanged.
+- CI: not observed yet; check the draft PR.
+
+**Dependencies not available to remote agents**
+- Mac-only checks (Forward+/Metal rendering, input feel, audio mix). ACE-Step and Stable Audio need the owner's Mac.
+
+**Next steps**
+1. Owner reviews and merges the integration draft PR into `main`.
+2. After it merges, close PRs #1, #6, #7 and #8 (all fully contained). PRs #9 and #10 are already closed.
+3. Follow-up: remove the tracked `assets/blender/modular/FW_Modular_Kit.blend1` backup (now gitignored).
+4. Next feature work branches from `main` after the merge, in the `scripts/` layout.
+
+**Notes for the other agent**
+- `claude/environment-production` was still at `e321b4a` when this branch was built. If that session pushes more, merge `origin/claude/environment-production` into a continuation branch from this one rather than into the old PRs.
+- Do not reintroduce `autoload/`, `staging/` or `main`'s old demo `scenes/main/Main.gd`.
+
+### 2026-10-17 · Claude Code · Sprint 3 story, evidence board, shift loop
+
+- **Branch:** `claude/sprint-03-evidence-shift` (based on `claude/sprint-02-ehr-interview` at `0f36185`)
+- **Latest verified commit:** the commit carrying this entry; `git ls-remote origin claude/sprint-03-evidence-shift`
+- **Pull request:** draft, stacked on #9 (merge order #8, #6, #7, #9, then this PR)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- The Chapter 1 slice plays from start to finish:
+  1. Bennett handover (audio scene and subtitles).
+  2. Interview Elias, document, act.
+  3. Collect the transfer summary and roster, link them on the evidence board, argue the hypothesis.
+  4. Sign out at the handover board; a documented handover earns Bennett's trust.
+  5. Night shift; 15 minutes later the intercom calls W-Zero-B and the EHR logs a transfer request under an inactive credential.
+  6. Read the W0-B door log; a trusted Bennett corroborates it.
+  7. Sign out for the night; the end summary appears.
+- None of these steps blocks progress, and every one survives save and load.
+
+**Files modified**
+- New:
+  - `scripts/narrative/StoryLogic.gd`: closed condition and action vocabulary, validated.
+  - `scripts/narrative/ChapterDirector.gd`.
+  - `data/story_chapter1.json`.
+  - `scripts/ui/EvidenceBoard.gd` and `scenes/ui/EvidenceBoard.tscn`.
+  - `scripts/world/AudioZoneTracker.gd`.
+  - `scripts/tests/test_sprint3.gd`.
+- `scripts/main/Main.gd`:
+  - evidence panel and Tab handling;
+  - director and audio tracker nodes;
+  - `_silence_audio` on exit;
+  - graceful quit on window close (`auto_accept_quit` false while Main lives).
+- `scenes/main/Main.tscn`: EvidenceBoard, ChapterDirector and AudioZoneTracker nodes.
+- `scripts/ui/PauseMenu.gd`: Quit uses the same graceful path.
+- `scripts/ui/HUD.gd`: objective and subtitle labels.
+- `scripts/autoload/EventBus.gd`: `objective_changed`, `story_beat_fired`, `shift_signout_requested`, `chapter_completed`.
+- `scripts/autoload/EvidenceManager.gd`: `get_verifications`; verifications deduped per method.
+- `scripts/autoload/PatientManager.gd`: `add_chart_entry` (audit only).
+- `scripts/world/{Character,ImportedInteractable}.gd`: situational staff lines; `shift_signout` type.
+- Content layer and data:
+  - `scripts/content/*` and `ContentRegistry.gd`: story schema and validation;
+  - world `audio_zones`;
+  - `data/world_chapter1.json`: handover board and audio zones.
+
+**Unfinished**
+- GDD beat 4 (second stable patient hinting at a missing clinician) needs a second authored patient.
+- Only the `corridor` and `nursing_station` audio locations exist; other rooms fall back to the corridor.
+- Story lines are `[Placeholder]`.
+
+**Known errors**
+- none.
+- Headless runs no longer start ambience. A stream still playing at quit was reported as `ERROR: resources still in use`, which run.py treats as a failure.
+
+**Tests** (on this branch)
+- `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64`: exit 0.
+  - TestQA: 19/0/0.
+  - GLB validation: 58 assets.
+  - TestRunner: 80 passed.
+  - TestAudio: 92 passed.
+  - Ch1 audio sequence: done.
+- CI: not observed.
+
+**Next steps**
+1. Act I completion: author a second patient (GDD beat 4) in `data/patients.json` and `data/dialogue.json` (dialogue then needs one document per patient; `ContentRegistry` indexes a single dialogue file today), plus a Voss orientation beat (beat 1).
+2. Environment Stage 3/4 on `claude/environment-production`: medication room, a second interview room, security control, plus character stand-in meshes better than capsules.
+3. Pharmacology in the EHR as governed rules (needs approval records per rule).
+
+### 2026-10-17 · Claude Code · Sprint 2 EHR and interview
+
+- **Branch:** `claude/sprint-02-ehr-interview` (based on `claude/chapter1-playable` at `7b11143`)
+- **Latest verified commit:** the commit carrying this entry; `git ls-remote origin claude/sprint-02-ehr-interview`
+- **Pull request:** #9 (draft, stacked on #7; merge order #8, #6, #7, #9)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- The GDD §13 MVP loop is playable end to end in the Blender-built wing:
+  1. Interview Elias with the `CAM_IR_*` cameras, using typed or structured questions.
+  2. Questions record the findings with provenance.
+  3. Open the EHR (terminal or J) and save a structured note.
+  4. Commit a clinical action through ClinicalRules; the chart updates deterministically.
+  5. Save and load.
+
+**Files modified**
+- `scripts/ui/EHRScreen.gd`, `scripts/ui/InterviewScreen.gd`, `scripts/ui/UIStyle.gd`, and both `.tscn` files: new.
+- `scripts/main/Main.gd`: panel routing (info / interview / ehr); Esc closes the topmost panel; J toggles the EHR.
+- `scripts/autoload/PatientManager.gd`: `save_note`/`get_notes`, `perform_action`, `action_event_id`; review flags in the audit trail.
+- `scripts/autoload/DialogueManager.gd`: `records_observations`, `last_recorded_observations`, `QUESTION_MINUTES`.
+- `scripts/autoload/TimeManager.gd`: `format_minutes`.
+- `scripts/autoload/EventBus.gd`: `patient_note_saved`.
+- `scripts/content/*` and `scripts/autoload/ContentRegistry.gd`:
+  - schema for `actions` and `records_observations`;
+  - reference checks;
+  - `get_actions`/`get_action`.
+- `data/clinical_rules.json`: two actions and one new PENDING placeholder rule.
+- `data/dialogue.json`: `records_observations` on two choices.
+- `scripts/world/{Character,WorldActions,ImportedInteractable,Terminal}.gd`: patients open the interview; terminals open the EHR.
+
+**Unfinished**
+- No MAR/medication tab; PharmacologyEngine is still not used in play.
+- The close-up and reverse interview shots are unused (capsule stand-ins).
+
+**Known errors**
+- none. Expected warnings come from negative tests.
+
+**Tests** (on this branch)
+- `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64`: exit 0.
+  - TestQA: 19/0/0.
+  - GLB validation: 58 assets.
+  - TestRunner: 62 passed.
+  - TestAudio: 92 passed.
+  - Ch1 audio sequence: done.
+- CI: not observed.
+
+**Next steps**
+1. Sprint 3 on a new branch from this one:
+   - evidence board UI (link and pin clues, hypotheses);
+   - shift sign-in/sign-out loop;
+   - Bennett trust effects;
+   - the after-hours W0-B intercom beat and the disputed EHR transfer entry (GDD §12 beat 6).
+2. Owner: review the new authored clinical wording listed in PR #9.
+
+### 2026-10-17 · Claude Code · Chapter 1 playable
+
+- **Branch:** `claude/chapter1-playable` (sprint 1 + PR #6, now with `claude/integrate-sprint-01` merged in)
+- **Latest verified commit:** the merge commit this entry is part of (a file cannot hold its own SHA); `git ls-remote origin claude/chapter1-playable`
+- **Pull request:** #7 (draft)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- Merged the integration branch (PR #8) so PR #7 sits on top of `main`'s QA, audio and pharmacology. Conflicts were only `.gitignore` and the autoload list in `project.godot`; both sides kept (`WorldStateManager` precedes `GameState`).
+- `tests/qa/run.py` now also runs `tools/godot/validate_glb_imports.gd`.
+
+**Tests**
+- `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64`: exit 0. TestPharmacology 0 failures, TestQA 19/0/0, GLB validation 58 assets 0 failures, TestRunner 46 passed / 0 failed, boot OK, TestAudio 92 passed, Ch1 audio sequence done.
+- CI: not observed.
+
+**Next steps**
+1. Owner merges PR #8, then PR #6, then PR #7 (in that order; PR #7 contains both).
+2. Sprint 2 on `claude/sprint-02-ehr-interview` from this branch.
+
+### 2026-10-17 · Claude Code · Sprint 1 integration
+
+- **Branch:** `claude/integrate-sprint-01` (based on `main` at `91ad354`)
+- **Latest verified commit:** `8ca85bce79f08f19ce75e00c33502a4e4af14146` "Merge sprint-01 foundation into main's QA, audio and pharmacology". This entry's doc commit sits on top.
+- **Confirmed on GitHub:** check with `git ls-remote origin claude/integrate-sprint-01`
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- Executed the integration plan from `docs/PROJECT_STATUS.md`: PR #1 merged into `main` on its own branch, every `main` suite kept green, and the Sprint 1 suite added to the runner.
+
+**Files modified**
+- `project.godot`: Sprint 1 autoloads, then `GameState`, `PharmacologyEngine`, `AudioDirector` (in that order; GameState needs TimeManager and SaveManager).
+- `scripts/autoload/EventBus.gd`: added `shift_started`/`shift_ended`, pharmacology, legacy progress and narrative/audio signals. `autoload/EventBus.gd` removed.
+- `scripts/autoload/GameState.gd` (moved from `autoload/`): `day`/`shift` are getters on TimeManager; `start_shift`/`advance_shift` call `TimeManager.jump_to_shift`/`advance_to_next_shift`; saved as SaveManager provider `game_state`; `to_dict`/`from_dict`/`save_game`/`load_game` kept.
+- `scripts/autoload/TimeManager.gd`: `get_shift_day`, `shift_day_for`, `advance_to_next_shift`, `jump_to_shift`; emits `shift_ended`/`shift_started` on shift boundaries.
+- `scripts/autoload/Settings.gd`: volume keys removed (AudioDirector owns them).
+- `scripts/main/Main.gd`: prints `[The Forensic Ward] Boot OK (content valid|INVALID)`.
+- `systems/pharmacology/**`, `data/drugs`, `data/patients`, `tests/TestPharmacology.*`, `docs/PHARMACOLOGY_ENGINE.md`: kept from `main`; `staging/` removed.
+- `tests/qa/TestQA.gd`: demo-HUD checks and both SKIPs replaced by checks against the real Main (content valid, player control, forward movement, interactables, door interaction reaches EventBus, shift progression through TimeManager).
+- `tests/qa/run.py`: requires `skipped=0`; runs `res://scripts/tests/TestRunner.tscn` and requires `PASSED: N passed, 0 failed`.
+- `docs/TESTING.md`, `docs/PROJECT_STATUS.md`, this file.
+
+**Unfinished**
+- No gameplay path calls PharmacologyEngine yet (Sprint 2 `ClinicalRules` integration).
+- `claude/chapter1-playable` (PR #7) still needs this branch merged in.
+
+**Known errors**
+- none. One expected `WARNING: SaveManager: slot 99: checksum mismatch` comes from the tamper test.
+
+**Tests** (on `8ca85bc`)
+- `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64`: exit 0. JSON and audio-manifest checks OK, TestPharmacology 0 failures, TestQA 19 passed / 0 failed / 0 skipped, TestRunner 43 passed / 0 failed, boot OK, TestAudio 92 passed, Ch1 audio sequence done.
+- CI: not observed yet; check the draft PR.
+
+**Dependencies not available to remote agents**
+- Mac-only checks (rendering, input feel, audio mix).
+
+**Next steps**
+1. Owner reviews and merges the integration draft PR; then close PR #1.
+2. Merge this branch into `claude/chapter1-playable` and update PR #7.
+3. Sprint 2 on a new branch: EHR UI, cinematic interview UI, observation capture.
+
+**Notes for the other agent**
+- Audio workstream: `AudioDirector` is unchanged; `GameState.shift` and `EventBus.shift_started` behave as before, but the clock is TimeManager's now.
+- Do not reintroduce `autoload/EventBus.gd`; the one EventBus is `scripts/autoload/EventBus.gd`.
 
 ### 2026-10-17 15:40 UTC · Claude Code · Handoff system
 

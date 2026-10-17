@@ -1,0 +1,50 @@
+{
+  "patients": [
+    {
+      "schema_version": "0.1",
+      "id": "pt_elias_ward",
+      "name": "Elias Ward",
+      "age": 29,
+      "fictional": true,
+      "legal_status": "competency_restoration_transfer",
+      "arrival_shift": 1,
+      "presentation": {
+        "complaints": [
+          "mutism",
+          "marked_reduction_in_movement",
+          "posturing",
+          "poor_oral_intake"
+        ],
+        "observations": [
+          {
+            "id": "obs_mutism",
+            "source": "nursing_report",
+            "timestamp": "day1_0814",
+            "text": "Not speaking following transfer; duration not independently verified."
+          },
+          {
+            "id": "obs_posturing",
+            "source": "physician_observation",
+            "timestamp": "day1_pending",
+            "text": "Possible posturing requires structured bedside examination."
+          }
+        ]
+      },
+      "differential_tags": [
+        "catatonia",
+        "medical_or_neurologic_cause",
+        "medication_related_syndrome",
+        "primary_psychiatric_disorder"
+      ],
+      "clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+      "record_discrepancies": [
+        "transfer_identifier_collision",
+        "inactive_authorizer"
+      ],
+      "initial_rapport": 0,
+      "narrative_flags": [],
+      "current_location": "clinical_unit",
+      "must_not_auto_transfer_if": "medically_unstable"
+    }
+  ]
+}

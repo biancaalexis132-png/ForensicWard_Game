@@ -1,0 +1,43 @@
+{
+	"schema_version": "0.1",
+	"world_id": "world_chapter1",
+	"notes": "Wires the Blender-exported Chapter 1 clinical wing (assets/exports/clinical/env) to gameplay. Node names refer to nodes inside the imported ENV_* scenes.",
+	"spawn_marker": "MARK_PlayerSpawn",
+	"environments": [
+		"res://assets/exports/clinical/env/ENV_ClinicalCorridor_20m.glb",
+		"res://assets/exports/clinical/env/ENV_PsychiatristOffice.glb",
+		"res://assets/exports/clinical/env/ENV_NursingStation.glb",
+		"res://assets/exports/clinical/env/ENV_RecordsArchive.glb",
+		"res://assets/exports/clinical/env/ENV_PatientRoom_01.glb",
+		"res://assets/exports/clinical/env/ENV_PatientRoom_02.glb",
+		"res://assets/exports/clinical/env/ENV_InterviewRoom_A.glb"
+	],
+	"doors": {
+		"door_office": {"display_name": "Office door"},
+		"door_nurse_station": {"display_name": "Nursing station door"},
+		"door_archive": {"display_name": "Records archive door", "locked_message": "Records Archive: badge access required. Ask the charge nurse."},
+		"door_patient_01": {"display_name": "Room 01 door", "open_angle_degrees": -100, "locked_message": "Room 01: a patient's bedroom. Locked."},
+		"door_patient_02": {"display_name": "Room 02 door", "open_angle_degrees": -100, "locked_message": "Room 02: a patient's bedroom. Locked."},
+		"door_interview": {"display_name": "Interview room door", "open_angle_degrees": -100},
+		"door_ward_entry": {"display_name": "Ward entry doors", "locked_message": "Ward entry: controlled access. Not your route today."},
+		"door_w0b": {"display_name": "W0-B door", "locked_message": "W0-B: sealed. Your badge is not recognised."}
+	},
+	"interactables": [
+		{"node": "OF_Terminal_EHR", "type": "ehr_terminal", "title": "EHR Workstation (Office)"},
+		{"node": "NS_Terminal_EHR", "type": "ehr_terminal", "title": "EHR Workstation (Nursing Station)"},
+		{"node": "OF_Document_TransferSummary", "type": "clue_pickup", "clue_id": "clue_transfer"},
+		{"node": "AR_Document_WardRoster1968", "type": "clue_pickup", "clue_id": "clue_roster"},
+		{"node": "W0B_AccessPanel", "type": "clue_terminal", "title": "Security Access Log", "clue_id": "clue_access"},
+		{"node": "NS_NoticeBoard", "type": "shift_signout", "title": "Shift handover board (sign out)"}
+	],
+	"characters": [
+		{"marker": "MARK_Character_DrVoss", "kind": "staff", "character_id": "staff_voss"},
+		{"marker": "MARK_Character_NurseBennett", "kind": "staff", "character_id": "staff_bennett"},
+		{"marker": "MARK_Seat_Patient", "kind": "patient", "character_id": "pt_elias_ward", "seated": true}
+	],
+	"flicker_lights": ["LIGHTMARK_Corridor_00"],
+	"default_audio_location": "corridor",
+	"audio_zones": [
+		{"location": "nursing_station", "min_xz": [-5.0, -12.0], "max_xz": [-1.5, -8.0]}
+	]
+}

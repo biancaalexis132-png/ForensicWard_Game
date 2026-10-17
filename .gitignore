@@ -13,6 +13,8 @@ export_presets.cfg
 Thumbs.db
 *.tmp
 
+# Blender backups and Python caches
+*.blend1
 # Offline audio/music generation (large, machine-local; see docs/AUDIO.md)
 .venv-audio/
 .venv-music/

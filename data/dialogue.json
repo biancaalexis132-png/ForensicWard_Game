@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1",
+  "patient_id": "pt_elias_ward",
+  "states": [
+    {
+      "id": "initial",
+      "choices": [
+        {
+          "id": "ask_intake",
+          "label": "Ask about food and fluids",
+          "intents": [
+            "food_intake",
+            "nutrition",
+            "is_he_eating"
+          ],
+          "response": "The patient remains silent. Nursing reports reduced intake; intake chart review is available.",
+          "next": "initial",
+          "records_observations": [
+            "obs_mutism"
+          ]
+        },
+        {
+          "id": "assess_motor",
+          "label": "Examine motor behavior",
+          "intents": [
+            "motor_exam",
+            "catatonia_exam",
+            "assess_posturing"
+          ],
+          "response": "A structured bedside motor and medical assessment becomes available; no diagnosis is automatically confirmed.",
+          "next": "assessment",
+          "records_observations": [
+            "obs_posturing"
+          ]
+        },
+        {
+          "id": "ask_ward_zero",
+          "label": "Ask about Ward Zero",
+          "intents": [
+            "ward_zero",
+            "old_ward"
+          ],
+          "response": "No verbal response. An orderly closes the observation window.",
+          "next": "initial"
+        }
+      ]
+    },
+    {
+      "id": "assessment",
+      "choices": [
+        {
+          "id": "return_to_general",
+          "label": "Return to general questions",
+          "intents": [
+            "go_back",
+            "other_questions"
+          ],
+          "response": "[Placeholder: the structured bedside assessment is authored in Sprint 2.]",
+          "next": "initial"
+        }
+      ]
+    }
+  ],
+  "fallback_response": "I don't have a scripted response for that question yet. Try a listed clinical topic or ask it another way.",
+  "clinical_review_status": "PENDING"
+}

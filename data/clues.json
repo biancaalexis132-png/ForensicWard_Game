@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.1",
+  "clues": [
+    {
+      "id": "clue_transfer",
+      "title": "Transfer Summary",
+      "source": "EHR",
+      "provenance": "digitally_signed_document",
+      "verified": false,
+      "description": "Current transfer summary references an archived identifier."
+    },
+    {
+      "id": "clue_roster",
+      "title": "1968 Ward Roster",
+      "source": "archive",
+      "provenance": "scanned_historical_document",
+      "verified": false,
+      "description": "A historical identifier resembles one used in a present-day transfer."
+    },
+    {
+      "id": "clue_access",
+      "title": "W0-B Door Log",
+      "source": "security_log",
+      "provenance": "access_control_system",
+      "verified": false,
+      "description": "Door activity appears under an inactive credential."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp_identity_reuse",
+      "title": "Historical identifiers may have been reused",
+      "required_clues": [
+        "clue_transfer",
+        "clue_roster"
+      ],
+      "status": "unresolved",
+      "alternate_explanations": [
+        "migration_error",
+        "misfiled_record",
+        "deliberate_fabrication"
+      ]
+    }
+  ]
+}

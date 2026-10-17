@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.1",
+  "actions": [
+    {
+      "id": "evaluate_catatonia",
+      "patient_id": "pt_elias_ward",
+      "label": "Structured catatonia assessment",
+      "description": "Document a structured bedside examination using the findings you have recorded. The outcome is a placeholder until the psychiatrist reviews this rule.",
+      "time_minutes": 20,
+      "clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW"
+    },
+    {
+      "id": "request_medical_review",
+      "patient_id": "pt_elias_ward",
+      "label": "Request medical team review",
+      "description": "Ask the medical team to review the patient. The request is logged; no medical result is simulated yet.",
+      "time_minutes": 5,
+      "clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW"
+    }
+  ],
+  "rules": [
+    {
+      "id": "clinical_rule_catatonia_escalation_v1",
+      "review_status": "PENDING_PSYCHIATRIST_REVIEW",
+      "trigger_action": "evaluate_catatonia",
+      "patient_id": "pt_elias_ward",
+      "condition": {
+        "observations_present": [
+          "obs_mutism",
+          "obs_posturing"
+        ]
+      },
+      "non_medical_effects": [
+        "mark_assessment_started"
+      ],
+      "medical_effects": [],
+      "source_catalog_ids": [
+        "ref_sims_7",
+        "ref_kaplan_12"
+      ],
+      "notice": "No dose, prescribing, or treatment algorithm is approved in this fixture."
+    },
+    {
+      "id": "clinical_rule_medical_review_request_v1",
+      "review_status": "PENDING_PSYCHIATRIST_REVIEW",
+      "trigger_action": "request_medical_review",
+      "patient_id": "pt_elias_ward",
+      "condition": {},
+      "non_medical_effects": [
+        "mark_medical_review_requested"
+      ],
+      "medical_effects": [],
+      "source_catalog_ids": [
+        "ref_kaplan_12"
+      ],
+      "notice": "Placeholder: logs that a medical review was requested. No medical result, test or treatment is simulated."
+    }
+  ]
+}

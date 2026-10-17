@@ -1,6 +1,6 @@
 # Automated QA
 
-Use **Godot 4.7 stable (standard build)** and Python 3. No testing plugins or Python packages are required. The repository currently contains EventBus, GameState, PharmacologyEngine, two patient records, the drug database, and a temporary Main demo. There is no player controller, corridor scene, or world interaction manager yet.
+Use **Godot 4.7 stable (standard build)** and Python 3. No testing plugins or Python packages are required. The repository contains the Sprint 1 manager autoloads (`scripts/autoload/`), the GameState compatibility layer, PharmacologyEngine, AudioDirector, the first-person controller, the greybox hospital with doors, terminals and clue pickups, and the HUD, info panel and pause menu.
 
 ## Run on macOS
 
@@ -24,19 +24,22 @@ python3 tests/qa/test_json.py
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --editor --import
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tests/TestPharmacology.tscn
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://tests/qa/TestQA.tscn
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://scripts/tests/TestRunner.tscn
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --quit-after 60
 ```
 
-Prefer the Python runner: it enforces a 120-second timeout per command, nonzero failures, completion markers, and failure on Godot script/runtime errors even if Godot exits zero. Each suite runs in a separate Godot process. Tests do not call save/load disk operations or overwrite player saves. Godot may refresh its ignored `.godot/` resource cache. The runner requires 4.7; upgrade it and CI together when the project changes engine version.
+Prefer the Python runner: it enforces a 120-second timeout per command, nonzero failures, completion markers, and failure on Godot script/runtime errors even if Godot exits zero. Each suite runs in a separate Godot process. Save/load tests write only to test slot 99, and the runner points Godot's user data at a temporary directory, so real saves are never touched. Godot may refresh its ignored `.godot/` resource cache. The runner requires 4.7; upgrade it and CI together when the project changes engine version.
 
 ## Executed coverage
 
 - Four Python tests: all authored JSON syntax, drug IDs and patient references, basic patient field types/ranges, positive drug doses/half-lives and clearance fractions. Negative cases cover malformed JSON, duplicate keys, NaN/Infinity, missing/wrong IDs, wrong medication containers, unknown drugs, negative/string/boolean doses.
 - Existing pharmacology suite: eight clinical scenarios, 19 assertions, including treatment response, smoking cessation, interaction buildup/washout, alerts and clue gates.
-- GDScript QA scene: 16 assertions for item/event deduplication, clue pinning, objectivity clamps/bleed stages, in-memory progress round trip, actual main-scene instantiation and HUD/patient initialization, shift progression and demo keyboard handlers.
+- GDScript QA scene: 19 assertions for item/event deduplication, clue pinning, objectivity clamps/bleed stages, in-memory progress round trip, shift progression through TimeManager, main-scene instantiation, content validation at boot, forward movement over physics frames, and an interaction reaching EventBus.
+- Environment imports (`tools/godot/validate_glb_imports.gd`): every exported `.glb` loads, has meshes and colliders, and carries the markers its manifest promises (58 assets).
+- Sprint 1 and Chapter 1 suite (`scripts/tests/TestRunner.tscn`): 46 tests across content validation, dialogue intent matching, state/save (including checksum tamper detection, which logs one expected `WARNING`), and world integration in the Blender-built Chapter 1 wing (movement, imported wall collision, the interaction ray, imported doors and access, clues, characters, lights, environment states, world save/load).
 - Project import parses/registers scripts; the boot smoke check runs the configured main scene for 60 frames and requires its completion message.
 
-The content validator is a deliberately partial schema for currently authored content, not a full patient schema and not proof that gameplay rejects malformed external/save data. Demo input tests call the handler directly; they do not establish OS input routing, mouse capture, physics collisions or raycast behavior. Disk save/load and branching dialogue are not yet covered. Run each added scene through an explicit smoke test; import alone does not execute its `_ready()`.
+The content validator is a deliberately partial schema for currently authored content, not a full patient schema and not proof that gameplay rejects malformed external/save data. Input tests use Godot actions and injected events; they do not establish OS input routing or mouse capture on macOS. Run each added scene through an explicit smoke test; import alone does not execute its `_ready()`.
 
 ## Audio coverage
 
@@ -49,15 +52,13 @@ Headless Godot uses the Dummy audio driver, so playback state and timing are tes
 
 ## Pending gameplay cases
 
-Two coverage gaps print `SKIP` and are excluded from pass counts. Replace these explicit skips with real tests when Claude's APIs and scenes exist; do not build substitute gameplay implementations just to get green tests.
+The two former `SKIP` lines (movement, world interaction) are now real checks, and the runner requires `skipped=0`. Still not covered:
 
 | Area | Fixture and expected behavior to implement |
 | --- | --- |
-| Movement | Instantiate the real controller on a floor; apply configured forward input across physics frames; verify displacement and release-to-stop. |
-| Movement | Compare diagonal and forward speeds, verify wall collision, grounded behavior, and no movement while terminal/paused mode owns input. Confirm intended speed/jump rules against the design first. |
-| Interaction | Instantiate the real manager and target; verify one activation per press, range/occlusion rejection, no-target behavior, and focus loss in terminal/paused mode. |
-| Interaction state | Pick up a real item twice, verify one state update/event, reload the scene and verify collected state persists without duplicated objects. |
-| Invalid runtime JSON | Exercise the actual loaders with malformed syntax, wrong root/container types, unknown references and invalid values; verify documented failure and unchanged prior state. |
+| Movement | Diagonal versus forward speed; jump rules once the design confirms them. |
+| Invalid runtime JSON | Exercise the actual loaders with wrong root/container types on disk and verify unchanged prior state (the validator is tested in memory only). |
+| Pharmacology in play | No gameplay path calls PharmacologyEngine yet; it is tested only by its own suite. |
 
 ## CI and independent reviews
 

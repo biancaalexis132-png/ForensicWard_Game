@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/Door.gd" id="1_door"]
+[ext_resource type="Script" path="res://scripts/interaction/Interactable.gd" id="2_inter"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_door"]
+albedo_color = Color(0.42, 0.47, 0.5, 1)
+roughness = 0.6
+metallic = 0.3
+
+[sub_resource type="BoxMesh" id="Mesh_panel"]
+material = SubResource("Mat_door")
+size = Vector3(1.1, 2.18, 0.06)
+
+[sub_resource type="BoxShape3D" id="Shape_panel"]
+size = Vector3(1.1, 2.18, 0.06)
+
+[sub_resource type="BoxShape3D" id="Shape_interact"]
+size = Vector3(1.1, 2.18, 0.4)
+
+[node name="Door" type="Node3D"]
+script = ExtResource("1_door")
+
+[node name="Hinge" type="Node3D" parent="."]
+
+[node name="Panel" type="AnimatableBody3D" parent="Hinge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 1.09, 0)
+sync_to_physics = false
+
+[node name="Mesh" type="MeshInstance3D" parent="Hinge/Panel"]
+mesh = SubResource("Mesh_panel")
+
+[node name="Collision" type="CollisionShape3D" parent="Hinge/Panel"]
+shape = SubResource("Shape_panel")
+
+[node name="Interactable" type="Area3D" parent="Hinge/Panel"]
+script = ExtResource("2_inter")
+prompt = "Open door"
+
+[node name="Shape" type="CollisionShape3D" parent="Hinge/Panel/Interactable"]
+shape = SubResource("Shape_interact")

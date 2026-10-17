@@ -2,7 +2,7 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
-**Last verified:** 2026-10-17 15:40 UTC by Claude Code, against `origin` after `git fetch --prune`.
+**Last verified:** 2026-10-17 17:40 UTC by Claude Code (Sprints 1–3 integration session), against `origin` after `git fetch --prune`.
 
 Status meanings:
 
@@ -17,55 +17,61 @@ Status meanings:
 
 | Branch | Tip | State | Notes |
 |---|---|---|---|
-| `main` | `8e64eaf` | Integration branch | Includes PR #2 (QA runner, CI) and PR #3 (adaptive audio). CI green on this commit. |
-| `claude/sprint-01-foundation` | `f626aad` | PR #1 open, not merged | Sprint 1 foundation. Based on `06046ea`; has diverged from `main` (see Integration risks). |
-| `codex/sprint-01-tests` | `d1d7479` | PR #2 merged 2026-10-17 | Codex QA runner and CI. |
-| `claude/quirky-ptolemy-6j16b7` | `c58efc9` | PR #3 merged 2026-10-17 | Adaptive audio engine and Chapter 1 audio milestone. |
-| `claude/ai-handoff-system` | see PR | Draft PR | This handoff system (`AGENTS.md`, `CLAUDE.md`, these docs). |
+| `main` | `f6efda8` | Integration branch | Includes PR #2 (QA runner, CI), PR #3 (adaptive audio) and PR #4 (handoff system) and PR #5 (ACE-Step pipeline, environment sound set). |
+| `claude/integration-sprints-1-3` | see `docs/AI_HANDOFF.md` | Draft PR to `main`, not merged | **The one branch to merge.** `claude/chapter1-playable` (which already holds #1, #8, #6, #9, #10) plus `main` at `f6efda8`. Full `run.py` green, Blender rebuild green. Report: `docs/INTEGRATION_SPRINTS_1_3.md`. Replaces PRs #1, #6, #7, #8. |
+| `claude/integrate-sprint-01` | see `docs/AI_HANDOFF.md` | Draft PR open, not merged | `main` + PR #1 reconciled; every `run.py` suite green locally. Supersedes merging PR #1 directly. |
+| `claude/sprint-01-foundation` | `f626aad` | PR #1 open, not merged | Sprint 1 foundation. Merge the integration PR instead; PR #1 can then be closed. |
+| `claude/environment-production` | `e321b4a` | PR #6 open, not merged | Blender sources, `.glb` exports, manifest, renders (Stages 1–2). Adds files only; no conflicts with `main`. |
+| `claude/chapter1-playable` | see `docs/AI_HANDOFF.md` | PR #7 draft, not merged | Playable Chapter 1 in the Blender-built wing; contains PR #8 and PR #6. Merge order: #8, #6, #7. |
+| `claude/sprint-02-ehr-interview` | see `docs/AI_HANDOFF.md` | PR #9 draft, stacked on #7 | Sprint 2: EHR, cinematic interview, observation capture, notes, clinical actions. |
+| `claude/sprint-03-evidence-shift` | see `docs/AI_HANDOFF.md` | Draft PR, stacked on #9 | Sprint 3: story director, evidence board, shift sign-out, Bennett trust, after-hours W0-B beat. |
+| `claude/quirky-ptolemy-6j16b7` | `a99782e` | PR #5 merged | Audio sound set / ACE-Step pipeline. |
+| `codex/sprint-01-tests` | `d1d7479` | PR #2 merged | Codex QA runner and CI. |
 
-Not yet on GitHub at the time of checking: `claude/audio-production` and `claude/environment-production`. Sessions are working toward them; nothing on them is available until they are pushed.
+Not on GitHub at the time of checking: `claude/audio-production`.
 
 ## Systems
 
 | System | Status | Branch | Evidence | Untested / caveats |
 |---|---|---|---|---|
 | Godot 4.7 project config | Completed | `main` | `project.godot`, features `4.7`, Forward+ | Forward+ on the owner's Mac not confirmed for current `main` |
-| EventBus, GameState autoloads | Completed | `main` | `autoload/`; QA suite 16 passed | Replaced by the manager set on PR #1 |
-| Pharmacology engine (CYP/renal PK, QTc, alerts) | Completed (clinically approved) | `main`; staged copy on PR #1 | `TestPharmacology` 0 failures; approval in `docs/clinical_review_log.md` (foundation branch) | Must be re-expressed as governed rules in `ClinicalRules` (Sprint 2) |
-| Headless QA runner and CI | Completed | `main` | `tests/qa/run.py`, `.github/workflows/godot-validation.yml`; CI run on `8e64eaf` passed | Does not run PR #1's `scripts/tests/` suites |
+| EventBus, GameState autoloads | Done, not merged (integration) | `claude/integrate-sprint-01` | `scripts/autoload/`; QA suite 19 passed, 0 skipped | GameState is now a compatibility layer whose clock is TimeManager's |
+| Pharmacology engine (CYP/renal PK, QTc, alerts) | Completed (clinically approved) | `main`; kept in place by the integration branch | `TestPharmacology` 0 failures; approval in `docs/clinical_review_log.md` (foundation branch) | Must be re-expressed as governed rules in `ClinicalRules` (Sprint 2) |
+| Headless QA runner and CI | Completed; extended on integration branch | `main` | `tests/qa/run.py`, `.github/workflows/godot-validation.yml` | Integration branch adds `scripts/tests/TestRunner.tscn` and requires `skipped=0` |
 | Adaptive audio engine (`AudioDirector`) | Completed | `main` | `TestAudio` 92 passed; Ch1 sequence completes | All assets `pending_listening_review`; mix untested on Mac |
 | Chapter 1 audio milestone (ambience, door, pager, intercom, Bennett exchange, unease transition) | Completed | `main` | `audio/manifest.json`, `docs/AUDIO_MANIFEST.md` | Listening review by owner pending |
-| Full audio production (all voices, score, more ambience) | Active | `claude/audio-production` (not pushed yet) | none on GitHub yet | Stable Audio and ACE-Step need the owner's Mac |
-| Manager autoloads (Settings, SaveManager, ContentRegistry, TimeManager, PatientManager, ClinicalRules, DialogueManager, EvidenceManager, TrustManager) | Done, not merged | `claude/sprint-01-foundation` | 43/43 tests pass | Conflicts with `main` |
+| Full audio production (all voices, score, more ambience) | Partly completed | `main` (PR #5: environment sound set, ACE-Step client); `claude/audio-production` not on GitHub | `TestAudio` 211 passed on the integration branch; `tests/music_ai` 3 OK | Stable Audio and ACE-Step need the owner's Mac |
+| Manager autoloads (Settings, SaveManager, ContentRegistry, TimeManager, PatientManager, ClinicalRules, DialogueManager, EvidenceManager, TrustManager) | Done, not merged | `claude/integrate-sprint-01` | 43/43 TestRunner tests pass inside `run.py` | |
 | JSON content schemas and validator | Done, not merged | `claude/sprint-01-foundation` | Content tests in `scripts/tests/test_content.gd` | |
 | First-person controller | Done, not merged | `claude/sprint-01-foundation` | `test_world.gd` movement and wall tests | Input feel and mouse recapture untested on Mac |
 | Greybox hospital (corridor, office, interview room, records archive), doors, terminals, clue pickups | Done, not merged | `claude/sprint-01-foundation` | `test_world.gd` | Visuals checked only in Compatibility renderer |
 | HUD, info panel, pause menu, save/load, accessibility toggles | Done, not merged | `claude/sprint-01-foundation` | `test_state.gd` | Manual Mac checklist in `docs/SPRINT_01.md` not done |
 | Dialogue intent matcher | Done, not merged | `claude/sprint-01-foundation` | `test_dialogue.gd` | Elias dialogue `clinical_review_status: PENDING` |
-| Environment art (Blender to `.glb`, stage 1 build) | Active | `claude/environment-production` (not pushed yet) | none on GitHub yet | Headless Blender only; no Blender MCP |
-| EHR patient record view | Planned | | Sprint 2 | |
-| Cinematic interview UI, observation capture | Planned | | Sprint 2 | |
-| `ClinicalRules` with pharmacology integration | Planned | | Sprint 2 | Needs per-rule approval records |
-| Evidence board, shift time, nurse trust, Ward Zero clue | Planned | | Sprint 3 | |
-| Investigation system, five-act story | Planned | | | |
+| Environment art (Blender to `.glb`, Stages 1–2) | Done, not merged | `claude/environment-production` (PR #6) | 58/58 assets import in Godot 4.7 (`tools/godot/validate_glb_imports.gd`); `docs/ENVIRONMENT_STAGES.md` | Untextured; headless Blender only, no Blender MCP |
+| Playable Chapter 1 wing (AuthoredWorld, imported doors and props, world states) | Done, not merged | `claude/chapter1-playable` (PR #7) | 46/46 TestRunner tests and 58/58 glb imports inside `run.py` | |
+| EHR (census, summary, observations with provenance, structured notes, orders, audit) | Done, not merged | `claude/sprint-02-ehr-interview` (PR #9) | `scripts/tests/test_sprint2.gd`; screenshots in Compatibility renderer | No MAR/medication tab yet; Mac input untested |
+| Cinematic interview UI, observation capture | Done, not merged | `claude/sprint-02-ehr-interview` (PR #9) | `test_sprint2.gd` (cameras, typed/structured questions, fallback) | Close-up/reverse shots unused until character models exist |
+| `ClinicalRules` actions from the EHR (non-medical placeholder outcomes) | Done, not merged | PR #9 | Validated mode refuses pending rules (tested) | Both rules PENDING review |
+| Pharmacology in the EHR (MAR, orders through governed rules) | Planned | | Sprint 3+ | Needs per-rule approval records |
+| Evidence board (pin, link, argue, player hypotheses, provenance) | Done, not merged | `claude/sprint-03-evidence-shift` | `scripts/tests/test_sprint3.gd`; screenshot | |
+| Chapter 1 story director (objectives, beats, staff lines), shift sign-out, Bennett trust, after-hours W0-B beat | Done, not merged | `claude/sprint-03-evidence-shift` | `test_sprint3.gd` (handover trust, intercom, chart entry, chapter end, save/load of pending beats) | GDD beat 4 (second patient) not authored; staff lines are placeholders |
+| HUD objective and subtitles; room ambience zones | Done, not merged | `claude/sprint-03-evidence-shift` | `test_sprint3.gd` | Ambience heard only with a display (headless tracks only); mix untested on Mac |
+| Acts II–V, more patients, Ward Zero (environment Stage 6) | Planned | | | Story content needs the narrative bible |
 
 ## Blocked
 
 | Item | Blocked on | Who can unblock |
 |---|---|---|
-| Merging PR #1 into `main` | Integration plan below; PR #1 has no CI run because it predates the workflow | Owner decides the plan; one agent executes it |
+| Sprints 1–3 on `main` | Owner review and merge of the `claude/integration-sprints-1-3` draft PR | Owner |
 | Clinical rule `clinical_rule_catatonia_escalation_v1` as medical logic | Psychiatrist review | Owner |
-| Elias Ward dialogue content | Psychiatrist review | Owner |
+| Elias Ward dialogue content, including the `records_observations` links and EHR action wording added in Sprint 2 | Psychiatrist review | Owner |
+| Clinical rule `clinical_rule_medical_review_request_v1` | Psychiatrist review | Owner |
+| Chapter 1 story lines in `data/story_chapter1.json` (Bennett lines, disputed transfer wording) | Narrative and clinical review | Owner |
 | AI music (ACE-Step, Stable Audio) | Needs the owner's Mac or a GPU and a licence check | Owner |
 
 ## Integration risks
 
-**PR #1 against current `main`.** Checked with `git merge-tree origin/main origin/claude/sprint-01-foundation` on 2026-10-17:
-
-- Text conflicts: `project.godot` (both branches rewrote the autoload list) and `autoload/EventBus.gd` (deleted on PR #1, extended on `main` for audio).
-- Semantic conflicts with no text conflict: PR #1 removes `autoload/GameState.gd`, moves `systems/pharmacology/` to `staging/`, and replaces `scenes/main/Main`. `main`'s QA runner, `TestPharmacology`, `TestQA` and `AudioDirector` depend on those paths.
-
-Proposed plan, which the owner should confirm before anyone starts: one agent, on a new branch `claude/integrate-sprint-01` from `main`, merges `claude/sprint-01-foundation`, keeps the `scripts/` layout from PR #1, ports `AudioDirector` signals onto the new `EventBus`, adds PR #1's `TestRunner` to `tests/qa/run.py`, and keeps all three suites green. Audio and environment branches should not edit `project.godot` or `EventBus.gd` until that lands.
+Every open PR (#1, #6, #7, #8) conflicts with `main` on its own. `claude/integration-sprints-1-3` contains all of them plus current `main` and merges cleanly; merge that one PR and close the others once it is merged. Details and the per-file check are in `docs/INTEGRATION_SPRINTS_1_3.md`. Merging PR #1 by itself would still break `main`'s runner.
 
 ## Untested on hardware
 
