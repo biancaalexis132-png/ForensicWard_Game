@@ -18,17 +18,9 @@ const DEFAULTS: Dictionary = {
 	"flash_effects": true,     ## Flickering lights and flashes.
 	"subtitles": true,
 	"text_scale": 1.0,
-	"volume_master": 1.0,
-	"volume_ambient": 1.0,
-	"volume_voice": 1.0,
-	"volume_music": 1.0,
 }
-
-## Audio bus names (see default_bus_layout.tres) for each volume setting.
-const VOLUME_BUSES: Dictionary = {
-	"volume_master": "Master", "volume_ambient": "Ambient",
-	"volume_voice": "Voice", "volume_music": "Music",
-}
+## Audio volumes and audio accessibility (reduce startling audio, music
+## intensity) are owned by AudioDirector (systems/audio), not here.
 
 ## Tests set this to false so they never overwrite the player's settings file.
 var persist: bool = true
@@ -91,10 +83,7 @@ func _apply_all() -> void:
 		_apply(key)
 
 
-func _apply(key: String) -> void:
-	if VOLUME_BUSES.has(key):
-		var bus: int = AudioServer.get_bus_index(VOLUME_BUSES[key])
-		if bus >= 0:
-			var volume: float = clampf(_values[key], 0.0, 1.0)
-			AudioServer.set_bus_volume_db(bus, linear_to_db(maxf(volume, 0.0001)))
-			AudioServer.set_bus_mute(bus, volume <= 0.0)
+## Hook for settings that change engine state when applied. None do yet:
+## visual/flash toggles are read by the systems that use them.
+func _apply(_key: String) -> void:
+	pass

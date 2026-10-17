@@ -58,6 +58,17 @@ func get_shift() -> String:
 	return shift_for(total_minutes)
 
 
+## The day a shift belongs to: a night shift that runs past midnight still
+## belongs to the day it started (Day 1 night ends at Day 2 07:00).
+func get_shift_day() -> int:
+	return shift_day_for(total_minutes)
+
+
+func shift_day_for(minutes: int) -> int:
+	var day: int = minutes / MINUTES_PER_DAY + 1
+	return day - 1 if minutes % MINUTES_PER_DAY < DAY_SHIFT_START else day
+
+
 func shift_for(minutes: int) -> String:
 	var minute_of_day: int = minutes % MINUTES_PER_DAY
 	return "day" if minute_of_day >= DAY_SHIFT_START and minute_of_day < NIGHT_SHIFT_START else "night"
@@ -116,16 +127,44 @@ func get_scheduled_ids() -> Array[String]:
 	return ids
 
 
+## Moves to the start of the next shift (07:00 or 19:00), firing anything scheduled before it.
+func advance_to_next_shift() -> void:
+	var minute_of_day: int = get_minute_of_day()
+	var target: int
+	if minute_of_day < DAY_SHIFT_START:
+		target = total_minutes - minute_of_day + DAY_SHIFT_START
+	elif minute_of_day < NIGHT_SHIFT_START:
+		target = total_minutes - minute_of_day + NIGHT_SHIFT_START
+	else:
+		target = total_minutes - minute_of_day + MINUTES_PER_DAY + DAY_SHIFT_START
+	advance(target - total_minutes, "shift_change")
+
+
+## Sets the clock to the start of a shift (story set-up, tests, legacy
+## GameState.start_shift). May move backwards; queued events are kept.
+## Always announces shift_started, as the original GameState did.
+func jump_to_shift(day: int, shift: String) -> void:
+	var previous_day: int = get_shift_day()
+	var previous_shift: String = get_shift()
+	total_minutes = (maxi(day, 1) - 1) * MINUTES_PER_DAY + (NIGHT_SHIFT_START if shift == "night" else DAY_SHIFT_START)
+	_realtime_accumulator = 0.0
+	if previous_day != get_shift_day() or previous_shift != get_shift():
+		EventBus.shift_changed.emit(get_shift_day(), get_shift())
+	EventBus.shift_started.emit(get_shift_day(), get_shift())
+
+
 func _move_to(minutes: int, reason: String) -> void:
 	if minutes <= total_minutes:
 		return
 	var previous: int = total_minutes
 	var previous_shift: String = get_shift()
-	var previous_day: int = get_day()
+	var previous_day: int = get_shift_day()
 	total_minutes = minutes
 	EventBus.time_advanced.emit(total_minutes, total_minutes - previous, reason)
-	if get_shift() != previous_shift or get_day() != previous_day:
-		EventBus.shift_changed.emit(get_day(), get_shift())
+	if get_shift() != previous_shift or get_shift_day() != previous_day:
+		EventBus.shift_ended.emit(previous_day, previous_shift)
+		EventBus.shift_started.emit(get_shift_day(), get_shift())
+		EventBus.shift_changed.emit(get_shift_day(), get_shift())
 
 
 # --- Save provider -------------------------------------------------------------------

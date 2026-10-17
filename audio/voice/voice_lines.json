@@ -1,0 +1,50 @@
+{
+	"ch1_b2_bennett_001": {
+		"path": "audio/voice/ch1/ch1_b2_bennett_001.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "41656be3946e7eb35f1e05c291ed6fa68c8f02dc"
+	},
+	"ch1_b2_bennett_002": {
+		"path": "audio/voice/ch1/ch1_b2_bennett_002.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "bde429607cbabe66a60e2acc55294f3a4560af16"
+	},
+	"ch1_b2_bennett_003": {
+		"path": "audio/voice/ch1/ch1_b2_bennett_003.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "370bb0002614ac8127d2c0a1a213a467deea2413"
+	},
+	"ch1_b2_player_001": {
+		"path": "audio/voice/ch1/ch1_b2_player_001.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "23f8fc49a4ccfdf1819a208b07d9b69f478327c9"
+	},
+	"ch1_b2_player_002": {
+		"path": "audio/voice/ch1/ch1_b2_player_002.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "ddc671d51aa4cb46a3a652edc8d8dc8e4c1d0bfb"
+	},
+	"ch1_b6_intercom_001": {
+		"path": "audio/voice/ch1/ch1_b6_intercom_001.ogg",
+		"speaker": "intercom",
+		"voice": "af_alloy",
+		"speed": 0.9,
+		"fx": "intercom",
+		"source_hash": "5a2cccab25b4fe8f165c46221e4c8b237c1d57a0"
+	}
+}

@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/audio/Ch1AudioSequence.gd" id="1_seq"]
+
+[node name="Ch1AudioSequence" type="Node3D"]
+script = ExtResource("1_seq")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+current = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Log" type="Label" parent="HUD"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 1200.0
+offset_bottom = 600.0
+
+[node name="Subtitle" type="Label" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -700.0
+offset_top = -160.0
+offset_right = 700.0
+offset_bottom = -60.0
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 28

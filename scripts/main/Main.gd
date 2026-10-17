@@ -30,6 +30,8 @@ func _ready() -> void:
 	if not ContentRegistry.is_valid:
 		_show_content_errors()
 	_update_input_mode()
+	# tests/qa/run.py looks for this line as boot evidence.
+	print("[The Forensic Ward] Boot OK (content %s)" % ("valid" if ContentRegistry.is_valid else "INVALID"))
 
 
 func _exit_tree() -> void:

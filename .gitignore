@@ -15,4 +15,10 @@ Thumbs.db
 
 # Blender backups and Python caches
 *.blend1
+# Offline audio/music generation (large, machine-local; see docs/AUDIO.md)
+.venv-audio/
+.venv-music/
+tools/audio/models/
+tools/music_ai/ACE-Step-1.5/
+tools/music_ai/output/
 __pycache__/
