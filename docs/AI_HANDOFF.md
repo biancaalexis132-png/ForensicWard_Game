@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Chapter 5 finale review | `biancaalexis132-png-chapter5-finale-review` | Copilot / current session | `4b63ec914cf852135020151178c6d7799ec8ebf8` (verified remote checkpoint) | `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md` | Review complete; docs-only handoff pushed; no runtime changes |
+| Chapter 5 ending-state foundation | `copilot/chapter5-ending-state-foundation` | Copilot / current session | `c0ebb18cdf11beffc863663b6800a4af1c7224d3` (verified base checkpoint) | Proposed: `scripts/narrative/FinaleStateSchemas.gd`, `FinaleStateValidator.gd`, `scripts/tests/test_finale_state_contract.gd`, `docs/design/CHAPTER5_ENDING_STATE_CONTRACT.md`; implementation awaiting owner approval | Design proposal only; no code or persistent schema changes |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -56,6 +56,50 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 23:14 UTC · Copilot · Chapter 5 ending-state foundation plan
+
+- **Branch:** `copilot/chapter5-ending-state-foundation` (based on the verified review handoff branch at `c0ebb18cdf11beffc863663b6800a4af1c7224d3`)
+- **Latest verified commit:** `c0ebb18cdf11beffc863663b6800a4af1c7224d3` "Verify Chapter 5 review handoff push"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-chapter5-finale-review` printed `c0ebb18cdf11beffc863663b6800a4af1c7224d3`; `origin/main` is `122a8c505d5e7738b08d874314aade8a1cd87ab1`.
+- **Pull request:** none. `gh pr list --state open` returned no open PRs.
+- **State:** implementation plan only; awaiting owner approval. No code, save schema, gameplay, clinical rule, or anomaly behavior changed.
+
+**Repository and dependency findings**
+- Fetched `origin` and enumerated remote refs. `origin/main` is `122a8c5` ("Chp 5"). The supplied handoff branch is verified at `c0ebb18`; it contains only the prior handoff documentation relative to main. No hosted PR is currently reported by `gh`.
+- Unmerged remote branches include the handoff branch, `codex/protagonist-schema-p1`, `codex/chapter3-inspection-spec`, `codex/revised-screenplays-v2-review`, `codex/screenplay-continuity-review`, `codex/character-canon-opening-cont-1`, `codex/naomi-production-proposal`, and `claude/remove-macos-metadata`. These refs are not evidence of open PRs or current ownership. The latest P1 branch handoff says P1 pure schemas/validation/tests are complete, owner-approved for that bounded scope, and no provider/save-version change exists. Its remote head is `7471522`; its changes are in `scripts/protagonist/`, new protagonist tests/fixtures, and associated docs. Do not duplicate or edit those paths.
+- `SaveManager` on main is v3, with v1→v2 and v2→v3 migrations; `scripts/tests/test_save_compatibility.gd` is already on main and covers actual v1/v2 fixtures, provider reset/round-trip, and rejected-load preservation. No Chapter 5 provider exists.
+- The protagonist P1 work is a creation-draft contract only, not a persisted profile or save provider. Do not couple finale eligibility to it or add profile fields to finale state. If persistence is later approved, the protagonist provider and finale provider must be coordinated in one v3→v4 migration, retaining v1→v2→v3.
+- `ContentValidator.validate_value` provides reusable pure shape validation; `TestRunner` discovers new `scripts/tests/test_*.gd`. Godot 4.7 is not installed at the documented path or on PATH in this workspace.
+
+**Proposed bounded first implementation (not yet approved)**
+- Add pure GDScript schemas and a validator for an in-memory finale-state contract only; no SaveManager registration, provider, migration, authored Chapter 5 tasks/evidence/dialogue, signals, runtime effects, or clinical rule.
+- Clinical-task entries refer only to externally authored task IDs and count as resolved only when the referenced content is explicitly `APPROVED` and state is completed or safely escalated. Add no task definitions or clinical claims.
+- Evidence entries distinguish authentication (`pending/authenticated/failed`) from review (`pending/accepted/unresolved/disputed/refuted`). Preserve stable acquisition-source IDs and `derived_from` lineage. Detect duplicate IDs, dangling lineage and cycles; copies/derived exports retain their root source and cannot masquerade as independent captures. Do not set a minimum source count or claim anomaly mechanism without owner review.
+- A decision contract accepts only the three existing pathways and a completion bit. Eligibility depends only on the required operational/clinical and evidence/report gates; after gates pass, all three choices are returned. Do not accept protagonist profile, relationships, trust, belief, diagnosis, symptom, or treatment state as validator/eligibility inputs.
+- Keep the major loop boundary authored to Chapter 4 Scene 09. This technical PR creates no Chapter 3/4 reveal trigger, no Ward Zero mutation, and no clinical data effects.
+- Proposed files, if approved: `scripts/narrative/FinaleStateSchemas.gd` and `.uid`; `scripts/narrative/FinaleStateValidator.gd` and `.uid`; `scripts/tests/test_finale_state_contract.gd` and `.uid`; synthetic test-only fixtures only if needed; `docs/design/CHAPTER5_ENDING_STATE_CONTRACT.md`; and the three living handoff docs. No shared SaveManager/ClinicalRules/EventBus or profile files in this PR.
+
+**Proposed deterministic tests**
+- Reject malformed shapes, unapproved clinical task references, unresolved required tasks, invalid final decisions, and `completed=true` before gates/decision are valid; accept completed or safely escalated approved tasks.
+- Distinguish authentication from review status; accept only explicit reviewed/authenticated evidence as eligible, reject duplicate IDs/dangling/cyclic `derived_from`, and prove repeated copies of one source do not yield multiple independent roots. Do not assert a numeric corroboration threshold.
+- Prove each of the three endings remains available under the same passed-gate input and that profile/trust/belief/patient fields are absent from or rejected by the closed contract.
+- Prove validation is deterministic, does not mutate input, and does not touch clinical state, chapter flags, save seed, or event signals.
+- Preserve Chapter 4 Scene 09 as the major reveal boundary; no Chapter 5 code should promote or fire it.
+
+**Tests on the starting commit**
+- `python3 tests/qa/test_json.py`: 6 passed, 0 failed, exit 0.
+- `python3 tests/qa/run.py --godot /Applications/Godot.app/Contents/MacOS/Godot`: not run; Godot 4.7 unavailable at documented path and on PATH.
+- CI: not observed.
+
+**Approval gate and next steps**
+1. Obtain owner approval of the in-memory contract semantics and proposed file/API scope before implementation; no persistent schema changes without separate explicit approval.
+2. After approval, implement only the pure schemas/validator and synthetic deterministic tests on this branch; run TestRunner and full `tests/qa/run.py` when Godot 4.7 is available.
+3. Review the technical contract before separately designing persistent v4 state; if approved, coordinate protagonist and finale providers into a single v3→v4 migration and test actual v1/v2/v3 fixtures, round trips, resets and idempotence.
+
+**Notes**
+- Current `docs/PROJECT_STATUS.md` verification header is stale (`fb078877...`) relative to fetched `origin/main` `122a8c5...`; no project-system status was changed here.
+- `AGENTS.md` lists `claude/` and `codex/` branch prefixes; this Copilot session used the truthful `copilot/` prefix for its dedicated branch.
 
 ### 2026-10-17 23:06 UTC · Copilot · Chapter 5 finale review
 

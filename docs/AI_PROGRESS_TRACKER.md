@@ -39,6 +39,10 @@ _Last updated: 2026-10-17 · Codex protagonist foundation continuation._
 - **Protagonist customization proposal / reconciliation** · `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md`, status/handoff docs · deps: owner handoff; F1/F2 already merged · validation: baseline full QA passed on `fb07887` · next: owner review of plan/P1, no creator implementation yet.
 - **Independent save-compatibility regression coverage** · new `scripts/tests/test_save_compatibility.gd` · deps: existing public SaveManager contracts · validation: full QA exit 0, TestRunner 116/0; pushed `01739ff` · next: create draft PR after GitHub API network access is applied.
 
+## In progress (approval gate)
+
+- **Chapter 5 in-memory ending-state contract** · proposed files: `scripts/narrative/FinaleStateSchemas.gd`, `FinaleStateValidator.gd`, `scripts/tests/test_finale_state_contract.gd`, and `docs/design/CHAPTER5_ENDING_STATE_CONTRACT.md` · dependencies: reuse `ContentValidator.validate_value`; coordinate with but do not duplicate the unmerged `codex/protagonist-schema-p1` pure creation-draft contract · validation: design only; baseline Python JSON 6/6; Godot 4.7 unavailable · next: owner approves the pure contract and bounded test scope; keep persistence and SaveManager v4 out of scope until separately approved.
+
 ## Pending (not started, waiting on approval)
 
 - **Approve character canon sheets and decisions D1–D9** · review §2 and "Open decisions" · deps: owner · next: owner comments on the draft PR or in the thread.

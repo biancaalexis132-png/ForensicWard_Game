@@ -1,5 +1,20 @@
 # AI session handoff
 
+## Chapter 5 ending-state foundation — Copilot, 2026-10-17
+
+- **Current objective:** prepare the smallest testable Chapter 5 ending-state foundation while stopping before persistent-schema changes.
+- **Branch / baseline:** `copilot/chapter5-ending-state-foundation`, created from the verified `biancaalexis132-png-chapter5-finale-review` checkpoint `c0ebb18cdf11beffc863663b6800a4af1c7224d3`. `origin/main` is `122a8c505d5e7738b08d874314aade8a1cd87ab1`; fetched remote main has not moved.
+- **PRs:** none open per `gh pr list --state open`; no PR created.
+- **Repository review:** read `AGENTS.md`, `CLAUDE.md`, `PROJECT_STATUS.md`, `AI_HANDOFF.md`, `AI_SESSION_HANDOFF.md`, `AI_PROGRESS_TRACKER.md`, and `PROTAGONIST_CUSTOMIZATION_PLAN.md`. Verified the Chapter 5 handoff SHA on origin and inspected the current `SaveManager`, `ContentValidator`, TestRunner, legacy-save compatibility tests, and unmerged protagonist P1 contract branch.
+- **Important dependency:** `codex/protagonist-schema-p1` at `7471522` already supplies pure protagonist catalog and creation-draft schemas/validation/tests, but it has no runtime provider or save migration. Keep finale contract independent of profile selection and do not modify or duplicate P1 files. If both later gain persistence, coordinate their providers in one explicit v3→v4 migration; preserve v1→v2→v3.
+- **Proposed implementation:** pure, in-memory `FinaleStateSchemas` + `FinaleStateValidator` and deterministic synthetic tests only. Contract domains: approved clinical task IDs with completed/safely-escalated outcomes; evidence authentication distinct from review with stable acquisition-source IDs/derivation graph; final choice limited to the three pathways plus completion; all choices available after gates, with no profile/trust/belief/diagnosis/treatment input. No numeric evidence threshold, authored clinical tasks, finale story, Chapter 4 reveal trigger, runtime mutation, SaveManager provider or migration.
+- **Proposed paths:** `scripts/narrative/FinaleStateSchemas.gd` (+ UID), `scripts/narrative/FinaleStateValidator.gd` (+ UID), `scripts/tests/test_finale_state_contract.gd` (+ UID), optional synthetic fixtures under `scripts/tests/fixtures/finale/`, `docs/design/CHAPTER5_ENDING_STATE_CONTRACT.md`, and continuity docs.
+- **Approval gate:** do not begin schema or implementation work until owner approves the in-memory fields, validation rules, and bounded file scope. Persistent schema/v3→v4 work requires separate approval.
+- **Baseline checks:** `python3 tests/qa/test_json.py` passed 6/6. Full Godot QA not run because Godot 4.7 is not installed at `/Applications/Godot.app/Contents/MacOS/Godot` or on PATH. Hosted CI not observed.
+- **Open approvals:** owner approval of this pure contract; later owner/clinical approval of any clinical task catalog or content; explicit persistence/v4 approval. Chapter 5 screenplay and proposed ending mechanics remain draft.
+- **Continuity constraints:** retain Chapter 4 Scene 09 as the major corridor-loop reveal; preserve clinical/supernatural separation; no diagnosis, symptoms, treatment, or patient state can trigger or validate supernatural discoveries; preserve all three responsible endings.
+- **Exact next task:** wait for owner approval of the proposed in-memory contract and tests. Upon approval, implement only the pure schemas, validator and synthetic deterministic tests, then run Godot TestRunner/full QA and update the handoff. Do not add persistence until separately approved.
+
 ## Chapter 5 finale review — Copilot, 2026-10-17
 
 - **Current objective:** review the expanded Chapter 5 screenplay and ending-state proposal against the shipped five-chapter architecture; preserve Chapter 4's major corridor-loop reveal, separate clinical and environmental evidence, and retain all three proposed endings.
