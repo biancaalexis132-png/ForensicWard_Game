@@ -1,7 +1,7 @@
 class_name PauseMenu
 extends CanvasLayer
 ## PauseMenu: pauses the scene tree; offers resume, manual save/load,
-## accessibility toggles and quit. process_mode is ALWAYS so it works while
+## accessibility toggles, audio volumes and quit. process_mode is ALWAYS so it works while
 ## the tree is paused. Main decides when to open it (Esc with no panel open).
 
 signal closed
@@ -17,10 +17,21 @@ const TOGGLES: Dictionary = {
 	"InvertY": "invert_y",
 }
 
+## HSlider node name (under Audio) -> AudioDirector volume setting (linear 0..1).
+const VOLUMES: Dictionary = {
+	"Master": "volume_master",
+	"Music": "volume_music",
+	"Voice": "volume_voice",
+	"Effects": "volume_sfx",
+	"Ambience": "volume_ambient",
+}
+
 @onready var _status: Label = $Root/Panel/Margin/VBox/Status
 @onready var _toggles: VBoxContainer = $Root/Panel/Margin/VBox/Accessibility
 @onready var _sensitivity: HSlider = $Root/Panel/Margin/VBox/Sensitivity/Slider
 @onready var _resume_button: Button = $Root/Panel/Margin/VBox/Resume
+@onready var _volumes: GridContainer = $Root/Panel/Margin/VBox/Audio
+@onready var _reduce_startle: CheckBox = $Root/Panel/Margin/VBox/Accessibility/ReduceStartlingAudio
 
 var is_open: bool = false
 
@@ -39,12 +50,22 @@ func _ready() -> void:
 		var key: String = TOGGLES[node_name]
 		box.toggled.connect(func(pressed: bool) -> void: Settings.set_value(key, pressed))
 	_sensitivity.value_changed.connect(func(value: float) -> void: Settings.set_value("mouse_sensitivity", value))
+	# Audio settings belong to AudioDirector, which applies and saves them.
+	for node_name: String in VOLUMES:
+		var key: String = VOLUMES[node_name]
+		(_volumes.get_node(node_name) as HSlider).value_changed.connect(
+				func(value: float) -> void: AudioDirector.set_setting(key, value))
+	_reduce_startle.toggled.connect(func(pressed: bool) -> void:
+		AudioDirector.set_setting("reduce_startling_audio", pressed))
 
 
 func open() -> void:
 	for node_name: String in TOGGLES:
 		(_toggles.get_node(node_name) as CheckBox).set_pressed_no_signal(Settings.get_value(TOGGLES[node_name]))
 	_sensitivity.set_value_no_signal(Settings.get_value("mouse_sensitivity"))
+	for node_name: String in VOLUMES:
+		(_volumes.get_node(node_name) as HSlider).set_value_no_signal(AudioDirector.get_setting(VOLUMES[node_name]))
+	_reduce_startle.set_pressed_no_signal(AudioDirector.get_setting("reduce_startling_audio"))
 	_status.text = "Saved game available." if SaveManager.has_save(SAVE_SLOT) else "No saved game yet."
 	visible = true
 	is_open = true

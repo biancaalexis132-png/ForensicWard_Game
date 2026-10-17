@@ -40,9 +40,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -400.0
+offset_top = -500.0
 offset_right = 300.0
-offset_bottom = 400.0
+offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("Style_panel")
@@ -118,6 +118,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Invert mouse Y"
 
+[node name="ReduceStartlingAudio" type="CheckBox" parent="Root/Panel/Margin/VBox/Accessibility"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Reduce startling audio (softer stingers and anomalies)"
+
 [node name="Sensitivity" type="HBoxContainer" parent="Root/Panel/Margin/VBox"]
 layout_mode = 2
 
@@ -134,6 +139,80 @@ min_value = 0.03
 max_value = 0.4
 step = 0.01
 value = 0.12
+
+[node name="AudioTitle" type="Label" parent="Root/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Audio"
+
+[node name="Audio" type="GridContainer" parent="Root/Panel/Margin/VBox"]
+layout_mode = 2
+columns = 2
+
+[node name="MasterLabel" type="Label" parent="Root/Panel/Margin/VBox/Audio"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Master volume"
+
+[node name="Master" type="HSlider" parent="Root/Panel/Margin/VBox/Audio"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="MusicLabel" type="Label" parent="Root/Panel/Margin/VBox/Audio"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Music"
+
+[node name="Music" type="HSlider" parent="Root/Panel/Margin/VBox/Audio"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="VoiceLabel" type="Label" parent="Root/Panel/Margin/VBox/Audio"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Dialogue"
+
+[node name="Voice" type="HSlider" parent="Root/Panel/Margin/VBox/Audio"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="EffectsLabel" type="Label" parent="Root/Panel/Margin/VBox/Audio"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Sound effects"
+
+[node name="Effects" type="HSlider" parent="Root/Panel/Margin/VBox/Audio"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="AmbienceLabel" type="Label" parent="Root/Panel/Margin/VBox/Audio"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Ambience"
+
+[node name="Ambience" type="HSlider" parent="Root/Panel/Margin/VBox/Audio"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
 
 [node name="Quit" type="Button" parent="Root/Panel/Margin/VBox"]
 layout_mode = 2

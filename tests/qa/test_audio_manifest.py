@@ -22,7 +22,7 @@ class AudioManifestTests(unittest.TestCase):
     def test_manifest_matches_files(self):
         assets = load("audio/manifest.json")["assets"]
         listed = {asset["file"] for asset in assets}
-        on_disk = {p.relative_to(ROOT).as_posix() for p in (ROOT / "audio").rglob("*")
+        on_disk = {p.relative_to(ROOT).as_posix() for root in ("audio", "assets/audio") for p in (ROOT / root).rglob("*")
                    if p.suffix in AUDIO_EXTENSIONS and "music_ai" not in p.parts
                    and not p.name.startswith("._")}
         self.assertEqual(listed, on_disk)
@@ -69,9 +69,25 @@ class AudioManifestTests(unittest.TestCase):
             if cue_id.startswith(("sfx_w0_", "amb_w0_")):
                 with self.subTest(anomaly=cue_id):
                     self.assertTrue(cue.get("startle"), "Ward Zero anomaly cues must be startle-flagged")
+        for state_id, variants in cues.get("music_states", {}).items():
+            for variant in variants:
+                with self.subTest(music_state=state_id):
+                    self.assertIn(variant["cue"], cues["cues"])
+        for location_id, location in cues["locations"].items():
+            for shift in ("day", "night"):
+                if location.get(shift, {}).get("music_state"):
+                    self.assertIn(location[shift]["music_state"], cues.get("music_states", {}), location_id)
+        for context_id, context in cues.get("music_contexts", {}).items():
+            with self.subTest(music_context=context_id):
+                self.assertIn(context["cue"], cues["cues"])
+                self.assertEqual(cues["cues"][context["cue"]]["bus"], "Music")
+                self.assertIn(context.get("ambience", "keep"), {"keep", "duck", "stop"})
         for event_id, actions in cues["events"].items():
             for action in actions:
                 with self.subTest(event=event_id):
+                    for key in ("music_context", "end_music_context"):
+                        if key in action:
+                            self.assertIn(action[key], cues.get("music_contexts", {}))
                     for key in ("sfx", "stinger", "music"):
                         if key in action:
                             self.assertIn(action[key], cues["cues"])
