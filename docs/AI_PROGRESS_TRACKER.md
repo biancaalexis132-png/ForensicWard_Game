@@ -1,5 +1,26 @@
 # AI progress tracker
 
+Updated 2026-10-17 · current status is authoritative above the preserved earlier checklist.
+
+| Workstream | Current status | Evidence / next step |
+|---|---|---|
+| P0 campaign reconciliation/save regression | Merged by owner PR #29 | Main `dd247be`; baseline/save contracts retained |
+| PR #27 soundtrack conflicts | Resolved, pushed, merged by owner | Original branch verified `412b501`; main merge `6d2dd2d`; bounded audio assertion fixed; audio 334/0 |
+| P1 pure catalog/creation-draft validation | Complete for review | `codex/protagonist-schema-p1` verified `74715227bf5581b09a3b2746870082576fffe71f`; 15 new tests, 131/0 |
+| D1–D3 canon and role metadata | Documented approved | Canon/decision record/review addendum; Rahman direction-only correction; no clinical activation |
+| Six regenerated references | Completed as review candidates | Four views/five expressions each; hashes/prompts/provenance verified; owner/artist production review pending |
+| Chapter 1 opening alignment | Proposal complete | Hospital-drama direction recorded; early unease trigger confirmed; no chapter runtime change |
+| Elias screenplay summary review | Mapping complete, exact text awaited | Owner will supply standalone script; line review and clinical approval remain pending |
+| Both-agent continuous checkpoints | Permanent documentation prepared | AGENTS §9 / CLAUDE; preserve existing instructions, verify feature pushes |
+| Final combined QA | **Passed, exit 0** | Python 6+3+3, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 131/0, audio 334/0, full Chapter 1 playback |
+| P2 persistence/creator/content | Not implemented | Separate bounded scope; preserve save v3 until reviewed migration |
+| D4–D9, Mac/clinical/art review | Pending | No implicit approval; missing v1.1 bible and full screenplay remain external dependencies |
+
+Exact branches/checkpoints/files/commands/blockers/resume steps: `AI_SESSION_HANDOFF.md`. New PR automation is API-blocked; no merge by the agent.
+
+## Earlier checklist and milestone record (preserved history)
+
+
 ## Merge reconciliation — Codex, 2026-10-17
 
 The owner requested resolution of conflicts in the pending GitHub push. Git inspection identified PR #27's `claude/ashcroft-soundtrack` at `412a429a6e717ea00c96d2a9b8ad1987b82c7a58` conflicting with `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125`. This continuation (`codex/ashcroft-soundtrack-conflicts-cont-1`) merges main without rewriting history. The initial merge required two add/add continuity resolutions; a subsequent merge of `origin/main` `dd247bed93fca9bb95cbf2864eae964975358c23` (PR #29) required reconciling the active-workstream table as well; both workstreams' records are retained below. Runtime/audio/data content is unchanged by the conflict resolution. Validation exposed a pre-existing timing-sensitive audio test; its cleanup assertion now waits for the actual players with a bounded deadline instead of a fixed 3.6-second timer.

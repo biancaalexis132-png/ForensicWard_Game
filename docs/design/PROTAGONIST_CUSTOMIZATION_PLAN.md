@@ -115,3 +115,7 @@ Owner decisions needed: approve phased architecture and P1 scope; approve option
 ## P1 implementation checkpoint
 
 `ProtagonistSchemas` and `ProtagonistValidator` implement strict, pure creation-draft/catalog validation with synthetic fixtures. No authored catalog, autoload, ContentRegistry hook, save provider/version/migration, UI, personality ledger or clinical effect is introduced. The full illustrative future save payload above is not the P1 draft API: P1 accepts identity/appearance/background and version/creation state only; choice ledger/callback delivery fields are deferred. Unknown IDs are rejected for new drafts; saved-profile compatibility/fallback remains a P2 design responsibility. Fifteen new tests passed, taking TestRunner from 116 to 131. See `PROTAGONIST_INPUT_CONTRACT.md`.
+
+## Subsequent owner decisions
+
+D1–D3 were explicitly approved later in this session and are recorded in `CHARACTER_VISUAL_CANON.md`/GDD amendments; earlier unresolved references in the proposal describe its original baseline. D4–D9 remain open. The realistic Chapter 1 opening direction and Elias screenplay-summary review do not activate clinical material or authorize replacing chapter/save systems. P1 is complete for review; later phases remain separate scopes.

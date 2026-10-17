@@ -2,7 +2,7 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
-**Last verified:** 2026-10-17 by Codex against `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125` (PR #28 merged), using fetched Git history and `git ls-remote`. GitHub REST/GraphQL PR APIs return Forbidden; current open PRs and hosted CI are **unverified**. Full local Godot 4.7 baseline passed. See [REPOSITORY_RECONCILIATION.md](REPOSITORY_RECONCILIATION.md).
+**Last verified:** 2026-10-17 against `origin/main` **`6d2dd2d3ec1bebf3624a706da2f864efd711206e`** (owner-merged PR #27; PR #29 also merged). Feature combined QA passed exit 0: Python 6+3+3, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 131/0, audio 334/0, boot and complete Chapter 1 sequence. Main does not yet contain unmerged P1/canon/reference work. Hosted CI/new PR state remains unverified because API access is blocked.
 
 Status meanings:
 
@@ -19,7 +19,9 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 
 | PR | Branch | State |
 |---|---|---|
+| #29 | `codex/protagonist-foundation-cont-1` | Merged at `dd247be` (proposal/reconciliation/save regression tests) |
 | #28 | `claude/visual-direction-review` | Merged at `fb07887`; review recommendations still need approval |
+| #27 | `claude/ashcroft-soundtrack` | Merged by owner at `6d2dd2d`; prior conflicts fixed and branch verified `412b501` |
 | #26 | `claude/f2-zones` | Merged at `9558c77` (zones and transitions) |
 | #25, #24, #23 | `assets/ashcroft-creative-references` | Merged (continuity protocol / reference integration) |
 | #22 | `assets/ashcroft-creative-references` | Merged (soundtrack and visual references) |
@@ -38,7 +40,7 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 | #8, #7, #6, #1 | integration, chapter 1, environment, sprint 1 branches | Closed, superseded by #11 |
 | #5, #4, #3, #2 | audio, handoff system, adaptive audio, Codex QA | Merged |
 
-Remote branches may remain after merge. Branch existence alone does not prove active ownership. Open PR status is unavailable; historical soundtrack PR #27 and Stage 6 environment work must be checked before overlapping changes.
+Remote branches may remain after merge. Branch existence alone does not prove active ownership. PR #27 is merged; current new-PR status is unavailable. Stage 6 environment ownership must still be checked before overlapping geometry changes.
 
 ## Systems
 
@@ -61,7 +63,7 @@ Remote branches may remain after merge. Branch existence alone does not prove ac
 | Environment art Stages 1–3 (+ nursing station props) | Completed | `main` | `.glb` validation | Untextured |
 | Environment Stage 4a security/admin, 4b research | Completed | `main` (PR #14, #17) | `.glb` validation | Reachable as zones on `main` (locked in Chapter 1); no characters or props wired |
 | Environment Stage 5 historic substructure | Completed | `main` (PR #19) | 138/138 `.glb` import in Godot 4.7 | Reachable through the service hatch on `main` (locked in Chapter 1); the stair is a use-to-climb point, not walkable |
-| Adaptive audio engine, Chapter 1 audio, original soundtrack | Completed | `main` (PR #3, #5, #18) | TestAudio 271 passed | Listening review on the Mac pending; music contexts not fired yet (no title screen or credits) |
+| Adaptive audio engine, Chapter 1 audio, original soundtrack | Completed | `main` (PR #3, #5, #18, #27) | TestAudio 334 passed | Listening review on the Mac pending; music contexts not fired yet (no title screen or credits) |
 | Hospital name in game data | Completed | `main` (PR #21) | `data/campaign.json` `institution.name` | Not shown on any screen yet; signage textures come with Stage 8 |
 | Zones and transitions (F2): `data/zones.json`, `ZoneDirector`, save version 3 with v2 migration | Completed | `main` (PR #26) | `test_zones.gd` (15 tests: seamless ward entry, 10 lift round trips with flat memory, door state across unload/save/load, arrivals on a floor, real v2 save from `main`) | Worker-thread streaming is off in headless runs (Godot's dummy renderer is not thread-safe), so it is untested until run on the Mac; arrival points are placeholders; security and research use the corridor ambience |
 | Anomaly evidence model and clinical/supernatural separation (F3) | Planned | | F0 §7, §8 | Waits on the owner's Psychosomatic Bleed decision |
@@ -112,3 +114,7 @@ P1 import and TestRunner passed **131/0** and are pushed at `16b9761` on `codex/
 D1–D3 are recorded as **approved** in GDD amendments and `docs/design/CHARACTER_VISUAL_CANON.md`; remaining D4–D9 are open. Rahman’s voice direction now correctly says Consultant psychiatrist, preserving all voice/line IDs and recordings. `data/staff.json` already gives Hale Security Director; Rahman is not added with invented content. Regeneration briefs and preserved legacy-art notices are written; generated candidates remain under review. The opening tone and Elias summary proposals change no chapter scene, dialogue, clinical rule, review flag, beat identity or timing.
 
 Six regenerated character reference candidates are complete as **review candidates**, with 4 views/5 expression studies each and provenance/hash manifest in the `Regenerated_2026_10_17/` reference folder. They are not approved production models/casting, are ignored by Godot, and change no scene. Original portraits remain unchanged.
+
+## Final continuation state (supersedes earlier in-progress notes)
+
+P1 synchronized remote `74715227bf5581b09a3b2746870082576fffe71f` is ready for review; combined canon/reference branch has full passing QA and six integrity-checked review candidates. D1–D3 resolved; D4–D9 pending. Both-agent continuity requirements are explicit in AGENTS/CLAUDE. Opening/Elias artifacts are proposals/comparison only, with no chapter/clinical/save rewrite. Full screenplay is off-repository and awaiting standalone delivery; all existing clinical flags remain pending. Exact final branch tip/resume commands are in the living handoff and verified final response.

@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex; owner approved “continue” | `16b9761d8528f807caa8f10d76fcfeb9db7b5683` (verified P1 checkpoint) | `scripts/protagonist/*`, new `scripts/tests/test_protagonist.gd` + fixtures, input-contract/ID/proposal docs and own continuity updates | Implemented; import and 131/0 TestRunner passed; full combined validation follows canon metadata |
+| Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex; owner approved “continue” | `74715227bf5581b09a3b2746870082576fffe71f` (verified synchronized P1 checkpoint) | `scripts/protagonist/*`, new `scripts/tests/test_protagonist.gd` + fixtures, input-contract/ID/proposal docs and own continuity updates | Complete for review; synchronized TestRunner 131/0 and combined full QA passed |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -55,6 +55,14 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Codex · P1 validation synchronized and tested
+
+- **Branch:** `codex/protagonist-schema-p1`; latest verified remote merge checkpoint `97580bf` (full SHA returned by `git ls-remote`; docs-only checkpoint follows). Main includes owner-merged PR #27 at `6d2dd2d3ec1bebf3624a706da2f864efd711206e`; non-force merge preserved both histories and P1 active ownership.
+- **Completed:** pure schemas/validator and 15 tests; no runtime registration, authored options, provider, creator, save version, clinical rule or personality system. Source P1 implementation `16b9761d8528f807caa8f10d76fcfeb9db7b5683` unchanged by sync.
+- **Tests:** synchronized branch TestRunner **131 passed / 0 failed**, no script errors; standard full QA on the combined canon tree with identical P1 module/test bytes passed exit 0: Python 6+3+3, pharmacology 0 failures, QA 19/0/0, GLB 138/138, gameplay 131/0, boot OK, audio 334/0 and full Chapter 1 sequence. No Mac or hosted CI claim.
+- **PR:** agent `gh pr create --draft --base main --head codex/protagonist-schema-p1 --body-file /workspace/p1-protagonist-pr.md` failed API Forbidden. Existing Git access works; API domain remains blocked. No merge/main push.
+- **Next:** owner reviews P1; P2 requires its bounded persistence review. Separate canon/opening/reference branch contains D1–D3, six inspected candidate sheets/provenance and draft comparisons. Full screenplay will arrive standalone; clinical flags remain pending. Final exact checkpoints and resume commands are in that branch's living handoff.
 
 ### 2026-10-17 · Codex · Character reference milestone
 

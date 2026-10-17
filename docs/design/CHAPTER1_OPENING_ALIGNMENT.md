@@ -58,3 +58,7 @@ Provisional playtest windows might be arrival 0–3, orientation 3–7, evaluati
 Add reviewed regressions for early clue pickup without unease, no Ward Zero reveal during initial clinical interview, same essential options/evidence across all backgrounds, explicit unknown risk/MSE entries, night intercom at its original offset, and save/reload without duplicate audit/beat entries. Run standard QA and world/campaign/zone regressions for any implementation. Listen and play through on Mac; headless tests do not establish dramatic pacing, clinical correctness, input feel, lighting or mix.
 
 Owner review is still required for new clinical wording/findings, detailed screenplay lines, added staff/arrival dialogue and any newly authored discrepancy/environment cue. F0 Bleed/pharmacology-gate decisions and D4–D9 remain open. This proposal does not authorize structural rework, new medical rules, later-chapter anomaly canon or Stage 6 geometry changes.
+
+## Repository update after comparison
+
+The owner subsequently merged PR #27 at `6d2dd2d`; it is incorporated in the final development branch. The soundtrack alignment described above is now on main, including no foreground score under corridor/handover clinical work and the bounded audio cleanup test. The opening narrative trigger/dialogue gaps identified above remain unchanged; no proposed chapter edit is implemented here.
