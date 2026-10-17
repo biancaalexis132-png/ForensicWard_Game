@@ -5,20 +5,10 @@ extends RefCounted
 ## (ImportedInteractable), so they cannot drift apart.
 
 
-## EHR census placeholder. Opening it logs one record-opened event per
-## patient per day (deduped by PatientManager).
-static func open_ehr_census(title: String) -> void:
-	var lines: PackedStringArray = ["[b]Current census[/b]  (full EHR record view arrives in Sprint 2)", ""]
-	for patient_id: String in ContentRegistry.get_patient_ids():
-		var patient: Dictionary = ContentRegistry.get_patient(patient_id)
-		PatientManager.open_record(patient_id)
-		lines.append("[b]%s[/b], %d. Legal status: %s" % [patient["name"], patient["age"],
-				patient["legal_status"].replace("_", " ")])
-		lines.append("    Location: %s   Clinical content: %s" % [
-			PatientManager.get_location(patient_id).replace("_", " "), patient["clinical_review_status"]])
-		lines.append("    Presenting concerns: %s" % ", ".join(Array(patient["presentation"]["complaints"]).map(
-				func(c: String) -> String: return c.replace("_", " "))))
-	EventBus.ui_panel_requested.emit("info", {"title": title, "body": "\n".join(lines)})
+## Opens the EHR at a workstation. The record-opened audit event is logged
+## once per patient per day when a chart is viewed (PatientManager dedupes).
+static func open_ehr(title: String) -> void:
+	EventBus.ui_panel_requested.emit("ehr", {"title": title})
 
 
 ## Shows a clue's document and records it with provenance. Returns true if

@@ -158,8 +158,16 @@ func is_hypothesis_supported_by_board(hypothesis_id: String) -> bool:
 	return true
 
 
+## Independent corroborations of a clue: [{method, at_minutes}].
+func get_verifications(clue_id: String) -> Array:
+	return _verifications.get(clue_id, []).duplicate(true)
+
+
+## Records an independent corroboration once per method. Returns true if new.
 func add_verification(clue_id: String, method: String) -> bool:
 	if not has_clue(clue_id):
+		return false
+	if get_verifications(clue_id).any(func(v: Dictionary) -> bool: return v["method"] == method):
 		return false
 	if not _verifications.has(clue_id):
 		_verifications[clue_id] = []

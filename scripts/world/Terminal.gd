@@ -6,7 +6,7 @@ extends Node3D
 ##   PATIENT_ROSTER  lists admitted patients (opens each record once per day)
 ##   CLUE_DOCUMENT   shows a clue's document and acquires it for the player
 ##   SYSTEM_STATUS   content validation report (useful during development)
-## The full EHR UI is Sprint 2; this proves the interaction pipeline.
+## EHR terminals open the EHR screen.
 
 enum Mode { PATIENT_ROSTER, CLUE_DOCUMENT, SYSTEM_STATUS }
 
@@ -28,7 +28,7 @@ func _ready() -> void:
 func _on_interacted(_interactor: Node) -> void:
 	match mode:
 		Mode.PATIENT_ROSTER:
-			WorldActions.open_ehr_census(title)
+			WorldActions.open_ehr(title)
 		Mode.CLUE_DOCUMENT:
 			WorldActions.reveal_clue(clue_id, "terminal:" + terminal_id)
 		Mode.SYSTEM_STATUS:

@@ -7,6 +7,14 @@ extends Node3D
 ## pauses. When everything closes, mouse capture returns. Esc closes the
 ## top-most panel, or opens the pause menu if none is open.
 ##
+## Panels opened through EventBus.ui_panel_requested(panel_id, data):
+##   "info"       InfoPanel (documents, staff, notices; drawn on top)
+##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
+##   "ehr"        EHRScreen (also opened with J)
+##   "evidence"   EvidenceBoard (also opened with Tab)
+## ChapterDirector (story) and AudioZoneTracker (ambience per room) are
+## children of Main, so they exist exactly while the playable world does.
+##
 ## Also registers the "world" save provider: player transform plus every
 ## node in the "persistent_world" group (doors).
 
@@ -17,7 +25,12 @@ const TIME_PAUSE_REASON: String = "ui"
 @onready var _player: FirstPersonController = $Player
 @onready var _hud: HUD = $HUD
 @onready var _info_panel: InfoPanel = $InfoPanel
+@onready var _ehr: EHRScreen = $EHRScreen
+@onready var _interview: InterviewScreen = $InterviewScreen
+@onready var _evidence: EvidenceBoard = $EvidenceBoard
 @onready var _pause_menu: PauseMenu = $PauseMenu
+## Topmost first: Esc closes the first open one.
+@onready var _panels: Array[CanvasLayer] = [_info_panel, _interview, _ehr, _evidence]
 
 
 func _ready() -> void:
@@ -26,6 +39,8 @@ func _ready() -> void:
 	_pause_menu.closed.connect(_update_input_mode)
 	SaveManager.register_provider(WORLD_PROVIDER_KEY, self)
 	_place_at_spawn()
+	($AudioZoneTracker as AudioZoneTracker).target = _player
+	get_tree().auto_accept_quit = false  # Quit via _quit_gracefully (audio first).
 
 	if not ContentRegistry.is_valid:
 		_show_content_errors()
@@ -34,24 +49,57 @@ func _ready() -> void:
 	print("[The Forensic Ward] Boot OK (content %s)" % ("valid" if ContentRegistry.is_valid else "INVALID"))
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		_quit_gracefully()
+
+
+## Stops audio and lets the audio thread finish before quitting, so no
+## stream is still playing at shutdown.
+func _quit_gracefully() -> void:
+	_silence_audio()
+	await get_tree().create_timer(0.25, true).timeout
+	get_tree().quit()
+
+
 func _exit_tree() -> void:
 	SaveManager.unregister_provider(WORLD_PROVIDER_KEY)
+	get_tree().auto_accept_quit = true
+	_silence_audio()
+
+
+## World audio belongs to the world: stop it when Main leaves (quit, tests),
+## so no stream is still playing when the engine shuts down.
+func _silence_audio() -> void:
+	AudioDirector.stop_dialogue()
+	AudioDirector.stop_ambience(0.01)
+	AudioDirector.stop_music(0.01)
+	for player: Node in AudioDirector.find_children("*", "", true, false):
+		if player is AudioStreamPlayer or player is AudioStreamPlayer3D:
+			player.call("stop")
+			player.set("stream", null)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
-		if _info_panel.is_open:
-			_info_panel.close()
+		var top: CanvasLayer = _top_panel()
+		if top != null:
+			top.call("close")
 		else:
 			_open_pause_menu()
 		get_viewport().set_input_as_handled()
-	elif event.is_action_pressed("accessibility_menu") and not _info_panel.is_open:
+	elif event.is_action_pressed("accessibility_menu") and _top_panel() == null:
 		_open_pause_menu()
+	elif event.is_action_pressed("ehr") and _ehr.is_open and _top_panel() == _ehr:
+		_ehr.close()
 	elif event.is_action_pressed("ehr") and not _is_ui_open():
-		EventBus.notification_requested.emit("Use an EHR workstation (full EHR screen arrives in Sprint 2).")
+		_on_ui_panel_requested(EHRScreen.PANEL_ID, {})
+	elif event.is_action_pressed("journal") and _top_panel() == _evidence:
+		_evidence.close()
+		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("journal") and not _is_ui_open():
-		EventBus.notification_requested.emit("Evidence: %d item(s) collected (evidence board arrives in Sprint 3)." %
-				EvidenceManager.get_acquired_ids().size())
+		_on_ui_panel_requested(EvidenceBoard.PANEL_ID, {})
+		get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton and event.pressed and not _is_ui_open() \
 			and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		# macOS releases capture when the window loses focus; click to recapture.
@@ -59,7 +107,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _is_ui_open() -> bool:
-	return _info_panel.is_open or _pause_menu.is_open
+	return _top_panel() != null or _pause_menu.is_open
+
+
+func _top_panel() -> CanvasLayer:
+	for panel: CanvasLayer in _panels:
+		if panel.get("is_open"):
+			return panel
+	return null
 
 
 func _open_pause_menu() -> void:
@@ -70,10 +125,20 @@ func _open_pause_menu() -> void:
 
 
 func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
-	if panel_id != InfoPanel.PANEL_ID:
-		push_warning("Main: unknown panel '%s'" % panel_id)
-		return
-	_info_panel.open(data)
+	match panel_id:
+		InfoPanel.PANEL_ID:
+			_info_panel.open(data)
+		EHRScreen.PANEL_ID:
+			_ehr.open(data)
+		EvidenceBoard.PANEL_ID:
+			_evidence.open(data)
+		InterviewScreen.PANEL_ID:
+			var with_world: Dictionary = data.duplicate()
+			with_world["world"] = _world
+			_interview.open(with_world)
+		_:
+			push_warning("Main: unknown panel '%s'" % panel_id)
+			return
 	_update_input_mode()
 
 

@@ -141,13 +141,25 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			for j: int in choices.size():
 				_require_known(choices[j]["next"], state_ids, "dialogue state", file,
 						"states[%d].choices[%d].next" % [i, j], errors)
+				var recorded: Array = choices[j].get("records_observations", [])
+				for k: int in recorded.size():
+					_require_known(recorded[k], observations_by_patient.get(dialogue["patient_id"], {}),
+							"observation of %s" % dialogue["patient_id"], file,
+							"states[%d].choices[%d].records_observations[%d]" % [i, j, k], errors)
 
 	if documents.has("clinical_rules"):
 		var rules: Array = _data(documents, "clinical_rules")["rules"]
 		var file: String = _file(documents, "clinical_rules")
 		_collect_ids(rules, file, "rules", errors)
+		var actions: Array = _data(documents, "clinical_rules").get("actions", [])
+		var action_ids: Dictionary = _collect_ids(actions, file, "actions", errors)
+		for i: int in actions.size():
+			_require_known(actions[i]["patient_id"], patient_ids, "patient", file, "actions[%d].patient_id" % i, errors)
 		for i: int in rules.size():
 			var rule: Dictionary = rules[i]
+			if not actions.is_empty():
+				_require_known(rule["trigger_action"], action_ids, "clinical action", file,
+						"rules[%d].trigger_action" % i, errors)
 			_require_known(rule["patient_id"], patient_ids, "patient", file, "rules[%d].patient_id" % i, errors)
 			var known_observations: Dictionary = observations_by_patient.get(rule["patient_id"], {})
 			var present: Array = rule["condition"].get("observations_present", [])
@@ -175,6 +187,39 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			var known: Dictionary = staff_ids if character["kind"] == "staff" else patient_ids
 			_require_known(character["character_id"], known, character["kind"], file,
 					"characters[%d].character_id" % i, errors)
+	if documents.has("story"):
+		var story: Dictionary = _data(documents, "story")
+		var file: String = _file(documents, "story")
+		var staff_ids: Dictionary = {}
+		for member: Dictionary in staff:
+			staff_ids[member["id"]] = true
+		var hypothesis_ids: Dictionary = {}
+		for hypothesis: Dictionary in hypotheses:
+			hypothesis_ids[hypothesis["id"]] = true
+		var refs: Dictionary = {"patients": patient_ids, "clues": clue_ids, "hypotheses": hypothesis_ids, "staff": staff_ids}
+		_collect_ids(story["objectives"], file, "objectives", errors)
+		_collect_ids(story["beats"], file, "beats", errors)
+		for i: int in story["objectives"].size():
+			StoryLogic.check_condition(story["objectives"][i]["complete_when"], "[%s] objectives[%d].complete_when" % [file, i], refs, errors)
+			if story["objectives"][i].has("expires_when"):
+				StoryLogic.check_condition(story["objectives"][i]["expires_when"], "[%s] objectives[%d].expires_when" % [file, i], refs, errors)
+		for i: int in story["beats"].size():
+			var beat: Dictionary = story["beats"][i]
+			StoryLogic.check_condition(beat["when"], "[%s] beats[%d].when" % [file, i], refs, errors)
+			for j: int in beat["actions"].size():
+				StoryLogic.check_action(beat["actions"][j], "[%s] beats[%d].actions[%d]" % [file, i, j], refs, errors)
+		for i: int in story["staff_lines"].size():
+			var line: Dictionary = story["staff_lines"][i]
+			_require_known(line["staff_id"], staff_ids, "staff", file, "staff_lines[%d].staff_id" % i, errors)
+			StoryLogic.check_condition(line["when"], "[%s] staff_lines[%d].when" % [file, i], refs, errors)
+			if line.has("verify_clue"):
+				_require_known(line["verify_clue"], clue_ids, "clue", file, "staff_lines[%d].verify_clue" % i, errors)
+		var sign_out: Dictionary = story["sign_out"]
+		for j: int in sign_out["handover_patients"].size():
+			_require_known(sign_out["handover_patients"][j], patient_ids, "patient", file, "sign_out.handover_patients[%d]" % j, errors)
+		for key: String in ["documented_trust", "undocumented_trust"]:
+			for j: int in sign_out[key].size():
+				_require_known(sign_out[key][j]["staff_id"], staff_ids, "staff", file, "sign_out.%s[%d].staff_id" % [key, j], errors)
 	return errors
 
 

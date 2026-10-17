@@ -14,7 +14,10 @@
             "is_he_eating"
           ],
           "response": "The patient remains silent. Nursing reports reduced intake; intake chart review is available.",
-          "next": "initial"
+          "next": "initial",
+          "records_observations": [
+            "obs_mutism"
+          ]
         },
         {
           "id": "assess_motor",
@@ -25,7 +28,10 @@
             "assess_posturing"
           ],
           "response": "A structured bedside motor and medical assessment becomes available; no diagnosis is automatically confirmed.",
-          "next": "assessment"
+          "next": "assessment",
+          "records_observations": [
+            "obs_posturing"
+          ]
         },
         {
           "id": "ask_ward_zero",

@@ -20,6 +20,7 @@ const MANIFEST: Dictionary = {
 	"staff": ["staff.json", ContentSchemas.STAFF_FILE],
 	"intent_lexicon": ["intent_lexicon.json", ContentSchemas.INTENT_LEXICON_FILE],
 	"world": ["world_chapter1.json", ContentSchemas.WORLD_FILE],
+	"story": ["story_chapter1.json", ContentSchemas.STORY_FILE],
 }
 const DATA_DIR: String = "res://data"
 
@@ -32,12 +33,14 @@ var warnings: Array[String] = []
 var _patients: Dictionary = {}       ## id -> patient
 var _dialogues: Dictionary = {}      ## patient_id -> dialogue document
 var _rules: Array = []
+var _actions: Dictionary = {}        ## id -> clinical action
 var _clues: Dictionary = {}          ## id -> clue
 var _hypotheses: Dictionary = {}     ## id -> authored hypothesis
 var _sources: Dictionary = {}        ## id -> catalog item
 var _staff: Dictionary = {}          ## id -> staff member
 var _lexicon: Dictionary = {}
 var _world: Dictionary = {}
+var _story: Dictionary = {}
 
 
 func _ready() -> void:
@@ -90,6 +93,19 @@ func get_rules() -> Array:
 	return _rules
 
 
+## Clinical actions offered for a patient, in authored order.
+func get_actions(patient_id: String) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for action: Dictionary in _actions.values():
+		if action["patient_id"] == patient_id:
+			result.append(action)
+	return result
+
+
+func get_action(action_id: String) -> Dictionary:
+	return _actions.get(action_id, {})
+
+
 func get_clue(clue_id: String) -> Dictionary:
 	return _clues.get(clue_id, {})
 
@@ -126,6 +142,10 @@ func get_world() -> Dictionary:
 	return _world
 
 
+func get_story() -> Dictionary:
+	return _story
+
+
 # --- Internals ------------------------------------------------------------------
 
 func _parse_file(path: String) -> Variant:
@@ -145,12 +165,14 @@ func _build_indexes(documents: Dictionary) -> void:
 	var dialogue: Dictionary = documents["dialogue"]["data"]
 	_dialogues = {dialogue["patient_id"]: _freeze(dialogue)}
 	_rules = _freeze(documents["clinical_rules"]["data"]["rules"])
+	_actions = _index(documents["clinical_rules"]["data"].get("actions", []))
 	_clues = _index(documents["clues"]["data"]["clues"])
 	_hypotheses = _index(documents["clues"]["data"]["hypotheses"])
 	_sources = _index(documents["source_catalog"]["data"]["items"])
 	_staff = _index(documents["staff"]["data"]["staff"])
 	_lexicon = _freeze(documents["intent_lexicon"]["data"])
 	_world = _freeze(documents["world"]["data"])
+	_story = _freeze(documents["story"]["data"])
 
 
 func _index(items: Array) -> Dictionary:

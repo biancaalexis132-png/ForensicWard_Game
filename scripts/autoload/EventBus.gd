@@ -43,6 +43,9 @@ signal patient_record_opened(patient_id: String, event_id: String)
 signal patient_state_changed(patient_id: String, field_path: String, value: Variant)
 @warning_ignore("unused_signal")
 signal observation_recorded(patient_id: String, observation_id: String)
+## A structured note was saved to the patient's chart (append-only).
+@warning_ignore("unused_signal")
+signal patient_note_saved(patient_id: String, note_id: String)
 @warning_ignore("unused_signal")
 signal patient_location_changed(patient_id: String, from_location: String, to_location: String)
 ## A rule needs clinician attention (pending review, blocked transfer, unknown effect).
@@ -151,6 +154,20 @@ signal ui_panel_closed(panel_id: String)
 ## Short on-screen toast.
 @warning_ignore("unused_signal")
 signal notification_requested(text: String)
+
+# --- Story (ChapterDirector) ----------------------------------------------------------
+
+## The current chapter objective changed ("" when every objective is done).
+@warning_ignore("unused_signal")
+signal objective_changed(objective_id: String, text: String)
+## A one-shot story beat ran its actions.
+@warning_ignore("unused_signal")
+signal story_beat_fired(beat_id: String)
+## The player used the shift handover board.
+@warning_ignore("unused_signal")
+signal shift_signout_requested()
+@warning_ignore("unused_signal")
+signal chapter_completed(chapter_id: String)
 
 # --- Environment ----------------------------------------------------------------------
 

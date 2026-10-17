@@ -27,7 +27,7 @@ const PATIENT_LOCATIONS: Array[String] = [
 const HYPOTHESIS_STATUSES: Array[String] = ["unresolved", "supported", "refuted"]
 ## Non-medical effects ClinicalRules knows how to apply. Medical effects have
 ## no vocabulary yet: none are approved.
-const NON_MEDICAL_EFFECTS: Array[String] = ["mark_assessment_started"]
+const NON_MEDICAL_EFFECTS: Array[String] = ["mark_assessment_started", "mark_medical_review_requested"]
 
 const _STRING: Dictionary = {"type": "string"}
 const _ID: Dictionary = {"type": "id"}
@@ -84,7 +84,12 @@ const DIALOGUE_CHOICE: Dictionary = {
 		"response": _STRING,
 		"next": _ID,
 	},
-	"optional": {"rapport_delta": {"type": "number"}},
+	"optional": {
+		"rapport_delta": {"type": "number"},
+		## Authored observations of this patient that the physician witnesses
+		## when this question is asked (recorded with provenance "interview:<choice>").
+		"records_observations": _IDS,
+	},
 }
 
 const DIALOGUE_FILE: Dictionary = {
@@ -119,9 +124,24 @@ const CLINICAL_RULE: Dictionary = {
 	"optional": {"notice": _STRING},
 }
 
+## A coded action the physician can commit from the EHR Orders tab.
+## Outcomes come only from ClinicalRules; the action itself carries no effect.
+const CLINICAL_ACTION: Dictionary = {
+	"type": "object",
+	"required": {
+		"id": _ID,
+		"patient_id": _ID,
+		"label": _STRING,
+		"description": _STRING,
+		"time_minutes": {"type": "number"},
+		"clinical_review_status": _REVIEW,
+	},
+}
+
 const CLINICAL_RULES_FILE: Dictionary = {
 	"type": "object",
 	"required": {"schema_version": _STRING, "rules": {"type": "array", "items": CLINICAL_RULE}},
+	"optional": {"actions": {"type": "array", "items": CLINICAL_ACTION}},
 }
 
 const CLUES_FILE: Dictionary = {
@@ -199,7 +219,61 @@ const INTENT_LEXICON_FILE: Dictionary = {
 
 ## Authored world wiring: which imported environment nodes become doors,
 ## terminals, documents and characters (see data/world_chapter1.json).
-const WORLD_INTERACTABLE_TYPES: Array[String] = ["ehr_terminal", "clue_terminal", "clue_pickup", "system_status"]
+const WORLD_INTERACTABLE_TYPES: Array[String] = ["ehr_terminal", "clue_terminal", "clue_pickup", "system_status",
+		"shift_signout"]
+
+## Story conditions and actions are checked in depth by StoryLogic
+## (vocabulary and references); here they only need to be objects.
+const _CONDITION: Dictionary = {"type": "any"}
+const _TRUST_CHANGE: Dictionary = {
+	"type": "object",
+	"required": {"staff_id": _ID, "axis": {"type": "enum", "values": ["respect", "trust", "suspicion"]},
+			"delta": {"type": "number"}},
+}
+
+const STORY_FILE: Dictionary = {
+	"type": "object",
+	"required": {
+		"schema_version": _STRING,
+		"chapter": _ID,
+		"title": _STRING,
+		"clinical_review_status": _REVIEW,
+		"objectives": {
+			"type": "array", "min_items": 1,
+			"items": {
+				"type": "object",
+				"required": {"id": _ID, "text": _STRING, "complete_when": _CONDITION},
+				"optional": {"expires_when": _CONDITION},
+			},
+		},
+		"beats": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": {"id": _ID, "when": _CONDITION, "actions": {"type": "array", "min_items": 1, "items": {"type": "any"}}},
+				"optional": {"delay_minutes": {"type": "int"}},
+			},
+		},
+		"staff_lines": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": {"staff_id": _ID, "when": _CONDITION, "text": _STRING},
+				"optional": {"verify_clue": _ID},
+			},
+		},
+		"sign_out": {
+			"type": "object",
+			"required": {
+				"title": _STRING, "handover_patients": _IDS,
+				"documented_trust": {"type": "array", "items": _TRUST_CHANGE},
+				"undocumented_trust": {"type": "array", "items": _TRUST_CHANGE},
+				"undocumented_message": _STRING,
+			},
+		},
+	},
+	"optional": {"provisional": {"type": "bool"}, "notes": _STRING},
+}
 
 const WORLD_FILE: Dictionary = {
 	"type": "object",
@@ -234,5 +308,19 @@ const WORLD_FILE: Dictionary = {
 			},
 		},
 	},
-	"optional": {"flicker_lights": _STRINGS, "notes": _STRING},
+	"optional": {
+		"flicker_lights": _STRINGS,
+		"notes": _STRING,
+		## AudioDirector location per floor-plan rectangle (Godot x/z, metres).
+		## Anywhere else uses default_audio_location.
+		"audio_zones": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": {"location": _ID, "min_xz": {"type": "array", "items": {"type": "number"}},
+						"max_xz": {"type": "array", "items": {"type": "number"}}},
+			},
+		},
+		"default_audio_location": _ID,
+	},
 }

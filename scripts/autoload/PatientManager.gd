@@ -4,13 +4,15 @@ extends Node
 ## Patient *definitions* are immutable authored content (ContentRegistry).
 ## This manager owns what changes during play:
 ##   location, rapport, recorded observations (with provenance), assessment
-##   fields, narrative flags and a ledger of processed event ids.
+##   fields, structured notes, narrative flags and a ledger of processed
+##   event ids.
 ##
 ## Every state-changing call is keyed by a stable event_id. Replaying an
 ## event id is a no-op, so opening the same record twice or re-triggering a
 ## scene never duplicates events (MVP acceptance test 4).
 
 const MUTABLE_ROOTS: Array[String] = ["assessment", "flags"]
+const NOTE_PLAN_MAX_CHARS: int = 600
 
 var _state: Dictionary = {} ## patient_id -> state Dictionary
 
@@ -33,6 +35,10 @@ func get_state(patient_id: String) -> Dictionary:
 
 func get_location(patient_id: String) -> String:
 	return _state.get(patient_id, {}).get("location", "")
+
+
+func get_notes(patient_id: String) -> Array:
+	return _state.get(patient_id, {}).get("notes", []).duplicate(true)
 
 
 func has_processed(patient_id: String, event_id: String) -> bool:
@@ -70,6 +76,91 @@ func record_observation(patient_id: String, observation_id: String, recorded_by:
 	return false
 
 
+## Saves a structured progress note. Notes are append-only: a saved note is
+## never edited, which keeps the audit trail honest (GDD §9).
+##   findings:       observation ids the physician cites; each must be recorded
+##   considerations: differential tags kept under consideration (not diagnoses)
+##   plan:           the physician's own free text, trimmed and length-limited
+## Returns the new note id, or "" if the note is invalid.
+func save_note(patient_id: String, findings: Array[String], considerations: Array[String], plan: String) -> String:
+	if not _state.has(patient_id):
+		push_error("PatientManager: unknown patient '%s'" % patient_id)
+		return ""
+	var state: Dictionary = _state[patient_id]
+	var allowed_tags: Array = get_definition(patient_id)["differential_tags"]
+	for finding: String in findings:
+		if not state["observations"].has(finding):
+			push_warning("PatientManager: note cites unrecorded observation '%s'" % finding)
+			return ""
+	for tag: String in considerations:
+		if not tag in allowed_tags:
+			push_warning("PatientManager: note cites unknown consideration '%s'" % tag)
+			return ""
+	var text: String = plan.strip_edges().left(NOTE_PLAN_MAX_CHARS)
+	if findings.is_empty() and considerations.is_empty() and text.is_empty():
+		return ""
+	var notes: Array = state["notes"]
+	var note_id: String = "note_%s_%03d" % [patient_id, notes.size() + 1]
+	if not _begin_event(patient_id, "evt_" + note_id):
+		return ""
+	var sorted_findings: Array[String] = findings.duplicate()
+	sorted_findings.sort()
+	var sorted_considerations: Array[String] = considerations.duplicate()
+	sorted_considerations.sort()
+	notes.append({
+		"id": note_id,
+		"author": "player",
+		"at_minutes": TimeManager.total_minutes,
+		"day": TimeManager.get_shift_day(),
+		"shift": TimeManager.get_shift(),
+		"findings": sorted_findings,
+		"considerations": sorted_considerations,
+		"plan": text,
+	})
+	_append_audit(patient_id, {"event_id": "evt_" + note_id, "type": "note_saved", "at_minutes": TimeManager.total_minutes})
+	EventBus.patient_note_saved.emit(patient_id, note_id)
+	return note_id
+
+
+## Adds a system entry to a chart's audit trail (e.g. a transfer request
+## logged by the hospital system). It is a record of an event, never an
+## observation or result. Deduped by event_id; returns true if new.
+func add_chart_entry(patient_id: String, event_id: String, type: String, by: String, text: String) -> bool:
+	if not _begin_event(patient_id, event_id):
+		return false
+	_append_audit(patient_id, {"event_id": event_id, "type": type, "by": by, "text": text,
+			"at_minutes": TimeManager.total_minutes})
+	EventBus.patient_state_changed.emit(patient_id, "audit", event_id)
+	return true
+
+
+## The dedupe id an EHR action gets today (one commit per shift day).
+func action_event_id(patient_id: String, action_id: String) -> String:
+	return "evt_d%d_%s_%s" % [TimeManager.get_shift_day(), action_id, patient_id]
+
+
+## Commits an authored clinical action (data/clinical_rules.json "actions")
+## from the EHR, citing the recorded findings. One commit per action per
+## patient per shift day; repeats return {}. Costs the action's time.
+func perform_action(patient_id: String, action_id: String, finding_ids: Array[String]) -> Dictionary:
+	var action: Dictionary = ContentRegistry.get_action(action_id)
+	if action.is_empty() or action["patient_id"] != patient_id:
+		push_error("PatientManager: action '%s' is not offered for %s" % [action_id, patient_id])
+		return {}
+	var event: Dictionary = {
+		"event_id": action_event_id(patient_id, action_id),
+		"type": "clinical_action",
+		"patient_id": patient_id,
+		"action_id": action_id,
+		"at_minutes": TimeManager.total_minutes,
+		"payload": {"finding_ids": finding_ids.duplicate()},
+	}
+	var result: Dictionary = commit_clinical_action(event)
+	if not result.is_empty():
+		TimeManager.advance(int(action["time_minutes"]), "clinical_action:" + action_id)
+	return result
+
+
 ## Commits a coded clinical action event, e.g.
 ##   {"event_id": "evt_day1_assess_catatonia", "type": "clinical_action",
 ##    "patient_id": "pt_elias_ward", "action_id": "evaluate_catatonia",
@@ -90,7 +181,8 @@ func commit_clinical_action(event: Dictionary) -> Dictionary:
 	for effect: Dictionary in result["effects"]:
 		apply_effect(effect["path"], effect["set"])
 	_append_audit(patient_id, {"event_id": event_id, "type": "clinical_action", "action_id": action_id,
-			"at_minutes": TimeManager.total_minutes, "rule_ids": result["rule_ids"]})
+			"at_minutes": TimeManager.total_minutes, "rule_ids": result["rule_ids"],
+			"review_flags": result["review_flags"].map(func(f: Dictionary) -> String: return f["reason"])})
 	EventBus.clinical_action_committed.emit(patient_id, action_id, event_id)
 	return result
 
@@ -186,6 +278,7 @@ func _initial_state(definition: Dictionary) -> Dictionary:
 		"rapport": float(definition["initial_rapport"]),
 		"observations": {},
 		"assessment": {},
+		"notes": [],
 		"flags": flags,
 		"processed_events": [],
 		"audit": [],
