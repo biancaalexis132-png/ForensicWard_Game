@@ -38,6 +38,15 @@ Prefer the Python runner: it enforces a 120-second timeout per command, nonzero 
 
 The content validator is a deliberately partial schema for currently authored content, not a full patient schema and not proof that gameplay rejects malformed external/save data. Demo input tests call the handler directly; they do not establish OS input routing, mouse capture, physics collisions or raycast behavior. Disk save/load and branching dialogue are not yet covered. Run each added scene through an explicit smoke test; import alone does not execute its `_ready()`.
 
+## Audio coverage
+
+- `tests/qa/test_audio_manifest.py`: checks that the manifest matches the files on disk, that every narrative line has a voice profile and clip, and that the cue, event and location references are consistent.
+- `tests/music_ai/test_generate_music.py`: runs the ACE-Step client against a mock server (submit, poll, download, decode check, loudness normalization, loop seam, import). It skips when ffmpeg is missing. This does not test ACE-Step itself.
+- `tests/audio/TestAudio.tscn`: 92 assertions on buses, volumes, asset loading and durations, day/night and location ambience, 2D and 3D events, accessibility, subtitle and voice sync, music states and dialogue ducking.
+- `scenes/audio/Ch1AudioSequence.tscn -- --exit-when-done`: plays the Chapter 1 audio sequence (about 61 s) and checks that the beats happen in order.
+
+Headless Godot uses the Dummy audio driver, so playback state and timing are tested but sound quality is not. Listen to `scenes/audio/Ch1AudioSequence.tscn` on the Mac (F6 / Cmd + R).
+
 ## Pending gameplay cases
 
 Two coverage gaps print `SKIP` and are excluded from pass counts. Replace these explicit skips with real tests when Claude's APIs and scenes exist; do not build substitute gameplay implementations just to get green tests.
