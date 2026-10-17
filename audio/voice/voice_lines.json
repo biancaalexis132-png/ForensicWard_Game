@@ -46,5 +46,69 @@
 		"speed": 0.9,
 		"fx": "intercom",
 		"source_hash": "5a2cccab25b4fe8f165c46221e4c8b237c1d57a0"
+	},
+	"walla_ns_001": {
+		"path": "audio/voice/walla/walla_ns_001.ogg",
+		"speaker": "walla_staff_a",
+		"voice": "af_nicole",
+		"speed": 1.05,
+		"fx": "dialogue",
+		"source_hash": "5164a9ad5ce92e9b4ee4cb3776bb861c4c566103"
+	},
+	"walla_ns_002": {
+		"path": "audio/voice/walla/walla_ns_002.ogg",
+		"speaker": "walla_staff_b",
+		"voice": "am_michael",
+		"speed": 1.05,
+		"fx": "dialogue",
+		"source_hash": "35aeff0d25fff112c34f7d4e192d2b12ceac485a"
+	},
+	"walla_ns_003": {
+		"path": "audio/voice/walla/walla_ns_003.ogg",
+		"speaker": "walla_staff_c",
+		"voice": "bf_isabella",
+		"speed": 1.08,
+		"fx": "dialogue",
+		"source_hash": "316df70659d4633bed0918e67a31be0e6fab1459"
+	},
+	"walla_ns_004": {
+		"path": "audio/voice/walla/walla_ns_004.ogg",
+		"speaker": "walla_staff_a",
+		"voice": "af_nicole",
+		"speed": 1.05,
+		"fx": "dialogue",
+		"source_hash": "754e44d93c6e524c5babf225ce282485a852094c"
+	},
+	"walla_ns_005": {
+		"path": "audio/voice/walla/walla_ns_005.ogg",
+		"speaker": "walla_staff_b",
+		"voice": "am_michael",
+		"speed": 1.05,
+		"fx": "dialogue",
+		"source_hash": "4e5836538f23e9b009e2666aed1a5e92f55917e8"
+	},
+	"walla_ns_006": {
+		"path": "audio/voice/walla/walla_ns_006.ogg",
+		"speaker": "walla_staff_c",
+		"voice": "bf_isabella",
+		"speed": 1.08,
+		"fx": "dialogue",
+		"source_hash": "3eef1e6a9f348a621c4aa5c35d12e72c8e063338"
+	},
+	"walla_ns_007": {
+		"path": "audio/voice/walla/walla_ns_007.ogg",
+		"speaker": "walla_staff_a",
+		"voice": "af_nicole",
+		"speed": 1.05,
+		"fx": "dialogue",
+		"source_hash": "340252f808f8e2a0ab0ec32a4c8088c4f8b3f6a5"
+	},
+	"walla_ns_008": {
+		"path": "audio/voice/walla/walla_ns_008.ogg",
+		"speaker": "walla_staff_b",
+		"voice": "am_michael",
+		"speed": 1.05,
+		"fx": "dialogue",
+		"source_hash": "e45d9bf2a0f2e0adcac9a8dd8c832161fa034f26"
 	}
 }

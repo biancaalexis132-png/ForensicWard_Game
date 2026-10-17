@@ -58,20 +58,32 @@ The project uses **Forward+** (Metal on Apple Silicon). If your Mac shows render
 data/                  Authored JSON content (validated at boot)
 docs/                  Design docs, sprint reports, clinical review log
 scenes/main/           Main.tscn: composition root (world + player + UI)
-scenes/world/          HospitalGreybox.tscn and modular rooms/
+scenes/world/          HospitalGreybox.tscn, modular rooms/ and the Blender-built clinical wing
 scenes/player/         FirstPersonController.tscn
 scenes/props/          Door, Terminal, CluePickup, Character, furniture
-scenes/ui/             HUD, InfoPanel, PauseMenu
+scenes/ui/             HUD, InfoPanel, PauseMenu, EHR, interview, evidence board
+scenes/audio/          Ch1AudioSequence.tscn (Chapter 1 audio walkthrough)
 scripts/autoload/      Manager singletons (EventBus, ContentRegistry, TimeManager, ...)
 scripts/content/       JSON schemas and validator
 scripts/dialogue/      IntentMatcher (bounded free-text matching)
+scripts/narrative/     Chapter 1 story director
 scripts/player/        First-person controller
 scripts/interaction/   Interactable component
 scripts/world/         Room builder, doors, terminals, pickups, characters
 scripts/ui/, main/     UI controllers, Main
 scripts/tests/         TestRunner + test_*.gd suites
-staging/               Approved modules awaiting integration (ignored by Godot)
+systems/pharmacology/  PharmacologyEngine (autoload): CYP/renal PK, side effects, QTc, alerts (docs/PHARMACOLOGY_ENGINE.md)
+systems/audio/         AudioDirector (autoload): ambience, music, dialogue/subtitles, volume, accessibility
+audio/                 Game audio, cue sheet and asset manifest (docs/AUDIO.md)
+assets/                Blender sources, exported .glb, asset manifest, renders
+tools/audio/, music_ai/  Offline generators: Kokoro TTS + procedural SFX; ACE-Step 1.5 music on the Mac (docs/MUSIC_AI_MAC_GUIDE.md)
+tools/blender/         Scripted Blender environment pipeline
+tests/                 QA runner (tests/qa/run.py), pharmacology, audio and music_ai tests
 ```
+
+## Working with AI agents
+
+Claude Code and OpenAI Codex take turns developing this project. The shared rules are in `AGENTS.md`; status and handoffs are in `docs/PROJECT_STATUS.md` and `docs/AI_HANDOFF.md`. Audio workstream status is in `docs/AUDIO.md`.
 
 ## Ground rules
 

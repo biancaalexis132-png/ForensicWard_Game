@@ -50,12 +50,19 @@ class AudioManifestTests(unittest.TestCase):
                   for scene in json.loads(p.read_text(encoding="utf-8"))["scenes"]}
         for cue_id, cue in cues["cues"].items():
             with self.subTest(cue=cue_id):
-                self.assertTrue((ROOT / cue["stream"].removeprefix("res://")).exists())
+                for stream in cue.get("streams", [cue.get("stream")]):
+                    self.assertTrue((ROOT / stream.removeprefix("res://")).exists(), stream)
                 self.assertIn(cue["bus"], {"Music", "AmbienceBed", "SFX", "Voice"})
         for location_id, location in cues["locations"].items():
             for shift in ("day", "night"):
                 if shift in location:
                     self.assertIn(location[shift]["ambience"], cues["cues"], location_id)
+                    if location[shift].get("detail"):
+                        self.assertIn(location[shift]["detail"], cues["cues"], location_id)
+        for cue_id, cue in cues["cues"].items():
+            if cue_id.startswith(("sfx_w0_", "amb_w0_")):
+                with self.subTest(anomaly=cue_id):
+                    self.assertTrue(cue.get("startle"), "Ward Zero anomaly cues must be startle-flagged")
         for event_id, actions in cues["events"].items():
             for action in actions:
                 with self.subTest(event=event_id):

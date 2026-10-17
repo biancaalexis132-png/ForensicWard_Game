@@ -11,6 +11,9 @@
 		"staff_hale":    {"name": "Marcus Hale",         "voice": "am_onyx",    "speed": 0.94, "lang": "en-us", "fx": "dialogue", "direction": "Security director; low, clipped, guarded."},
 		"staff_price":   {"name": "Samuel Price",        "voice": "bm_lewis",   "speed": 0.96, "lang": "en-gb", "fx": "dialogue", "direction": "Maintenance supervisor; weary, plain-spoken."},
 		"intercom":      {"name": "Hospital intercom",   "voice": "af_alloy",   "speed": 0.9,  "lang": "en-us", "fx": "intercom", "direction": "Neutral PA announcer through an old ceiling speaker system."},
+		"walla_staff_a": {"name": "Background staff A", "voice": "af_nicole", "speed": 1.05, "lang": "en-us", "fx": "dialogue", "direction": "Walla only; mixed distant and unintelligible."},
+		"walla_staff_b": {"name": "Background staff B", "voice": "am_michael", "speed": 1.05, "lang": "en-us", "fx": "dialogue", "direction": "Walla only; mixed distant and unintelligible."},
+		"walla_staff_c": {"name": "Background staff C", "voice": "bf_isabella", "speed": 1.08, "lang": "en-gb", "fx": "dialogue", "direction": "Walla only; mixed distant and unintelligible."},
 		"player":        {"name": "Protagonist (default)", "voice": "am_liam",  "speed": 1.0,  "lang": "en-us", "fx": "dialogue", "direction": "Newly graduated attending. Default voice only; the protagonist is customizable, so a second profile is a planned addition."}
 	}
 }
