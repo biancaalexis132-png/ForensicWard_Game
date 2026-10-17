@@ -12,7 +12,7 @@ Status values: **Done** (merged to `main`, tested), **Active** (being worked on,
 | PharmacologyEngine (CYP/renal PK, alerts, clue gates) | Done | `main`: `systems/pharmacology/` | `tests/TestPharmacology.tscn` (19 assertions) | Clinical review is the owner's |
 | Temporary boot demo (Main) | Done | `main`: `scenes/main/` | Boot smoke test | Will be replaced by the ward level |
 | Headless QA runner + CI | Done | `main`: `tests/qa/run.py`, `.github/workflows/` | Itself | CI checkout now uses `lfs: true` |
-| Adaptive audio engine (AudioDirector) | Done | `main` via PR #3: `systems/audio/` | `tests/audio/TestAudio.tscn` (92 assertions) | Ducking, music states and the AI-sheet loader are on the audio branch (PR pending) |
+| Adaptive audio engine (AudioDirector) | Done | `main` via PR #3: `systems/audio/` | `tests/audio/TestAudio.tscn` (92 assertions) | Includes dialogue ducking, music states and the AI-sheet loader |
 | Chapter 1 audio milestone (corridor loop, secure door, pager, intercom, unease transition, Bennett handover) | Done (needs listening review) | `audio/`, `scenes/audio/Ch1AudioSequence.tscn` | Sequence smoke test with ordered markers | Procedural SFX are placeholder grade; TTS delivery not reviewed by ear |
 | Kokoro TTS voice pipeline | Done | `tools/audio/generate_voice.py`, `audio/voice_profiles.json` | Manifest and clip checks | 9 voice profiles; only Chapter 1 lines are voiced so far |
 | AI music pipeline (ACE-Step 1.5) | **Blocked: needs the owner's Mac** | `tools/music_ai/`, `docs/MUSIC_AI_MAC_GUIDE.md` | Mock-server pipeline test only | The cloud container has no GPU, and Hugging Face/ModelScope are blocked. Milestone stays open until real files exist and are approved. |
