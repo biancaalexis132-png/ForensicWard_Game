@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Character pipeline proposal | `codex/naomi-production-proposal` | Codex | `0ead6cbd79710577852ab9a79522a5a61b960a46` | New proposal/canon and own continuity docs only | Auditing, no models/runtime edits |
+| Character pipeline proposal | `codex/naomi-production-proposal` | Codex | `92a1b2549a0bae7f0660f3c71c9d92ff7c30dbd3` | Proposal/canon and own continuity docs only | Draft PR31; complete for approval, no models/runtime edits |
 | Screenplay audit | `codex/screenplay-continuity-review` | Codex | `30e13f87f64e46c152dad2034a2a8c2c3e152dc6` | New audit and own continuity docs only | PR #30 package available; review starting, no runtime edits |
 | Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex; owner approved “continue” | `74715227bf5581b09a3b2746870082576fffe71f` (verified synchronized P1 checkpoint) | `scripts/protagonist/*`, new `scripts/tests/test_protagonist.gd` + fixtures, input-contract/ID/proposal docs and own continuity updates | Complete for review; synchronized TestRunner 131/0 and combined full QA passed |
 
@@ -57,6 +57,18 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Codex · Character proposal session handoff
+
+- **Workstream/branch:** docs-only `codex/naomi-production-proposal`, stacked on verified screenplay `0ead6cbd79710577852ab9a79522a5a61b960a46`. Latest verified remote before final handoff **92a1b2549a0bae7f0660f3c71c9d92ff7c30dbd3**, confirmed by ls-remote. Final docs checkpoint follows; no main push/merge/history rewrite. Main remains **052859a984d7db599282914cbc300cc8cecc887b**.
+- **PR:** https://github.com/biancaalexis132-png/ForensicWard_Game/pull/31 verified OPEN/draft, base `codex/screenplay-continuity-review`; API now works, old blocked notes superseded. Initial open-PR list empty. Claimed only proposal/canon and own continuity, no assets/runtime.
+- **Completed/files:** `CHARACTER_PRODUCTION_NAOMI_FIRST.md` inventories138 GLBs (zero skins/clips/morphs), ten Blender5.0 source headers, capsules/voice/reference capabilities; all ten requested production deliverables, budgets, small PRs and conditional earliest milestone estimate. GDD and screenplay-audit addenda record approved Ch3 first actual WardZero entry via formal Security/Facilities inspection, without activating proposed effects/dialogue. Four continuity docs updated. Source/runtime preservation diff and whitespace passed; no uncommitted implementation.
+- **Tests:** on identical runtime bytes to `8ba76103d8b6b6a5d56865ca7bb4b35a16908e7a`, `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64` exit1. Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, boot OK; audio333/1 at existing cinematic-resume assertion TestAudio.gd:362 (seek final1s + fixed1.6s wait). Final Chapter1 sequence not run this time. Prior full sequence pass remains historical, not current full-run success.
+- **Diagnostic:** isolated public-API context/seek probe with writable `/tmp` XDG dirs resumed emotional context1015ms, exit0; reduced probe does not establish suite root cause. Initial local probe aborted due unwritable default XDG data dir; corrected environment resolved it. Local logs `/tmp/forensic-character-proposal-qa.log`, `/tmp/forensic-cinematic-probe.log`; persistent results in proposal. No test weakened or runtime audio fix bundled. Hosted CI not yet observed, Mac not run.
+- **Missing:** Blender5.x compatible editing runtime (4.3.2 installed), selected artist/approved technical reference/face, cleared humanoid/material/motion resources, character topology/rig/morphs/clips, lip-sync cues/adapter and real8GB Mac validation. Existing Blender source internals not validated; version mismatch diagnosed from all10 headers. No private assets presumed.
+- **Approvals:** owner must review proposal before substantial modeling; exact art/resource/budget choices pending. Ch3 entry placement approved; exact dialogue, repeated-junction/navigation/supernatural mechanics and clinical logic remain pending. Other clinical/canon gates unchanged.
+- **Next exact task:** owner reviews proposal P1 technical-reference/licensing/artist route. Then verify compatible Blender5.x and create approved technical Bennett references on a new bounded branch; do not start substantial model or download paid/uncleared assets from this proposal alone. Separately reproduce suite audio failure before any audio patch. Read living handoff and re-fetch/coordinate PR31/dependencies before shared files.
+
 
 ### 2026-10-17 · Codex · Required QA failure checkpoint
 
