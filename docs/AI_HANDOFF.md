@@ -10,6 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Ashcroft soundtrack | `claude/ashcroft-soundtrack` (draft PR to `main`) | Claude | `0f555939fd42fa3cd3dd7ccc2b412ad837eb6670` | `audio/cues.json`, `audio/manifest.json`, `docs/AUDIO.md`, `docs/AUDIO_MANIFEST.md`, `systems/audio/AudioDirector.gd`, `tests/audio/TestAudio.gd`, `tests/qa/test_audio_manifest.py`, `tools/audio/build_manifest.py`, `assets/creative_references/**/.gdignore` | Awaiting owner review and a listening pass |
 | Foundation F1 campaign contract | `claude/f1-campaign-contract` (draft PR to `main`) | Claude | `fa098c944aa9f33d9810649b5689c2504a2f5ffc` | `data/campaign.json`, `scripts/autoload/{ContentRegistry,SaveManager,EventBus}.gd` (EventBus: one signal), `scripts/content/*`, `scripts/narrative/*`, `scripts/tests/test_campaign.gd`, `scripts/tests/test_content.gd`, `scripts/tests/fixtures/**`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT}.md`, `docs/design/GDD_AMENDMENTS.md` | Awaiting owner review. F2 (zones) next, after this merges |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -55,6 +56,45 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 21:40 UTC · Claude Code · Ashcroft soundtrack
+
+- **Branch:** `claude/ashcroft-soundtrack` (based on `main` at `65b598d`)
+- **Latest verified commit:** `0f555939fd42fa3cd3dd7ccc2b412ad837eb6670` "Move exploration music to the records archive per the bible"
+- **Confirmed on GitHub:** see `git ls-remote origin claude/ashcroft-soundtrack`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; waiting on owner review
+
+**Accomplished**
+- Six Ashcroft OGGs referenced in place from `assets/creative_references/Music/Ready_For_Godot/` (no copies; the `.m4a` sources are not used). Cues `mus_waiting_room`, `mus_compassion`, `mus_procedure`, `mus_temporal_fracture`, `mus_final_revelation`, `mus_main_theme_variant2`; state `hospital_ordinary` on a new `reception` location; contexts `patient_follow_up`, `oversight`, `ward_zero_anomaly`, `final_revelation`, `finale_motif` with begin/end events. Assignments and reasons in `docs/AUDIO.md` "Ashcroft score".
+- Ward Zero temporal echo is event-only (`w0_temporal_echo_begin`); tests assert no location or intensity starts it.
+- `AudioDirector._apply_music_context`: a play-once context cut short no longer blocks its own finished hook next time.
+- Second commit: exploration music moved from the day corridor and nursing station to a new `records_archive` location, per the bible's Chapter 1 cue table. Droppable on its own.
+- `.gdignore` in `Visual_References/` and `Music/Suno_Originals/`; manifest scans `Ready_For_Godot` and records Suno provenance.
+
+**Files modified**
+- Claimed files in the Active workstreams row.
+
+**Unfinished**
+- `data/world_chapter1.json` `audio_zones`: no `reception` or `records_archive` rectangle yet (world owner, F2 zones).
+- No story data fires the new events yet.
+
+**Known errors**
+- none
+
+**Tests** (on `0f55593`)
+- `python3 tests/qa/run.py --godot <Godot 4.7>`: all suites pass; audio 334 passed, 0 failed.
+- CI: not observed yet.
+
+**Dependencies not available to remote agents**
+- Listening review on the Mac; Suno licence terms for all Suno-tagged tracks (owner).
+
+**Next steps**
+1. Owner: listen, confirm the Suno licence, decide whether to keep the Chapter 1 realignment commit.
+2. F2 zones: add `reception` and `records_archive` `audio_zones` rectangles when those areas exist.
+
+**Notes for the other agent**
+- Concept boards and notes reviewed but not used in game: board names/roles conflict with canon, board 2 cites real actors as likeness references, Ward Zero boards use occult imagery the bible rules out. Details in the PR description.
 
 ### 2026-10-17 20:50 UTC · Claude Code · Foundation F1 campaign contract
 
