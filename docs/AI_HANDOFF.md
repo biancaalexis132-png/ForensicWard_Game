@@ -63,6 +63,21 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 19:05 UTC · Claude Code · Stage 4a facing fix
+
+- **Branch:** `claude/environment-stage-4` (PR #14)
+- **Latest verified commit:** `400770b` "Fix facing of two terminals and the interview intercom in the security wing" (full SHA via `git log -1 400770b`)
+- **State:** finished; this adds to the 18:45 entry below.
+
+**Accomplished**
+- `VS_Terminal_VisitorLog` and `MD_Terminal` now face their users, and `SI_Intercom` faces into the room. Only `ENV_VisitorScreening`, `ENV_MedicalDirectorOffice` and `ENV_SecureInterviewSuite` (plus the wing `.blend` and their renders) changed.
+
+**Tests** (on `400770b`)
+- `python3 tests/qa/run.py` with Godot 4.7: exit 0. 92/92 `.glb`, TestRunner 80/0, TestQA 19/0/0, TestAudio 211/0.
+
+**Next steps**
+- Unchanged from the 18:45 entry. Stage 4b research wing is on `claude/environment-stage-4b`, stacked on this branch.
+
 ### 2026-10-17 18:45 UTC · Claude Code · Environment Stage 4a security and admin wing
 
 - **Branch:** `claude/environment-stage-4` (based on `main` at `6feaaa5`, which includes PR #13)
