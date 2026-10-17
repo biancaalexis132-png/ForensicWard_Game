@@ -12,3 +12,11 @@ export_presets.cfg
 .DS_Store
 Thumbs.db
 *.tmp
+
+# Offline audio/music generation (large, machine-local; see docs/AUDIO.md)
+.venv-audio/
+.venv-music/
+tools/audio/models/
+tools/music_ai/ACE-Step-1.5/
+tools/music_ai/output/
+__pycache__/

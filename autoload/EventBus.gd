@@ -89,3 +89,20 @@ signal objectivity_changed(old_value: float, new_value: float)
 ## UI/shader systems listen to this to switch distortion presets.
 @warning_ignore("unused_signal")
 signal bleed_stage_changed(stage: int)
+
+# --- Narrative and audio ---------------------------------------------------
+
+## An authored story beat happened (e.g. "ch1_after_hours_intercom").
+## AudioDirector maps event IDs to audio in res://audio/cues.json; events
+## without audio are ignored. `payload` may carry "position" (Vector3).
+@warning_ignore("unused_signal")
+signal narrative_event_fired(event_id: String, payload: Dictionary)
+
+## A dialogue line started. Subtitles show `text` for `duration` seconds,
+## which matches the voice clip, so no information depends on audio alone.
+@warning_ignore("unused_signal")
+signal subtitle_shown(line_id: String, speaker_name: String, text: String, duration: float)
+
+## The line ended or was skipped; hide its subtitle.
+@warning_ignore("unused_signal")
+signal subtitle_cleared(line_id: String)

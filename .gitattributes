@@ -6,3 +6,8 @@
 *.wav binary
 *.glb binary
 *.blend binary
+# Large audio: uncompressed masters and AI-generated score go through Git LFS.
+# Small in-game OGG effects and dialogue stay in normal Git.
+audio/masters/** filter=lfs diff=lfs merge=lfs -text
+audio/music_ai/**/*.ogg filter=lfs diff=lfs merge=lfs -text
+*.flac filter=lfs diff=lfs merge=lfs -text
