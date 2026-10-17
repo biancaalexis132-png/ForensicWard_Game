@@ -155,6 +155,20 @@ signal ui_panel_closed(panel_id: String)
 @warning_ignore("unused_signal")
 signal notification_requested(text: String)
 
+# --- Story (ChapterDirector) ----------------------------------------------------------
+
+## The current chapter objective changed ("" when every objective is done).
+@warning_ignore("unused_signal")
+signal objective_changed(objective_id: String, text: String)
+## A one-shot story beat ran its actions.
+@warning_ignore("unused_signal")
+signal story_beat_fired(beat_id: String)
+## The player used the shift handover board.
+@warning_ignore("unused_signal")
+signal shift_signout_requested()
+@warning_ignore("unused_signal")
+signal chapter_completed(chapter_id: String)
+
 # --- Environment ----------------------------------------------------------------------
 
 ## A toggleable environment state changed (e.g. a shutter closed, a seal removed,

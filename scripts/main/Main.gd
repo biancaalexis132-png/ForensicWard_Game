@@ -11,6 +11,9 @@ extends Node3D
 ##   "info"       InfoPanel (documents, staff, notices; drawn on top)
 ##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
 ##   "ehr"        EHRScreen (also opened with J)
+##   "evidence"   EvidenceBoard (also opened with Tab)
+## ChapterDirector (story) and AudioZoneTracker (ambience per room) are
+## children of Main, so they exist exactly while the playable world does.
 ##
 ## Also registers the "world" save provider: player transform plus every
 ## node in the "persistent_world" group (doors).
@@ -24,9 +27,10 @@ const TIME_PAUSE_REASON: String = "ui"
 @onready var _info_panel: InfoPanel = $InfoPanel
 @onready var _ehr: EHRScreen = $EHRScreen
 @onready var _interview: InterviewScreen = $InterviewScreen
+@onready var _evidence: EvidenceBoard = $EvidenceBoard
 @onready var _pause_menu: PauseMenu = $PauseMenu
 ## Topmost first: Esc closes the first open one.
-@onready var _panels: Array[CanvasLayer] = [_info_panel, _interview, _ehr]
+@onready var _panels: Array[CanvasLayer] = [_info_panel, _interview, _ehr, _evidence]
 
 
 func _ready() -> void:
@@ -35,6 +39,8 @@ func _ready() -> void:
 	_pause_menu.closed.connect(_update_input_mode)
 	SaveManager.register_provider(WORLD_PROVIDER_KEY, self)
 	_place_at_spawn()
+	($AudioZoneTracker as AudioZoneTracker).target = _player
+	get_tree().auto_accept_quit = false  # Quit via _quit_gracefully (audio first).
 
 	if not ContentRegistry.is_valid:
 		_show_content_errors()
@@ -43,8 +49,35 @@ func _ready() -> void:
 	print("[The Forensic Ward] Boot OK (content %s)" % ("valid" if ContentRegistry.is_valid else "INVALID"))
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		_quit_gracefully()
+
+
+## Stops audio and lets the audio thread finish before quitting, so no
+## stream is still playing at shutdown.
+func _quit_gracefully() -> void:
+	_silence_audio()
+	await get_tree().create_timer(0.25, true).timeout
+	get_tree().quit()
+
+
 func _exit_tree() -> void:
 	SaveManager.unregister_provider(WORLD_PROVIDER_KEY)
+	get_tree().auto_accept_quit = true
+	_silence_audio()
+
+
+## World audio belongs to the world: stop it when Main leaves (quit, tests),
+## so no stream is still playing when the engine shuts down.
+func _silence_audio() -> void:
+	AudioDirector.stop_dialogue()
+	AudioDirector.stop_ambience(0.01)
+	AudioDirector.stop_music(0.01)
+	for player: Node in AudioDirector.find_children("*", "", true, false):
+		if player is AudioStreamPlayer or player is AudioStreamPlayer3D:
+			player.call("stop")
+			player.set("stream", null)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -61,9 +94,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		_ehr.close()
 	elif event.is_action_pressed("ehr") and not _is_ui_open():
 		_on_ui_panel_requested(EHRScreen.PANEL_ID, {})
+	elif event.is_action_pressed("journal") and _top_panel() == _evidence:
+		_evidence.close()
+		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("journal") and not _is_ui_open():
-		EventBus.notification_requested.emit("Evidence: %d item(s) collected (evidence board arrives in Sprint 3)." %
-				EvidenceManager.get_acquired_ids().size())
+		_on_ui_panel_requested(EvidenceBoard.PANEL_ID, {})
+		get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton and event.pressed and not _is_ui_open() \
 			and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		# macOS releases capture when the window loses focus; click to recapture.
@@ -94,6 +130,8 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 			_info_panel.open(data)
 		EHRScreen.PANEL_ID:
 			_ehr.open(data)
+		EvidenceBoard.PANEL_ID:
+			_evidence.open(data)
 		InterviewScreen.PANEL_ID:
 			var with_world: Dictionary = data.duplicate()
 			with_world["world"] = _world

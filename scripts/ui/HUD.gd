@@ -1,7 +1,8 @@
 class_name HUD
 extends CanvasLayer
-## HUD: crosshair, interaction prompt, clock and toast notifications.
-## Reads only EventBus signals and TimeManager; owns no game state.
+## HUD: crosshair, interaction prompt, clock, toast notifications, the
+## current chapter objective and dialogue subtitles (when enabled in
+## Settings). Reads only EventBus signals and TimeManager; owns no game state.
 
 const TOAST_SECONDS: float = 3.5
 const MAX_TOASTS: int = 4
@@ -11,12 +12,36 @@ const MAX_TOASTS: int = 4
 @onready var _clock: Label = $Root/Clock
 @onready var _toasts: VBoxContainer = $Root/Toasts
 
+var objective_text: String = ""
+var subtitle_text: String = ""
+
+var _objective: Label
+var _subtitle: Label
+
 
 func _ready() -> void:
 	EventBus.interaction_focus_changed.connect(_on_focus_changed)
 	EventBus.notification_requested.connect(show_toast)
 	EventBus.time_advanced.connect(func(_t: int, _d: int, _r: String) -> void: _update_clock())
 	EventBus.game_loaded.connect(func(_slot: int) -> void: _update_clock())
+	EventBus.objective_changed.connect(_on_objective_changed)
+	EventBus.subtitle_shown.connect(_on_subtitle_shown)
+	EventBus.subtitle_cleared.connect(func(_line_id: String) -> void: _set_subtitle(""))
+	_objective = _overlay_label(20, HORIZONTAL_ALIGNMENT_LEFT)
+	_objective.anchor_top = 1.0
+	_objective.anchor_bottom = 1.0
+	_objective.offset_left = 24.0
+	_objective.offset_right = 760.0
+	_objective.offset_top = -64.0
+	_objective.offset_bottom = -24.0
+	_subtitle = _overlay_label(24, HORIZONTAL_ALIGNMENT_CENTER)
+	_subtitle.anchor_left = 0.15
+	_subtitle.anchor_right = 0.85
+	_subtitle.anchor_top = 1.0
+	_subtitle.anchor_bottom = 1.0
+	_subtitle.offset_top = -170.0
+	_subtitle.offset_bottom = -90.0
+	_subtitle.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
 	_prompt.text = ""
 	_update_clock()
 
@@ -41,6 +66,35 @@ func show_toast(text: String) -> void:
 	tween.tween_interval(TOAST_SECONDS)
 	tween.tween_property(label, "modulate:a", 0.0, 0.6)
 	tween.tween_callback(label.queue_free)
+
+
+func _overlay_label(size: int, alignment: HorizontalAlignment) -> Label:
+	var label: Label = Label.new()
+	label.add_theme_font_size_override("font_size", size)
+	label.add_theme_color_override("font_color", Color(0.92, 0.96, 0.94))
+	label.add_theme_color_override("font_outline_color", Color.BLACK)
+	label.add_theme_constant_override("outline_size", 6)
+	label.horizontal_alignment = alignment
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$Root.add_child(label)
+	return label
+
+
+func _on_objective_changed(_objective_id: String, text: String) -> void:
+	objective_text = text
+	_objective.text = "" if text.is_empty() else "Objective: " + text
+	if not text.is_empty():
+		show_toast("New objective: " + text)
+
+
+func _on_subtitle_shown(_line_id: String, speaker: String, text: String, _duration: float) -> void:
+	_set_subtitle("%s: %s" % [speaker, text] if not speaker.is_empty() else text)
+
+
+func _set_subtitle(text: String) -> void:
+	subtitle_text = text
+	_subtitle.text = text if Settings.get_value("subtitles") else ""
 
 
 func _on_focus_changed(prompt: String) -> void:

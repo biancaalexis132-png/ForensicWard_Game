@@ -15,6 +15,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Environment art | `claude/environment-production` (PR #6) | Claude | `e321b4a7f8d60f8b4400ea668959c25ac6b122e0` | `tools/blender/**`, `tools/godot/validate_glb_imports.gd`, `assets/blender/**`, `assets/exports/**`, `assets/asset_manifest/**`, `assets/renders/**`, `docs/ENVIRONMENT_*.md` | Stages 1–2 done; Stages 3–8 next |
 | Chapter 1 playable | `claude/chapter1-playable` (PR #7) | Claude | `60ed74fe882385535425f2038add243f93cc4b9e` | `scripts/world/**`, `scripts/autoload/WorldStateManager.gd`, `data/world_chapter1.json`, `scenes/world/Chapter1Ward.tscn`, `scripts/tests/test_world.gd`, `docs/CHAPTER1_PLAYABLE.md` | Integration branch merged in; awaiting review |
 | Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
+| Sprint 3 story, evidence, shift | `claude/sprint-03-evidence-shift` (draft PR, base `claude/sprint-02-ehr-interview`) | Claude | see newest log entry | `scripts/narrative/**`, `data/story_chapter1.json`, `scripts/ui/EvidenceBoard.gd`, `scripts/world/AudioZoneTracker.gd`, `scripts/tests/test_sprint3.gd`; small edits to `scripts/main/Main.gd`, `scripts/autoload/EventBus.gd`, `scripts/ui/{HUD,PauseMenu}.gd` | Awaiting review |
 | Audio production | `claude/audio-production` | Claude (separate session) | none pushed yet | `audio/**`, `tools/audio/**`, `systems/audio/**`, `scenes/audio/**`, `tests/audio/**`, `docs/AUDIO*.md` | Active, not on GitHub yet |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -60,6 +61,72 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Claude Code · Sprint 3 story, evidence board, shift loop
+
+- **Branch:** `claude/sprint-03-evidence-shift` (based on `claude/sprint-02-ehr-interview` at `0f36185`)
+- **Latest verified commit:** the commit carrying this entry; `git ls-remote origin claude/sprint-03-evidence-shift`
+- **Pull request:** draft, stacked on #9 (merge order #8, #6, #7, #9, then this PR)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- The Chapter 1 slice plays from start to finish:
+  1. Bennett handover (audio scene and subtitles).
+  2. Interview Elias, document, act.
+  3. Collect the transfer summary and roster, link them on the evidence board, argue the hypothesis.
+  4. Sign out at the handover board; a documented handover earns Bennett's trust.
+  5. Night shift; 15 minutes later the intercom calls W-Zero-B and the EHR logs a transfer request under an inactive credential.
+  6. Read the W0-B door log; a trusted Bennett corroborates it.
+  7. Sign out for the night; the end summary appears.
+- None of these steps blocks progress, and every one survives save and load.
+
+**Files modified**
+- New:
+  - `scripts/narrative/StoryLogic.gd`: closed condition and action vocabulary, validated.
+  - `scripts/narrative/ChapterDirector.gd`.
+  - `data/story_chapter1.json`.
+  - `scripts/ui/EvidenceBoard.gd` and `scenes/ui/EvidenceBoard.tscn`.
+  - `scripts/world/AudioZoneTracker.gd`.
+  - `scripts/tests/test_sprint3.gd`.
+- `scripts/main/Main.gd`:
+  - evidence panel and Tab handling;
+  - director and audio tracker nodes;
+  - `_silence_audio` on exit;
+  - graceful quit on window close (`auto_accept_quit` false while Main lives).
+- `scenes/main/Main.tscn`: EvidenceBoard, ChapterDirector and AudioZoneTracker nodes.
+- `scripts/ui/PauseMenu.gd`: Quit uses the same graceful path.
+- `scripts/ui/HUD.gd`: objective and subtitle labels.
+- `scripts/autoload/EventBus.gd`: `objective_changed`, `story_beat_fired`, `shift_signout_requested`, `chapter_completed`.
+- `scripts/autoload/EvidenceManager.gd`: `get_verifications`; verifications deduped per method.
+- `scripts/autoload/PatientManager.gd`: `add_chart_entry` (audit only).
+- `scripts/world/{Character,ImportedInteractable}.gd`: situational staff lines; `shift_signout` type.
+- Content layer and data:
+  - `scripts/content/*` and `ContentRegistry.gd`: story schema and validation;
+  - world `audio_zones`;
+  - `data/world_chapter1.json`: handover board and audio zones.
+
+**Unfinished**
+- GDD beat 4 (second stable patient hinting at a missing clinician) needs a second authored patient.
+- Only the `corridor` and `nursing_station` audio locations exist; other rooms fall back to the corridor.
+- Story lines are `[Placeholder]`.
+
+**Known errors**
+- none.
+- Headless runs no longer start ambience. A stream still playing at quit was reported as `ERROR: resources still in use`, which run.py treats as a failure.
+
+**Tests** (on this branch)
+- `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64`: exit 0.
+  - TestQA: 19/0/0.
+  - GLB validation: 58 assets.
+  - TestRunner: 80 passed.
+  - TestAudio: 92 passed.
+  - Ch1 audio sequence: done.
+- CI: not observed.
+
+**Next steps**
+1. Act I completion: author a second patient (GDD beat 4) in `data/patients.json` and `data/dialogue.json` (dialogue then needs one document per patient; `ContentRegistry` indexes a single dialogue file today), plus a Voss orientation beat (beat 1).
+2. Environment Stage 3/4 on `claude/environment-production`: medication room, a second interview room, security control, plus character stand-in meshes better than capsules.
+3. Pharmacology in the EHR as governed rules (needs approval records per rule).
 
 ### 2026-10-17 · Claude Code · Sprint 2 EHR and interview
 

@@ -31,7 +31,9 @@ func _ready() -> void:
 	_resume_button.pressed.connect(close)
 	$Root/Panel/Margin/VBox/Save.pressed.connect(_on_save)
 	$Root/Panel/Margin/VBox/Load.pressed.connect(_on_load)
-	$Root/Panel/Margin/VBox/Quit.pressed.connect(func() -> void: get_tree().quit())
+	# Same path as closing the window: Main stops audio first, then quits.
+	$Root/Panel/Margin/VBox/Quit.pressed.connect(func() -> void:
+		get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST))
 	for node_name: String in TOGGLES:
 		var box: CheckBox = _toggles.get_node(node_name)
 		var key: String = TOGGLES[node_name]

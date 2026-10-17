@@ -219,7 +219,61 @@ const INTENT_LEXICON_FILE: Dictionary = {
 
 ## Authored world wiring: which imported environment nodes become doors,
 ## terminals, documents and characters (see data/world_chapter1.json).
-const WORLD_INTERACTABLE_TYPES: Array[String] = ["ehr_terminal", "clue_terminal", "clue_pickup", "system_status"]
+const WORLD_INTERACTABLE_TYPES: Array[String] = ["ehr_terminal", "clue_terminal", "clue_pickup", "system_status",
+		"shift_signout"]
+
+## Story conditions and actions are checked in depth by StoryLogic
+## (vocabulary and references); here they only need to be objects.
+const _CONDITION: Dictionary = {"type": "any"}
+const _TRUST_CHANGE: Dictionary = {
+	"type": "object",
+	"required": {"staff_id": _ID, "axis": {"type": "enum", "values": ["respect", "trust", "suspicion"]},
+			"delta": {"type": "number"}},
+}
+
+const STORY_FILE: Dictionary = {
+	"type": "object",
+	"required": {
+		"schema_version": _STRING,
+		"chapter": _ID,
+		"title": _STRING,
+		"clinical_review_status": _REVIEW,
+		"objectives": {
+			"type": "array", "min_items": 1,
+			"items": {
+				"type": "object",
+				"required": {"id": _ID, "text": _STRING, "complete_when": _CONDITION},
+				"optional": {"expires_when": _CONDITION},
+			},
+		},
+		"beats": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": {"id": _ID, "when": _CONDITION, "actions": {"type": "array", "min_items": 1, "items": {"type": "any"}}},
+				"optional": {"delay_minutes": {"type": "int"}},
+			},
+		},
+		"staff_lines": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": {"staff_id": _ID, "when": _CONDITION, "text": _STRING},
+				"optional": {"verify_clue": _ID},
+			},
+		},
+		"sign_out": {
+			"type": "object",
+			"required": {
+				"title": _STRING, "handover_patients": _IDS,
+				"documented_trust": {"type": "array", "items": _TRUST_CHANGE},
+				"undocumented_trust": {"type": "array", "items": _TRUST_CHANGE},
+				"undocumented_message": _STRING,
+			},
+		},
+	},
+	"optional": {"provisional": {"type": "bool"}, "notes": _STRING},
+}
 
 const WORLD_FILE: Dictionary = {
 	"type": "object",
@@ -254,5 +308,19 @@ const WORLD_FILE: Dictionary = {
 			},
 		},
 	},
-	"optional": {"flicker_lights": _STRINGS, "notes": _STRING},
+	"optional": {
+		"flicker_lights": _STRINGS,
+		"notes": _STRING,
+		## AudioDirector location per floor-plan rectangle (Godot x/z, metres).
+		## Anywhere else uses default_audio_location.
+		"audio_zones": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": {"location": _ID, "min_xz": {"type": "array", "items": {"type": "number"}},
+						"max_xz": {"type": "array", "items": {"type": "number"}}},
+			},
+		},
+		"default_audio_location": _ID,
+	},
 }

@@ -122,6 +122,18 @@ func save_note(patient_id: String, findings: Array[String], considerations: Arra
 	return note_id
 
 
+## Adds a system entry to a chart's audit trail (e.g. a transfer request
+## logged by the hospital system). It is a record of an event, never an
+## observation or result. Deduped by event_id; returns true if new.
+func add_chart_entry(patient_id: String, event_id: String, type: String, by: String, text: String) -> bool:
+	if not _begin_event(patient_id, event_id):
+		return false
+	_append_audit(patient_id, {"event_id": event_id, "type": type, "by": by, "text": text,
+			"at_minutes": TimeManager.total_minutes})
+	EventBus.patient_state_changed.emit(patient_id, "audit", event_id)
+	return true
+
+
 ## The dedupe id an EHR action gets today (one commit per shift day).
 func action_event_id(patient_id: String, action_id: String) -> String:
 	return "evt_d%d_%s_%s" % [TimeManager.get_shift_day(), action_id, patient_id]

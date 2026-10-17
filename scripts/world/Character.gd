@@ -3,7 +3,8 @@ extends Node3D
 ## WardCharacter: a greybox staff member or patient the player can approach.
 ##
 ## Staff: shows their authored intro line and grants any authored access
-## (once, via TrustManager). Patients: opens the cinematic InterviewScreen.
+## (once, via TrustManager); the ChapterDirector may supply a situational
+## line. Patients: opens the cinematic InterviewScreen.
 
 enum Kind { STAFF, PATIENT }
 
@@ -47,7 +48,16 @@ func _on_interacted(_interactor: Node) -> void:
 
 func _talk_to_staff() -> void:
 	var staff: Dictionary = ContentRegistry.get_staff(character_id)
-	var body: String = "[i]%s[/i]\n\n%s" % [staff.get("role", ""), staff.get("intro_line", "...")]
+	var text: String = staff.get("intro_line", "...")
+	# The chapter's story data can give a situational line instead.
+	var director: Node = get_tree().get_first_node_in_group(ChapterDirector.GROUP)
+	var line: Dictionary = director.get_staff_line(character_id) if director != null else {}
+	if not line.is_empty():
+		text = line["text"]
+		var clue_id: String = line.get("verify_clue", "")
+		if not clue_id.is_empty() and EvidenceManager.add_verification(clue_id, "staff_testimony:" + character_id):
+			EventBus.notification_requested.emit("Corroborated: " + ContentRegistry.get_clue(clue_id)["title"])
+	var body: String = "[i]%s[/i]\n\n%s" % [staff.get("role", ""), text]
 	for access_id: String in staff.get("grants_access", []):
 		if TrustManager.grant_access(access_id, character_id):
 			EventBus.notification_requested.emit("Access granted: " + access_id.trim_prefix("access_").replace("_", " "))

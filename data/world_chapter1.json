@@ -27,12 +27,17 @@
 		{"node": "NS_Terminal_EHR", "type": "ehr_terminal", "title": "EHR Workstation (Nursing Station)"},
 		{"node": "OF_Document_TransferSummary", "type": "clue_pickup", "clue_id": "clue_transfer"},
 		{"node": "AR_Document_WardRoster1968", "type": "clue_pickup", "clue_id": "clue_roster"},
-		{"node": "W0B_AccessPanel", "type": "clue_terminal", "title": "Security Access Log", "clue_id": "clue_access"}
+		{"node": "W0B_AccessPanel", "type": "clue_terminal", "title": "Security Access Log", "clue_id": "clue_access"},
+		{"node": "NS_NoticeBoard", "type": "shift_signout", "title": "Shift handover board (sign out)"}
 	],
 	"characters": [
 		{"marker": "MARK_Character_DrVoss", "kind": "staff", "character_id": "staff_voss"},
 		{"marker": "MARK_Character_NurseBennett", "kind": "staff", "character_id": "staff_bennett"},
 		{"marker": "MARK_Seat_Patient", "kind": "patient", "character_id": "pt_elias_ward", "seated": true}
 	],
-	"flicker_lights": ["LIGHTMARK_Corridor_00"]
+	"flicker_lights": ["LIGHTMARK_Corridor_00"],
+	"default_audio_location": "corridor",
+	"audio_zones": [
+		{"location": "nursing_station", "min_xz": [-5.0, -12.0], "max_xz": [-1.5, -8.0]}
+	]
 }
