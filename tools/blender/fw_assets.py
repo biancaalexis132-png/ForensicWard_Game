@@ -1229,3 +1229,172 @@ STAGE4_SECURITY_PROP_BUILDERS = [
     prop_table_conference, prop_seating_waiting, prop_desk_executive, prop_printer_badge, prop_door_elevator,
     prop_panel_electrical, prop_pipes_wall, prop_display_wall,
 ]
+
+
+# --------------------------------------------------------------------------
+# Stage 4b: research wing
+# (origin: floor centre unless noted; front faces -Y)
+# --------------------------------------------------------------------------
+
+def prop_counter_reception(coll, aid="PROP_Counter_Reception", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Reception counter 2.4 m with a raised transaction ledge; staff side +Y."""
+    root = _root(coll, aid, "furniture", loc, rot, "Research reception counter")
+    mb = MeshBuilder()
+    w, d, h = 2.4, 0.7, 0.75
+    mb.box((w, d, 0.03), (0, 0, h - 0.015), "M_Laminate_LabWhite")
+    mb.box((w, 0.04, 1.1), (0, -d / 2 + 0.02, 0.55), "M_Laminate_LabWhite")              # Front modesty panel.
+    mb.box((w + 0.04, 0.3, 0.03), (0, -d / 2 + 0.1, 1.115), "M_Wood_Laminate_Desk")      # Transaction ledge.
+    mb.box((w, 0.006, 0.12), (0, -d / 2 - 0.003, 0.85), "M_Accent_ResearchTeal")         # Accent band.
+    for x in (-w / 2 + 0.02, w / 2 - 0.02):
+        mb.box((0.04, d - 0.04, h - 0.03), (x, 0.0, (h - 0.03) / 2), "M_Laminate_LabWhite")
+    mb.box((0.3, 0.22, 0.01), (-0.5, 0.05, h + 0.005), "M_Paper")                        # Visitor sign-in book.
+    mb.box((0.006, 0.12, 0.006), (-0.32, 0.05, h + 0.012), "M_Plastic_Black")            # Pen.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    L.collision_box(aid + "_COL", coll, root, (w, d, 1.13), (0, 0, 0.565))
+    return root
+
+
+def prop_chair_assessment(coll, aid="PROP_Chair_Assessment_Recliner", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Padded reclining assessment chair on a pedestal base; the occupant faces -Y."""
+    root = _root(coll, aid, "furniture", loc, rot, "Reclining research assessment chair")
+    mb = MeshBuilder()
+    mb.box((0.6, 0.6, 0.06), (0, 0, 0.03), "M_Steel_Painted_White")                       # Base plate.
+    mb.cyl(0.07, 0.35, (0, 0, 0.235), "M_Steel_Brushed", segs=12)                         # Pedestal.
+    mb.box((0.62, 0.62, 0.12), (0, 0, 0.47), "M_Upholstery_Vinyl_Grey")                   # Seat.
+    mb.box((0.62, 0.14, 0.72), (0, 0.36, 0.86), "M_Upholstery_Vinyl_Grey", rot=(-0.35, 0, 0))   # Reclined back.
+    mb.box((0.32, 0.14, 0.18), (0, 0.55, 1.28), "M_Upholstery_Vinyl_Grey", rot=(-0.35, 0, 0))   # Headrest.
+    mb.box((0.6, 0.42, 0.08), (0, -0.48, 0.38), "M_Upholstery_Vinyl_Grey", rot=(0.5, 0, 0))     # Leg rest.
+    for side in (-1, 1):
+        mb.box((0.1, 0.56, 0.06), (side * 0.36, 0.0, 0.66), "M_Upholstery_Vinyl_Grey")    # Armrests.
+        mb.box((0.04, 0.04, 0.16), (side * 0.36, 0.16, 0.56), "M_Steel_Brushed")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.01)
+    L.collision_box(aid + "_COL", coll, root, (0.8, 1.2, 1.0), (0, 0.0, 0.5))
+    return root
+
+
+def prop_bench_lab(coll, aid="PROP_Bench_Lab_2m", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """2 m laboratory bench, resin top, reagent shelf at the back (+Y)."""
+    root = _root(coll, aid, "furniture", loc, rot, "Laboratory bench with reagent shelf")
+    mb = MeshBuilder()
+    w, d, h = 2.0, 0.75, 0.9
+    mb.box((w, d, 0.03), (0, 0, h - 0.015), "M_Resin_LabTop")
+    for x in (-w / 2 + 0.3, w / 2 - 0.3):
+        mb.box((0.58, d - 0.05, h - 0.03), (x, 0.02, (h - 0.03) / 2), "M_Laminate_LabWhite")   # Cupboards.
+        mb.box((0.012, 0.004, 0.12), (x + 0.24, -d / 2 + 0.005, h - 0.15), "M_Steel_Brushed")
+    for x in (-w / 2 + 0.02, w / 2 - 0.02):
+        mb.box((0.03, 0.03, 0.6), (x, d / 2 - 0.05, h + 0.3), "M_Steel_Painted_White")
+    mb.box((w, 0.25, 0.02), (0, d / 2 - 0.13, h + 0.45), "M_Laminate_LabWhite")          # Reagent shelf.
+    for i, x in enumerate((-0.8, -0.65, -0.5, 0.1, 0.22, 0.6, 0.75)):
+        mat = ("M_Plastic_OffWhite", "M_Glass_Clear", "M_Plastic_MedCart_Blue")[i % 3]
+        mb.cyl(0.035, 0.14, (x, d / 2 - 0.13, h + 0.53), mat, segs=10)                    # Bottles.
+    mb.box((0.36, 0.26, 0.03), (0.55, -0.05, h + 0.015), "M_Plastic_OffWhite")           # Tube rack.
+    for i in range(6):
+        mb.cyl(0.007, 0.1, (0.4 + i * 0.06, -0.05, h + 0.08), "M_Plastic_OffWhite", segs=6)
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    L.collision_box(aid + "_COL", coll, root, (w, d, h), (0, 0, h / 2))
+    return root
+
+
+def prop_centrifuge(coll, aid="PROP_Centrifuge_Benchtop", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Benchtop centrifuge; origin on the bench surface."""
+    root = _root(coll, aid, "equipment", loc, rot, "Benchtop sample centrifuge")
+    mb = MeshBuilder()
+    mb.box((0.42, 0.5, 0.26), (0, 0, 0.13), "M_Plastic_OffWhite")
+    mb.cyl(0.17, 0.02, (0, 0.03, 0.27), "M_Steel_Painted_Grey", segs=20)                  # Lid.
+    mb.box((0.3, 0.06, 0.01), (0, -0.22, 0.2), "M_Plastic_Black", rot=(0.6, 0, 0))        # Control panel.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.01)
+    led = MeshBuilder()
+    led.box((0.08, 0.004, 0.02), (-0.06, -0.255, 0.21), "M_Emissive_LED_Green", rot=(0.6, 0, 0))
+    led.build(aid + "_Display", coll, root)["godot_hint"] = "Run display; animate the lid for the sample beat."
+    return root
+
+
+def prop_freezer_upright(coll, aid="PROP_Freezer_Upright_ULT", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Upright ultra-low sample freezer with keypad lock and temperature display."""
+    root = _root(coll, aid, "equipment", loc, rot, "Upright ultra-low sample freezer")
+    mb = MeshBuilder()
+    w, d, h = 0.85, 0.85, 1.95
+    mb.box((w, d, h), (0, 0, h / 2 + 0.05), "M_Steel_Painted_White")
+    mb.box((w - 0.04, 0.03, h - 0.3), (0, -d / 2 - 0.015, h / 2 - 0.05), "M_Steel_Painted_White")   # Door.
+    mb.box((0.04, 0.05, 0.5), (w / 2 - 0.1, -d / 2 - 0.05, 1.1), "M_Steel_Brushed")       # Handle.
+    mb.box((w, d, 0.05), (0, 0, 0.025), "M_Plastic_Black")                                # Plinth.
+    mb.box((w - 0.04, 0.02, 0.18), (0, -d / 2 - 0.01, h - 0.05), "M_Plastic_OffWhite")   # Control head.
+    mb.box((0.08, 0.012, 0.1), (0.25, -d / 2 - 0.022, h - 0.05), "M_Plastic_Black")       # Keypad.
+    mb.box((0.18, 0.002, 0.1), (-0.1, -d / 2 - 0.031, 1.4), "M_Paper")                    # Contents label.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    led = MeshBuilder()
+    led.box((0.16, 0.004, 0.05), (-0.15, -d / 2 - 0.022, h - 0.05), "M_Emissive_LED_Green")
+    led.build(aid + "_Display", coll, root)["godot_hint"] = "Temperature readout; red on an alarm."
+    L.collision_box(aid + "_COL", coll, root, (w, d + 0.06, h + 0.05), (0, -0.03, (h + 0.05) / 2))
+    return root
+
+
+def prop_desk_workstation(coll, aid="PROP_Desk_Workstation_Dual", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Analyst desk 1.6 m with two monitors; the user sits on the -Y side."""
+    root = _root(coll, aid, "furniture", loc, rot, "Data analysis workstation with dual monitors")
+    mb = MeshBuilder()
+    w, d, h = 1.6, 0.75, 0.74
+    mb.box((w, d, 0.03), (0, 0, h - 0.015), "M_Laminate_LabWhite")
+    for x in (-w / 2 + 0.03, w / 2 - 0.03):
+        mb.box((0.05, d - 0.1, h - 0.03), (x, 0, (h - 0.03) / 2), "M_Steel_Painted_Grey")
+    mb.box((w - 0.1, 0.02, 0.35), (0, d / 2 - 0.05, h - 0.2), "M_Steel_Painted_Grey")     # Modesty panel.
+    for x, yaw in ((-0.32, 0.15), (0.32, -0.15)):
+        with mb.at((x, d / 2 - 0.22, h), (0, 0, yaw)):
+            mb.box((0.56, 0.035, 0.34), (0, 0, 0.33), "M_Plastic_Black")
+            mb.box((0.05, 0.05, 0.16), (0, 0.03, 0.08), "M_Plastic_Black")
+    mb.box((0.44, 0.14, 0.015), (0, -0.12, h + 0.008), "M_Plastic_Black")                 # Keyboard.
+    mb.box((0.2, 0.42, 0.42), (0.6, 0.1, 0.21), "M_Plastic_Black")                        # Tower under desk.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    smb = MeshBuilder()
+    for x, yaw in ((-0.32, 0.15), (0.32, -0.15)):
+        with smb.at((x, d / 2 - 0.22, h), (0, 0, yaw)):
+            smb.box((0.52, 0.004, 0.3), (0, -0.019, 0.33), "M_Emissive_Screen")
+    screen = smb.build(aid + "_Screens", coll, root)
+    L.planar_uv(screen, ("x", "z"))
+    screen["godot_hint"] = "Dataset / analysis output: ViewportTexture per monitor."
+    L.collision_box(aid + "_COL", coll, root, (w, d, h), (0, 0, h / 2))
+    return root
+
+
+def prop_rack_server(coll, aid="PROP_Rack_Server_42U", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """42U server rack with a perforated door; front -Y."""
+    root = _root(coll, aid, "equipment", loc, rot, "Server rack, 42U, locked")
+    mb = MeshBuilder()
+    w, d, h = 0.6, 1.0, 2.0
+    mb.box((w, d, h), (0, 0, h / 2), "M_Metal_Dark")
+    mb.box((w - 0.04, 0.02, h - 0.1), (0, -d / 2 - 0.01, h / 2), "M_Plastic_Black")
+    for i in range(18):
+        mb.box((w - 0.12, 0.004, 0.012), (0, -d / 2 - 0.022, 0.2 + i * 0.09), "M_Metal_Dark")   # Perforation bands.
+    mb.box((0.03, 0.03, 0.2), (w / 2 - 0.06, -d / 2 - 0.035, 1.1), "M_Steel_Brushed")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    led = MeshBuilder()
+    for i in range(10):
+        led.box((0.012, 0.004, 0.008), (-0.18 + (i % 2) * 0.03, -d / 2 - 0.026, 0.45 + i * 0.13),
+                "M_Emissive_LED_Green" if i % 4 else "M_Emissive_LED_Red")
+    led.build(aid + "_LEDs", coll, root)["godot_hint"] = "Blink the LEDs; drive disk activity from story beats."
+    L.collision_box(aid + "_COL", coll, root, (w, d + 0.04, h), (0, -0.02, h / 2))
+    return root
+
+
+def prop_whiteboard(coll, aid="PROP_Whiteboard_Wall", loc=(0, 0, 0), rot=(0, 0, 0), residue=True):
+    """1.8 m whiteboard with marker tray; origin at wall surface centre, faces -Y.
+    The faint residue strokes read as something recently wiped off."""
+    root = _root(coll, aid, "decor", loc, rot, "Wall whiteboard (recently wiped)")
+    mb = MeshBuilder()
+    mb.box((1.8, 0.02, 1.2), (0, -0.01, 0), "M_Steel_Brushed")
+    mb.box((1.76, 0.004, 1.16), (0, -0.022, 0), "M_Whiteboard")
+    mb.box((0.8, 0.06, 0.02), (0, -0.05, -0.61), "M_Steel_Brushed")                       # Marker tray.
+    for i, mat in enumerate(("M_Plastic_Black", "M_Signage_Blue", "M_Safety_Red")):
+        mb.cyl(0.008, 0.12, (-0.2 + i * 0.15, -0.05, -0.59), mat, axis="X", segs=6)
+    if residue:
+        for x, z, w, a in ((-0.5, 0.3, 0.6, 0.05), (-0.45, 0.18, 0.5, -0.04), (0.2, 0.25, 0.7, 0.0),
+                           (0.25, -0.05, 0.3, 0.3), (-0.3, -0.2, 0.8, 0.02), (0.5, -0.3, 0.25, -0.2)):
+            mb.box((w, 0.001, 0.012), (x, -0.0245, z), "M_Marker_Residue", rot=(0, a, 0))
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    return root
+
+
+STAGE4_RESEARCH_PROP_BUILDERS = [
+    prop_counter_reception, prop_chair_assessment, prop_bench_lab, prop_centrifuge, prop_freezer_upright,
+    prop_desk_workstation, prop_rack_server, prop_whiteboard,
+]
