@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "status": "PROPOSED_NONCLINICAL_PRESENTATION",
+  "character_id": "staff_bennett",
+  "scene_id": "ch1_b2_bennett_handover",
+  "fallback": {"body": "idle_neutral", "face": "neutral", "gaze": "player", "gesture": "none"},
+  "cues": {
+    "ch1_b2_bennett_001": {
+      "on_enter": {"body": "turn_from_workstation", "face": "attentive", "gaze": "player", "gesture": "none"},
+      "during_speech": {"body": "stand_conversational", "face": "warm_subtle", "gaze": "player", "gesture": "small_greeting_nod"},
+      "on_exit": {"body": "listen_neutral", "face": "attentive", "gaze": "player", "gesture": "none"}
+    },
+    "ch1_b2_player_001": {
+      "during_speech": {"body": "listen_neutral", "face": "attentive", "gaze": "player", "gesture": "small_acknowledgement_nod"}
+    },
+    "ch1_b2_bennett_002": {
+      "on_enter": {"body": "stand_conversational", "face": "concerned_restrained", "gaze": "player", "gesture": "none"},
+      "during_speech": {"body": "stand_conversational", "face": "professionally_serious", "gaze": "player", "gesture": "restrained_chart_indication"},
+      "on_exit": {"body": "listen_neutral", "face": "attentive", "gaze": "player", "gesture": "none"}
+    },
+    "ch1_b2_player_002": {
+      "during_speech": {"body": "listen_neutral", "face": "attentive", "gaze": "player", "gesture": "small_acknowledgement_nod"}
+    },
+    "ch1_b2_bennett_003": {
+      "on_enter": {"body": "stand_conversational", "face": "focused", "gaze": "player", "gesture": "none"},
+      "during_speech": {"body": "stand_conversational", "face": "calm_professional", "gaze": "workstation_then_player", "gesture": "subtle_workstation_indication"},
+      "on_exit": {"body": "return_to_workstation", "face": "neutral", "gaze": "workstation", "gesture": "none"}
+    }
+  },
+  "rules": {
+    "voice_timing_source": "audio/voice/voice_lines.json",
+    "skip_behavior": "stop_line_audio_and_return_to_neutral_without_duplicate_callbacks",
+    "interrupt_behavior": "cancel_active_gesture_then_blend_to_safe_idle",
+    "missing_animation_behavior": "use_fallback_pose_and_continue_dialogue",
+    "save_behavior": "do_not_persist_transient_animation_state",
+    "clinical_state_effect": "none"
+  }
+}
