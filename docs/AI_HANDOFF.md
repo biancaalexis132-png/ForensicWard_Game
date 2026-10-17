@@ -12,6 +12,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 |---|---|---|---|---|---|
 | Ch3 inspection specification | `codex/chapter3-inspection-spec` | Codex | `0ead6cbd79710577852ab9a79522a5a61b960a46` | New spec/canon and own continuity docs | Docs only; exact expanded script absent |
 | Naomi production | `codex/naomi-production-proposal` | Codex | `58ea1077d76a39b7d703243732201149155a1ebf` | Separate character proposal | Draft PR31, awaits approval; no modeling |
+| Character pipeline proposal | `codex/naomi-production-proposal` | Codex | `92a1b2549a0bae7f0660f3c71c9d92ff7c30dbd3` | Proposal/canon and own continuity docs only | Draft PR31; complete for approval, no models/runtime edits |
 | Screenplay audit | `codex/screenplay-continuity-review` | Codex | `30e13f87f64e46c152dad2034a2a8c2c3e152dc6` | New audit and own continuity docs only | PR #30 package available; review starting, no runtime edits |
 | Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex; owner approved “continue” | `74715227bf5581b09a3b2746870082576fffe71f` (verified synchronized P1 checkpoint) | `scripts/protagonist/*`, new `scripts/tests/test_protagonist.gd` + fixtures, input-contract/ID/proposal docs and own continuity updates | Complete for review; synchronized TestRunner 131/0 and combined full QA passed |
 
@@ -59,6 +60,12 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 · Codex · Inspection base synchronization
+
+- Owner merged PR31 into screenplay base `78d0d8a4aaa84f6c92aa377f0381ccabfcd4b391` (not main). PR32 inspection draft now open against that base. Synchronizing via ordinary merge; shared documentation conflicts resolved preserving both milestone histories and current inspection handoff. No asset/runtime conflict or model work. Main still052859a.
+- Current QA96137 continues on identical application bytes; final result pending. Next verify merge/push, complete QA and final current handoff. Proposal merge does not itself authorize substantial modeling or new inspection mechanics.
+
+
 ### 2026-10-17 · Codex · Inspection specification milestone
 
 - Branch `codex/chapter3-inspection-spec`; verified remote before milestone `8e30681cc26375b50ff6e08e7ed09fdb79fe419d`. New `CHAPTER2_3_INSPECTION_CONTINUATION_SPEC.md` completes summary crosswalk/F2 gaps, bounded deterministic route, tested-egress requirements, source lineage/event/replay contract, proposed performance/tests and small PRs. GDD entry premise reaffirmed only. No runtime/source package changes.
@@ -71,6 +78,37 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - Branch `codex/chapter3-inspection-spec`, from verified remote screenplay `0ead6cbd79710577852ab9a79522a5a61b960a46`; main unchanged052859a. Separate Naomi draft PR31 verified58ea107, no overlap with its proposal/assets.
 - Current owner summaries: institutional perspectives proposed; Ch3 first actual authorized Security/Facilities entry approved, exact scenes/effect proposed. Exact expanded text absent; summary-level comparison only. Claimed new spec/current canon and own continuity docs, no runtime.
 - Prior screenplay full QA pass131/334; later Naomi same-runtime run audio333/1 cinematic fixed-timer assertion, reduced probe pass, cause unconfirmed. Current tests pending. Next compare Ch2/3 source and F2/evidence/save, document deterministic bounded repeats/safe-return/event replay, checkpoint.
+### 2026-10-17 · Codex · Character proposal session handoff
+
+- **Workstream/branch:** docs-only `codex/naomi-production-proposal`, stacked on verified screenplay `0ead6cbd79710577852ab9a79522a5a61b960a46`. Latest verified remote before final handoff **92a1b2549a0bae7f0660f3c71c9d92ff7c30dbd3**, confirmed by ls-remote. Final docs checkpoint follows; no main push/merge/history rewrite. Main remains **052859a984d7db599282914cbc300cc8cecc887b**.
+- **PR:** https://github.com/biancaalexis132-png/ForensicWard_Game/pull/31 verified OPEN/draft, base `codex/screenplay-continuity-review`; API now works, old blocked notes superseded. Initial open-PR list empty. Claimed only proposal/canon and own continuity, no assets/runtime.
+- **Completed/files:** `CHARACTER_PRODUCTION_NAOMI_FIRST.md` inventories138 GLBs (zero skins/clips/morphs), ten Blender5.0 source headers, capsules/voice/reference capabilities; all ten requested production deliverables, budgets, small PRs and conditional earliest milestone estimate. GDD and screenplay-audit addenda record approved Ch3 first actual WardZero entry via formal Security/Facilities inspection, without activating proposed effects/dialogue. Four continuity docs updated. Source/runtime preservation diff and whitespace passed; no uncommitted implementation.
+- **Tests:** on identical runtime bytes to `8ba76103d8b6b6a5d56865ca7bb4b35a16908e7a`, `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64` exit1. Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, boot OK; audio333/1 at existing cinematic-resume assertion TestAudio.gd:362 (seek final1s + fixed1.6s wait). Final Chapter1 sequence not run this time. Prior full sequence pass remains historical, not current full-run success.
+- **Diagnostic:** isolated public-API context/seek probe with writable `/tmp` XDG dirs resumed emotional context1015ms, exit0; reduced probe does not establish suite root cause. Initial local probe aborted due unwritable default XDG data dir; corrected environment resolved it. Local logs `/tmp/forensic-character-proposal-qa.log`, `/tmp/forensic-cinematic-probe.log`; persistent results in proposal. No test weakened or runtime audio fix bundled. Hosted CI not yet observed, Mac not run.
+- **Missing:** Blender5.x compatible editing runtime (4.3.2 installed), selected artist/approved technical reference/face, cleared humanoid/material/motion resources, character topology/rig/morphs/clips, lip-sync cues/adapter and real8GB Mac validation. Existing Blender source internals not validated; version mismatch diagnosed from all10 headers. No private assets presumed.
+- **Approvals:** owner must review proposal before substantial modeling; exact art/resource/budget choices pending. Ch3 entry placement approved; exact dialogue, repeated-junction/navigation/supernatural mechanics and clinical logic remain pending. Other clinical/canon gates unchanged.
+- **Next exact task:** owner reviews proposal P1 technical-reference/licensing/artist route. Then verify compatible Blender5.x and create approved technical Bennett references on a new bounded branch; do not start substantial model or download paid/uncleared assets from this proposal alone. Separately reproduce suite audio failure before any audio patch. Read living handoff and re-fetch/coordinate PR31/dependencies before shared files.
+
+
+### 2026-10-17 · Codex · Required QA failure checkpoint
+
+- Latest verified remote `a306d2b1ac62f4ef510fddba31c40b55f809a1e0`, character proposal complete. Standard runner exit1: gameplay131/0, audio333/1, failure `cinematic plays once, then the emotional scene resumes` at `tests/audio/TestAudio.gd:362`, after seek final1s + fixed1.6s wait. Full sequence not reached. No runtime/test file changed by this workstream.
+- Next isolated public-API transition probe to distinguish timing from context failure; record result without weakening assertions or mixing audio patch into docs PR. Proposal/Blender mismatch remain documented.
+
+
+### 2026-10-17 · Codex · Bennett audit/proposal milestone
+
+- Branch `codex/naomi-production-proposal`; latest verified remote `8ba76103d8b6b6a5d56865ca7bb4b35a16908e7a`. New `docs/design/CHARACTER_PRODUCTION_NAOMI_FIRST.md`: all ten requested deliverables, exact asset/capability inventory, licensed original/art workflow, rig/face/audio integration, budgets, small PR gates and conditional schedule. GDD/audit addenda record Ch3 first actual entry through formal Security/Facilities inspection; new scene dialogue/mechanics still proposed.
+- All138 tracked GLBs parsed: zero skins/clips/morph targets; capsules are placeholders, six candidate sheets only2D. All10 compressed blend headers v0500; installedBlender4.3.2 open failure diagnosed as mismatch, source internal armature/actions not verified. No file edits from tools; no model/animation generation.
+- Standard Godot4.7 QA in session98607 (`/tmp/forensic-character-proposal-qa.log`), result pending at checkpoint. PDF read; Bennett original/candidate inspected; whitespace/runtime-preservation checks next.
+- API now ready/responding; openPR list empty, no concurrent remote PR claimed. Next finish QA, open narrow stacked docs draft PR, final handoff/push verification. Modeling requires owner proposal/appearance/resource approval first; missing artist/technical sheet/licenses/rig/Mac validation explicitly documented.
+
+
+### 2026-10-17 · Codex · Character-production start checkpoint
+
+- Branch `codex/naomi-production-proposal`, based on verified remote screenplay tip `0ead6cbd79710577852ab9a79522a5a61b960a46`; latest main unchanged PR30 `052859a984d7db599282914cbc300cc8cecc887b`. Previous full QA passed131 gameplay/334 audio; new audit/QA pending.
+- Owner approves Ch3 first actual WardZero entry through formal Security/Facilities inspection; dialogue/mechanics remain proposed. Claim new proposal and own canon/continuity only, no shared scene/asset files.
+- Initial code: WardCharacter capsule, staff/info and patient/interview interactions; Blender4.3.2 installed. Next verify all model/source/animation content, written guide/references and propose Bennett-first complete production workflow before modeling.
 
 
 ### 2026-10-17 · Codex · Audit, Mara canon and final QA checkpoint

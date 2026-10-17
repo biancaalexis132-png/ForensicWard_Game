@@ -128,3 +128,8 @@ Feature `codex/screenplay-continuity-review`: all11 draft files audited; report 
 ## Ch2/Ch3 inspection specification — 2026-10-17
 
 `codex/chapter3-inspection-spec`: summary-level comparison and proposed safe-return/determinism/evidence/replay contract in `docs/design/CHAPTER2_3_INSPECTION_CONTINUATION_SPEC.md`. Owner confirms expanded scenes only in ChatGPT; revised manuscripts pending. Ch3 first authorized WardZero entry approved; exact scenes/mechanics remain proposed. WardZero still placeholder, F2 unchanged. Naomi remains separate draft PR31 awaiting production proposal approval. Current QA pending; no runtime implementation.
+## Character production audit — 2026-10-17
+
+`codex/naomi-production-proposal`: `CHARACTER_PRODUCTION_NAOMI_FIRST.md` audits static capsule people,138 GLBs with no skins/animations/morph targets, ten environment/prop Blender5.0 sources incompatible with installed4.3.2, 2D portraits/candidate sheets and existing voice/subtitle support. No game-ready humanoid, character rig/animation library or lip-sync validated. Bennett-first proposal awaits approval before substantial modeling; budgets are targets, not measurements. Chapter3 first actual WardZero entry through formal Security/Facilities inspection approved; dialogue/mechanics remain proposed. No runtime or asset change.
+
+Current proposal validation: standard runner exit1; gameplay131/0, audio333/1 at existing cinematic-resume assertion; other executed checks passed, final sequence not reached. Reduced transition probe succeeds1015ms; full-suite cause unconfirmed. No runtime/test change. Draft PR31 open against preceding screenplay branch. API access now works, superseding older access-blocked notes. No production rig/model or Mac validation claimed.

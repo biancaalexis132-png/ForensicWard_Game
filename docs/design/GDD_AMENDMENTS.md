@@ -54,3 +54,6 @@ Owner instruction “APPROVED CANON — MARA ELLIS: CLINICAL AGENCY AND INVESTIG
 ## Chapter3 entry premise reaffirmed; Ch2/3 expansions proposed — 2026-10-17
 
 Owner confirms first actual WardZero entry in Ch3, accompanied by authorized Security and Facilities through formal inspection. New repeated-junction/control/measurement behavior and expanded institutional dialogue remain proposed, not blanket approval. Preserve Voss/Hale/Rahman professional responsibilities, Mara autonomous care, independent evidence and five-chapter architecture. Comparison and engineering requirements: [CHAPTER2_3_INSPECTION_CONTINUATION_SPEC.md](CHAPTER2_3_INSPECTION_CONTINUATION_SPEC.md). No story/runtime replacement.
+## Approved Chapter3 first WardZero entry — 2026-10-17
+
+Owner message “CHARACTER PRODUCTION AND CHAPTER3 CONTINUATION” approves Chapter3 as the **first actual entry** through a formal Security and Facilities inspection. Earlier documentary/door investigation is not entry. New supervised inspection, possible repeated junction, temporary navigation discrepancy, coordinated safe return and independent preservation are drafted material; exact dialogue and supernatural mechanics remain proposed. No clinical change or anomaly activation authorized. See `CHARACTER_PRODUCTION_NAOMI_FIRST.md` for pipeline proposal and implementation boundaries.

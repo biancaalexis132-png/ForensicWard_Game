@@ -119,3 +119,7 @@ Review changes are documentation only; source package and working application re
 ## Subsequent owner decision — Mara placement, 2026-10-17
 
 Owner has now resolved the Mara-placement portion of N3: significant recurring patient introduced in **Ch2**, preserving her prior dossier. Earlier table findings describe the pre-decision baseline; Ch1 is now unassigned, not a Mara/Jordan choice. Jordan remains unapproved; Ch1 beat4 disposition and clinical case content remain open. Ch2 scene03 is a candidate expansion point, not yet approved exact staging. See [CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md](CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md); no clinical flags or source package altered.
+
+## Subsequent owner decision — first WardZero entry
+
+Chapter3 first physical entry via formal Security and Facilities inspection is now approved. This resolves that entry-placement/access part of N4, not exact new dialogue, navigation effects, corroboration or other arcs. Possible repeated junction in newly drafted Ch3 material must be reconciled with existing proposed Ch4 corridor reveal before mechanics are authored. Exact new inspection screenplay unavailable beyond summary; no line-by-line comparison claimed.
