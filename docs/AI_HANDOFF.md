@@ -10,15 +10,8 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Sprints 1–3 integration | `claude/integration-sprints-1-3` (draft PR to `main`) | Claude | `99c2eaf453e13d44932f73a7c7f30ad54a18bf3e` | `README.md` (merge resolution), `docs/INTEGRATION_SPRINTS_1_3.md`, `docs/PROJECT_STATUS.md`, this file. Otherwise no edits beyond the merge | Awaiting owner review and merge; replaces PRs #1, #6, #7, #8 |
-| Sprint 1 integration | `claude/integrate-sprint-01` (draft PR) | Claude | `8ca85bce79f08f19ce75e00c33502a4e4af14146` | `project.godot`, `scripts/autoload/EventBus.gd`, `scripts/autoload/GameState.gd`, `scenes/main/Main.*`, `scripts/main/Main.gd`, `tests/qa/run.py`, `tests/qa/TestQA.gd`, `docs/TESTING.md` | Awaiting owner review and merge |
-| Sprint 1 foundation | `claude/sprint-01-foundation` (PR #1) | Claude | `f626aad7be1c9a443762a5b2cd3591601c1b14bc` | Superseded by the integration PR | Close after the integration PR merges |
+| Foundation F1 campaign contract | `claude/f1-campaign-contract` (draft PR to `main`) | Claude | `fa098c944aa9f33d9810649b5689c2504a2f5ffc` | `data/campaign.json`, `scripts/autoload/{ContentRegistry,SaveManager,EventBus}.gd` (EventBus: one signal), `scripts/content/*`, `scripts/narrative/*`, `scripts/tests/test_campaign.gd`, `scripts/tests/test_content.gd`, `scripts/tests/fixtures/**`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT}.md`, `docs/design/GDD_AMENDMENTS.md` | Awaiting owner review. F2 (zones) next, after this merges |
 | Environment art, Stage 6 Ward Zero | `claude/environment-stage-6` (draft PR to `main`) | Claude | see newest log entry | `tools/blender/build_stage6_ward_zero.py`, `tools/blender/{fw_assets,fw_lib}.py` (Stage 6 sections), `assets/{blender,exports}/wardzero/**`, `assets/renders/stage6/**`, `assets/asset_manifest/**`, `docs/ENVIRONMENT_*.md` | Awaiting owner review. Anomaly states are provisional |
-| Chapter 1 playable | `claude/chapter1-playable` (PR #7) | Claude | `60ed74fe882385535425f2038add243f93cc4b9e` | `scripts/world/**`, `scripts/autoload/WorldStateManager.gd`, `data/world_chapter1.json`, `scenes/world/Chapter1Ward.tscn`, `scripts/tests/test_world.gd`, `docs/CHAPTER1_PLAYABLE.md` | Integration branch merged in; awaiting review |
-| Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
-| Sprint 3 story, evidence, shift | `claude/sprint-03-evidence-shift` (draft PR, base `claude/sprint-02-ehr-interview`) | Claude | see newest log entry | `scripts/narrative/**`, `data/story_chapter1.json`, `scripts/ui/EvidenceBoard.gd`, `scripts/world/AudioZoneTracker.gd`, `scripts/tests/test_sprint3.gd`; small edits to `scripts/main/Main.gd`, `scripts/autoload/EventBus.gd`, `scripts/ui/{HUD,PauseMenu}.gd` | Awaiting review |
-| Audio production, original soundtrack | `claude/audio-production` (PR #18, draft) | Claude | `ab613f16ecbec0e3f774090de22f56dfe9cb9607` | `audio/**`, `assets/audio/**` (`.import` sidecars only; recordings untouched), `tools/audio/**`, `systems/audio/**`, `tests/audio/**`, `tests/qa/test_audio_manifest.py`, `docs/AUDIO*.md`; small edits to `scripts/ui/PauseMenu.gd` and `scenes/ui/PauseMenu.tscn` | Awaiting owner review and listening on the Mac |
-| Foundation F0 audit | `claude/f0-foundation-audit` (draft PR to `main`) | Claude | `06fd50ad534dc0fb4847800eaf59b7bf6b513076` | `docs/F0_FOUNDATION_AUDIT.md` only (plus this file) | Awaiting owner review of the architecture; F1 starts after it |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -63,6 +56,49 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 20:50 UTC · Claude Code · Foundation F1 campaign contract
+
+- **Branch:** `claude/f1-campaign-contract` (based on `main` at `33b2e8c`)
+- **Latest verified commit:** `fa098c944aa9f33d9810649b5689c2504a2f5ffc` "Add campaign contract, chapter-scoped story state and save version 2"
+- **Confirmed on GitHub:** see `git ls-remote origin claude/f1-campaign-contract`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; waiting on owner review
+
+**Accomplished**
+- `data/campaign.json`: institution "Ashcroft State Forensic Hospital", chapters `ch1` (playable) to `ch5` (planned, no content), dialogue file list.
+- `ContentRegistry` loads global files from `MANIFEST`, then the dialogue, story and world files the campaign names (document keys `dialogue:<file>`, `story:<chapter>`, `world:<chapter>`). New queries: `get_story(chapter_id)`, `get_world(chapter_id)` (both default to the start chapter), `get_campaign`, `get_institution_name`, `get_chapter_ids`, `get_chapter`, `is_chapter_playable`, static `collect_documents`.
+- `ContentValidator`: id prefixes (`ContentSchemas.ID_PREFIXES`) and uniqueness across every file and chapter; campaign rules (chapter id format, playable needs a story, planned ships nothing, start chapter playable); story `chapter` must match its campaign entry; one dialogue file per patient.
+- `StoryLogic`: conditions `chapter_completed`, `chapter_flag`; action `start_chapter`. `ChapterDirector` keeps state per chapter; `start_chapter()`, `get_chapter_id()`, `has_completed()`, `get_chapter_flags()`. `EventBus.chapter_started` added.
+- `SaveManager` v2: checksum verified on the file as written, then migrations; `_migrate_from_1` moves the flat `chapter` state under `ch1`.
+- Docs: `docs/PROJECT_STATUS.md` rewritten from GitHub; `docs/ID_REGISTRY.md`; `docs/design/GDD_AMENDMENTS.md`.
+
+**Files modified**
+- See the commit; code in `scripts/autoload/ContentRegistry.gd`, `SaveManager.gd`, `EventBus.gd`, `scripts/content/ContentSchemas.gd`, `ContentValidator.gd`, `scripts/narrative/ChapterDirector.gd`, `StoryLogic.gd`; tests `scripts/tests/test_campaign.gd` (new), `test_content.gd` (fixture helper now uses `collect_documents`).
+- Fixtures: `scripts/tests/fixtures/campaign/story_ch{2..5}_fixture.json` (placeholder text, test-only), `scripts/tests/fixtures/saves/save_v1_ch1_night_pending.json` (a real v1 save captured from `main` at `33b2e8c`: Bennett handover fired, Elias note saved, night shift, intercom pending).
+
+**Unfinished**
+- Not in F1 by design: observation polarity, zones (F2), anomaly model (F3).
+- Known limitation: a delayed beat still pending when a chapter ends stays pending in that chapter; it does not fire after `start_chapter`. No shipped content does this.
+
+**Known errors**
+- none. Correction to the F0 entry below: `tools/godot/validate_glb_imports.gd` does not need a `._*` skip. `DirAccess.get_files_at` leaves out hidden files; a planted `._PROBE.glb` passed 138/138 on `main` and on this branch. F0 §1 is corrected.
+
+**Tests** (on `fa098c9`)
+- `GODOT=<4.7-stable linux, SHA-512 verified> python3 tests/qa/run.py`: exit 0. Python 6/6, 3/3, 3/3; TestQA 19/0/0; GLB 138/138; TestRunner 97 passed / 0 failed (80 before, 17 new in `test_campaign.gd`); TestAudio 271/0.
+- CI: not observed yet for this branch
+
+**Dependencies not available to remote agents**
+- none
+
+**Next steps**
+1. Owner reviews the F1 PR.
+2. F2 on `claude/f2-zones` per `docs/F0_FOUNDATION_AUDIT.md` §8: `data/zones.json`, `ZoneDirector`, clinical wing to security wing prototype.
+3. F3 waits on the owner's Psychosomatic Bleed decision (F0 §9).
+
+**Notes for the other agent**
+- New content goes through `data/campaign.json`; do not add story or world files to `ContentRegistry.MANIFEST`.
+- Reserve ids in `docs/ID_REGISTRY.md` before using them. Merged branches' rows were removed from the workstream table above.
 
 ### 2026-10-17 20:30 UTC · Claude Code · Foundation F0 audit
 

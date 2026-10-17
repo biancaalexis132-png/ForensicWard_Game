@@ -115,7 +115,8 @@ static func check_references(documents: Dictionary) -> Array[String]:
 	var clue_ids: Dictionary = _collect_ids(clues, _file(documents, "clues"), "clues", errors)
 	_collect_ids(hypotheses, _file(documents, "clues"), "hypotheses", errors)
 	var source_ids: Dictionary = _collect_ids(sources, _file(documents, "source_catalog"), "items", errors)
-	_collect_ids(staff, _file(documents, "staff"), "staff", errors)
+	var staff_ids: Dictionary = _collect_ids(staff, _file(documents, "staff"), "staff", errors)
+	var chapter_ids: Dictionary = _check_campaign(documents, errors)
 
 	# Observation ids are unique per patient; rules reference them.
 	var observations_by_patient: Dictionary = {}
@@ -130,10 +131,15 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			_require_known(required_clues[j], clue_ids, "clue", _file(documents, "clues"),
 					"hypotheses[%d].required_clues[%d]" % [i, j], errors)
 
-	if documents.has("dialogue"):
-		var dialogue: Dictionary = _data(documents, "dialogue")
-		var file: String = _file(documents, "dialogue")
+	var dialogue_owner: Dictionary = {}  # patient id -> file
+	for key: String in _keys(documents, ContentRegistry.DIALOGUE_KEY):
+		var dialogue: Dictionary = _data(documents, key)
+		var file: String = _file(documents, key)
 		_require_known(dialogue["patient_id"], patient_ids, "patient", file, "patient_id", errors)
+		if dialogue_owner.has(dialogue["patient_id"]):
+			errors.append("[%s] patient_id: '%s' already has dialogue in %s; one dialogue file per patient." % [
+					file, dialogue["patient_id"], dialogue_owner[dialogue["patient_id"]]])
+		dialogue_owner[dialogue["patient_id"]] = file
 		var state_ids: Dictionary = _collect_ids(dialogue["states"], file, "states", errors)
 		for i: int in dialogue["states"].size():
 			var choices: Array = dialogue["states"][i]["choices"]
@@ -169,12 +175,9 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			for j: int in rule["source_catalog_ids"].size():
 				_require_known(rule["source_catalog_ids"][j], source_ids, "source catalog", file,
 						"rules[%d].source_catalog_ids[%d]" % [i, j], errors)
-	if documents.has("world"):
-		var world: Dictionary = _data(documents, "world")
-		var file: String = _file(documents, "world")
-		var staff_ids: Dictionary = {}
-		for member: Dictionary in staff:
-			staff_ids[member["id"]] = true
+	for key: String in _keys(documents, ContentRegistry.WORLD_KEY):
+		var world: Dictionary = _data(documents, key)
+		var file: String = _file(documents, key)
 		for i: int in world["interactables"].size():
 			var entry: Dictionary = world["interactables"][i]
 			if entry["type"] in ["clue_terminal", "clue_pickup"]:
@@ -187,16 +190,18 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			var known: Dictionary = staff_ids if character["kind"] == "staff" else patient_ids
 			_require_known(character["character_id"], known, character["kind"], file,
 					"characters[%d].character_id" % i, errors)
-	if documents.has("story"):
-		var story: Dictionary = _data(documents, "story")
-		var file: String = _file(documents, "story")
-		var staff_ids: Dictionary = {}
-		for member: Dictionary in staff:
-			staff_ids[member["id"]] = true
-		var hypothesis_ids: Dictionary = {}
-		for hypothesis: Dictionary in hypotheses:
-			hypothesis_ids[hypothesis["id"]] = true
-		var refs: Dictionary = {"patients": patient_ids, "clues": clue_ids, "hypotheses": hypothesis_ids, "staff": staff_ids}
+	var hypothesis_ids: Dictionary = {}
+	for hypothesis: Dictionary in hypotheses:
+		hypothesis_ids[hypothesis["id"]] = true
+	var refs: Dictionary = {"patients": patient_ids, "clues": clue_ids, "hypotheses": hypothesis_ids,
+			"staff": staff_ids, "chapters": chapter_ids}
+	for key: String in _keys(documents, ContentRegistry.STORY_KEY):
+		var story: Dictionary = _data(documents, key)
+		var file: String = _file(documents, key)
+		var chapter_id: String = key.trim_prefix(ContentRegistry.STORY_KEY)
+		if story["chapter"] != chapter_id:
+			errors.append("[%s] chapter: '%s' does not match the campaign chapter '%s' that loads this file." % [
+					file, story["chapter"], chapter_id])
 		_collect_ids(story["objectives"], file, "objectives", errors)
 		_collect_ids(story["beats"], file, "beats", errors)
 		for i: int in story["objectives"].size():
@@ -217,9 +222,68 @@ static func check_references(documents: Dictionary) -> Array[String]:
 		var sign_out: Dictionary = story["sign_out"]
 		for j: int in sign_out["handover_patients"].size():
 			_require_known(sign_out["handover_patients"][j], patient_ids, "patient", file, "sign_out.handover_patients[%d]" % j, errors)
-		for key: String in ["documented_trust", "undocumented_trust"]:
-			for j: int in sign_out[key].size():
-				_require_known(sign_out[key][j]["staff_id"], staff_ids, "staff", file, "sign_out.%s[%d].staff_id" % [key, j], errors)
+		for list_name: String in ["documented_trust", "undocumented_trust"]:
+			for j: int in sign_out[list_name].size():
+				_require_known(sign_out[list_name][j]["staff_id"], staff_ids, "staff", file,
+						"sign_out.%s[%d].staff_id" % [list_name, j], errors)
+	errors.append_array(check_global_ids(documents))
+	return errors
+
+
+## Campaign rules: chapter ids look like ch1, ch2...; the start chapter is
+## playable; a playable chapter has a story; a planned chapter ships no
+## story yet. Returns the chapter ids.
+static func _check_campaign(documents: Dictionary, errors: Array[String]) -> Dictionary:
+	if not documents.has("campaign"):
+		return {}
+	var campaign: Dictionary = _data(documents, "campaign")
+	var file: String = _file(documents, "campaign")
+	var chapters: Array = campaign["chapters"]
+	var chapter_ids: Dictionary = _collect_ids(chapters, file, "chapters", errors)
+	var pattern: RegEx = RegEx.create_from_string(ContentSchemas.CHAPTER_ID_PATTERN)
+	for i: int in chapters.size():
+		var chapter: Dictionary = chapters[i]
+		if pattern.search(chapter["id"]) == null:
+			errors.append("[%s] chapters[%d].id: '%s' must look like ch1, ch2 ..." % [file, i, chapter["id"]])
+		if chapter["status"] == "playable" and not chapter.has("story"):
+			errors.append("[%s] chapters[%d]: a playable chapter needs a \"story\" file." % [file, i])
+		if chapter["status"] == "planned" and (chapter.has("story") or chapter.has("world")):
+			errors.append("[%s] chapters[%d]: a planned chapter ships no story or world yet; mark it playable once its content is approved." % [file, i])
+	_require_known(campaign["start_chapter"], chapter_ids, "chapter", file, "start_chapter", errors)
+	for chapter: Dictionary in chapters:
+		if chapter["id"] == campaign["start_chapter"] and chapter["status"] != "playable":
+			errors.append("[%s] start_chapter: '%s' is not playable." % [file, chapter["id"]])
+	return chapter_ids
+
+
+## Ids of patients, staff, clues, hypotheses, objectives and beats must carry
+## their kind's prefix (ContentSchemas.ID_PREFIXES) and be unique across every
+## file and chapter, so a later chapter can never shadow an earlier id.
+static func check_global_ids(documents: Dictionary) -> Array[String]:
+	var errors: Array[String] = []
+	var seen: Dictionary = {}  # id -> "file path"
+	var groups: Array = [
+		["patient", "patients", "patients", _data(documents, "patients").get("patients", [])],
+		["staff", "staff", "staff", _data(documents, "staff").get("staff", [])],
+		["clue", "clues", "clues", _data(documents, "clues").get("clues", [])],
+		["hypothesis", "clues", "hypotheses", _data(documents, "clues").get("hypotheses", [])],
+	]
+	for key: String in _keys(documents, ContentRegistry.STORY_KEY):
+		groups.append(["objective", key, "objectives", _data(documents, key).get("objectives", [])])
+		groups.append(["beat", key, "beats", _data(documents, key).get("beats", [])])
+	for group: Array in groups:
+		var kind: String = group[0]
+		var file: String = _file(documents, group[1])
+		var prefix: String = ContentSchemas.ID_PREFIXES[kind]
+		for i: int in group[3].size():
+			var id: String = group[3][i]["id"]
+			var where: String = "[%s] %s[%d].id" % [file, group[2], i]
+			if not id.begins_with(prefix):
+				errors.append("%s: %s id '%s' must start with '%s'." % [where, kind, id, prefix])
+			if seen.has(id) and not seen[id].begins_with("[%s] %s[" % [file, group[2]]):
+				errors.append("%s: id '%s' is already used at %s; ids are unique across all files and chapters." % [where, id, seen[id]])
+			elif not seen.has(id):
+				seen[id] = where
 	return errors
 
 
@@ -241,6 +305,16 @@ static func _require_known(id: String, known: Dictionary, kind: String, file: St
 		choices.sort()
 		errors.append("[%s] %s: unknown %s id '%s'. Known ids: %s." % [file, path, kind, id,
 				", ".join(choices) if not choices.is_empty() else "(none)"])
+
+
+## Document keys with a prefix such as ContentRegistry.STORY_KEY, sorted.
+static func _keys(documents: Dictionary, prefix: String) -> Array[String]:
+	var keys: Array[String] = []
+	for key: String in documents:
+		if key.begins_with(prefix):
+			keys.append(key)
+	keys.sort()
+	return keys
 
 
 static func _data(documents: Dictionary, key: String) -> Dictionary:

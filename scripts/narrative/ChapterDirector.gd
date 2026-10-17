@@ -1,6 +1,7 @@
 class_name ChapterDirector
 extends Node
-## ChapterDirector: runs a chapter's story data (ContentRegistry.get_story()).
+## ChapterDirector: runs the current chapter's story data
+## (ContentRegistry.get_story(chapter_id)) and keeps every chapter's state.
 ##
 ## - Objectives: shown in order; the current one is the first that is neither
 ##   complete nor expired (e.g. day-shift tasks once the night begins).
@@ -9,14 +10,23 @@ extends Node
 ## - Staff lines: what a staff member says now (first matching line).
 ## - Sign-out: ends the day shift (handover quality changes trust) or, at
 ##   night, completes the chapter.
+## - Chapters: story state (who you talked to, flags, fired and pending beats)
+##   is kept per chapter id. A start_chapter action moves on; the earlier
+##   chapter's state stays readable (chapter_completed / chapter_flag
+##   conditions) and its beats never fire again.
 ## Conditions and actions are StoryLogic's closed vocabulary. The director
 ## never changes clinical state; chart entries are audit records only.
-## Saved as the "chapter" provider. Lives in Main (group "chapter_director").
+## Saved as the "chapter" provider:
+##     {"current": chapter_id, "chapters": {chapter_id: {talked_to, flags, fired, pending}}}
+## Lives in Main (group "chapter_director").
 
 const PROVIDER_KEY: String = "chapter"
 const GROUP: String = "chapter_director"
 const SCHEDULE_PREFIX: String = "story:"
 
+var _chapter_id: String = ""
+## State of every chapter other than the current one: chapter_id -> state.
+var _archive: Dictionary = {}
 var _talked_to: Array[String] = []
 var _flags: Array[String] = []
 var _fired: Array[String] = []
@@ -27,6 +37,7 @@ var _evaluating: bool = false
 
 func _ready() -> void:
 	add_to_group(GROUP)
+	_set_current(ContentRegistry.get_start_chapter_id(), {})
 	SaveManager.register_provider(PROVIDER_KEY, self)
 	EventBus.interacted.connect(_on_interacted)
 	EventBus.scheduled_event_fired.connect(_on_scheduled_event)
@@ -48,11 +59,27 @@ func _exit_tree() -> void:
 
 # --- Queries --------------------------------------------------------------------
 
+func get_chapter_id() -> String:
+	return _chapter_id
+
+
+## True once the chapter's own sign-out completed it.
+func has_completed(chapter_id: String) -> bool:
+	return StoryLogic.CHAPTER_COMPLETE_FLAG in get_chapter_flags(chapter_id)
+
+
+## Flags of any chapter, current or earlier ([] if it never started).
+func get_chapter_flags(chapter_id: String) -> Array:
+	if chapter_id == _chapter_id:
+		return _flags.duplicate()
+	return _archive.get(chapter_id, {}).get("flags", []).duplicate()
+
+
 func get_current_objective() -> Dictionary:
 	if not ContentRegistry.is_valid:
 		return {}
 	var state: Dictionary = _story_state()
-	for objective: Dictionary in ContentRegistry.get_story()["objectives"]:
+	for objective: Dictionary in _story().get("objectives", []):
 		if objective.has("expires_when") and StoryLogic.evaluate(objective["expires_when"], state):
 			continue
 		if not StoryLogic.evaluate(objective["complete_when"], state):
@@ -72,7 +99,7 @@ func has_fired(beat_id: String) -> bool:
 func get_staff_line(staff_id: String) -> Dictionary:
 	if not ContentRegistry.is_valid:
 		return {}
-	for line: Dictionary in ContentRegistry.get_story()["staff_lines"]:
+	for line: Dictionary in _story().get("staff_lines", []):
 		if line["staff_id"] == staff_id and StoryLogic.evaluate(line["when"], _story_state()):
 			return line
 	return {}
@@ -85,7 +112,7 @@ func evaluate() -> void:
 	if _evaluating or not ContentRegistry.is_valid:
 		return
 	_evaluating = true
-	for beat: Dictionary in ContentRegistry.get_story()["beats"]:
+	for beat: Dictionary in _story().get("beats", []):
 		var beat_id: String = beat["id"]
 		if beat_id in _fired or beat_id in _pending or not StoryLogic.evaluate(beat["when"], _story_state()):
 			continue
@@ -106,22 +133,42 @@ func set_flag(flag: String) -> void:
 		evaluate()
 
 
+## Moves to another chapter. The current chapter's state is kept, and the
+## new chapter resumes its own state if it was started before. Returns false
+## for an unknown or unplayable chapter, or the chapter already running.
+func start_chapter(chapter_id: String) -> bool:
+	if chapter_id == _chapter_id or not ContentRegistry.is_chapter_playable(chapter_id):
+		if chapter_id != _chapter_id:
+			push_warning("ChapterDirector: chapter '%s' is not playable" % chapter_id)
+		return false
+	_archive[_chapter_id] = _current_state()
+	_set_current(chapter_id, _archive.get(chapter_id, {}))
+	_archive.erase(chapter_id)
+	EventBus.chapter_started.emit(chapter_id)
+	evaluate()
+	return true
+
+
 ## Signs out at the handover board. Day: hand over and start the night shift.
 ## Night: complete the chapter. Returns the summary text shown to the player.
 func sign_out() -> String:
-	var config: Dictionary = ContentRegistry.get_story()["sign_out"]
+	var story: Dictionary = _story()
+	if not story.has("sign_out"):
+		push_warning("ChapterDirector: chapter '%s' has no sign-out" % _chapter_id)
+		return ""
+	var config: Dictionary = story["sign_out"]
 	var body: String
-	if has_flag("chapter_complete"):
-		body = "You have already signed out. Chapter 1 is complete.\n\n" + _shift_summary()
+	if has_flag(StoryLogic.CHAPTER_COMPLETE_FLAG):
+		body = "You have already signed out. %s is complete.\n\n%s" % [story["title"], _shift_summary()]
 	elif TimeManager.get_shift() == "day":
 		body = _hand_over(config)
 		TimeManager.advance_to_next_shift()
 		body += "\n\n[b]The night shift has begun.[/b] (%s)" % TimeManager.get_clock_string()
 	else:
-		set_flag("chapter_complete")
-		body = "[b]End of %s[/b] (playable slice)\n\n%s\n\n%s" % [ContentRegistry.get_story()["title"],
+		set_flag(StoryLogic.CHAPTER_COMPLETE_FLAG)
+		body = "[b]End of %s[/b] (playable slice)\n\n%s\n\n%s" % [story["title"],
 				_shift_summary(), _relationship_summary()]
-		EventBus.chapter_completed.emit(str(ContentRegistry.get_story()["chapter"]))
+		EventBus.chapter_completed.emit(_chapter_id)
 	EventBus.ui_panel_requested.emit("info", {"title": config["title"], "body": body})
 	return body
 
@@ -195,6 +242,9 @@ func _run_action(action: Dictionary, beat_id: String) -> void:
 					value["type"], value["by"], value["text"])
 		"world_state":
 			WorldStateManager.set_state(value["group"], value["state"])
+		"start_chapter":
+			# Deferred: the current chapter finishes this evaluation first.
+			start_chapter.call_deferred(value)
 
 
 func _update_objective() -> void:
@@ -206,8 +256,30 @@ func _update_objective() -> void:
 	EventBus.objective_changed.emit(objective_id, objective.get("text", ""))
 
 
+func _story() -> Dictionary:
+	return ContentRegistry.get_story(_chapter_id)
+
+
 func _story_state() -> Dictionary:
-	return {"talked_to": _talked_to, "flags": _flags}
+	var chapters: Dictionary = {}
+	for chapter_id: String in _archive:
+		chapters[chapter_id] = {"flags": _archive[chapter_id].get("flags", [])}
+	chapters[_chapter_id] = {"flags": _flags}
+	return {"talked_to": _talked_to, "flags": _flags, "chapters": chapters}
+
+
+func _current_state() -> Dictionary:
+	return {"talked_to": _talked_to.duplicate(), "flags": _flags.duplicate(),
+			"fired": _fired.duplicate(), "pending": _pending.duplicate()}
+
+
+func _set_current(chapter_id: String, state: Dictionary) -> void:
+	_chapter_id = chapter_id
+	_talked_to.assign(state.get("talked_to", []))
+	_flags.assign(state.get("flags", []))
+	_fired.assign(state.get("fired", []))
+	_pending.assign(state.get("pending", []))
+	_objective_id = "-"  # Force the next evaluate() to announce the objective.
 
 
 func _on_interacted(interactable_id: String) -> void:
@@ -225,7 +297,7 @@ func _on_scheduled_event(event_id: String, _payload: Dictionary) -> void:
 	if not event_id.begins_with(SCHEDULE_PREFIX):
 		return
 	var beat_id: String = event_id.trim_prefix(SCHEDULE_PREFIX)
-	for beat: Dictionary in ContentRegistry.get_story()["beats"]:
+	for beat: Dictionary in _story().get("beats", []):
 		if beat["id"] == beat_id and not beat_id in _fired:
 			_fire(beat)
 	evaluate()
@@ -234,23 +306,27 @@ func _on_scheduled_event(event_id: String, _payload: Dictionary) -> void:
 # --- Save provider ----------------------------------------------------------------------
 
 func to_save_data() -> Dictionary:
-	return {"talked_to": _talked_to.duplicate(), "flags": _flags.duplicate(),
-			"fired": _fired.duplicate(), "pending": _pending.duplicate()}
+	var chapters: Dictionary = {}
+	for chapter_id: String in _archive:
+		chapters[chapter_id] = _archive[chapter_id].duplicate(true)
+	chapters[_chapter_id] = _current_state()
+	return {"current": _chapter_id, "chapters": chapters}
 
 
 func load_save_data(data: Dictionary) -> void:
 	reset_state()
-	_talked_to.assign(data.get("talked_to", []))
-	_flags.assign(data.get("flags", []))
-	_fired.assign(data.get("fired", []))
-	_pending.assign(data.get("pending", []))
+	var chapters: Dictionary = data.get("chapters", {})
+	var current: String = str(data.get("current", ContentRegistry.get_start_chapter_id()))
+	for chapter_id: String in chapters:
+		if chapter_id != current:
+			var state: Dictionary = chapters[chapter_id]
+			_archive[chapter_id] = {"talked_to": state.get("talked_to", []), "flags": state.get("flags", []),
+					"fired": state.get("fired", []), "pending": state.get("pending", [])}
+	_set_current(current, chapters.get(current, {}))
 
 
 func reset_state() -> void:
-	_talked_to.clear()
-	_flags.clear()
-	_fired.clear()
-	_pending.clear()
-	_objective_id = "-"  # Force the next evaluate() to announce the objective.
+	_archive.clear()
+	_set_current(ContentRegistry.get_start_chapter_id(), {})
 	if is_inside_tree():
 		evaluate.call_deferred()
