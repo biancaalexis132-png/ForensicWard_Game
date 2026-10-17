@@ -124,3 +124,7 @@ P1 synchronized remote `74715227bf5581b09a3b2746870082576fffe71f` is ready for r
 ## Screenplay and Mara review milestone — 2026-10-17
 
 Feature `codex/screenplay-continuity-review`: all11 draft files audited; report `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`. Owner approves Mara recurring introduction in Ch2 and autonomous care/investigation separation; crosswalk `docs/design/CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md`, no new runtime/clinical content. Ch1 second patient remains unassigned. Full combined Godot4.7 QA passed exit0 (131 gameplay,334 audio, full Chapter1); source package/runtime unchanged by review. Main remains PR30 `052859a`; this documentation checkpoint is not merged.
+
+## Ch2/Ch3 inspection specification — 2026-10-17
+
+`codex/chapter3-inspection-spec`: summary-level comparison and proposed safe-return/determinism/evidence/replay contract in `docs/design/CHAPTER2_3_INSPECTION_CONTINUATION_SPEC.md`. Owner confirms expanded scenes only in ChatGPT; revised manuscripts pending. Ch3 first authorized WardZero entry approved; exact scenes/mechanics remain proposed. WardZero still placeholder, F2 unchanged. Naomi remains separate draft PR31 awaiting production proposal approval. Current QA pending; no runtime implementation.

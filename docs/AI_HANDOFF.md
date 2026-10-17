@@ -59,6 +59,13 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 · Codex · Inspection specification milestone
+
+- Branch `codex/chapter3-inspection-spec`; verified remote before milestone `8e30681cc26375b50ff6e08e7ed09fdb79fe419d`. New `CHAPTER2_3_INSPECTION_CONTINUATION_SPEC.md` completes summary crosswalk/F2 gaps, bounded deterministic route, tested-egress requirements, source lineage/event/replay contract, proposed performance/tests and small PRs. GDD entry premise reaffirmed only. No runtime/source package changes.
+- Owner confirms revised Ch2/3 scripts exist only in ChatGPT and will be supplied later. Do not ask for Git path again, claim line review, or adopt proposed effects/dialogue as spec approval. Ch4 major reveal continuity decision remains open.
+- Standard QA session96137, `/tmp/forensic-inspection-spec-qa.log`, final pending. Next finish validation, draft PR against screenplay branch, final current handoff/push verification. Naomi separate PR31/58ea107, proposal awaiting approval; no modeling/code changes.
+
+
 ### 2026-10-17 · Codex · Ch2/Ch3 inspection-spec start
 
 - Branch `codex/chapter3-inspection-spec`, from verified remote screenplay `0ead6cbd79710577852ab9a79522a5a61b960a46`; main unchanged052859a. Separate Naomi draft PR31 verified58ea107, no overlap with its proposal/assets.
