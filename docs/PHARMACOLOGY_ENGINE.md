@@ -100,4 +100,4 @@ Add an entry to `data/drugs/drugs.json`; no code changes are needed. Set the `re
 
 ## Tests
 
-Open `tests/TestPharmacology.tscn` and press **F6** (Run Current Scene). Results print in the **Output** panel. The eight cases are: clozapine with smoking cessation, aripiprazole with fluoxetine, lithium with an NSAID and low eGFR, carbamazepine autoinduction plus quetiapine induction, QTc stacking, serotonin toxicity, fluoxetine washout, and the interaction preview text.
+Open `tests/TestPharmacology.tscn` and press **F6** (Mac: **Cmd + R**, Run Current Scene). Results print in the **Output** panel. The eight cases are: clozapine with smoking cessation, aripiprazole with fluoxetine, lithium with an NSAID and low eGFR, carbamazepine autoinduction plus quetiapine induction, QTc stacking, serotonin toxicity, fluoxetine washout, and the interaction preview text.

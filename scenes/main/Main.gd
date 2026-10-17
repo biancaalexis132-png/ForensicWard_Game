@@ -37,6 +37,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		KEY_N:
 			GameState.advance_shift() # Emits shift_ended -> engine advances 12 h.
 		KEY_R:
+			var patient: PatientRecord = PharmacologyEngine.get_patient(_patient_id)
+			if patient.doses.get("clozapine", 0.0) == 300.0:
+				return # Already ordered; ignore repeat presses.
 			EventBus.medication_ordered.emit(_patient_id, {"drug_id": "clozapine", "daily_dose_mg": 300.0})
 			_add_log("Order signed: clozapine 300 mg/day")
 		KEY_O:

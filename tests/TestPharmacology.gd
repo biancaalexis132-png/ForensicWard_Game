@@ -1,9 +1,10 @@
 extends Node
 ## Scenario tests for PharmacologyEngine, built from the Day 6 lecture cases.
 ##
-## Run in the editor: open tests/TestPharmacology.tscn and press F6.
+## Run in the editor: open tests/TestPharmacology.tscn and press F6 (Mac: Cmd + R).
 ## Run headless:      godot --headless --path . res://tests/TestPharmacology.tscn
-## Results print to the Output panel; the process exits with code 1 on failure.
+## Results print to the Output panel. Headless runs exit with code 1 on failure;
+## editor runs keep the window open with a PASSED / FAILED banner.
 
 var _failures: int = 0
 
@@ -17,8 +18,23 @@ func _ready() -> void:
 	_test_serotonin_toxicity()
 	_test_washout_after_stop()
 	_test_preview_order_text()
-	print("\n%s: %d failure(s)" % ["PASSED" if _failures == 0 else "FAILED", _failures])
-	get_tree().quit(1 if _failures > 0 else 0)
+	var summary: String = "%s: %d failure(s)" % ["PASSED" if _failures == 0 else "FAILED", _failures]
+	print("\n" + summary)
+	if DisplayServer.get_name() == "headless":
+		get_tree().quit(1 if _failures > 0 else 0)
+	else:
+		# In the editor, quitting immediately cuts off the last Output lines,
+		# so keep the window open and show the result instead.
+		_show_summary(summary)
+
+
+func _show_summary(summary: String) -> void:
+	var label: Label = Label.new()
+	label.text = summary + "\nSee the Output panel for details. Close this window to finish."
+	label.position = Vector2(24.0, 24.0)
+	label.add_theme_font_size_override("font_size", 28)
+	label.add_theme_color_override("font_color", Color.LIME_GREEN if _failures == 0 else Color.RED)
+	add_child(label)
 
 
 func _test_clozapine_smoking_cessation() -> void:
