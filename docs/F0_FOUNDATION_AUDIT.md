@@ -41,7 +41,7 @@ Gate: the owner reviews this architecture before any major structural change. F1
 | `.gitignore` | Ignores `._*`, `.DS_Store`, `.AppleDouble`, `.Spotlight-V100`, `.Trashes`, `.fseventsd`, `__MACOSX/` and similar |
 | Python content QA (`tests/qa/test_json.py`, `test_audio_manifest.py`) | Skips `._*` and `__MACOSX`, and fails if any macOS metadata becomes tracked |
 | `AudioDirector._load_narrative` | Skips `._*` since `ab613f1` |
-| `tools/godot/validate_glb_imports.gd` `_find_glbs` | **Does not skip `._*`.** On the exFAT SSD an untracked `._ENV_Foo.glb` ends in `.glb` and would be loaded and reported as a failure. Not visible in CI (the files are never committed), only on the owner's Mac. Fix proposed in F1. |
+| `tools/godot/validate_glb_imports.gd` `_find_glbs` | ~~Does not skip `._*`.~~ **Corrected in F1:** Godot's `DirAccess.get_files_at` leaves out hidden files (names starting with `.`), so `._*` files never reach it. Checked by planting `assets/exports/modular/._PROBE.glb`: 138/138 passed on `main` and on F1. No change needed. |
 | `ContentRegistry` | Unaffected: it opens a fixed list of file names and never lists folders |
 
 The repository side is repaired. The remaining exposure is local: the working copy lives on an exFAT volume, so macOS keeps writing `._*` files. `dot_clean -m .` or an APFS working copy (the handoff's recommendation) is the owner's call; no agent should touch the SSD.
@@ -259,7 +259,7 @@ Each is a draft PR from `main` (after PR #19 merges, or merging `main` in if it 
 - `ChapterDirector`: state keyed by chapter; `StoryLogic` gains `chapter` condition and `start_chapter` action.
 - `SaveManager`: `SAVE_VERSION = 2`, verify the checksum **before** migrating (or recompute after), `_migrate_from_1` wraps the old `chapter` state under `ch1`; `campaign` provider.
 - Test fixtures for ch2–ch5 under `scripts/tests/fixtures/campaign/` (one objective, one beat, one clue each; placeholder text only).
-- Hygiene: `validate_glb_imports.gd` skips `._*`; one shared helper for "is macOS metadata".
+- ~~Hygiene: `validate_glb_imports.gd` skips `._*`.~~ Dropped in F1: not needed (see section 1).
 - Docs: rewrite `docs/PROJECT_STATUS.md` from GitHub (C14); GDD amendment note for C1; ID registry table in `docs/`.
 
 **Depends on:** owner review of F0. PR #19 merged first is preferred (both touch `docs/PROJECT_STATUS.md` and `docs/AI_HANDOFF.md`).

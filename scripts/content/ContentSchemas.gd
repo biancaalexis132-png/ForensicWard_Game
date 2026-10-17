@@ -217,6 +217,39 @@ const INTENT_LEXICON_FILE: Dictionary = {
 }
 
 
+## A planned chapter is listed for ids and saves but has no content yet.
+## A playable chapter names its story and world files.
+const CHAPTER_STATUSES: Array[String] = ["playable", "planned"]
+const CHAPTER_ID_PATTERN: String = "^ch[0-9]+$"
+## Stable id prefixes per content kind, checked across every file so ids
+## stay unique and readable through all five chapters.
+const ID_PREFIXES: Dictionary = {
+	"patient": "pt_", "staff": "staff_", "clue": "clue_", "hypothesis": "hyp_",
+	"objective": "obj_", "beat": "beat_",
+}
+
+## Campaign index: institution, chapters and the files each one loads
+## (see data/campaign.json). File names are relative to the data folder.
+const CAMPAIGN_FILE: Dictionary = {
+	"type": "object",
+	"required": {
+		"schema_version": _STRING,
+		"institution": {"type": "object", "required": {"name": _STRING}, "optional": {"short_name": _STRING}},
+		"start_chapter": _ID,
+		"dialogue_files": {"type": "array", "min_items": 1, "items": _STRING},
+		"chapters": {
+			"type": "array", "min_items": 1,
+			"items": {
+				"type": "object",
+				"required": {"id": _ID, "title": _STRING, "status": {"type": "enum", "values": CHAPTER_STATUSES}},
+				"optional": {"story": _STRING, "world": _STRING, "provisional": {"type": "bool"}},
+			},
+		},
+	},
+	"optional": {"notes": _STRING},
+}
+
+
 ## Authored world wiring: which imported environment nodes become doors,
 ## terminals, documents and characters (see data/world_chapter1.json).
 const WORLD_INTERACTABLE_TYPES: Array[String] = ["ehr_terminal", "clue_terminal", "clue_pickup", "system_status",

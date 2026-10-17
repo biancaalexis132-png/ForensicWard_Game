@@ -1,0 +1,180 @@
+{
+	"checksum": "547f506b66b153d36205caa1fcba6b485a961fbc2416613a14996d38f50e39c1",
+	"game_version": "0.1.0-sprint1",
+	"save_version": 1,
+	"saved_at_unix": 1792269266,
+	"seed": 1968,
+	"state": {
+		"chapter": {
+			"fired": [
+				"beat_b2_handover"
+			],
+			"flags": [],
+			"pending": [
+				"beat_b6_intercom"
+			],
+			"talked_to": [
+				"staff_bennett"
+			]
+		},
+		"dialogue": {
+			"current_state": {
+				"pt_elias_ward": "initial"
+			},
+			"transcripts": {
+				"pt_elias_ward": [
+					{
+						"at_minutes": 480.0,
+						"speaker": "physician",
+						"text": "Ask about food and fluids"
+					},
+					{
+						"at_minutes": 480.0,
+						"speaker": "patient",
+						"text": "The patient remains silent. Nursing reports reduced intake; intake chart review is available."
+					}
+				]
+			}
+		},
+		"evidence": {
+			"acquired": {},
+			"hypotheses": {
+				"hyp_identity_reuse": {
+					"clue_ids": [
+						"clue_transfer",
+						"clue_roster"
+					],
+					"origin": "authored",
+					"status": "unresolved",
+					"title": "Historical identifiers may have been reused"
+				}
+			},
+			"links": [],
+			"pinned": [],
+			"verifications": {}
+		},
+		"game_state": {
+			"collected_items": [],
+			"flags": {},
+			"objectivity": 100.0,
+			"pinned_clues": [],
+			"unlocked_clues": []
+		},
+		"patients": {
+			"pt_elias_ward": {
+				"assessment": {},
+				"audit": [
+					{
+						"at_minutes": 482.0,
+						"event_id": "evt_note_pt_elias_ward_001",
+						"type": "note_saved"
+					}
+				],
+				"flags": [],
+				"location": "clinical_unit",
+				"notes": [
+					{
+						"at_minutes": 482.0,
+						"author": "player",
+						"considerations": [],
+						"day": 1.0,
+						"findings": [
+							"obs_mutism"
+						],
+						"id": "note_pt_elias_ward_001",
+						"plan": "Handover: reduced intake; reassess next shift.",
+						"shift": "day"
+					}
+				],
+				"observations": {
+					"obs_mutism": {
+						"at_minutes": 480.0,
+						"recorded_by": "interview:ask_intake",
+						"verified": false
+					}
+				},
+				"processed_events": [
+					"evt_note_pt_elias_ward_001"
+				],
+				"rapport": 0.0
+			}
+		},
+		"time": {
+			"queue": [
+				{
+					"at": 1155.0,
+					"event_id": "story:beat_b6_intercom",
+					"payload": {},
+					"seq": 1.0
+				}
+			],
+			"sequence": 1.0,
+			"total_minutes": 1140.0
+		},
+		"trust": {
+			"access": {
+				"access_records_archive": {
+					"at_minutes": 480.0,
+					"source_id": "staff_bennett"
+				}
+			},
+			"vectors": {
+				"staff_bennett": {
+					"respect": 5.0,
+					"suspicion": 0.0,
+					"trust": 15.0
+				},
+				"staff_hale": {
+					"respect": 0.0,
+					"suspicion": 10.0,
+					"trust": -5.0
+				},
+				"staff_voss": {
+					"respect": 10.0,
+					"suspicion": 0.0,
+					"trust": 0.0
+				}
+			}
+		},
+		"world": {
+			"objects": {
+				"door:door_archive": {
+					"open": false
+				},
+				"door:door_interview": {
+					"open": false
+				},
+				"door:door_nurse_station": {
+					"open": false
+				},
+				"door:door_office": {
+					"open": false
+				},
+				"door:door_patient_01": {
+					"open": false
+				},
+				"door:door_patient_02": {
+					"open": false
+				},
+				"door:door_w0b": {
+					"open": false
+				},
+				"door:door_ward_entry": {
+					"open": false
+				}
+			},
+			"player": {
+				"pitch": 0.0,
+				"position": [
+					0.0,
+					0.0,
+					-1.60000002384186
+				],
+				"yaw": 0.0
+			}
+		},
+		"world_states": {
+			"states": {}
+		}
+	}
+}

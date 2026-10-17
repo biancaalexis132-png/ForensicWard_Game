@@ -12,11 +12,17 @@ extends Node
 ## The checksum is SHA-256 of the canonical state JSON (sorted keys). It
 ## detects corruption; it is not anti-cheat.
 
-const SAVE_VERSION: int = 1
+## Version history:
+##   1  Sprints 1-3: one chapter; the "chapter" provider is flat.
+##   2  F1 campaign: the "chapter" provider keeps state per chapter id.
+const SAVE_VERSION: int = 2
 const SAVE_DIR: String = "user://saves"
 ## Older save versions migrate forward one step at a time:
 ## version N -> _migrate_from_N(data) -> data at version N + 1.
-const MIGRATIONS: Dictionary = {}
+## The checksum is verified on the file as written, before any migration.
+const MIGRATIONS: Dictionary = {1: "_migrate_from_1"}
+## Every version 1 save was made in Chapter 1.
+const V1_CHAPTER_ID: String = "ch1"
 
 ## Master seed for all deterministic randomness in a run.
 var run_seed: int = 1968
@@ -110,15 +116,16 @@ func load_game(slot: int = 1) -> Error:
 	var version: int = int(document.get("save_version", 0))
 	if version > SAVE_VERSION:
 		return _fail(slot, "save is from a newer build (v%d > v%d)" % [version, SAVE_VERSION], ERR_INVALID_DATA)
+	# Verify what was written, before migrations change the state.
+	if not document.get("state") is Dictionary or _checksum(document["state"]) != document.get("checksum", ""):
+		return _fail(slot, "checksum mismatch: the save file was modified or corrupted", ERR_FILE_CORRUPT)
 	while version < SAVE_VERSION:
 		if not MIGRATIONS.has(version):
 			return _fail(slot, "no migration from save v%d" % version, ERR_INVALID_DATA)
 		document = call(MIGRATIONS[version], document)
 		version += 1
 
-	var state: Dictionary = document.get("state", {})
-	if _checksum(state) != document.get("checksum", ""):
-		return _fail(slot, "checksum mismatch: the save file was modified or corrupted", ERR_FILE_CORRUPT)
+	var state: Dictionary = document["state"]
 
 	run_seed = int(document.get("seed", run_seed))
 	for key: String in _sorted_keys():
@@ -133,6 +140,16 @@ func load_game(slot: int = 1) -> Error:
 func delete_save(slot: int) -> void:
 	if has_save(slot):
 		DirAccess.remove_absolute(get_slot_path(slot))
+
+
+## v1 -> v2: the flat Chapter 1 story state moves under "ch1".
+func _migrate_from_1(document: Dictionary) -> Dictionary:
+	var migrated: Dictionary = document.duplicate(true)
+	var state: Dictionary = migrated["state"]
+	if state.has("chapter"):
+		state["chapter"] = {"current": V1_CHAPTER_ID, "chapters": {V1_CHAPTER_ID: state["chapter"]}}
+	migrated["save_version"] = 2
+	return migrated
 
 
 func _checksum(state: Dictionary) -> String:
