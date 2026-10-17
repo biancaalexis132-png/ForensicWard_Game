@@ -124,3 +124,9 @@ P1 synchronized remote `74715227bf5581b09a3b2746870082576fffe71f` is ready for r
 ## Screenplay and Mara review milestone — 2026-10-17
 
 Feature `codex/screenplay-continuity-review`: all11 draft files audited; report `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`. Owner approves Mara recurring introduction in Ch2 and autonomous care/investigation separation; crosswalk `docs/design/CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md`, no new runtime/clinical content. Ch1 second patient remains unassigned. Full combined Godot4.7 QA passed exit0 (131 gameplay,334 audio, full Chapter1); source package/runtime unchanged by review. Main remains PR30 `052859a`; this documentation checkpoint is not merged.
+
+## Character production audit — 2026-10-17
+
+`codex/naomi-production-proposal`: `CHARACTER_PRODUCTION_NAOMI_FIRST.md` audits static capsule people,138 GLBs with no skins/animations/morph targets, ten environment/prop Blender5.0 sources incompatible with installed4.3.2, 2D portraits/candidate sheets and existing voice/subtitle support. No game-ready humanoid, character rig/animation library or lip-sync validated. Bennett-first proposal awaits approval before substantial modeling; budgets are targets, not measurements. Chapter3 first actual WardZero entry through formal Security/Facilities inspection approved; dialogue/mechanics remain proposed. No runtime or asset change.
+
+Current proposal validation: standard runner exit1; gameplay131/0, audio333/1 at existing cinematic-resume assertion; other executed checks passed, final sequence not reached. Reduced transition probe succeeds1015ms; full-suite cause unconfirmed. No runtime/test change. Draft PR31 open against preceding screenplay branch. API access now works, superseding older access-blocked notes. No production rig/model or Mac validation claimed.
