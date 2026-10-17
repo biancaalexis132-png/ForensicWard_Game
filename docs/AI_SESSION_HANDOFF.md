@@ -6,7 +6,7 @@ This is the **current-session** handoff: it is rewritten throughout a session so
 
 ## 12. Latest handoff timestamp
 
-2026-10-17 21:30 UTC · Claude Code · visual direction review session (character review done)
+2026-10-17 21:45 UTC · Claude Code · visual direction review session (all references reviewed; writing review doc)
 
 ## 1. Current objective
 
@@ -27,7 +27,11 @@ Art-direction and asset review (no implementation): compare the character refere
 
 ## 4. Current progress
 
-Stopped at: character review done; next is Ward Zero boards.
+Stopped at: all references and the existing asset pipeline reviewed; writing `docs/design/VISUAL_PRODUCTION_REVIEW.md`.
+- Ward Zero boards reviewed: board 02 (corridors/architecture) is the strongest and fits; boards 01/03 contain rejected elements (blood-like stains, restraint "electric" chair, named patient record with a Diagnosis field, decommission notice signed "A. Mercer, Hospital Administrator" dated 10/16/1983, on-the-nose notes/graffiti, "To Ward Zero" signage). Board 04 anomaly cues are usable if staged by chapter.
+- `Concept_Boards/ashcroft_concept_board_{1,2}.png` scramble names/roles, set the game in the 1980s–90s, and cite real actors as likeness references: recommend marking them superseded.
+- Existing assets: 138 `.glb` (Stages 1–5), Stage 5 historic substructure already covers most Ward Zero-adjacent rooms (`assets/exports/historic/**`); characters are capsule stand-ins (`scenes/props/Character.tscn`, spawned at `MARK_*` markers by `AuthoredWorld.gd`). Lights from `LIGHTMARK_*`, states via `state_group` extras + `WorldStateManager`; `FlickerLight` honours `flash_effects`.
+- The environment thread (session `cse_012g8GqbzUkQo7xX9rHgbFKz`, "Pick up second game session") is actively building Stage 6 and restyling to the references. A cross-session heads-up listing the rejected elements was sent 21:40 UTC. Do not edit its branch.
 
 ## 5. Remaining tasks (priority order)
 
@@ -57,7 +61,7 @@ Stopped at: character review done; next is Ward Zero boards.
 
 ## 10. Next actions
 
-1. View the four `Ward_Zero/*.png` boards and the two `Concept_Boards/*.png`.
+1. If `docs/design/VISUAL_PRODUCTION_REVIEW.md` is missing or incomplete on the branch, write it from the findings above (raw notes were in the container only).
 
 ## 11. Creative constraints (standing)
 
