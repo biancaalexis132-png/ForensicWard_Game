@@ -13,7 +13,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Sprints 1–3 integration | `claude/integration-sprints-1-3` (draft PR to `main`) | Claude | `99c2eaf453e13d44932f73a7c7f30ad54a18bf3e` | `README.md` (merge resolution), `docs/INTEGRATION_SPRINTS_1_3.md`, `docs/PROJECT_STATUS.md`, this file. Otherwise no edits beyond the merge | Awaiting owner review and merge; replaces PRs #1, #6, #7, #8 |
 | Sprint 1 integration | `claude/integrate-sprint-01` (draft PR) | Claude | `8ca85bce79f08f19ce75e00c33502a4e4af14146` | `project.godot`, `scripts/autoload/EventBus.gd`, `scripts/autoload/GameState.gd`, `scenes/main/Main.*`, `scripts/main/Main.gd`, `tests/qa/run.py`, `tests/qa/TestQA.gd`, `docs/TESTING.md` | Awaiting owner review and merge |
 | Sprint 1 foundation | `claude/sprint-01-foundation` (PR #1) | Claude | `f626aad7be1c9a443762a5b2cd3591601c1b14bc` | Superseded by the integration PR | Close after the integration PR merges |
-| Environment art | `claude/environment-production` (PR #6) | Claude | `e321b4a7f8d60f8b4400ea668959c25ac6b122e0` | `tools/blender/**`, `tools/godot/validate_glb_imports.gd`, `assets/blender/**`, `assets/exports/**`, `assets/asset_manifest/**`, `assets/renders/**`, `docs/ENVIRONMENT_*.md` | Stages 1–2 done; Stages 3–8 next |
+| Environment art, Stage 3 props | `claude/environment-stage-3` (draft PR to `main`) | Claude | `5f5c51561ab139e22251bbce9869ec9a312b88a8` | `tools/blender/**`, `assets/blender/clinical/FW_Props_Clinical_Stage3.blend`, `assets/exports/clinical/props/**`, `assets/asset_manifest/**`, `assets/renders/stage3/**`, `docs/ENVIRONMENT_*.md` | Stage 3 done; awaiting owner review and merge. Stages 4–8 next |
 | Chapter 1 playable | `claude/chapter1-playable` (PR #7) | Claude | `60ed74fe882385535425f2038add243f93cc4b9e` | `scripts/world/**`, `scripts/autoload/WorldStateManager.gd`, `data/world_chapter1.json`, `scenes/world/Chapter1Ward.tscn`, `scripts/tests/test_world.gd`, `docs/CHAPTER1_PLAYABLE.md` | Integration branch merged in; awaiting review |
 | Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
 | Sprint 3 story, evidence, shift | `claude/sprint-03-evidence-shift` (draft PR, base `claude/sprint-02-ehr-interview`) | Claude | see newest log entry | `scripts/narrative/**`, `data/story_chapter1.json`, `scripts/ui/EvidenceBoard.gd`, `scripts/world/AudioZoneTracker.gd`, `scripts/tests/test_sprint3.gd`; small edits to `scripts/main/Main.gd`, `scripts/autoload/EventBus.gd`, `scripts/ui/{HUD,PauseMenu}.gd` | Awaiting review |
@@ -62,6 +62,50 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 18:05 UTC · Claude Code · Environment Stage 3 props
+
+- **Branch:** `claude/environment-stage-3` (based on `main` at `592c6af`)
+- **Latest verified commit:** `5f5c51561ab139e22251bbce9869ec9a312b88a8` "Stop tracking the Blender backup FW_Modular_Kit.blend1"
+- **Confirmed on GitHub:** `git ls-remote origin claude/environment-stage-3` printed `5f5c515` at 17:50 UTC; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- Environment Stage 3 is complete: 10 new library props for medication, ward beds, linen and emergency equipment (`PROP_Cart_Medication`, `PROP_Bed_Hospital_Adjustable`, `PROP_Trolley_Linen`, `PROP_Cart_Crash_Resus`, `PROP_Cabinet_AED_Wall`, `PROP_Cylinder_Oxygen_Trolley`, `PROP_Monitor_VitalSigns_Stand`, `PROP_Bin_Sharps`, `PROP_Dispenser_HandGel`, `PROP_Wheelchair`). Each has a `.blend` source, a `.glb` export, a manifest record (staff-only / supervised) and appears in a preview render.
+- Removed the tracked `assets/blender/modular/FW_Modular_Kit.blend1` backup (follow-up 3 of the integration entry).
+
+**Files modified**
+- `tools/blender/fw_lib.py`: 5 palette materials (med-cart blue, sharps yellow, AED green, linen white, laundry-bag blue).
+- `tools/blender/fw_assets.py`: `_castors` helper, 10 builders, `STAGE3_PROP_BUILDERS`. Existing builders unchanged.
+- `tools/blender/build_stage3_props.py`: new generator writing `FW_Props_Clinical_Stage3.blend`, exports, manifest and `assets/renders/stage3/props_stage3.png`.
+- `assets/exports/clinical/props/*.glb` (+ Godot `.import` files), `assets/asset_manifest/asset_manifest.{json,md}`: 10 new assets (68 total); no existing record changed.
+- `docs/ENVIRONMENT_STAGES.md`, `docs/ENVIRONMENT_PIPELINE.md`, `docs/PROJECT_STATUS.md` (environment rows only), this file.
+
+**Unfinished**
+- The Stage 3 props are library assets only; none is placed in an `ENV_*` room or `scenes/world/Chapter1Ward.tscn` yet.
+
+**Known errors**
+- none.
+
+**Tests** (on `5f5c515`, plus this commit's doc-only changes)
+- `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64` (4.7.stable.official.5b4e0cb0f, SHA-512 verified): exit 0. TestPharmacology 0 failures, TestQA 19 passed / 0 failed / 0 skipped, `.glb` validation 68/68, TestRunner 80 passed / 0 failed, TestAudio 211 passed, all Python suites OK, "All executed checks passed".
+- Baseline on `main` `592c6af` before any change: same command, exit 0, 58/58 `.glb`, TestRunner 80/0, TestAudio 211.
+- `tools/blender/build_stage3_props.py` with Blender 5.0.1 (`bpy`, Python 3.11): "STAGE3 PROPS OK: 10 assets exported".
+- Render checked by eye in Cycles (CPU). Not evidence of the look in Forward+ on the Mac.
+- CI: not observed yet; check the draft PR.
+
+**Dependencies not available to remote agents**
+- Mac-only checks (Forward+/Metal look of the new props). The `bpy` virtualenv used here is local to the container and not committed.
+
+**Next steps**
+1. Owner reviews and merges the Stage 3 draft PR.
+2. Place the medication cart, crash trolley, AED cabinet and hand-gel dispenser at the nursing station: extend `build_stage2_chapter1.py` (`ENV_NursingStation`), rebuild, re-run `.glb` validation and `run.py`, and check `scenes/world/Chapter1Ward.tscn` still loads.
+3. Stage 4 (security, admin and research wings): new `tools/blender/build_stage4_*.py` on a new `claude/environment-stage-4` branch from `main`.
+4. Still open from earlier entries: close PRs #1, #6, #7 and #8, which are fully contained in `main`.
+
+**Notes for the other agent**
+- Do not rebuild the Stage 1 `.blend` just to pick up the new palette entries; Stage 1 assets do not use them.
 
 ### 2026-10-17 17:40 UTC · Claude Code · Sprints 1–3 integration
 
