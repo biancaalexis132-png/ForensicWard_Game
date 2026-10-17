@@ -10,11 +10,9 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Ch3 inspection specification | `codex/chapter3-inspection-spec` | Codex | `0ead6cbd79710577852ab9a79522a5a61b960a46` | New spec/canon and own continuity docs | Docs only; exact expanded script absent |
-| Naomi production | `codex/naomi-production-proposal` | Codex | `58ea1077d76a39b7d703243732201149155a1ebf` | Separate character proposal | Draft PR31, awaits approval; no modeling |
-| Character pipeline proposal | `codex/naomi-production-proposal` | Codex | `92a1b2549a0bae7f0660f3c71c9d92ff7c30dbd3` | Proposal/canon and own continuity docs only | Draft PR31; complete for approval, no models/runtime edits |
-| Screenplay audit | `codex/screenplay-continuity-review` | Codex | `30e13f87f64e46c152dad2034a2a8c2c3e152dc6` | New audit and own continuity docs only | PR #30 package available; review starting, no runtime edits |
-| Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex; owner approved “continue” | `74715227bf5581b09a3b2746870082576fffe71f` (verified synchronized P1 checkpoint) | `scripts/protagonist/*`, new `scripts/tests/test_protagonist.gd` + fixtures, input-contract/ID/proposal docs and own continuity updates | Complete for review; synchronized TestRunner 131/0 and combined full QA passed |
+| Ch3 inspection specification | `codex/chapter3-inspection-spec` | Codex | `8cff9bcfc15956cb2828b2ff783b7ebcb7c5031e` | New spec/canon and own continuity docs | DraftPR32; complete proposal, full QA passed |
+| Screenplay integration | `codex/screenplay-continuity-review` | Owner/Codex review | `78d0d8a4aaa84f6c92aa377f0381ccabfcd4b391` | Existing audit and approved canon/docs | Owner merged Naomi proposal PR31 here; no modeling approval implied |
+| Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex | `74715227bf5581b09a3b2746870082576fffe71f` | Pure validator/test module | Complete for review, no runtime creator |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -59,6 +57,16 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Codex · Controlled-inspection final session handoff
+
+- **Branch/workstream:** `codex/chapter3-inspection-spec`, docs-only, latest verified remote **8cff9bcfc15956cb2828b2ff783b7ebcb7c5031e** before final docs; final tip must be verified with ls-remote. Draft PR32 https://github.com/biancaalexis132-png/ForensicWard_Game/pull/32, base screenplay. Owner-merged PR31 base **78d0d8a4aaa84f6c92aa377f0381ccabfcd4b391** synchronized normally; main remains **052859a984d7db599282914cbc300cc8cecc887b**. No agent merge/main push.
+- **Completed/files:** new `CHAPTER2_3_INSPECTION_CONTINUATION_SPEC.md`, GDD boundary and four handoff/status docs. Summary comparison of existing Ch2/3 plus Ch4 reveal; deterministic finite routing/egress/recovery, independent lineage/event logging/replay, persistence/performance/accessibility and small PR tests specified. All proposed; source package/runtime untouched. Historical logs preserved; living handoff/current active table reconciled after base merge.
+- **Tests:** application bytes identical to8e30681; `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64` exit0: Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, boot OK, audio334/0, full Chapter1 sequence61.0s. Log `/tmp/forensic-inspection-spec-qa.log`. Whitespace, runtime/package preservation and no-conflict checks pass. Earlier separate Naomi cinematic audio333/1 remains an intermittent unresolved finding; current pass is not a claimed fix. HostedCI/Mac/new effect safety not validated.
+- **Approvals/blockers:** owner confirms expanded manuscripts only in ChatGPT, will supply revised files; no line-by-line comparison possible yet, do not ask path again. Ch3 first authorized Security/Facilities entry approved; exact discrepancy/reveal, safety/roster/replay/source controls and F3/C6/C7/persistence/geometry decisions pending. Clinical flags unchanged. Missing updated script/private bible/dossier/Stage6 assets not invented.
+- **Naomi:** independent workstream proposal merged by owner into screenplay base; no substantial modeling started. Needs explicit bounded art/reference/licensing/workflow approval and resources/Mac validation. Do not fold model/animation/audio adapter work into inspection PR.
+- **Exact next:** owner reviews spec N1–N6 and supplies revised manuscripts; compare actual lines before changing story. After explicit N3 scope approval, first possible engineering PR is pure route-graph/safe-egress validator with synthetic non-anomaly fixtures and inert integration; no effect activation. Re-fetch base/main/reviews and coordinate shared owners. Final handoff `docs/AI_SESSION_HANDOFF.md`; no uncommitted runtime work, final docs committed/pushed before ending.
+
 
 ### 2026-10-17 · Codex · Inspection base synchronization
 
