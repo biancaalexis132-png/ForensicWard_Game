@@ -57,3 +57,7 @@ Existing pending statuses and `docs/clinical_review_log.md` are unchanged. Appro
 Proposed tests include unchanged clinical state on cancelled/unperformed exam, source-specific observation capture, explicit unknown safety fields, no automatic diagnosis/refusal, same essential care/evidence for every background, clinical/anomaly independence, and night event persistence. These are planned acceptance criteria, not tests claimed to exist now.
 
 Coordination: ongoing P1 contracts stay independent; no Chapter 1 runtime/data/dialogue files are edited in this workstream. PR #27 owns soundtrack integration; environment/Stage 6 and clinical-review owners retain their files. Exact screenplay wording remains the only blocker to a literal line review; the implementation comparison above is complete for the supplied summary.
+
+## Screenplay availability correction — 2026-10-17
+
+Owner merged the full 11-file draft package in PR #30 (`052859a`). Earlier statements that the full screenplay was unavailable describe the earlier checkpoint. The complete review, including conditional examination findings, late-shift preservation and chapter dependencies, is now in [FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md](FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md). No clinical or dialogue approval is inferred from the package merge.

@@ -62,3 +62,7 @@ Owner review is still required for new clinical wording/findings, detailed scree
 ## Repository update after comparison
 
 The owner subsequently merged PR #27 at `6d2dd2d`; it is incorporated in the final development branch. The soundtrack alignment described above is now on main, including no foreground score under corridor/handover clinical work and the bounded audio cleanup test. The opening narrative trigger/dialogue gaps identified above remain unchanged; no proposed chapter edit is implemented here.
+
+## Screenplay availability correction — 2026-10-17
+
+Owner merged the full 11-file draft package in PR #30 (`052859a`). Earlier statements that the full screenplay was unavailable describe the earlier checkpoint. The complete review, including conditional examination findings, late-shift preservation and chapter dependencies, is now in [FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md](FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md). No clinical or dialogue approval is inferred from the package merge.
