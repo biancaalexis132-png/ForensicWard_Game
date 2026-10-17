@@ -13,7 +13,7 @@ Owner decisions and GDD amendments govern, followed by the written character gui
 | Marcus Hale (`staff_hale`) | **Security Director**; mid 40s | Man; practical grooming, institutional charcoal security uniform, radio and role badge; practical ordinary belt only | Procedural, patient, skeptical, observant, safety-focused; professional, questioning, concerned, resolute; no tactical/military styling |
 | Dr Leila Rahman (`staff_rahman`, reserved) | **Consultant Psychiatrist**; late 30s | **South Asian woman**; professional business casual or appropriate clinic coat, ID, notebook | Clinically rigorous, warm, thoughtful; warm, analytical, concerned, assertive, encouraging |
 | Elias Ward (`pt_elias_ward`) | Chapter 1 patient; 29 | Adult man with ordinary human appearance; clean comfortable inpatient clothing; no exaggerated disarray or visually inferred diagnosis | Subtle alertness; clinical movement/posture still requires medical review. Neutral acting sheets do not approve a diagnostic animation |
-| Mara Ellis (`pt_mara_ellis`, reserved) | Chapter 1 patient; 37 | Adult woman; ordinary, slightly fatigued; comfortable everyday clothing/cardigan, simple practical personal items | Intelligent, guarded, frustrated by genuine uncertainty; attentive, guarded, exhausted, reflective, cautiously hopeful. Clinical/narrative dossier remains pending |
+| Mara Ellis (`pt_mara_ellis`, reserved) | Recurring patient introduced in Chapter 2; 37 | Adult woman; ordinary, slightly fatigued; comfortable everyday clothing/cardigan, simple practical personal items | Intelligent, guarded, frustrated by genuine uncertainty; attentive, guarded, exhausted, reflective, cautiously hopeful. Clinical/narrative dossier remains pending |
 
 D1 makes Rahman a psychiatrist, not a clinical pharmacist or research psychologist. The fixed protagonist is also a psychiatrist; the consultant title does not authorize invented clinical privileges, responsibilities or relationships. D2 does not grant Hale psychiatric authority. D3 does not make a patient’s appearance evidence of credibility, violence, diagnosis or supernatural status.
 
@@ -43,3 +43,11 @@ Individual briefs and phased delivery gates are in [CHARACTER_REFERENCE_REGENERA
 **D4–D9 remain open:** Ward Zero date/signatory; 02:17 link; Mara voice; Ward Zero station; concept-board treatment; committing the missing v1.1 bible. Exact facial designs and modeling pipeline still need production review. No new clinical rules, diagnoses, treatment effects, voice cast changes or story approvals are granted here.
 
 The protagonist remains a customizable psychiatrist with moderate personal history, emergent personality and equal essential competence/story access. Existing campaign/save architecture remains intact.
+
+## Placement amendment — 2026-10-17
+
+Owner explicitly approves Mara as a significant recurring patient introduced in Chapter2, superseding earlier Ch1 placement. Appearance/clinical dossier protections remain; see [CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md](CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md). Placement is not clinical approval.
+
+## Approved Mara agency and care independence — 2026-10-17
+
+Mara has autonomous motivations, goals and clinical history; she is not a supernatural witness, psychic messenger, secret investigator or exposition device. Voluntary document sharing can substantiate particular concerns without validating all interpretations. Her care/safety/recovery do not require solving WardZero; essential investigation does not require her disclosure or strong rapport. Keep clinical and environmental evidence separate, preserve dossier/legal uncertainty and consent/confidentiality/professional boundaries. Owner-approved narrative constraints; exact new clinical/dialogue content pending. See Chapter2 crosswalk for independent fallback routes and test contract.

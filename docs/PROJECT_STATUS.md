@@ -120,3 +120,7 @@ Six regenerated character reference candidates are complete as **review candidat
 ## Final continuation state (supersedes earlier in-progress notes)
 
 P1 synchronized remote `74715227bf5581b09a3b2746870082576fffe71f` is ready for review; combined canon/reference branch has full passing QA and six integrity-checked review candidates. D1–D3 resolved; D4–D9 pending. Both-agent continuity requirements are explicit in AGENTS/CLAUDE. Opening/Elias artifacts are proposals/comparison only, with no chapter/clinical/save rewrite. Full screenplay is off-repository and awaiting standalone delivery; all existing clinical flags remain pending. Exact final branch tip/resume commands are in the living handoff and verified final response.
+
+## Screenplay and Mara review milestone — 2026-10-17
+
+Feature `codex/screenplay-continuity-review`: all11 draft files audited; report `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`. Owner approves Mara recurring introduction in Ch2 and autonomous care/investigation separation; crosswalk `docs/design/CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md`, no new runtime/clinical content. Ch1 second patient remains unassigned. Full combined Godot4.7 QA passed exit0 (131 gameplay,334 audio, full Chapter1); source package/runtime unchanged by review. Main remains PR30 `052859a`; this documentation checkpoint is not merged.

@@ -363,3 +363,7 @@ Elias provenance and polarity (`unknown` ≠ negative); Mara and two-patient sig
 | Full QA on `d21cff7` | `GODOT=<Godot 4.7-stable linux, SHA-512 verified> python3 tests/qa/run.py` Exit 0. Python content 6/6, audio manifest 3/3, music pipeline 3/3; TestPharmacology 0 failures; TestQA 19 passed / 0 failed / 0 skipped; GLB validation 112/112; TestRunner 80 passed / 0 failed; TestAudio 271 passed / 0 failed; "All executed checks passed" |
 
 Not run: anything on the Mac (Forward+, frame rate, audio listening), Blender rebuilds (no Blender in this container; nothing in F0 changes assets).
+
+## Owner placement amendment — 2026-10-17
+
+Mara introduction is now approved for Chapter2 as a significant recurring patient; prior Ch1 default/C5 placement above is historical and superseded. Ch1 beat4 remains unassigned; Jordan unapproved. Clinical content/risk/dossier remain pending clinical review; no runtime change. Current crosswalk: `docs/design/CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md`.

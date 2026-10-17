@@ -9,3 +9,5 @@ Every clinical rule or model that affects gameplay needs a recorded review by th
 | (pending) | Elias Ward dialogue | `data/dialogue.json` | Pending | | `clinical_review_status: PENDING`. A placeholder `assessment` state was added; see `docs/SPRINT_01.md`. |
 
 | (pending) | Elias first-evaluation screenplay summary: EHR preparation, interview attempts, examination, MSE/formulation and safety documentation | `docs/design/ELIAS_EVALUATION_DRAFT_COMPARISON.md` | **Pending; no clinical activation** | | Owner confirmed full screenplay is in ChatGPT, not supplied/committed yet; standalone text will follow. Existing patient/dialogue/rule review flags remain pending. Creative direction and D1–D3 approvals do not approve this clinical material. |
+
+| 2026-10-17 | Mara Ellis Chapter2 recurring introduction / clinical encounter | `docs/design/CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md` | **Placement approved only; patient-facing medical logic pending** | Owner (placement instruction in session) | Preserve prior dossier/risk/collateral; no new findings, diagnoses, orders, treatment responses or discrepancy explanation. Full clinical source/encounter requires review. |

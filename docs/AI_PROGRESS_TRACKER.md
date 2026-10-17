@@ -4,13 +4,14 @@ Updated 2026-10-17 · current status is authoritative above the preserved earlie
 
 | Workstream | Current status | Evidence / next step |
 |---|---|---|
-| Mara Ch2 placement | Owner approved; docs/crosswalk in progress | Preserve age37, prior records work, disputed mood label, insomnia/fatigue/anxiety/checking, Dana collateral, Lillian Oct12/14 1988 conflict; no clinical activation |
-| Five-chapter screenplay PR #30 | Review in progress | 11 files reviewed; chapter audit and owner decisions in FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md; hashes match; full QA running, 131/0 so far; no activation |
+| Mara Ch2 placement | Placement and agency canon recorded; crosswalk complete | Preserve age37, prior records work, disputed mood label, insomnia/fatigue/anxiety/checking, Dana collateral, Lillian Oct12/14 1988 conflict; no clinical activation |
+| Five-chapter screenplay PR #30 | Review in progress | 11 files reviewed; chapter audit and owner decisions in FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md; hashes match; full QA passed exit0, 131 gameplay/334 audio; no activation |
 | P0 campaign reconciliation/save regression | Merged by owner PR #29 | Main `dd247be`; baseline/save contracts retained |
 | PR #27 soundtrack conflicts | Resolved, pushed, merged by owner | Original branch verified `412b501`; main merge `6d2dd2d`; bounded audio assertion fixed; audio 334/0 |
 | P1 pure catalog/creation-draft validation | Complete for review | `codex/protagonist-schema-p1` verified `74715227bf5581b09a3b2746870082576fffe71f`; 15 new tests, 131/0 |
 | D1–D3 canon and role metadata | Documented approved | Canon/decision record/review addendum; Rahman direction-only correction; no clinical activation |
 | Six regenerated references | Completed as review candidates | Four views/five expressions each; hashes/prompts/provenance verified; owner/artist production review pending |
+| Mara clinical/investigative independence | Owner approved narrative constraints | Declined disclosure/limited rapport retain independent mandatory evidence; care/recovery independent of mystery; clinical content pending |
 | Chapter 1 opening alignment | Proposal complete | Hospital-drama direction recorded; early unease trigger confirmed; no chapter runtime change |
 | Elias screenplay summary review | Full source reviewed | PR30 supplies source; audit maps detailed scene gaps; clinical approval pending |
 | Both-agent continuous checkpoints | Permanent documentation prepared | AGENTS §9 / CLAUDE; preserve existing instructions, verify feature pushes |

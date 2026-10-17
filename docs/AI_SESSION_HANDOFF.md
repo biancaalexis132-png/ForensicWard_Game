@@ -4,18 +4,20 @@ Updated 2026-10-17 · Codex · Five-chapter screenplay review.
 
 ## Current workstream and stopping point
 
-All 11 PR #30 package files reviewed against main; chapter audit, detailed Elias mapping, owner decision matrix and small PR sequence completed in `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`. No runtime or package modifications in this workstream. Full QA running; gameplay131/0 and boot OK, audio/sequence pending. New owner instruction: Mara is a significant recurring patient introduced in Chapter2; placement approved only, clinical logic pending. Next: record this canon amendment, reconcile Ch1 planning and write Chapter2 Mara crosswalk preserving supplied dossier facts. Audit QA audio334/0; sequence pending.
+All 11 PR #30 package files reviewed against main; chapter audit, detailed Elias mapping, owner decision matrix and small PR sequence completed in `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`. No runtime or package modifications in this workstream. Full Godot4.7 QA passed exit0: Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, boot OK, audio334/0, Chapter1 sequence62.9s. Mara Chapter2 placement AND autonomous clinical story/investigative separation now owner-approved. Canon amendments, Ch1 reconciliation and Chapter2 crosswalk completed; clinical/dialogue logic pending. Next: verify/push final documentation checkpoint; owner reviews N1 runtime proposal and missing clinical source.
 
 ## Verified repository state
 
 - Active branch `codex/screenplay-continuity-review`, stacked on `codex/character-canon-opening-cont-1` verified `30e13f87f64e46c152dad2034a2a8c2c3e152dc6`.
-- Latest verified review remote **634c29b07b8d0c8f39ae7033bdcb856ec53b668c**; final handoff commit follows. Resolve final SHA using `git ls-remote origin refs/heads/codex/screenplay-continuity-review`.
+- Latest verified review remote **ab7198f3b2f17f7a738a68925a4db36c9d4dcbea**; final handoff commit follows. Resolve final SHA using `git ls-remote origin refs/heads/codex/screenplay-continuity-review`.
 - Main **052859a984d7db599282914cbc300cc8cecc887b**: owner-merged PR #30. Source `assets/ashcroft-creative-references` **2e3863e16d882560dde87ba3bf018c5b6a29016d**. Main merged into feature normally; no agent main push/PR merge/history rewrite.
 - PR #27 conflicts resolved on authorized original branch at `412b5010c8ccd8ba0e19e983b4346b5d90482d34`, subsequently owner-merged main `6d2dd2d3ec1bebf3624a706da2f864efd711206e`. PR #29 P0 also merged.
 - P1 feature remote **74715227bf5581b09a3b2746870082576fffe71f**. Pure validator/15 tests only; no provider, UI, catalog registration, personality meter or save bump. P1/canon changes are inherited dependencies, not new audit changes.
 - Draft review PR attempt and open-PR inventory failed: `Post "https://api.github.com/graphql": Forbidden`. Git works. Draft body local `/workspace/screenplay-audit-pr.md`, reconstructible from audit. Target preceding canon branch; retarget only after dependencies merge. No new PR URL claimed; check owner-created PRs before duplicating. Hosted CI unobserved.
 
 ## Files and last completed milestones
+
+Additional milestone: `CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md`, GDD/canon/F0/ID registry reconciliation and clinical-log placement-only entry. Preserve age37, records work, disputed label, sleep/fatigue/anxiety/checking, Dana and October12/14,1988 Lillian documents. Full prior risk/collateral/legal source remains unavailable; no reconstruction. New agency canon requires independent authorized evidence route for declined disclosure/limited rapport and care/recovery independent of WardZero. Ch1 second patient remains unassigned, Jordan unapproved.
 
 This review: new `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`; availability addenda in `CHAPTER1_OPENING_ALIGNMENT.md` and `ELIAS_EVALUATION_DRAFT_COMPARISON.md`; four continuity/status docs. Claims only these docs; no scene/clinical/audio/zone shared file claimed. Git diff from starting checkpoint confirms source package and runtime unchanged.
 
@@ -25,16 +27,16 @@ Earlier complete work (inherited): D1–D3 decision/canon docs and Rahman direct
 
 ## Validation and known failures
 
-- Standard runner: `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`; `/tmp/forensic-screenplay-qa.log`, session82146. Final result pending at this checkpoint, do not claim complete yet.
+- Standard runner: `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`; `/tmp/forensic-screenplay-qa.log`, session82146. Completed exit0; all executed checks passed, including131 gameplay/334 audio and full Chapter1 sequence.
 - TestRunner131/0, boot OK; all ten manifest payload byte counts and SHA256 match. `git diff --check` and preservation diff passed.
 - Prior combined full QA passed: Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, audio334/0 and full Chapter1. Prior audio cleanup failure was fixed in PR27 without changing runtime sound behavior; not hidden or skipped.
 - Headless does not validate Mac Metal, input, listening, first25-minute pacing, clinical correctness or 8GB performance. Expected negative-save warnings/nonfatal Python socket ResourceWarnings may appear.
 
 ## Outstanding owner approvals and dependencies
 
-Audit matrix C1/N1–N7: clinical Elias findings/unknowns/risk/plan/actions; exact arrival/Bennett script and late cue presentation/gate; unresolved-record completion and sign-out safety policy; second patient identity/legal facts/Mara placement; Concordance/titles/Ch2–5 arcs; anomaly evidence protocols/F3 and C6 Bleed/C7 pharmacology gates; endings/eligibility/four-source facts. D4–D9 remain open (history,02:17,Mara voice,W3,boards,missing approved v1.1 bible). Candidate visual designs need owner/artist review.
+Audit matrix C1/N1–N7: clinical Elias findings/unknowns/risk/plan/actions; exact arrival/Bennett script and late cue presentation/gate; unresolved-record completion and sign-out safety policy; Ch1 second-patient disposition and Mara legal/clinical facts (Ch2 introduction approved); Concordance/titles/Ch2–5 arcs; anomaly evidence protocols/F3 and C6 Bleed/C7 pharmacology gates; endings/eligibility/four-source facts. D4–D9 remain open (history,02:17,Mara voice,W3,boards,missing approved v1.1 bible). Candidate visual designs need owner/artist review.
 
-Already approved: fixed psychiatrist/equivalent competence, moderate personal life/emergent personality, hospital-first opening, D1–D3 casting/roles. Do not ask those again or infer broader clinical approval. The new proposed bible does not replace missing approved private sources. Ch2–5 clinical slots need actual authoring, not extrapolation.
+Already approved: Mara Ch2 recurring introduction and agency/clinical-investigative independence; fixed psychiatrist/equivalent competence, moderate personal life/emergent personality, hospital-first opening, D1–D3 casting/roles. Do not ask those again or infer broader clinical approval. The new proposed bible does not replace missing approved private sources. Ch2–5 clinical slots need actual authoring, not extrapolation.
 
 GitHub API restriction blocks PR/review/CI coordination; use supported environment configuration if owner enables domain, not token requests or proxy bypass. Cloud onboarding skill catalog currently returns no skills; earlier Godot install/start/domain draft saved, publication not claimed. Correct Godot installed outside checkout; system4.6.3 rejected by runner. No private Claude assets assumed.
 

@@ -57,6 +57,15 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 · Codex · Audit, Mara canon and final QA checkpoint
+
+- Branch `codex/screenplay-continuity-review`; latest verified remote **ab7198f3b2f17f7a738a68925a4db36c9d4dcbea**, final docs checkpoint follows. Main PR30 **052859a984d7db599282914cbc300cc8cecc887b**; source package all11 reviewed, ten payload hashes/sizes match.
+- Completed chapter audit and detailed Elias comparison; approved Mara Ch2 recurring placement AND agency/clinical-investigative separation recorded in GDD/character canon, F0 dated amendment, ID reservations, clinical log and Chapter2 crosswalk. Ch1 second patient unassigned, Jordan unapproved. Full prior risk/collateral/legal dossier source unavailable; owner-supplied anchors preserved without invented findings. Package/runtime unchanged.
+- Tests on unchanged application bytes from review base (8ba20b6): `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64` **exit0**, `/tmp/forensic-screenplay-qa.log`: Python6+3+3; pharmacology0 failures; QA19/0/0; GLB138/138; TestRunner131/0; boot OK; audio334/0; full Chapter1 sequence62.9s. Whitespace/preservation checks passed. Nonfatal Python socket warnings only; Mac/clinical correctness/hosted CI unvalidated.
+- PR list/create blocked with exact API error `Post "https://api.github.com/graphql": Forbidden`; prepared local body `/workspace/screenplay-audit-pr.md`, draft intended against preceding canon branch. Git fetch/push work. No new PR URL, main push, merge or clinical approval claimed.
+- Next: verify final push SHA; review audit N1 bounded cue-gating proposal and owner C1/N2–N7 decisions; recover full prior Mara source and review exact Ch2 script/clinical data before implementation. Mandatory independent evidence route if Mara declines disclosure/rapport limited, care independent of mystery. No half-written runtime work; final uncommitted status checked before ending. Handoff: `docs/AI_SESSION_HANDOFF.md`.
+
+
 ### 2026-10-17 · Codex · Mara placement instruction checkpoint
 
 - Latest verified review remote `634c29b07b8d0c8f39ae7033bdcb856ec53b668c`. Owner explicitly approves significant recurring Mara introduction in Ch2, superseding draft Ch1 slot; clinical history/risk/collateral must be preserved, all medical logic pending. No runtime files claimed.

@@ -48,9 +48,9 @@ From the v1.1 handoff package. Reserving an id does not approve its content.
 
 | Kind | Ids |
 |---|---|
-| Patients | `pt_mara_ellis` (Ch1), `pt_julian_reyes`, `pt_evelyn_park` (Ch2), `pt_nadia_bell`, `pt_robert_vale` (Ch3), `pt_tessa_monroe`, `pt_gabriel_chen` (Ch4) |
+| Patients | `pt_mara_ellis` (introduced Ch2; owner-approved placement), `pt_julian_reyes`, `pt_evelyn_park` (Ch2), `pt_nadia_bell`, `pt_robert_vale` (Ch3), `pt_tessa_monroe`, `pt_gabriel_chen` (Ch4) |
 | Staff | `staff_mercer`, `staff_rahman`, `staff_price`, `staff_torres`, `staff_brooks`, `staff_kim`, `staff_cross`, `staff_okafor` |
-| Chapter 1 (Mara) | `obj_evaluate_mara`, `clue_mara_archive_date`, `hyp_archival_code_reuse` |
+| Chapter 2 (Mara; placement amended 2026-10-17) | `obj_evaluate_mara`, `clue_mara_archive_date`, `hyp_archival_code_reuse` |
 | Zones and connections | `zone_exterior`, `zone_apartment` (Stage 7), `conn_sealed_corridor` (historic substructure to Ward Zero), `conn_lift_historic` (restricted lift to the historic landing) |
 | Later hypotheses | `hyp_time_gap` (Ch2), `hyp_legacy_bridge` (Ch3), `hyp_known_risk_not_remediated` (Ch4) |
 

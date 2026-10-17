@@ -115,3 +115,7 @@ Validation for each runtime slice: existing Godot4.7 full runner and save compat
 ## Validation record
 
 Review changes are documentation only; source package and working application remain unchanged relative to this branch's starting checkpoint. Standard runner launched on this combined branch (which includes earlier P1 tests): `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`, log `/tmp/forensic-screenplay-qa.log`; final result recorded in session handoff. Package hash verification and documentation whitespace checks are recorded there. Hosted CI and Mac review not observed. No clinical approval granted.
+
+## Subsequent owner decision — Mara placement, 2026-10-17
+
+Owner has now resolved the Mara-placement portion of N3: significant recurring patient introduced in **Ch2**, preserving her prior dossier. Earlier table findings describe the pre-decision baseline; Ch1 is now unassigned, not a Mara/Jordan choice. Jordan remains unapproved; Ch1 beat4 disposition and clinical case content remain open. Ch2 scene03 is a candidate expansion point, not yet approved exact staging. See [CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md](CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md); no clinical flags or source package altered.
