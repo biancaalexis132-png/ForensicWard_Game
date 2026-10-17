@@ -13,7 +13,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Sprints 1–3 integration | `claude/integration-sprints-1-3` (draft PR to `main`) | Claude | `99c2eaf453e13d44932f73a7c7f30ad54a18bf3e` | `README.md` (merge resolution), `docs/INTEGRATION_SPRINTS_1_3.md`, `docs/PROJECT_STATUS.md`, this file. Otherwise no edits beyond the merge | Awaiting owner review and merge; replaces PRs #1, #6, #7, #8 |
 | Sprint 1 integration | `claude/integrate-sprint-01` (draft PR) | Claude | `8ca85bce79f08f19ce75e00c33502a4e4af14146` | `project.godot`, `scripts/autoload/EventBus.gd`, `scripts/autoload/GameState.gd`, `scenes/main/Main.*`, `scripts/main/Main.gd`, `tests/qa/run.py`, `tests/qa/TestQA.gd`, `docs/TESTING.md` | Awaiting owner review and merge |
 | Sprint 1 foundation | `claude/sprint-01-foundation` (PR #1) | Claude | `f626aad7be1c9a443762a5b2cd3591601c1b14bc` | Superseded by the integration PR | Close after the integration PR merges |
-| Environment art, Stage 4a security and admin wing | `claude/environment-stage-4` (draft PR to `main`) | Claude | `4180b3fa86a76065634587b47f7d42897f3be68b` | `tools/blender/build_stage4_security_admin.py`, `tools/blender/{fw_assets,fw_lib}.py` (Stage 4 sections), `tools/blender/build_stage2_chapter1.py` (`room_shell` light_color only), `assets/{blender,exports}/security/**`, `assets/renders/stage4/**`, `assets/asset_manifest/**`, `docs/ENVIRONMENT_*.md` | Awaiting owner review and merge. Stage 4b research wing next |
+| Environment art, Stage 4b research wing | `claude/environment-stage-4b` (draft PR to `main`) | Claude | `90315575dd91f9fe8c8fd480b63c52309ed0c1cb` (plus a merge of `main`) | `tools/blender/build_stage4_research.py`, `tools/blender/build_stage4_security_admin.py` (facing fix), `tools/blender/{fw_assets,fw_lib}.py` (Stage 4b sections), `assets/{blender,exports}/research/**`, `assets/renders/stage4/**`, `assets/asset_manifest/**`, `docs/ENVIRONMENT_*.md` | Awaiting owner review and merge. Stage 5 historic substructure next |
 | Chapter 1 playable | `claude/chapter1-playable` (PR #7) | Claude | `60ed74fe882385535425f2038add243f93cc4b9e` | `scripts/world/**`, `scripts/autoload/WorldStateManager.gd`, `data/world_chapter1.json`, `scenes/world/Chapter1Ward.tscn`, `scripts/tests/test_world.gd`, `docs/CHAPTER1_PLAYABLE.md` | Integration branch merged in; awaiting review |
 | Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
 | Sprint 3 story, evidence, shift | `claude/sprint-03-evidence-shift` (draft PR, base `claude/sprint-02-ehr-interview`) | Claude | see newest log entry | `scripts/narrative/**`, `data/story_chapter1.json`, `scripts/ui/EvidenceBoard.gd`, `scripts/world/AudioZoneTracker.gd`, `scripts/tests/test_sprint3.gd`; small edits to `scripts/main/Main.gd`, `scripts/autoload/EventBus.gd`, `scripts/ui/{HUD,PauseMenu}.gd` | Awaiting review |
@@ -62,6 +62,43 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 19:45 UTC · Claude Code · Environment Stage 4b research wing
+
+- **Branch:** `claude/environment-stage-4b` (from `claude/environment-stage-4` at `6e2fdf6`, then `main` at `66a274f` merged in)
+- **Latest verified commit:** `90315575dd91f9fe8c8fd480b63c52309ed0c1cb` "Build Stage 4b research wing: 8 props, 12 rooms on the research level", plus merge `96b0f8b` of `main`
+- **Confirmed on GitHub:** see `git ls-remote origin claude/environment-stage-4b`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- 8 research props (`assets/exports/research/props/`): reception counter, reclining assessment chair, lab bench, benchtop centrifuge, upright ultra-low freezer, dual-monitor workstation, server rack, whiteboard with wiped-marker residue.
+- 12 rooms (`assets/exports/research/env/`) on the research level the restricted lift serves. It uses the same x/y as Chapter 1 with its floor at z = 0, and the lift sits at (0, 44) as below (asserted). Reception, a 12 m research corridor, a badge-and-PIN door at y = 28, and an 8 m restricted corridor. Rooms: physician offices A and B (B vacated), data analysis, records archive (one bay emptied), unsigned protocol office, clinical assessment room (one-way window into observation; clinician nearer the exit, asserted), observation and monitoring, lab support, secure sample storage (one unlabelled, double-locked freezer).
+- Storytelling hooks carry `story_tag: research_inconsistency` and a `godot_hint` that describes only what the player sees. The protocol binder is `clinical_review_status: PENDING`.
+- PR #14 merged at `bb4ecf7`, before the 4a facing fix (`400770b`, `6e2fdf6`). That fix reaches `main` through this branch.
+
+**Files modified**
+- New: `tools/blender/build_stage4_research.py`, `assets/blender/research/{FW_Props_Research,FW_ResearchWing}.blend`, exports and their `.import` files, `assets/renders/stage4/research_*.png`, `props_research.png`.
+- `tools/blender/fw_assets.py` (Stage 4b section), `tools/blender/fw_lib.py` (8 palette materials), `assets/asset_manifest/asset_manifest.{json,md}` (112 records), `docs/ENVIRONMENT_STAGES.md`, `docs/ENVIRONMENT_PIPELINE.md`, `docs/PROJECT_STATUS.md`, this file.
+
+**Unfinished**
+- Not wired into gameplay: no level scene, and no lift transition between the security and research levels.
+- Level placement, layout, the receptionist marker and every storytelling detail are assumptions for creative review. The GDD names no research staff, so no named markers.
+
+**Known errors**
+- Cycles previews show the one-way glass mirrored from both sides because Cycles renders back faces. Godot should cull them; not checked in Godot yet.
+
+**Tests** (on the merged tree, before this doc commit)
+- `python3 tests/qa/run.py` with Godot 4.7 (4.7.stable.official.5b4e0cb0f) after merging `main`: exit 0. Python content 6/6, audio manifest 3/3, `.glb` validation 112/112, TestRunner 80 / 0, TestQA 19 / 0 / 0, TestAudio 211 / 0, "All executed checks passed". The music `.ogg.import` files Godot generated were left uncommitted for the music workstream.
+- `build_stage4_research.py` with Blender 5.0.1 (`bpy`): "STAGE4 RESEARCH OK: 8 props, 12 environments exported".
+
+**Dependencies not available to remote agents**
+- Mac-only checks (Forward+ look, one-way glass in Godot).
+
+**Next steps**
+1. Owner reviews and merges this PR.
+2. Stage 5 historic asylum substructure, reached from the maintenance hatch (`MA_ServiceHatch`) and the lift's sublevels.
+3. Gameplay: a lift transition between the security and research levels.
 
 ### 2026-10-17 19:30 UTC · Claude Code · CI fix: macOS AppleDouble files
 
