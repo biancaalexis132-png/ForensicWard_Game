@@ -21,6 +21,7 @@ const MANIFEST: Dictionary = {
 	"staff": ["staff.json", ContentSchemas.STAFF_FILE],
 	"intent_lexicon": ["intent_lexicon.json", ContentSchemas.INTENT_LEXICON_FILE],
 	"campaign": ["campaign.json", ContentSchemas.CAMPAIGN_FILE],
+	"zones": ["zones.json", ContentSchemas.ZONES_FILE],
 }
 ## Document keys for files the campaign names: "dialogue:<file>",
 ## "story:<chapter id>", "world:<chapter id>".
@@ -48,6 +49,8 @@ var _campaign: Dictionary = {}
 var _chapters: Dictionary = {}       ## chapter id -> campaign entry
 var _worlds: Dictionary = {}         ## chapter id -> world wiring
 var _stories: Dictionary = {}        ## chapter id -> story
+var _zones: Dictionary = {}          ## zone id -> zone
+var _connections: Dictionary = {}    ## connection id -> connection
 
 
 func _ready() -> void:
@@ -183,6 +186,34 @@ func get_story(chapter_id: String = "") -> Dictionary:
 	return _stories.get(_chapter_or_start(chapter_id), {})
 
 
+func get_zone(zone_id: String) -> Dictionary:
+	return _zones.get(zone_id, {})
+
+
+func get_zone_ids() -> Array[String]:
+	return _sorted(_zones)
+
+
+func get_connection(connection_id: String) -> Dictionary:
+	return _connections.get(connection_id, {})
+
+
+func get_connection_ids() -> Array[String]:
+	return _sorted(_connections)
+
+
+## Connections with an end in `zone_id`, sorted by id.
+func get_connections_of(zone_id: String) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for connection_id: String in get_connection_ids():
+		var connection: Dictionary = _connections[connection_id]
+		for end: Dictionary in connection["ends"]:
+			if end["zone"] == zone_id:
+				result.append(connection)
+				break
+	return result
+
+
 func get_campaign() -> Dictionary:
 	return _campaign
 
@@ -247,6 +278,8 @@ func _build_indexes(documents: Dictionary) -> void:
 	_lexicon = _freeze(documents["intent_lexicon"]["data"])
 	_campaign = _freeze(documents["campaign"]["data"])
 	_chapters = _index(_campaign["chapters"])
+	_zones = _index(documents["zones"]["data"]["zones"])
+	_connections = _index(documents["zones"]["data"]["connections"])
 	_dialogues = {}
 	_stories = {}
 	_worlds = {}

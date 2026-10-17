@@ -1,0 +1,166 @@
+{
+	"schema_version": "0.1",
+	"notes": "World zones and the connections between them (F0 audit section 6). A zone is a set of environment .glb files on one level, all in the shared Godot frame. Only the current zone and the same-level neighbours it needs are loaded; zones on different levels never load together, because their floor plans overlap. Bounds are floor-plan rectangles (Godot x/z, metres) that decide which zone the player is in. Arrivals marked placeholder_arrival are hand-placed until the environment workstream adds arrival markers to the .blend files.",
+	"zones": [
+		{
+			"id": "zone_clinical_wing",
+			"title": "Clinical wing",
+			"level": "ground",
+			"status": "built",
+			"environments": [
+				"res://assets/exports/clinical/env/ENV_ClinicalCorridor_20m.glb",
+				"res://assets/exports/clinical/env/ENV_PsychiatristOffice.glb",
+				"res://assets/exports/clinical/env/ENV_NursingStation.glb",
+				"res://assets/exports/clinical/env/ENV_RecordsArchive.glb",
+				"res://assets/exports/clinical/env/ENV_PatientRoom_01.glb",
+				"res://assets/exports/clinical/env/ENV_PatientRoom_02.glb",
+				"res://assets/exports/clinical/env/ENV_InterviewRoom_A.glb"
+			],
+			"bounds": [{"min_xz": [-6.5, -20.0], "max_xz": [6.5, 0.5]}],
+			"default_audio_location": "corridor",
+			"audio_zones": [
+				{"location": "nursing_station", "min_xz": [-5.0, -12.0], "max_xz": [-1.5, -8.0]}
+			]
+		},
+		{
+			"id": "zone_security_admin",
+			"title": "Security and administration wing",
+			"level": "ground",
+			"status": "built",
+			"environments": [
+				"res://assets/exports/security/env/ENV_SecurityCorridor_20m.glb",
+				"res://assets/exports/security/env/ENV_VisitorScreening.glb",
+				"res://assets/exports/security/env/ENV_SecureInterviewSuite.glb",
+				"res://assets/exports/security/env/ENV_CredentialingOffice.glb",
+				"res://assets/exports/security/env/ENV_SecurityControl.glb",
+				"res://assets/exports/security/env/ENV_RecordsOffice.glb",
+				"res://assets/exports/security/env/ENV_MedicalDirectorOffice.glb",
+				"res://assets/exports/security/env/ENV_SurveillanceMonitoring.glb",
+				"res://assets/exports/security/env/ENV_AdminConference.glb",
+				"res://assets/exports/security/env/ENV_MaintenanceAccess.glb",
+				"res://assets/exports/security/env/ENV_RestrictedLiftLobby.glb"
+			],
+			"bounds": [{"min_xz": [-6.5, -44.5], "max_xz": [6.5, -20.0]}],
+			"default_audio_location": "corridor",
+			"notes": "No security_wing ambience exists yet; it uses the corridor bed until the audio workstream adds one."
+		},
+		{
+			"id": "zone_research_level",
+			"title": "Clinical research unit",
+			"level": "research",
+			"status": "built",
+			"environments": [
+				"res://assets/exports/research/env/ENV_ResearchReception.glb",
+				"res://assets/exports/research/env/ENV_ResearchCorridor_12m.glb",
+				"res://assets/exports/research/env/ENV_RestrictedResearchCorridor_8m.glb",
+				"res://assets/exports/research/env/ENV_ResearchPhysicianOfficeA.glb",
+				"res://assets/exports/research/env/ENV_ResearchPhysicianOfficeB.glb",
+				"res://assets/exports/research/env/ENV_DataAnalysisOffice.glb",
+				"res://assets/exports/research/env/ENV_ResearchRecordsArchive.glb",
+				"res://assets/exports/research/env/ENV_ProtocolOffice.glb",
+				"res://assets/exports/research/env/ENV_ClinicalAssessmentRoom.glb",
+				"res://assets/exports/research/env/ENV_ObservationMonitoring.glb",
+				"res://assets/exports/research/env/ENV_LabSupport.glb",
+				"res://assets/exports/research/env/ENV_SecureSampleStorage.glb"
+			],
+			"bounds": [{"min_xz": [-6.5, -44.5], "max_xz": [6.5, -19.5]}],
+			"default_audio_location": "corridor",
+			"notes": "No research_wing ambience exists yet; it uses the corridor bed until the audio workstream adds one."
+		},
+		{
+			"id": "zone_historic_sublevel",
+			"title": "Historic substructure",
+			"level": "sublevel",
+			"status": "built",
+			"environments": [
+				"res://assets/exports/historic/env/ENV_HistoricCorridor_24m.glb",
+				"res://assets/exports/historic/env/ENV_HistoricStairwell.glb",
+				"res://assets/exports/historic/env/ENV_AbandonedNursingStation.glb",
+				"res://assets/exports/historic/env/ENV_ClosedObservationRooms.glb",
+				"res://assets/exports/historic/env/ENV_DisusedAdminOffice.glb",
+				"res://assets/exports/historic/env/ENV_FormerPatientRoom1.glb",
+				"res://assets/exports/historic/env/ENV_FormerPatientRoom2.glb",
+				"res://assets/exports/historic/env/ENV_HistoricRecordsVault.glb",
+				"res://assets/exports/historic/env/ENV_HistoricalTreatmentRoom.glb",
+				"res://assets/exports/historic/env/ENV_MechanicalCorridor.glb",
+				"res://assets/exports/historic/env/ENV_OldMedicationStorage.glb",
+				"res://assets/exports/historic/env/ENV_PaperRecordsArchive.glb",
+				"res://assets/exports/historic/env/ENV_SealedConnectingCorridor.glb"
+			],
+			"bounds": [{"min_xz": [-6.5, -44.5], "max_xz": [6.5, -9.5]}],
+			"default_audio_location": "historical_wing"
+		},
+		{
+			"id": "zone_ward_zero",
+			"title": "Ward Zero",
+			"level": "sublevel",
+			"status": "placeholder",
+			"environments": [],
+			"bounds": [],
+			"default_audio_location": "ward_zero",
+			"notes": "Environment Stage 6, not built. Listed so ids and saves are stable."
+		}
+	],
+	"connections": [
+		{
+			"id": "conn_ward_entry",
+			"kind": "door",
+			"transition": "seamless",
+			"door_id": "door_ward_entry",
+			"door_zone": "zone_clinical_wing",
+			"anchor_xz": [0.0, -20.0],
+			"ends": [
+				{"zone": "zone_clinical_wing"},
+				{"zone": "zone_security_admin"}
+			],
+			"notes": "Same level and frame: walking through the doors changes zone with no fade. The doors belong to the clinical wing geometry, so the clinical wing is loaded whenever the player is in the security wing. Access comes from the door's own required_access (access_ward_entry), never from trust."
+		},
+		{
+			"id": "conn_restricted_lift",
+			"kind": "lift",
+			"transition": "fade",
+			"required_access": "access_restricted_lift",
+			"locked_message": "Restricted lift: the key switch will not turn without authorisation.",
+			"ends": [
+				{
+					"zone": "zone_security_admin",
+					"node": "LL_ElevatorDoors",
+					"prompt": "Take the restricted lift down to the research unit",
+					"arrival": {"position": [0.0, 0.0, -42.6], "yaw_degrees": 180.0},
+					"placeholder_arrival": true
+				},
+				{
+					"zone": "zone_research_level",
+					"node": "RE_ElevatorDoors",
+					"prompt": "Take the restricted lift up to the security wing",
+					"arrival": {"position": [0.0, 0.0, -42.6], "yaw_degrees": 180.0},
+					"placeholder_arrival": true
+				}
+			],
+			"notes": "The lift also stops at the historic landing (door_historic_lift); a floor choice comes later."
+		},
+		{
+			"id": "conn_service_hatch",
+			"kind": "hatch",
+			"transition": "fade",
+			"required_access": "access_maintenance",
+			"locked_message": "Service hatch: padlocked. The maintenance team holds the key.",
+			"ends": [
+				{
+					"zone": "zone_security_admin",
+					"node": "MA_ServiceHatch",
+					"prompt": "Climb down through the service hatch",
+					"arrival": {"position": [2.6, 0.0, -37.4], "yaw_degrees": -90.0},
+					"placeholder_arrival": true
+				},
+				{
+					"zone": "zone_historic_sublevel",
+					"node": "SW_ServiceStair",
+					"prompt": "Climb the service stair to the hatch",
+					"arrival": {"position": [2.6, 0.0, -38.0], "yaw_degrees": -90.0},
+					"placeholder_arrival": true
+				}
+			]
+		}
+	]
+}
