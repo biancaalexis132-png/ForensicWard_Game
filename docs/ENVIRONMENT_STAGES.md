@@ -6,12 +6,37 @@ Pipeline, conventions and validation: see [`ENVIRONMENT_PIPELINE.md`](ENVIRONMEN
 |---|---|---|
 | 1 Modular architecture | Walls, openings, windows, floors, ceilings, corridor slices and junctions, doors | **Done (v1, untextured)** |
 | 2 Opening-chapter environments | Corridor, office, Interview Room A, nursing station, 2 patient rooms (plus records archive) | **Done (v1, untextured)** |
-| 3 Clinical and cinematic props | EHR terminal, clinical furniture, fixtures, interview camera markers | **Partly done.** 26 props and interview cameras. Medication cart, beds for other units, linen and emergency equipment still to do. |
+| 3 Clinical and cinematic props | EHR terminal, clinical furniture, fixtures, interview camera markers, medication, ward-bed, linen and emergency equipment | **Done (v1, untextured).** 36 props and interview cameras. The 10 Stage 3 props are library assets; they are not yet placed in any `ENV_*` room. |
 | 4 Security, admin and research wings | | Not started |
 | 5 Historic substructure | | Not started (the W0-B historic service door exists) |
 | 6 Ward Zero canonical layout and anomaly states | | Not started. The state mechanism exists: `state_group` extras plus `WorldStateManager` on the gameplay branch. |
 | 7 Apartment, parking, exterior | | Not started |
 | 8 Polish | Textures/UVs, LODs, lightmap UV2, trim sheets | Not started |
+
+## Stage 3 deliverables
+
+| Deliverable | Location |
+|---|---|
+| Editable source | `assets/blender/clinical/FW_Props_Clinical_Stage3.blend` |
+| Generator | `tools/blender/build_stage3_props.py` (builders in `tools/blender/fw_assets.py`, `STAGE3_PROP_BUILDERS`) |
+| Godot exports | `assets/exports/clinical/props/` (10 new, 36 in total) |
+| Render | `assets/renders/stage3/props_stage3.png` |
+| Godot validation | 68/68 assets pass `tools/godot/validate_glb_imports.gd` in Godot 4.7 |
+
+| Asset | Notes |
+|---|---|
+| `PROP_Cart_Medication` | Locking 6-drawer cart, key lock, push handles, MAR clip-board, castors |
+| `PROP_Bed_Hospital_Adjustable` | Profiling bed with split side rails and castors. Medical bay only: it is not anti-ligature (the ward bed is `PROP_Bed_AntiLigature`) |
+| `PROP_Trolley_Linen` | Lidded linen skip on castors |
+| `PROP_Cart_Crash_Resus` | Resuscitation trolley with defibrillator (separate UV'd screen), CPR board, side oxygen cylinder, seal tag |
+| `PROP_Cabinet_AED_Wall` | Glazed wall cabinet with AED and sign; wall-mounted, no collision |
+| `PROP_Cylinder_Oxygen_Trolley` | Cylinder with white shoulder, valve and gauge on a two-wheel trolley. No markings are claimed |
+| `PROP_Monitor_VitalSigns_Stand` | Observations monitor on a 5-star stand (separate UV'd screen), basket and cuff |
+| `PROP_Bin_Sharps` | Counter-top sharps container with a blank label |
+| `PROP_Dispenser_HandGel` | Wall dispenser; wall-mounted, no collision |
+| `PROP_Wheelchair` | Transit wheelchair |
+
+All ten are staff-only or supervised-area items, recorded as such in the manifest. Shapes are generic and not modelled on any manufacturer's product.
 
 ## Stage 1–2 deliverables
 
@@ -45,6 +70,7 @@ Pipeline, conventions and validation: see [`ENVIRONMENT_PIPELINE.md`](ENVIRONMEN
 
 - **No textures or UVs yet** (flat PBR colours). Only the EHR screen and sign faces have UVs. Lightmap UV2 is not generated; use Godot's import option or wait for Stage 8.
 - **No characters.** Gameplay uses capsule stand-ins.
+- **Stage 3 props are not placed yet.** The medication cart, crash trolley and AED belong at the nursing station, but adding them changes `ENV_NursingStation` and the Chapter 1 world scene, so that is a separate step.
 - **Door leaves get static collision only.** Gameplay animates the leaf node, and the collider follows.
 - **Exterior windows show a preview backdrop in renders only.** Godot needs an exterior or skybox solution (Stage 7).
 - **Preview renders use Cycles on CPU with denoising.** Lighting in Godot comes from the `LIGHTMARK_*` markers and is tuned separately.

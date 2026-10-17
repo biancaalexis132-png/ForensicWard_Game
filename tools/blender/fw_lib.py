@@ -82,6 +82,12 @@ PALETTE = {
     "M_Emissive_LED_Green": ("#2CCB5A", 0.3, 0.0, {"emission": ("#2CCB5A", 4.0)}),
     "M_Emissive_LED_Red": ("#D23A2E", 0.3, 0.0, {"emission": ("#D23A2E", 4.0)}),
     "M_Exterior_Backdrop": ("#5D7084", 1.0, 0.0, {"emission": ("#6E829A", 1.2)}),
+    # Stage 3: clinical, linen and emergency equipment.
+    "M_Plastic_MedCart_Blue": ("#3D6A93", 0.45, 0.0, {}),
+    "M_Plastic_Sharps_Yellow": ("#E3B81E", 0.5, 0.0, {}),
+    "M_Plastic_AED_Green": ("#1F8A4C", 0.45, 0.0, {}),
+    "M_Linen_White": ("#ECECE6", 0.95, 0.0, {}),
+    "M_Fabric_LaundryBag_Blue": ("#4F6F9A", 0.95, 0.0, {}),
     "M_Collision": ("#FF00FF", 1.0, 0.0, {}),
 }
 

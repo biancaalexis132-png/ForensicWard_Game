@@ -1033,6 +1033,59 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 48
     },
+    "PROP_Bed_Hospital_Adjustable": {
+      "asset_id": "PROP_Bed_Hospital_Adjustable",
+      "asset_name": "Profiling hospital bed with side rails (medical bay)",
+      "category": "clinical_equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.052,
+        2.18,
+        1.0
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Bed_Hospital_Adjustable.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces): this equipment has ligature, weapon or ingestion risks by design. Origin: floor centre.",
+      "intended_location": "Medical bay or infirmary only",
+      "markers": [],
+      "materials": [
+        "M_Linen_White",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Rubber_Dark",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Teal"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 560
+    },
+    "PROP_Bin_Sharps": {
+      "asset_id": "PROP_Bin_Sharps",
+      "asset_name": "Sharps container (treatment room counter)",
+      "category": "clinical_equipment",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.25,
+        0.185,
+        0.31
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Bin_Sharps.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces): this equipment has ligature, weapon or ingestion risks by design. Origin: floor centre.",
+      "intended_location": "Clinic room and medication cart top",
+      "markers": [],
+      "materials": [
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_Sharps_Yellow"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 48
+    },
     "PROP_Bin_Waste": {
       "asset_id": "PROP_Bin_Waste",
       "asset_name": "Waste bin (staff areas)",
@@ -1082,6 +1135,32 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 612
     },
+    "PROP_Cabinet_AED_Wall": {
+      "asset_id": "PROP_Cabinet_AED_Wall",
+      "asset_name": "Wall-mounted AED cabinet with signage",
+      "category": "emergency",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.4,
+        0.215,
+        0.63
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Cabinet_AED_Wall.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces): this equipment has ligature, weapon or ingestion risks by design. Origin: mounting surface.",
+      "intended_location": "Staff corridor walls at 1.2 m, beside the nursing station",
+      "markers": [],
+      "materials": [
+        "M_Glass_Clear",
+        "M_Plastic_AED_Green",
+        "M_Plastic_OffWhite",
+        "M_Plastic_Sharps_Yellow",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 72
+    },
     "PROP_Cabinet_Filing_4Drawer": {
       "asset_id": "PROP_Cabinet_Filing_4Drawer",
       "asset_name": "Locking 4-drawer filing cabinet",
@@ -1129,6 +1208,62 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 532
+    },
+    "PROP_Cart_Crash_Resus": {
+      "asset_id": "PROP_Cart_Crash_Resus",
+      "asset_name": "Resuscitation trolley with defibrillator",
+      "category": "clinical_equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.945,
+        0.595,
+        1.27
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Cart_Crash_Resus.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces): this equipment has ligature, weapon or ingestion risks by design. Origin: floor centre.",
+      "intended_location": "Nursing station alcove or clinic room",
+      "markers": [],
+      "materials": [
+        "M_Emissive_Screen",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Plastic_Sharps_Yellow",
+        "M_Rubber_Dark",
+        "M_Safety_Red",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 548
+    },
+    "PROP_Cart_Medication": {
+      "asset_id": "PROP_Cart_Medication",
+      "asset_name": "Locking medication cart, 6 drawers",
+      "category": "clinical_equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.705,
+        0.53,
+        1.0
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Cart_Medication.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces): this equipment has ligature, weapon or ingestion risks by design. Origin: floor centre.",
+      "intended_location": "Nursing station / clinic room (locked when unattended)",
+      "markers": [],
+      "materials": [
+        "M_Paper",
+        "M_Plastic_MedCart_Blue",
+        "M_Rubber_Dark",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_White",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 512
     },
     "PROP_Chair_Interview_Weighted": {
       "asset_id": "PROP_Chair_Interview_Weighted",
@@ -1223,6 +1358,32 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 416
     },
+    "PROP_Cylinder_Oxygen_Trolley": {
+      "asset_id": "PROP_Cylinder_Oxygen_Trolley",
+      "asset_name": "Oxygen cylinder on transport trolley",
+      "category": "clinical_equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.3,
+        0.34,
+        1.24
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Cylinder_Oxygen_Trolley.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces): this equipment has ligature, weapon or ingestion risks by design. Origin: floor centre.",
+      "intended_location": "Clinic room or beside the resuscitation trolley",
+      "markers": [],
+      "materials": [
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Rubber_Dark",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 424
+    },
     "PROP_Desk_Clinical": {
       "asset_id": "PROP_Desk_Clinical",
       "asset_name": "Clinical office desk 1600",
@@ -1247,6 +1408,30 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 132
+    },
+    "PROP_Dispenser_HandGel": {
+      "asset_id": "PROP_Dispenser_HandGel",
+      "asset_name": "Wall hand-gel dispenser (staff areas)",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.11,
+        0.126,
+        0.24
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Dispenser_HandGel.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces): this equipment has ligature, weapon or ingestion risks by design. Origin: mounting surface.",
+      "intended_location": "Staff-side walls at 1.2 m (nursing station, office doors)",
+      "markers": [],
+      "materials": [
+        "M_Glass_Clear",
+        "M_Plastic_OffWhite",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 36
     },
     "PROP_Duress_Strip_2m": {
       "asset_id": "PROP_Duress_Strip_2m",
@@ -1390,6 +1575,33 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 244
+    },
+    "PROP_Monitor_VitalSigns_Stand": {
+      "asset_id": "PROP_Monitor_VitalSigns_Stand",
+      "asset_name": "Mobile vital-signs monitor on stand",
+      "category": "clinical_equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.492,
+        0.516,
+        1.322
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Monitor_VitalSigns_Stand.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces): this equipment has ligature, weapon or ingestion risks by design. Origin: floor centre.",
+      "intended_location": "Clinic room, medical bay, patient rooms during observations",
+      "markers": [],
+      "materials": [
+        "M_Emissive_Screen",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Upholstery_Charcoal"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 564
     },
     "PROP_NoticeBoard": {
       "asset_id": "PROP_NoticeBoard",
@@ -1563,6 +1775,33 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 264
     },
+    "PROP_Trolley_Linen": {
+      "asset_id": "PROP_Trolley_Linen",
+      "asset_name": "Linen skip trolley with lidded bag",
+      "category": "clinical_equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.54,
+        0.574,
+        1.022
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Trolley_Linen.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces): this equipment has ligature, weapon or ingestion risks by design. Origin: floor centre.",
+      "intended_location": "Corridors and sluice, staff-escorted",
+      "markers": [],
+      "materials": [
+        "M_Fabric_LaundryBag_Blue",
+        "M_Linen_White",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Rubber_Dark",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 416
+    },
     "PROP_Vent_Grille_Wall": {
       "asset_id": "PROP_Vent_Grille_Wall",
       "asset_name": "Anti-ligature ventilation grille 600x300",
@@ -1607,6 +1846,31 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 96
+    },
+    "PROP_Wheelchair": {
+      "asset_id": "PROP_Wheelchair",
+      "asset_name": "Transit wheelchair",
+      "category": "clinical_equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.63,
+        0.925,
+        1.01
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Wheelchair.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces): this equipment has ligature, weapon or ingestion risks by design. Origin: floor centre.",
+      "intended_location": "Ward entry, medical bay",
+      "markers": [],
+      "materials": [
+        "M_Plastic_Black",
+        "M_Rubber_Dark",
+        "M_Steel_Brushed",
+        "M_Upholstery_Charcoal"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 648
     }
   },
   "schema_version": "1.0"
