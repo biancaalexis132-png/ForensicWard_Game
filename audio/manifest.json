@@ -17,6 +17,66 @@
 			"source": "Procedural synthesis, tools/audio/synth_sfx.py corridor (seed 1101): pink-noise ventilation, duct resonances, 120 Hz ballast hum, distant door thumps and footsteps, synthetic corridor reverb; 4 s equal-power loop crossfade"
 		},
 		{
+			"file": "audio/ambience/amb_distant_staff_loop.ogg",
+			"category": "ambience",
+			"duration_seconds": 45.0,
+			"ids": [
+				"amb_distant_staff"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "corridor (day detail), nursing station (night detail)",
+			"notes": "45 s loop; texture only, carries no information",
+			"review_status": "pending_listening_review",
+			"sha256": "4981caa6e0a3b62a3309a22752b8dd990fdb7c3529b04106f2cc204a11f40c9e",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py walla (seed 5701): Kokoro walla lines from data/narrative/walla.json overlapped, panned, low-passed at 1.1 kHz and reverberated; 4 s seamless loop crossfade"
+		},
+		{
+			"file": "audio/ambience/amb_historic_intercom_static_loop.ogg",
+			"category": "ambience",
+			"duration_seconds": 30.0,
+			"ids": [
+				"amb_historic_intercom_static"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "historical wing, Ward Zero (detail layer)",
+			"notes": "30 s loop",
+			"review_status": "pending_listening_review",
+			"sha256": "d844ad11f37197d728632d1fc9462d0e5b8701e6167296bd1a6f943d8d2441e5",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py intercom_static (seed 5901): 60 Hz hum harmonics, hiss and crackle through a small-speaker model with random dropouts; seamless loop"
+		},
+		{
+			"file": "audio/ambience/amb_nursing_station_loop.ogg",
+			"category": "ambience",
+			"duration_seconds": 60.0,
+			"ids": [
+				"amb_nursing_station"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "nursing station (day detail layer over the corridor bed)",
+			"notes": "60 s loop",
+			"review_status": "pending_listening_review",
+			"sha256": "8f84e6641fddb7553dacac516d3eb21de73b2687161c57b520532b97e5c6d60b",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py nursing_station (seed 5801): keyboard bursts, distant monitor beeps, one printer pass, plus amb_distant_staff_loop; seamless loop"
+		},
+		{
+			"file": "audio/ambience/amb_ward_zero_loop.ogg",
+			"category": "ambience",
+			"duration_seconds": 60.0,
+			"ids": [
+				"amb_ward_zero"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "Ward Zero, historical wing",
+			"notes": "60 s loop",
+			"review_status": "pending_listening_review",
+			"sha256": "290ea28266408c442e573f22bbdf1eb04d3671b52ab4516ad867333d93c4cbe4",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py ward_zero (seed 6101): low room tone, drafts, beating 50/50.4 Hz hum, drips and pipe ticks in a long reverb; seamless loop"
+		},
+		{
 			"file": "audio/music/mus_transition_unease_01.ogg",
 			"category": "music_transition",
 			"duration_seconds": 9.5,
@@ -31,6 +91,248 @@
 			"review_status": "pending_listening_review",
 			"sha256": "cb976c160803467c5f5e0bc9f987750fdf2c7be1956689727d9d89c0419b6668",
 			"source": "Procedural synthesis, tools/audio/synth_sfx.py transition (seed 4404): additive low-string cluster A1/A2 with late Bb2 minor-second rub, two additive piano notes (E5, D#5), reverse noise swell, synthetic hall reverb"
+		},
+		{
+			"file": "audio/sfx/anomaly/sfx_w0_distant_knocks.ogg",
+			"category": "sfx_anomaly",
+			"duration_seconds": 5.5,
+			"ids": [
+				"sfx_w0_distant_knocks",
+				"w0_knocking_heard"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "event only: w0_knocking_heard",
+			"notes": "Startle-flagged; only triggered by an explicit narrative event",
+			"review_status": "pending_listening_review",
+			"sha256": "964cf9355adefa7ec8f9da897683c5e36cdb1391b26b86ea161fd94545a32f6b",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py ward_zero (seed 6101): three slow distant knocks on a heavy door, 3.4 s reverb"
+		},
+		{
+			"file": "audio/sfx/anomaly/sfx_w0_pressure_swell.ogg",
+			"category": "sfx_anomaly",
+			"duration_seconds": 12.0,
+			"ids": [
+				"sfx_w0_pressure_swell",
+				"w0_pressure_shift"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "event only: w0_pressure_shift",
+			"notes": "Startle-flagged; ducks ambience; only triggered by an explicit narrative event",
+			"review_status": "pending_listening_review",
+			"sha256": "22934e398b92a817487e1577df701f3b56d7cbed60ff6136ffbfe5f31b7d7155",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py ward_zero (seed 6101): 12 s swell of beating 38/38.6 Hz tones and air"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_concrete_01.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_concrete"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "old asylum substructure, Ward Zero (gritty concrete)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "b7888224a03b5656a91c102c7d171527890e72e9a6bae89371a833ed79a5a78f",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5301, take 1): heel thump and scuff filtered for concrete, short room reverb"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_concrete_02.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_concrete"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "old asylum substructure, Ward Zero (gritty concrete)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "353258e50c35f42426ed64fddc93904e33b0fc3b62780073eb534530d5ebc8b7",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5301, take 2): heel thump and scuff filtered for concrete, short room reverb"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_concrete_03.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_concrete"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "old asylum substructure, Ward Zero (gritty concrete)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "765fd880c9f696f6376c9e9bdf59ff82613ab51bc81b79310fa7b722d7f8786c",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5301, take 3): heel thump and scuff filtered for concrete, short room reverb"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_concrete_04.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_concrete"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "old asylum substructure, Ward Zero (gritty concrete)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "3a545cee5060d7db1602a60efcc5f076e78421b529c4eea8ab6c83c161c865c4",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5301, take 4): heel thump and scuff filtered for concrete, short room reverb"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_tile_01.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_tile"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "bathrooms, reception, research wing (ceramic tile)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "cdebbeee535a889ce85235a0cf3ad6e09d13244bca70184a1728d73fd96b7c5d",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5201, take 1): heel thump and scuff filtered for tile, short room reverb"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_tile_02.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_tile"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "bathrooms, reception, research wing (ceramic tile)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "f1c2d14181e755a5e139affdcc92842f9da025dda2ba0b84074a99eb6e218edf",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5201, take 2): heel thump and scuff filtered for tile, short room reverb"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_tile_03.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_tile"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "bathrooms, reception, research wing (ceramic tile)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "3f9bfadc2f3a948814f8196831759e0f39f545d6764456f0410a9816702b19e5",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5201, take 3): heel thump and scuff filtered for tile, short room reverb"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_tile_04.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_tile"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "bathrooms, reception, research wing (ceramic tile)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "6de16f5acf6a45822eff91fe689bb7a839ac445b666aa59b2313c178f63c1cf7",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5201, take 4): heel thump and scuff filtered for tile, short room reverb"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_vinyl_01.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_vinyl"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "wards, corridors, nursing station (sheet vinyl)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "e145a5eb21b33fecdfce85671e9bde3183aea5418c72057c2047ad5b0585f2ce",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5101, take 1): heel thump and scuff filtered for vinyl, short room reverb"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_vinyl_02.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_vinyl"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "wards, corridors, nursing station (sheet vinyl)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "42aa19022bd6b410f88690dba2a3825ac45d2209d336b95c779de3f56bea7d5e",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5101, take 2): heel thump and scuff filtered for vinyl, short room reverb"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_vinyl_03.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_vinyl"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "wards, corridors, nursing station (sheet vinyl)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "26406464459bffea67839ad5ed3c4028f0f1966c6f807fc1f29593ce15aeda5a",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5101, take 3): heel thump and scuff filtered for vinyl, short room reverb"
+		},
+		{
+			"file": "audio/sfx/footsteps/sfx_footstep_vinyl_04.ogg",
+			"category": "sfx_footstep",
+			"duration_seconds": 0.6,
+			"ids": [
+				"sfx_footstep_vinyl"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "wards, corridors, nursing station (sheet vinyl)",
+			"notes": "One of 4 takes; played through an AudioStreamRandomizer",
+			"review_status": "pending_listening_review",
+			"sha256": "e7258e9c1af960e19d2df7aee6f6ad6c7b2d595b306aea03d6fbb5b1b48a5843",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py footsteps (seed 5101, take 4): heel thump and scuff filtered for vinyl, short room reverb"
+		},
+		{
+			"file": "audio/sfx/sfx_badge_accept.ogg",
+			"category": "sfx",
+			"duration_seconds": 0.5,
+			"ids": [
+				"sfx_badge_accept",
+				"ch1_badge_accepted"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "badge readers (3D)",
+			"review_status": "pending_listening_review",
+			"sha256": "0a621deede403196096ea07bc846d189dade9567a834f48968dfc0476ebb7d37",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py badge (seed 5401): two-tone accept chirp through a small-speaker model"
+		},
+		{
+			"file": "audio/sfx/sfx_badge_deny.ogg",
+			"category": "sfx",
+			"duration_seconds": 0.8,
+			"ids": [
+				"sfx_badge_deny",
+				"ch1_badge_denied"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "badge readers (3D)",
+			"review_status": "pending_listening_review",
+			"sha256": "bceb326ba10804df3bd783fa019db0cd1db00638fe7891932c47d4d4f81c2bed",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py badge (seed 5401): two low square-wave deny buzzes through a small-speaker model"
 		},
 		{
 			"file": "audio/sfx/sfx_door_secure_open.ogg",
@@ -48,6 +350,52 @@
 			"source": "Procedural synthesis, tools/audio/synth_sfx.py door (seed 2202): badge-reader accept beep, maglock release, latch, door swing, hinge, hydraulic closer"
 		},
 		{
+			"file": "audio/sfx/sfx_electrical_flicker.ogg",
+			"category": "sfx",
+			"duration_seconds": 2.6,
+			"ids": [
+				"sfx_electrical_flicker",
+				"ch1_lights_flicker"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "fluorescent fixtures (3D)",
+			"review_status": "pending_listening_review",
+			"sha256": "25b79fc27f10c9fcf0d1a55758c024c5cdcb5545920ce6fd10ff9089a0ab9884",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py electrical (seed 6001): gated 120 Hz ballast buzz with relay ticks"
+		},
+		{
+			"file": "audio/sfx/sfx_electrical_surge.ogg",
+			"category": "sfx_event",
+			"duration_seconds": 3.2,
+			"ids": [
+				"sfx_electrical_surge",
+				"w0_power_surge"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "event only: w0_power_surge",
+			"notes": "Startle-flagged",
+			"review_status": "pending_listening_review",
+			"sha256": "c8b7b07e436140c1bb4a7b083cd2ae7f2d4ed5d3af839ca8bbe0a5792de51fa3",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py electrical (seed 6001): rising mains hum, arc crackle, breaker pop"
+		},
+		{
+			"file": "audio/sfx/sfx_elevator_arrive.ogg",
+			"category": "sfx",
+			"duration_seconds": 4.5,
+			"ids": [
+				"sfx_elevator_arrive",
+				"ch1_elevator_arrived"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "elevators (3D)",
+			"review_status": "pending_listening_review",
+			"sha256": "bc9aa0d3806c605493aa3883f0fe2e7fff40d8f8d3fc4e2f0cee1d2ab22d7fa1",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py elevator (seed 5601): motor wind-down, car settle, D6 chime, door rumble and rollers"
+		},
+		{
 			"file": "audio/sfx/sfx_pager_alert.ogg",
 			"category": "sfx",
 			"duration_seconds": 1.8,
@@ -63,6 +411,97 @@
 			"source": "Procedural synthesis, tools/audio/synth_sfx.py pager (seed 3303): three 3.1 kHz beep bursts through a small-speaker model plus vibration buzz"
 		},
 		{
+			"file": "audio/sfx/ui/sfx_ui_clinical_alert.ogg",
+			"category": "sfx_ui",
+			"duration_seconds": 1.3,
+			"ids": [
+				"sfx_ui_clinical_alert",
+				"ch1_ehr_alert_raised"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "EHR terminal",
+			"notes": "Noticeable, not alarming",
+			"review_status": "pending_listening_review",
+			"sha256": "af05235de0720d56a36679e07569a0c8fc89187dee08758b1d49caecb6b94e00",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py ui (seed 5501): three-tone B5-G5-B5 alert, soft attack"
+		},
+		{
+			"file": "audio/sfx/ui/sfx_ui_keypress_01.ogg",
+			"category": "sfx_ui",
+			"duration_seconds": 0.09,
+			"ids": [
+				"sfx_ui_keypress"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "EHR terminal",
+			"notes": "One of 4 takes",
+			"review_status": "pending_listening_review",
+			"sha256": "322e0562681a665631f8fd0400516ff52d7649271477bb0bedae91360598dd8c",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py ui (seed 5501, take 1): band-passed click plus plastic thock"
+		},
+		{
+			"file": "audio/sfx/ui/sfx_ui_keypress_02.ogg",
+			"category": "sfx_ui",
+			"duration_seconds": 0.09,
+			"ids": [
+				"sfx_ui_keypress"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "EHR terminal",
+			"notes": "One of 4 takes",
+			"review_status": "pending_listening_review",
+			"sha256": "bbb422698976f3165b4225ccb86f767b2f2c0fd4e34d391022165aa73686f135",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py ui (seed 5501, take 2): band-passed click plus plastic thock"
+		},
+		{
+			"file": "audio/sfx/ui/sfx_ui_keypress_03.ogg",
+			"category": "sfx_ui",
+			"duration_seconds": 0.09,
+			"ids": [
+				"sfx_ui_keypress"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "EHR terminal",
+			"notes": "One of 4 takes",
+			"review_status": "pending_listening_review",
+			"sha256": "8894f3a0000d2311c717a6177493c26a5b643a81692c151821667a05ccedde5a",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py ui (seed 5501, take 3): band-passed click plus plastic thock"
+		},
+		{
+			"file": "audio/sfx/ui/sfx_ui_keypress_04.ogg",
+			"category": "sfx_ui",
+			"duration_seconds": 0.09,
+			"ids": [
+				"sfx_ui_keypress"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "EHR terminal",
+			"notes": "One of 4 takes",
+			"review_status": "pending_listening_review",
+			"sha256": "870f0134ff0071de1eff653f780b495be3a9def7c7abd33733945ff7f84a544a",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py ui (seed 5501, take 4): band-passed click plus plastic thock"
+		},
+		{
+			"file": "audio/sfx/ui/sfx_ui_terminal_open.ogg",
+			"category": "sfx_ui",
+			"duration_seconds": 0.5,
+			"ids": [
+				"sfx_ui_terminal_open",
+				"ch1_ehr_opened"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "EHR terminal",
+			"review_status": "pending_listening_review",
+			"sha256": "59cf246741240bbf4e2e9cd55283063b265e802dd0ccbece4142442ae2cb7bbf",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py ui (seed 5501): two soft sine blips (A5, E6)"
+		},
+		{
 			"file": "audio/voice/ch1/ch1_b2_bennett_001.ogg",
 			"category": "dialogue",
 			"duration_seconds": 4.416,
@@ -71,7 +510,7 @@
 				"ch1_bennett_handover"
 			],
 			"integration_status": "integrated",
-			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
 			"location": "nursing_station",
 			"review_status": "pending_listening_review",
 			"sha256": "a5488c1af726322a6347ae804ffd4b91f4252fec5b07fb2e5511b38a4c97099f",
@@ -88,7 +527,7 @@
 				"ch1_bennett_handover"
 			],
 			"integration_status": "integrated",
-			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
 			"location": "nursing_station",
 			"review_status": "pending_listening_review",
 			"sha256": "0de8ed1fc14d1adf061d8f2cbcf635fa53d964e604e83a8f15eee5c3bf3393be",
@@ -105,7 +544,7 @@
 				"ch1_bennett_handover"
 			],
 			"integration_status": "integrated",
-			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
 			"location": "nursing_station",
 			"review_status": "pending_listening_review",
 			"sha256": "6216e2f54bd2c7cdefacc64b3173ac27693732588b938101f58fd371e516042d",
@@ -122,7 +561,7 @@
 				"ch1_bennett_handover"
 			],
 			"integration_status": "integrated",
-			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
 			"location": "nursing_station",
 			"review_status": "pending_listening_review",
 			"sha256": "72dc7f7c7bb3b6d16d45fb7a710b43e6db96e067bc9a972cdb7ad99b4e7d57b3",
@@ -139,7 +578,7 @@
 				"ch1_bennett_handover"
 			],
 			"integration_status": "integrated",
-			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
 			"location": "nursing_station",
 			"review_status": "pending_listening_review",
 			"sha256": "a48804abc2800fa58f9090fde22d9014684a2be6e4ac4714d3f03be74abb5f29",
@@ -156,13 +595,141 @@
 				"ch1_after_hours_intercom"
 			],
 			"integration_status": "integrated",
-			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
 			"location": "corridor",
 			"review_status": "pending_listening_review",
 			"sha256": "fc7ec41c66de80886a38bbf00ad8b86ad20f5ceb28e2d38eff5c18b904da80e3",
 			"source": "Kokoro TTS voice 'af_alloy' speed 0.9, fx 'intercom' (tools/audio/generate_voice.py)",
 			"speaker": "intercom",
 			"text": "Transfer team to W-Zero-B. Transfer team to W-Zero-B, please."
+		},
+		{
+			"file": "audio/voice/walla/walla_ns_001.ogg",
+			"category": "walla_source",
+			"duration_seconds": 3.264,
+			"ids": [
+				"walla_ns_001"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "814b1bcf77db8a312d847cb3cb45b513e1638b768882fb9a2c65ca1d166b1950",
+			"source": "Kokoro TTS voice 'af_nicole' speed 1.05, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "walla_staff_a",
+			"text": "Can somebody cover bed six for ten minutes?"
+		},
+		{
+			"file": "audio/voice/walla/walla_ns_002.ogg",
+			"category": "walla_source",
+			"duration_seconds": 3.191,
+			"ids": [
+				"walla_ns_002"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "e28dd2a7628753efab184118f37b9a88e4ed204b635f20249f8bdac05088371e",
+			"source": "Kokoro TTS voice 'am_michael' speed 1.05, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "walla_staff_b",
+			"text": "Pharmacy called back, they're sending it up after lunch."
+		},
+		{
+			"file": "audio/voice/walla/walla_ns_003.ogg",
+			"category": "walla_source",
+			"duration_seconds": 2.76,
+			"ids": [
+				"walla_ns_003"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "26f4cdba64e3c3b90c7821176dee37ba2b3c4eb8abe942a725af8d246b2867d3",
+			"source": "Kokoro TTS voice 'bf_isabella' speed 1.08, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "walla_staff_c",
+			"text": "I'll take the two o'clock checks if you do the paperwork."
+		},
+		{
+			"file": "audio/voice/walla/walla_ns_004.ogg",
+			"category": "walla_source",
+			"duration_seconds": 3.968,
+			"ids": [
+				"walla_ns_004"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "935a288d75763e93a303a0b60be4c4564cc1b8db114dc937565614db401dac37",
+			"source": "Kokoro TTS voice 'af_nicole' speed 1.05, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "walla_staff_a",
+			"text": "Has anyone seen the spare keys for the supply room?"
+		},
+		{
+			"file": "audio/voice/walla/walla_ns_005.ogg",
+			"category": "walla_source",
+			"duration_seconds": 2.677,
+			"ids": [
+				"walla_ns_005"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "2e824574d1412a8461dab2e297aabadcba0699e0c2bc26cd8b4715b75c6da68d",
+			"source": "Kokoro TTS voice 'am_michael' speed 1.05, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "walla_staff_b",
+			"text": "The printer's jammed again. No, the other one."
+		},
+		{
+			"file": "audio/voice/walla/walla_ns_006.ogg",
+			"category": "walla_source",
+			"duration_seconds": 2.032,
+			"ids": [
+				"walla_ns_006"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "f76a262a259e3cffda727153e149f473e53ca6363d5f92cd7d5d6d8f4fa0dfce",
+			"source": "Kokoro TTS voice 'bf_isabella' speed 1.08, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "walla_staff_c",
+			"text": "Yeah, yeah. I'll call them back in a minute."
+		},
+		{
+			"file": "audio/voice/walla/walla_ns_007.ogg",
+			"category": "walla_source",
+			"duration_seconds": 3.455,
+			"ids": [
+				"walla_ns_007"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "8cb6ffe066d8971ffb11c59ea98b5d33dd93be3118842b88a4287c9bc884a944",
+			"source": "Kokoro TTS voice 'af_nicole' speed 1.05, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "walla_staff_a",
+			"text": "Okay. Thanks. I'll let the day team know."
+		},
+		{
+			"file": "audio/voice/walla/walla_ns_008.ogg",
+			"category": "walla_source",
+			"duration_seconds": 2.511,
+			"ids": [
+				"walla_ns_008"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "478a78ed35d242f5db6959b4a4c536229b3b0cdb89d7a694fc7158c0f6106a11",
+			"source": "Kokoro TTS voice 'am_michael' speed 1.05, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "walla_staff_b",
+			"text": "Is the coffee machine working on this floor yet?"
 		}
 	]
 }

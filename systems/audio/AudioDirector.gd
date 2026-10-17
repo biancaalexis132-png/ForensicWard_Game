@@ -80,9 +80,10 @@ var _shift: String = "day"
 var _music_intensity: float = 1.0
 var _music_state: String = ""
 var _ambience_players: Array[AudioStreamPlayer] = []
-var _ambience_slot: int = 0
+var _detail_players: Array[AudioStreamPlayer] = [] ## Optional second ambience layer.
 var _music_players: Array[AudioStreamPlayer] = []
-var _music_slot: int = 0
+var _slots: Dictionary = {"ambience": 0, "detail": 0, "music": 0} ## Active slot per two-slot layer.
+var _randomizers: Dictionary = {} ## cue_id -> AudioStreamRandomizer for multi-take cues.
 var _tweens: Dictionary = {} ## Object -> Tween, so a new fade replaces the old one.
 var _current_line_id: String = ""
 var _current_voice: Node = null
@@ -103,6 +104,7 @@ func _ready() -> void:
 	_load_narrative()
 	for slot: int in 2:
 		_ambience_players.append(_new_player("AmbienceBed", "Ambience%d" % slot))
+		_detail_players.append(_new_player("AmbienceBed", "AmbienceDetail%d" % slot))
 		_music_players.append(_new_player("Music", "Music%d" % slot))
 	_load_settings()
 	_shift = GameState.shift
@@ -184,12 +186,18 @@ func set_location(location_id: String, fade_seconds: float = 2.0) -> void:
 ## Fades out all ambience and forgets the location (e.g. menus, cutscenes in silence).
 func stop_ambience(fade_seconds: float = 2.0) -> void:
 	_location = ""
-	_crossfade(_ambience_players, true, "", 0.0, fade_seconds)
+	_crossfade(_ambience_players, "ambience", "", 0.0, fade_seconds)
+	_crossfade(_detail_players, "detail", "", 0.0, fade_seconds)
 
 
 ## The ambience player currently fading in or playing (for tests and debugging).
 func get_active_ambience() -> AudioStreamPlayer:
-	return _ambience_players[_ambience_slot]
+	return _ambience_players[_slots["ambience"]]
+
+
+## The detail-layer player (e.g. distant chatter over the base bed).
+func get_active_ambience_detail() -> AudioStreamPlayer:
+	return _detail_players[_slots["detail"]]
 
 
 func _on_shift_started(_day: int, shift: String) -> void:
@@ -201,7 +209,8 @@ func _on_shift_started(_day: int, shift: String) -> void:
 func _apply_location(fade_seconds: float) -> void:
 	var location: Dictionary = _locations[_location]
 	var layer: Dictionary = location.get(_shift, location.get("day", {}))
-	_crossfade(_ambience_players, true, str(layer.get("ambience", "")), float(layer.get("volume_db", 0.0)), fade_seconds)
+	_crossfade(_ambience_players, "ambience", str(layer.get("ambience", "")), float(layer.get("volume_db", 0.0)), fade_seconds)
+	_crossfade(_detail_players, "detail", str(layer.get("detail", "")), float(layer.get("detail_volume_db", 0.0)), fade_seconds)
 	if layer.has("music_state"):
 		set_music_state(str(layer["music_state"]), maxf(fade_seconds, 3.0))
 	var cutoff: float = float(layer.get("lowpass_hz", LOWPASS_OPEN_HZ))
@@ -222,7 +231,7 @@ func _apply_location(fade_seconds: float) -> void:
 ## Playing a cue directly leaves any music state.
 func play_music(cue_id: String, fade_seconds: float = 3.0) -> void:
 	_music_state = ""
-	_crossfade(_music_players, false, cue_id, 0.0, fade_seconds)
+	_crossfade(_music_players, "music", cue_id, 0.0, fade_seconds)
 
 
 func stop_music(fade_seconds: float = 3.0) -> void:
@@ -236,7 +245,7 @@ func set_music_state(state_id: String, fade_seconds: float = 4.0) -> void:
 		push_warning("AudioDirector: unknown music state '%s'" % state_id)
 		return
 	_music_state = state_id
-	_crossfade(_music_players, false, _variant_for_intensity(), 0.0, fade_seconds)
+	_crossfade(_music_players, "music", _variant_for_intensity(), 0.0, fade_seconds)
 
 
 func get_music_state() -> String:
@@ -266,7 +275,7 @@ func _variant_for_intensity() -> String:
 
 
 func get_active_music() -> AudioStreamPlayer:
-	return _music_players[_music_slot]
+	return _music_players[_slots["music"]]
 
 
 ## 0 = restrained (dark, filtered), 1 = full. Clamped by the music_intensity_cap setting.
@@ -277,7 +286,7 @@ func set_music_intensity(value: float, fade_seconds: float = 2.0) -> void:
 	if _music_lowpass != null:
 		_tween(_music_lowpass, "cutoff_hz", cutoff, fade_seconds)
 	if not _music_state.is_empty():
-		_crossfade(_music_players, false, _variant_for_intensity(), 0.0, MUSIC_VARIANT_FADE)
+		_crossfade(_music_players, "music", _variant_for_intensity(), 0.0, MUSIC_VARIANT_FADE)
 
 
 ## One-shot musical transition on the Music bus, layered over any music bed.
@@ -315,7 +324,7 @@ func play_sfx_3d(cue_id: String, world_position: Vector3) -> AudioStreamPlayer3D
 		return null
 	var player: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 	player.name = "SFX3D_" + cue_id
-	player.stream = load(cue["stream"])
+	player.stream = _cue_stream(cue_id, cue)
 	player.bus = cue.get("bus", "SFX")
 	player.max_distance = float(cue.get("max_distance", 25.0))
 	player.unit_size = float(cue.get("unit_size", 3.0))
@@ -331,7 +340,7 @@ func _play_cue_2d(cue_id: String) -> AudioStreamPlayer:
 	if cue.is_empty():
 		return null
 	var player: AudioStreamPlayer = _new_player(cue.get("bus", "SFX"), "SFX_" + cue_id)
-	player.stream = load(cue["stream"])
+	player.stream = _cue_stream(cue_id, cue)
 	_start_one_shot(player, cue)
 	return player
 
@@ -587,9 +596,10 @@ func _load_cues() -> void:
 				for shift: String in ai["location_music"][location_id]:
 					_locations[location_id].get(shift, {})["music_state"] = ai["location_music"][location_id][shift]
 	for cue_id: String in _cues:
-		var path: String = _cues[cue_id].get("stream", "")
-		if not ResourceLoader.exists(path):
-			push_error("AudioDirector: cue '%s' stream not found: %s" % [cue_id, path])
+		var paths: Array = _cues[cue_id].get("streams", [_cues[cue_id].get("stream", "")])
+		for path: String in paths:
+			if not ResourceLoader.exists(path):
+				push_error("AudioDirector: cue '%s' stream not found: %s" % [cue_id, path])
 
 
 func _load_cue_sheet_music(data: Dictionary) -> void:
@@ -638,9 +648,27 @@ func _new_player(bus_name: String, player_name: String) -> AudioStreamPlayer:
 	return player
 
 
-## Two-slot crossfade used by ambience and music. Same cue: only retargets volume.
-func _crossfade(players: Array[AudioStreamPlayer], is_ambience: bool, cue_id: String, target_db: float, fade_seconds: float) -> void:
-	var slot: int = _ambience_slot if is_ambience else _music_slot
+## One-shot stream for a cue. Cues with "streams" (several takes) become an
+## AudioStreamRandomizer that picks a take and varies pitch, so repeated
+## footsteps or key presses never sound machine-gunned.
+func _cue_stream(cue_id: String, cue: Dictionary) -> AudioStream:
+	if not cue.has("streams"):
+		return load(cue["stream"])
+	if not _randomizers.has(cue_id):
+		var randomizer: AudioStreamRandomizer = AudioStreamRandomizer.new()
+		randomizer.playback_mode = AudioStreamRandomizer.PLAYBACK_RANDOM_NO_REPEATS
+		randomizer.random_pitch = float(cue.get("random_pitch", 1.05))
+		randomizer.random_volume_offset_db = float(cue.get("random_volume_db", 1.5))
+		for path: String in cue["streams"]:
+			randomizer.add_stream(-1, load(path))
+		_randomizers[cue_id] = randomizer
+	return _randomizers[cue_id]
+
+
+## Two-slot crossfade used by ambience, its detail layer and music. Same cue:
+## only retargets volume. `layer` is a key of _slots.
+func _crossfade(players: Array[AudioStreamPlayer], layer: String, cue_id: String, target_db: float, fade_seconds: float) -> void:
+	var slot: int = _slots[layer]
 	var current: AudioStreamPlayer = players[slot]
 	var cue: Dictionary = _cues.get(cue_id, {})
 	var stream_path: String = cue.get("stream", "")
@@ -662,10 +690,7 @@ func _crossfade(players: Array[AudioStreamPlayer], is_ambience: bool, cue_id: St
 	incoming.volume_db = SILENT_DB
 	incoming.play()
 	_fade(incoming, target_db, fade_seconds)
-	if is_ambience:
-		_ambience_slot = slot
-	else:
-		_music_slot = slot
+	_slots[layer] = slot
 
 
 ## Fades in perceptual (linear gain) space so fade-ins don't jump at the end.

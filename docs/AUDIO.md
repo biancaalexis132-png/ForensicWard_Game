@@ -43,8 +43,8 @@ Buses (created at startup if no bus layout defines them):
 
 API (all data-driven from `audio/cues.json`):
 
-- `set_location(id)`: crossfades to the location's ambience for the current shift (`day`/`night`) and applies its room reverb. `EventBus.shift_started` retargets the ambience automatically, using a 4 s crossfade.
-- `play_sfx(cue)` / `play_sfx_3d(cue, position)`: plays a one-shot that frees itself when finished. 3D sounds use distance attenuation and filtering.
+- `set_location(id)`: crossfades to the location's ambience for the current shift (`day`/`night`) and applies its room reverb. A shift can also name a `detail` layer, such as distant staff chatter or old intercom static, which crossfades over the base bed. Locations are `corridor`, `nursing_station`, `historical_wing` and `ward_zero`. `EventBus.shift_started` retargets the ambience automatically, using a 4 s crossfade.
+- `play_sfx(cue)` / `play_sfx_3d(cue, position)`: plays a one-shot that frees itself when finished. 3D sounds use distance attenuation and filtering. Cues with a `streams` list, such as footsteps and key presses, play through an `AudioStreamRandomizer`, which picks a random take (never the same one twice in a row) with slight pitch and volume variation. For footsteps, call `play_sfx_3d("sfx_footstep_<vinyl|tile|concrete>", foot_position)`.
 - `play_music(cue)`, `set_music_state(state)`, `set_music_intensity(0..1)`: a music state has calm/tense variants (`min_intensity`). Changing the intensity crossfades between variants over 4 s and opens the Music low-pass filter.
 - `play_stinger(cue)`: one-shot transition. `duck_ambience_db` creates a controlled silence under it.
 - `play_line(line_id[, emitter])` / `play_scene(scene_id)`: plays dialogue from `data/narrative`. `EventBus.subtitle_shown` fires when the voice starts, with the clip's exact duration, and `subtitle_cleared` fires when it ends or is skipped. Music ducks by 9 dB and ambience by 4 dB while anyone speaks, and both are restored 1.2 s after the last line. Unvoiced lines still show their subtitles.
@@ -110,7 +110,7 @@ These are all stock synthetic Kokoro voices. No real person's voice is cloned.
 
 ## Tests
 
-- `tests/audio/TestAudio.tscn`: 92 assertions in headless Godot. They cover buses, volumes, mute and clamping; that every manifest asset loads and matches its duration; voice clips for every line; day/night/location ambience and reverb; 2D and 3D events; that unmapped events stay silent and one-shots clean up; startle reduction; the intensity cap; subtitle timing against clip length; skip/stop; positional dialogue; that bleed stage alone triggers no audio; music-state variant crossfades; and dialogue ducking and recovery.
+- `tests/audio/TestAudio.tscn`: 211 assertions in headless Godot (many are per-asset checks). They cover buses, volumes, mute and clamping; that every manifest asset loads and matches its duration; voice clips for every line; day/night/location ambience and reverb; 2D and 3D events; that unmapped events stay silent and one-shots clean up; startle reduction; the intensity cap; subtitle timing against clip length; skip/stop; positional dialogue; that bleed stage alone triggers no audio; music-state variant crossfades; dialogue ducking and recovery; multi-take randomizers; detail ambience layers; Ward Zero acoustics; and anomalies that only play from explicit events and are softened by the accessibility option.
 - `scenes/audio/Ch1AudioSequence.tscn -- --exit-when-done`: runs the full Chapter 1 sequence (about 61 s) and checks the order of beats.
 - `tests/qa/test_audio_manifest.py`: checks, using only the standard library, that the manifest matches the files and that cues, events, lines and profiles are consistent.
 - `tests/music_ai/test_generate_music.py`: tests the ACE-Step client against a **mock** server: submit, poll, download, decode check, loudness, loop seam, import. It does not test ACE-Step itself.
@@ -121,5 +121,23 @@ Headless Godot uses the Dummy audio driver, so these tests confirm playback stat
 
 - The procedural assets are functional placeholders. Synthesized door, pager and ambience are plausible but not Foley-grade. The transition is a synthesized sketch, **not** the AI score.
 - TTS pronunciation and delivery have not been reviewed by ear. No speech recognition was available offline to check them automatically.
-- Only a corridor ambience exists so far. Nursing station and night currently reuse it, filtered.
-- Footsteps, badge reader (separate from the door), computer UI, elevator, distant conversations, historic intercom static bed, electrical disturbances and Ward Zero anomalies are not yet produced (see "Workstream status" below).
+- Distant staff walla is Kokoro speech low-passed at 1.1 kHz, so a few words may still be audible. It is harmless filler text from `data/narrative/walla.json`, which must never carry clues.
+- Night currently reuses the day beds with filtering. There is no dedicated night or reception bed yet.
+
+## Workstream status (audio)
+
+The project-wide status board and handoff log are proposed in PR #4 (`docs/PROJECT_STATUS.md`, `docs/AI_HANDOFF.md`). Until that merges, the audio workstream's state is recorded here.
+
+| Item | State |
+|---|---|
+| AudioDirector, Chapter 1 sequence | Merged to `main` (PR #3) |
+| Environment set: footsteps ×3 surfaces, badge accept/deny, EHR UI, elevator, distant staff, nursing station, historic static, electrical flicker/surge, Ward Zero bed + knocks + pressure swell | On `claude/quirky-ptolemy-6j16b7` (PR #5), tests green; not reviewed by ear |
+| ACE-Step 1.5 Mac kit with reference-audio support | On PR #5; **AI music milestone open**: no ACE-Step audio exists yet |
+| Gameplay hooks | Not wired: the player controller (PR #1) should call footsteps per surface, doors and badge readers should fire the `ch1_badge_*` events, and the EHR should fire `ch1_ehr_*` |
+
+Next steps, in order:
+
+1. **Owner, on the Mac:** follow `docs/MUSIC_AI_MAC_GUIDE.md` §2–4 and choose one of the three main-menu directions.
+2. **Any agent:** after approval, generate the other cues with `--reference main_theme`, approve the chosen takes, and map them in `audio/music_ai/music_cues.json` (`location_music`, `events`).
+3. **Gameplay integration, after PR #1 lands:** call `AudioDirector.play_sfx_3d("sfx_footstep_<surface>", ...)` from the first-person controller, fire `narrative_event_fired` for doors, badges, EHR and the elevator, and call `set_location` on room transitions.
+4. **Audio:** add a reception bed, a dedicated night bed and a second protagonist voice profile, then voice further lines as the narrative team adds them to `data/narrative/`.
