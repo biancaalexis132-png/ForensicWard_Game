@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Protagonist specification / save QA | `codex/protagonist-foundation-cont-1` | Codex | `01739ff70136d191704b694fbf32d6b9e28ee26d` (implementation checkpoint) | `docs/{PROJECT_STATUS,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER,REPOSITORY_RECONCILIATION}.md`, `docs/design/{GDD_AMENDMENTS,PROTAGONIST_CUSTOMIZATION_PLAN}.md`, new `scripts/tests/test_save_compatibility.gd` + UID | Complete, awaiting owner plan review; draft PR blocked by API access |
+| Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex; owner approved “continue” | `dd247bed93fca9bb95cbf2864eae964975358c23` (base) | `scripts/protagonist/*`, new `scripts/tests/test_protagonist.gd` + fixtures, input-contract/ID/proposal docs and own continuity updates | Implemented; import and 131/0 TestRunner passed; full combined validation follows canon metadata |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 

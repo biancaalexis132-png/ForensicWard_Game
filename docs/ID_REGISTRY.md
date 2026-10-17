@@ -55,3 +55,7 @@ From the v1.1 handoff package. Reserving an id does not approve its content.
 | Later hypotheses | `hyp_time_gap` (Ch2), `hyp_legacy_bridge` (Ch3), `hyp_known_risk_not_remediated` (Ch4) |
 
 Not reserved on purpose: the package's `obs_elias_*` set, which would duplicate the meaning of `obs_mutism` and `obs_posturing` (F0 §3).
+
+## Protagonist option contract (P1)
+
+Prefix `popt_` is reserved for future authored protagonist catalog options. `ProtagonistValidator` checks syntax, a nonempty suffix, group-specific references and uniqueness across a supplied catalog. It is not yet integrated into ContentRegistry/global shipped-content validation. `popt_fixture_*` IDs under `scripts/tests/fixtures/protagonist/` are synthetic test data, not approved player options or reserved narrative content. No authored protagonist catalog ships in `data/`.

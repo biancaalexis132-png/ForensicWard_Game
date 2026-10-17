@@ -96,3 +96,9 @@ Headless checks do not cover these. They stay here until the owner confirms them
 - Baseline on `fb07887`: Python 6+3+3 passed; pharmacology 0 failures; QA 19 passed/0 failed/0 skipped; GLB 138/138; TestRunner 112/0; boot OK; audio 271/0; Chapter 1 sequence complete; runner exit 0. Headless Linux only; hosted CI not observed.
 - Independent regression suite complete on feature branch `codex/protagonist-foundation-cont-1` at `01739ff`: four new tests; full runner exit 0, TestRunner 116/0 and all other baseline checks unchanged. No runtime/save schema/clinical/visual change. Not merged; PR creation blocked by API proxy denial. See session handoff.
 - Missing source dependency: private v1.1 bible package is not accessible here or committed. Available GDD, engineering contract, PDF character guide and reference READMEs were inspected. No replacement canon is invented.
+
+## P1 and ongoing owner updates
+
+PR #29 merged the proposal/save QA into main at `dd247bed93fca9bb95cbf2864eae964975358c23`. Owner approved P1 with “continue”. `codex/protagonist-schema-p1` adds only pure creation-draft/catalog contracts and synthetic tests: import passed, TestRunner 131/0 (15 new). No provider/save-schema/creator/gameplay change. Later phases remain proposed.
+
+PR #27’s conflicts against that main were resolved and pushed to `claude/ashcroft-soundtrack` at `412b5010c8ccd8ba0e19e983b4346b5d90482d34`; code was not merged to main by the agent. Full audio QA passed 334/0; the latest-main combined TestRunner passed 116/0. Hosted PR/CI status remains API-blocked. Character D1–D3 and opening-direction updates received this session are being recorded in a separate canon/proposal checkpoint.

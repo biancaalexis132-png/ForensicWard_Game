@@ -1,6 +1,6 @@
 # Protagonist customization: phased implementation proposal
 
-**Status: proposed engineering design, awaiting owner approval before implementation.** This session implements only independent save regression tests. No character creator, personality system, authored background content or save-version change ships with this document.
+**Status: P1 catalog/schema and pure validation scope approved by the owner’s “continue” reply in this Codex session, 2026-10-17. Later phases remain proposed.** The original proposal checkpoint implemented only independent save regression tests. No character creator, personality system, authored background content or save-version change ships with this document.
 
 ## Approved requirements and source boundaries
 
@@ -104,10 +104,14 @@ Stage 6 geometry, character casting D1–D3, Ward Zero D4–D8, new voices, ligh
 | P6 | Reviewed callbacks across five chapters as each chapter is authored | Branch reachability matrix for all backgrounds/history omissions; major outcomes accessible; clinical review where relevant |
 | P7 | Optional richer preview/voice and contextual personality interpretation | Owner approves scope; performance and accessibility gates; no permanent class or universal scoring |
 
-Each PR is a feature branch and draft PR; owner merges. Dependencies P1→P2→P3; P4/P5 follow P3 and their content approvals. Do not begin P1 until the owner approves this design. Full `tests/qa/run.py` is required for gameplay/persistence changes; use existing runner discovery for new GDScript suites. Fixtures for unapproved future content remain under tests, not shipped `data/`.
+Each PR is a feature branch and draft PR; owner merges. Dependencies P1→P2→P3; P4/P5 follow P3 and their content approvals. P1 was authorized by the owner’s continuation reply; its creation-draft contract is documented in `PROTAGONIST_INPUT_CONTRACT.md`. Later persistence/UI/content phases remain separate review scopes. Full `tests/qa/run.py` is required for gameplay/persistence changes; use existing runner discovery for new GDScript suites. Fixtures for unapproved future content remain under tests, not shipped `data/`.
 
 ## Validation matrix and decisions needed
 
 Test real migration chains, old saves with missing optional providers, rejection without state/seed/event changes, deterministic replay/dedupe, Unicode/length/escaping, unknown appearance IDs, new run reset and interrupted draft creation. Compare PatientManager/ClinicalRules results across every background and narrative tendency; assert no mandatory clue or clinical option is lost. Verify optional callbacks persist across chapter changes, cannot alter anomaly evidence, and tolerate decline/skip paths. Audio tests need text fallback and no autoplay requirement. Visual/input/accessibility/frame-time claims require Mac checks.
 
 Owner decisions needed: approve phased architecture and P1 scope; approve option catalog/limits and wording; choose whether professional background is single primary interest or multiple experiences (recommend one initially); review custom pronoun form set/localization; approve edit policy and name history; choose appearance pipeline and assets; approve each optional personal callback and any later trend interpretation. Fixed psychiatrist role, moderate personal life and emergent personality are already decided and are not re-requested. D1–D9 and F0 C2/C6/C7 remain separate open decisions; no blanket visual or F3 approval is inferred.
+
+## P1 implementation checkpoint
+
+`ProtagonistSchemas` and `ProtagonistValidator` implement strict, pure creation-draft/catalog validation with synthetic fixtures. No authored catalog, autoload, ContentRegistry hook, save provider/version/migration, UI, personality ledger or clinical effect is introduced. The full illustrative future save payload above is not the P1 draft API: P1 accepts identity/appearance/background and version/creation state only; choice ledger/callback delivery fields are deferred. Unknown IDs are rejected for new drafts; saved-profile compatibility/fallback remains a P2 design responsibility. Fifteen new tests passed, taking TestRunner from 116 to 131. See `PROTAGONIST_INPUT_CONTRACT.md`.

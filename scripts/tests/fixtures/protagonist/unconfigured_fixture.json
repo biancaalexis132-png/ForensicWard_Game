@@ -1,0 +1,32 @@
+{
+	"profile_version": 1,
+	"creation_state": "unconfigured",
+	"identity": {
+		"name": "",
+		"professional_role": "psychiatrist",
+		"pronouns": {
+			"preset_id": "",
+			"subject": "",
+			"object": "",
+			"possessive": ""
+		}
+	},
+	"appearance": {
+		"body_preset_id": "",
+		"face_preset_id": "",
+		"skin_tone_id": "",
+		"hair_style_id": "",
+		"hair_texture_id": "",
+		"hair_color_id": "",
+		"outfit_id": "",
+		"voice_id": "",
+		"accessory_ids": []
+	},
+	"background": {
+		"professional_interest_id": "",
+		"acceptance_reason_id": "",
+		"formative_experience_ids": [],
+		"relationship_ids": [],
+		"outside_life_ids": []
+	}
+}

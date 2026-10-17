@@ -1,0 +1,100 @@
+{
+	"catalog_version": 1,
+	"groups": {
+		"body_presets": [
+			{
+				"id": "popt_fixture_body_presets",
+				"label": "Synthetic body_presets"
+			}
+		],
+		"face_presets": [
+			{
+				"id": "popt_fixture_face_presets",
+				"label": "Synthetic face_presets"
+			}
+		],
+		"skin_tones": [
+			{
+				"id": "popt_fixture_skin_tones",
+				"label": "Synthetic skin_tones"
+			}
+		],
+		"hair_styles": [
+			{
+				"id": "popt_fixture_hair_styles",
+				"label": "Synthetic hair_styles"
+			}
+		],
+		"hair_textures": [
+			{
+				"id": "popt_fixture_hair_textures",
+				"label": "Synthetic hair_textures"
+			}
+		],
+		"hair_colors": [
+			{
+				"id": "popt_fixture_hair_colors",
+				"label": "Synthetic hair_colors"
+			}
+		],
+		"outfits": [
+			{
+				"id": "popt_fixture_outfits",
+				"label": "Synthetic outfits"
+			}
+		],
+		"accessories": [
+			{
+				"id": "popt_fixture_accessories",
+				"label": "Synthetic accessories"
+			}
+		],
+		"voices": [
+			{
+				"id": "popt_fixture_voices",
+				"label": "Synthetic voices"
+			}
+		],
+		"professional_interests": [
+			{
+				"id": "popt_fixture_professional_interests",
+				"label": "Synthetic professional_interests"
+			}
+		],
+		"acceptance_reasons": [
+			{
+				"id": "popt_fixture_acceptance_reasons",
+				"label": "Synthetic acceptance_reasons"
+			}
+		],
+		"formative_experiences": [
+			{
+				"id": "popt_fixture_formative_experiences",
+				"label": "Synthetic formative_experiences"
+			}
+		],
+		"relationships": [
+			{
+				"id": "popt_fixture_relationships",
+				"label": "Synthetic relationships"
+			}
+		],
+		"outside_life": [
+			{
+				"id": "popt_fixture_outside_life",
+				"label": "Synthetic outside_life"
+			}
+		],
+		"pronouns": [
+			{
+				"id": "popt_fixture_pronouns",
+				"label": "Synthetic pronoun preset",
+				"forms": {
+					"subject": "they",
+					"object": "them",
+					"possessive": "their"
+				}
+			}
+		]
+	}
+}

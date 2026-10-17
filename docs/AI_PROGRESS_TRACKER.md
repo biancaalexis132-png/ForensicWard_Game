@@ -11,7 +11,7 @@ _Last updated: 2026-10-17 · Codex protagonist foundation continuation._
 
 ## Completed this continuation (awaiting review, not merged)
 
-- **Protagonist customization proposal / reconciliation** · `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md`, status/handoff docs · deps: owner handoff; F1/F2 already merged · validation: baseline full QA passed on `fb07887` · next: owner review of plan/P1, no creator implementation yet.
+- **Protagonist customization proposal / reconciliation** · `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md`, status/handoff docs · deps: owner handoff; F1/F2 already merged · validation: baseline full QA passed on `fb07887` · next: P1 authorized by owner “continue”; later phases remain separate scopes.
 - **Independent save-compatibility regression coverage** · new `scripts/tests/test_save_compatibility.gd` · deps: existing public SaveManager contracts · validation: full QA exit 0, TestRunner 116/0; pushed `01739ff` · next: create draft PR after GitHub API network access is applied.
 
 ## Pending (not started, waiting on approval)
@@ -37,4 +37,10 @@ F0 PR #20, F1 #21, F2 #26 and review #28 are merged on `fb07887`; stale historic
 
 ## Continuation stopping point
 
-Implementation and proposal are pushed; no unexplained QA failures. Draft PR creation is blocked by API CONNECT 403. Prepared PR body is local at `/workspace/protagonist-foundation-pr.md`; full report/resume steps are in `AI_SESSION_HANDOFF.md`. Next implementation is P1 only after owner approval. No creator or save-version change has been made.
+Implementation and proposal are pushed; no unexplained QA failures. Draft PR creation is blocked by API CONNECT 403. Prepared PR body is local at `/workspace/protagonist-foundation-pr.md`; full report/resume steps are in `AI_SESSION_HANDOFF.md`. P1 is authorized and implemented on its feature branch; later phases remain separate scopes. No creator or save-version change has been made.
+
+## P1 continuation, 2026-10-17
+
+- **Completed in feature branch:** pure protagonist catalog/creation-draft schema and validation, synthetic fixtures, 15 new tests. Import passed; TestRunner 131 passed / 0 failed. No shipped choices, gameplay hooks or save version change. Paths: `scripts/protagonist/`, `scripts/tests/test_protagonist.gd`, `docs/design/PROTAGONIST_INPUT_CONTRACT.md`.
+- **PR #27 conflicts resolved:** original soundtrack branch fast-forward pushed and verified at `412b5010c8ccd8ba0e19e983b4346b5d90482d34`; no agent merge. Full audio validation 334/0 and combined gameplay tests 116/0.
+- **Upcoming authorized work:** owner’s pasted character decision approves D1–D3; canon/metadata and regeneration documentation/candidates follow separately. New Chapter 1 opening direction requires comparison/proposal only, preserving current scenes/data/dialogue. D4–D9 remain unresolved.
