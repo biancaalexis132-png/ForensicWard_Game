@@ -13,7 +13,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Sprints 1–3 integration | `claude/integration-sprints-1-3` (draft PR to `main`) | Claude | `99c2eaf453e13d44932f73a7c7f30ad54a18bf3e` | `README.md` (merge resolution), `docs/INTEGRATION_SPRINTS_1_3.md`, `docs/PROJECT_STATUS.md`, this file. Otherwise no edits beyond the merge | Awaiting owner review and merge; replaces PRs #1, #6, #7, #8 |
 | Sprint 1 integration | `claude/integrate-sprint-01` (draft PR) | Claude | `8ca85bce79f08f19ce75e00c33502a4e4af14146` | `project.godot`, `scripts/autoload/EventBus.gd`, `scripts/autoload/GameState.gd`, `scenes/main/Main.*`, `scripts/main/Main.gd`, `tests/qa/run.py`, `tests/qa/TestQA.gd`, `docs/TESTING.md` | Awaiting owner review and merge |
 | Sprint 1 foundation | `claude/sprint-01-foundation` (PR #1) | Claude | `f626aad7be1c9a443762a5b2cd3591601c1b14bc` | Superseded by the integration PR | Close after the integration PR merges |
-| Environment art, Stage 4b research wing | `claude/environment-stage-4b` (draft PR to `main`) | Claude | `90315575dd91f9fe8c8fd480b63c52309ed0c1cb` (plus a merge of `main`) | `tools/blender/build_stage4_research.py`, `tools/blender/build_stage4_security_admin.py` (facing fix), `tools/blender/{fw_assets,fw_lib}.py` (Stage 4b sections), `assets/{blender,exports}/research/**`, `assets/renders/stage4/**`, `assets/asset_manifest/**`, `docs/ENVIRONMENT_*.md` | Awaiting owner review and merge. Stage 5 historic substructure next |
+| Environment art, Stage 5 historic substructure | `claude/environment-stage-5` (draft PR to `main`) | Claude | `e57560e` (plus a merge of `main`) | `tools/blender/build_stage5_historic.py`, `tools/blender/{fw_assets,fw_lib}.py` (Stage 5 sections), `assets/{blender,exports}/historic/**`, `assets/renders/stage5/**`, `assets/asset_manifest/**`, `docs/ENVIRONMENT_*.md` | Awaiting owner review and merge. Stage 6 Ward Zero next |
 | Chapter 1 playable | `claude/chapter1-playable` (PR #7) | Claude | `60ed74fe882385535425f2038add243f93cc4b9e` | `scripts/world/**`, `scripts/autoload/WorldStateManager.gd`, `data/world_chapter1.json`, `scenes/world/Chapter1Ward.tscn`, `scripts/tests/test_world.gd`, `docs/CHAPTER1_PLAYABLE.md` | Integration branch merged in; awaiting review |
 | Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
 | Sprint 3 story, evidence, shift | `claude/sprint-03-evidence-shift` (draft PR, base `claude/sprint-02-ehr-interview`) | Claude | see newest log entry | `scripts/narrative/**`, `data/story_chapter1.json`, `scripts/ui/EvidenceBoard.gd`, `scripts/world/AudioZoneTracker.gd`, `scripts/tests/test_sprint3.gd`; small edits to `scripts/main/Main.gd`, `scripts/autoload/EventBus.gd`, `scripts/ui/{HUD,PauseMenu}.gd` | Awaiting review |
@@ -62,6 +62,43 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 20:20 UTC · Claude Code · Environment Stage 5 historic substructure
+
+- **Branch:** `claude/environment-stage-5` (from `main` after PR #17), then `main` at `d21cff7` merged in
+- **Latest verified commit:** `e57560e` "Build Stage 5 historic substructure: 13 props, 13 sublevel rooms", plus merge `faf6f50` of `main`
+- **Confirmed on GitHub:** see `git ls-remote origin claude/environment-stage-5`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- 13 historic props (`assets/exports/historic/props/`): iron bed, instrument cabinet, hydrotherapy tub, exam table, steel desk, wooden chair, card index (one drawer missing), medication shelf, knife-switch fuse panel, caged bulkhead lamp, records vault door, steep service stair, cast-iron radiator. 17 aged palette materials in `fw_lib.py`.
+- 13 spaces (`assets/exports/historic/env/`) on a sublevel with the Chapter 1 x/y and floor z = 0: a 24 m historic corridor with the lift landing under (0, 44), the mechanical corridor, the sealed connecting corridor (brick infill is `state_group: sealed_corridor_end` for Stage 6), records archive, admin office, former patient rooms 1 and 2, abandoned nursing station, two observation cells, hydrotherapy treatment room, medication storage, stairwell (stair top under the Stage 4a hatch, asserted) and the records vault.
+- Uneven tungsten lighting: watts vary, some `LIGHTMARK_*` carry `flicker: true`, dead lamps have no light. Hooks carry `story_tag: historic_record`; medical-looking documents are `clinical_review_status: PENDING`.
+- Render review fixed a black observation shot (camera moved into the lit cell; the dark cell keeps `CAM_OB_DarkCell`) and moved the vault shelving clear of the door swing.
+
+**Files modified**
+- New: `tools/blender/build_stage5_historic.py`, `assets/blender/historic/*.blend`, exports and their `.import` files, `assets/renders/stage5/*.png`.
+- `tools/blender/fw_assets.py`, `tools/blender/fw_lib.py` (Stage 5 sections), `assets/asset_manifest/asset_manifest.{json,md}`, `docs/ENVIRONMENT_STAGES.md`, `docs/ENVIRONMENT_PIPELINE.md`, `docs/PROJECT_STATUS.md`, this file.
+
+**Unfinished**
+- Not wired into gameplay: no level scene, no stair climb interaction, no lift or hatch transition.
+- Placement, layout, the hydrotherapy fit-out and every storytelling detail are assumptions for creative review.
+
+**Known errors**
+- The service stair is about 60 degrees, too steep to walk; it needs a climb interaction. Its collider only blocks walking through it.
+
+**Tests** (on the merged tree, before this doc commit)
+- `python3 tests/qa/run.py` with Godot 4.7 (4.7.stable.official.5b4e0cb0f): exit 0. Python suites 6/6, 3/3, 3/3, TestQA 19 / 0 / 0, `.glb` validation 138/138, TestRunner 80 / 0, TestAudio 271 / 0, "All executed checks passed".
+- `build_stage5_historic.py` with Blender 5.0.1 (`bpy`): "STAGE5 HISTORIC OK: 13 props, 13 environments exported".
+
+**Dependencies not available to remote agents**
+- Mac-only checks (Forward+ look in Godot).
+
+**Next steps**
+1. Owner reviews and merges this PR.
+2. Stage 6 Ward Zero, opened from the sealed corridor's brick `state_group`.
+3. Gameplay: the stair climb and the lift and hatch transitions.
 
 ### 2026-10-17 19:55 UTC · Claude Code · Audio: original soundtrack
 

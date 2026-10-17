@@ -8,7 +8,7 @@ Pipeline, conventions and validation: see [`ENVIRONMENT_PIPELINE.md`](ENVIRONMEN
 | 2 Opening-chapter environments | Corridor, office, Interview Room A, nursing station, 2 patient rooms (plus records archive) | **Done (v1, untextured)** |
 | 3 Clinical and cinematic props | EHR terminal, clinical furniture, fixtures, interview camera markers, medication, ward-bed, linen and emergency equipment | **Done (v1, untextured).** 36 props and interview cameras. The nursing station now carries the medication cart (with sharps bin), resuscitation trolley, AED cabinet and hand-gel dispenser; the other Stage 3 props are library-only until the rooms that need them exist. |
 | 4 Security, admin and research wings | Security corridor, visitor screening, credentialing, records, medical director's office, conference room, secure interview suite, security control, surveillance, maintenance access, restricted lift lobby; research reception, research and restricted corridors, physician offices, data analysis, records archive, protocol office, assessment and observation rooms, lab support, sample storage | **Done (v1, untextured).** 4a: 13 props, 11 rooms. 4b: 8 props, 12 rooms on the research level the restricted lift serves. |
-| 5 Historic substructure | | Not started (the W0-B historic service door exists) |
+| 5 Historic substructure | Stairwell, abandoned nursing station, former patient rooms, treatment room, medication storage, paper records archive, mechanical corridor, closed observation rooms, admin office, records vault, sealed connecting corridor | **Done (v1, untextured).** 13 props, 13 spaces on the sublevel under the maintenance hatch. |
 | 6 Ward Zero canonical layout and anomaly states | | Not started. The state mechanism exists: `state_group` extras plus `WorldStateManager` on the gameplay branch. |
 | 7 Apartment, parking, exterior | | Not started |
 | 8 Polish | Textures/UVs, LODs, lightmap UV2, trim sheets | Not started |
@@ -89,6 +89,27 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 - **Layout.** Reception and the lift landing (y 40–44) open south into a 12 m research corridor. West side: physician offices A and B, data analysis office. East side: clinical assessment room, observation and monitoring room (one-way window into the assessment room), lab support. A badge-and-PIN door at y = 28 leads to an 8 m restricted corridor that dead-ends at y = 20. Off it are the research records archive, the unsigned protocol office and secure sample storage.
 - **Tone.** It reads as a clean, legitimate research unit. The unease comes only from small details, each tagged `story_tag: research_inconsistency` with a `godot_hint`: the protocol office has no sign and the heaviest lock; whiteboards were wiped in a hurry; one archive bay was emptied; office B was cleared out; one freezer has a second padlock and no label; the observation room seats more observers than one assessment needs; a second camera is aimed at the assessment chair. The hints describe what the player sees, never a clinical fact, and the protocol binder is marked `clinical_review_status: PENDING`.
 
+## Stage 5 deliverables (historic asylum substructure)
+
+| Deliverable | Location |
+|---|---|
+| Prop source | `assets/blender/historic/FW_Props_Historic.blend` |
+| Prop exports (13) | `assets/exports/historic/props/*.glb` |
+| Level source | `assets/blender/historic/FW_HistoricSubstructure.blend` |
+| Space exports (13) | `assets/exports/historic/env/*.glb` |
+| Renders | `assets/renders/stage5/` (props sheet, ten room shots, plan) |
+| Build script | `tools/blender/build_stage5_historic.py` (`--fast` skips renders) |
+
+- **Where it is.** The sublevel is its own level, like the research level, with the same x/y and its floor at z = 0. It is reached two ways. A steep service stair tops out under the Stage 4a maintenance hatch at (4.5, 38.6), and a disused lift landing sits under the restricted lift at (0, 44). The script asserts both.
+- **Layout.** A 24 m historic corridor (y 20–44) with the lift landing at its north end.
+  - West side: paper records archive, disused administrative office, former patient rooms 2 and 1, and the abandoned nursing station, which has a serving hatch onto the corridor.
+  - East side: two closed observation cells, the hydrotherapy treatment room, old medication storage and the stairwell.
+  - South end: the corridor meets a mechanical and maintenance corridor (y 17–20). Off that are the historic records vault (steel vault door) and the sealed connecting corridor, which ends in a bricked-up opening towards Ward Zero (Stage 6).
+- **Look.** Green and beige paint, terrazzo and dark checker floors, and glazed tile in the treatment room. Iron beds, enamel cabinets, steel tanker desks, a knife-switch fuse board and cast-iron radiators.
+  - Lighting is uneven: tungsten bulkhead lamps vary in brightness, some carry `flicker: true` on their `LIGHTMARK_*`, and some are dead.
+  - Decay is subtle: damp stains, flaking paint and a little debris.
+- **Storytelling.** Hooks carry `story_tag: historic_record` and a `godot_hint` describing what the player sees. Examples: a ledger with pages cut out, a closure memo with the reason left blank, a night report that stops mid-sentence, a transfer register listing moves "to W0", and newer brick over a half-covered W0 stencil. Medical-looking documents are `clinical_review_status: PENDING`. The bricked-up end is a `state_group` so Stage 6 can open it.
+
 ## Design assumptions (labelled, pending creative review)
 
 - The corridor is 2.8 m clear and ceilings are 3.0 m throughout.
@@ -98,6 +119,7 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 - Room numbering, signage text and staff positions are provisional.
 - Stage 4a: the wing's position north of the clinical corridor, the room adjacencies and the Voss and Hale marker positions are assumptions; the GDD names the rooms but not a floor plan.
 - Stage 4b: putting the research wing on the lift's upper level, its room layout, the receptionist marker and every storytelling detail are assumptions for creative review. No research staff are named in the GDD, so no named character markers are placed.
+- Stage 5: the sublevel's placement under the security wing, its layout, the hydrotherapy fit-out and every storytelling detail are assumptions. The GDD names the spaces and the visual identity only.
 
 ## Known issues and unfinished work
 
@@ -105,6 +127,7 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 - **No characters.** Gameplay uses capsule stand-ins.
 - **Stage 3 props placed so far:** only the nursing station. The hospital bed, linen skip, oxygen trolley, observations monitor and wheelchair wait for the medical bay and clinic room (later stages).
 - **One-way glass in Cycles previews looks mirrored from both sides**, because Cycles renders back faces. Godot culls back faces by default, so the observer side should see through. This has not been checked in Godot yet (assessment room window and Interview Room A).
+- **The Stage 5 service stair is about 60 degrees**, too steep for the character controller, so it should be a climb interaction. Its collider only blocks walking through it.
 - **Door leaves get static collision only.** Gameplay animates the leaf node, and the collider follows.
 - **Exterior windows show a preview backdrop in renders only.** Godot needs an exterior or skybox solution (Stage 7).
 - **Preview renders use Cycles on CPU with denoising.** Lighting in Godot comes from the `LIGHTMARK_*` markers and is tuned separately.

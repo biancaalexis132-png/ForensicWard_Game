@@ -1398,3 +1398,296 @@ STAGE4_RESEARCH_PROP_BUILDERS = [
     prop_counter_reception, prop_chair_assessment, prop_bench_lab, prop_centrifuge, prop_freezer_upright,
     prop_desk_workstation, prop_rack_server, prop_whiteboard,
 ]
+
+
+# --------------------------------------------------------------------------
+# Stage 5: historic asylum substructure (mid-century)
+# (origin: floor centre unless noted; front faces -Y)
+# --------------------------------------------------------------------------
+
+def prop_bed_iron(coll, aid="PROP_Bed_Iron_Historic", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Mid-century iron bedstead with a thin ticking mattress; head at +Y."""
+    root = _root(coll, aid, "furniture", loc, rot, "Iron hospital bedstead, mid-century")
+    mb = MeshBuilder()
+    w, l = 0.9, 1.95
+    for y, h in ((l / 2, 1.1), (-l / 2, 0.85)):                                           # Head and foot frames.
+        for x in (-w / 2, w / 2):
+            mb.cyl(0.02, h, (x, y, h / 2), "M_Iron_Cast_Painted", segs=8)
+        mb.cyl(0.018, w, (0, y, h - 0.02), "M_Iron_Cast_Painted", axis="X", segs=8)
+        mb.cyl(0.012, w, (0, y, h - 0.35), "M_Iron_Cast_Painted", axis="X", segs=6)
+        for i in range(5):
+            mb.cyl(0.008, h - 0.4, (-w / 2 + (i + 1) * w / 6, y, 0.25 + (h - 0.4) / 2), "M_Iron_Cast_Painted", segs=6)
+    for x in (-w / 2, w / 2):
+        mb.box((0.03, l, 0.04), (x, 0, 0.42), "M_Iron_Cast_Painted")                       # Side rails.
+    mb.box((w - 0.04, l - 0.04, 0.02), (0, 0, 0.44), "M_Metal_Rust")                       # Spring base.
+    mb.box((w - 0.08, l - 0.1, 0.1), (0, 0, 0.5), "M_Canvas_Aged")                          # Mattress.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    L.collision_box(aid + "_COL", coll, root, (w, l, 0.6), (0, 0, 0.3))
+    return root
+
+
+def prop_cabinet_instrument(coll, aid="PROP_Cabinet_Instrument_Glass", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Enamelled steel instrument cabinet with glazed doors and glass shelves."""
+    root = _root(coll, aid, "furniture", loc, rot, "Glass-fronted instrument cabinet, enamelled steel")
+    mb = MeshBuilder()
+    w, d, h = 0.9, 0.4, 1.7
+    mb.box((w, d, 0.04), (0, 0, h - 0.02), "M_Enamel_White_Aged")
+    mb.box((w, d, 0.04), (0, 0, 0.3), "M_Enamel_White_Aged")
+    mb.box((w, 0.02, h - 0.3), (0, d / 2 - 0.01, 0.3 + (h - 0.3) / 2), "M_Enamel_White_Aged")
+    for x in (-w / 2 + 0.015, w / 2 - 0.015):
+        mb.box((0.03, d, h - 0.3), (x, 0, 0.3 + (h - 0.3) / 2), "M_Enamel_White_Aged")
+    for x in (-w / 4, w / 4):                                                              # Legs.
+        for sx in (-1, 1):
+            mb.box((0.03, 0.03, 0.3), (x + sx * w / 4 - sx * 0.03, sx * 0.0, 0.15), "M_Steel_Brushed")
+    for z in (0.75, 1.15):
+        mb.box((w - 0.06, d - 0.06, 0.008), (0, 0, z), "M_Glass_Grimy")
+    for i, (x, z) in enumerate(((-0.3, 0.32), (-0.15, 0.32), (0.1, 0.77), (0.25, 0.77), (-0.2, 1.17))):
+        mb.cyl(0.03, 0.12, (x, 0.02, z + 0.06), ("M_Glass_Grimy", "M_Bakelite_Brown")[i % 2], segs=8)
+    mb.box((w / 2 - 0.02, 0.006, h - 0.34), (-w / 4, -d / 2, 0.3 + (h - 0.3) / 2), "M_Glass_Grimy")   # Doors.
+    mb.box((w / 2 - 0.02, 0.006, h - 0.34), (w / 4, -d / 2, 0.3 + (h - 0.3) / 2), "M_Glass_Grimy")
+    mb.box((0.02, 0.02, 0.08), (-0.03, -d / 2 - 0.012, 1.0), "M_Steel_Brushed")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    L.collision_box(aid + "_COL", coll, root, (w, d, h), (0, 0, h / 2))
+    return root
+
+
+def prop_tub_hydrotherapy(coll, aid="PROP_Tub_Hydrotherapy", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Cast-iron continuous-bath tub with a rolled rim and exposed pipework; taps at +Y."""
+    root = _root(coll, aid, "clinical_equipment", loc, rot, "Cast-iron hydrotherapy tub (disused)")
+    mb = MeshBuilder()
+    w, l, h = 0.85, 2.0, 0.65
+    mb.box((w, l, 0.06), (0, 0, 0.17), "M_Enamel_White_Aged")                               # Floor of tub.
+    for x in (-w / 2 + 0.04, w / 2 - 0.04):
+        mb.box((0.08, l, h - 0.14), (x, 0, 0.14 + (h - 0.14) / 2), "M_Enamel_White_Aged")
+    for y in (-l / 2 + 0.04, l / 2 - 0.04):
+        mb.box((w, 0.08, h - 0.14), (0, y, 0.14 + (h - 0.14) / 2), "M_Enamel_White_Aged")
+    mb.box((w + 0.04, l + 0.04, 0.04), (0, 0, h), "M_Enamel_White_Aged")                    # Rim.
+    mb.box((w - 0.18, l - 0.18, 0.004), (0, 0, h + 0.022), "M_Stain_Damp")                  # Water-line stain.
+    for x in (-w / 2 + 0.1, w / 2 - 0.1):
+        for y in (-l / 2 + 0.15, l / 2 - 0.15):
+            mb.cyl(0.05, 0.14, (x, y, 0.07), "M_Iron_Cast_Painted", segs=8)                 # Feet.
+    for x in (-0.15, 0.15):
+        mb.cyl(0.02, 0.5, (x, l / 2 + 0.06, h + 0.05), "M_Steel_Brushed", segs=8)           # Supply risers.
+        mb.cyl(0.04, 0.03, (x, l / 2 + 0.06, h + 0.3), "M_Bakelite_Brown", axis="Y", segs=10)
+    mb.cyl(0.02, 0.3, (0, l / 2 + 0.06, h + 0.25), "M_Steel_Brushed", axis="X", segs=8)
+    mb.build(aid + "_Mesh", coll, root, bevel=0.01)
+    L.collision_box(aid + "_COL", coll, root, (w + 0.04, l + 0.16, h + 0.05), (0, 0.04, (h + 0.05) / 2))
+    return root
+
+
+def prop_table_exam_historic(coll, aid="PROP_Table_Exam_Historic", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Steel examination table with a cracked leather pad; head at +Y."""
+    root = _root(coll, aid, "clinical_equipment", loc, rot, "Steel examination table, mid-century")
+    mb = MeshBuilder()
+    w, l, h = 0.65, 1.85, 0.8
+    mb.box((w, l, 0.06), (0, 0, h - 0.03), "M_Enamel_White_Aged")
+    mb.box((w - 0.04, l - 0.04, 0.06), (0, 0, h + 0.03), "M_Upholstery_Leather_Black")
+    mb.box((w - 0.04, 0.5, 0.06), (0, l / 2 - 0.27, h + 0.13), "M_Upholstery_Leather_Black", rot=(0.35, 0, 0))
+    for x in (-w / 2 + 0.04, w / 2 - 0.04):
+        for y in (-l / 2 + 0.08, l / 2 - 0.08):
+            mb.box((0.04, 0.04, h - 0.06), (x, y, (h - 0.06) / 2), "M_Enamel_White_Aged")
+    mb.box((w - 0.1, l - 0.2, 0.02), (0, 0, 0.22), "M_Enamel_White_Aged")                  # Lower shelf.
+    mb.box((0.3, 0.004, 0.02), (0.1, 0.2, h + 0.062), "M_Paint_Flaking")                   # Crack in the pad.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    L.collision_box(aid + "_COL", coll, root, (w, l, h + 0.1), (0, 0, (h + 0.1) / 2))
+    return root
+
+
+def prop_desk_steel(coll, aid="PROP_Desk_Steel_Tanker", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Steel 'tanker' office desk with a linoleum top; the user sits on the -Y side."""
+    root = _root(coll, aid, "furniture", loc, rot, "Steel tanker desk, mid-century")
+    mb = MeshBuilder()
+    w, d, h = 1.5, 0.76, 0.76
+    mb.box((w, d, 0.04), (0, 0, h - 0.02), "M_Iron_Cast_Painted")
+    mb.box((w - 0.06, d - 0.06, 0.004), (0, 0, h + 0.002), "M_Wood_Aged")                  # Linoleum inset.
+    for x in (-w / 2 + 0.22, w / 2 - 0.22):
+        mb.box((0.42, d - 0.04, h - 0.04), (x, 0, (h - 0.04) / 2), "M_Iron_Cast_Painted")   # Pedestals.
+        for z in (0.18, 0.42, 0.62):
+            mb.box((0.38, 0.01, 0.18), (x, -d / 2 + 0.015, z), "M_Iron_Cast_Painted")
+            mb.box((0.1, 0.02, 0.015), (x, -d / 2 + 0.005, z + 0.03), "M_Steel_Brushed")
+    mb.box((w - 0.9, 0.02, 0.4), (0, d / 2 - 0.03, h - 0.24), "M_Iron_Cast_Painted")       # Modesty panel.
+    mb.box((0.3, 0.22, 0.015), (0.25, 0.1, h + 0.008), "M_Paper")                           # Blotter of papers.
+    mb.box((0.14, 0.18, 0.1), (-0.5, 0.15, h + 0.05), "M_Bakelite_Brown")                   # Bakelite phone base.
+    mb.cyl(0.02, 0.2, (-0.5, 0.15, h + 0.12), "M_Bakelite_Brown", axis="X", segs=8)
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    L.collision_box(aid + "_COL", coll, root, (w, d, h), (0, 0, h / 2))
+    return root
+
+
+def prop_chair_wood_historic(coll, aid="PROP_Chair_Wood_Historic", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Bentwood-style institutional chair; the sitter faces -Y."""
+    root = _root(coll, aid, "furniture", loc, rot, "Wooden institutional chair, mid-century")
+    mb = MeshBuilder()
+    for x in (-0.19, 0.19):
+        mb.box((0.035, 0.035, 0.45), (x, -0.19, 0.225), "M_Wood_Aged")
+        mb.box((0.035, 0.035, 0.9), (x, 0.19, 0.45), "M_Wood_Aged")
+    mb.box((0.44, 0.44, 0.03), (0, 0, 0.46), "M_Wood_Aged")
+    for z in (0.62, 0.84):
+        mb.box((0.4, 0.025, 0.07), (0, 0.19, z), "M_Wood_Aged")
+    mb.box((0.38, 0.02, 0.02), (0, 0, 0.18), "M_Wood_Aged")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    L.collision_box(aid + "_COL", coll, root, (0.45, 0.45, 0.9), (0, 0, 0.45))
+    return root
+
+
+def prop_cabinet_card_index(coll, aid="PROP_Cabinet_Card_Index", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Oak card-index cabinet, 5 x 4 drawers with brass label holders."""
+    root = _root(coll, aid, "furniture", loc, rot, "Card-index cabinet, 20 drawers")
+    mb = MeshBuilder()
+    w, d, h = 0.9, 0.5, 1.3
+    mb.box((w, d, h - 0.15), (0, 0, 0.15 + (h - 0.15) / 2), "M_Wood_Aged")
+    for x in (-w / 2 + 0.05, w / 2 - 0.05):
+        mb.box((0.06, d - 0.06, 0.15), (x, 0, 0.075), "M_Wood_Aged")
+    for c in range(4):
+        for r in range(5):
+            x, z = -w / 2 + 0.06 + c * 0.195 + 0.0975, 0.22 + r * 0.205 + 0.1
+            if (c, r) == (2, 3):                                                         # One drawer missing.
+                mb.box((0.18, 0.004, 0.19), (x, -d / 2 + 0.02, z), "M_Plastic_Black")
+                continue
+            mb.box((0.18, 0.012, 0.19), (x, -d / 2 - 0.006, z), "M_Wood_Aged")
+            mb.box((0.06, 0.004, 0.025), (x, -d / 2 - 0.014, z + 0.05), "M_Plastic_Sharps_Yellow")
+            mb.box((0.04, 0.012, 0.012), (x, -d / 2 - 0.018, z - 0.02), "M_Steel_Brushed")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    L.collision_box(aid + "_COL", coll, root, (w, d, h), (0, 0, h / 2))
+    return root
+
+
+def prop_shelf_medication_historic(coll, aid="PROP_Shelf_Medication_Historic", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Open steel shelving of stoppered glass bottles and tins; front -Y."""
+    root = _root(coll, aid, "furniture", loc, rot, "Old medication shelving with glass bottles")
+    mb = MeshBuilder()
+    w, d, h = 1.5, 0.35, 2.0
+    for x in (-w / 2, w / 2):
+        for y in (-d / 2, d / 2):
+            mb.box((0.03, 0.03, h), (x, y, h / 2), "M_Metal_Rust")
+    for i in range(5):
+        z = 0.1 + i * 0.45
+        mb.box((w, d, 0.02), (0, 0, z), "M_Iron_Cast_Painted")
+        if i == 4:
+            continue
+        for j in range(9):
+            if (i * 9 + j) % 7 == 3:
+                continue                                                                   # Gaps where bottles were.
+            x = -w / 2 + 0.12 + j * 0.155
+            if (i + j) % 3 == 0:
+                mb.box((0.1, 0.08, 0.1), (x, -0.03, z + 0.06), "M_Metal_Rust")              # Tins.
+            else:
+                mb.cyl(0.035, 0.16 + 0.02 * (j % 3), (x, -0.03, z + 0.1), ("M_Glass_Grimy", "M_Bakelite_Brown")[j % 2],
+                       segs=8)
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    L.collision_box(aid + "_COL", coll, root, (w, d, h), (0, 0, h / 2))
+    return root
+
+
+def prop_panel_fuse_historic(coll, aid="PROP_Panel_Fuse_Historic", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Knife-switch fuse board with cloth-wrapped conduit; origin at wall surface centre, faces -Y."""
+    root = _root(coll, aid, "fixture", loc, rot, "Historic knife-switch fuse board")
+    mb = MeshBuilder()
+    mb.box((0.9, 0.04, 1.0), (0, -0.02, 0), "M_Wood_Aged")                                  # Backboard.
+    for i, x in enumerate((-0.3, -0.1, 0.1, 0.3)):
+        mb.box((0.14, 0.06, 0.3), (x, -0.07, 0.2), "M_Bakelite_Brown")
+        mb.box((0.02, 0.08, 0.16), (x, -0.13, 0.2 + (0.05 if i % 2 else -0.05)), "M_Steel_Brushed",
+               rot=(0.5 if i % 2 else -0.5, 0, 0))                                          # Switch blades.
+        mb.cyl(0.025, 0.08, (x, -0.07, -0.18), "M_Enamel_White_Aged", axis="Y", segs=10)   # Ceramic fuses.
+    mb.cyl(0.03, 1.4, (0.38, -0.06, 0.9), "M_Metal_Rust", segs=8)                           # Conduit up.
+    mb.box((0.2, 0.004, 0.08), (0, -0.041, -0.4), "M_Paint_Historic_Cream")                # Faded label.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    return root
+
+
+def prop_light_bulkhead_historic(coll, aid="PROP_Light_Bulkhead_Historic", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Caged ceiling bulkhead lamp; origin on the ceiling, hangs down."""
+    root = _root(coll, aid, "fixture", loc, rot, "Caged tungsten bulkhead lamp")
+    mb = MeshBuilder()
+    mb.cyl(0.11, 0.04, (0, 0, -0.02), "M_Iron_Cast_Painted", segs=14)
+    mb.cyl(0.006, 0.18, (0, 0, -0.13), "M_Iron_Cast_Painted", segs=6)
+    for i in range(6):
+        a = i * math.pi / 3
+        mb.box((0.006, 0.006, 0.17), (0.09 * math.cos(a), 0.09 * math.sin(a), -0.13), "M_Iron_Cast_Painted")
+    mb.cyl(0.095, 0.006, (0, 0, -0.22), "M_Iron_Cast_Painted", segs=14)
+    mb.build(aid + "_Mesh", coll, root)
+    bulb = MeshBuilder()
+    bulb.sphere(0.05, (0, 0, -0.12), "M_Emissive_Bulb_Tungsten", segs=12, rings=6)
+    bulb.build(aid + "_Bulb", coll, root)["godot_hint"] = "Pair with a LIGHTMARK_*; flicker where flagged."
+    return root
+
+
+def prop_door_vault(coll, aid="PROP_Door_Vault_Records", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Heavy steel records-vault door for a 1.2 x 2.1 m opening; origin at the wall
+    plane, opening centre, floor level; the door face is on the -Y side. The leaf
+    hinges at its -X edge."""
+    root = _root(coll, aid, "door", loc, rot, "Steel records-vault door with wheel lock")
+    mb = MeshBuilder()
+    w, h, f = 1.2, 2.1, 0.14
+    for x in (-w / 2 - f / 2, w / 2 + f / 2):
+        mb.box((f, 0.3, h + f), (x, -0.05, (h + f) / 2), "M_Iron_Cast_Painted")
+    mb.box((w + 2 * f, 0.3, f), (0, -0.05, h + f / 2), "M_Iron_Cast_Painted")
+    for z in (0.35, 1.05, 1.75):
+        mb.cyl(0.05, 0.06, (-w / 2 - f / 2, -0.23, z), "M_Steel_Brushed", axis="Y", segs=10)   # Hinge barrels.
+    mb.box((0.36, 0.01, 0.12), (0, -0.205, h + f / 2), "M_Paint_Historic_Cream")           # Stencilled lintel plate.
+    mb.build(aid + "_Frame", coll, root, bevel=0.004)
+    leaf = MeshBuilder()
+    leaf.box((w - 0.02, 0.2, h - 0.02), (w / 2, 0, h / 2), "M_Iron_Cast_Painted")
+    for z in (0.4, 1.05, 1.7):
+        leaf.box((w - 0.2, 0.02, 0.06), (w / 2, -0.11, z), "M_Metal_Rust")                 # Strap bands.
+    leaf.cyl(0.08, 0.06, (w / 2 + 0.25, -0.13, 1.05), "M_Steel_Brushed", axis="Y", segs=12)  # Wheel hub.
+    for i in range(4):
+        a = i * math.pi / 4
+        leaf.box((0.5, 0.02, 0.025), (w / 2 + 0.25, -0.16, 1.05), "M_Steel_Brushed", rot=(0, a, 0))   # Wheel spokes.
+    leaf.cyl(0.26, 0.02, (w / 2 + 0.25, -0.17, 1.05), "M_Steel_Brushed", axis="Y", segs=20, r2=0.24)
+    leaf.box((0.22, 0.01, 0.1), (w / 2 - 0.15, -0.106, 1.55), "M_Steel_Brushed")           # Maker's plate.
+    lf = leaf.build(aid + "_Leaf", coll, root, loc=(-w / 2, -0.1, 0))
+    lf["godot_hint"] = "Rotate about local Z at the hinge (origin) to open; closed by default."
+    L.collision_box(aid + "_Leaf_COL", coll, lf, (w - 0.02, 0.2, h - 0.02), (w / 2, 0, h / 2))
+    return root
+
+
+def prop_stair_service(coll, aid="PROP_Stair_Service_Historic", loc=(0, 0, 0), rot=(0, 0, 0), rise=3.2):
+    """Steep steel service stair (~60 degrees) with handrails. Origin at the foot of
+    the stair, centre; it climbs towards +Y and ends `rise` m up."""
+    root = _root(coll, aid, "architecture", loc, rot, "Steep steel service stair to the maintenance hatch")
+    mb = MeshBuilder()
+    w = 0.8
+    run = rise / math.tan(math.radians(60))
+    n = 13
+    ang = math.atan2(rise, run)
+    length = math.hypot(rise, run)
+    for x in (-w / 2, w / 2):
+        mb.box((0.03, 0.16, length), (x, run / 2, rise / 2), "M_Iron_Cast_Painted", rot=(-(math.pi / 2 - ang), 0, 0))
+        mb.box((0.03, 0.03, length), (x * 1.08, run / 2 - 0.03, rise / 2 + 0.9), "M_Metal_Rust",
+               rot=(-(math.pi / 2 - ang), 0, 0))                                            # Handrails.
+        for i in range(0, n + 1, 4):
+            t = i / n
+            mb.box((0.02, 0.02, 0.9), (x * 1.08, run * t, rise * t + 0.45), "M_Metal_Rust")
+    for i in range(1, n + 1):
+        t = i / n
+        mb.box((w, 0.16, 0.02), (0, run * t - 0.02, rise * t - 0.01), "M_Steel_Painted_Grey")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    L.collision_box(aid + "_COL", coll, root, (w + 0.1, length, 0.1), (0, run / 2, rise / 2),
+                    rot=(-(math.pi / 2 - ang) + math.pi / 2, 0, 0))
+    root["godot_hint"] = "Too steep to walk: treat as a climb interaction between this level and the hatch above."
+    root["rise_m"] = rise
+    return root
+
+
+def prop_radiator_cast(coll, aid="PROP_Radiator_Cast_Iron", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Cast-iron column radiator on feet, against a wall; front -Y."""
+    root = _root(coll, aid, "fixture", loc, rot, "Cast-iron column radiator")
+    mb = MeshBuilder()
+    n, pitch, h = 12, 0.065, 0.7
+    for i in range(n):
+        x = (i - (n - 1) / 2) * pitch
+        mb.box((0.05, 0.18, h - 0.08), (x, 0, 0.08 + (h - 0.08) / 2), "M_Iron_Cast_Painted")
+        mb.cyl(0.03, 0.18, (x, 0, h), "M_Iron_Cast_Painted", axis="Y", segs=8)
+    mb.cyl(0.02, n * pitch, (0, 0, 0.12), "M_Iron_Cast_Painted", axis="X", segs=8)
+    mb.cyl(0.015, 0.3, (n * pitch / 2 + 0.05, 0.05, 0.15), "M_Metal_Rust", segs=8)          # Valve pipe.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    L.collision_box(aid + "_COL", coll, root, (n * pitch, 0.2, h + 0.03), (0, 0, (h + 0.03) / 2))
+    return root
+
+
+STAGE5_HISTORIC_PROP_BUILDERS = [
+    prop_bed_iron, prop_cabinet_instrument, prop_tub_hydrotherapy, prop_table_exam_historic, prop_desk_steel,
+    prop_chair_wood_historic, prop_cabinet_card_index, prop_shelf_medication_historic, prop_panel_fuse_historic,
+    prop_light_bulkhead_historic, prop_door_vault, prop_stair_service, prop_radiator_cast,
+]
