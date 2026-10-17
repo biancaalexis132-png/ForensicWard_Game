@@ -3,7 +3,7 @@
 ## Chapter 5 finale review — Copilot, 2026-10-17
 
 - **Current objective:** review the expanded Chapter 5 screenplay and ending-state proposal against the shipped five-chapter architecture; preserve Chapter 4's major corridor-loop reveal, separate clinical and environmental evidence, and retain all three proposed endings.
-- **Branch / baseline:** `biancaalexis132-png-chapter5-finale-review`, based on verified `origin/main` `122a8c505d5e7738b08d874314aade8a1cd87ab1` ("Chp 5"). The requested `docs/chapter5-finale-v2` branch is absent (remote lookup 404); the exact v2.1 package is tracked on `origin/main`.
+- **Branch / baseline:** `biancaalexis132-png-chapter5-finale-review`, based on verified `origin/main` `122a8c505d5e7738b08d874314aade8a1cd87ab1` ("Chp 5"). The docs-only review handoff was pushed and verified at `4b63ec914cf852135020151178c6d7799ec8ebf8`; a later documentation-only push-verification note may follow. The requested `docs/chapter5-finale-v2` branch is absent (remote lookup 404); the exact v2.1 package is tracked on `origin/main`.
 - **PRs:** no review PR. `gh pr list --state open` returned no open PRs.
 - **Completed:** static review of the screenplay/contract, original ending bible and screenplay, revised Chapter 4 Scene 09, F0/F1/F2/F3 contracts, campaign tests, and current `ChapterDirector`, `SaveManager`, `EvidenceManager`, `PatientManager`, `TrustManager`, and `ZoneDirector`.
 - **Confirmed continuity:** Chapter 4 Scene 09 remains the major corridor-loop reveal. Chapter 5 does not need to move or repeat it. The three endings remain independent-review referral, restricted access, and continuing inquiry; none should depend on protagonist profile, trust score, supernatural belief, diagnosis, or treatment choice.
@@ -14,7 +14,7 @@
 - **Approval boundaries:** creative dialogue, final evidence thresholds/source counts, ending logic and exact operational obligations remain proposed. Existing clinical review status remains unchanged. No new clinical decision rule or anomaly mechanic was approved or activated.
 - **Files modified:** `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md` only. No gameplay/data/save schema changes.
 - **Validation:** `python3 tests/qa/test_json.py` passed 6/6; `git diff --check` passed. Full Godot QA was not run because Godot 4.7 is unavailable at `/Applications/Godot.app/Contents/MacOS/Godot` and not on `PATH`. Hosted CI and Mac visual/input checks are not observed.
-- **Exact next steps:** (1) commit and push the docs-only checkpoint on this branch and verify the remote SHA with `git ls-remote`; (2) obtain owner/clinical review without replacing the source manuscripts; (3) after approval only, write deterministic state/evidence tests before implementing any Chapter 5 runtime content.
+- **Exact next steps:** (1) continue from this branch and verify its remote tip before further changes; (2) obtain owner/clinical review without replacing the source manuscripts; (3) after approval only, write deterministic state/evidence tests before implementing any Chapter 5 runtime content.
 - **Creative/clinical constraints:** keep Mara's clinical storyline independent; do not let diagnosis, symptoms, treatment, or patient suspicion trigger or corroborate Ward Zero; no new clinical rule; do not infer supernatural mechanism in the official report; preserve the protagonist role/customization and three outcome paths.
 
 ## Merge reconciliation — Codex, 2026-10-17

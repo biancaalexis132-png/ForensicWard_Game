@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Chapter 5 finale review | `biancaalexis132-png-chapter5-finale-review` | Copilot / current session | `122a8c505d5e7738b08d874314aade8a1cd87ab1` (`origin/main`) | `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md` | Review complete; handoff checkpoint pending remote verification; no runtime changes |
+| Chapter 5 finale review | `biancaalexis132-png-chapter5-finale-review` | Copilot / current session | `4b63ec914cf852135020151178c6d7799ec8ebf8` (verified remote checkpoint) | `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md` | Review complete; docs-only handoff pushed; no runtime changes |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -62,8 +62,9 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - **Branch:** `biancaalexis132-png-chapter5-finale-review` (based on `origin/main` at `122a8c505d5e7738b08d874314aade8a1cd87ab1`)
 - **Latest verified commit:** `122a8c505d5e7738b08d874314aade8a1cd87ab1` "Chp 5"
 - **Confirmed on GitHub:** `git ls-remote origin refs/heads/main` printed `122a8c505d5e7738b08d874314aade8a1cd87ab1`. `docs/chapter5-finale-v2` was absent from fetched refs and GitHub branch lookup returned HTTP 404; the exact Chapter 5 v2.1 package is committed on `origin/main`.
+- **Review checkpoint push:** `git ls-remote origin refs/heads/biancaalexis132-png-chapter5-finale-review` printed `4b63ec914cf852135020151178c6d7799ec8ebf8`. This is the docs-only review checkpoint; a subsequent documentation-only push-verification note may follow it.
 - **Pull request:** none for this review branch. `gh pr list --state open` returned no open PRs.
-- **State:** review complete; documentation-only checkpoint. No screenplay, runtime, save schema, anomaly effect, or clinical rule was changed.
+- **State:** review complete; documentation-only handoff pushed. No screenplay, runtime, save schema, anomaly effect, or clinical rule was changed.
 
 **Accomplished**
 - Reviewed `docs/design/screenplays/ForensicWard_Chapter5_Finale_v2/` against the original five-chapter manuscripts, revised Chapter 4 Scene 09, F0/F1/F2/F3 contracts, campaign fixture tests, `ChapterDirector`, `SaveManager`, `EvidenceManager`, `PatientManager`, `TrustManager`, and `ZoneDirector`.
@@ -90,7 +91,7 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - Godot 4.7 is not installed at the documented macOS path or available on `PATH` in this workspace. No other external dependency is needed for this documentation review.
 
 **Next steps**
-1. Commit and push this documentation-only checkpoint on `biancaalexis132-png-chapter5-finale-review`; verify the exact remote SHA with `git ls-remote`.
+1. Continue from verified branch checkpoint `4b63ec914cf852135020151178c6d7799ec8ebf8`; verify the current branch tip with `git ls-remote` before further work.
 2. Keep Chapter 5 text, proposed state names and all clinical content in draft/review status pending owner and clinical approval.
 3. Before implementation, design a deterministic story-state/report lifecycle and an evidence-source dependency graph against existing F2/F3 responsibilities; add synthetic tests before any anomaly effects.
 4. If persistent runtime state is later approved, preserve save v3 and implement/test an explicit v3→v4 migration while retaining v1→v2→v3 migration coverage and the protagonist profile owner.
