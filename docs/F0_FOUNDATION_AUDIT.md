@@ -20,7 +20,7 @@ Gate: the owner reviews this architecture before any major structural change. F1
 
 | PR | Branch | State | Notes |
 |---|---|---|---|
-| #19 | `claude/environment-stage-5` | **Open, draft** | Stage 5 historic substructure (13 props, 13 sublevel spaces). Built by another session right now. This audit does not touch that branch. CI run 39066043198 was in progress at audit time. |
+| #19 | `claude/environment-stage-5` | Open, draft at audit time; **merged 20:20 UTC** (`292f1cf`), merged into this branch | Stage 5 historic substructure (13 props, 13 sublevel spaces). Built by another session right now. This audit does not touch that branch. CI run 39066043198 was in progress at audit time. |
 | #18 | `claude/audio-production` | **Merged** 19:44 UTC | Soundtrack integration. It was described as open in the brief; GitHub shows it merged into `main` at `d21cff7`. |
 | #17 | `claude/environment-stage-4b` | Merged | Research wing |
 | #16 | `claude/remove-macos-metadata` | Closed, not merged | Duplicate of #15 |

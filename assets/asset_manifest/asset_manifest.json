@@ -101,6 +101,55 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 240
     },
+    "ENV_AbandonedNursingStation": {
+      "asset_id": "ENV_AbandonedNursingStation",
+      "asset_name": "Abandoned nursing station",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        6.224,
+        3.12
+      ],
+      "export_file": "assets/exports/historic/env/ENV_AbandonedNursingStation.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: abandoned nursing station",
+      "markers": [
+        "CAM_NS_Establishing",
+        "CAM_NS_ThroughHatch",
+        "LIGHTMARK_NS_Lamp_0"
+      ],
+      "materials": [
+        "M_Acoustic_Fabric",
+        "M_Bakelite_Brown",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Enamel_White_Aged",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Glass_Grimy",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Beige_Aged",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Plastic_Sharps_Yellow",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Tile_Floor_Terrazzo",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3588
+    },
     "ENV_AdminConference": {
       "asset_id": "ENV_AdminConference",
       "asset_name": "Administrative conference room",
@@ -258,6 +307,45 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 11210
     },
+    "ENV_ClosedObservationRooms": {
+      "asset_id": "ENV_ClosedObservationRooms",
+      "asset_name": "Closed observation rooms (two cells)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        6.112,
+        3.12
+      ],
+      "export_file": "assets/exports/historic/env/ENV_ClosedObservationRooms.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: closed observation rooms",
+      "markers": [
+        "CAM_OB_DarkCell",
+        "CAM_OB_Establishing",
+        "LIGHTMARK_OBA_Lamp"
+      ],
+      "materials": [
+        "M_Canvas_Aged",
+        "M_Ceiling_Tile",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Folder_Manila",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Historic_Beige_Aged",
+        "M_Paint_Historic_Green_Aged",
+        "M_Paper",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Tile_Floor_Terrazzo"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 1880
+    },
     "ENV_CredentialingOffice": {
       "asset_id": "ENV_CredentialingOffice",
       "asset_name": "Staff credentialing and access office",
@@ -356,6 +444,303 @@
       "source_file": "assets/blender/research/FW_ResearchWing.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 2420
+    },
+    "ENV_DisusedAdminOffice": {
+      "asset_id": "ENV_DisusedAdminOffice",
+      "asset_name": "Disused administrative office",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.12
+      ],
+      "export_file": "assets/exports/historic/env/ENV_DisusedAdminOffice.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: disused administrative office",
+      "markers": [
+        "CAM_AO_Establishing",
+        "LIGHTMARK_AO_Lamp"
+      ],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Binder_Grey",
+        "M_Binder_Maroon",
+        "M_Binder_Navy",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Beige_Aged",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2760
+    },
+    "ENV_FormerPatientRoom1": {
+      "asset_id": "ENV_FormerPatientRoom1",
+      "asset_name": "Former patient room 1",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        3.112,
+        3.12
+      ],
+      "export_file": "assets/exports/historic/env/ENV_FormerPatientRoom1.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: former patient room 1",
+      "markers": [
+        "CAM_PR1_Establishing",
+        "LIGHTMARK_PR1_Lamp"
+      ],
+      "materials": [
+        "M_Canvas_Aged",
+        "M_Ceiling_Tile",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Beige_Aged",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Tile_Floor_Checker_Dark",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 1668
+    },
+    "ENV_FormerPatientRoom2": {
+      "asset_id": "ENV_FormerPatientRoom2",
+      "asset_name": "Former patient room 2",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        3.112,
+        3.12
+      ],
+      "export_file": "assets/exports/historic/env/ENV_FormerPatientRoom2.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: former patient room 2",
+      "markers": [
+        "CAM_PR2_Establishing"
+      ],
+      "materials": [
+        "M_Canvas_Aged",
+        "M_Ceiling_Tile",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Beige_Aged",
+        "M_Paper",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Tile_Floor_Checker_Dark",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 1584
+    },
+    "ENV_HistoricCorridor_24m": {
+      "asset_id": "ENV_HistoricCorridor_24m",
+      "asset_name": "Historic ward corridor, 24 m, with disused lift landing",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.27,
+        24.112,
+        3.12
+      ],
+      "export_file": "assets/exports/historic/env/ENV_HistoricCorridor_24m.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: historic ward corridor and disused lift landing",
+      "markers": [
+        "CAM_HC_Corridor",
+        "CAM_HC_FromSouth",
+        "LIGHTMARK_Corridor_Lamp_0",
+        "LIGHTMARK_Corridor_Lamp_1",
+        "LIGHTMARK_Corridor_Lamp_2",
+        "LIGHTMARK_Corridor_Lamp_4",
+        "LIGHTMARK_Corridor_Lamp_5",
+        "LIGHTMARK_Corridor_Lamp_6",
+        "MARK_Waypoint_LiftLanding"
+      ],
+      "materials": [
+        "M_Acoustic_Fabric",
+        "M_Ceiling_Tile",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Folder_Manila",
+        "M_Glass_Grimy",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Beige_Aged",
+        "M_Paint_Historic_Cream",
+        "M_Paint_Historic_Green",
+        "M_Paint_Historic_Green_Aged",
+        "M_Paper",
+        "M_Signage_Blue",
+        "M_Signage_Panel",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Tile_Floor_Terrazzo",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 8032
+    },
+    "ENV_HistoricRecordsVault": {
+      "asset_id": "ENV_HistoricRecordsVault",
+      "asset_name": "Historic records vault",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.712,
+        5.392,
+        3.12
+      ],
+      "export_file": "assets/exports/historic/env/ENV_HistoricRecordsVault.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: historic records vault",
+      "markers": [
+        "CAM_RV_Establishing",
+        "LIGHTMARK_RV_Lamp"
+      ],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Ceiling_Tile",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Folder_Manila",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Historic_Cream",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_Sharps_Yellow",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3808
+    },
+    "ENV_HistoricStairwell": {
+      "asset_id": "ENV_HistoricStairwell",
+      "asset_name": "Historic stairwell to the maintenance hatch",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.224,
+        4.207
+      ],
+      "export_file": "assets/exports/historic/env/ENV_HistoricStairwell.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: historic stairwell to the maintenance hatch",
+      "markers": [
+        "CAM_SW_Establishing",
+        "LIGHTMARK_SW_Lamp_0",
+        "LIGHTMARK_SW_Lamp_1",
+        "MARK_Link_MaintenanceHatch"
+      ],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Ceiling_Tile",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Enamel_White_Aged",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Beige_Aged",
+        "M_Paint_Historic_Cream",
+        "M_Paint_Historic_Green_Aged",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Tile_Floor_Terrazzo",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 1440
+    },
+    "ENV_HistoricalTreatmentRoom": {
+      "asset_id": "ENV_HistoricalTreatmentRoom",
+      "asset_name": "Historical treatment room (hydrotherapy)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        6.112,
+        3.12
+      ],
+      "export_file": "assets/exports/historic/env/ENV_HistoricalTreatmentRoom.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: historical treatment room",
+      "markers": [
+        "CAM_TR_Establishing",
+        "LIGHTMARK_TR_Lamp_0",
+        "LIGHTMARK_TR_Lamp_1"
+      ],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Canvas_Aged",
+        "M_Ceiling_Tile",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Enamel_White_Aged",
+        "M_Glass_Grimy",
+        "M_Iron_Cast_Painted",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Beige_Aged",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Tile_Floor_Checker_Dark",
+        "M_Tile_Wall_Glazed_Cream",
+        "M_Upholstery_Leather_Black",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2104
     },
     "ENV_InterviewRoom_A": {
       "asset_id": "ENV_InterviewRoom_A",
@@ -499,6 +884,49 @@
       "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 2152
+    },
+    "ENV_MechanicalCorridor": {
+      "asset_id": "ENV_MechanicalCorridor",
+      "asset_name": "Mechanical and maintenance corridor",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        12.224,
+        3.212,
+        3.15
+      ],
+      "export_file": "assets/exports/historic/env/ENV_MechanicalCorridor.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: mechanical and maintenance corridor",
+      "markers": [
+        "CAM_MC_Establishing",
+        "LIGHTMARK_MC_Lamp_0",
+        "LIGHTMARK_MC_Lamp_2",
+        "LIGHTMARK_MC_Lamp_3"
+      ],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Ceiling_Tile",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Enamel_White_Aged",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Dark",
+        "M_Metal_Rust",
+        "M_Paint_Historic_Cream",
+        "M_Paint_Historic_Green",
+        "M_Plastic_Black",
+        "M_Safety_Red",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3440
     },
     "ENV_MedicalDirectorOffice": {
       "asset_id": "ENV_MedicalDirectorOffice",
@@ -649,6 +1077,88 @@
       "source_file": "assets/blender/research/FW_ResearchWing.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 3604
+    },
+    "ENV_OldMedicationStorage": {
+      "asset_id": "ENV_OldMedicationStorage",
+      "asset_name": "Old medication storage",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.12
+      ],
+      "export_file": "assets/exports/historic/env/ENV_OldMedicationStorage.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: old medication storage",
+      "markers": [
+        "CAM_MS_Establishing",
+        "LIGHTMARK_MS_Lamp"
+      ],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Ceiling_Tile",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Folder_Manila",
+        "M_Glass_Grimy",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Beige_Aged",
+        "M_Paper",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Tile_Floor_Terrazzo",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2528
+    },
+    "ENV_PaperRecordsArchive": {
+      "asset_id": "ENV_PaperRecordsArchive",
+      "asset_name": "Paper medical records archive",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.12
+      ],
+      "export_file": "assets/exports/historic/env/ENV_PaperRecordsArchive.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: paper medical records archive",
+      "markers": [
+        "CAM_PA_Establishing",
+        "LIGHTMARK_PA_Lamp"
+      ],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Binder_Grey",
+        "M_Ceiling_Tile",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Folder_Manila",
+        "M_Iron_Cast_Painted",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Beige_Aged",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_Sharps_Yellow",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Tile_Floor_Terrazzo",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3056
     },
     "ENV_PatientRoom_01": {
       "asset_id": "ENV_PatientRoom_01",
@@ -1244,6 +1754,44 @@
       "source_file": "assets/blender/research/FW_ResearchWing.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 2548
+    },
+    "ENV_SealedConnectingCorridor": {
+      "asset_id": "ENV_SealedConnectingCorridor",
+      "asset_name": "Sealed connecting corridor (towards Ward Zero)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.224,
+        7.112,
+        3.12
+      ],
+      "export_file": "assets/exports/historic/env/ENV_SealedConnectingCorridor.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; hatch at x 4.5, y 38.6; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); godot_hint + story_tag mark storytelling hooks.",
+      "intended_location": "Sublevel: sealed connecting corridor (Ward Zero beyond, Stage 6)",
+      "markers": [
+        "CAM_SC_Corridor",
+        "LIGHTMARK_SC_Lamp_0",
+        "LIGHTMARK_SC_Lamp_1"
+      ],
+      "materials": [
+        "M_Brick_Old",
+        "M_Ceiling_Tile",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Iron_Cast_Painted",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Green_Aged",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_Sharps_Yellow",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Tile_Floor_Checker_Dark"
+      ],
+      "source_file": "assets/blender/historic/FW_HistoricSubstructure.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 4028
     },
     "ENV_SecureInterviewSuite": {
       "asset_id": "ENV_SecureInterviewSuite",
@@ -2173,6 +2721,30 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 560
     },
+    "PROP_Bed_Iron_Historic": {
+      "asset_id": "PROP_Bed_Iron_Historic",
+      "asset_name": "Iron hospital bedstead, mid-century",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.939,
+        1.988,
+        1.1
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Bed_Iron_Historic.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: floor centre.",
+      "intended_location": "Former patient rooms, closed observation rooms",
+      "markers": [],
+      "materials": [
+        "M_Canvas_Aged",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 456
+    },
     "PROP_Bench_Lab_2m": {
       "asset_id": "PROP_Bench_Lab_2m",
       "asset_name": "Laboratory bench with reagent shelf",
@@ -2300,6 +2872,31 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 72
     },
+    "PROP_Cabinet_Card_Index": {
+      "asset_id": "PROP_Cabinet_Card_Index",
+      "asset_name": "Card-index cabinet, 20 drawers",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.9,
+        0.524,
+        1.3
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Cabinet_Card_Index.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: floor centre.",
+      "intended_location": "Paper records archive, historic records vault",
+      "markers": [],
+      "materials": [
+        "M_Plastic_Black",
+        "M_Plastic_Sharps_Yellow",
+        "M_Steel_Brushed",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 732
+    },
     "PROP_Cabinet_Filing_4Drawer": {
       "asset_id": "PROP_Cabinet_Filing_4Drawer",
       "asset_name": "Locking 4-drawer filing cabinet",
@@ -2323,6 +2920,31 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 192
+    },
+    "PROP_Cabinet_Instrument_Glass": {
+      "asset_id": "PROP_Cabinet_Instrument_Glass",
+      "asset_name": "Glass-fronted instrument cabinet, enamelled steel",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.906,
+        0.425,
+        1.703
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Cabinet_Instrument_Glass.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: floor centre.",
+      "intended_location": "Historical treatment room, abandoned nursing station",
+      "markers": [],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Enamel_White_Aged",
+        "M_Glass_Grimy",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 308
     },
     "PROP_Cabinet_Keys_Wall": {
       "asset_id": "PROP_Cabinet_Keys_Wall",
@@ -2547,6 +3169,28 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 120
     },
+    "PROP_Chair_Wood_Historic": {
+      "asset_id": "PROP_Chair_Wood_Historic",
+      "asset_name": "Wooden institutional chair, mid-century",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.44,
+        0.44,
+        0.9
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Chair_Wood_Historic.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: floor centre.",
+      "intended_location": "Throughout the substructure",
+      "markers": [],
+      "materials": [
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 96
+    },
     "PROP_Clock_Wall_Caged": {
       "asset_id": "PROP_Clock_Wall_Caged",
       "asset_name": "Wall clock behind polycarbonate guard",
@@ -2698,6 +3342,32 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 108
     },
+    "PROP_Desk_Steel_Tanker": {
+      "asset_id": "PROP_Desk_Steel_Tanker",
+      "asset_name": "Steel tanker desk, mid-century",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.5,
+        0.765,
+        0.9
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Desk_Steel_Tanker.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: floor centre.",
+      "intended_location": "Disused administrative office, abandoned nursing station",
+      "markers": [],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Iron_Cast_Painted",
+        "M_Paper",
+        "M_Steel_Brushed",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 256
+    },
     "PROP_Desk_Workstation_Dual": {
       "asset_id": "PROP_Desk_Workstation_Dual",
       "asset_name": "Data analysis workstation with dual monitors",
@@ -2819,6 +3489,31 @@
       "source_file": "assets/blender/security/FW_Props_Security.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 164
+    },
+    "PROP_Door_Vault_Records": {
+      "asset_id": "PROP_Door_Vault_Records",
+      "asset_name": "Steel records-vault door with wheel lock",
+      "category": "door",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.488,
+        0.38,
+        2.244
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Door_Vault_Records.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: wall plane, opening centre.",
+      "intended_location": "Historic records vault",
+      "markers": [],
+      "materials": [
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Historic_Cream",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 384
     },
     "PROP_Duress_Strip_2m": {
       "asset_id": "PROP_Duress_Strip_2m",
@@ -2964,6 +3659,29 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 572
     },
+    "PROP_Light_Bulkhead_Historic": {
+      "asset_id": "PROP_Light_Bulkhead_Historic",
+      "asset_name": "Caged tungsten bulkhead lamp",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.214,
+        0.22,
+        0.223
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Light_Bulkhead_Historic.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: ceiling.",
+      "intended_location": "Throughout the substructure",
+      "markers": [],
+      "materials": [
+        "M_Emissive_Bulb_Tungsten",
+        "M_Iron_Cast_Painted"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 316
+    },
     "PROP_Light_VandalResistant": {
       "asset_id": "PROP_Light_VandalResistant",
       "asset_name": "Tamper-resistant flush luminaire",
@@ -3093,6 +3811,33 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 108
     },
+    "PROP_Panel_Fuse_Historic": {
+      "asset_id": "PROP_Panel_Fuse_Historic",
+      "asset_name": "Historic knife-switch fuse board",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.9,
+        0.203,
+        2.1
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Panel_Fuse_Historic.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: wall surface.",
+      "intended_location": "Mechanical and maintenance corridor",
+      "markers": [],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Enamel_White_Aged",
+        "M_Metal_Rust",
+        "M_Paint_Historic_Cream",
+        "M_Steel_Brushed",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 292
+    },
     "PROP_Phone_Institutional": {
       "asset_id": "PROP_Phone_Institutional",
       "asset_name": "Institutional desk phone",
@@ -3190,6 +3935,29 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 372
     },
+    "PROP_Radiator_Cast_Iron": {
+      "asset_id": "PROP_Radiator_Cast_Iron",
+      "asset_name": "Cast-iron column radiator",
+      "category": "fixture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.844,
+        0.18,
+        0.729
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Radiator_Cast_Iron.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: floor centre.",
+      "intended_location": "Throughout the substructure",
+      "markers": [],
+      "materials": [
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 536
+    },
     "PROP_Reader_Access": {
       "asset_id": "PROP_Reader_Access",
       "asset_name": "Access card reader with status LEDs",
@@ -3238,6 +4006,31 @@
       "source_file": "assets/blender/security/FW_Props_Security.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 180
+    },
+    "PROP_Shelf_Medication_Historic": {
+      "asset_id": "PROP_Shelf_Medication_Historic",
+      "asset_name": "Old medication shelving with glass bottles",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.53,
+        0.38,
+        2.0
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Shelf_Medication_Historic.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: floor centre.",
+      "intended_location": "Old medication storage",
+      "markers": [],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Glass_Grimy",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 816
     },
     "PROP_Shelving_Archive": {
       "asset_id": "PROP_Shelving_Archive",
@@ -3288,6 +4081,30 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 36
     },
+    "PROP_Stair_Service_Historic": {
+      "asset_id": "PROP_Stair_Service_Historic",
+      "asset_name": "Steep steel service stair to the maintenance hatch",
+      "category": "architecture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.894,
+        1.984,
+        4.146
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Stair_Service_Historic.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: foot of the stair.",
+      "intended_location": "Historic stairwell (to the maintenance hatch)",
+      "markers": [],
+      "materials": [
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 300
+    },
     "PROP_Table_Conference_3m": {
       "asset_id": "PROP_Table_Conference_3m",
       "asset_name": "Conference table 3.0 x 1.2 m with cable box",
@@ -3310,6 +4127,30 @@
       "source_file": "assets/blender/security/FW_Props_Security.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 72
+    },
+    "PROP_Table_Exam_Historic": {
+      "asset_id": "PROP_Table_Exam_Historic",
+      "asset_name": "Steel examination table, mid-century",
+      "category": "clinical_equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.65,
+        1.85,
+        1.043
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Table_Exam_Historic.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: floor centre.",
+      "intended_location": "Historical treatment room",
+      "markers": [],
+      "materials": [
+        "M_Enamel_White_Aged",
+        "M_Paint_Flaking",
+        "M_Upholstery_Leather_Black"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 108
     },
     "PROP_Table_Interview_Fixed": {
       "asset_id": "PROP_Table_Interview_Fixed",
@@ -3387,6 +4228,32 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 416
+    },
+    "PROP_Tub_Hydrotherapy": {
+      "asset_id": "PROP_Tub_Hydrotherapy",
+      "asset_name": "Cast-iron hydrotherapy tub (disused)",
+      "category": "clinical_equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.89,
+        2.1,
+        0.99
+      ],
+      "export_file": "assets/exports/historic/props/PROP_Tub_Hydrotherapy.glb",
+      "implementation_notes": "Historic sublevel (mid-century, disused). Origin: floor centre.",
+      "intended_location": "Historical treatment room",
+      "markers": [],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Enamel_White_Aged",
+        "M_Iron_Cast_Painted",
+        "M_Stain_Damp",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/historic/FW_Props_Historic.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 352
     },
     "PROP_Vent_Grille_Wall": {
       "asset_id": "PROP_Vent_Grille_Wall",
