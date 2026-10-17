@@ -254,6 +254,9 @@ func _audit_text(state: Dictionary) -> String:
 		if entry.has("rule_ids") and not entry["rule_ids"].is_empty():
 			line += "   rules: " + ", ".join(entry["rule_ids"])
 		lines.append(line)
+		if entry.has("text"):
+			lines.append("      [color=#%s]%s (by %s)[/color]" % [UIStyle.WARNING.to_html(false),
+					str(entry["text"]).replace("[", "[lb]"), UIStyle.humanize(str(entry["by"]))])
 		for reason: String in entry.get("review_flags", []):
 			lines.append("      [color=#%s]review: %s[/color]" % [UIStyle.WARNING.to_html(false), reason])
 	return "\n".join(lines)

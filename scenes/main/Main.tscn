@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/world/Chapter1Ward.tscn" id="2_world"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="6_pause"]
 [ext_resource type="PackedScene" path="res://scenes/ui/EHRScreen.tscn" id="7_ehr"]
 [ext_resource type="PackedScene" path="res://scenes/ui/InterviewScreen.tscn" id="8_interview"]
+[ext_resource type="PackedScene" path="res://scenes/ui/EvidenceBoard.tscn" id="9_evidence"]
+[ext_resource type="Script" path="res://scripts/narrative/ChapterDirector.gd" id="10_director"]
+[ext_resource type="Script" path="res://scripts/world/AudioZoneTracker.gd" id="11_audio_zones"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
@@ -21,6 +24,14 @@ script = ExtResource("1_main")
 [node name="EHRScreen" parent="." instance=ExtResource("7_ehr")]
 
 [node name="InterviewScreen" parent="." instance=ExtResource("8_interview")]
+
+[node name="EvidenceBoard" parent="." instance=ExtResource("9_evidence")]
+
+[node name="ChapterDirector" type="Node" parent="."]
+script = ExtResource("10_director")
+
+[node name="AudioZoneTracker" type="Node" parent="."]
+script = ExtResource("11_audio_zones")
 
 [node name="InfoPanel" parent="." instance=ExtResource("5_info")]
 

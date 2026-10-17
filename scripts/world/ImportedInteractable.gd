@@ -9,6 +9,7 @@ extends Node
 ##   clue_terminal  reveals a clue from a terminal/panel
 ##   clue_pickup    reveals a clue and removes the physical document
 ##   system_status  content/debug report
+##   shift_signout  shift handover board (ChapterDirector.sign_out)
 
 const PADDING: float = 0.12
 const MIN_SIZE: float = 0.3
@@ -57,6 +58,8 @@ func _on_interacted(_interactor: Node) -> void:
 			_refresh()
 		"system_status":
 			WorldActions.show_system_status(title)
+		"shift_signout":
+			EventBus.shift_signout_requested.emit()
 
 
 ## Picked-up documents disappear; state comes from EvidenceManager, so it is
