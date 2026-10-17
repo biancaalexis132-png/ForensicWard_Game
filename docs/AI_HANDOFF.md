@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Chapter 5 ending-state foundation | `copilot/chapter5-ending-state-foundation` | Copilot / current session | `2b3c3b2e4295caf4c5e1b9528895ec8cb90a8c44` (verified remote checkpoint) | Proposed: `scripts/narrative/FinaleStateSchemas.gd`, `FinaleStateValidator.gd`, `scripts/tests/test_finale_state_contract.gd`, `docs/design/CHAPTER5_ENDING_STATE_CONTRACT.md`; implementation awaiting owner approval | Design proposal pushed; no code or persistent schema changes |
+| Chapter 5 ending-state foundation | `copilot/chapter5-ending-state-foundation` | Copilot / current session | `8a2d6d5dd856513041c4d86cfd30b962a19690bd` (verified remote checkpoint) | `scripts/narrative/FinaleStateSchemas.gd`, `FinaleStateValidator.gd`, `scripts/tests/test_finale_state_contract.gd`, `docs/design/CHAPTER5_ENDING_STATE_CONTRACT.md` | Pure in-memory contract pushed; 130 TestRunner tests pass; full QA blocked by local FFmpeg lacking `libvorbis`; no PR yet |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -56,6 +56,54 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 23:20 UTC · Copilot · Chapter 5 ending-state foundation
+
+- **Branch:** `copilot/chapter5-ending-state-foundation` (based on `biancaalexis132-png-chapter5-finale-review` at `c0ebb18cdf11beffc863663b6800a4af1c7224d3`)
+- **Latest verified commit:** `8a2d6d5dd856513041c4d86cfd30b962a19690bd` "Add Chapter 5 ending-state contract foundation"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/copilot/chapter5-ending-state-foundation` printed `8a2d6d5dd856513041c4d86cfd30b962a19690bd` at 2026-10-17 23:20 UTC.
+- **Pull request:** none; the requested first technical PR is deferred until full QA can run.
+- **State:** pure in-memory contract and deterministic tests are implemented and pushed. No persistent schema or runtime gameplay was added.
+
+**Accomplished**
+- Added an in-memory Chapter 5 state contract and pure validator for approved clinical-task IDs, task completion/safe escalation, evidence authentication/review and derivation lineage, reviewed report, one of the three existing decisions, and completion.
+- Keeps all three responsible endings available after shared gates without profile, relationship, belief, diagnosis, symptom, or treatment inputs. Chapter 4's corridor-loop reveal is not represented or triggered.
+- Deduplicates unique acquisition-source IDs but explicitly does not claim that distinct IDs prove independent real-world origins.
+- Added synthetic deterministic tests, including input/live clinical/save-state immutability and duplicate/cyclic evidence lineage.
+- Kept SaveManager v3, the v1→v2→v3 migration chain, ClinicalRules, EventBus, authored content, and gameplay unchanged.
+
+**Files modified**
+- `scripts/narrative/FinaleStateSchemas.gd` and `.uid`: in-memory shape contract.
+- `scripts/narrative/FinaleStateValidator.gd` and `.uid`: deterministic structural, clinical approval, lineage and ending-gate validation.
+- `scripts/tests/test_finale_state_contract.gd` and `.uid`: 14 synthetic contract tests.
+- `docs/design/CHAPTER5_ENDING_STATE_CONTRACT.md`: scope, state domains, evidence limitations, gates and deferred approvals.
+
+**Unfinished**
+- No code functions remain unfinished within the approved bounded scope.
+- Persistence, coordinated protagonist/finale v3→v4 migration, authored Chapter 5 content, institutional decision authority/audit trail, gameplay and anomaly effects remain deferred. Each needs the applicable owner/clinical approval.
+- The first technical PR remains pending because the full repository QA runner failed in an unrelated local audio-preview dependency before reaching Godot.
+
+**Known errors**
+- `python3 tests/qa/run.py --godot /Applications/Godot.app/Contents/MacOS/Godot` exited 1 after the JSON and audio-manifest suites passed. `tests/music_ai/test_generate_music.py` had 1 pass and 2 failures because `/opt/homebrew/bin/ffmpeg` reports `Unknown encoder 'libvorbis'`. No project source was changed to mask this environment failure.
+
+**Tests** (on `8a2d6d5`)
+- `HOME=/tmp/copilot-godot-4.7/home XDG_DATA_HOME=/tmp/copilot-godot-4.7/data XDG_CACHE_HOME=/tmp/copilot-godot-4.7/cache XDG_CONFIG_HOME=/tmp/copilot-godot-4.7/config /tmp/copilot-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . res://scripts/tests/TestRunner.tscn`: **130 passed, 0 failed** on Godot `4.7.stable.official.5b4e0cb0f`. The official macOS archive was SHA-512 verified.
+- `python3 tests/qa/run.py --godot /Applications/Godot.app/Contents/MacOS/Godot`: **not completed**; JSON 6/6 and audio manifest 3/3 passed; music-preview suite 1/3 passed, 2 failed due to the missing FFmpeg `libvorbis` encoder; runner stopped before Godot checks.
+- `git diff --check`: passed.
+- CI: not observed.
+
+**Dependencies not available to remote agents**
+- The verified Godot 4.7 app and isolated user data are temporary under `/tmp/copilot-godot-4.7`; this does not affect the project tree. Hosted CI was not observed.
+
+**Next steps**
+1. Use an FFmpeg build with Vorbis encoding available and rerun `python3 tests/qa/run.py --godot <Godot 4.7>`; do not change music/game code to bypass the environmental error.
+2. After full QA, review and open the small technical PR against `main`; do not merge it.
+3. Keep persistence and the v3→v4 migration blocked pending separate owner approval; if later approved, coordinate with protagonist persistence and test actual v1/v2/v3 fixtures.
+4. The newly requested Naomi character production work belongs on its own branch from the latest verified `origin/main`, not on this Chapter 5 branch.
+
+**Notes for the other agent**
+- The owner approved only the in-memory Chapter 5 contract and tests in the preceding task. No schema migration, unreviewed clinical task content, supernatural trigger, or Chapter 5 gameplay is approved here.
+- `origin/main` has advanced to `f2330ae8847d9083d97b151fd0b68a8865f9e1bb` with the Naomi production reference package. Its asset-production work must stay separate.
 
 ### 2026-10-17 23:14 UTC · Copilot · Chapter 5 ending-state foundation plan
 
