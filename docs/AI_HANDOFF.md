@@ -56,6 +56,21 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 · Codex · Resolve owner-confirmed PR #27 conflicts
+
+- **Branch:** `claude/ashcroft-soundtrack` (PR #27), updated from a temporary continuation `codex/ashcroft-soundtrack-conflicts-cont-1` under the owner’s explicit request identifying PR #27.
+- **Latest verified commit:** `f59da089582ef27a6e58fc5eecc21a48d381a876` “Merge latest main and reconcile active workstreams after PR 29”.
+- **Confirmed on GitHub:** ordinary non-force push `HEAD:refs/heads/claude/ashcroft-soundtrack`; `git ls-remote` returned the exact SHA above. Parent history preserved; main not pushed or merged by the agent. This documentation-only checkpoint follows it.
+- **State:** conflicts resolved against `origin/main` `dd247bed93fca9bb95cbf2864eae964975358c23`. `git merge-tree --write-tree origin/main HEAD` exited 0; no unmerged index entries. Existing PR #27 updated via its head branch; API/hosted CI status unavailable due enforced API domain restriction.
+
+**Resolution:** preserve soundtrack and visual/protagonist continuity records in both living docs; combine active-workstream table, removing already merged F2/P0 claims. Keep all append-only historical entries. Audio integration content remains unchanged.
+
+**Validation correction:** first full QA run found 333 audio assertions passed / 1 failed: the existing fixed 3.6-second cleanup wait was too short for a 3.4-second clip with Dummy audio buffering. A three-play probe measured 3.466, 3.587 and 3.804 seconds until both actual players freed themselves. `tests/audio/TestAudio.gd` now waits for those objects with a bounded clip-duration-plus-one-second deadline; the original leak assertion remains, including original child count. No runtime audio behavior changed.
+
+**Tests:** full `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64` on `7feb43e`: exit 0, Python 6+3+3, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 112/0, boot OK, audio 334/0, complete Chapter 1 playback (`CH1_SEQUENCE_DONE`). Main then advanced by PR #29 (docs and four save tests only); isolated TestRunner on the combined `f59da08` tree passed **116/0** with no script errors. Other previously checked runtime/data/audio files unchanged. `git diff --check` passed. Hosted CI and Mac listening unobserved; licence confirmation remains owner task.
+
+**Next:** owner reviews PR #27; no agent merge. Ongoing P1 validation, D1–D3 canon reconciliation and the newly approved opening-tone proposal use separate development commits/branch. Those approvals do not permit rewriting Chapter 1 or activating clinical effects. GitHub API remains blocked; use existing Git authentication, not a new token request.
+
 ### 2026-10-17 · Codex · Protagonist proposal and save QA complete
 
 - **Branch:** `codex/protagonist-foundation-cont-1`, based on `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125`.
@@ -134,6 +149,45 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 **Notes for the other agent**
 - Geometry belongs to zones (`data/zones.json`); chapter world files only wire gameplay onto it. Do not add `environments` back to a world file.
 - Never build two levels at once; the validator rejects overlapping zones on one level.
+
+### 2026-10-17 21:40 UTC · Claude Code · Ashcroft soundtrack
+
+- **Branch:** `claude/ashcroft-soundtrack` (based on `main` at `65b598d`)
+- **Latest verified commit:** `0f555939fd42fa3cd3dd7ccc2b412ad837eb6670` "Move exploration music to the records archive per the bible"
+- **Confirmed on GitHub:** see `git ls-remote origin claude/ashcroft-soundtrack`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; waiting on owner review
+
+**Accomplished**
+- Six Ashcroft OGGs referenced in place from `assets/creative_references/Music/Ready_For_Godot/` (no copies; the `.m4a` sources are not used). Cues `mus_waiting_room`, `mus_compassion`, `mus_procedure`, `mus_temporal_fracture`, `mus_final_revelation`, `mus_main_theme_variant2`; state `hospital_ordinary` on a new `reception` location; contexts `patient_follow_up`, `oversight`, `ward_zero_anomaly`, `final_revelation`, `finale_motif` with begin/end events. Assignments and reasons in `docs/AUDIO.md` "Ashcroft score".
+- Ward Zero temporal echo is event-only (`w0_temporal_echo_begin`); tests assert no location or intensity starts it.
+- `AudioDirector._apply_music_context`: a play-once context cut short no longer blocks its own finished hook next time.
+- Second commit: exploration music moved from the day corridor and nursing station to a new `records_archive` location, per the bible's Chapter 1 cue table. Droppable on its own.
+- `.gdignore` in `Visual_References/` and `Music/Suno_Originals/`; manifest scans `Ready_For_Godot` and records Suno provenance.
+
+**Files modified**
+- Claimed files in the Active workstreams row.
+
+**Unfinished**
+- `data/world_chapter1.json` `audio_zones`: no `reception` or `records_archive` rectangle yet (world owner, F2 zones).
+- No story data fires the new events yet.
+
+**Known errors**
+- none
+
+**Tests** (on `0f55593`)
+- `python3 tests/qa/run.py --godot <Godot 4.7>`: all suites pass; audio 334 passed, 0 failed.
+- CI: not observed yet.
+
+**Dependencies not available to remote agents**
+- Listening review on the Mac; Suno licence terms for all Suno-tagged tracks (owner).
+
+**Next steps**
+1. Owner: listen, confirm the Suno licence, decide whether to keep the Chapter 1 realignment commit.
+2. F2 zones: add `reception` and `records_archive` `audio_zones` rectangles when those areas exist.
+
+**Notes for the other agent**
+- Concept boards and notes reviewed but not used in game: board names/roles conflict with canon, board 2 cites real actors as likeness references, Ward Zero boards use occult imagery the bible rules out. Details in the PR description.
 
 ### 2026-10-17 20:50 UTC · Claude Code · Foundation F1 campaign contract
 

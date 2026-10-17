@@ -350,8 +350,13 @@ func _apply_music_context(fade_seconds: float) -> void:
 	play_music(cue_id, fade_seconds)
 	var cue: Dictionary = _cues.get(cue_id, {})
 	if not cue.is_empty() and not (cue.get("loop", false) or cue.has("loop_crossfade") or cue.has("repeat_after")):
-		get_active_music().finished.connect(
-				_on_context_music_finished.bind(context_id, _music_token), CONNECT_ONE_SHOT)
+		var player: AudioStreamPlayer = get_active_music()
+		# A play-once context cut short leaves its one-shot hook on the player;
+		# Godot treats the rebound callable as the same one and would refuse it.
+		for connection: Dictionary in player.finished.get_connections():
+			if connection["callable"].get_method() == &"_on_context_music_finished":
+				player.finished.disconnect(connection["callable"])
+		player.finished.connect(_on_context_music_finished.bind(context_id, _music_token), CONNECT_ONE_SHOT)
 
 
 func _on_context_music_finished(context_id: String, token: int) -> void:
