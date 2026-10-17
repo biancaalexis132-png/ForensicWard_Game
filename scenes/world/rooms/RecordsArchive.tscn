@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/RoomShell.gd" id="1_roomshell"]
+[ext_resource type="PackedScene" path="res://scenes/props/Shelf.tscn" id="2_shelf"]
+[ext_resource type="PackedScene" path="res://scenes/props/Desk.tscn" id="3_desk"]
+[ext_resource type="PackedScene" path="res://scenes/props/CluePickup.tscn" id="4_cluepickup"]
+
+[node name="RecordsArchive" type="Node3D"]
+script = ExtResource("1_roomshell")
+size = Vector3(5, 3, 6)
+openings = Array[Vector4]([Vector4(3, 0, 1.2, 2.2)])
+
+[node name="ShelfWest1" parent="." instance=ExtResource("2_shelf")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -2.1, 0, -1.5)
+
+[node name="ShelfWest2" parent="." instance=ExtResource("2_shelf")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -2.1, 0, 1.5)
+
+[node name="ShelfNorth" parent="." instance=ExtResource("2_shelf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6)
+
+[node name="ReadingDesk" parent="." instance=ExtResource("3_desk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 1.6)
+
+[node name="WardRoster1968" parent="." instance=ExtResource("4_cluepickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.76, 1.6)
+clue_id = "clue_roster"

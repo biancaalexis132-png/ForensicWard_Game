@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/RoomShell.gd" id="1_roomshell"]
+[ext_resource type="PackedScene" path="res://scenes/props/Desk.tscn" id="2_desk"]
+[ext_resource type="PackedScene" path="res://scenes/props/Chair.tscn" id="3_chair"]
+
+[node name="InterviewRoom" type="Node3D"]
+script = ExtResource("1_roomshell")
+size = Vector3(7, 3, 8)
+openings = Array[Vector4]([Vector4(2, 2, 1.2, 2.2)])
+
+[node name="Table" parent="." instance=ExtResource("2_desk")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0.5, 0, 0)
+
+[node name="PhysicianChair" parent="." instance=ExtResource("3_chair")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0, 0)
+
+[node name="PatientChair" parent="." instance=ExtResource("3_chair")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 0, 0)

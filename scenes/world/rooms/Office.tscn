@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/RoomShell.gd" id="1_roomshell"]
+[ext_resource type="PackedScene" path="res://scenes/props/Terminal.tscn" id="2_terminal"]
+[ext_resource type="PackedScene" path="res://scenes/props/Chair.tscn" id="3_chair"]
+[ext_resource type="PackedScene" path="res://scenes/props/Desk.tscn" id="4_desk"]
+[ext_resource type="PackedScene" path="res://scenes/props/CluePickup.tscn" id="5_cluepickup"]
+[ext_resource type="PackedScene" path="res://scenes/props/Shelf.tscn" id="6_shelf"]
+
+[node name="Office" type="Node3D"]
+script = ExtResource("1_roomshell")
+size = Vector3(7, 3, 8)
+openings = Array[Vector4]([Vector4(3, 0, 1.2, 2.2)])
+
+[node name="EHRTerminal" parent="." instance=ExtResource("2_terminal")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -3, 0, 0)
+terminal_id = "office_ehr"
+title = "EHR Workstation"
+mode = 0
+
+[node name="OfficeChair" parent="." instance=ExtResource("3_chair")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 0, 0)
+
+[node name="FilingDesk" parent="." instance=ExtResource("4_desk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -3.1)
+
+[node name="TransferSummary" parent="." instance=ExtResource("5_cluepickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.76, -3.1)
+clue_id = "clue_transfer"
+
+[node name="Bookshelf" parent="." instance=ExtResource("6_shelf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, 3.6)
