@@ -295,6 +295,11 @@ Each is a draft PR from `main` (after PR #19 merges, or merging `main` in if it 
 6. Saving mid-zone and loading restores the zone, position and time; loading never replays a transition.
 7. Manual on the Mac (owner): transition smoothness, frame time before and after, audio location change. Reported as "untested on Mac" until done.
 
+**As built (F2 branch `claude/f2-zones`, 2026-10-17).** Three points differ from the plan above, all found while building it:
+- Test 3 runs on the restricted lift (security ↔ research), not on the ward entry doors. A seamless door never frees the zone behind it: the ward entry doors are part of the clinical wing's geometry, so freeing the clinical wing would leave a hole at the end of the security corridor. Same-floor zones therefore stay loaded together until a lift or hatch changes level; only fade transitions free zones. Ten lift round trips grew static memory by about 8 KB and left the object count unchanged.
+- The lift and service hatch connections were added to `data/zones.json` as well, since test 3 needs a fade connection. Both stay locked in Chapter 1 (`access_restricted_lift`, `access_maintenance`). The historic stair is used, not walked: its use point is the stair itself, because the hatch underside is out of reach from the floor.
+- Worker-thread streaming is switched off in headless runs, because Godot's dummy renderer creates meshes unsafely from worker threads (it logged "unimplemented base type" and leaked meshes). Headless runs load the same queue on the main thread. Threaded streaming needs the Mac check in test 7.
+
 ### F3: Anomaly evidence model and event separation (flag off)
 
 **Scope**

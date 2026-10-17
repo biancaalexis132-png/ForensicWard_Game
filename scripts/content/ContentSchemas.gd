@@ -225,7 +225,7 @@ const CHAPTER_ID_PATTERN: String = "^ch[0-9]+$"
 ## stay unique and readable through all five chapters.
 const ID_PREFIXES: Dictionary = {
 	"patient": "pt_", "staff": "staff_", "clue": "clue_", "hypothesis": "hyp_",
-	"objective": "obj_", "beat": "beat_",
+	"objective": "obj_", "beat": "beat_", "zone": "zone_", "connection": "conn_",
 }
 
 ## Campaign index: institution, chapters and the files each one loads
@@ -313,14 +313,15 @@ const WORLD_FILE: Dictionary = {
 	"required": {
 		"schema_version": _STRING,
 		"world_id": _ID,
+		## The zone the chapter starts in (data/zones.json); spawn_marker is in it.
+		"start_zone": _ID,
 		"spawn_marker": _STRING,
-		"environments": {"type": "array", "min_items": 1, "items": _STRING},
 		"doors": {
 			"type": "map",
 			"values": {
 				"type": "object",
 				"required": {"display_name": _STRING},
-				"optional": {"open_angle_degrees": {"type": "number"}, "locked_message": _STRING},
+				"optional": {"open_angle_degrees": {"type": "number"}, "locked_message": _STRING, "zone": _ID},
 			},
 		},
 		"interactables": {
@@ -328,7 +329,7 @@ const WORLD_FILE: Dictionary = {
 			"items": {
 				"type": "object",
 				"required": {"node": _STRING, "type": {"type": "enum", "values": WORLD_INTERACTABLE_TYPES}},
-				"optional": {"title": _STRING, "clue_id": _ID},
+				"optional": {"title": _STRING, "clue_id": _ID, "zone": _ID},
 			},
 		},
 		"characters": {
@@ -337,23 +338,88 @@ const WORLD_FILE: Dictionary = {
 				"type": "object",
 				"required": {"marker": _STRING, "kind": {"type": "enum", "values": ["staff", "patient"]},
 						"character_id": _ID},
-				"optional": {"seated": {"type": "bool"}},
+				"optional": {"seated": {"type": "bool"}, "zone": _ID},
 			},
 		},
 	},
+	## Entries name nodes inside one zone's environments: "zone" says which,
+	## and defaults to start_zone. They are wired when that zone loads.
 	"optional": {
 		"flicker_lights": _STRINGS,
 		"notes": _STRING,
-		## AudioDirector location per floor-plan rectangle (Godot x/z, metres).
-		## Anywhere else uses default_audio_location.
-		"audio_zones": {
+	},
+}
+
+
+## Zones and connections (see data/zones.json and ZoneDirector).
+## Zones on different levels share floor-plan coordinates, so they never
+## load together; zones on one level must not overlap.
+const ZONE_LEVELS: Array[String] = ["ground", "research", "sublevel", "exterior"]
+const ZONE_STATUSES: Array[String] = ["built", "placeholder"]
+## seamless: same level, walk through, no fade. fade: swap the loaded zones.
+const ZONE_TRANSITIONS: Array[String] = ["seamless", "fade"]
+const CONNECTION_KINDS: Array[String] = ["door", "lift", "hatch", "corridor"]
+const _XZ: Dictionary = {"type": "array", "min_items": 2, "items": {"type": "number"}}
+const _RECT: Dictionary = {"type": "object", "required": {"min_xz": _XZ, "max_xz": _XZ}}
+
+const ZONES_FILE: Dictionary = {
+	"type": "object",
+	"required": {
+		"schema_version": _STRING,
+		"zones": {
+			"type": "array", "min_items": 1,
+			"items": {
+				"type": "object",
+				"required": {
+					"id": _ID, "title": _STRING,
+					"level": {"type": "enum", "values": ZONE_LEVELS},
+					"status": {"type": "enum", "values": ZONE_STATUSES},
+					"environments": _STRINGS,
+					"bounds": {"type": "array", "items": _RECT},
+				},
+				"optional": {
+					## AudioDirector location per floor-plan rectangle; anywhere
+					## else in the zone uses default_audio_location.
+					"default_audio_location": _ID,
+					"audio_zones": {
+						"type": "array",
+						"items": {"type": "object", "required": {"location": _ID, "min_xz": _XZ, "max_xz": _XZ}},
+					},
+					"notes": _STRING,
+				},
+			},
+		},
+		"connections": {
 			"type": "array",
 			"items": {
 				"type": "object",
-				"required": {"location": _ID, "min_xz": {"type": "array", "items": {"type": "number"}},
-						"max_xz": {"type": "array", "items": {"type": "number"}}},
+				"required": {
+					"id": _ID,
+					"kind": {"type": "enum", "values": CONNECTION_KINDS},
+					"transition": {"type": "enum", "values": ZONE_TRANSITIONS},
+					"ends": {
+						"type": "array", "min_items": 2,
+						"items": {
+							"type": "object",
+							"required": {"zone": _ID},
+							"optional": {
+								"node": _STRING, "prompt": _STRING,
+								"arrival": {
+									"type": "object",
+									"required": {"position": {"type": "array", "min_items": 3, "items": {"type": "number"}}},
+									"optional": {"yaw_degrees": {"type": "number"}},
+								},
+								"placeholder_arrival": {"type": "bool"},
+							},
+						},
+					},
+				},
+				"optional": {
+					"door_id": _ID, "door_zone": _ID, "anchor_xz": _XZ,
+					"required_access": _ID, "locked_message": _STRING, "notes": _STRING,
+				},
 			},
 		},
-		"default_audio_location": _ID,
 	},
+	"optional": {"notes": _STRING},
 }

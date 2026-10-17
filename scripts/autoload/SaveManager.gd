@@ -15,14 +15,17 @@ extends Node
 ## Version history:
 ##   1  Sprints 1-3: one chapter; the "chapter" provider is flat.
 ##   2  F1 campaign: the "chapter" provider keeps state per chapter id.
-const SAVE_VERSION: int = 2
+##   3  F2 zones: door state moves from "world" to "zones", per zone id.
+const SAVE_VERSION: int = 3
 const SAVE_DIR: String = "user://saves"
 ## Older save versions migrate forward one step at a time:
 ## version N -> _migrate_from_N(data) -> data at version N + 1.
 ## The checksum is verified on the file as written, before any migration.
-const MIGRATIONS: Dictionary = {1: "_migrate_from_1"}
+const MIGRATIONS: Dictionary = {1: "_migrate_from_1", 2: "_migrate_from_2"}
 ## Every version 1 save was made in Chapter 1.
 const V1_CHAPTER_ID: String = "ch1"
+## Every version 1 and 2 save was made in the clinical wing, the only zone then.
+const V2_ZONE_ID: String = "zone_clinical_wing"
 
 ## Master seed for all deterministic randomness in a run.
 var run_seed: int = 1968
@@ -149,6 +152,18 @@ func _migrate_from_1(document: Dictionary) -> Dictionary:
 	if state.has("chapter"):
 		state["chapter"] = {"current": V1_CHAPTER_ID, "chapters": {V1_CHAPTER_ID: state["chapter"]}}
 	migrated["save_version"] = 2
+	return migrated
+
+
+## v2 -> v3: door states move from "world" to "zones", under the clinical wing.
+func _migrate_from_2(document: Dictionary) -> Dictionary:
+	var migrated: Dictionary = document.duplicate(true)
+	var state: Dictionary = migrated["state"]
+	if state.get("world") is Dictionary:
+		var objects: Variant = state["world"].get("objects", {})
+		state["world"].erase("objects")
+		state["zones"] = {"current": V2_ZONE_ID, "objects": {V2_ZONE_ID: objects}}
+	migrated["save_version"] = 3
 	return migrated
 
 

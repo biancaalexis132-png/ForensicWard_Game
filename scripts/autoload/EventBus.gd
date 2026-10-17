@@ -180,6 +180,10 @@ signal chapter_started(chapter_id: String)
 ## only visibility changes, so it is reversible and save-safe.
 @warning_ignore("unused_signal")
 signal environment_state_changed(group: String, state: String)
+## The player is now in another zone (data/zones.json): walked through a
+## seamless connection, arrived by a fade transition, or a save was loaded.
+@warning_ignore("unused_signal")
+signal zone_changed(zone_id: String, previous_zone_id: String)
 
 # --- Save and settings -------------------------------------------------------------------
 

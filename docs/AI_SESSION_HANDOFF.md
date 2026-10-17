@@ -11,7 +11,7 @@ Required by the Ashcroft Session Continuity Protocol in `CLAUDE.md` §2. The det
 - **Stopping point:** PR open, waiting on CI and owner review.
 - **Remaining, by priority:**
   1. Owner confirms Suno licence terms and does a listening pass on the Mac.
-  2. World owner adds `reception` and `records_archive` `audio_zones` rectangles (F2 zones).
+  2. World owner adds `reception` and `records_archive` `audio_zones` rectangles in `data/zones.json`.
   3. Story data fires the new music events once those scenes exist.
 - **Decisions:** tracks are referenced in place, never copied or re-encoded; levels are set per cue to about -20 LUFS; Ward Zero music starts only from explicit events.
 - **Dependencies:** Godot 4.7 for tests; ffmpeg, numpy, scipy and soundfile for `tools/audio/build_manifest.py`.
