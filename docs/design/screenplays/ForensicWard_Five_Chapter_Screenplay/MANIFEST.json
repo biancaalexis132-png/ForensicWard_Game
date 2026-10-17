@@ -1,0 +1,52 @@
+[
+  {
+    "file": "README_START_HERE.md",
+    "bytes": 3289,
+    "sha256": "e1b9611ceb6bbc4f4b4000ca9dfa2633fda46f193f40b622e733affee5f0b5e7"
+  },
+  {
+    "file": "clinical/CLINICAL_APPROVAL_REGISTER.md",
+    "bytes": 1845,
+    "sha256": "74cdb2ef0808c707eb069ea25cec52f20efd122f8c215b35125e725a54d73f34"
+  },
+  {
+    "file": "chapters/CH05_BEYOND_THE_LINES_FULL_SCREENPLAY_DRAFT.md",
+    "bytes": 28720,
+    "sha256": "b20f9ffcda9653157a60e69039b40eee099d51977a10022302a665fb3903c1b8"
+  },
+  {
+    "file": "chapters/CH1_ELIAS_WARD_COMPLETE_SOURCE_DRAFT.md",
+    "bytes": 11705,
+    "sha256": "8707a94d5ea5d26bf328e62c4222f659aa3c7080ad7393bd528b34a6cbe72189"
+  },
+  {
+    "file": "chapters/CH01_THE_ADMISSION_FULL_SCREENPLAY_DRAFT.md",
+    "bytes": 35688,
+    "sha256": "bc91999293e82c11de7b4fa06717284800ef5c849272728ad8acf2a0d74bcac9"
+  },
+  {
+    "file": "chapters/CH02_THE_MISSING_HOURS_FULL_SCREENPLAY_DRAFT.md",
+    "bytes": 28244,
+    "sha256": "55d4de9abd48db0ce380281ffa6a4b97f461b0f90d70fe6c36ec4bab64db1668"
+  },
+  {
+    "file": "chapters/CH04_THE_OFFICIAL_RECORD_FULL_SCREENPLAY_DRAFT.md",
+    "bytes": 28044,
+    "sha256": "d22e61dd95ee678468f6696b9b33d81737e22a24d2f1f8f47f799b575208c0a3"
+  },
+  {
+    "file": "chapters/CH03_BENEATH_THE_HOSPITAL_FULL_SCREENPLAY_DRAFT.md",
+    "bytes": 28092,
+    "sha256": "866bfa126a2d2fb72fdbc2d7fc7c58ede5d0309a0de9f34e4e219a7601c7d9b0"
+  },
+  {
+    "file": "production/IMPLEMENTATION_CROSSWALK.md",
+    "bytes": 3646,
+    "sha256": "7176df6b1290d86ef87f96fafef1c3a37a94b7c749c2e645519aa55bab91b37d"
+  },
+  {
+    "file": "production/CHARACTER_AND_ENDING_BIBLE.md",
+    "bytes": 3171,
+    "sha256": "9dfef7b251ced978c5d720e981f45e4ad79e87191b5b1ba36adfae334355fcde"
+  }
+]
