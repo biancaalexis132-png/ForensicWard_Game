@@ -13,7 +13,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Sprints 1–3 integration | `claude/integration-sprints-1-3` (draft PR to `main`) | Claude | `99c2eaf453e13d44932f73a7c7f30ad54a18bf3e` | `README.md` (merge resolution), `docs/INTEGRATION_SPRINTS_1_3.md`, `docs/PROJECT_STATUS.md`, this file. Otherwise no edits beyond the merge | Awaiting owner review and merge; replaces PRs #1, #6, #7, #8 |
 | Sprint 1 integration | `claude/integrate-sprint-01` (draft PR) | Claude | `8ca85bce79f08f19ce75e00c33502a4e4af14146` | `project.godot`, `scripts/autoload/EventBus.gd`, `scripts/autoload/GameState.gd`, `scenes/main/Main.*`, `scripts/main/Main.gd`, `tests/qa/run.py`, `tests/qa/TestQA.gd`, `docs/TESTING.md` | Awaiting owner review and merge |
 | Sprint 1 foundation | `claude/sprint-01-foundation` (PR #1) | Claude | `f626aad7be1c9a443762a5b2cd3591601c1b14bc` | Superseded by the integration PR | Close after the integration PR merges |
-| Environment art, nursing-station equipment | `claude/nursing-station-props` (PR to `main`) | Claude | `de77fe92e323cc998cb500aef2b8bff520ded842` | `tools/blender/build_stage2_chapter1.py`, `assets/blender/clinical/FW_Chapter1_ClinicalWing.blend`, `assets/exports/clinical/env/ENV_NursingStation.glb`, `assets/asset_manifest/**`, `assets/renders/stage2/**`, `docs/ENVIRONMENT_STAGES.md` | Awaiting owner review and merge. Stage 4 next |
+| Environment art, Stage 4a security and admin wing | `claude/environment-stage-4` (draft PR to `main`) | Claude | `4180b3fa86a76065634587b47f7d42897f3be68b` | `tools/blender/build_stage4_security_admin.py`, `tools/blender/{fw_assets,fw_lib}.py` (Stage 4 sections), `tools/blender/build_stage2_chapter1.py` (`room_shell` light_color only), `assets/{blender,exports}/security/**`, `assets/renders/stage4/**`, `assets/asset_manifest/**`, `docs/ENVIRONMENT_*.md` | Awaiting owner review and merge. Stage 4b research wing next |
 | Chapter 1 playable | `claude/chapter1-playable` (PR #7) | Claude | `60ed74fe882385535425f2038add243f93cc4b9e` | `scripts/world/**`, `scripts/autoload/WorldStateManager.gd`, `data/world_chapter1.json`, `scenes/world/Chapter1Ward.tscn`, `scripts/tests/test_world.gd`, `docs/CHAPTER1_PLAYABLE.md` | Integration branch merged in; awaiting review |
 | Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
 | Sprint 3 story, evidence, shift | `claude/sprint-03-evidence-shift` (draft PR, base `claude/sprint-02-ehr-interview`) | Claude | see newest log entry | `scripts/narrative/**`, `data/story_chapter1.json`, `scripts/ui/EvidenceBoard.gd`, `scripts/world/AudioZoneTracker.gd`, `scripts/tests/test_sprint3.gd`; small edits to `scripts/main/Main.gd`, `scripts/autoload/EventBus.gd`, `scripts/ui/{HUD,PauseMenu}.gd` | Awaiting review |
@@ -62,6 +62,45 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 18:45 UTC · Claude Code · Environment Stage 4a security and admin wing
+
+- **Branch:** `claude/environment-stage-4` (based on `main` at `6feaaa5`, which includes PR #13)
+- **Latest verified commit:** `4180b3fa86a76065634587b47f7d42897f3be68b` "Build Stage 4a security and admin wing: 13 props, 11 rooms"
+- **Confirmed on GitHub:** `git ls-remote origin claude/environment-stage-4` printed `4180b3f` at 18:43 UTC; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- 13 security and admin props (`assets/exports/security/props/`): security console, 3x2 video wall, key cabinet, staff lockers, walk-through detector, conference table, waiting seats, executive desk, badge printer, elevator doors (leaves `_Leaf_L/_R` with colliders), electrical panel, wall pipes, wall display.
+- 11 rooms (`assets/exports/security/env/`) in the shared Chapter 1 frame, north of y = 20: security corridor with interlock doors at y = 32, visitor screening, credentialing, records office, medical director's office (Voss marker), conference room, secure interview suite (clinician seat nearer the exit, asserted), security control (Hale marker, window onto the corridor), surveillance monitoring, maintenance access (service hatch hinting at Stage 5), restricted lift lobby. Each has camera markers, collision and light markers.
+
+**Files modified**
+- New: `tools/blender/build_stage4_security_admin.py`, `assets/blender/security/{FW_Props_Security,FW_SecurityAdminWing}.blend`, the exports and their Godot `.import` files, `assets/renders/stage4/*.png`.
+- `tools/blender/fw_assets.py` (Stage 4 section), `tools/blender/fw_lib.py` (10 palette materials), `tools/blender/build_stage2_chapter1.py` (`room_shell` optional `light_color`, default unchanged; Stage 2 not rebuilt).
+- `assets/asset_manifest/asset_manifest.{json,md}`, `docs/ENVIRONMENT_STAGES.md`, `docs/ENVIRONMENT_PIPELINE.md`, `docs/PROJECT_STATUS.md`, this file.
+
+**Unfinished**
+- The floor plan and room adjacencies are assumptions (the GDD names the rooms, not a layout); labelled in `docs/ENVIRONMENT_STAGES.md`.
+- The wing is not yet wired into gameplay (`data/world_chapter1.json`, `AuthoredWorld`); the clinical corridor's north end has no door into it yet.
+- Stage 4b research wing not started.
+
+**Known errors**
+- none.
+
+**Tests** (on `4180b3f`, plus this commit's doc-only changes)
+- `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64` (4.7.stable.official.5b4e0cb0f): exit 0. `.glb` validation 92/92, TestRunner 80 passed / 0 failed, TestQA 19 / 0 / 0, TestAudio 211 / 0, "All executed checks passed".
+- `build_stage4_security_admin.py` with Blender 5.0.1 (`bpy`): "STAGE4 SECURITY OK: 13 props, 11 environments exported".
+- CI: not observed yet; check the PR.
+
+**Dependencies not available to remote agents**
+- Mac-only checks (Forward+ look, walking the wing in play).
+
+**Next steps**
+1. Owner reviews and merges this PR.
+2. Stage 4b research wing on a new branch from `main`: reception, clinical assessment, physician offices, lab support, secure sample storage, data analysis, research records archive, observation room, restricted corridor, the undisclosed protocol office. Keep it ordinary-looking, not overtly sinister.
+3. Later: connect the clinical corridor's north end to the security corridor in gameplay.
+4. Still open: close PRs #1, #6, #7 and #8, which are fully contained in `main`.
 
 ### 2026-10-17 18:35 UTC · Claude Code · Nursing-station equipment
 
