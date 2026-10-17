@@ -2,11 +2,11 @@
 
 ## Merge reconciliation — Codex, 2026-10-17
 
-The owner requested resolution of conflicts in the pending GitHub push. Git inspection identified PR #27's `claude/ashcroft-soundtrack` at `412a429a6e717ea00c96d2a9b8ad1987b82c7a58` conflicting with `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125`. This continuation (`codex/ashcroft-soundtrack-conflicts-cont-1`) merges main without rewriting history. Only the two add/add continuity conflicts require manual resolution; both workstreams' records are retained below. Runtime/audio/data content is unchanged by the conflict resolution. Validation exposed a pre-existing timing-sensitive audio test; its cleanup assertion now waits for the actual players with a bounded deadline instead of a fixed 3.6-second timer.
+The owner requested resolution of conflicts in the pending GitHub push. Git inspection identified PR #27's `claude/ashcroft-soundtrack` at `412a429a6e717ea00c96d2a9b8ad1987b82c7a58` conflicting with `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125`. This continuation (`codex/ashcroft-soundtrack-conflicts-cont-1`) merges main without rewriting history. The initial merge required two add/add continuity resolutions; a subsequent merge of `origin/main` `dd247bed93fca9bb95cbf2864eae964975358c23` (PR #29) required reconciling the active-workstream table as well; both workstreams' records are retained below. Runtime/audio/data content is unchanged by the conflict resolution. Validation exposed a pre-existing timing-sensitive audio test; its cleanup assertion now waits for the actual players with a bounded deadline instead of a fixed 3.6-second timer.
 
-Current facts override historical stopping points below: F2 PR #26 and visual-review PR #28 are merged, while visual recommendations D1–D9 remain proposals. PR #27's open/review state is not API-verified because `api.github.com` is blocked (proxy CONNECT 403). The owner explicitly confirmed PR #27 in this session. After validation, this continuation will be pushed as a fast-forward update to its existing branch; no history rewrite or merge into main. The owner's ongoing P1 protagonist work is on the separate `codex/protagonist-foundation-cont-1` branch, not part of this merge.
+Current facts override historical stopping points below: F2 PR #26 and visual-review PR #28 are merged, while visual recommendations remained proposals at the merge baseline. The owner subsequently supplied explicit D1–D3 approval in this session; canon reconciliation is proceeding on a separate workstream, with D4–D9 still unresolved. PR #27's open/review state is not API-verified because `api.github.com` is blocked (proxy CONNECT 403). The owner explicitly confirmed PR #27 in this session. After validation, this continuation will be pushed as a fast-forward update to its existing branch; no history rewrite or merge into main. PR #29 merged the protagonist proposal/save tests into main during validation; they are preserved in this latest merge. New P1 implementation will use a separate branch.
 
-Validation: full Godot 4.7 QA is being run on this merge; final results and remote checkpoint will be added to `docs/AI_HANDOFF.md`. Mac listening and Suno licence confirmation remain owner tasks. No owner approval is invented by resolving the docs.
+Validation: full Godot 4.7 QA on `7feb43e` completed with exit 0: Python 6+3+3, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 112/0, boot OK, audio 334/0 and complete Chapter 1 sequence. After PR #29 added four save regression tests and docs only, TestRunner is rerun on the combined merge; other checked executable/data files are unchanged. Final results and remote checkpoint are recorded in `docs/AI_HANDOFF.md`. Mac listening and Suno licence confirmation remain owner tasks. No owner approval is invented by resolving the docs.
 
 ## Soundtrack workstream — preserved record
 
@@ -36,85 +36,60 @@ Required by the Ashcroft Session Continuity Protocol in `CLAUDE.md` §2. The det
 ## Visual review workstream — preserved record (PR #28 merged)
 
 
-This is the **current-session** handoff required by the Ashcroft Session Continuity Protocol in `CLAUDE.md`. It is rewritten throughout a session so a new Claude session can resume mid-task. It complements, and never replaces, the append-only log in `docs/AI_HANDOFF.md` (`AGENTS.md` §7) and the system table in `docs/PROJECT_STATUS.md`. If this file and those disagree, those win; record the conflict here.
+Updated 2026-10-17 · Codex · protagonist specification and save QA.
 
-**Start of every session:** read `CLAUDE.md` → `AGENTS.md` → this file → `docs/AI_PROGRESS_TRACKER.md` → `docs/PROJECT_STATUS.md` → newest entry of `docs/AI_HANDOFF.md`; then `git fetch origin --prune`, list open PRs, compare with this file, and resume the first unfinished item in "Next actions".
+## Objective and last completed milestone
 
-## Last updated
+Continued the existing game without redesigning foundations. Reconciled main, delivered a phased protagonist specification, and completed four independent save-compatibility regression tests. Full development QA passed. No creator, personality system, clinical effect, visual asset, runtime or save schema change was implemented.
 
-2026-10-17 21:20 UTC · Claude Code · visual direction review session (main merged in again; waiting on owner approval)
+## Repository and remote checkpoint
 
-## 1. Current objective
+- Branch: `codex/protagonist-foundation-cont-1`, based on verified `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125` (PR #28 merge).
+- Latest verified implementation commit: `01739ff70136d191704b694fbf32d6b9e28ee26d` “Guard save rejection and optional provider compatibility”; pushed, and `git ls-remote origin refs/heads/codex/protagonist-foundation-cont-1` returned that exact SHA. A documentation-only final checkpoint follows it; resolve the final remote tip with the same command.
+- Prior checkpoint `2d30785b3394d7faf5fc5826bf8a460e0a591277` contains reconciliation and proposal.
+- PR: **not created**. `gh pr create --draft --base main --head codex/protagonist-foundation-cont-1 --title ... --body-file /workspace/protagonist-foundation-pr.md` failed: `Post "https://api.github.com/graphql": Forbidden`. REST listing also fails; direct API CONNECT is denied with 403. Current open PRs/reviews and hosted CI remain unverified.
+- F0 #20, F1 #21, F2 #26 and visual review #28 are merged. No merge or push to main was performed.
+- Historical soundtrack PR #27 (`claude/ashcroft-soundtrack`) and off-repository Stage 6 environment thread remain coordination reservations. Pull refs exist but do not establish open status. No overlap with their files.
+- Working tree after import cleanup: intended changes committed; generated reference `.import` companions removed because absent at clean baseline; ignored `.godot/` retained. No pre-existing changes were present.
 
-Art-direction and asset review, no implementation: compare the character references and the Ward Zero boards in `assets/creative_references/Visual_References/` with approved canon and existing Godot/Blender assets, and deliver a visual production review and implementation proposal for owner approval. Owner instruction: no major implementation and no merges without approval.
+## Files and workstream ownership
 
-## 2. Repository state
+Created `docs/REPOSITORY_RECONCILIATION.md`, `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md`, `scripts/tests/test_save_compatibility.gd` and `.uid`. Updated `docs/PROJECT_STATUS.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/design/GDD_AMENDMENTS.md`, this file and append-only `docs/AI_HANDOFF.md`. These are the only changed paths versus main. Claim is complete, awaiting review; do not take audio/environment/character-model ownership from this entry.
 
-- Branch: `claude/visual-direction-review`, created from `main` at `e533e8b`, then `main` merged in at `3255b17` (PR #25: CLAUDE.md protocol) and at `9558c77` (PR #21 F1 and PR #26 F2 zones), both without conflicts. Find the tip with `git ls-remote origin claude/visual-direction-review`.
-- Draft PR: "Visual production review: characters and Ward Zero" against `main` (see the PR list; never merge from an agent).
-- Other active work, do not touch: F0 thread (F1 and F2 now merged); music integration PR #27; music integration ("Pick up earlier game session" thread); Stage 6 Ward Zero build in progress in the environment thread ("Pick up second game session", session `cse_012g8GqbzUkQo7xX9rHgbFKz`), not yet on GitHub when last checked.
-- Working tree: clean after the final push.
+## Technical findings and decisions
 
-## 3. Completed work and findings
+Actual runtime save version is 3 with v1→v2 chapter and v2→v3 zone migrations. ContentRegistry owns the immutable campaign catalog, not a separate `campaign` save provider (the historical F1 proposal differs). Keep the existing provider/checksum architecture. New tests prove rejected files preserve current providers, seed and successful-load events, added providers reset when absent, real legacy fixtures remain compatible, and added provider state round-trips/resets.
 
-- Created this file and `docs/AI_PROGRESS_TRACKER.md`.
-- Located canon: GDD v0.1 §5/§12 (`docs/design/*.docx`); design bible v1.1 package (project upload zip `/mnt/project-files/uploads/hearth/451cb4fc-e48e-46c2-8359-778bcc4e55ed`, **not in the repo**: files `01_MASTER_DESIGN_BIBLE.md`, `03_CLINICAL_PATIENTS_AND_RULES.md`, `05_AUDIO_VISUAL_AND_ACCESSIBILITY.md`, `09_SUPERNATURAL_AND_FOUNDATION_DECISIONS.md`); `data/staff.json`, `data/patients.json`, `audio/voice_profiles.json`, `docs/F0_FOUNDATION_AUDIT.md` (C4 staff roles, C5 Mara).
-- Reviewed all 6 character sheets, the ensemble board, guide PDF and README; the 4 Ward Zero boards and README; and the 2 `Concept_Boards`.
-- Inventoried 138 `.glb` (Stages 1–5), the Stage 5 historic substructure, `Character.tscn` capsule stand-ins, `AuthoredWorld.gd` marker wiring, `WorldStateManager` states, `FlickerLight`, Ward Zero audio cues.
-- Wrote `docs/design/VISUAL_PRODUCTION_REVIEW.md` (all 8 deliverables plus open decisions D1–D9).
-- Sent the environment thread a cross-session heads-up listing reference elements that conflict with canon (21:40 UTC), so Stage 6 does not bake them in.
+Owner-approved requirements are recorded in GDD amendments: fixed psychiatrist role, customizable professional/appearance background, moderate personal life, emergent personality and equal essential care/evidence/outcome access. The proposed provider, v4 migration, catalog, UI and callback design are **not approved implementation**. P1 is the next review gate.
 
-Key findings: Bennett portrait does not match the written casting; Voss reads too young; Hale wears a tactical vest (violates guardrail); Rahman's role conflicts across GDD/voice data (pharmacist) and v1.1/guide (psychiatrist); Elias and Mara portraits are dishevelled, contradicting "appearance neat"/"clean"; the ensemble and concept boards mislabel roles, code patients as "Ward Zero"/otherworldly, and cite real actors (reject). Ward Zero board 02 is a good architectural reference; boards 01/03 contain blood-like stains, a restraint "electric" chair, a named patient record with a Diagnosis field, a decommission notice signed "A. Mercer, Hospital Administrator", and explanatory notes/graffiti (reject); board 04 anomaly cues are usable if staged by chapter.
+## Validation
 
-## 4. Current progress
+From `/workspace/ForensicWard_Game`:
 
-Stopped at: review delivered and draft PR open. Waiting for the owner's approval of the review and decisions D1–D9.
+`python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`
 
-## 5. Remaining tasks (priority order)
+- Baseline on `fb07887`: exit 0; Python 6+3+3 passed; pharmacology 0 failures; QA 19/0/0; GLB 138/138; TestRunner 112/0; main boot OK; audio 271/0; complete Chapter 1 sequence.
+- Development tree matching `01739ff` (only later docs changed): exit 0; same checks, TestRunner **116 passed / 0 failed**. `CH1_SEQUENCE_DONE` and `All executed checks passed` observed. New test file was unchanged between run and commit. Four new tests include five rejection variants.
+- `git diff --check` passed. Test slot 99 and isolated temporary XDG directories used by the standard runner. No real saves touched.
+- Initial system-Godot run failed the version gate (4.6.3); corrected by SHA-512-verified official 4.7 install. It is not an unresolved test failure.
+- Expected rejection/tamper warnings occur in negative tests; Python mock-server socket ResourceWarnings are non-fatal. No unexplained failures or skipped checks.
+- Local logs `/tmp/forensic-ward-qa.log` and `/tmp/forensic-ward-development-qa.log` are not GitHub artifacts. Hosted CI not observed. Mac Forward+/Metal appearance, input, listening and memory/frame time remain untested.
 
-1. Owner approves or amends the review (D1–D9). Nothing below starts before that.
-2. On approval: open the GitHub issues in review §8, then PR V1 (superseded notes on the three boards) and V2 (`docs/design/CHARACTER_VISUAL_CANON.md`).
-3. When the environment thread's Stage 6 PR opens, review it against review §3, §4, §6 instead of building V4–V6 in parallel.
+## Cloud setup
 
-## 6. Technical decisions and dependencies
+Godot 4.7 standard lives outside checkout at `/workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`; system `godot` is 4.6.3 and must not be used. Python/ffmpeg already available. No persistent server is needed. Installation/QA script and startup instructions were saved in the environment draft; additive custom network domain `api.github.com` was saved, preserving package-manager presets. Saving does not apply runtime changes or publish. Review/save environment settings and publish through the UI, then retry PR access using existing authentication before considering credential requirements. No token is requested.
 
-- Documentation only; no code, scene, model, data or audio changes.
-- Canon outranks generated imagery (owner instruction).
-- The v1.1 bible is cited from the project upload; D9 proposes committing it under `docs/design/`.
-- Anomaly effects depend on F2 (zones) and F3 (anomaly model) from the F0 plan.
+## Blockers and owner approvals
 
-## 7. Files created or modified
+- The private v1.1 design-bible/clinical package is unavailable here and absent from Git. Available GDD DOCX, engineering contract, character PDF, reference guides and current code/data were inspected; missing canon was not reconstructed.
+- Visual D1–D9 remain open: Rahman role, Hale title, written casting, Ward Zero date/signatory, 02:17 link, Mara voice, station layout, superseded boards and committing the bible.
+- F0 C2 Concordance/chapter titles, C6 Bleed, C7 pharmacology clue gates, C11 original music export and precise anomaly mechanism remain unresolved. Pending clinical content remains pending. F3 is not implemented.
+- Next substantial change needs owner review of `PROTAGONIST_CUSTOMIZATION_PLAN.md`, specifically P1 catalog/schema and pure validator scope. Fixed psychiatrist role/moderate personal life/emergent personality are already approved and should not be re-asked.
 
-- `docs/AI_SESSION_HANDOFF.md` (new): this file.
-- `docs/AI_PROGRESS_TRACKER.md` (new): progress checklist.
-- `docs/design/VISUAL_PRODUCTION_REVIEW.md` (new): the review and proposal.
-- Merge commit bringing `main` (`3255b17`, CLAUDE.md) into the branch; no conflicts.
+## Exact next steps
 
-## 8. Tests and validation
-
-- Godot QA (`python3 tests/qa/run.py`): **not run**. The branch adds only Markdown; no Godot, data or asset file changed. CI on the PR is the check of record.
-- Image findings are visual inspection; ages and appearance read from generated faces are inferences.
-
-## 9. Failures and blockers
-
-- None technical. Blocked on owner approval by design.
-
-## 10. Pending user approvals
-
-- The whole review (`docs/design/VISUAL_PRODUCTION_REVIEW.md`).
-- D1 Rahman's role · D2 Hale's title · D3 written casting · D4 Ward Zero decommission date/signatory · D5 02:17 timestamp link · D6 Mara's voice · D7 separate Ward Zero station · D8 concept boards superseded · D9 commit the v1.1 bible.
-
-## 11. Next actions for a new session
-
-1. Check the draft PR for owner comments: `gh pr list --head claude/visual-direction-review` (or the GitHub MCP).
-2. If approved, apply the owner's decisions to the review, then start PR V1 on a new branch from `main`.
-3. If the environment thread's Stage 6 PR exists, read it and post review notes referencing review §3–§6.
-
-## 12. Creative and clinical constraints (standing)
-
-- Ashcroft State Forensic Hospital is a functioning, modern, humane, maintained forensic psychiatric hospital. Not an abandoned asylum.
-- Ward Zero is an older decommissioned section beneath it, with a genuine supernatural temporal and spatial phenomenon, introduced subtly; early anomalies keep an ordinary explanation.
-- Psychiatric symptoms are never evidence of the supernatural; story clues and symptoms stay separate (`AGENTS.md` §6). No invented psychiatric histories.
-- Approved character bible and clinical records outrank generated reference art.
-- Five-chapter architecture (F0) is fixed. Unapproved clinical effects stay off.
-- Target: 8 GB Apple Silicon MacBook Air, Godot 4.7 Forward+ (Metal).
+1. Read AGENTS.md, CLAUDE.md, current status/progress, reconciliation, proposal and newest append-only handoff. Fetch origin and compare this branch/main; do not reset or rewrite pushed commits.
+2. Once API domain access is applied, retry `gh pr list --state open`, inspect relevant reviews, then open a **draft** PR from this branch to main with the prepared description (local `/workspace/protagonist-foundation-pr.md`, or reconstruct from this handoff and committed changes). Recheck PR state before creating a duplicate. Do not merge.
+3. Obtain owner approval for P1. After approval, implement only immutable option schema and pure profile validation with synthetic test fixtures; no creator UI, save version bump, personality scoring, casting changes or new clinical/narrative canon in P1.
+4. For later P2, capture real v3 save before adding a provider, implement explicit v3→v4 migration and test full v1/v2/v3 compatibility. Follow the plan’s small PR sequence, maintaining clinical independence and equal mandatory access.
+5. Before any environment/audio/visual task, verify the reserved external workstreams. Request the actual missing bible through the owner’s normal file workflow before relying on it. Mac checks require the owner’s hardware.

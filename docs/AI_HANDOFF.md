@@ -10,8 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Ashcroft soundtrack | `claude/ashcroft-soundtrack` (draft PR to `main`) | Claude | `0f555939fd42fa3cd3dd7ccc2b412ad837eb6670` | `audio/cues.json`, `audio/manifest.json`, `docs/AUDIO.md`, `docs/AUDIO_MANIFEST.md`, `systems/audio/AudioDirector.gd`, `tests/audio/TestAudio.gd`, `tests/qa/test_audio_manifest.py`, `tools/audio/build_manifest.py`, `assets/creative_references/**/.gdignore` | Awaiting owner review and a listening pass |
-| Foundation F2 zones | `claude/f2-zones` (draft PR to `main`) | Claude | `fb9fc52` (see entry) | `data/zones.json`, `data/world_chapter1.json`, `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/world/{ZoneDirector,AuthoredWorld,AudioZoneTracker,ImportedDoor,ImportedInteractable}.gd`, `scripts/autoload/{SaveManager,ContentRegistry,EventBus,Settings}.gd` (EventBus: one signal; Settings: one key), `scripts/content/*`, `scripts/tests/test_zones.gd`, `scripts/tests/fixtures/saves/**`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT}.md` | Awaiting owner review. F3 waits on the Psychosomatic Bleed decision |
+| Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `7feb43e734666717e970a0342b1198dedeb81d68` (local validation checkpoint; push pending) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Main updated through PR #29; final compatibility check running |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -56,6 +55,40 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Codex · Protagonist proposal and save QA complete
+
+- **Branch:** `codex/protagonist-foundation-cont-1`, based on `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125`.
+- **Latest verified commit:** `01739ff70136d191704b694fbf32d6b9e28ee26d` “Guard save rejection and optional provider compatibility”.
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/codex/protagonist-foundation-cont-1` returned the exact SHA above after push. A docs-only checkpoint containing this entry follows it; resolve the final tip with the same command.
+- **Pull request:** none created; `gh pr create --draft` failed with `Post "https://api.github.com/graphql": Forbidden`. API CONNECT is denied with HTTP 403. Open PR inventory/hosted CI remain unverified.
+- **State:** complete and pushed for review; no runtime, clinical, asset or save-version changes.
+
+**Accomplished / files:** proposal and reconciliation in `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md` and `docs/REPOSITORY_RECONCILIATION.md`; approved protagonist requirements in GDD amendments; status and continuity docs reconciled. New `scripts/tests/test_save_compatibility.gd` + UID tests rejection without provider/seed/event mutation, absent-provider reset, real v1/v2 migration compatibility and added-provider round trip/reset. All prior append-only entries retained.
+
+**Tests:** standard `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`, from repo root: baseline `fb07887` exit 0 (TestRunner 112/0); development tree matching `01739ff` exit 0 (116/0). Python 6+3+3 passed, pharmacology 0 failures, QA 19/0/0, GLB 138/138, boot OK, audio 271/0, complete ordered Chapter 1 sequence. `git diff --check` passed. Expected negative-save warnings and non-fatal Python socket ResourceWarnings only. Hosted CI not observed; Mac validation not run.
+
+**Known errors / unavailable dependencies:** GitHub API blocked by network policy; additive `api.github.com` requirement saved in cloud draft, not applied/published. Git push works. Private v1.1 bible unavailable; Mac and optional generation tools not validated. D1–D9 and F0 C2/C6/C7/C11 remain open; no new medical content is approved.
+
+**Exact next steps:** apply saved environment network setting, retry PR inventory and create draft PR from this branch (avoid duplicate). Owner reviews proposal and authorizes P1 catalog/schema/pure validation scope before implementation. No full creator, v4 migration, personality meters or F3 without their review gates. Preserve audio PR #27 and Stage 6 ownership pending API verification. Full file list, PR body location and resume instructions: `docs/AI_SESSION_HANDOFF.md`. Never push main or merge.
+
+### 2026-10-17 · Codex · Protagonist specification / save QA baseline
+
+- **Branch:** `codex/protagonist-foundation-cont-1`, from `origin/main` at `fb078877c59273c0856ec29f29e4ae43d3fc3125`.
+- **Latest verified commit:** `fb078877c59273c0856ec29f29e4ae43d3fc3125` “Merge pull request #28 from biancaalexis132-png/claude/visual-direction-review”.
+- **Confirmed on GitHub:** `git ls-remote origin HEAD` returned that SHA; fetched history confirms F0 PR #20, F1 #21, F2 #26 and visual review #28 merged.
+- **Pull request:** none yet. Existing open PRs cannot be listed: both REST and GraphQL return Forbidden. Historical audio PR #27 and Stage 6 work remain reserved pending verification.
+- **State:** baseline complete; proposal written; independent regression tests in progress.
+
+**Accomplished:** reconciled objectively stale F2/visual-review merge status, recorded the owner’s explicit protagonist decisions, and wrote the phased technical proposal. Review recommendations D1–D9 are not approved by merging #28.
+
+**Files modified:** continuity/status docs, `docs/REPOSITORY_RECONCILIATION.md`, `docs/design/GDD_AMENDMENTS.md`, `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md`; new save-compatibility tests are being validated. No runtime, data, asset or audio files changed.
+
+**Tests on the base:** `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`: exit 0; Python 6+3+3 passed, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 112/0, boot OK, audio 271/0 and Chapter 1 `CH1_SEQUENCE_DONE`. Official engine archive SHA-512 verified. Hosted CI not observed. Development test run is separate and pending.
+
+**Known errors / dependencies:** system Godot is 4.6.3 (runner rejects it); use pinned local 4.7. Python mock-server tests emit ResourceWarnings about unclosed sockets but pass. Missing private v1.1 bible. Mac rendering/performance/input/listening untested. Clinical approvals, visual D1–D9 and F0 C2/C6/C7 remain open. No unresolved decision is implemented.
+
+**Next steps:** finish the new save regression suite and full QA, checkpoint results, push feature branch and verify exact SHA; create a draft PR if existing authentication permits. Do not start creator P1 before owner review of the proposal. Never merge or push main. The living handoff tracks remaining work.
 
 ### 2026-10-17 21:45 UTC · Claude Code · Foundation F2 zones
 
