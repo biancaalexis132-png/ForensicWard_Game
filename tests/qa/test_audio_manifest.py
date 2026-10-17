@@ -5,6 +5,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 AUDIO_EXTENSIONS = {".ogg", ".wav", ".mp3"}
+AUDIO_ROOTS = ("audio", "assets/audio", "assets/creative_references/Music/Ready_For_Godot")
 REQUIRED = ("file", "ids", "category", "source", "license", "location", "duration_seconds",
             "integration_status", "review_status", "sha256")
 
@@ -22,7 +23,7 @@ class AudioManifestTests(unittest.TestCase):
     def test_manifest_matches_files(self):
         assets = load("audio/manifest.json")["assets"]
         listed = {asset["file"] for asset in assets}
-        on_disk = {p.relative_to(ROOT).as_posix() for root in ("audio", "assets/audio") for p in (ROOT / root).rglob("*")
+        on_disk = {p.relative_to(ROOT).as_posix() for root in AUDIO_ROOTS for p in (ROOT / root).rglob("*")
                    if p.suffix in AUDIO_EXTENSIONS and "music_ai" not in p.parts
                    and not p.name.startswith("._")}
         self.assertEqual(listed, on_disk)
