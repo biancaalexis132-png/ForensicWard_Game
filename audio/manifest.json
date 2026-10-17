@@ -2,6 +2,90 @@
 	"schema_version": "0.1",
 	"assets": [
 		{
+			"file": "assets/audio/music/music_emotional.ogg",
+			"category": "music",
+			"duration_seconds": 180.015,
+			"ids": [
+				"mus_emotional",
+				"emotional",
+				"music_emotional_begin"
+			],
+			"integration_status": "integrated",
+			"license": "Owner-supplied original score for The Forensic Ward. Licence and authorship terms still to be confirmed and recorded by the owner",
+			"location": "Emotionally significant scenes (music context emotional, events music_emotional_begin/end), loops with a 5 s crossfade",
+			"notes": "Measured -15.0 LUFS integrated, -0.9 dBFS peak; cue volume -5.0 dB",
+			"review_status": "pending_listening_review",
+			"sha256": "f2bb2a13f4d9356d372b7fd872ded1ea5845e2ef8382b004089c3aee8e065518",
+			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); composition and generation method not recorded in the repository. Used unmodified; level set per cue in audio/cues.json"
+		},
+		{
+			"file": "assets/audio/music/music_ending_credits.ogg",
+			"category": "music",
+			"duration_seconds": 258.815,
+			"ids": [
+				"mus_ending_credits",
+				"ending_credits",
+				"music_credits"
+			],
+			"integration_status": "integrated",
+			"license": "Owner-supplied original score for The Forensic Ward. Licence and authorship terms still to be confirmed and recorded by the owner",
+			"location": "Ending credits (music context ending_credits, event music_credits), plays once over silence",
+			"notes": "Measured -14.1 LUFS integrated, -1.4 dBFS peak; cue volume -5.9 dB",
+			"review_status": "pending_listening_review",
+			"sha256": "b8727676ab3bf58f692720247b9a26243b418ff107453e9e41ae0b9d9b070944",
+			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); composition and generation method not recorded in the repository. Used unmodified; level set per cue in audio/cues.json"
+		},
+		{
+			"file": "assets/audio/music/music_main_theme.ogg",
+			"category": "music",
+			"duration_seconds": 208.255,
+			"ids": [
+				"mus_main_theme",
+				"main_menu",
+				"music_main_menu"
+			],
+			"integration_status": "integrated",
+			"license": "Owner-supplied original score for The Forensic Ward. Licence and authorship terms still to be confirmed and recorded by the owner",
+			"location": "Main menu (music context main_menu), loops with a 4 s tail-to-head crossfade",
+			"notes": "Measured -14.2 LUFS integrated, -1.1 dBFS peak; cue volume -5.8 dB brings it to about -20 LUFS. A duplicate music_main_theme.m4a (Opus) sits next to it; Godot cannot import .m4a, so it is not used or listed",
+			"review_status": "pending_listening_review",
+			"sha256": "dcdebbf456b1dae1bb9234adab3f0ece136b78f39de0141f8b0716964f3ca605",
+			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); composition and generation method not recorded in the repository. Used unmodified; level set per cue in audio/cues.json"
+		},
+		{
+			"file": "assets/audio/music/music_main_theme_alt.ogg",
+			"category": "music",
+			"duration_seconds": 204.215,
+			"ids": [
+				"mus_main_theme_alt",
+				"cinematic",
+				"music_cinematic"
+			],
+			"integration_status": "integrated",
+			"license": "Owner-supplied original score for The Forensic Ward. Licence and authorship terms still to be confirmed and recorded by the owner",
+			"location": "Alternate cinematic (music context cinematic), plays once then hands music back",
+			"notes": "Measured -14.7 LUFS integrated, -0.8 dBFS peak; cue volume -5.3 dB",
+			"review_status": "pending_listening_review",
+			"sha256": "b2bd47bcd06fbdc0f7c8e6892e9f316a40ade3d94659df44a63e2d8c611fb693",
+			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); composition and generation method not recorded in the repository. Used unmodified; level set per cue in audio/cues.json"
+		},
+		{
+			"file": "assets/audio/music/music_narrative.ogg",
+			"category": "music",
+			"duration_seconds": 360.024,
+			"ids": [
+				"mus_narrative",
+				"exploration"
+			],
+			"integration_status": "integrated",
+			"license": "Owner-supplied original score for The Forensic Ward. Licence and authorship terms still to be confirmed and recorded by the owner",
+			"location": "Narrative exploration (music state exploration): corridor and nursing station by day; fades its last 8 s, rests 45 s, repeats",
+			"notes": "Measured -17.9 LUFS integrated, -0.7 dBFS peak; cue volume -8.1 dB sits it about 6 dB under the -20 LUFS feature level so ambience stays audible. The recording ends at full level, hence the tail fade",
+			"review_status": "pending_listening_review",
+			"sha256": "17a77e1d2ba75f3b8f38b6e365b838039a18ca49a4c6e3616987e66e2981e3a4",
+			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); composition and generation method not recorded in the repository. Used unmodified; level set per cue in audio/cues.json"
+		},
+		{
 			"file": "audio/ambience/amb_corridor_day_loop.ogg",
 			"category": "ambience",
 			"duration_seconds": 60.0,

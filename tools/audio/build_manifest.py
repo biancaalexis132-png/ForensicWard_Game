@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Builds audio/manifest.json and docs/AUDIO_MANIFEST.md from the files in audio/.
+"""Builds audio/manifest.json and docs/AUDIO_MANIFEST.md from the files in audio/ and assets/audio/.
 
 Authored fields (source, license, location, notes, review_status) are kept from
 the existing manifest; measured fields (duration, sha256) and integration status
@@ -24,6 +24,8 @@ MANIFEST_PATH = ROOT / "audio/manifest.json"
 TABLE_PATH = ROOT / "docs/AUDIO_MANIFEST.md"
 CUES_PATH = ROOT / "audio/cues.json"
 AUDIO_EXTENSIONS = {".ogg", ".wav", ".mp3"}
+# audio/ holds generated assets; assets/audio/ holds recordings the owner supplies (e.g. the soundtrack).
+AUDIO_ROOTS = ("audio", "assets/audio")
 
 VOICE_LICENSE = ("Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); "
                  "phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not "
@@ -48,8 +50,19 @@ def references():
     for cue_id, cue in cues["cues"].items():
         for stream in cue.get("streams", [cue.get("stream")]):
             by_path.setdefault(stream.removeprefix("res://"), []).append(cue_id)
+    def add_cue(cue_id, user):
+        cue = cues["cues"][cue_id]
+        for stream in cue.get("streams", [cue.get("stream")]):
+            by_path.setdefault(stream.removeprefix("res://"), []).append(user)
+    for state_id, variants in cues.get("music_states", {}).items():
+        for variant in variants:
+            add_cue(variant["cue"], state_id)
+    for context_id, context in cues.get("music_contexts", {}).items():
+        add_cue(context["cue"], context_id)
     for event_id, actions in cues["events"].items():
         for action in actions:
+            if "music_context" in action:
+                add_cue(cues["music_contexts"][action["music_context"]]["cue"], event_id)
             for key in ("sfx", "stinger", "music"):
                 if key in action:
                     cue = cues["cues"][action[key]]
@@ -77,7 +90,8 @@ def build():
     by_path, by_line = references()
     problems = []
     assets = []
-    for path in sorted(p for p in (ROOT / "audio").rglob("*") if p.suffix in AUDIO_EXTENSIONS):
+    found = (p for root in AUDIO_ROOTS for p in (ROOT / root).rglob("*"))
+    for path in sorted(p for p in found if p.suffix in AUDIO_EXTENSIONS and not p.name.startswith("._")):
         relative = path.relative_to(ROOT).as_posix()
         duration, digest = measure(path)
         entry = dict(existing.get(relative, {"file": relative}))

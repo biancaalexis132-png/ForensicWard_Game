@@ -1,6 +1,6 @@
 {
 	"schema_version": "0.1",
-	"_note": "Audio cue sheet read by systems/audio/AudioDirector.gd. Cues name streams; locations pick ambience and room acoustics per shift; events map explicit narrative event IDs to timed audio actions. Anomaly audio is only ever started by an event listed here, never by the player's Objectivity or bleed stage. Cues with 'streams' list several takes; AudioDirector plays a random one with slight pitch and volume variation. A location shift may add a 'detail' ambience layered over its base bed.",
+	"_note": "Audio cue sheet read by systems/audio/AudioDirector.gd. Cues name streams; locations pick ambience and room acoustics per shift; events map explicit narrative event IDs to timed audio actions. Anomaly audio is only ever started by an event listed here, never by the player's Objectivity or bleed stage. Cues with 'streams' list several takes; AudioDirector plays a random one with slight pitch and volume variation. A location shift may add a 'detail' ambience layered over its base bed. Music contexts (main menu, cinematic, emotional scenes, credits) take over the music while active and stack, newest first; ending one returns to the context below it or to the location's music state. A context can stop or duck the ambience bed. Music cues that are not native loops repeat by 'loop_crossfade' (tail crossfades into a fresh start) or by 'tail_fade' plus 'repeat_after' (fade out, rest in silence, play again); otherwise they play once. Soundtrack volume_db values bring each track to about -20 LUFS integrated (the narrative bed sits 6 dB lower under ambience) without altering the recordings in assets/audio/music.",
 	"cues": {
 		"amb_corridor_day": {
 			"stream": "res://audio/ambience/amb_corridor_day_loop.ogg",
@@ -136,6 +136,67 @@
 			"bus": "SFX",
 			"startle": true,
 			"duck_ambience_db": -6.0
+		},
+		"mus_main_theme": {
+			"stream": "res://assets/audio/music/music_main_theme.ogg",
+			"bus": "Music",
+			"volume_db": -5.8,
+			"loop_crossfade": 4.0
+		},
+		"mus_main_theme_alt": {
+			"stream": "res://assets/audio/music/music_main_theme_alt.ogg",
+			"bus": "Music",
+			"volume_db": -5.3
+		},
+		"mus_emotional": {
+			"stream": "res://assets/audio/music/music_emotional.ogg",
+			"bus": "Music",
+			"volume_db": -5.0,
+			"loop_crossfade": 5.0
+		},
+		"mus_narrative": {
+			"stream": "res://assets/audio/music/music_narrative.ogg",
+			"bus": "Music",
+			"volume_db": -8.1,
+			"tail_fade": 8.0,
+			"repeat_after": 45.0
+		},
+		"mus_ending_credits": {
+			"stream": "res://assets/audio/music/music_ending_credits.ogg",
+			"bus": "Music",
+			"volume_db": -5.9
+		}
+	},
+	"music_states": {
+		"exploration": [
+			{
+				"cue": "mus_narrative",
+				"min_intensity": 0.0
+			}
+		]
+	},
+	"music_contexts": {
+		"main_menu": {
+			"cue": "mus_main_theme",
+			"ambience": "stop",
+			"fade": 2.5
+		},
+		"cinematic": {
+			"cue": "mus_main_theme_alt",
+			"ambience": "duck",
+			"ambience_db": -12.0,
+			"fade": 3.0
+		},
+		"emotional": {
+			"cue": "mus_emotional",
+			"ambience": "duck",
+			"ambience_db": -6.0,
+			"fade": 4.0
+		},
+		"ending_credits": {
+			"cue": "mus_ending_credits",
+			"ambience": "stop",
+			"fade": 3.0
 		}
 	},
 	"locations": {
@@ -145,7 +206,8 @@
 				"volume_db": 0.0,
 				"lowpass_hz": 20000.0,
 				"detail": "amb_distant_staff",
-				"detail_volume_db": -14.0
+				"detail_volume_db": -14.0,
+				"music_state": "exploration"
 			},
 			"night": {
 				"ambience": "amb_corridor_day",
@@ -164,7 +226,8 @@
 				"volume_db": -7.0,
 				"lowpass_hz": 6000.0,
 				"detail": "amb_nursing_station",
-				"detail_volume_db": 0.0
+				"detail_volume_db": 0.0,
+				"music_state": "exploration"
 			},
 			"night": {
 				"ambience": "amb_corridor_day",
@@ -309,6 +372,36 @@
 			{
 				"at": 2.0,
 				"intensity": 0.8
+			}
+		],
+		"music_main_menu": [
+			{
+				"at": 0.0,
+				"music_context": "main_menu"
+			}
+		],
+		"music_cinematic": [
+			{
+				"at": 0.0,
+				"music_context": "cinematic"
+			}
+		],
+		"music_emotional_begin": [
+			{
+				"at": 0.0,
+				"music_context": "emotional"
+			}
+		],
+		"music_emotional_end": [
+			{
+				"at": 0.0,
+				"end_music_context": "emotional"
+			}
+		],
+		"music_credits": [
+			{
+				"at": 0.0,
+				"music_context": "ending_credits"
 			}
 		]
 	}
