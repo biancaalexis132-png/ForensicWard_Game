@@ -359,6 +359,12 @@ def build_nurse_station(coll):
     place(A.prop_clock_caged, coll, root, "NS_Clock", (-3.3, 8.1, 2.2), 180)
     place(A.prop_bin, coll, root, "NS_Bin", (-4.6, 8.4, 0), 0)
     place(A.prop_camera_dome, coll, root, "NS_CCTV", (-4.6, 8.4, WALL_H), 0)
+    # Stage 3 equipment: kept clear of the inward door swing (x -2.5..-1.5, y 8.5..9.5).
+    place(A.prop_cart_medication, coll, root, "NS_MedicationCart", (-4.63, 9.3, 0), 90)
+    place(A.prop_bin_sharps, coll, root, "NS_SharpsBin", (-4.63, 9.15, 1.0), 90)
+    place(A.prop_cart_crash, coll, root, "NS_CrashTrolley", (-3.6, 8.42, 0), 180)
+    place(A.prop_cabinet_aed, coll, root, "NS_AED", (-2.75, 8.1, 1.35), 180)
+    place(A.prop_dispenser_handgel, coll, root, "NS_HandGel", (-2.15, 8.1, 1.2), 180)
     L.empty("MARK_Character_NurseBennett", coll, root, (-2.25, 11.0, 0.0), (0, 0, -D90), display="SINGLE_ARROW",
             size=0.5, props={"marker_type": "character", "character_id": "staff_bennett",
                              "faces": "+X (across the counter into the corridor)"})
