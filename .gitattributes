@@ -1,0 +1,8 @@
+# Normalize line endings so Windows/Mac/Linux edits don't create noisy diffs
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ogg binary
+*.wav binary
+*.glb binary
+*.blend binary

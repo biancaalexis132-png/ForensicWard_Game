@@ -1,0 +1,14 @@
+# Godot 4 generated folders - rebuilt automatically by the editor
+.godot/
+.import/
+*.translation
+
+# Exports
+/build/
+/export/
+export_presets.cfg
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.tmp
