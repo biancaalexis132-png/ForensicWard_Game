@@ -10,6 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Revised v2 review | `codex/revised-screenplays-v2-review` | Codex | `e36e155b3c666042a4fad168cf476f4495001e1e` | New review and own continuity docs | Five files on main; read/compare in progress |
 | Ch3 inspection specification | `codex/chapter3-inspection-spec` | Codex | `8cff9bcfc15956cb2828b2ff783b7ebcb7c5031e` | New spec/canon and own continuity docs | DraftPR32; complete proposal, full QA passed |
 | Screenplay integration | `codex/screenplay-continuity-review` | Owner/Codex review | `78d0d8a4aaa84f6c92aa377f0381ccabfcd4b391` | Existing audit and approved canon/docs | Owner merged Naomi proposal PR31 here; no modeling approval implied |
 | Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex | `74715227bf5581b09a3b2746870082576fffe71f` | Pure validator/test module | Complete for review, no runtime creator |
@@ -57,6 +58,13 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Codex · Revised screenplay v2 intake checkpoint
+
+- Branch `codex/revised-screenplays-v2-review`, from owner-merged screenplay base `ca7488980be3dd4d065810ae2f75cc6741727906` (PR32); main now `1dbd26a96288d7947ebd6a90b151ba1f6a0fc2a6`, five v2 files available. Requested docs/revised-screenplays-v2 branch absent; no blocker because main has package. Latest previously verified inspection remote e36e155.
+- Claim new line-reference audit/own continuity only; package/clinical/runtime untouched. Initial reading, Ch3 middle lines and technical mapping next. Previous full QA passed131/334; current pending.
+- Next compare all actual lines to old manuscripts/F2/campaign/review flags, report support/gaps/tests/approvals and foundations-first PRs; checkpoint after findings.
+
 
 ### 2026-10-17 · Codex · Controlled-inspection final session handoff
 

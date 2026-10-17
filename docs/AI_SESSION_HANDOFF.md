@@ -2,7 +2,11 @@
 
 Updated2026-10-17 · Codex · Ch2/Ch3 controlled-inspection proposal.
 
-## Current workstream and exact stopping point
+## Revised screenplay v2 technical review — current checkpoint
+
+Branch `codex/revised-screenplays-v2-review`, base owner-merged screenplay `ca7488980be3dd4d065810ae2f75cc6741727906` (PR32), merged latest main `1dbd26a96288d7947ebd6a90b151ba1f6a0fc2a6` containing five v2 files. Requested source branch absent; package available on main. Claim new line-reference review and own continuity only. Initial package reading underway; Ch3 middle lines require full read, no implementation. Next complete all five files with exact line mapping, compare F2/campaign/clinical flags, propose safe-return/source foundations before effects. Prior fullQA131/334 passed; new QA pending. Naomi remains separate proposal only.
+
+## Previous completed inspection workstream
 
 `docs/design/CHAPTER2_3_INSPECTION_CONTINUATION_SPEC.md` is complete for review: summary-level Ch2 institutional/Ch3 inspection crosswalk, Ch4 reveal conflict, F2 gaps, bounded deterministic repeated-junction design, lawful safe return/recovery, independent-source logging/replay, save/performance/accessibility requirements and small PRs. GDD records only the approved Ch3 first-entry premise. No runtime/effect/clinical/script replacement.
 

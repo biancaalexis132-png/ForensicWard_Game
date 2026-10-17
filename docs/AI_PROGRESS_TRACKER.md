@@ -4,6 +4,7 @@ Updated 2026-10-17 · current status is authoritative above the preserved earlie
 
 | Workstream | Current status | Evidence / next step |
 |---|---|---|
+| Revised v2 technical review | In progress | Five files on main1dbd26a; line-reference comparison, no effects/clinical activation |
 | Ch2 institutional / Ch3 inspection spec | Draft PR32; proposal and full QA complete | Summary comparison, deterministic safe-return/evidence/replay design; revised scripts confirmed not in Git; no runtime effects |
 | Naomi character production | Proposal PR31 owner-merged into screenplay base | Verified58ea107; proposal complete, modeling approval pending; no overlapping asset/runtime edits |
 | Earlier Naomi QA finding | Audio333/1; gameplay131/0; current audio334/0 | Existing fixed1.6s cinematic-resume assertion failed; reduced public-API probe passes1015ms; root cause unconfirmed, no test patch; current full inspection QA passed exit0 |
