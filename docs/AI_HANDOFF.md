@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Chapter 5 ending-state foundation | `copilot/chapter5-ending-state-foundation` | Copilot / current session | `c0ebb18cdf11beffc863663b6800a4af1c7224d3` (verified base checkpoint) | Proposed: `scripts/narrative/FinaleStateSchemas.gd`, `FinaleStateValidator.gd`, `scripts/tests/test_finale_state_contract.gd`, `docs/design/CHAPTER5_ENDING_STATE_CONTRACT.md`; implementation awaiting owner approval | Design proposal only; no code or persistent schema changes |
+| Chapter 5 ending-state foundation | `copilot/chapter5-ending-state-foundation` | Copilot / current session | `2b3c3b2e4295caf4c5e1b9528895ec8cb90a8c44` (verified remote checkpoint) | Proposed: `scripts/narrative/FinaleStateSchemas.gd`, `FinaleStateValidator.gd`, `scripts/tests/test_finale_state_contract.gd`, `docs/design/CHAPTER5_ENDING_STATE_CONTRACT.md`; implementation awaiting owner approval | Design proposal pushed; no code or persistent schema changes |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -62,6 +62,7 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - **Branch:** `copilot/chapter5-ending-state-foundation` (based on the verified review handoff branch at `c0ebb18cdf11beffc863663b6800a4af1c7224d3`)
 - **Latest verified commit:** `c0ebb18cdf11beffc863663b6800a4af1c7224d3` "Verify Chapter 5 review handoff push"
 - **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-chapter5-finale-review` printed `c0ebb18cdf11beffc863663b6800a4af1c7224d3`; `origin/main` is `122a8c505d5e7738b08d874314aade8a1cd87ab1`.
+- **Planning checkpoint push:** `git ls-remote origin refs/heads/copilot/chapter5-ending-state-foundation` printed `2b3c3b2e4295caf4c5e1b9528895ec8cb90a8c44`. This first branch checkpoint contains the handoff plan; a following docs-only checkpoint records this verification.
 - **Pull request:** none. `gh pr list --state open` returned no open PRs.
 - **State:** implementation plan only; awaiting owner approval. No code, save schema, gameplay, clinical rule, or anomaly behavior changed.
 
@@ -93,9 +94,10 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - CI: not observed.
 
 **Approval gate and next steps**
-1. Obtain owner approval of the in-memory contract semantics and proposed file/API scope before implementation; no persistent schema changes without separate explicit approval.
-2. After approval, implement only the pure schemas/validator and synthetic deterministic tests on this branch; run TestRunner and full `tests/qa/run.py` when Godot 4.7 is available.
-3. Review the technical contract before separately designing persistent v4 state; if approved, coordinate protagonist and finale providers into a single v3→v4 migration and test actual v1/v2/v3 fixtures, round trips, resets and idempotence.
+1. Continue from verified plan checkpoint `2b3c3b2e4295caf4c5e1b9528895ec8cb90a8c44`; verify the current remote tip before further work.
+2. Obtain owner approval of the in-memory contract semantics and proposed file/API scope before implementation; no persistent schema changes without separate explicit approval.
+3. After approval, implement only the pure schemas/validator and synthetic deterministic tests on this branch; run TestRunner and full `tests/qa/run.py` when Godot 4.7 is available.
+4. Review the technical contract before separately designing persistent v4 state; if approved, coordinate protagonist and finale providers into a single v3→v4 migration and test actual v1/v2/v3 fixtures, round trips, resets and idempotence.
 
 **Notes**
 - Current `docs/PROJECT_STATUS.md` verification header is stale (`fb078877...`) relative to fetched `origin/main` `122a8c5...`; no project-system status was changed here.

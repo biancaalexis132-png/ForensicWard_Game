@@ -41,7 +41,7 @@ _Last updated: 2026-10-17 · Codex protagonist foundation continuation._
 
 ## In progress (approval gate)
 
-- **Chapter 5 in-memory ending-state contract** · proposed files: `scripts/narrative/FinaleStateSchemas.gd`, `FinaleStateValidator.gd`, `scripts/tests/test_finale_state_contract.gd`, and `docs/design/CHAPTER5_ENDING_STATE_CONTRACT.md` · dependencies: reuse `ContentValidator.validate_value`; coordinate with but do not duplicate the unmerged `codex/protagonist-schema-p1` pure creation-draft contract · validation: design only; baseline Python JSON 6/6; Godot 4.7 unavailable · next: owner approves the pure contract and bounded test scope; keep persistence and SaveManager v4 out of scope until separately approved.
+- **Chapter 5 in-memory ending-state contract** · branch `copilot/chapter5-ending-state-foundation` at verified plan checkpoint `2b3c3b2e4295caf4c5e1b9528895ec8cb90a8c44` · proposed files: `scripts/narrative/FinaleStateSchemas.gd`, `FinaleStateValidator.gd`, `scripts/tests/test_finale_state_contract.gd`, and `docs/design/CHAPTER5_ENDING_STATE_CONTRACT.md` · dependencies: reuse `ContentValidator.validate_value`; coordinate with but do not duplicate the unmerged `codex/protagonist-schema-p1` pure creation-draft contract · validation: design only; baseline Python JSON 6/6; Godot 4.7 unavailable · next: owner approves the pure contract and bounded test scope; keep persistence and SaveManager v4 out of scope until separately approved.
 
 ## Pending (not started, waiting on approval)
 
