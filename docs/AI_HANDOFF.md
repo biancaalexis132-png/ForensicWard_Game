@@ -10,6 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Character pipeline proposal | `codex/naomi-production-proposal` | Codex | `0ead6cbd79710577852ab9a79522a5a61b960a46` | New proposal/canon and own continuity docs only | Auditing, no models/runtime edits |
 | Screenplay audit | `codex/screenplay-continuity-review` | Codex | `30e13f87f64e46c152dad2034a2a8c2c3e152dc6` | New audit and own continuity docs only | PR #30 package available; review starting, no runtime edits |
 | Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex; owner approved “continue” | `74715227bf5581b09a3b2746870082576fffe71f` (verified synchronized P1 checkpoint) | `scripts/protagonist/*`, new `scripts/tests/test_protagonist.gd` + fixtures, input-contract/ID/proposal docs and own continuity updates | Complete for review; synchronized TestRunner 131/0 and combined full QA passed |
 
@@ -56,6 +57,13 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Codex · Character-production start checkpoint
+
+- Branch `codex/naomi-production-proposal`, based on verified remote screenplay tip `0ead6cbd79710577852ab9a79522a5a61b960a46`; latest main unchanged PR30 `052859a984d7db599282914cbc300cc8cecc887b`. Previous full QA passed131 gameplay/334 audio; new audit/QA pending.
+- Owner approves Ch3 first actual WardZero entry through formal Security/Facilities inspection; dialogue/mechanics remain proposed. Claim new proposal and own canon/continuity only, no shared scene/asset files.
+- Initial code: WardCharacter capsule, staff/info and patient/interview interactions; Blender4.3.2 installed. Next verify all model/source/animation content, written guide/references and propose Bennett-first complete production workflow before modeling.
+
 
 ### 2026-10-17 · Codex · Audit, Mara canon and final QA checkpoint
 

@@ -2,7 +2,11 @@
 
 Updated 2026-10-17 · Codex · Five-chapter screenplay review.
 
-## Current workstream and stopping point
+## Character production proposal checkpoint — current
+
+Branch `codex/naomi-production-proposal`, stacked on verified screenplay remote `0ead6cbd79710577852ab9a79522a5a61b960a46`; main `052859a984d7db599282914cbc300cc8cecc887b` unchanged. Objective: audit real assets/rig/animation capabilities; propose Bennett-first realistic pipeline, not model yet. Owner approves Ch3 first actual WardZero entry through formal Security/Facilities inspection only; dialogue and anomaly mechanics still proposed. Claimed new proposal and own canon/handoff docs, no runtime/asset edits. Blender4.3.2 available; first inspection shows capsule Character.tscn and no animation classes in searched project code. Further binary/source audit pending. Next: inventory GLBs/Blender/voice/reference sources, write ten-deliverable proposal and record Ch3 boundary; standard QA pending, prior full pass retained.
+
+## Previous workstream and stopping point
 
 All 11 PR #30 package files reviewed against main; chapter audit, detailed Elias mapping, owner decision matrix and small PR sequence completed in `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`. No runtime or package modifications in this workstream. Full Godot4.7 QA passed exit0: Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, boot OK, audio334/0, Chapter1 sequence62.9s. Mara Chapter2 placement AND autonomous clinical story/investigative separation now owner-approved. Canon amendments, Ch1 reconciliation and Chapter2 crosswalk completed; clinical/dialogue logic pending. Next: verify/push final documentation checkpoint; owner reviews N1 runtime proposal and missing clinical source.
 
