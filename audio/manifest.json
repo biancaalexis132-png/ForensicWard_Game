@@ -11,12 +11,12 @@
 				"music_emotional_begin"
 			],
 			"integration_status": "integrated",
-			"license": "Owner-supplied original score for The Forensic Ward. Licence and authorship terms still to be confirmed and recorded by the owner",
+			"license": "Generated with Suno by the project owner. Licence depends on the owner's Suno plan at creation time and is still to be confirmed and recorded by the owner before any distribution",
 			"location": "Emotionally significant scenes (music context emotional, events music_emotional_begin/end), loops with a 5 s crossfade",
 			"notes": "Measured -15.0 LUFS integrated, -0.9 dBFS peak; cue volume -5.0 dB",
 			"review_status": "pending_listening_review",
 			"sha256": "f2bb2a13f4d9356d372b7fd872ded1ea5845e2ef8382b004089c3aee8e065518",
-			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); composition and generation method not recorded in the repository. Used unmodified; level set per cue in audio/cues.json"
+			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); the file's embedded metadata says it was made with Suno. Used unmodified; level set per cue in audio/cues.json"
 		},
 		{
 			"file": "assets/audio/music/music_ending_credits.ogg",
@@ -28,12 +28,12 @@
 				"music_credits"
 			],
 			"integration_status": "integrated",
-			"license": "Owner-supplied original score for The Forensic Ward. Licence and authorship terms still to be confirmed and recorded by the owner",
+			"license": "Generated with Suno by the project owner. Licence depends on the owner's Suno plan at creation time and is still to be confirmed and recorded by the owner before any distribution",
 			"location": "Ending credits (music context ending_credits, event music_credits), plays once over silence",
 			"notes": "Measured -14.1 LUFS integrated, -1.4 dBFS peak; cue volume -5.9 dB",
 			"review_status": "pending_listening_review",
 			"sha256": "b8727676ab3bf58f692720247b9a26243b418ff107453e9e41ae0b9d9b070944",
-			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); composition and generation method not recorded in the repository. Used unmodified; level set per cue in audio/cues.json"
+			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); the file's embedded metadata says it was made with Suno. Used unmodified; level set per cue in audio/cues.json"
 		},
 		{
 			"file": "assets/audio/music/music_main_theme.ogg",
@@ -45,12 +45,12 @@
 				"music_main_menu"
 			],
 			"integration_status": "integrated",
-			"license": "Owner-supplied original score for The Forensic Ward. Licence and authorship terms still to be confirmed and recorded by the owner",
+			"license": "Generated with Suno by the project owner. Licence depends on the owner's Suno plan at creation time and is still to be confirmed and recorded by the owner before any distribution",
 			"location": "Main menu (music context main_menu), loops with a 4 s tail-to-head crossfade",
 			"notes": "Measured -14.2 LUFS integrated, -1.1 dBFS peak; cue volume -5.8 dB brings it to about -20 LUFS. A duplicate music_main_theme.m4a (Opus) sits next to it; Godot cannot import .m4a, so it is not used or listed",
 			"review_status": "pending_listening_review",
 			"sha256": "dcdebbf456b1dae1bb9234adab3f0ece136b78f39de0141f8b0716964f3ca605",
-			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); composition and generation method not recorded in the repository. Used unmodified; level set per cue in audio/cues.json"
+			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); the file's embedded metadata says it was made with Suno. Used unmodified; level set per cue in audio/cues.json"
 		},
 		{
 			"file": "assets/audio/music/music_main_theme_alt.ogg",
@@ -62,12 +62,12 @@
 				"music_cinematic"
 			],
 			"integration_status": "integrated",
-			"license": "Owner-supplied original score for The Forensic Ward. Licence and authorship terms still to be confirmed and recorded by the owner",
+			"license": "Generated with Suno by the project owner. Licence depends on the owner's Suno plan at creation time and is still to be confirmed and recorded by the owner before any distribution",
 			"location": "Alternate cinematic (music context cinematic), plays once then hands music back",
 			"notes": "Measured -14.7 LUFS integrated, -0.8 dBFS peak; cue volume -5.3 dB",
 			"review_status": "pending_listening_review",
 			"sha256": "b2bd47bcd06fbdc0f7c8e6892e9f316a40ade3d94659df44a63e2d8c611fb693",
-			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); composition and generation method not recorded in the repository. Used unmodified; level set per cue in audio/cues.json"
+			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); the file's embedded metadata says it was made with Suno. Used unmodified; level set per cue in audio/cues.json"
 		},
 		{
 			"file": "assets/audio/music/music_narrative.ogg",
@@ -84,6 +84,107 @@
 			"review_status": "pending_listening_review",
 			"sha256": "17a77e1d2ba75f3b8f38b6e365b838039a18ca49a4c6e3616987e66e2981e3a4",
 			"source": "Supplied by the project owner in assets/audio/music/ (commit 782f642); composition and generation method not recorded in the repository. Used unmodified; level set per cue in audio/cues.json"
+		},
+		{
+			"file": "assets/creative_references/Music/Ready_For_Godot/music_compassion.ogg",
+			"category": "music",
+			"duration_seconds": 187.615,
+			"ids": [
+				"mus_compassion",
+				"patient_follow_up",
+				"music_patient_follow_up_begin"
+			],
+			"integration_status": "integrated",
+			"license": "Generated with Suno by the project owner (embedded Suno id in source). Licence depends on the owner's Suno plan at creation time and is still to be confirmed and recorded by the owner before any distribution",
+			"location": "Patient follow-up and reflective care moments, never during interviews (music context patient_follow_up, events music_patient_follow_up_begin/end); loops with a 5 s crossfade",
+			"notes": "Measured -15.1 LUFS integrated, -1.1 dBFS peak; cue volume -4.9 dB. Same recording as Suno_Originals/Unresolved Compassion.m4a (Opus), which Godot cannot import and is not used",
+			"review_status": "pending_listening_review",
+			"sha256": "6793e00eb635afd49b57e4cd911d3e150428fd785a4e8272d81747f7c0349a09",
+			"source": "Owner upload on assets/ashcroft-creative-references (PR #22); Suno metadata id=bf27b891-318c-43ec-955e-da69807fe790. Used unmodified and in place; level set per cue in audio/cues.json"
+		},
+		{
+			"file": "assets/creative_references/Music/Ready_For_Godot/music_final_revelation.ogg",
+			"category": "music",
+			"duration_seconds": 211.415,
+			"ids": [
+				"mus_final_revelation",
+				"final_revelation",
+				"music_final_revelation"
+			],
+			"integration_status": "integrated",
+			"license": "Generated with Suno by the project owner (embedded Suno id in source). Licence depends on the owner's Suno plan at creation time and is still to be confirmed and recorded by the owner before any distribution",
+			"location": "Chapter 5 final assessment (music context final_revelation, event music_final_revelation); plays once",
+			"notes": "Measured -13.8 LUFS integrated, -1.0 dBFS peak; cue volume -6.2 dB. Same recording as Suno_Originals/The Final Revelation.m4a (Opus), which Godot cannot import and is not used",
+			"review_status": "pending_listening_review",
+			"sha256": "1df1600b494040a82d0232845fdae7bbec91bc9a6baf72052faa18378d29b294",
+			"source": "Owner upload on assets/ashcroft-creative-references (PR #22); Suno metadata id=a4612a7c-6374-49d1-a69a-b4761b80581d. Used unmodified and in place; level set per cue in audio/cues.json"
+		},
+		{
+			"file": "assets/creative_references/Music/Ready_For_Godot/music_main_theme_variant2.ogg",
+			"category": "music",
+			"duration_seconds": 208.815,
+			"ids": [
+				"mus_main_theme_variant2",
+				"finale_motif",
+				"music_finale_motif"
+			],
+			"integration_status": "integrated",
+			"license": "Generated with Suno by the project owner (embedded Suno id in source). Licence depends on the owner's Suno plan at creation time and is still to be confirmed and recorded by the owner before any distribution",
+			"location": "Chapter 5 four-note theme recapitulation before the credits (music context finale_motif, event music_finale_motif); plays once",
+			"notes": "Measured -14.3 LUFS integrated, -0.4 dBFS peak; cue volume -5.7 dB. Same recording as Suno_Originals/The Four-Note Motif (2).m4a (Opus), which Godot cannot import and is not used",
+			"review_status": "pending_listening_review",
+			"sha256": "a6b801a3d270804b01b27f6ad49acb91390ed90fce82c1fb0d9c7e16c0c13b68",
+			"source": "Owner upload on assets/ashcroft-creative-references (PR #22); Suno metadata id=a09b987c-1328-4e88-bafa-052c03ab82c7. Used unmodified and in place; level set per cue in audio/cues.json"
+		},
+		{
+			"file": "assets/creative_references/Music/Ready_For_Godot/music_procedure.ogg",
+			"category": "music",
+			"duration_seconds": 210.415,
+			"ids": [
+				"mus_procedure",
+				"oversight",
+				"music_oversight_begin"
+			],
+			"integration_status": "integrated",
+			"license": "Generated with Suno by the project owner (embedded Suno id in source). Licence depends on the owner's Suno plan at creation time and is still to be confirmed and recorded by the owner before any distribution",
+			"location": "Chapter 4 oversight, audit and committee scenes (music context oversight, events music_oversight_begin/end); loops with a 5 s crossfade",
+			"notes": "Measured -12.3 LUFS integrated, +0.5 dBFS true peak (the file itself clips slightly; the -7.7 dB cue gain keeps playback clear of 0 dBFS). Opens at full level, so the context fades it in. Same recording as Suno_Originals/The Procedure.m4a (Opus), which Godot cannot import and is not used",
+			"review_status": "pending_listening_review",
+			"sha256": "b7bf606cc142842affaec855267c32428781e5f2fa3f8b633fa3cad79545e475",
+			"source": "Owner upload on assets/ashcroft-creative-references (PR #22); Suno metadata id=1f6a7ef4-a370-423b-a57f-7fe4a4ca351e. Used unmodified and in place; level set per cue in audio/cues.json"
+		},
+		{
+			"file": "assets/creative_references/Music/Ready_For_Godot/music_temporal_fracture.ogg",
+			"category": "music",
+			"duration_seconds": 194.975,
+			"ids": [
+				"mus_temporal_fracture",
+				"ward_zero_anomaly",
+				"w0_temporal_echo_begin"
+			],
+			"integration_status": "integrated",
+			"license": "Generated with Suno by the project owner (embedded Suno id in source). Licence depends on the owner's Suno plan at creation time and is still to be confirmed and recorded by the owner before any distribution",
+			"location": "Ward Zero temporal echo, Chapter 3 onward (music context ward_zero_anomaly). Started only by the explicit event w0_temporal_echo_begin, never by location, bleed or Objectivity; plays once over the kept ambience",
+			"notes": "Measured -13.5 LUFS integrated, -0.9 dBFS peak; cue volume -6.5 dB. Same recording as Suno_Originals/Temporal Fracture.m4a (Opus), which Godot cannot import and is not used",
+			"review_status": "pending_listening_review",
+			"sha256": "7b92d7d19f7b9fb2766ac147bb7e1b84e9c4f126a706d7d3bda1914525d1380f",
+			"source": "Owner upload on assets/ashcroft-creative-references (PR #22); Suno metadata id=408b78d4-d4a7-4092-96ba-be55e5b914e6. Used unmodified and in place; level set per cue in audio/cues.json"
+		},
+		{
+			"file": "assets/creative_references/Music/Ready_For_Godot/music_waiting_room.ogg",
+			"category": "music",
+			"duration_seconds": 209.135,
+			"ids": [
+				"mus_waiting_room",
+				"hospital_ordinary"
+			],
+			"integration_status": "integrated",
+			"license": "Generated with Suno by the project owner (embedded Suno id in source). Licence depends on the owner's Suno plan at creation time and is still to be confirmed and recorded by the owner before any distribution",
+			"location": "Hospital reception by day (music state hospital_ordinary, the bible's Chapter 2 'repeated hospital ordinary beds'); fades its last 4 s, rests 40 s, repeats",
+			"notes": "Measured -14.2 LUFS integrated, -1.1 dBFS peak; cue volume -11.8 dB sits it about 6 dB under the -20 LUFS feature level as a bed. Same recording as Suno_Originals/Quiet Waiting Room.m4a (Opus), which Godot cannot import and is not used",
+			"review_status": "pending_listening_review",
+			"sha256": "828bde29088fe61e850fbf52fde3fed0ce6c9b17e70cb3375aef8a08a9da2e39",
+			"source": "Owner upload on assets/ashcroft-creative-references (PR #22); Suno metadata id=150b5e6b-18f7-48a2-9690-dc23fafa23cd. Used unmodified and in place; level set per cue in audio/cues.json"
 		},
 		{
 			"file": "audio/ambience/amb_corridor_day_loop.ogg",

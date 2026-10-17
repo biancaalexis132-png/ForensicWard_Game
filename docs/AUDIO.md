@@ -85,6 +85,25 @@ How playback works:
 - **Triggers.** Story data fires the events above through `EventBus.narrative_event_fired`, or code calls `AudioDirector.start_music_context(id)`. No scene fires the main-menu, cinematic, emotional or credits events yet, because the game has no title screen, cinematics or credits scene, and no story beat is marked emotional. Those scenes should fire the events when they are built.
 - `music_main_theme.m4a` (an Opus copy of the main theme) is ignored: Godot cannot import `.m4a`.
 
+### Ashcroft score
+
+Six more tracks from the owner's Ashcroft upload are referenced in place from `assets/creative_references/Music/Ready_For_Godot/`, unmodified, levelled the same way. Scene assignments follow the master design bible (`ForensicWard_Final_Package/05_AUDIO_VISUAL_AND_ACCESSIBILITY.md` and the chapter notes in the master bible).
+
+| Track | Cue | Context | Repeats | Ambience |
+|---|---|---|---|---|
+| `music_waiting_room.ogg` | `mus_waiting_room` | music state `hospital_ordinary`: `reception` by day (the bible's Chapter 2 "repeated hospital ordinary beds") | last 4 s fade, 40 s of silence, plays again | kept; the bed sits 6 dB below the other tracks |
+| `music_compassion.ogg` | `mus_compassion` | music context `patient_follow_up` (events `music_patient_follow_up_begin` / `_end`): Chapter 5 patient continuity and reflective care moments, never during an interview | loops, 5 s crossfade | ducked 6 dB |
+| `music_procedure.ogg` | `mus_procedure` | music context `oversight` (events `music_oversight_begin` / `_end`): Chapter 4 audit and committee scenes ("subdued procedural pulse as oversight progresses") | loops, 5 s crossfade | ducked 4 dB |
+| `music_temporal_fracture.ogg` | `mus_temporal_fracture` | music context `ward_zero_anomaly` (events `w0_temporal_echo_begin` / `_end`): the bounded temporal echo, Chapter 3 onward | plays once | kept, so the environmental hum stays the source |
+| `music_final_revelation.ogg` | `mus_final_revelation` | music context `final_revelation` (event `music_final_revelation`): Chapter 5 final assessment | plays once | ducked 9 dB |
+| `music_main_theme_variant2.ogg` | `mus_main_theme_variant2` | music context `finale_motif` (event `music_finale_motif`): the Chapter 5 four-note recapitulation before the credits | plays once | ducked 12 dB |
+
+- **Ward Zero stays event-only.** No location, music state, bleed stage or Objectivity value starts `mus_temporal_fracture`; only the explicit `w0_temporal_echo_begin` event does, and Ward Zero itself still has no location music. The bible places no verified anomaly in Chapter 1, so no Chapter 1 beat should fire it. Tests check all of this.
+- **Reception needs a zone.** `reception` exists in `audio/cues.json`, but no world file has a reception `audio_zones` rectangle yet. The world owner adds one when the reception area is built.
+- `music_procedure.ogg` has a +0.5 dBFS true peak in the file itself; the -7.7 dB cue gain keeps playback clear of clipping.
+- `Suno_Originals/*.m4a` are the Opus sources of the same six recordings (same Suno ids). Godot cannot import them and they are not referenced; `.gdignore` keeps Godot out of that folder and out of `Visual_References/`, so the concept boards and character guide are not imported as game textures.
+- **Licence.** All six files, and four of the five tracks above, carry "made with suno" metadata. Whether they may ship depends on the owner's Suno plan when each was generated; the manifest records that as still to be confirmed.
+
 ## Regenerating assets
 
 ```sh
@@ -157,7 +176,8 @@ The project-wide status board and handoff log are proposed in PR #4 (`docs/PROJE
 | AudioDirector, Chapter 1 sequence | Merged to `main` (PR #3) |
 | Environment set: footsteps ×3 surfaces, badge accept/deny, EHR UI, elevator, distant staff, nursing station, historic static, electrical flicker/surge, Ward Zero bed + knocks + pressure swell | On `claude/quirky-ptolemy-6j16b7` (PR #5), tests green; not reviewed by ear |
 | ACE-Step 1.5 Mac kit with reference-audio support | On PR #5; **AI music milestone open**: no ACE-Step audio exists yet |
-| Original soundtrack (5 tracks) | `claude/audio-production`: contexts, exploration state, repeats, pause-menu volumes; tests green; not reviewed by ear on the Mac |
+| Original soundtrack (5 tracks) | Merged to `main` (PR #18): contexts, exploration state, repeats, pause-menu volumes; not reviewed by ear on the Mac |
+| Ashcroft score (6 tracks) | `claude/ashcroft-soundtrack`: bible scene assignments, event-only Ward Zero echo, reception bed; tests green; not reviewed by ear; Suno licence to confirm |
 | Gameplay hooks | Not wired: the player controller (PR #1) should call footsteps per surface, doors and badge readers should fire the `ch1_badge_*` events, and the EHR should fire `ch1_ehr_*` |
 
 Next steps, in order:
