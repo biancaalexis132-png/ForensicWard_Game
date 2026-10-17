@@ -26,7 +26,8 @@ CUES_PATH = ROOT / "audio/cues.json"
 AUDIO_EXTENSIONS = {".ogg", ".wav", ".mp3"}
 
 VOICE_LICENSE = ("Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); "
-                 "stock synthetic voice, not cloned from a real person. Usable in the commercial game.")
+                 "phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not "
+                 "distributed with the game. Stock synthetic voice, not cloned from a real person.")
 REQUIRED = ("file", "ids", "category", "source", "license", "location", "duration_seconds",
             "integration_status", "review_status")
 
@@ -45,13 +46,15 @@ def references():
         for scene in load_json(path).get("scenes", []):
             scene_lines[scene["id"]] = [line["id"] for line in scene.get("lines", [])]
     for cue_id, cue in cues["cues"].items():
-        by_path.setdefault(cue["stream"].removeprefix("res://"), []).append(cue_id)
+        for stream in cue.get("streams", [cue.get("stream")]):
+            by_path.setdefault(stream.removeprefix("res://"), []).append(cue_id)
     for event_id, actions in cues["events"].items():
         for action in actions:
             for key in ("sfx", "stinger", "music"):
                 if key in action:
-                    stream = cues["cues"][action[key]]["stream"].removeprefix("res://")
-                    by_path.setdefault(stream, []).append(event_id)
+                    cue = cues["cues"][action[key]]
+                    for stream in cue.get("streams", [cue.get("stream")]):
+                        by_path.setdefault(stream.removeprefix("res://"), []).append(event_id)
             if "line" in action:
                 by_line.setdefault(action["line"], []).append(event_id)
             for line_id in scene_lines.get(action.get("scene"), []):
@@ -92,7 +95,7 @@ def build():
                 problems.append(f"{relative}: stale; text or voice profile changed (run generate_voice.py)")
             entry.update({
                 "ids": [line_id] + by_line.get(line_id, []),
-                "category": "intercom" if profile["fx"] == "intercom" else "dialogue",
+                "category": "walla_source" if chapter == "walla" else ("intercom" if profile["fx"] == "intercom" else "dialogue"),
                 "speaker": line["speaker"],
                 "text": line["text"],
                 "source": f"Kokoro TTS voice '{profile['voice']}' speed {profile['speed']}, fx '{profile['fx']}' (tools/audio/generate_voice.py)",

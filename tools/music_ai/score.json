@@ -1,0 +1,113 @@
+{
+	"schema_version": "0.1",
+	"_note": "Editable generation plan for The Forensic Ward score (ACE-Step 1.5). Each candidate's caption = identity.caption_prefix + track.caption + variant.caption. Seeds are fixed so every candidate can be regenerated exactly with the same model, settings and ACE-Step commit. Change a seed to explore; never reuse a candidate id for different settings.",
+	"engine": {
+		"acestep_repo": "https://github.com/ACE-Step/ACE-Step-1.5",
+		"acestep_commit": "ca1e85fe9430179831e6bc6be790c332190a3866",
+		"model": "acestep-v15-turbo",
+		"lm_model": "acestep-5Hz-lm-1.7B",
+		"inference_steps": 8,
+		"thinking": true,
+		"audio_format": "wav",
+		"vocal_language": "unknown",
+		"lyrics": "[Instrumental]",
+		"lm_negative_prompt": "vocals, singing, choir, spoken word, rap, EDM drums, trap hi-hats, rock drum kit, distorted guitar, trailer braams, jump scare hits, loud brass stabs, happy, upbeat"
+	},
+	"identity": {
+		"caption_prefix": "Instrumental cinematic score for a psychological thriller set in a forensic psychiatric hospital. Minimalist and restrained. Sparse felt piano with soft hammers and audible room, low sustained strings, dark ambient pads, subtle dissonance, faint distorted analog tape and electrical textures, long silences between phrases, no vocals.",
+		"motifs": {
+			"admission": "A falling minor third on felt piano (F to D) that pauses, then answers with a single low E: the institution's question that never resolves.",
+			"elias": "Three repeated low notes on cello, the third held and slightly flat: the silent patient.",
+			"ward_zero": "A tritone (D to G sharp) drone with slowly beating detuned tape tones: the sealed ward."
+		},
+		"tonal_plan": "Home key D minor around 60-72 BPM. Clinical cues stay diatonic and quiet; investigative cues add semitone clusters; Ward Zero and Concordance move to D Phrygian with the D-G# tritone.",
+		"avoid": "Generic action-horror, constant jump-scare stingers, vocals, continuous loud orchestration, obviously supernatural sound in daytime clinical areas."
+	},
+	"tracks": [
+		{
+			"id": "main_menu", "title": "The Forensic Ward", "location": "main_menu", "loop": true,
+			"caption": "Main title theme. The falling minor-third felt piano motif F-D over a low D string pedal, very sparse.",
+			"bpm": 66, "key_scale": "D minor", "time_signature": "4", "duration": 90,
+			"candidates": [
+				{"id": "main_menu_a_piano", "seed": 41011, "caption": "Direction A, intimate: solo felt piano and a single low cello pedal, tape hiss, almost no movement, long rests."},
+				{"id": "main_menu_b_strings", "seed": 41023, "caption": "Direction B, orchestral minimalism: piano motif answered by slow divisi low strings that swell and recede, a faint high harmonic cluster."},
+				{"id": "main_menu_c_analog", "seed": 41037, "caption": "Direction C, analog unease: piano motif through a slightly warped tape machine, analog synth drone, soft electrical crackle, distant felt timpani pulse every few bars."}
+			]
+		},
+		{
+			"id": "the_admission", "title": "The Admission", "location": "reception", "loop": false,
+			"caption": "Opening chapter cue. Quiet arrival at an institution: the falling minor-third piano motif stated plainly, warm but clinical, low strings enter late.",
+			"bpm": 66, "key_scale": "D minor", "time_signature": "4", "duration": 120,
+			"variants": [{"id": "calm", "seed": 42011, "min_intensity": 0.0, "caption": "Gentle, observational, mostly piano."}]
+		},
+		{
+			"id": "clinical_routine", "title": "Clinical Routine", "location": "corridor", "loop": true,
+			"caption": "Quiet daytime hospital underscore. Soft repeating piano figure, muted low strings, fluorescent-light hum texture, realistic and calm rather than supernatural, mostly silence.",
+			"bpm": 72, "key_scale": "D minor", "time_signature": "4", "duration": 120,
+			"variants": [
+				{"id": "calm", "seed": 43011, "min_intensity": 0.0, "caption": "Very low density, neutral mood."},
+				{"id": "tense", "seed": 43023, "min_intensity": 0.6, "caption": "Same texture with a slow string cluster rising underneath and the piano figure hesitating."}
+			]
+		},
+		{
+			"id": "elias_ward", "title": "Elias Ward", "location": "interview_room", "loop": true,
+			"caption": "Patient interview underscore that never competes with dialogue. The Elias motif: three repeated low cello notes, the third held and slightly flat; sparse piano harmonics; huge space.",
+			"bpm": 60, "key_scale": "D minor", "time_signature": "4", "duration": 120,
+			"variants": [
+				{"id": "calm", "seed": 44011, "min_intensity": 0.0, "caption": "Compassionate, still, almost empty."},
+				{"id": "tense", "seed": 44023, "min_intensity": 0.6, "caption": "Uneasy: a quiet semitone rub in the violas and a muffled heartbeat-like low drum, still very soft."}
+			]
+		},
+		{
+			"id": "contradictory_records", "title": "Contradictory Records", "location": "records_archive", "loop": true,
+			"caption": "Investigative tension for reading files and comparing records. Pulsing muted piano eighth notes, ticking analog texture, low string ostinato, restrained.",
+			"bpm": 72, "key_scale": "D minor", "time_signature": "4", "duration": 120,
+			"variants": [
+				{"id": "calm", "seed": 45011, "min_intensity": 0.0, "caption": "Focused, curious, light pulse."},
+				{"id": "tense", "seed": 45023, "min_intensity": 0.6, "caption": "Pulse tightens, semitone clusters in the strings, a soft felt-mallet low drum."}
+			]
+		},
+		{
+			"id": "after_hours", "title": "After Hours", "location": "corridor_night", "loop": true,
+			"caption": "Nighttime exploration of empty corridors. Dark ambient drone, isolated felt piano notes with long decay, distant tape-warped string swells, lots of silence.",
+			"bpm": 60, "key_scale": "D minor", "time_signature": "4", "duration": 120,
+			"variants": [
+				{"id": "calm", "seed": 46011, "min_intensity": 0.0, "caption": "Lonely and quiet."},
+				{"id": "tense", "seed": 46023, "min_intensity": 0.6, "caption": "Drone thickens, subtle dissonant high harmonics, faint electrical interference."}
+			]
+		},
+		{
+			"id": "research_wing", "title": "The Research Wing", "location": "research_wing", "loop": true,
+			"caption": "Cold institutional ambience. Clean sine and analog synth pads, glassy piano, sterile and precise, low string pedal, slow evolving texture.",
+			"bpm": 66, "key_scale": "D minor", "time_signature": "4", "duration": 120,
+			"variants": [
+				{"id": "calm", "seed": 47011, "min_intensity": 0.0, "caption": "Clinical, detached."},
+				{"id": "tense", "seed": 47023, "min_intensity": 0.6, "caption": "Detuned pads and a cold pulsing low tone suggesting something hidden."}
+			]
+		},
+		{
+			"id": "historical_wing", "title": "The Historical Wing", "location": "historical_wing", "loop": true,
+			"caption": "Forgotten institutional history. Old upright piano slightly out of tune, worn tape and gramophone texture, faded low strings, the minor-third motif half remembered.",
+			"bpm": 60, "key_scale": "D minor", "time_signature": "3", "duration": 120,
+			"variants": [
+				{"id": "calm", "seed": 48011, "min_intensity": 0.0, "caption": "Melancholic, dusty, distant."},
+				{"id": "tense", "seed": 48023, "min_intensity": 0.6, "caption": "The old piano falters, tape slows, a low tritone appears underneath."}
+			]
+		},
+		{
+			"id": "ward_zero", "title": "Ward Zero", "location": "ward_zero", "loop": true,
+			"caption": "Central mystery. The Ward Zero motif: a D to G sharp tritone drone with slowly beating detuned tape tones, deep sub strings, sparse prepared piano, very slow.",
+			"bpm": 60, "key_scale": "D Phrygian", "time_signature": "4", "duration": 120,
+			"variants": [
+				{"id": "calm", "seed": 49011, "min_intensity": 0.0, "caption": "Oppressive stillness, near silence."},
+				{"id": "tense", "seed": 49023, "min_intensity": 0.6, "caption": "Dense dissonant string cluster growing slowly, distorted analog noise, restrained low percussion."}
+			]
+		},
+		{
+			"id": "concordance_protocol", "title": "The Concordance Protocol", "location": "revelation", "loop": false,
+			"caption": "Revelation theme. The falling minor-third motif and the Ward Zero tritone combined: piano and low strings build slowly to a restrained climax, then fall back to a single piano note.",
+			"bpm": 66, "key_scale": "D minor", "time_signature": "4", "duration": 120,
+			"variants": [{"id": "full", "seed": 50011, "min_intensity": 0.0, "caption": "Grave, inevitable, emotionally weighty, never bombastic."}]
+		}
+	]
+}

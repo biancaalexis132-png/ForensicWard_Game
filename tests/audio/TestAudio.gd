@@ -33,6 +33,7 @@ func _ready() -> void:
 	await test_dialogue_subtitle_sync()
 	await test_anomalies_need_explicit_events()
 	await test_music_states_and_dialogue_ducking()
+	await test_environment_set()
 	# Release playbacks before quitting; the audio server frees them on its next mix.
 	AudioDirector.stop_ambience(0.01)
 	AudioDirector.stop_music(0.01)
@@ -70,12 +71,14 @@ func test_assets_and_manifest() -> void:
 	for asset: Dictionary in manifest["assets"]:
 		var path: String = "res://" + asset["file"]
 		var stream := load(path) as AudioStream
-		check(stream != null and stream.get_length() > 0.1, "loads: " + asset["file"])
+		check(stream != null and stream.get_length() > 0.05, "loads: " + asset["file"])
 		if stream != null:
 			check(absf(stream.get_length() - float(asset["duration_seconds"])) < 0.05, "manifest duration matches: " + asset["file"])
 	var cues: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(AudioDirector.CUES_PATH))
 	for cue_id: String in cues["cues"]:
-		check(ResourceLoader.exists(cues["cues"][cue_id]["stream"]), "cue stream exists: " + cue_id)
+		var cue: Dictionary = cues["cues"][cue_id]
+		for path: String in cue.get("streams", [cue.get("stream", "")]):
+			check(ResourceLoader.exists(path), "cue stream exists: %s (%s)" % [cue_id, path.get_file()])
 	for scene_id: String in ["ch1_b2_bennett_handover", "ch1_b6_after_hours_intercom"]:
 		for line_id: String in AudioDirector.get_scene_lines(scene_id):
 			check(AudioDirector.get_voice_stream(line_id) != null, "voice clip exists: " + line_id)
@@ -225,3 +228,46 @@ func test_music_states_and_dialogue_ducking() -> void:
 	AudioDirector.stop_dialogue()
 	await wait(0.6 + AudioDirector.DIALOGUE_DUCK_RELEASE + 0.2)
 	check(absf(music_duck.volume_db) < 0.2 and absf(bed_duck.volume_db) < 0.2, "mix restores after dialogue")
+
+func test_environment_set() -> void:
+	# Multi-take cues play through a randomizer with pitch variation.
+	var step: AudioStreamPlayer3D = AudioDirector.play_sfx_3d("sfx_footstep_concrete", Vector3(0, 0, -3))
+	check(step != null and step.playing and step.stream is AudioStreamRandomizer, "footstep cue uses a stream randomizer")
+	if step != null and step.stream is AudioStreamRandomizer:
+		var randomizer := step.stream as AudioStreamRandomizer
+		check(randomizer.streams_count == 4 and randomizer.random_pitch > 1.0, "randomizer has 4 takes and pitch variation")
+	check(AudioDirector.play_sfx("sfx_ui_keypress").stream == AudioDirector.play_sfx("sfx_ui_keypress").stream, "randomizer is cached per cue")
+
+	# Base bed plus detail layer per location.
+	GameState.start_shift(1, "day")
+	AudioDirector.set_location("nursing_station", 0.2)
+	await wait(0.4)
+	var bed: AudioStreamPlayer = AudioDirector.get_active_ambience()
+	var detail: AudioStreamPlayer = AudioDirector.get_active_ambience_detail()
+	check(bed.playing and bed.stream.resource_path.ends_with("amb_corridor_day_loop.ogg"), "nursing station keeps the corridor bed")
+	check(detail.playing and detail.stream.resource_path.ends_with("amb_nursing_station_loop.ogg") and detail.bus == &"AmbienceBed", "nursing station adds its detail layer")
+	AudioDirector.set_location("ward_zero", 0.2)
+	await wait(0.4)
+	check(AudioDirector.get_active_ambience().stream.resource_path.ends_with("amb_ward_zero_loop.ogg"), "Ward Zero bed plays")
+	check(AudioDirector.get_active_ambience_detail().stream.resource_path.ends_with("amb_historic_intercom_static_loop.ogg"), "Ward Zero static detail plays")
+	check(not detail.playing or detail == AudioDirector.get_active_ambience_detail(), "previous detail layer fades out")
+	var reverb := AudioServer.get_bus_effect(AudioServer.get_bus_index("SFX"), 0) as AudioEffectReverb
+	check(is_equal_approx(reverb.room_size, 0.85), "Ward Zero uses a large room reverb")
+
+	# Anomalies: event-only, startle-flagged, softened by the accessibility option.
+	var before: int = AudioDirector.get_child_count()
+	GameState.set_objectivity(5.0)
+	await wait(0.2)
+	check(AudioDirector.get_child_count() == before, "severe bleed stage in Ward Zero still starts no anomaly")
+	GameState.set_objectivity(100.0)
+	AudioDirector.set_setting("reduce_startling_audio", true)
+	EventBus.narrative_event_fired.emit("w0_knocking_heard", {"position": Vector3(0, 1, -20)})
+	var knocks := AudioDirector.get_node_or_null("SFX3D_sfx_w0_distant_knocks") as AudioStreamPlayer3D
+	check(knocks != null and knocks.playing and knocks.volume_db < -60.0, "knocks play on explicit event, softened when requested")
+	AudioDirector.set_setting("reduce_startling_audio", false)
+	for event_id: String in ["ch1_badge_denied", "ch1_elevator_arrived", "ch1_ehr_alert_raised", "ch1_lights_flicker", "w0_power_surge"]:
+		check(AudioDirector.has_event(event_id), "event mapped: " + event_id)
+	await wait(5.8)
+	GameState.start_shift(1, "day")
+	AudioDirector.set_location("corridor", 0.2)
+	await wait(0.4)

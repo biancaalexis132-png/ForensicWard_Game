@@ -1,0 +1,29 @@
+{
+	"schema_version": "0.1",
+	"chapter": "walla",
+	"provisional": true,
+	"_note": "Background staff chatter ('walla') for ambience beds. Mixed far away and low-passed by tools/audio/synth_sfx.py, so it is texture, not information: never put story clues or clinical facts here. Not played as dialogue or subtitled.",
+	"clinical_review_status": "NOT_CLINICAL",
+	"speakers": {
+		"walla_staff_a": "Staff",
+		"walla_staff_b": "Staff",
+		"walla_staff_c": "Staff"
+	},
+	"scenes": [
+		{
+			"id": "walla_nursing_station",
+			"beat": "Ambience: distant staff conversation near the nursing station",
+			"location": "nursing_station",
+			"lines": [
+				{"id": "walla_ns_001", "speaker": "walla_staff_a", "text": "Can somebody cover bed six for ten minutes?"},
+				{"id": "walla_ns_002", "speaker": "walla_staff_b", "text": "Pharmacy called back, they're sending it up after lunch."},
+				{"id": "walla_ns_003", "speaker": "walla_staff_c", "text": "I'll take the two o'clock checks if you do the paperwork."},
+				{"id": "walla_ns_004", "speaker": "walla_staff_a", "text": "Has anyone seen the spare keys for the supply room?"},
+				{"id": "walla_ns_005", "speaker": "walla_staff_b", "text": "The printer's jammed again. No, the other one."},
+				{"id": "walla_ns_006", "speaker": "walla_staff_c", "text": "Yeah, yeah. I'll call them back in a minute."},
+				{"id": "walla_ns_007", "speaker": "walla_staff_a", "text": "Okay. Thanks. I'll let the day team know."},
+				{"id": "walla_ns_008", "speaker": "walla_staff_b", "text": "Is the coffee machine working on this floor yet?"}
+			]
+		}
+	]
+}

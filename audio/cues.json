@@ -1,29 +1,315 @@
 {
 	"schema_version": "0.1",
-	"_note": "Audio cue sheet read by systems/audio/AudioDirector.gd. Cues name streams; locations pick ambience and room acoustics per shift; events map explicit narrative event IDs to timed audio actions. Anomaly audio is only ever started by an event listed here, never by the player's Objectivity or bleed stage.",
+	"_note": "Audio cue sheet read by systems/audio/AudioDirector.gd. Cues name streams; locations pick ambience and room acoustics per shift; events map explicit narrative event IDs to timed audio actions. Anomaly audio is only ever started by an event listed here, never by the player's Objectivity or bleed stage. Cues with 'streams' list several takes; AudioDirector plays a random one with slight pitch and volume variation. A location shift may add a 'detail' ambience layered over its base bed.",
 	"cues": {
-		"amb_corridor_day": {"stream": "res://audio/ambience/amb_corridor_day_loop.ogg", "bus": "AmbienceBed", "loop": true},
-		"sfx_door_secure_open": {"stream": "res://audio/sfx/sfx_door_secure_open.ogg", "bus": "SFX", "max_distance": 30.0},
-		"sfx_pager_alert": {"stream": "res://audio/sfx/sfx_pager_alert.ogg", "bus": "SFX", "max_distance": 12.0},
-		"mus_transition_unease": {"stream": "res://audio/music/mus_transition_unease_01.ogg", "bus": "Music", "startle": true, "duck_ambience_db": -9.0}
+		"amb_corridor_day": {
+			"stream": "res://audio/ambience/amb_corridor_day_loop.ogg",
+			"bus": "AmbienceBed",
+			"loop": true
+		},
+		"sfx_door_secure_open": {
+			"stream": "res://audio/sfx/sfx_door_secure_open.ogg",
+			"bus": "SFX",
+			"max_distance": 30.0
+		},
+		"sfx_pager_alert": {
+			"stream": "res://audio/sfx/sfx_pager_alert.ogg",
+			"bus": "SFX",
+			"max_distance": 12.0
+		},
+		"mus_transition_unease": {
+			"stream": "res://audio/music/mus_transition_unease_01.ogg",
+			"bus": "Music",
+			"startle": true,
+			"duck_ambience_db": -9.0
+		},
+		"sfx_footstep_vinyl": {
+			"streams": [
+				"res://audio/sfx/footsteps/sfx_footstep_vinyl_01.ogg",
+				"res://audio/sfx/footsteps/sfx_footstep_vinyl_02.ogg",
+				"res://audio/sfx/footsteps/sfx_footstep_vinyl_03.ogg",
+				"res://audio/sfx/footsteps/sfx_footstep_vinyl_04.ogg"
+			],
+			"bus": "SFX",
+			"volume_db": -8.0,
+			"max_distance": 15.0
+		},
+		"sfx_footstep_tile": {
+			"streams": [
+				"res://audio/sfx/footsteps/sfx_footstep_tile_01.ogg",
+				"res://audio/sfx/footsteps/sfx_footstep_tile_02.ogg",
+				"res://audio/sfx/footsteps/sfx_footstep_tile_03.ogg",
+				"res://audio/sfx/footsteps/sfx_footstep_tile_04.ogg"
+			],
+			"bus": "SFX",
+			"volume_db": -8.0,
+			"max_distance": 15.0
+		},
+		"sfx_footstep_concrete": {
+			"streams": [
+				"res://audio/sfx/footsteps/sfx_footstep_concrete_01.ogg",
+				"res://audio/sfx/footsteps/sfx_footstep_concrete_02.ogg",
+				"res://audio/sfx/footsteps/sfx_footstep_concrete_03.ogg",
+				"res://audio/sfx/footsteps/sfx_footstep_concrete_04.ogg"
+			],
+			"bus": "SFX",
+			"volume_db": -8.0,
+			"max_distance": 15.0
+		},
+		"sfx_badge_accept": {
+			"stream": "res://audio/sfx/sfx_badge_accept.ogg",
+			"bus": "SFX",
+			"volume_db": -4.0,
+			"max_distance": 10.0
+		},
+		"sfx_badge_deny": {
+			"stream": "res://audio/sfx/sfx_badge_deny.ogg",
+			"bus": "SFX",
+			"volume_db": -4.0,
+			"max_distance": 10.0
+		},
+		"sfx_ui_keypress": {
+			"streams": [
+				"res://audio/sfx/ui/sfx_ui_keypress_01.ogg",
+				"res://audio/sfx/ui/sfx_ui_keypress_02.ogg",
+				"res://audio/sfx/ui/sfx_ui_keypress_03.ogg",
+				"res://audio/sfx/ui/sfx_ui_keypress_04.ogg"
+			],
+			"bus": "SFX",
+			"volume_db": -10.0,
+			"random_pitch": 1.08
+		},
+		"sfx_ui_terminal_open": {
+			"stream": "res://audio/sfx/ui/sfx_ui_terminal_open.ogg",
+			"bus": "SFX",
+			"volume_db": -6.0
+		},
+		"sfx_ui_clinical_alert": {
+			"stream": "res://audio/sfx/ui/sfx_ui_clinical_alert.ogg",
+			"bus": "SFX",
+			"volume_db": -4.0
+		},
+		"sfx_elevator_arrive": {
+			"stream": "res://audio/sfx/sfx_elevator_arrive.ogg",
+			"bus": "SFX",
+			"max_distance": 25.0
+		},
+		"amb_distant_staff": {
+			"stream": "res://audio/ambience/amb_distant_staff_loop.ogg",
+			"bus": "AmbienceBed",
+			"loop": true
+		},
+		"amb_nursing_station": {
+			"stream": "res://audio/ambience/amb_nursing_station_loop.ogg",
+			"bus": "AmbienceBed",
+			"loop": true
+		},
+		"amb_historic_intercom_static": {
+			"stream": "res://audio/ambience/amb_historic_intercom_static_loop.ogg",
+			"bus": "AmbienceBed",
+			"loop": true
+		},
+		"amb_ward_zero": {
+			"stream": "res://audio/ambience/amb_ward_zero_loop.ogg",
+			"bus": "AmbienceBed",
+			"loop": true
+		},
+		"sfx_electrical_flicker": {
+			"stream": "res://audio/sfx/sfx_electrical_flicker.ogg",
+			"bus": "SFX",
+			"max_distance": 20.0
+		},
+		"sfx_electrical_surge": {
+			"stream": "res://audio/sfx/sfx_electrical_surge.ogg",
+			"bus": "SFX",
+			"startle": true,
+			"max_distance": 30.0
+		},
+		"sfx_w0_distant_knocks": {
+			"stream": "res://audio/sfx/anomaly/sfx_w0_distant_knocks.ogg",
+			"bus": "SFX",
+			"startle": true,
+			"max_distance": 40.0
+		},
+		"sfx_w0_pressure_swell": {
+			"stream": "res://audio/sfx/anomaly/sfx_w0_pressure_swell.ogg",
+			"bus": "SFX",
+			"startle": true,
+			"duck_ambience_db": -6.0
+		}
 	},
 	"locations": {
 		"corridor": {
-			"day": {"ambience": "amb_corridor_day", "volume_db": 0.0, "lowpass_hz": 20000.0},
-			"night": {"ambience": "amb_corridor_day", "volume_db": -5.0, "lowpass_hz": 2200.0},
-			"reverb": {"room_size": 0.6, "damping": 0.55, "wet": 0.18}
+			"day": {
+				"ambience": "amb_corridor_day",
+				"volume_db": 0.0,
+				"lowpass_hz": 20000.0,
+				"detail": "amb_distant_staff",
+				"detail_volume_db": -14.0
+			},
+			"night": {
+				"ambience": "amb_corridor_day",
+				"volume_db": -5.0,
+				"lowpass_hz": 2200.0
+			},
+			"reverb": {
+				"room_size": 0.6,
+				"damping": 0.55,
+				"wet": 0.18
+			}
 		},
 		"nursing_station": {
-			"day": {"ambience": "amb_corridor_day", "volume_db": -7.0, "lowpass_hz": 6000.0},
-			"night": {"ambience": "amb_corridor_day", "volume_db": -10.0, "lowpass_hz": 1800.0},
-			"reverb": {"room_size": 0.35, "damping": 0.7, "wet": 0.1}
+			"day": {
+				"ambience": "amb_corridor_day",
+				"volume_db": -7.0,
+				"lowpass_hz": 6000.0,
+				"detail": "amb_nursing_station",
+				"detail_volume_db": 0.0
+			},
+			"night": {
+				"ambience": "amb_corridor_day",
+				"volume_db": -10.0,
+				"lowpass_hz": 1800.0,
+				"detail": "amb_distant_staff",
+				"detail_volume_db": -12.0
+			},
+			"reverb": {
+				"room_size": 0.35,
+				"damping": 0.7,
+				"wet": 0.1
+			}
+		},
+		"historical_wing": {
+			"day": {
+				"ambience": "amb_ward_zero",
+				"volume_db": -3.0,
+				"lowpass_hz": 5000.0,
+				"detail": "amb_historic_intercom_static",
+				"detail_volume_db": -18.0
+			},
+			"night": {
+				"ambience": "amb_ward_zero",
+				"volume_db": -1.0,
+				"lowpass_hz": 3500.0,
+				"detail": "amb_historic_intercom_static",
+				"detail_volume_db": -14.0
+			},
+			"reverb": {
+				"room_size": 0.75,
+				"damping": 0.45,
+				"wet": 0.24
+			}
+		},
+		"ward_zero": {
+			"day": {
+				"ambience": "amb_ward_zero",
+				"volume_db": 0.0,
+				"lowpass_hz": 20000.0,
+				"detail": "amb_historic_intercom_static",
+				"detail_volume_db": -12.0
+			},
+			"night": {
+				"ambience": "amb_ward_zero",
+				"volume_db": 0.0,
+				"lowpass_hz": 20000.0,
+				"detail": "amb_historic_intercom_static",
+				"detail_volume_db": -10.0
+			},
+			"reverb": {
+				"room_size": 0.85,
+				"damping": 0.4,
+				"wet": 0.3
+			}
 		}
 	},
 	"events": {
-		"ch1_secure_door_opened": [{"at": 0.0, "sfx": "sfx_door_secure_open"}],
-		"ch1_pager_bennett": [{"at": 0.0, "sfx": "sfx_pager_alert"}],
-		"ch1_bennett_handover": [{"at": 0.0, "scene": "ch1_b2_bennett_handover"}],
-		"ch1_after_hours_intercom": [{"at": 0.0, "line": "ch1_b6_intercom_001"}],
-		"ch1_w0b_unease": [{"at": 0.0, "stinger": "mus_transition_unease"}]
+		"ch1_secure_door_opened": [
+			{
+				"at": 0.0,
+				"sfx": "sfx_door_secure_open"
+			}
+		],
+		"ch1_pager_bennett": [
+			{
+				"at": 0.0,
+				"sfx": "sfx_pager_alert"
+			}
+		],
+		"ch1_bennett_handover": [
+			{
+				"at": 0.0,
+				"scene": "ch1_b2_bennett_handover"
+			}
+		],
+		"ch1_after_hours_intercom": [
+			{
+				"at": 0.0,
+				"line": "ch1_b6_intercom_001"
+			}
+		],
+		"ch1_w0b_unease": [
+			{
+				"at": 0.0,
+				"stinger": "mus_transition_unease"
+			}
+		],
+		"ch1_badge_accepted": [
+			{
+				"at": 0.0,
+				"sfx": "sfx_badge_accept"
+			}
+		],
+		"ch1_badge_denied": [
+			{
+				"at": 0.0,
+				"sfx": "sfx_badge_deny"
+			}
+		],
+		"ch1_elevator_arrived": [
+			{
+				"at": 0.0,
+				"sfx": "sfx_elevator_arrive"
+			}
+		],
+		"ch1_ehr_opened": [
+			{
+				"at": 0.0,
+				"sfx": "sfx_ui_terminal_open"
+			}
+		],
+		"ch1_ehr_alert_raised": [
+			{
+				"at": 0.0,
+				"sfx": "sfx_ui_clinical_alert"
+			}
+		],
+		"ch1_lights_flicker": [
+			{
+				"at": 0.0,
+				"sfx": "sfx_electrical_flicker"
+			}
+		],
+		"w0_power_surge": [
+			{
+				"at": 0.0,
+				"sfx": "sfx_electrical_surge"
+			}
+		],
+		"w0_knocking_heard": [
+			{
+				"at": 0.0,
+				"sfx": "sfx_w0_distant_knocks"
+			}
+		],
+		"w0_pressure_shift": [
+			{
+				"at": 0.0,
+				"sfx": "sfx_w0_pressure_swell"
+			},
+			{
+				"at": 2.0,
+				"intensity": 0.8
+			}
+		]
 	}
 }

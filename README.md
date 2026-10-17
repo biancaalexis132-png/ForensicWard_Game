@@ -43,6 +43,14 @@ If you change things in Godot (scenes, settings), GitHub Desktop lists the chang
 | `ui/` | EHR terminal, evidence board, HUD |
 | `data/patients/`, `data/drugs/` | JSON data authored by the narrative / clinical team |
 | `shaders/` | Visual distortion shaders (chromatic aberration, flicker) |
+| `audio/` | Game audio (ambience, SFX, music, voice), cue sheet and asset manifest. See `docs/AUDIO.md` |
+| `systems/audio/` | `AudioDirector` (autoload): ambience, music, dialogue/subtitles, volume and accessibility |
+| `data/narrative/` | Dialogue lines with stable IDs (voiced by `tools/audio/generate_voice.py`) |
+| `tools/audio/`, `tools/music_ai/` | Offline generators: Kokoro TTS + procedural SFX; ACE-Step 1.5 music on the Mac (`docs/MUSIC_AI_MAC_GUIDE.md`) |
+
+## Working with AI agents
+
+Claude Code and OpenAI Codex take turns developing this project. The shared rules and handoff log (`AGENTS.md`, `docs/PROJECT_STATUS.md`, `docs/AI_HANDOFF.md`) are proposed in PR #4. Audio workstream status is in `docs/AUDIO.md`.
 
 ## Architecture rules
 
