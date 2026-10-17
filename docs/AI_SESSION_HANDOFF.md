@@ -6,7 +6,7 @@ This is the **current-session** handoff required by the Ashcroft Session Continu
 
 ## Last updated
 
-2026-10-17 22:05 UTC · Claude Code · visual direction review session (review delivered; draft PR opened; waiting on owner approval)
+2026-10-17 21:20 UTC · Claude Code · visual direction review session (main merged in again; waiting on owner approval)
 
 ## 1. Current objective
 
@@ -14,9 +14,9 @@ Art-direction and asset review, no implementation: compare the character referen
 
 ## 2. Repository state
 
-- Branch: `claude/visual-direction-review`, created from `main` at `e533e8b`, then `main` at `3255b17` (PR #25: CLAUDE.md continuity protocol) merged in. Find the tip with `git ls-remote origin claude/visual-direction-review`.
+- Branch: `claude/visual-direction-review`, created from `main` at `e533e8b`, then `main` merged in at `3255b17` (PR #25: CLAUDE.md protocol) and at `9558c77` (PR #21 F1 and PR #26 F2 zones), both without conflicts. Find the tip with `git ls-remote origin claude/visual-direction-review`.
 - Draft PR: "Visual production review: characters and Ward Zero" against `main` (see the PR list; never merge from an agent).
-- Other active work, do not touch: PR #21 `claude/f1-campaign-contract` (F1/F2 architecture); music integration ("Pick up earlier game session" thread); Stage 6 Ward Zero build in progress in the environment thread ("Pick up second game session", session `cse_012g8GqbzUkQo7xX9rHgbFKz`), not yet on GitHub when last checked.
+- Other active work, do not touch: F0 thread (F1 and F2 now merged); music integration PR #27; music integration ("Pick up earlier game session" thread); Stage 6 Ward Zero build in progress in the environment thread ("Pick up second game session", session `cse_012g8GqbzUkQo7xX9rHgbFKz`), not yet on GitHub when last checked.
 - Working tree: clean after the final push.
 
 ## 3. Completed work and findings
