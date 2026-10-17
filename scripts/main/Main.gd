@@ -13,7 +13,7 @@ extends Node3D
 const WORLD_PROVIDER_KEY: String = "world"
 const TIME_PAUSE_REASON: String = "ui"
 
-@onready var _world: Node3D = $HospitalGreybox
+@onready var _world: Node3D = $World
 @onready var _player: FirstPersonController = $Player
 @onready var _hud: HUD = $HUD
 @onready var _info_panel: InfoPanel = $InfoPanel

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_main"]
-[ext_resource type="PackedScene" path="res://scenes/world/HospitalGreybox.tscn" id="2_world"]
+[ext_resource type="PackedScene" path="res://scenes/world/Chapter1Ward.tscn" id="2_world"]
 [ext_resource type="PackedScene" path="res://scenes/player/FirstPersonController.tscn" id="3_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="4_hud"]
 [ext_resource type="PackedScene" path="res://scenes/ui/InfoPanel.tscn" id="5_info"]
@@ -10,7 +10,7 @@
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
 
-[node name="HospitalGreybox" parent="." instance=ExtResource("2_world")]
+[node name="World" parent="." instance=ExtResource("2_world")]
 
 [node name="Player" parent="." instance=ExtResource("3_player")]
 
