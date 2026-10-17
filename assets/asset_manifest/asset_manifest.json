@@ -145,6 +145,54 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 5280
     },
+    "ENV_ClinicalAssessmentRoom": {
+      "asset_id": "ENV_ClinicalAssessmentRoom",
+      "asset_name": "Clinical assessment room (observed)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.252,
+        3.131
+      ],
+      "export_file": "assets/exports/research/env/ENV_ClinicalAssessmentRoom.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: clinical assessment room",
+      "markers": [
+        "CAM_AS_Establishing",
+        "CAM_AS_ThroughGlass",
+        "LIGHTMARK_ClinicalAssessmentRoom_37_372",
+        "LIGHTMARK_ClinicalAssessmentRoom_37_388",
+        "MARK_Seat_Clinician",
+        "MARK_Seat_Participant"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Grey",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Floor_Vinyl_Research",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Mirror_OneWay_Room",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Upholstery_Vinyl_Grey",
+        "M_Wall_ResearchWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3488
+    },
     "ENV_ClinicalCorridor_20m": {
       "asset_id": "ENV_ClinicalCorridor_20m",
       "asset_name": "Main clinical corridor, 20 m",
@@ -260,6 +308,55 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 2968
     },
+    "ENV_DataAnalysisOffice": {
+      "asset_id": "ENV_DataAnalysisOffice",
+      "asset_name": "Research data analysis office",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.12
+      ],
+      "export_file": "assets/exports/research/env/ENV_DataAnalysisOffice.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: data analysis office",
+      "markers": [
+        "CAM_DA_Establishing",
+        "LIGHTMARK_DataAnalysisOffice_-37_292",
+        "LIGHTMARK_DataAnalysisOffice_-37_308"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Concrete_Grey",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LED_Red",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Floor_Vinyl_Research",
+        "M_Folder_Manila",
+        "M_Laminate_LabWhite",
+        "M_Marker_Residue",
+        "M_Metal_Dark",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Safety_Red",
+        "M_Signage_Blue",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_ResearchWhite",
+        "M_Wall_WarmWhite",
+        "M_Whiteboard"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2420
+    },
     "ENV_InterviewRoom_A": {
       "asset_id": "ENV_InterviewRoom_A",
       "asset_name": "Psychiatric interview room A",
@@ -312,6 +409,53 @@
       "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 2648
+    },
+    "ENV_LabSupport": {
+      "asset_id": "ENV_LabSupport",
+      "asset_name": "Laboratory support room",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.12
+      ],
+      "export_file": "assets/exports/research/env/ENV_LabSupport.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: laboratory support",
+      "markers": [
+        "CAM_LS_Establishing",
+        "LIGHTMARK_LabSupport_37_292",
+        "LIGHTMARK_LabSupport_37_308"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Concrete_Grey",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Research",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Laminate_LabWhite",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_MedCart_Blue",
+        "M_Plastic_OffWhite",
+        "M_Plastic_Sharps_Yellow",
+        "M_Resin_LabTop",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_ResearchWhite",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2226
     },
     "ENV_MaintenanceAccess": {
       "asset_id": "ENV_MaintenanceAccess",
@@ -461,6 +605,51 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 5068
     },
+    "ENV_ObservationMonitoring": {
+      "asset_id": "ENV_ObservationMonitoring",
+      "asset_name": "Observation and monitoring room",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.12
+      ],
+      "export_file": "assets/exports/research/env/ENV_ObservationMonitoring.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: observation and monitoring room",
+      "markers": [
+        "CAM_OM_Establishing",
+        "LIGHTMARK_ObservationMonitoring_37_340"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Concrete_Grey",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LED_Red",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Floor_Vinyl_Research",
+        "M_Folder_Manila",
+        "M_Laminate_LabWhite",
+        "M_Metal_Dark",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Upholstery_Teal",
+        "M_Wall_ResearchWhite",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3604
+    },
     "ENV_PatientRoom_01": {
       "asset_id": "ENV_PatientRoom_01",
       "asset_name": "Patient bedroom 01 (single, anti-ligature)",
@@ -540,6 +729,53 @@
       "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 748
+    },
+    "ENV_ProtocolOffice": {
+      "asset_id": "ENV_ProtocolOffice",
+      "asset_name": "Undisclosed protocol office (unsigned)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.12
+      ],
+      "export_file": "assets/exports/research/env/ENV_ProtocolOffice.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: undisclosed protocol office",
+      "markers": [
+        "CAM_PO_Establishing",
+        "LIGHTMARK_ProtocolOffice_-37_220"
+      ],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Ceiling_Tile",
+        "M_Concrete_Grey",
+        "M_Emissive_LED_Green",
+        "M_Emissive_Screen",
+        "M_Floor_Vinyl_Research",
+        "M_Folder_Manila",
+        "M_Marker_Residue",
+        "M_Metal_Dark",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Safety_Red",
+        "M_Signage_Blue",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Upholstery_Charcoal",
+        "M_Upholstery_Leather_Black",
+        "M_Wall_ResearchWhite",
+        "M_Wall_WarmWhite",
+        "M_Whiteboard",
+        "M_Wood_Executive"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2464
     },
     "ENV_PsychiatristOffice": {
       "asset_id": "ENV_PsychiatristOffice",
@@ -684,6 +920,246 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 4228
     },
+    "ENV_ResearchCorridor_12m": {
+      "asset_id": "ENV_ResearchCorridor_12m",
+      "asset_name": "Research corridor, 12 m (reception to restricted door)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.26,
+        12.32,
+        3.131
+      ],
+      "export_file": "assets/exports/research/env/ENV_ResearchCorridor_12m.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: research corridor",
+      "markers": [
+        "CAM_RC_Corridor",
+        "LIGHTMARK_ResearchCorridor_12m_0_295",
+        "LIGHTMARK_ResearchCorridor_12m_0_320",
+        "LIGHTMARK_ResearchCorridor_12m_0_345",
+        "LIGHTMARK_ResearchCorridor_12m_0_370",
+        "LIGHTMARK_ResearchCorridor_12m_0_392"
+      ],
+      "materials": [
+        "M_Acoustic_Fabric",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Door_Laminate_Wood",
+        "M_Door_Secure_SteelBlue",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LED_Red",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Research",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Glass_Wired",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Signage_Blue",
+        "M_Signage_Panel",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Wall_ResearchWhite",
+        "M_Wall_SecurityBlueGrey"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 7080
+    },
+    "ENV_ResearchPhysicianOfficeA": {
+      "asset_id": "ENV_ResearchPhysicianOfficeA",
+      "asset_name": "Research physician office A",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.224,
+        3.12
+      ],
+      "export_file": "assets/exports/research/env/ENV_ResearchPhysicianOfficeA.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: research physician office A",
+      "markers": [
+        "CAM_OA_Establishing",
+        "LIGHTMARK_ResearchPhysicianOfficeA_-37_380"
+      ],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Binder_Maroon",
+        "M_Binder_Navy",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Concrete_Grey",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Floor_Vinyl_Research",
+        "M_Folder_Manila",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Upholstery_Teal",
+        "M_Wall_ResearchWhite",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2512
+    },
+    "ENV_ResearchPhysicianOfficeB": {
+      "asset_id": "ENV_ResearchPhysicianOfficeB",
+      "asset_name": "Research physician office B (vacated)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.12
+      ],
+      "export_file": "assets/exports/research/env/ENV_ResearchPhysicianOfficeB.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: research physician office B (vacated)",
+      "markers": [
+        "CAM_OB_Establishing",
+        "LIGHTMARK_ResearchPhysicianOfficeB_-37_340"
+      ],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Binder_Maroon",
+        "M_Binder_Navy",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Concrete_Grey",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Research",
+        "M_Folder_Manila",
+        "M_Paint_Historic_Cream",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Upholstery_Teal",
+        "M_Wall_ResearchWhite",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2228
+    },
+    "ENV_ResearchReception": {
+      "asset_id": "ENV_ResearchReception",
+      "asset_name": "Research reception and lift landing",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        6.224,
+        4.25,
+        3.131
+      ],
+      "export_file": "assets/exports/research/env/ENV_ResearchReception.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: reception and restricted-lift landing",
+      "markers": [
+        "CAM_RE_Establishing",
+        "LIGHTMARK_ResearchReception_-15_415",
+        "LIGHTMARK_ResearchReception_0_430",
+        "LIGHTMARK_ResearchReception_15_415",
+        "MARK_Character_ResearchReceptionist"
+      ],
+      "materials": [
+        "M_Accent_ResearchTeal",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Grey",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Floor_Vinyl_Research",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Laminate_LabWhite",
+        "M_Metal_Dark",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Signage_Blue",
+        "M_Signage_Panel",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Upholstery_Teal",
+        "M_Wall_ResearchWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3048
+    },
+    "ENV_ResearchRecordsArchive": {
+      "asset_id": "ENV_ResearchRecordsArchive",
+      "asset_name": "Research records archive",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.12
+      ],
+      "export_file": "assets/exports/research/env/ENV_ResearchRecordsArchive.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: research records archive",
+      "markers": [
+        "CAM_RA_Establishing",
+        "LIGHTMARK_ResearchRecordsArchive_-37_252",
+        "LIGHTMARK_ResearchRecordsArchive_-37_268"
+      ],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Concrete_Grey",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Research",
+        "M_Folder_Manila",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_ResearchWhite",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3604
+    },
     "ENV_RestrictedLiftLobby": {
       "asset_id": "ENV_RestrictedLiftLobby",
       "asset_name": "Restricted elevator lobby",
@@ -723,6 +1199,51 @@
       "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 1772
+    },
+    "ENV_RestrictedResearchCorridor_8m": {
+      "asset_id": "ENV_RestrictedResearchCorridor_8m",
+      "asset_name": "Restricted research corridor, 8 m, dead end",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.26,
+        8.112,
+        3.131
+      ],
+      "export_file": "assets/exports/research/env/ENV_RestrictedResearchCorridor_8m.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: restricted research corridor",
+      "markers": [
+        "CAM_RR_Corridor",
+        "LIGHTMARK_RestrictedResearchCorridor_8m_0_230",
+        "LIGHTMARK_RestrictedResearchCorridor_8m_0_265"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Concrete_Grey",
+        "M_Door_Laminate_Wood",
+        "M_Door_Secure_SteelBlue",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LED_Red",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Research",
+        "M_Glass_OneWay_Observer",
+        "M_Glass_Wired",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Signage_Blue",
+        "M_Signage_Panel",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Wall_ResearchWhite"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2548
     },
     "ENV_SecureInterviewSuite": {
       "asset_id": "ENV_SecureInterviewSuite",
@@ -774,6 +1295,54 @@
       "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 2444
+    },
+    "ENV_SecureSampleStorage": {
+      "asset_id": "ENV_SecureSampleStorage",
+      "asset_name": "Secure sample storage",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        8.112,
+        3.131
+      ],
+      "export_file": "assets/exports/research/env/ENV_SecureSampleStorage.glb",
+      "implementation_notes": "Research level: place at the level origin (same x/y as Chapter 1; lift at x 0, y 44). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; godot_hint + story_tag mark environmental-storytelling hooks.",
+      "intended_location": "Research level: secure sample storage",
+      "markers": [
+        "CAM_SS_Establishing",
+        "LIGHTMARK_SecureSampleStorage_37_212",
+        "LIGHTMARK_SecureSampleStorage_37_232",
+        "LIGHTMARK_SecureSampleStorage_37_252",
+        "LIGHTMARK_SecureSampleStorage_37_272"
+      ],
+      "materials": [
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Grey",
+        "M_Emissive_LED_Green",
+        "M_Emissive_Screen",
+        "M_Floor_Vinyl_Research",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Laminate_LabWhite",
+        "M_Metal_Dark",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_MedCart_Blue",
+        "M_Plastic_OffWhite",
+        "M_Resin_LabTop",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_White",
+        "M_Wall_ResearchWhite",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/research/FW_ResearchWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2508
     },
     "ENV_SecurityControl": {
       "asset_id": "ENV_SecurityControl",
@@ -1604,6 +2173,34 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 560
     },
+    "PROP_Bench_Lab_2m": {
+      "asset_id": "PROP_Bench_Lab_2m",
+      "asset_name": "Laboratory bench with reagent shelf",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        0.75,
+        1.5
+      ],
+      "export_file": "assets/exports/research/props/PROP_Bench_Lab_2m.glb",
+      "implementation_notes": "Staff-only research areas (not patient-accessible). Origin: floor centre.",
+      "intended_location": "Laboratory support, secure sample storage",
+      "markers": [],
+      "materials": [
+        "M_Glass_Clear",
+        "M_Laminate_LabWhite",
+        "M_Plastic_MedCart_Blue",
+        "M_Plastic_OffWhite",
+        "M_Resin_LabTop",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/research/FW_Props_Research.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 480
+    },
     "PROP_Bin_Sharps": {
       "asset_id": "PROP_Bin_Sharps",
       "asset_name": "Sharps container (treatment room counter)",
@@ -1832,6 +2429,55 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 512
     },
+    "PROP_Centrifuge_Benchtop": {
+      "asset_id": "PROP_Centrifuge_Benchtop",
+      "asset_name": "Benchtop sample centrifuge",
+      "category": "equipment",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.42,
+        0.512,
+        0.28
+      ],
+      "export_file": "assets/exports/research/props/PROP_Centrifuge_Benchtop.glb",
+      "implementation_notes": "Staff-only research areas (not patient-accessible). Origin: bench surface.",
+      "intended_location": "Laboratory support",
+      "markers": [],
+      "materials": [
+        "M_Emissive_LED_Green",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/research/FW_Props_Research.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 112
+    },
+    "PROP_Chair_Assessment_Recliner": {
+      "asset_id": "PROP_Chair_Assessment_Recliner",
+      "asset_name": "Reclining research assessment chair",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.82,
+        1.323,
+        1.385
+      ],
+      "export_file": "assets/exports/research/props/PROP_Chair_Assessment_Recliner.glb",
+      "implementation_notes": "Staff-only research areas (not patient-accessible). Origin: floor centre.",
+      "intended_location": "Clinical assessment room",
+      "markers": [],
+      "materials": [
+        "M_Steel_Brushed",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Vinyl_Grey"
+      ],
+      "source_file": "assets/blender/research/FW_Props_Research.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 152
+    },
     "PROP_Chair_Interview_Weighted": {
       "asset_id": "PROP_Chair_Interview_Weighted",
       "asset_name": "Weighted moulded interview chair (anti-ligature, no gaps, cannot be lifted)",
@@ -1951,6 +2597,32 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 272
     },
+    "PROP_Counter_Reception": {
+      "asset_id": "PROP_Counter_Reception",
+      "asset_name": "Research reception counter",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.44,
+        0.75,
+        1.13
+      ],
+      "export_file": "assets/exports/research/props/PROP_Counter_Reception.glb",
+      "implementation_notes": "Staff-only research areas (not patient-accessible). Origin: floor centre.",
+      "intended_location": "Research reception",
+      "markers": [],
+      "materials": [
+        "M_Accent_ResearchTeal",
+        "M_Laminate_LabWhite",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/research/FW_Props_Research.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 96
+    },
     "PROP_Cylinder_Oxygen_Trolley": {
       "asset_id": "PROP_Cylinder_Oxygen_Trolley",
       "asset_name": "Oxygen cylinder on transport trolley",
@@ -2025,6 +2697,31 @@
       "source_file": "assets/blender/security/FW_Props_Security.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 108
+    },
+    "PROP_Desk_Workstation_Dual": {
+      "asset_id": "PROP_Desk_Workstation_Dual",
+      "asset_name": "Data analysis workstation with dual monitors",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.6,
+        0.75,
+        1.24
+      ],
+      "export_file": "assets/exports/research/props/PROP_Desk_Workstation_Dual.glb",
+      "implementation_notes": "Staff-only research areas (not patient-accessible). Origin: floor centre.",
+      "intended_location": "Data analysis office, observation room",
+      "markers": [],
+      "materials": [
+        "M_Emissive_Screen",
+        "M_Laminate_LabWhite",
+        "M_Plastic_Black",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/research/FW_Props_Research.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 144
     },
     "PROP_Detector_WalkThrough": {
       "asset_id": "PROP_Detector_WalkThrough",
@@ -2192,6 +2889,33 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 24
+    },
+    "PROP_Freezer_Upright_ULT": {
+      "asset_id": "PROP_Freezer_Upright_ULT",
+      "asset_name": "Upright ultra-low sample freezer",
+      "category": "equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.85,
+        0.925,
+        2.0
+      ],
+      "export_file": "assets/exports/research/props/PROP_Freezer_Upright_ULT.glb",
+      "implementation_notes": "Staff-only research areas (not patient-accessible). Origin: floor centre.",
+      "intended_location": "Secure sample storage, laboratory support",
+      "markers": [],
+      "materials": [
+        "M_Emissive_LED_Green",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/research/FW_Props_Research.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 94
     },
     "PROP_Handrail_Wall_2m": {
       "asset_id": "PROP_Handrail_Wall_2m",
@@ -2439,6 +3163,32 @@
       "source_file": "assets/blender/security/FW_Props_Security.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 36
+    },
+    "PROP_Rack_Server_42U": {
+      "asset_id": "PROP_Rack_Server_42U",
+      "asset_name": "Server rack, 42U, locked",
+      "category": "equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.6,
+        1.05,
+        2.0
+      ],
+      "export_file": "assets/exports/research/props/PROP_Rack_Server_42U.glb",
+      "implementation_notes": "Staff-only research areas (not patient-accessible). Origin: floor centre.",
+      "intended_location": "Data analysis office",
+      "markers": [],
+      "materials": [
+        "M_Emissive_LED_Green",
+        "M_Emissive_LED_Red",
+        "M_Metal_Dark",
+        "M_Plastic_Black",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/research/FW_Props_Research.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 372
     },
     "PROP_Reader_Access": {
       "asset_id": "PROP_Reader_Access",
@@ -2731,6 +3481,33 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 648
+    },
+    "PROP_Whiteboard_Wall": {
+      "asset_id": "PROP_Whiteboard_Wall",
+      "asset_name": "Wall whiteboard (recently wiped)",
+      "category": "decor",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.8,
+        0.08,
+        1.22
+      ],
+      "export_file": "assets/exports/research/props/PROP_Whiteboard_Wall.glb",
+      "implementation_notes": "Staff-only research areas (not patient-accessible). Origin: wall surface.",
+      "intended_location": "Data analysis office, protocol office",
+      "markers": [],
+      "materials": [
+        "M_Marker_Residue",
+        "M_Plastic_Black",
+        "M_Safety_Red",
+        "M_Signage_Blue",
+        "M_Steel_Brushed",
+        "M_Whiteboard"
+      ],
+      "source_file": "assets/blender/research/FW_Props_Research.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 168
     }
   },
   "schema_version": "1.0"

@@ -7,7 +7,7 @@ Pipeline, conventions and validation: see [`ENVIRONMENT_PIPELINE.md`](ENVIRONMEN
 | 1 Modular architecture | Walls, openings, windows, floors, ceilings, corridor slices and junctions, doors | **Done (v1, untextured)** |
 | 2 Opening-chapter environments | Corridor, office, Interview Room A, nursing station, 2 patient rooms (plus records archive) | **Done (v1, untextured)** |
 | 3 Clinical and cinematic props | EHR terminal, clinical furniture, fixtures, interview camera markers, medication, ward-bed, linen and emergency equipment | **Done (v1, untextured).** 36 props and interview cameras. The nursing station now carries the medication cart (with sharps bin), resuscitation trolley, AED cabinet and hand-gel dispenser; the other Stage 3 props are library-only until the rooms that need them exist. |
-| 4 Security, admin and research wings | Security corridor, visitor screening, credentialing, records, medical director's office, conference room, secure interview suite, security control, surveillance, maintenance access, restricted lift lobby; research wing | **4a security and admin wing done (v1, untextured).** 13 props and 11 rooms north of the clinical wing. 4b research wing not started. |
+| 4 Security, admin and research wings | Security corridor, visitor screening, credentialing, records, medical director's office, conference room, secure interview suite, security control, surveillance, maintenance access, restricted lift lobby; research reception, research and restricted corridors, physician offices, data analysis, records archive, protocol office, assessment and observation rooms, lab support, sample storage | **Done (v1, untextured).** 4a: 13 props, 11 rooms. 4b: 8 props, 12 rooms on the research level the restricted lift serves. |
 | 5 Historic substructure | | Not started (the W0-B historic service door exists) |
 | 6 Ward Zero canonical layout and anomaly states | | Not started. The state mechanism exists: `state_group` extras plus `WorldStateManager` on the gameplay branch. |
 | 7 Apartment, parking, exterior | | Not started |
@@ -74,6 +74,21 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 - **East side, south to north:** secure interview suite (the clinician's seat is nearer the exit, enforced by an assert), security control (console, 3x2 video wall, key cabinet, reinforced window onto the corridor, Hale marker), surveillance monitoring, maintenance access (electrical panel, pipes, a service hatch hinting at Stage 5).
 - Every door has a badge reader and a room sign. Each room has camera markers, collision and light markers; the security rooms use cooler light.
 
+## Stage 4b deliverables (research wing)
+
+| Deliverable | Location |
+|---|---|
+| Prop source | `assets/blender/research/FW_Props_Research.blend` |
+| Prop exports (8) | `assets/exports/research/props/*.glb` |
+| Wing source | `assets/blender/research/FW_ResearchWing.blend` |
+| Room exports (12) | `assets/exports/research/env/*.glb` |
+| Renders | `assets/renders/stage4/research_*.png`, `props_research.png` |
+| Build script | `tools/blender/build_stage4_research.py` (`--fast` skips renders) |
+
+- **Where it is.** The research wing is its own level, the one the restricted lift serves. It uses the same x/y as the Chapter 1 frame with its floor at z = 0, so its lift doors stand directly above the security wing's (x 0, y 44; asserted in the script). Load it as a separate level. If both levels ever share one scene, raise every research `ENV_*` by the same floor height.
+- **Layout.** Reception and the lift landing (y 40–44) open south into a 12 m research corridor. West side: physician offices A and B, data analysis office. East side: clinical assessment room, observation and monitoring room (one-way window into the assessment room), lab support. A badge-and-PIN door at y = 28 leads to an 8 m restricted corridor that dead-ends at y = 20. Off it are the research records archive, the unsigned protocol office and secure sample storage.
+- **Tone.** It reads as a clean, legitimate research unit. The unease comes only from small details, each tagged `story_tag: research_inconsistency` with a `godot_hint`: the protocol office has no sign and the heaviest lock; whiteboards were wiped in a hurry; one archive bay was emptied; office B was cleared out; one freezer has a second padlock and no label; the observation room seats more observers than one assessment needs; a second camera is aimed at the assessment chair. The hints describe what the player sees, never a clinical fact, and the protocol binder is marked `clinical_review_status: PENDING`.
+
 ## Design assumptions (labelled, pending creative review)
 
 - The corridor is 2.8 m clear and ceilings are 3.0 m throughout.
@@ -82,12 +97,14 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 - W0-B is placed as a historic service door at the south end of the clinical corridor, as a Chapter 1 story hook. Ward Zero itself (Stage 6) lies beneath.
 - Room numbering, signage text and staff positions are provisional.
 - Stage 4a: the wing's position north of the clinical corridor, the room adjacencies and the Voss and Hale marker positions are assumptions; the GDD names the rooms but not a floor plan.
+- Stage 4b: putting the research wing on the lift's upper level, its room layout, the receptionist marker and every storytelling detail are assumptions for creative review. No research staff are named in the GDD, so no named character markers are placed.
 
 ## Known issues and unfinished work
 
 - **No textures or UVs yet** (flat PBR colours). Only the EHR screen and sign faces have UVs. Lightmap UV2 is not generated; use Godot's import option or wait for Stage 8.
 - **No characters.** Gameplay uses capsule stand-ins.
 - **Stage 3 props placed so far:** only the nursing station. The hospital bed, linen skip, oxygen trolley, observations monitor and wheelchair wait for the medical bay and clinic room (later stages).
+- **One-way glass in Cycles previews looks mirrored from both sides**, because Cycles renders back faces. Godot culls back faces by default, so the observer side should see through. This has not been checked in Godot yet (assessment room window and Interview Room A).
 - **Door leaves get static collision only.** Gameplay animates the leaf node, and the collider follows.
 - **Exterior windows show a preview backdrop in renders only.** Godot needs an exterior or skybox solution (Stage 7).
 - **Preview renders use Cycles on CPU with denoising.** Lighting in Godot comes from the `LIGHTMARK_*` markers and is tuned separately.

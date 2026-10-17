@@ -13,11 +13,11 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Sprints 1–3 integration | `claude/integration-sprints-1-3` (draft PR to `main`) | Claude | `99c2eaf453e13d44932f73a7c7f30ad54a18bf3e` | `README.md` (merge resolution), `docs/INTEGRATION_SPRINTS_1_3.md`, `docs/PROJECT_STATUS.md`, this file. Otherwise no edits beyond the merge | Awaiting owner review and merge; replaces PRs #1, #6, #7, #8 |
 | Sprint 1 integration | `claude/integrate-sprint-01` (draft PR) | Claude | `8ca85bce79f08f19ce75e00c33502a4e4af14146` | `project.godot`, `scripts/autoload/EventBus.gd`, `scripts/autoload/GameState.gd`, `scenes/main/Main.*`, `scripts/main/Main.gd`, `tests/qa/run.py`, `tests/qa/TestQA.gd`, `docs/TESTING.md` | Awaiting owner review and merge |
 | Sprint 1 foundation | `claude/sprint-01-foundation` (PR #1) | Claude | `f626aad7be1c9a443762a5b2cd3591601c1b14bc` | Superseded by the integration PR | Close after the integration PR merges |
-| Environment art, Stage 4a security and admin wing | `claude/environment-stage-4` (draft PR to `main`) | Claude | `4180b3fa86a76065634587b47f7d42897f3be68b` | `tools/blender/build_stage4_security_admin.py`, `tools/blender/{fw_assets,fw_lib}.py` (Stage 4 sections), `tools/blender/build_stage2_chapter1.py` (`room_shell` light_color only), `assets/{blender,exports}/security/**`, `assets/renders/stage4/**`, `assets/asset_manifest/**`, `docs/ENVIRONMENT_*.md` | Awaiting owner review and merge. Stage 4b research wing next |
+| Environment art, Stage 4b research wing | `claude/environment-stage-4b` (draft PR to `main`) | Claude | `90315575dd91f9fe8c8fd480b63c52309ed0c1cb` (plus a merge of `main`) | `tools/blender/build_stage4_research.py`, `tools/blender/build_stage4_security_admin.py` (facing fix), `tools/blender/{fw_assets,fw_lib}.py` (Stage 4b sections), `assets/{blender,exports}/research/**`, `assets/renders/stage4/**`, `assets/asset_manifest/**`, `docs/ENVIRONMENT_*.md` | Awaiting owner review and merge. Stage 5 historic substructure next |
 | Chapter 1 playable | `claude/chapter1-playable` (PR #7) | Claude | `60ed74fe882385535425f2038add243f93cc4b9e` | `scripts/world/**`, `scripts/autoload/WorldStateManager.gd`, `data/world_chapter1.json`, `scenes/world/Chapter1Ward.tscn`, `scripts/tests/test_world.gd`, `docs/CHAPTER1_PLAYABLE.md` | Integration branch merged in; awaiting review |
 | Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
 | Sprint 3 story, evidence, shift | `claude/sprint-03-evidence-shift` (draft PR, base `claude/sprint-02-ehr-interview`) | Claude | see newest log entry | `scripts/narrative/**`, `data/story_chapter1.json`, `scripts/ui/EvidenceBoard.gd`, `scripts/world/AudioZoneTracker.gd`, `scripts/tests/test_sprint3.gd`; small edits to `scripts/main/Main.gd`, `scripts/autoload/EventBus.gd`, `scripts/ui/{HUD,PauseMenu}.gd` | Awaiting review |
-| Audio production, original soundtrack | `claude/audio-production` (draft PR to `main`, based on `claude/remove-appledouble-metadata`) | Claude | `ab613f16ecbec0e3f774090de22f56dfe9cb9607` | `audio/**`, `assets/audio/**` (`.import` sidecars only; recordings untouched), `tools/audio/**`, `systems/audio/**`, `tests/audio/**`, `tests/qa/test_audio_manifest.py`, `docs/AUDIO*.md`; small edits to `scripts/ui/PauseMenu.gd` and `scenes/ui/PauseMenu.tscn` | Awaiting owner review; merge PR #15 first |
+| Audio production, original soundtrack | `claude/audio-production` (PR #18, draft) | Claude | `ab613f16ecbec0e3f774090de22f56dfe9cb9607` | `audio/**`, `assets/audio/**` (`.import` sidecars only; recordings untouched), `tools/audio/**`, `systems/audio/**`, `tests/audio/**`, `tests/qa/test_audio_manifest.py`, `docs/AUDIO*.md`; small edits to `scripts/ui/PauseMenu.gd` and `scenes/ui/PauseMenu.tscn` | Awaiting owner review and listening on the Mac |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -65,10 +65,10 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ### 2026-10-17 19:55 UTC · Claude Code · Audio: original soundtrack
 
-- **Branch:** `claude/audio-production` (based on `claude/remove-appledouble-metadata` at `9af90fc`, which is `main` at `782f642` plus PR #15)
+- **Branch:** `claude/audio-production` (based on `claude/remove-appledouble-metadata` at `9af90fc`; `main` at `cccbe09` merged in after PR #15 and PR #17 landed)
 - **Latest verified commit:** `ab613f16ecbec0e3f774090de22f56dfe9cb9607` "Skip macOS AppleDouble files when AudioDirector loads narrative data"
 - **Confirmed on GitHub:** `git ls-remote origin claude/audio-production` printed `ab613f1` at 19:52 UTC; this doc commit sits on top
-- **Pull request:** draft PR to `main` (opened with this push). Merge PR #15 first; this branch contains its two commits.
+- **Pull request:** #18 (draft) to `main`; PR #15 has merged
 - **State:** finished; waits on the owner's listening review on the Mac
 
 **Accomplished**
@@ -91,20 +91,56 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 **Tests** (on `ab613f1`)
 - `python3 tests/qa/run.py --godot <4.7-stable linux, SHA-512 verified>` on `21cba85`: exit 0; QA_RESULT 19 passed / 0 failed / 0 skipped; sprint tests 80 passed / 0 failed; AUDIO_RESULT 271 passed / 0 failed (211 before); GLB validation 92 assets, 0 failures; Python content 6/6, audio manifest 3/3, music pipeline OK.
 - `ab613f1` only adds the `._*` skip: `godot --headless --path . res://tests/audio/TestAudio.tscn` gave 271 passed / 0 failed, also with a planted `data/narrative/._probe.json`.
-- CI: not observed yet
+- CI: `validate` run 39063043515 passed on `f191570` (before the merge of `main`)
 - Headless uses the Dummy audio driver: playback, timing, fades and ducks are checked, not how anything sounds.
 
 **Dependencies not available to remote agents**
 - Listening review of the mix, the loop crossfades and the exploration level needs the owner's Mac. `build_manifest.py` needs `soundfile`, `numpy`, `scipy` (`tools/audio/requirements.txt`).
 
 **Next steps**
-1. Owner: merge PR #15, then review this PR; play the corridor by day and check the narrative theme sits under the ambience (`mus_narrative` `volume_db` in `audio/cues.json`).
+1. Owner: review PR #18; play the corridor by day and check the narrative theme sits under the ambience (`mus_narrative` `volume_db` in `audio/cues.json`).
 2. Owner: record the soundtrack's authorship and licence; the manifest entries say it is still to be confirmed.
 3. Whoever builds the title screen, cinematics, credits or an emotional story beat: fire the matching event from the table in `docs/AUDIO.md` → Soundtrack (for example `EventBus.narrative_event_fired.emit("music_main_menu", {})`), or call `AudioDirector.start_music_context`.
 4. Optional: decide whether night exploration should get music; today night is deliberately silent.
 
 **Notes for the other agent**
 - Do not re-encode or normalize files in `assets/audio/music/`; change levels with `volume_db` in `audio/cues.json`. `music_main_theme.m4a` is an unused duplicate (Godot cannot import `.m4a`).
+### 2026-10-17 19:45 UTC · Claude Code · Environment Stage 4b research wing
+
+- **Branch:** `claude/environment-stage-4b` (from `claude/environment-stage-4` at `6e2fdf6`, then `main` at `66a274f` merged in)
+- **Latest verified commit:** `90315575dd91f9fe8c8fd480b63c52309ed0c1cb` "Build Stage 4b research wing: 8 props, 12 rooms on the research level", plus merge `96b0f8b` of `main`
+- **Confirmed on GitHub:** see `git ls-remote origin claude/environment-stage-4b`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- 8 research props (`assets/exports/research/props/`): reception counter, reclining assessment chair, lab bench, benchtop centrifuge, upright ultra-low freezer, dual-monitor workstation, server rack, whiteboard with wiped-marker residue.
+- 12 rooms (`assets/exports/research/env/`) on the research level the restricted lift serves. It uses the same x/y as Chapter 1 with its floor at z = 0, and the lift sits at (0, 44) as below (asserted). Reception, a 12 m research corridor, a badge-and-PIN door at y = 28, and an 8 m restricted corridor. Rooms: physician offices A and B (B vacated), data analysis, records archive (one bay emptied), unsigned protocol office, clinical assessment room (one-way window into observation; clinician nearer the exit, asserted), observation and monitoring, lab support, secure sample storage (one unlabelled, double-locked freezer).
+- Storytelling hooks carry `story_tag: research_inconsistency` and a `godot_hint` that describes only what the player sees. The protocol binder is `clinical_review_status: PENDING`.
+- PR #14 merged at `bb4ecf7`, before the 4a facing fix (`400770b`, `6e2fdf6`). That fix reaches `main` through this branch.
+
+**Files modified**
+- New: `tools/blender/build_stage4_research.py`, `assets/blender/research/{FW_Props_Research,FW_ResearchWing}.blend`, exports and their `.import` files, `assets/renders/stage4/research_*.png`, `props_research.png`.
+- `tools/blender/fw_assets.py` (Stage 4b section), `tools/blender/fw_lib.py` (8 palette materials), `assets/asset_manifest/asset_manifest.{json,md}` (112 records), `docs/ENVIRONMENT_STAGES.md`, `docs/ENVIRONMENT_PIPELINE.md`, `docs/PROJECT_STATUS.md`, this file.
+
+**Unfinished**
+- Not wired into gameplay: no level scene, and no lift transition between the security and research levels.
+- Level placement, layout, the receptionist marker and every storytelling detail are assumptions for creative review. The GDD names no research staff, so no named markers.
+
+**Known errors**
+- Cycles previews show the one-way glass mirrored from both sides because Cycles renders back faces. Godot should cull them; not checked in Godot yet.
+
+**Tests** (on the merged tree, before this doc commit)
+- `python3 tests/qa/run.py` with Godot 4.7 (4.7.stable.official.5b4e0cb0f) after merging `main`: exit 0. Python content 6/6, audio manifest 3/3, `.glb` validation 112/112, TestRunner 80 / 0, TestQA 19 / 0 / 0, TestAudio 211 / 0, "All executed checks passed". The music `.ogg.import` files Godot generated were left uncommitted for the music workstream.
+- `build_stage4_research.py` with Blender 5.0.1 (`bpy`): "STAGE4 RESEARCH OK: 8 props, 12 environments exported".
+
+**Dependencies not available to remote agents**
+- Mac-only checks (Forward+ look, one-way glass in Godot).
+
+**Next steps**
+1. Owner reviews and merges this PR.
+2. Stage 5 historic asylum substructure, reached from the maintenance hatch (`MA_ServiceHatch`) and the lift's sublevels.
+3. Gameplay: a lift transition between the security and research levels.
 
 ### 2026-10-17 19:30 UTC · Claude Code · CI fix: macOS AppleDouble files
 
@@ -141,6 +177,21 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 **Notes for the other agent**
 - No PR #20 existed; the failure was on `main` itself, so the fix is on this branch per AGENTS.md §3.
+
+### 2026-10-17 19:05 UTC · Claude Code · Stage 4a facing fix
+
+- **Branch:** `claude/environment-stage-4` (PR #14)
+- **Latest verified commit:** `400770b` "Fix facing of two terminals and the interview intercom in the security wing" (full SHA via `git log -1 400770b`)
+- **State:** finished; this adds to the 18:45 entry below.
+
+**Accomplished**
+- `VS_Terminal_VisitorLog` and `MD_Terminal` now face their users, and `SI_Intercom` faces into the room. Only `ENV_VisitorScreening`, `ENV_MedicalDirectorOffice` and `ENV_SecureInterviewSuite` (plus the wing `.blend` and their renders) changed.
+
+**Tests** (on `400770b`)
+- `python3 tests/qa/run.py` with Godot 4.7: exit 0. 92/92 `.glb`, TestRunner 80/0, TestQA 19/0/0, TestAudio 211/0.
+
+**Next steps**
+- Unchanged from the 18:45 entry. Stage 4b research wing is on `claude/environment-stage-4b`, stacked on this branch.
 
 ### 2026-10-17 18:45 UTC · Claude Code · Environment Stage 4a security and admin wing
 

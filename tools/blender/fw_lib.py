@@ -99,6 +99,15 @@ PALETTE = {
     "M_Upholstery_Leather_Black": ("#1E1F21", 0.55, 0.0, {}),
     "M_Glass_Reinforced": ("#B6C4CA", 0.08, 0.0, {"alpha": 0.3}),
     "M_Emissive_VideoWall": ("#1B2A33", 0.3, 0.0, {"emission": ("#3E6E8A", 1.6)}),
+    # Stage 4b: research wing (clean, bright, slightly too new).
+    "M_Wall_ResearchWhite": ("#E3E7E4", 0.8, 0.0, {}),
+    "M_Floor_Vinyl_Research": ("#A9B2B0", 0.35, 0.0, {}),
+    "M_Laminate_LabWhite": ("#ECECE7", 0.45, 0.0, {}),
+    "M_Resin_LabTop": ("#2F3437", 0.35, 0.0, {}),
+    "M_Whiteboard": ("#F4F5F2", 0.15, 0.0, {}),
+    "M_Marker_Residue": ("#C4CACD", 0.3, 0.0, {}),
+    "M_Accent_ResearchTeal": ("#2F7F86", 0.5, 0.0, {}),
+    "M_Upholstery_Vinyl_Grey": ("#8D9496", 0.6, 0.0, {}),
     "M_Collision": ("#FF00FF", 1.0, 0.0, {}),
 }
 
