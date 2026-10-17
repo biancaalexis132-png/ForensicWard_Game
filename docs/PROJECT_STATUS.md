@@ -23,6 +23,7 @@ Status meanings:
 | `claude/environment-production` | `e321b4a` | PR #6 open, not merged | Blender sources, `.glb` exports, manifest, renders (Stages 1–2). Adds files only; no conflicts with `main`. |
 | `claude/chapter1-playable` | see `docs/AI_HANDOFF.md` | PR #7 draft, not merged | Playable Chapter 1 in the Blender-built wing; contains PR #8 and PR #6. Merge order: #8, #6, #7. |
 | `claude/sprint-02-ehr-interview` | see `docs/AI_HANDOFF.md` | PR #9 draft, stacked on #7 | Sprint 2: EHR, cinematic interview, observation capture, notes, clinical actions. |
+| `claude/sprint-03-evidence-shift` | see `docs/AI_HANDOFF.md` | Draft PR, stacked on #9 | Sprint 3: story director, evidence board, shift sign-out, Bennett trust, after-hours W0-B beat. |
 | `claude/quirky-ptolemy-6j16b7` | `a99782e` | PR #5 closed | Audio sound set / ACE-Step pipeline. |
 | `codex/sprint-01-tests` | `d1d7479` | PR #2 merged | Codex QA runner and CI. |
 
@@ -51,8 +52,10 @@ Not on GitHub at the time of checking: `claude/audio-production`.
 | Cinematic interview UI, observation capture | Done, not merged | `claude/sprint-02-ehr-interview` (PR #9) | `test_sprint2.gd` (cameras, typed/structured questions, fallback) | Close-up/reverse shots unused until character models exist |
 | `ClinicalRules` actions from the EHR (non-medical placeholder outcomes) | Done, not merged | PR #9 | Validated mode refuses pending rules (tested) | Both rules PENDING review |
 | Pharmacology in the EHR (MAR, orders through governed rules) | Planned | | Sprint 3+ | Needs per-rule approval records |
-| Evidence board, shift time, nurse trust, Ward Zero clue | Planned | | Sprint 3 | |
-| Investigation system, five-act story | Planned | | | |
+| Evidence board (pin, link, argue, player hypotheses, provenance) | Done, not merged | `claude/sprint-03-evidence-shift` | `scripts/tests/test_sprint3.gd`; screenshot | |
+| Chapter 1 story director (objectives, beats, staff lines), shift sign-out, Bennett trust, after-hours W0-B beat | Done, not merged | `claude/sprint-03-evidence-shift` | `test_sprint3.gd` (handover trust, intercom, chart entry, chapter end, save/load of pending beats) | GDD beat 4 (second patient) not authored; staff lines are placeholders |
+| HUD objective and subtitles; room ambience zones | Done, not merged | `claude/sprint-03-evidence-shift` | `test_sprint3.gd` | Ambience heard only with a display (headless tracks only); mix untested on Mac |
+| Acts II–V, more patients, Ward Zero (environment Stage 6) | Planned | | | Story content needs the narrative bible |
 
 ## Blocked
 
@@ -62,6 +65,7 @@ Not on GitHub at the time of checking: `claude/audio-production`.
 | Clinical rule `clinical_rule_catatonia_escalation_v1` as medical logic | Psychiatrist review | Owner |
 | Elias Ward dialogue content, including the `records_observations` links and EHR action wording added in Sprint 2 | Psychiatrist review | Owner |
 | Clinical rule `clinical_rule_medical_review_request_v1` | Psychiatrist review | Owner |
+| Chapter 1 story lines in `data/story_chapter1.json` (Bennett lines, disputed transfer wording) | Narrative and clinical review | Owner |
 | AI music (ACE-Step, Stable Audio) | Needs the owner's Mac or a GPU and a licence check | Owner |
 
 ## Integration risks

@@ -14,7 +14,9 @@ extends CanvasLayer
 
 const PANEL_ID: String = "evidence"
 const CARD_SIZE: Vector2 = Vector2(230, 96)
-const CARD_GAP: Vector2 = Vector2(36, 40)
+const CARD_GAP: Vector2 = Vector2(70, 60)
+const PAPER: Color = Color(0.9, 0.87, 0.78)
+const STRING_RED: Color = Color(0.78, 0.18, 0.16)
 const COLUMNS: int = 3
 
 var is_open: bool = false
@@ -195,6 +197,13 @@ func _rebuild_board() -> void:
 		card.text = "%s\n%s" % [clue["title"], UIStyle.humanize(clue["provenance"])]
 		card.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		card.add_theme_font_size_override("font_size", 16)
+		for state: String in ["font_color", "font_pressed_color", "font_hover_color", "font_hover_pressed_color", "font_focus_color"]:
+			card.add_theme_color_override(state, Color(0.12, 0.1, 0.08))
+		card.add_theme_stylebox_override("normal", _card_style(false))
+		card.add_theme_stylebox_override("hover", _card_style(false))
+		card.add_theme_stylebox_override("pressed", _card_style(true))
+		card.add_theme_stylebox_override("hover_pressed", _card_style(true))
+		card.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 		card.size = CARD_SIZE
 		card.position = Vector2(i % COLUMNS, i / COLUMNS) * (CARD_SIZE + CARD_GAP) + Vector2(20, 20)
 		card.pressed.connect(func() -> void: select_card(clue_id))
@@ -203,10 +212,24 @@ func _rebuild_board() -> void:
 	_board.queue_redraw()
 
 
+## Opaque paper cards; selected ones get a red border.
+func _card_style(selected_card: bool) -> StyleBoxFlat:
+	var style: StyleBoxFlat = StyleBoxFlat.new()
+	style.bg_color = PAPER
+	style.set_corner_radius_all(2)
+	style.set_content_margin_all(8)
+	style.set_border_width_all(4 if selected_card else 1)
+	style.border_color = STRING_RED if selected_card else Color(0.5, 0.46, 0.38)
+	style.shadow_color = Color(0, 0, 0, 0.45)
+	style.shadow_size = 4
+	return style
+
+
+## Strings run between card centres; the opaque cards hide the ends.
 func _draw_links() -> void:
 	for pair: PackedStringArray in EvidenceManager.get_links():
 		if _card_positions.has(pair[0]) and _card_positions.has(pair[1]):
-			_board.draw_line(_card_positions[pair[0]], _card_positions[pair[1]], Color(0.85, 0.3, 0.25, 0.9), 3.0, true)
+			_board.draw_line(_card_positions[pair[0]], _card_positions[pair[1]], STRING_RED, 3.0, true)
 
 
 func _rebuild_hypotheses() -> void:
