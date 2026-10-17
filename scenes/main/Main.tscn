@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/world/Chapter1Ward.tscn" id="2_world"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="4_hud"]
 [ext_resource type="PackedScene" path="res://scenes/ui/InfoPanel.tscn" id="5_info"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="6_pause"]
+[ext_resource type="PackedScene" path="res://scenes/ui/EHRScreen.tscn" id="7_ehr"]
+[ext_resource type="PackedScene" path="res://scenes/ui/InterviewScreen.tscn" id="8_interview"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
@@ -15,6 +17,10 @@ script = ExtResource("1_main")
 [node name="Player" parent="." instance=ExtResource("3_player")]
 
 [node name="HUD" parent="." instance=ExtResource("4_hud")]
+
+[node name="EHRScreen" parent="." instance=ExtResource("7_ehr")]
+
+[node name="InterviewScreen" parent="." instance=ExtResource("8_interview")]
 
 [node name="InfoPanel" parent="." instance=ExtResource("5_info")]
 

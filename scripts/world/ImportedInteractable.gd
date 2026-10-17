@@ -5,7 +5,7 @@ extends Node
 ## Added as a child of the prop's root node. Builds an Interactable whose box
 ## covers the prop's meshes (padded so the ray reaches it before any desk
 ## collider underneath) and dispatches to WorldActions by type:
-##   ehr_terminal   EHR census placeholder (Sprint 2: full EHR screen)
+##   ehr_terminal   opens the EHR screen
 ##   clue_terminal  reveals a clue from a terminal/panel
 ##   clue_pickup    reveals a clue and removes the physical document
 ##   system_status  content/debug report
@@ -49,7 +49,7 @@ func setup(target: Node3D, config: Dictionary) -> void:
 func _on_interacted(_interactor: Node) -> void:
 	match kind:
 		"ehr_terminal":
-			WorldActions.open_ehr_census(title)
+			WorldActions.open_ehr(title)
 		"clue_terminal":
 			WorldActions.reveal_clue(clue_id, "terminal:" + _target.name)
 		"clue_pickup":

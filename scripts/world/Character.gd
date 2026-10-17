@@ -3,9 +3,7 @@ extends Node3D
 ## WardCharacter: a greybox staff member or patient the player can approach.
 ##
 ## Staff: shows their authored intro line and grants any authored access
-## (once, via TrustManager). Patients: shows a short placeholder
-## observation and starts DialogueManager. The cinematic Interview UI arrives
-## in Sprint 2.
+## (once, via TrustManager). Patients: opens the cinematic InterviewScreen.
 
 enum Kind { STAFF, PATIENT }
 
@@ -57,17 +55,4 @@ func _talk_to_staff() -> void:
 
 
 func _approach_patient() -> void:
-	var patient: Dictionary = ContentRegistry.get_patient(character_id)
-	DialogueManager.start_dialogue(character_id)
-	var choices: PackedStringArray = []
-	for choice: Dictionary in DialogueManager.get_choices():
-		choices.append("  • " + choice["label"])
-	DialogueManager.end_dialogue()
-	# Only authored text is shown: no invented clinical description.
-	var body: String = "[b]%s[/b], %d\n\n[b]Reported observations:[/b]\n" % [patient.get("name", ""), patient.get("age", 0)]
-	for observation: Dictionary in patient.get("presentation", {}).get("observations", []):
-		body += "  • %s (%s): %s\n" % [str(observation["source"]).replace("_", " "), observation["timestamp"], observation["text"]]
-	body += "\n"
-	body += "[b]Interview topics (Interview UI arrives in Sprint 2):[/b]\n" + "\n".join(choices)
-	body += "\n\n[color=#9aa]Clinical content status: %s[/color]" % patient.get("clinical_review_status", "")
-	EventBus.ui_panel_requested.emit("info", {"title": "Interview Room", "body": body})
+	EventBus.ui_panel_requested.emit("interview", {"patient_id": character_id})
