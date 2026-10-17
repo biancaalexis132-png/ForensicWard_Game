@@ -43,6 +43,9 @@ signal patient_record_opened(patient_id: String, event_id: String)
 signal patient_state_changed(patient_id: String, field_path: String, value: Variant)
 @warning_ignore("unused_signal")
 signal observation_recorded(patient_id: String, observation_id: String)
+## A structured note was saved to the patient's chart (append-only).
+@warning_ignore("unused_signal")
+signal patient_note_saved(patient_id: String, note_id: String)
 @warning_ignore("unused_signal")
 signal patient_location_changed(patient_id: String, from_location: String, to_location: String)
 ## A rule needs clinician attention (pending review, blocked transfer, unknown effect).

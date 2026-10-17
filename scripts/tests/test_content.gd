@@ -65,6 +65,27 @@ func test_rule_references_unknown_observation() -> void:
 	check_contains(report["errors"], "unknown observation of pt_elias_ward id 'obs_unknown'", "rule observation")
 
 
+func test_dialogue_records_unknown_observation() -> void:
+	var docs: Dictionary = _fixture_documents()
+	docs["dialogue"]["data"]["states"][0]["choices"][0]["records_observations"] = ["obs_mutsm"]
+	var report: Dictionary = ContentValidator.validate_documents(docs)
+	check_contains(report["errors"], "records_observations[0]: unknown observation of pt_elias_ward id 'obs_mutsm'",
+			"dangling interview observation")
+
+
+func test_rule_trigger_must_be_an_authored_action() -> void:
+	var docs: Dictionary = _fixture_documents()
+	docs["clinical_rules"]["data"]["rules"][0]["trigger_action"] = "evaluate_catatona"
+	var report: Dictionary = ContentValidator.validate_documents(docs)
+	check_contains(report["errors"], "rules[0].trigger_action: unknown clinical action id 'evaluate_catatona'",
+			"rule without an action")
+
+
+func test_actions_are_listed_per_patient() -> void:
+	var labels: Array = ContentRegistry.get_actions("pt_elias_ward").map(func(a: Dictionary) -> String: return a["id"])
+	check_eq(labels, ["evaluate_catatonia", "request_medical_review"], "authored order")
+
+
 func test_bad_id_format() -> void:
 	var docs: Dictionary = _fixture_documents()
 	docs["clues"]["data"]["clues"][0]["id"] = "Clue Transfer"

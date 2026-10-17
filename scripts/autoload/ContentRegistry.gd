@@ -32,6 +32,7 @@ var warnings: Array[String] = []
 var _patients: Dictionary = {}       ## id -> patient
 var _dialogues: Dictionary = {}      ## patient_id -> dialogue document
 var _rules: Array = []
+var _actions: Dictionary = {}        ## id -> clinical action
 var _clues: Dictionary = {}          ## id -> clue
 var _hypotheses: Dictionary = {}     ## id -> authored hypothesis
 var _sources: Dictionary = {}        ## id -> catalog item
@@ -90,6 +91,19 @@ func get_rules() -> Array:
 	return _rules
 
 
+## Clinical actions offered for a patient, in authored order.
+func get_actions(patient_id: String) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for action: Dictionary in _actions.values():
+		if action["patient_id"] == patient_id:
+			result.append(action)
+	return result
+
+
+func get_action(action_id: String) -> Dictionary:
+	return _actions.get(action_id, {})
+
+
 func get_clue(clue_id: String) -> Dictionary:
 	return _clues.get(clue_id, {})
 
@@ -145,6 +159,7 @@ func _build_indexes(documents: Dictionary) -> void:
 	var dialogue: Dictionary = documents["dialogue"]["data"]
 	_dialogues = {dialogue["patient_id"]: _freeze(dialogue)}
 	_rules = _freeze(documents["clinical_rules"]["data"]["rules"])
+	_actions = _index(documents["clinical_rules"]["data"].get("actions", []))
 	_clues = _index(documents["clues"]["data"]["clues"])
 	_hypotheses = _index(documents["clues"]["data"]["hypotheses"])
 	_sources = _index(documents["source_catalog"]["data"]["items"])

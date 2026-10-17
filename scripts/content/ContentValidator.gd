@@ -141,13 +141,25 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			for j: int in choices.size():
 				_require_known(choices[j]["next"], state_ids, "dialogue state", file,
 						"states[%d].choices[%d].next" % [i, j], errors)
+				var recorded: Array = choices[j].get("records_observations", [])
+				for k: int in recorded.size():
+					_require_known(recorded[k], observations_by_patient.get(dialogue["patient_id"], {}),
+							"observation of %s" % dialogue["patient_id"], file,
+							"states[%d].choices[%d].records_observations[%d]" % [i, j, k], errors)
 
 	if documents.has("clinical_rules"):
 		var rules: Array = _data(documents, "clinical_rules")["rules"]
 		var file: String = _file(documents, "clinical_rules")
 		_collect_ids(rules, file, "rules", errors)
+		var actions: Array = _data(documents, "clinical_rules").get("actions", [])
+		var action_ids: Dictionary = _collect_ids(actions, file, "actions", errors)
+		for i: int in actions.size():
+			_require_known(actions[i]["patient_id"], patient_ids, "patient", file, "actions[%d].patient_id" % i, errors)
 		for i: int in rules.size():
 			var rule: Dictionary = rules[i]
+			if not actions.is_empty():
+				_require_known(rule["trigger_action"], action_ids, "clinical action", file,
+						"rules[%d].trigger_action" % i, errors)
 			_require_known(rule["patient_id"], patient_ids, "patient", file, "rules[%d].patient_id" % i, errors)
 			var known_observations: Dictionary = observations_by_patient.get(rule["patient_id"], {})
 			var present: Array = rule["condition"].get("observations_present", [])

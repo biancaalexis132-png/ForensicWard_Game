@@ -75,8 +75,13 @@ func shift_for(minutes: int) -> String:
 
 
 func get_clock_string() -> String:
-	var minute_of_day: int = get_minute_of_day()
-	return "Day %d  %02d:%02d" % [get_day(), minute_of_day / 60, minute_of_day % 60]
+	return format_minutes(total_minutes)
+
+
+## "Day 2  14:05" for an absolute minute count (EHR timestamps, audit).
+func format_minutes(minutes: int) -> String:
+	var minute_of_day: int = minutes % MINUTES_PER_DAY
+	return "Day %d  %02d:%02d" % [minutes / MINUTES_PER_DAY + 1, minute_of_day / 60, minute_of_day % 60]
 
 
 func is_paused() -> bool:

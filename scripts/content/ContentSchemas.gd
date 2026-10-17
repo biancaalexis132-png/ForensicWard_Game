@@ -27,7 +27,7 @@ const PATIENT_LOCATIONS: Array[String] = [
 const HYPOTHESIS_STATUSES: Array[String] = ["unresolved", "supported", "refuted"]
 ## Non-medical effects ClinicalRules knows how to apply. Medical effects have
 ## no vocabulary yet: none are approved.
-const NON_MEDICAL_EFFECTS: Array[String] = ["mark_assessment_started"]
+const NON_MEDICAL_EFFECTS: Array[String] = ["mark_assessment_started", "mark_medical_review_requested"]
 
 const _STRING: Dictionary = {"type": "string"}
 const _ID: Dictionary = {"type": "id"}
@@ -84,7 +84,12 @@ const DIALOGUE_CHOICE: Dictionary = {
 		"response": _STRING,
 		"next": _ID,
 	},
-	"optional": {"rapport_delta": {"type": "number"}},
+	"optional": {
+		"rapport_delta": {"type": "number"},
+		## Authored observations of this patient that the physician witnesses
+		## when this question is asked (recorded with provenance "interview:<choice>").
+		"records_observations": _IDS,
+	},
 }
 
 const DIALOGUE_FILE: Dictionary = {
@@ -119,9 +124,24 @@ const CLINICAL_RULE: Dictionary = {
 	"optional": {"notice": _STRING},
 }
 
+## A coded action the physician can commit from the EHR Orders tab.
+## Outcomes come only from ClinicalRules; the action itself carries no effect.
+const CLINICAL_ACTION: Dictionary = {
+	"type": "object",
+	"required": {
+		"id": _ID,
+		"patient_id": _ID,
+		"label": _STRING,
+		"description": _STRING,
+		"time_minutes": {"type": "number"},
+		"clinical_review_status": _REVIEW,
+	},
+}
+
 const CLINICAL_RULES_FILE: Dictionary = {
 	"type": "object",
 	"required": {"schema_version": _STRING, "rules": {"type": "array", "items": CLINICAL_RULE}},
+	"optional": {"actions": {"type": "array", "items": CLINICAL_ACTION}},
 }
 
 const CLUES_FILE: Dictionary = {

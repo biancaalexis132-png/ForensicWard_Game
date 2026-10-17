@@ -6,11 +6,16 @@ extends Node
 ## text (IntentMatcher), records a transcript with timestamps, and forwards
 ## rapport deltas to PatientManager. All lines go through
 ## EventBus.dialogue_line_added, so subtitles and the transcript never depend
-## on audio. The Interview UI arrives in Sprint 2; this API is what it calls.
+## on audio. Choices may list `records_observations`: asking them records
+## those authored observations as witnessed (provenance "interview:<choice>").
+## Each question costs QUESTION_MINUTES of shift time. InterviewScreen is the UI.
 
 const CLARIFY_TEMPLATE: String = "Could you clarify? Did you mean: %s?"
+const QUESTION_MINUTES: int = 2
 
 var active_patient_id: String = ""
+## Observation ids newly recorded by the most recent question (for the UI).
+var last_recorded_observations: Array[String] = []
 
 var _matcher: IntentMatcher = null
 var _current_state: Dictionary = {} ## patient_id -> state id
@@ -54,10 +59,7 @@ func get_choices() -> Array[Dictionary]:
 func select_choice(choice_id: String) -> String:
 	for choice: Dictionary in _state_choices():
 		if choice["id"] == choice_id:
-			_add_line("physician", choice["label"])
-			_add_line("patient", choice["response"])
-			_current_state[active_patient_id] = choice["next"]
-			PatientManager.adjust_rapport(active_patient_id, float(choice.get("rapport_delta", 0.0)))
+			_apply_choice(choice, choice["label"])
 			return choice["response"]
 	push_warning("DialogueManager: choice '%s' is not available" % choice_id)
 	return ""
@@ -67,18 +69,17 @@ func select_choice(choice_id: String) -> String:
 func submit_free_text(text: String) -> Dictionary:
 	var result: Dictionary = _matcher.match_text(text, _state_choices())
 	if result["status"] == "matched":
-		_add_line("physician", text)
 		var response: String = ""
 		for choice: Dictionary in _state_choices():
 			if choice["id"] == result["choice_id"]:
 				response = choice["response"]
-				_add_line("patient", response)
-				_current_state[active_patient_id] = choice["next"]
-				PatientManager.adjust_rapport(active_patient_id, float(choice.get("rapport_delta", 0.0)))
+				_apply_choice(choice, text)
+				break
 		result["response"] = response
 		return result
 
 	_add_line("physician", text)
+	TimeManager.advance(QUESTION_MINUTES, "interview")
 	if result["status"] == "clarify":
 		var labels: Array[String] = []
 		for choice: Dictionary in _state_choices():
@@ -100,6 +101,19 @@ func classify(patient_id: String, text: String) -> Dictionary:
 
 func get_transcript(patient_id: String) -> Array:
 	return _transcripts.get(patient_id, []).duplicate(true)
+
+
+func _apply_choice(choice: Dictionary, physician_text: String) -> void:
+	var patient_id: String = active_patient_id
+	_add_line("physician", physician_text)
+	_add_line("patient", choice["response"])
+	_current_state[patient_id] = choice["next"]
+	PatientManager.adjust_rapport(patient_id, float(choice.get("rapport_delta", 0.0)))
+	last_recorded_observations.clear()
+	for observation_id: String in choice.get("records_observations", []):
+		if PatientManager.record_observation(patient_id, observation_id, "interview:" + str(choice["id"])):
+			last_recorded_observations.append(observation_id)
+	TimeManager.advance(QUESTION_MINUTES, "interview")
 
 
 func _state_choices() -> Array:

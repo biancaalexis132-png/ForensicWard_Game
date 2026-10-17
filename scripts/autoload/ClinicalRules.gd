@@ -25,6 +25,7 @@ const MODE_VALIDATED: String = "validated"
 ## Non-medical effect id -> patient field it sets (relative to patients.<id>.).
 const NON_MEDICAL_EFFECT_FIELDS: Dictionary = {
 	"mark_assessment_started": ["assessment.started", true],
+	"mark_medical_review_requested": ["assessment.medical_review_requested", true],
 }
 
 var build_mode: String = MODE_PROTOTYPE
