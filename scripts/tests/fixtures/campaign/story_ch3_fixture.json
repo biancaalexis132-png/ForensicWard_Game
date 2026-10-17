@@ -1,0 +1,40 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch3",
+	"title": "[Fixture] Chapter 3",
+	"provisional": true,
+	"clinical_review_status": "PENDING",
+	"notes": "Test fixture for the F1 campaign contract. Placeholder text only; not game content.",
+	"objectives": [
+		{
+			"id": "obj_ch3_fixture",
+			"text": "[Fixture] Chapter 3 objective.",
+			"complete_when": {
+				"flag": "ch3_done"
+			}
+		}
+	],
+	"beats": [
+		{
+			"id": "beat_ch3_fixture_next",
+			"when": {
+				"flag": "ch3_done"
+			},
+			"actions": [
+				{
+					"start_chapter": "ch4"
+				}
+			]
+		}
+	],
+	"staff_lines": [],
+	"sign_out": {
+		"title": "[Fixture] Handover",
+		"handover_patients": [
+			"pt_elias_ward"
+		],
+		"documented_trust": [],
+		"undocumented_trust": [],
+		"undocumented_message": "[Fixture] No note."
+	}
+}

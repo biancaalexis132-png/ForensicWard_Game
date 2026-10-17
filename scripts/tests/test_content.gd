@@ -2,6 +2,8 @@ extends TestCase
 ## JSON loading and validation: shipped fixtures pass, and broken content
 ## produces actionable errors naming the file and JSON path.
 
+var _dialogue_key: String = ContentRegistry.DIALOGUE_KEY + "dialogue.json"
+
 
 func test_shipped_content_is_valid() -> void:
 	check(ContentRegistry.is_valid, "res://data should validate. Errors: %s" % str(ContentRegistry.errors))
@@ -53,7 +55,7 @@ func test_duplicate_ids() -> void:
 
 func test_dangling_dialogue_state() -> void:
 	var docs: Dictionary = _fixture_documents()
-	docs["dialogue"]["data"]["states"][0]["choices"][0]["next"] = "nowhere"
+	docs[_dialogue_key]["data"]["states"][0]["choices"][0]["next"] = "nowhere"
 	var report: Dictionary = ContentValidator.validate_documents(docs)
 	check_contains(report["errors"], "next: unknown dialogue state id 'nowhere'", "dangling state")
 
@@ -67,7 +69,7 @@ func test_rule_references_unknown_observation() -> void:
 
 func test_dialogue_records_unknown_observation() -> void:
 	var docs: Dictionary = _fixture_documents()
-	docs["dialogue"]["data"]["states"][0]["choices"][0]["records_observations"] = ["obs_mutsm"]
+	docs[_dialogue_key]["data"]["states"][0]["choices"][0]["records_observations"] = ["obs_mutsm"]
 	var report: Dictionary = ContentValidator.validate_documents(docs)
 	check_contains(report["errors"], "records_observations[0]: unknown observation of pt_elias_ward id 'obs_mutsm'",
 			"dangling interview observation")
@@ -96,8 +98,7 @@ func test_bad_id_format() -> void:
 func test_invalid_json_reports_file_and_line() -> void:
 	var directory: String = "user://test_content"
 	DirAccess.make_dir_recursive_absolute(directory)
-	for key: String in ContentRegistry.MANIFEST:
-		var file_name: String = ContentRegistry.MANIFEST[key][0]
+	for file_name: String in _shipped_file_names():
 		var text: String = FileAccess.get_file_as_string("res://data/" + file_name)
 		if file_name == "clues.json":
 			text = text.replace("\"clues\": [", "\"clues\": [,") # Syntax error.
@@ -122,14 +123,18 @@ func test_unknown_field_is_warning_not_error() -> void:
 	check_contains(report["warnings"], "unknown field 'colour'", "unknown field warning")
 
 
-## Fresh, mutable copies of every shipped data file.
+## Fresh, mutable copies of every shipped data file (global files plus the
+## dialogue, story and world files data/campaign.json names).
 func _fixture_documents() -> Dictionary:
-	var docs: Dictionary = {}
-	for key: String in ContentRegistry.MANIFEST:
-		var file_name: String = ContentRegistry.MANIFEST[key][0]
-		docs[key] = {
-			"file": file_name,
-			"data": JSON.parse_string(FileAccess.get_file_as_string("res://data/" + file_name)),
-			"schema": ContentRegistry.MANIFEST[key][1],
-		}
+	var problems: Array[String] = []
+	var docs: Dictionary = ContentRegistry.collect_documents("res://data", problems)
+	check(problems.is_empty(), "shipped files parse: %s" % str(problems))
 	return docs
+
+
+func _shipped_file_names() -> Array[String]:
+	var names: Array[String] = []
+	var docs: Dictionary = _fixture_documents()
+	for key: String in docs:
+		names.append(docs[key]["file"])
+	return names

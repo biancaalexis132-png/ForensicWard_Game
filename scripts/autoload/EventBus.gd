@@ -168,6 +168,10 @@ signal story_beat_fired(beat_id: String)
 signal shift_signout_requested()
 @warning_ignore("unused_signal")
 signal chapter_completed(chapter_id: String)
+## ChapterDirector moved to a chapter (a new run, a loaded save or a
+## start_chapter story action). Earlier chapters keep their state.
+@warning_ignore("unused_signal")
+signal chapter_started(chapter_id: String)
 
 # --- Environment ----------------------------------------------------------------------
 
