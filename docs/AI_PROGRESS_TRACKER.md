@@ -4,6 +4,7 @@ Updated 2026-10-17 · current status is authoritative above the preserved earlie
 
 | Workstream | Current status | Evidence / next step |
 |---|---|---|
+| Current QA finding | Audio333/1; gameplay131/0 | Existing cinematic seek/end resume fixed1.6s assertion; investigate timing, do not hide prior failure |
 | Bennett-first production proposal | Proposal complete for owner review | 138 GLBs zero skin/animation/morph; Blender5.0 sources vs local4.3.2; ten-deliverable Naomi plan, no modeling |
 | Ch3 first WardZero entry | Owner approved placement/access | Canon amendment recorded; formal Security/Facilities inspection only; proposed dialogue/navigation effects not approved |
 | Mara Ch2 placement | Placement and agency canon recorded; crosswalk complete | Preserve age37, prior records work, disputed mood label, insomnia/fatigue/anxiety/checking, Dana collateral, Lillian Oct12/14 1988 conflict; no clinical activation |

@@ -58,6 +58,12 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 · Codex · Required QA failure checkpoint
+
+- Latest verified remote `a306d2b1ac62f4ef510fddba31c40b55f809a1e0`, character proposal complete. Standard runner exit1: gameplay131/0, audio333/1, failure `cinematic plays once, then the emotional scene resumes` at `tests/audio/TestAudio.gd:362`, after seek final1s + fixed1.6s wait. Full sequence not reached. No runtime/test file changed by this workstream.
+- Next isolated public-API transition probe to distinguish timing from context failure; record result without weakening assertions or mixing audio patch into docs PR. Proposal/Blender mismatch remain documented.
+
+
 ### 2026-10-17 · Codex · Bennett audit/proposal milestone
 
 - Branch `codex/naomi-production-proposal`; latest verified remote `8ba76103d8b6b6a5d56865ca7bb4b35a16908e7a`. New `docs/design/CHARACTER_PRODUCTION_NAOMI_FIRST.md`: all ten requested deliverables, exact asset/capability inventory, licensed original/art workflow, rig/face/audio integration, budgets, small PR gates and conditional schedule. GDD/audit addenda record Ch3 first actual entry through formal Security/Facilities inspection; new scene dialogue/mechanics still proposed.
