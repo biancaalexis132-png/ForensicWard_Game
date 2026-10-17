@@ -13,7 +13,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Sprints 1–3 integration | `claude/integration-sprints-1-3` (draft PR to `main`) | Claude | `99c2eaf453e13d44932f73a7c7f30ad54a18bf3e` | `README.md` (merge resolution), `docs/INTEGRATION_SPRINTS_1_3.md`, `docs/PROJECT_STATUS.md`, this file. Otherwise no edits beyond the merge | Awaiting owner review and merge; replaces PRs #1, #6, #7, #8 |
 | Sprint 1 integration | `claude/integrate-sprint-01` (draft PR) | Claude | `8ca85bce79f08f19ce75e00c33502a4e4af14146` | `project.godot`, `scripts/autoload/EventBus.gd`, `scripts/autoload/GameState.gd`, `scenes/main/Main.*`, `scripts/main/Main.gd`, `tests/qa/run.py`, `tests/qa/TestQA.gd`, `docs/TESTING.md` | Awaiting owner review and merge |
 | Sprint 1 foundation | `claude/sprint-01-foundation` (PR #1) | Claude | `f626aad7be1c9a443762a5b2cd3591601c1b14bc` | Superseded by the integration PR | Close after the integration PR merges |
-| Environment art, Stage 3 props | `claude/environment-stage-3` (draft PR to `main`) | Claude | `5f5c51561ab139e22251bbce9869ec9a312b88a8` | `tools/blender/**`, `assets/blender/clinical/FW_Props_Clinical_Stage3.blend`, `assets/exports/clinical/props/**`, `assets/asset_manifest/**`, `assets/renders/stage3/**`, `docs/ENVIRONMENT_*.md` | Stage 3 done; awaiting owner review and merge. Stages 4–8 next |
+| Environment art, nursing-station equipment | `claude/nursing-station-props` (PR to `main`) | Claude | `de77fe92e323cc998cb500aef2b8bff520ded842` | `tools/blender/build_stage2_chapter1.py`, `assets/blender/clinical/FW_Chapter1_ClinicalWing.blend`, `assets/exports/clinical/env/ENV_NursingStation.glb`, `assets/asset_manifest/**`, `assets/renders/stage2/**`, `docs/ENVIRONMENT_STAGES.md` | Awaiting owner review and merge. Stage 4 next |
 | Chapter 1 playable | `claude/chapter1-playable` (PR #7) | Claude | `60ed74fe882385535425f2038add243f93cc4b9e` | `scripts/world/**`, `scripts/autoload/WorldStateManager.gd`, `data/world_chapter1.json`, `scenes/world/Chapter1Ward.tscn`, `scripts/tests/test_world.gd`, `docs/CHAPTER1_PLAYABLE.md` | Integration branch merged in; awaiting review |
 | Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
 | Sprint 3 story, evidence, shift | `claude/sprint-03-evidence-shift` (draft PR, base `claude/sprint-02-ehr-interview`) | Claude | see newest log entry | `scripts/narrative/**`, `data/story_chapter1.json`, `scripts/ui/EvidenceBoard.gd`, `scripts/world/AudioZoneTracker.gd`, `scripts/tests/test_sprint3.gd`; small edits to `scripts/main/Main.gd`, `scripts/autoload/EventBus.gd`, `scripts/ui/{HUD,PauseMenu}.gd` | Awaiting review |
@@ -62,6 +62,44 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 18:35 UTC · Claude Code · Nursing-station equipment
+
+- **Branch:** `claude/nursing-station-props` (based on `main` at `6742dc8`, which includes PR #12)
+- **Latest verified commit:** `de77fe92e323cc998cb500aef2b8bff520ded842` "Place Stage 3 equipment at the nursing station"
+- **Confirmed on GitHub:** `git ls-remote origin claude/nursing-station-props` printed `de77fe9` at 18:33 UTC; this doc commit sits on top
+- **Pull request:** PR to `main` (opened with this push)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- `ENV_NursingStation` now holds `NS_MedicationCart` and `NS_SharpsBin` (west wall), plus `NS_CrashTrolley`, `NS_AED` and `NS_HandGel` (south wall). All are clear of the inward door swing (x -2.5..-1.5, y 8.5..9.5). Room bounds and existing node names are unchanged, so `data/world_chapter1.json` interactables (`NS_Terminal_EHR`, `NS_NoticeBoard`) still resolve.
+
+**Files modified**
+- `tools/blender/build_stage2_chapter1.py`: five `place()` calls in `build_nurse_station`.
+- `assets/blender/clinical/FW_Chapter1_ClinicalWing.blend`, `assets/exports/clinical/env/ENV_NursingStation.glb`, `assets/asset_manifest/asset_manifest.json` (nursing-station record: materials, triangles), `assets/renders/stage2/{nursing_station,chapter1_plan}.png`.
+- The rebuild also rewrote the corridor, interview-room and archive `.glb` files byte-wise with identical structure (as the integration entry observed); those were restored to the committed versions.
+- `docs/ENVIRONMENT_STAGES.md`, `docs/PROJECT_STATUS.md` (environment rows), this file.
+
+**Unfinished**
+- The new items are geometry only: none is an interactable yet (no `data/world_chapter1.json` entries).
+- The existing `CAM_NS_Establishing` render does not frame the south and west walls, so the new items show only in `chapter1_plan.png`.
+
+**Known errors**
+- none.
+
+**Tests** (on `de77fe9`, plus this commit's doc-only changes)
+- `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64` (4.7.stable.official.5b4e0cb0f): exit 0. `.glb` validation 68/68 (`ENV_NursingStation`: 23 meshes, 11 colliders), TestRunner 80 passed / 0 failed, TestQA 19 / 0 / 0, TestAudio 211, "All executed checks passed".
+- `tools/blender/build_stage2_chapter1.py` with Blender 5.0.1 (`bpy`): "STAGE2 OK: 7 environments exported".
+- CI: not observed yet; check the PR.
+
+**Dependencies not available to remote agents**
+- Mac-only checks (Forward+ look, walking around the new trolley in play).
+
+**Next steps**
+1. Owner reviews and merges this PR.
+2. Stage 4 (security, admin and research wings): new `tools/blender/build_stage4_*.py` on `claude/environment-stage-4` from `main`.
+3. Optional: make `NS_MedicationCart` an interactable (locked drawer) once a medication-administration design is approved; it must not apply any clinical rule before psychiatrist review.
+4. Still open: close PRs #1, #6, #7 and #8, which are fully contained in `main`.
 
 ### 2026-10-17 18:05 UTC · Claude Code · Environment Stage 3 props
 

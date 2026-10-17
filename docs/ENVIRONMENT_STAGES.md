@@ -6,7 +6,7 @@ Pipeline, conventions and validation: see [`ENVIRONMENT_PIPELINE.md`](ENVIRONMEN
 |---|---|---|
 | 1 Modular architecture | Walls, openings, windows, floors, ceilings, corridor slices and junctions, doors | **Done (v1, untextured)** |
 | 2 Opening-chapter environments | Corridor, office, Interview Room A, nursing station, 2 patient rooms (plus records archive) | **Done (v1, untextured)** |
-| 3 Clinical and cinematic props | EHR terminal, clinical furniture, fixtures, interview camera markers, medication, ward-bed, linen and emergency equipment | **Done (v1, untextured).** 36 props and interview cameras. The 10 Stage 3 props are library assets; they are not yet placed in any `ENV_*` room. |
+| 3 Clinical and cinematic props | EHR terminal, clinical furniture, fixtures, interview camera markers, medication, ward-bed, linen and emergency equipment | **Done (v1, untextured).** 36 props and interview cameras. The nursing station now carries the medication cart (with sharps bin), resuscitation trolley, AED cabinet and hand-gel dispenser; the other Stage 3 props are library-only until the rooms that need them exist. |
 | 4 Security, admin and research wings | | Not started |
 | 5 Historic substructure | | Not started (the W0-B historic service door exists) |
 | 6 Ward Zero canonical layout and anomaly states | | Not started. The state mechanism exists: `state_group` extras plus `WorldStateManager` on the gameplay branch. |
@@ -54,7 +54,7 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 - **`ENV_ClinicalCorridor_20m`.** 20 m long, 2.8 m clear. PVC dado protection, closed-profile anti-ligature handrails, 500 mm suspended ceiling with LED panels and return grilles, caged clock, 2 CCTV domes, card readers, intercoms and room signs. Glazed nursing-station counter, and a one-way observation window into Interview Room A with an open/closed shutter state. Doors: 8 in total, including the ward-entry double door and the sealed W0-B historic service door with its removable seal state.
 - **`ENV_InterviewRoom_A`.** Floor-fixed table, weighted moulded chairs (clinician nearest the exit, which the build script checks), duress strip, acoustic panels, tamper-resistant lights, solid ceiling and caged clock behind the patient. It carries 5 camera markers (establishing, both over-the-shoulder shots, both close-ups), seat and eye-line markers, and a standing-staff marker.
 - **`ENV_PsychiatristOffice`.** Desk facing the door with the window behind, EHR workstation (UV'd screen for a live viewport), visitor chairs, filing, bookcase, certificates, half-lowered blind, transfer-summary document, and Dr Voss's marker.
-- **`ENV_NursingStation`.** Counter desk with EHR terminal, phone, charts, filing, notice board and clock, plus the charge nurse's marker facing the counter.
+- **`ENV_NursingStation`.** Counter desk with EHR terminal, phone, charts, filing, notice board and clock, plus the charge nurse's marker facing the counter. Stage 3 equipment: locking medication cart with a sharps bin on the west wall, resuscitation trolley, wall AED cabinet and hand-gel dispenser on the south wall, all clear of the inward door swing.
 - **`ENV_RecordsArchive`.** Archive shelving with record boxes, reading desk and the 1968 roster document.
 - **`ENV_PatientRoom_01` / `_02`.** Anti-ligature plinth bed and open wardrobe, tamper-resistant light, exterior window, solid ceiling. No CCTV in bedrooms (privacy).
 
@@ -70,7 +70,7 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 
 - **No textures or UVs yet** (flat PBR colours). Only the EHR screen and sign faces have UVs. Lightmap UV2 is not generated; use Godot's import option or wait for Stage 8.
 - **No characters.** Gameplay uses capsule stand-ins.
-- **Stage 3 props are not placed yet.** The medication cart, crash trolley and AED belong at the nursing station, but adding them changes `ENV_NursingStation` and the Chapter 1 world scene, so that is a separate step.
+- **Stage 3 props placed so far:** only the nursing station. The hospital bed, linen skip, oxygen trolley, observations monitor and wheelchair wait for the medical bay and clinic room (later stages).
 - **Door leaves get static collision only.** Gameplay animates the leaf node, and the collider follows.
 - **Exterior windows show a preview backdrop in renders only.** Godot needs an exterior or skybox solution (Stage 7).
 - **Preview renders use Cycles on CPU with denoising.** Lighting in Godot comes from the `LIGHTMARK_*` markers and is tuned separately.

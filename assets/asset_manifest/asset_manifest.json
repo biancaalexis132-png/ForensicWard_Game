@@ -252,8 +252,13 @@
         "M_Glass_Clear",
         "M_Glass_OneWay_Observer",
         "M_Paper",
+        "M_Plastic_AED_Green",
         "M_Plastic_Black",
+        "M_Plastic_MedCart_Blue",
         "M_Plastic_OffWhite",
+        "M_Plastic_Sharps_Yellow",
+        "M_Rubber_Dark",
+        "M_Safety_Red",
         "M_Skirting_Coved",
         "M_Steel_Brushed",
         "M_Steel_Painted_Grey",
@@ -265,7 +270,7 @@
       ],
       "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
-      "triangles_base": 3852
+      "triangles_base": 5068
     },
     "ENV_PatientRoom_01": {
       "asset_id": "ENV_PatientRoom_01",
