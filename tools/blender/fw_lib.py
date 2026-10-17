@@ -126,6 +126,13 @@ PALETTE = {
     "M_Glass_Grimy": ("#9EA69A", 0.3, 0.0, {"alpha": 0.4}),
     "M_Bakelite_Brown": ("#3A2A20", 0.4, 0.0, {}),
     "M_Emissive_Bulb_Tungsten": ("#FFD9A8", 0.5, 0.0, {"emission": ("#FFC98A", 4.0)}),
+    # Stage 6: Ward Zero (historic service and observation zone).
+    "M_Paint_W0_GreyGreen": ("#5F6660", 0.9, 0.0, {}),
+    "M_Paint_W0_Lower": ("#4A4F47", 0.85, 0.0, {}),
+    "M_Paper_Chart": ("#E3DCC2", 0.9, 0.0, {}),
+    "M_Ink_Trace": ("#3B3F66", 0.6, 0.0, {}),
+    "M_Enamel_Plate_Blue": ("#2F4766", 0.35, 0.0, {}),
+    "M_Emissive_Indicator_Amber": ("#FFB347", 0.5, 0.0, {"emission": ("#FF9F2E", 3.0)}),
     "M_Collision": ("#FF00FF", 1.0, 0.0, {}),
 }
 

@@ -52,7 +52,8 @@ Not on GitHub at the time of checking: `claude/audio-production`.
 | Stage 3 equipment placed at the nursing station | Completed | `main` (PR #13) | `ENV_NursingStation` rebuilt; 68/68 `.glb`, TestRunner 80/0 | Other Stage 3 props wait for the medical bay and clinic room |
 | Environment Stage 4a security and admin wing (13 props, 11 rooms) | Completed | `main` (PR #14) | 92/92 assets import in Godot 4.7 | Untextured; floor plan is an assumption; research wing in its own PR |
 | Environment Stage 4b research wing (8 props, 12 rooms, separate level) | Completed | `main` (PR #17) | 112/112 assets import in Godot 4.7 | Untextured; level placement and storytelling details are assumptions |
-| Environment Stage 5 historic substructure (13 props, 13 spaces, sublevel) | Done, not merged | `claude/environment-stage-5` (PR) | glb validation and full `run.py` (see handoff) | Untextured; layout and storytelling details are assumptions; stair needs a climb interaction |
+| Environment Stage 5 historic substructure (13 props, 13 spaces, sublevel) | Completed | `main` (PR #19) | 138/138 assets import in Godot 4.7; full `run.py` green | Untextured; layout and storytelling details are assumptions; stair needs a climb interaction |
+| Environment Stage 6 Ward Zero (6 props, 7 rooms, swappable anomaly states) | Done, not merged | `claude/environment-stage-6` (PR) | glb validation and full `run.py` (see handoff) | Untextured; layout and every anomaly state are provisional pending owner review; not wired into gameplay |
 | Playable Chapter 1 wing (AuthoredWorld, imported doors and props, world states) | Done, not merged | `claude/chapter1-playable` (PR #7) | 46/46 TestRunner tests and 58/58 glb imports inside `run.py` | |
 | EHR (census, summary, observations with provenance, structured notes, orders, audit) | Done, not merged | `claude/sprint-02-ehr-interview` (PR #9) | `scripts/tests/test_sprint2.gd`; screenshots in Compatibility renderer | No MAR/medication tab yet; Mac input untested |
 | Cinematic interview UI, observation capture | Done, not merged | `claude/sprint-02-ehr-interview` (PR #9) | `test_sprint2.gd` (cameras, typed/structured questions, fallback) | Close-up/reverse shots unused until character models exist |
@@ -61,7 +62,7 @@ Not on GitHub at the time of checking: `claude/audio-production`.
 | Evidence board (pin, link, argue, player hypotheses, provenance) | Done, not merged | `claude/sprint-03-evidence-shift` | `scripts/tests/test_sprint3.gd`; screenshot | |
 | Chapter 1 story director (objectives, beats, staff lines), shift sign-out, Bennett trust, after-hours W0-B beat | Done, not merged | `claude/sprint-03-evidence-shift` | `test_sprint3.gd` (handover trust, intercom, chart entry, chapter end, save/load of pending beats) | GDD beat 4 (second patient) not authored; staff lines are placeholders |
 | HUD objective and subtitles; room ambience zones | Done, not merged | `claude/sprint-03-evidence-shift` | `test_sprint3.gd` | Ambience heard only with a display (headless tracks only); mix untested on Mac |
-| Acts II–V, more patients, Ward Zero (environment Stage 6) | Planned | | | Story content needs the narrative bible |
+| Acts II–V, more patients, Ward Zero gameplay | Planned | | | Story content needs the narrative bible |
 
 ## Blocked
 
