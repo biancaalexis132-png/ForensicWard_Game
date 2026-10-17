@@ -187,6 +187,39 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			var known: Dictionary = staff_ids if character["kind"] == "staff" else patient_ids
 			_require_known(character["character_id"], known, character["kind"], file,
 					"characters[%d].character_id" % i, errors)
+	if documents.has("story"):
+		var story: Dictionary = _data(documents, "story")
+		var file: String = _file(documents, "story")
+		var staff_ids: Dictionary = {}
+		for member: Dictionary in staff:
+			staff_ids[member["id"]] = true
+		var hypothesis_ids: Dictionary = {}
+		for hypothesis: Dictionary in hypotheses:
+			hypothesis_ids[hypothesis["id"]] = true
+		var refs: Dictionary = {"patients": patient_ids, "clues": clue_ids, "hypotheses": hypothesis_ids, "staff": staff_ids}
+		_collect_ids(story["objectives"], file, "objectives", errors)
+		_collect_ids(story["beats"], file, "beats", errors)
+		for i: int in story["objectives"].size():
+			StoryLogic.check_condition(story["objectives"][i]["complete_when"], "[%s] objectives[%d].complete_when" % [file, i], refs, errors)
+			if story["objectives"][i].has("expires_when"):
+				StoryLogic.check_condition(story["objectives"][i]["expires_when"], "[%s] objectives[%d].expires_when" % [file, i], refs, errors)
+		for i: int in story["beats"].size():
+			var beat: Dictionary = story["beats"][i]
+			StoryLogic.check_condition(beat["when"], "[%s] beats[%d].when" % [file, i], refs, errors)
+			for j: int in beat["actions"].size():
+				StoryLogic.check_action(beat["actions"][j], "[%s] beats[%d].actions[%d]" % [file, i, j], refs, errors)
+		for i: int in story["staff_lines"].size():
+			var line: Dictionary = story["staff_lines"][i]
+			_require_known(line["staff_id"], staff_ids, "staff", file, "staff_lines[%d].staff_id" % i, errors)
+			StoryLogic.check_condition(line["when"], "[%s] staff_lines[%d].when" % [file, i], refs, errors)
+			if line.has("verify_clue"):
+				_require_known(line["verify_clue"], clue_ids, "clue", file, "staff_lines[%d].verify_clue" % i, errors)
+		var sign_out: Dictionary = story["sign_out"]
+		for j: int in sign_out["handover_patients"].size():
+			_require_known(sign_out["handover_patients"][j], patient_ids, "patient", file, "sign_out.handover_patients[%d]" % j, errors)
+		for key: String in ["documented_trust", "undocumented_trust"]:
+			for j: int in sign_out[key].size():
+				_require_known(sign_out[key][j]["staff_id"], staff_ids, "staff", file, "sign_out.%s[%d].staff_id" % [key, j], errors)
 	return errors
 
 

@@ -1,0 +1,211 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch1",
+	"title": "Chapter 1: The Admission",
+	"provisional": true,
+	"clinical_review_status": "PENDING",
+	"notes": "Drives the playable Chapter 1 slice (GDD §12 beats 1-3, 5, 6). Objectives are shown in order; the current one is the first neither complete nor expired (day-shift objectives expire when the night shift begins). Beats fire once. Staff lines are placeholders pending narrative and clinical review. Beat 4 (second stable patient) needs a second authored patient and is not implemented.",
+	"objectives": [
+		{
+			"id": "obj_meet_bennett",
+			"text": "Report to the charge nurse at the nursing station.",
+			"complete_when": {
+				"talked_to": "staff_bennett"
+			},
+			"expires_when": {
+				"shift": "night"
+			}
+		},
+		{
+			"id": "obj_see_elias",
+			"text": "See Elias Ward in Interview Room A.",
+			"complete_when": {
+				"observations_recorded": {
+					"patient_id": "pt_elias_ward",
+					"min": 1
+				}
+			},
+			"expires_when": {
+				"shift": "night"
+			}
+		},
+		{
+			"id": "obj_document",
+			"text": "Document your assessment of Elias in the EHR.",
+			"complete_when": {
+				"note_saved": "pt_elias_ward"
+			},
+			"expires_when": {
+				"shift": "night"
+			}
+		},
+		{
+			"id": "obj_act",
+			"text": "Choose a clinical action for Elias in the EHR (Orders).",
+			"complete_when": {
+				"action_committed": "pt_elias_ward"
+			},
+			"expires_when": {
+				"shift": "night"
+			}
+		},
+		{
+			"id": "obj_compare_records",
+			"text": "Compare the transfer summary with the records archive. Link what you find on the evidence board (Tab).",
+			"complete_when": {
+				"hypothesis_supported": "hyp_identity_reuse"
+			},
+			"expires_when": {
+				"shift": "night"
+			}
+		},
+		{
+			"id": "obj_sign_out",
+			"text": "Sign out at the nursing station handover board.",
+			"complete_when": {
+				"shift": "night"
+			}
+		},
+		{
+			"id": "obj_w0b",
+			"text": "Find out what was logged at the W0-B door.",
+			"complete_when": {
+				"clue_acquired": "clue_access"
+			},
+			"expires_when": {
+				"flag": "chapter_complete"
+			}
+		},
+		{
+			"id": "obj_end",
+			"text": "Sign out for the night at the handover board.",
+			"complete_when": {
+				"flag": "chapter_complete"
+			}
+		}
+	],
+	"beats": [
+		{
+			"id": "beat_b2_handover",
+			"when": {
+				"talked_to": "staff_bennett"
+			},
+			"actions": [
+				{
+					"audio_event": "ch1_bennett_handover"
+				}
+			]
+		},
+		{
+			"id": "beat_b6_intercom",
+			"when": {
+				"all": [
+					{
+						"shift": "night"
+					},
+					{
+						"day": 1
+					}
+				]
+			},
+			"delay_minutes": 15,
+			"actions": [
+				{
+					"audio_event": "ch1_after_hours_intercom"
+				},
+				{
+					"chart_entry": {
+						"patient_id": "pt_elias_ward",
+						"type": "transfer_request_logged",
+						"by": "credential:inactive",
+						"text": "Transfer request to W0-B logged under a staff credential that is marked inactive. Requester not identified."
+					}
+				},
+				{
+					"notify": "EHR alert: a transfer request was logged on Elias Ward's chart."
+				},
+				{
+					"flag": "intercom_heard"
+				}
+			]
+		},
+		{
+			"id": "beat_b6_unease",
+			"when": {
+				"clue_acquired": "clue_access"
+			},
+			"actions": [
+				{
+					"audio_event": "ch1_w0b_unease"
+				},
+				{
+					"world_state": {
+						"group": "interviewA_observation_shutter",
+						"state": "closed"
+					}
+				}
+			]
+		}
+	],
+	"staff_lines": [
+		{
+			"staff_id": "staff_bennett",
+			"when": {
+				"all": [
+					{
+						"flag": "intercom_heard"
+					},
+					{
+						"trust_at_least": {
+							"staff_id": "staff_bennett",
+							"axis": "trust",
+							"value": 15
+						}
+					}
+				]
+			},
+			"text": "[Placeholder] That transfer call went out under a credential that has been inactive for months. I checked the board twice. Nobody on my shift asked for it.",
+			"verify_clue": "clue_access"
+		},
+		{
+			"staff_id": "staff_bennett",
+			"when": {
+				"flag": "intercom_heard"
+			},
+			"text": "[Placeholder] Night shift is meant to be quiet. Whatever that intercom was, it isn't on my board."
+		},
+		{
+			"staff_id": "staff_bennett",
+			"when": {
+				"note_saved": "pt_elias_ward"
+			},
+			"text": "[Placeholder] I saw your note on Elias. Thank you. The night team will need it."
+		}
+	],
+	"sign_out": {
+		"title": "Shift handover board",
+		"handover_patients": [
+			"pt_elias_ward"
+		],
+		"documented_trust": [
+			{
+				"staff_id": "staff_bennett",
+				"axis": "trust",
+				"delta": 10
+			},
+			{
+				"staff_id": "staff_bennett",
+				"axis": "respect",
+				"delta": 5
+			}
+		],
+		"undocumented_trust": [
+			{
+				"staff_id": "staff_bennett",
+				"axis": "respect",
+				"delta": -5
+			}
+		],
+		"undocumented_message": "[Placeholder] Nurse Bennett: \"There's nothing in the notes for Elias. The night team is going in blind.\""
+	}
+}
