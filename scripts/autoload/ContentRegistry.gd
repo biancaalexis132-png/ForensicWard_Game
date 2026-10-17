@@ -19,6 +19,7 @@ const MANIFEST: Dictionary = {
 	"source_catalog": ["source_catalog.json", ContentSchemas.SOURCE_CATALOG_FILE],
 	"staff": ["staff.json", ContentSchemas.STAFF_FILE],
 	"intent_lexicon": ["intent_lexicon.json", ContentSchemas.INTENT_LEXICON_FILE],
+	"world": ["world_chapter1.json", ContentSchemas.WORLD_FILE],
 }
 const DATA_DIR: String = "res://data"
 
@@ -36,6 +37,7 @@ var _hypotheses: Dictionary = {}     ## id -> authored hypothesis
 var _sources: Dictionary = {}        ## id -> catalog item
 var _staff: Dictionary = {}          ## id -> staff member
 var _lexicon: Dictionary = {}
+var _world: Dictionary = {}
 
 
 func _ready() -> void:
@@ -120,6 +122,10 @@ func get_lexicon() -> Dictionary:
 	return _lexicon
 
 
+func get_world() -> Dictionary:
+	return _world
+
+
 # --- Internals ------------------------------------------------------------------
 
 func _parse_file(path: String) -> Variant:
@@ -144,6 +150,7 @@ func _build_indexes(documents: Dictionary) -> void:
 	_sources = _index(documents["source_catalog"]["data"]["items"])
 	_staff = _index(documents["staff"]["data"]["staff"])
 	_lexicon = _freeze(documents["intent_lexicon"]["data"])
+	_world = _freeze(documents["world"]["data"])
 
 
 func _index(items: Array) -> Dictionary:

@@ -89,6 +89,14 @@ signal ui_panel_closed(panel_id: String)
 @warning_ignore("unused_signal")
 signal notification_requested(text: String)
 
+# --- Environment ----------------------------------------------------------------------
+
+## A toggleable environment state changed (e.g. a shutter closed, a seal removed,
+## a Ward Zero anomaly variant shown). Geometry for every state always exists;
+## only visibility changes, so it is reversible and save-safe.
+@warning_ignore("unused_signal")
+signal environment_state_changed(group: String, state: String)
+
 # --- Save and settings -------------------------------------------------------------------
 
 @warning_ignore("unused_signal")

@@ -28,6 +28,7 @@ ClinicalRules="*res://scripts/autoload/ClinicalRules.gd"
 DialogueManager="*res://scripts/autoload/DialogueManager.gd"
 EvidenceManager="*res://scripts/autoload/EvidenceManager.gd"
 TrustManager="*res://scripts/autoload/TrustManager.gd"
+WorldStateManager="*res://scripts/autoload/WorldStateManager.gd"
 
 [display]
 

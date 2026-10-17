@@ -157,6 +157,24 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			for j: int in rule["source_catalog_ids"].size():
 				_require_known(rule["source_catalog_ids"][j], source_ids, "source catalog", file,
 						"rules[%d].source_catalog_ids[%d]" % [i, j], errors)
+	if documents.has("world"):
+		var world: Dictionary = _data(documents, "world")
+		var file: String = _file(documents, "world")
+		var staff_ids: Dictionary = {}
+		for member: Dictionary in staff:
+			staff_ids[member["id"]] = true
+		for i: int in world["interactables"].size():
+			var entry: Dictionary = world["interactables"][i]
+			if entry["type"] in ["clue_terminal", "clue_pickup"]:
+				if not entry.has("clue_id"):
+					errors.append("[%s] interactables[%d]: type '%s' needs a clue_id." % [file, i, entry["type"]])
+				else:
+					_require_known(entry["clue_id"], clue_ids, "clue", file, "interactables[%d].clue_id" % i, errors)
+		for i: int in world["characters"].size():
+			var character: Dictionary = world["characters"][i]
+			var known: Dictionary = staff_ids if character["kind"] == "staff" else patient_ids
+			_require_known(character["character_id"], known, character["kind"], file,
+					"characters[%d].character_id" % i, errors)
 	return errors
 
 

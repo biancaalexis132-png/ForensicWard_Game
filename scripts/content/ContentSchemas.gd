@@ -195,3 +195,44 @@ const INTENT_LEXICON_FILE: Dictionary = {
 	},
 	"optional": {"notes": _STRING},
 }
+
+
+## Authored world wiring: which imported environment nodes become doors,
+## terminals, documents and characters (see data/world_chapter1.json).
+const WORLD_INTERACTABLE_TYPES: Array[String] = ["ehr_terminal", "clue_terminal", "clue_pickup", "system_status"]
+
+const WORLD_FILE: Dictionary = {
+	"type": "object",
+	"required": {
+		"schema_version": _STRING,
+		"world_id": _ID,
+		"spawn_marker": _STRING,
+		"environments": {"type": "array", "min_items": 1, "items": _STRING},
+		"doors": {
+			"type": "map",
+			"values": {
+				"type": "object",
+				"required": {"display_name": _STRING},
+				"optional": {"open_angle_degrees": {"type": "number"}, "locked_message": _STRING},
+			},
+		},
+		"interactables": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": {"node": _STRING, "type": {"type": "enum", "values": WORLD_INTERACTABLE_TYPES}},
+				"optional": {"title": _STRING, "clue_id": _ID},
+			},
+		},
+		"characters": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": {"marker": _STRING, "kind": {"type": "enum", "values": ["staff", "patient"]},
+						"character_id": _ID},
+				"optional": {"seated": {"type": "bool"}},
+			},
+		},
+	},
+	"optional": {"flicker_lights": _STRINGS, "notes": _STRING},
+}
