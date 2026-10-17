@@ -731,3 +731,244 @@ PROP_BUILDERS = [
     prop_acoustic_panel, prop_sign_room, prop_folder_chart, prop_certificate, prop_handrail,
     prop_bed_antiligature, prop_wardrobe_antiligature, prop_shelving_archive, prop_noticeboard,
 ]
+
+
+# --------------------------------------------------------------------------
+# Stage 3: medication, ward beds, linen and emergency equipment
+# (origin: floor centre unless noted; front faces -Y)
+# --------------------------------------------------------------------------
+
+def _castors(mb, xs, ys, r=0.04, mount_z=0.1):
+    """Swivel castors: a fork stem under each corner and a wheel on local X."""
+    for x in xs:
+        for y in ys:
+            mb.box((0.03, 0.03, mount_z - 2 * r), (x, y, (mount_z + 2 * r) / 2), "M_Steel_Brushed")
+            mb.cyl(r, 0.025, (x, y, r), "M_Rubber_Dark", axis="X", segs=12)
+
+
+def prop_cart_medication(coll, aid="PROP_Cart_Medication", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Locking medication cart for the nursing station. Drawers face -Y."""
+    root = _root(coll, aid, "clinical_equipment", loc, rot, "Locking medication cart, 6 drawers")
+    mb = MeshBuilder()
+    w, d, h = 0.62, 0.48, 1.0
+    body_z0 = 0.12
+    mb.box((w, d, h - body_z0 - 0.04), (0, 0, (h + body_z0 - 0.04) / 2), "M_Steel_Painted_White")
+    mb.box((w + 0.04, d + 0.04, 0.035), (0, 0, h - 0.0175), "M_Wood_Laminate_Desk")    # Work top.
+    z = h - 0.08
+    for dh in (0.1, 0.1, 0.1, 0.16, 0.16, 0.2):                                        # Drawer fronts.
+        mb.box((w - 0.04, 0.012, dh - 0.012), (0, -d / 2 - 0.006, z - dh / 2), "M_Plastic_MedCart_Blue")
+        mb.box((0.18, 0.02, 0.016), (0, -d / 2 - 0.02, z - 0.03), "M_Steel_Brushed")
+        z -= dh
+    mb.cyl(0.012, 0.02, (w / 2 - 0.06, -d / 2 - 0.012, h - 0.065), "M_Steel_Brushed", axis="Y", segs=10)  # Key lock.
+    for x in (-w / 2 - 0.03, w / 2 + 0.03):                                             # Push handles.
+        mb.box((0.025, 0.025, 0.12), (x, d / 2 - 0.08, h - 0.12), "M_Steel_Brushed")
+        mb.box((0.025, 0.025, 0.12), (x, -d / 2 + 0.08, h - 0.12), "M_Steel_Brushed")
+        mb.box((0.025, d - 0.14, 0.025), (x, 0, h - 0.07), "M_Steel_Brushed")
+    mb.box((0.3, 0.004, 0.08), (0, d / 2 + 0.002, h - 0.15), "M_Paper")                 # MAR clip-board.
+    _castors(mb, (-w / 2 + 0.06, w / 2 - 0.06), (-d / 2 + 0.06, d / 2 - 0.06), mount_z=body_z0)
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    L.collision_box(aid + "_COL", coll, root, (w + 0.06, d + 0.04, h), (0, 0, h / 2))
+    return root
+
+
+def prop_bed_hospital(coll, aid="PROP_Bed_Hospital_Adjustable", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Profiling hospital bed on castors with split side rails. Head end at +Y.
+    Medical bay / infirmary only: it has ligature points by design."""
+    root = _root(coll, aid, "clinical_equipment", loc, rot, "Profiling hospital bed with side rails (medical bay)")
+    mb = MeshBuilder()
+    w, l, deck = 0.98, 2.18, 0.55
+    for x in (-0.38, 0.38):                                                             # Base frame.
+        mb.box((0.05, l - 0.2, 0.06), (x, 0, 0.16), "M_Steel_Painted_Grey")
+    mb.box((0.81, 0.05, 0.06), (0, 0, 0.16), "M_Steel_Painted_Grey")
+    for y in (-0.55, 0.55):                                                             # Lifting columns.
+        mb.box((0.12, 0.12, deck - 0.2), (0, y, 0.19 + (deck - 0.2) / 2), "M_Steel_Painted_White")
+    _castors(mb, (-0.38, 0.38), (-l / 2 + 0.12, l / 2 - 0.12), r=0.06, mount_z=0.13)
+    mb.box((0.9, l - 0.14, 0.05), (0, 0, deck), "M_Steel_Painted_White")                # Deck.
+    mb.box((0.88, 1.98, 0.14), (0, 0, deck + 0.095), "M_Upholstery_Teal")               # Mattress.
+    mb.box((0.9, 1.4, 0.02), (0, -0.25, deck + 0.175), "M_Linen_White")                 # Sheet.
+    mb.box((0.62, 0.4, 0.11), (0, 0.72, deck + 0.22), "M_Linen_White")                  # Pillow.
+    mb.box((w, 0.05, 0.5), (0, l / 2 - 0.025, deck + 0.2), "M_Plastic_OffWhite")       # Headboard.
+    mb.box((w, 0.05, 0.36), (0, -l / 2 + 0.025, deck + 0.13), "M_Plastic_OffWhite")    # Footboard.
+    for side in (-1, 1):                                                                # Split side rails.
+        x = side * (w / 2 - 0.01)
+        for y0, y1 in ((0.15, 0.95), (-0.85, -0.05)):
+            for zz in (deck + 0.2, deck + 0.38):
+                mb.box((0.025, y1 - y0, 0.03), (x, (y0 + y1) / 2, zz), "M_Plastic_OffWhite")
+            for y in (y0 + 0.03, y1 - 0.03):
+                mb.box((0.025, 0.03, 0.2), (x, y, deck + 0.29), "M_Plastic_OffWhite")
+    mb.box((0.18, 0.04, 0.09), (w / 2 - 0.02, 0.6, deck + 0.29), "M_Plastic_Black")    # Rail controls.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.006)
+    L.collision_box(aid + "_COL", coll, root, (w, l, deck + 0.45), (0, 0, (deck + 0.45) / 2))
+    return root
+
+
+def prop_trolley_linen(coll, aid="PROP_Trolley_Linen", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Single-bag linen skip with lid on castors."""
+    root = _root(coll, aid, "clinical_equipment", loc, rot, "Linen skip trolley with lidded bag")
+    mb = MeshBuilder()
+    s, h = 0.5, 0.95
+    for x in (-s / 2, s / 2):
+        for y in (-s / 2, s / 2):
+            mb.box((0.025, 0.025, h - 0.12), (x, y, 0.12 + (h - 0.12) / 2), "M_Steel_Brushed")
+    for zz in (0.2, h - 0.02):                                                          # Frame hoops.
+        for y in (-s / 2, s / 2):
+            mb.box((s, 0.025, 0.025), (0, y, zz), "M_Steel_Brushed")
+        for x in (-s / 2, s / 2):
+            mb.box((0.025, s, 0.025), (x, 0, zz), "M_Steel_Brushed")
+    mb.box((s - 0.04, s - 0.04, h - 0.32), (0, 0, 0.24 + (h - 0.32) / 2), "M_Fabric_LaundryBag_Blue")
+    mb.box((s - 0.06, s - 0.06, 0.04), (0, 0, h - 0.06), "M_Linen_White")             # Linen showing.
+    mb.box((s + 0.04, s + 0.04, 0.02), (0, 0.02, h + 0.03), "M_Plastic_OffWhite", rot=(-0.12, 0, 0))  # Lid.
+    mb.box((0.12, 0.03, 0.02), (0, -s / 2 - 0.02, h + 0.02), "M_Plastic_Black")
+    _castors(mb, (-s / 2, s / 2), (-s / 2, s / 2), r=0.035, mount_z=0.12)
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    L.collision_box(aid + "_COL", coll, root, (s + 0.05, s + 0.05, h + 0.05), (0, 0, (h + 0.05) / 2))
+    return root
+
+
+def prop_cart_crash(coll, aid="PROP_Cart_Crash_Resus", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Resuscitation (crash) trolley: tagged drawers, defibrillator on top,
+    CPR board on the back and an oxygen cylinder in a side holder."""
+    root = _root(coll, aid, "clinical_equipment", loc, rot, "Resuscitation trolley with defibrillator")
+    mb = MeshBuilder()
+    w, d, h = 0.76, 0.52, 0.98
+    body_z0 = 0.13
+    mb.box((w, d, h - body_z0), (0, 0, (h + body_z0) / 2), "M_Safety_Red")
+    mb.box((w + 0.04, d + 0.04, 0.03), (0, 0, h + 0.015), "M_Plastic_OffWhite")
+    z = h - 0.04
+    for dh in (0.12, 0.12, 0.16, 0.2, 0.2):
+        mb.box((w - 0.05, 0.012, dh - 0.014), (0, -d / 2 - 0.006, z - dh / 2), "M_Steel_Painted_White")
+        mb.box((0.22, 0.02, 0.016), (0, -d / 2 - 0.02, z - 0.035), "M_Steel_Brushed")
+        z -= dh
+    mb.box((0.02, 0.006, 0.03), (w / 2 - 0.06, -d / 2 - 0.015, h - 0.07), "M_Plastic_Sharps_Yellow")  # Seal tag.
+    mb.box((0.5, 0.03, 0.6), (0, d / 2 + 0.03, h - 0.25), "M_Plastic_Black")                         # CPR board.
+    defib_z = h + 0.03
+    mb.box((0.34, 0.26, 0.2), (-0.1, -0.02, defib_z + 0.1), "M_Plastic_OffWhite")
+    mb.box((0.34, 0.03, 0.06), (-0.1, -0.02, defib_z + 0.23), "M_Plastic_Black")                     # Carry handle.
+    mb.box((0.06, 0.12, 0.08), (0.18, -0.05, defib_z + 0.04), "M_Plastic_Black")                     # Pads pouch.
+    mb.cyl(0.075, 0.68, (w / 2 + 0.09, 0.08, 0.52), "M_Plastic_OffWhite", segs=16)                   # O2 cylinder.
+    mb.cyl(0.03, 0.08, (w / 2 + 0.09, 0.08, 0.9), "M_Steel_Brushed", segs=10)                        # Regulator.
+    mb.box((0.04, 0.12, 0.3), (w / 2 + 0.02, 0.08, 0.5), "M_Steel_Brushed")                          # Holder.
+    _castors(mb, (-w / 2 + 0.07, w / 2 - 0.07), (-d / 2 + 0.07, d / 2 - 0.07), r=0.05, mount_z=body_z0)
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    smb = MeshBuilder()
+    smb.box((0.2, 0.004, 0.12), (-0.12, -0.152, defib_z + 0.1), "M_Emissive_Screen")
+    screen = smb.build(aid + "_DefibScreen", coll, root)
+    L.planar_uv(screen, ("x", "z"))
+    screen["godot_hint"] = "Optional ViewportTexture for a live rhythm display."
+    L.collision_box(aid + "_COL", coll, root, (w + 0.3, d + 0.1, h + 0.28), (0.1, 0.02, (h + 0.28) / 2))
+    return root
+
+
+def prop_cabinet_aed(coll, aid="PROP_Cabinet_AED_Wall", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Wall AED cabinet with glazed door; origin at wall surface centre, faces -Y."""
+    root = _root(coll, aid, "emergency", loc, rot, "Wall-mounted AED cabinet with signage")
+    mb = MeshBuilder()
+    w, d, h = 0.4, 0.18, 0.45
+    mb.box((w, d, h), (0, -d / 2, 0), "M_Plastic_AED_Green", face_mats={"-y": "M_Plastic_OffWhite"})
+    mb.box((0.26, 0.09, 0.3), (0, -d + 0.06, -0.02), "M_Plastic_Sharps_Yellow")       # AED unit inside.
+    mb.box((w - 0.04, 0.006, h - 0.04), (0, -d - 0.004, 0), "M_Glass_Clear")
+    mb.box((0.03, 0.03, 0.12), (w / 2 - 0.04, -d - 0.02, 0), "M_Steel_Brushed")       # Door pull.
+    mb.box((0.3, 0.008, 0.12), (0, -0.004, h / 2 + 0.12), "M_Plastic_AED_Green")       # AED sign above.
+    mb.box((0.08, 0.004, 0.08), (0, -0.01, h / 2 + 0.12), "M_Plastic_OffWhite")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    return root
+
+
+def prop_cylinder_oxygen(coll, aid="PROP_Cylinder_Oxygen_Trolley", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Oxygen cylinder on a two-wheel trolley. Cylinder colours follow the
+    usual medical-oxygen white shoulder; no labels or markings are claimed."""
+    root = _root(coll, aid, "clinical_equipment", loc, rot, "Oxygen cylinder on transport trolley")
+    mb = MeshBuilder()
+    mb.cyl(0.09, 0.95, (0, 0.02, 0.6), "M_Steel_Painted_Grey", segs=20)
+    mb.cyl(0.09, 0.12, (0, 0.02, 1.1), "M_Plastic_OffWhite", segs=20, r2=0.045)       # Shoulder.
+    mb.cyl(0.03, 0.08, (0, 0.02, 1.2), "M_Steel_Brushed", segs=10)                    # Valve.
+    mb.cyl(0.035, 0.03, (0, -0.02, 1.2), "M_Plastic_Black", axis="Y", segs=12)        # Gauge.
+    for x in (-0.13, 0.13):
+        mb.box((0.025, 0.025, 1.15), (x, 0.1, 0.62), "M_Steel_Brushed", rot=(0.08, 0, 0))
+        mb.cyl(0.1, 0.04, (x, 0.12, 0.1), "M_Rubber_Dark", axis="X", segs=16)
+    mb.box((0.28, 0.025, 0.025), (0, 0.15, 1.18), "M_Steel_Brushed")                  # Handle.
+    for zz in (0.35, 0.85):
+        mb.box((0.26, 0.2, 0.02), (0, 0.02, zz), "M_Steel_Brushed")                   # Retaining straps.
+    mb.box((0.26, 0.24, 0.02), (0, 0.0, 0.12), "M_Steel_Brushed")                     # Foot plate.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    L.collision_box(aid + "_COL", coll, root, (0.34, 0.34, 1.25), (0, 0.04, 0.625))
+    return root
+
+
+def prop_monitor_vitals(coll, aid="PROP_Monitor_VitalSigns_Stand", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Mobile observations monitor on a 5-star stand. Screen faces -Y."""
+    root = _root(coll, aid, "clinical_equipment", loc, rot, "Mobile vital-signs monitor on stand")
+    mb = MeshBuilder()
+    for i in range(5):
+        a = i * 2 * PI / 5
+        with mb.at((0, 0, 0.07), (0, 0, a)):
+            mb.box((0.26, 0.035, 0.025), (0.13, 0, 0), "M_Plastic_OffWhite")
+            mb.sphere(0.022, (0.25, 0, -0.04), "M_Plastic_Black", segs=10, rings=5)
+    mb.cyl(0.018, 1.0, (0, 0, 0.57), "M_Steel_Brushed", segs=12)
+    mb.box((0.28, 0.14, 0.22), (0, 0, 1.18), "M_Plastic_OffWhite")
+    mb.box((0.28, 0.04, 0.04), (0, 0.02, 1.31), "M_Plastic_OffWhite")
+    mb.box((0.22, 0.12, 0.08), (0, 0.02, 0.92), "M_Steel_Painted_Grey")               # Accessory basket.
+    mb.box((0.08, 0.06, 0.04), (0.04, 0.01, 0.98), "M_Upholstery_Charcoal")           # BP cuff.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    smb = MeshBuilder()
+    smb.box((0.2, 0.004, 0.14), (0, -0.072, 1.19), "M_Emissive_Screen")
+    screen = smb.build(aid + "_Screen", coll, root)
+    L.planar_uv(screen, ("x", "z"))
+    screen["godot_hint"] = "Optional ViewportTexture for live observations."
+    L.collision_box(aid + "_COL", coll, root, (0.55, 0.55, 1.35), (0, 0, 0.675))
+    return root
+
+
+def prop_bin_sharps(coll, aid="PROP_Bin_Sharps", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Counter-top sharps container; origin at the base centre."""
+    root = _root(coll, aid, "clinical_equipment", loc, rot, "Sharps container (treatment room counter)")
+    mb = MeshBuilder()
+    mb.box((0.24, 0.17, 0.26), (0, 0, 0.13), "M_Plastic_Sharps_Yellow")
+    mb.box((0.25, 0.18, 0.05), (0, 0, 0.285), "M_Plastic_Sharps_Yellow")
+    mb.box((0.08, 0.01, 0.025), (0, -0.09, 0.29), "M_Plastic_Black")                  # Aperture.
+    mb.box((0.14, 0.002, 0.09), (0, -0.086, 0.14), "M_Paper")                         # Blank label.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    return root
+
+
+def prop_dispenser_handgel(coll, aid="PROP_Dispenser_HandGel", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Wall hand-gel dispenser; origin at wall surface centre, faces -Y."""
+    root = _root(coll, aid, "fixture", loc, rot, "Wall hand-gel dispenser (staff areas)")
+    mb = MeshBuilder()
+    mb.box((0.11, 0.1, 0.24), (0, -0.05, 0), "M_Plastic_OffWhite")
+    mb.box((0.08, 0.04, 0.05), (0, -0.1, -0.06), "M_Steel_Painted_Grey", rot=(0.3, 0, 0))   # Push lever.
+    mb.box((0.06, 0.004, 0.08), (0, -0.101, 0.05), "M_Glass_Clear")                  # Level window.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.006)
+    return root
+
+
+def prop_wheelchair(coll, aid="PROP_Wheelchair", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Folding transit wheelchair. Front (footplates) faces -Y."""
+    root = _root(coll, aid, "clinical_equipment", loc, rot, "Transit wheelchair")
+    mb = MeshBuilder()
+    sw = 0.46
+    for side in (-1, 1):
+        x = side * (sw / 2 + 0.02)
+        mb.cyl(0.3, 0.03, (x + side * 0.04, 0.12, 0.3), "M_Rubber_Dark", axis="X", segs=28)     # Rear wheel.
+        mb.cyl(0.05, 0.05, (x + side * 0.04, 0.12, 0.3), "M_Steel_Brushed", axis="X", segs=12)  # Hub.
+        mb.cyl(0.07, 0.025, (x, -0.33, 0.07), "M_Rubber_Dark", axis="X", segs=14)               # Front castor.
+        mb.box((0.025, 0.5, 0.025), (x, -0.08, 0.48), "M_Steel_Brushed")                       # Seat rail.
+        mb.box((0.025, 0.025, 0.42), (x, -0.33, 0.3), "M_Steel_Brushed")
+        mb.box((0.025, 0.025, 0.55), (x, 0.17, 0.72), "M_Steel_Brushed", rot=(-0.08, 0, 0))    # Back post.
+        mb.box((0.025, 0.12, 0.025), (x, 0.24, 0.99), "M_Steel_Brushed")                       # Push handle.
+        mb.box((0.04, 0.07, 0.04), (x, 0.3, 0.99), "M_Plastic_Black")
+        mb.box((0.04, 0.32, 0.03), (x, -0.06, 0.68), "M_Plastic_Black")                         # Armrest.
+        mb.box((0.025, 0.025, 0.2), (x, -0.06, 0.58), "M_Steel_Brushed")
+        mb.box((0.16, 0.13, 0.015), (side * 0.1, -0.44, 0.1), "M_Plastic_Black")                # Footplate.
+        mb.box((0.025, 0.025, 0.36), (side * 0.18, -0.39, 0.27), "M_Steel_Brushed", rot=(0.35, 0, 0))
+    mb.box((sw, 0.44, 0.03), (0, -0.08, 0.5), "M_Upholstery_Charcoal")
+    mb.box((sw, 0.02, 0.38), (0, 0.18, 0.74), "M_Upholstery_Charcoal", rot=(-0.08, 0, 0))
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    L.collision_box(aid + "_COL", coll, root, (0.7, 1.0, 1.0), (0, -0.07, 0.5))
+    return root
+
+
+STAGE3_PROP_BUILDERS = [
+    prop_cart_medication, prop_bed_hospital, prop_trolley_linen, prop_cart_crash, prop_cabinet_aed,
+    prop_cylinder_oxygen, prop_monitor_vitals, prop_bin_sharps, prop_dispenser_handgel, prop_wheelchair,
+]
