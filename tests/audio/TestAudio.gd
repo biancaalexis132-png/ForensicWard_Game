@@ -123,8 +123,17 @@ func test_events_and_positional_sfx() -> void:
 	check(door != null and door.playing and door.global_position.is_equal_approx(Vector3(4, 1, -2)), "door event with position plays in 3D")
 	EventBus.narrative_event_fired.emit("unmapped_story_event", {})
 	check(AudioDirector.get_child_count() == before + 2, "unmapped events play nothing")
-	await wait(3.6)
-	check(AudioDirector.get_child_count() == before, "one-shot players free themselves when finished")
+	if pager == null or door == null:
+		return  # The creation assertions above already report the missing players.
+	# The Dummy audio driver can finish later than a fixed SceneTree timer
+	# (a 3.4 s clip took up to 3.8 s in the cloud). Wait for the actual objects
+	# to be freed, bounded by clip duration plus one second; a leak still fails.
+	var duration: float = maxf(pager.stream.get_length(), door.stream.get_length())
+	var deadline: int = Time.get_ticks_msec() + int((duration + 1.0) * 1000.0)
+	while (is_instance_valid(pager) or is_instance_valid(door)) and Time.get_ticks_msec() < deadline:
+		await wait(0.05)
+	check(not is_instance_valid(pager) and not is_instance_valid(door)
+			and AudioDirector.get_child_count() == before, "one-shot players free themselves when finished")
 
 func test_startle_accessibility() -> void:
 	AudioDirector.set_setting("reduce_startling_audio", false)
