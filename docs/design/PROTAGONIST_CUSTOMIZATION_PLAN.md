@@ -14,7 +14,7 @@ These decisions supersede the locked GDD’s limited personal-life scope. They d
 |---|---|
 | `ContentRegistry`, `ContentSchemas`, `ContentValidator` | Validate immutable option catalogs in JSON using F1 campaign collection; no hardcoded background prose in scripts |
 | `SaveManager` | Add one `protagonist` provider; keep sorted canonical state/checksum, existing providers and migrations |
-| `ChapterDirector` / F1 `campaign` state | Keep current chapter, fired beats and chapter flags; optional callbacks reference stable chapter IDs |
+| `ChapterDirector` / F1 campaign catalog | Keep current chapter, fired beats and chapter flags; optional callbacks reference stable chapter IDs |
 | `ZoneDirector` / F2 `zones` state | Unchanged; customization cannot grant access, load zones or bypass gates |
 | `DialogueManager` / `StoryLogic` | Add small closed, validated optional selectors only after approval; preserve existing interview logic |
 | `TrustManager` | Continue owning respect/trust/suspicion and access grants; no second relationship store |

@@ -12,7 +12,7 @@ Baseline `origin/main`: **`fb078877c59273c0856ec29f29e4ae43d3fc3125`**, confirme
 | Reference integrations | PRs #22/#23/#24, then continuity #25 | Guides, boards, music reference files and protocol present |
 | Visual review | PR #28 merge `fb07887` | Review and continuity docs are on main; recommendations remain proposals |
 
-Current runtime `SAVE_VERSION = 3`; checksum precedes migration. `campaign` state is owned by ContentRegistry; `chapter` by ChapterDirector; `zones` by ZoneDirector; `world` by Main. Sorted provider load order and missing-provider reset support extension without replacing save architecture. F1 fixtures cover chapters 2–5; shipped later chapters remain planned. Main-scene boot, patient/evidence/trust/interview systems, imported environment geometry and audio passed baseline checks. This is no claim of completed five-chapter gameplay or medical validation.
+Current runtime `SAVE_VERSION = 3`; checksum precedes migration. The immutable campaign catalog is owned by ContentRegistry (there is no separate `campaign` save provider despite the historical F1 proposal); `chapter` state is owned by ChapterDirector; `zones` by ZoneDirector; `world` by Main. Sorted provider load order and missing-provider reset support extension without replacing save architecture. F1 fixtures cover chapters 2–5; shipped later chapters remain planned. Main-scene boot, patient/evidence/trust/interview systems, imported environment geometry and audio passed baseline checks. This is no claim of completed five-chapter gameplay or medical validation.
 
 ## PRs, branches and ownership
 
