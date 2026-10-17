@@ -123,7 +123,14 @@ python3 tools/music_ai/generate_music.py generate --all                         
 
 Every request is instrumental. Lyrics are set to `[Instrumental]`, which ACE-Step's server treats as instrumental, `vocal_language` is `unknown`, and an LM negative prompt excludes vocals, choirs, EDM/rock drums, trailer braams and jump-scare hits. Seeds are fixed (`use_random_seed: false`), so the same commit, model and settings reproduce a take.
 
-**Motif consistency:** text prompts alone cannot guarantee a melody. Every caption restates the motif and the key, BPM and instrumentation are shared. Once the main theme is approved, the most reliable way to carry it into other cues is ACE-Step's audio-conditioned modes: use the approved track as reference audio, or run "cover"/"repaint". These modes are available in the Gradio UI and in the API's multipart form (`reference_audio`, `src_audio`). They are not yet wired into `generate_music.py`; this is listed as next work in `docs/AI_HANDOFF.md`.
+**Motif consistency:** text prompts alone cannot guarantee a melody. Every caption restates the motif, and the key, BPM and instrumentation are shared. Once the main theme is approved, pass it to ACE-Step as reference audio. The track is uploaded as `reference_audio` (multipart), and its path and SHA-256 are recorded in `generation.json` and the manifest:
+
+```sh
+python3 tools/music_ai/generate_music.py generate after_hours_calm after_hours_tense --reference main_theme
+python3 tools/music_ai/generate_music.py generate ward_zero_tense --reference path/to/approved.ogg
+```
+
+Use only the project's own approved tracks as references. For stronger thematic carry-over, ACE-Step's `cover` task re-renders a source track at a chosen strength (`audio_cover_strength`, where about 0.2–0.4 keeps only the style). It is available in the Gradio UI but not yet in `generate_music.py`.
 
 **Calm/tense layers:** ACE-Step renders complete mixes, not stems. "Intensity layers" are therefore separate calm and tense renders of the same cue. AudioDirector crossfades between them over 4 s as `set_music_intensity` crosses each variant's `min_intensity`. For true stems, ACE-Step's "extract" task can be explored later.
 

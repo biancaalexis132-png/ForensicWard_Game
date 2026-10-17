@@ -22,6 +22,7 @@ SOURCE = REPO / "audio/music/mus_transition_unease_01.ogg"
 class MockAceStep(http.server.BaseHTTPRequestHandler):
     wav = None
     requests = []
+    uploads = []
 
     def log_message(self, *args):
         pass
@@ -43,7 +44,12 @@ class MockAceStep(http.server.BaseHTTPRequestHandler):
         self.send_error(404)
 
     def do_POST(self):
-        payload = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+        body = self.rfile.read(int(self.headers["Content-Length"]))
+        if self.headers["Content-Type"].startswith("multipart/form-data"):
+            MockAceStep.uploads.append(body)
+            payload = {}
+        else:
+            payload = json.loads(body)
         if self.path == "/release_task":
             MockAceStep.requests.append(payload)
             return self.reply({"task_id": "t1", "status": "queued"})
@@ -65,6 +71,7 @@ class GenerateMusicPipelineTests(unittest.TestCase):
         subprocess.run(["ffmpeg", "-v", "error", "-stream_loop", "3", "-i", str(SOURCE), "-t", "30",
                         str(MockAceStep.wav)], check=True)
         MockAceStep.requests = []
+        MockAceStep.uploads = []
         self.server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), MockAceStep)
         threading.Thread(target=self.server.serve_forever, daemon=True).start()
         self.api = f"http://127.0.0.1:{self.server.server_port}"
@@ -101,6 +108,23 @@ class GenerateMusicPipelineTests(unittest.TestCase):
         self.assertAlmostEqual(asset["duration_seconds"], 30.0 - 4.0, delta=0.15)  # Loop seam overlap.
         self.assertLess(asset["true_peak_dbtp"], -1.0)
         self.assertAlmostEqual(asset["integrated_lufs"], -20.0, delta=1.5)
+
+    def test_reference_audio_uses_approved_main_theme(self):
+        result = self.run_tool("generate", "after_hours_calm", "--reference", "main_theme")
+        self.assertNotEqual(result.returncode, 0, "must refuse before a main theme is approved")
+        self.assertIn("no approved main-menu track", result.stderr + result.stdout)
+        for args in (("generate", "main_menu_a_piano", "--poll", "0.05"),
+                     ("approve", "main_menu_a_piano", "--approved-by", "QA mock"),
+                     ("generate", "after_hours_calm", "--reference", "main_theme", "--poll", "0.05")):
+            result = self.run_tool(*args)
+            self.assertEqual(result.returncode, 0, result.stderr + result.stdout)
+        body = MockAceStep.uploads[0]
+        self.assertIn(b'name="reference_audio"; filename="mus_ai_main_menu_a_piano.ogg"', body)
+        self.assertIn(b'name="seed"\r\n\r\n46011\r\n', body)
+        self.assertIn(b'name="use_random_seed"\r\n\r\nfalse\r\n', body)
+        self.assertIn(b'name="lyrics"\r\n\r\n[Instrumental]\r\n', body)
+        record = json.loads((self.root / "tools/music_ai/output/after_hours_calm/generation.json").read_text())
+        self.assertEqual(record["reference_audio"]["file"], "audio/music_ai/main_menu/mus_ai_main_menu_a_piano.ogg")
 
     def test_failed_task_is_reported(self):
         result = self.run_tool("generate", "unknown_candidate")

@@ -11,6 +11,7 @@ only; needs ffmpeg/ffprobe on PATH (brew install ffmpeg).
     python3 tools/music_ai/generate_music.py list
     python3 tools/music_ai/generate_music.py generate --first-deliverable
     python3 tools/music_ai/generate_music.py generate clinical_routine_calm clinical_routine_tense
+    python3 tools/music_ai/generate_music.py generate after_hours_calm --reference main_theme
     python3 tools/music_ai/generate_music.py qa tools/music_ai/output/main_menu_a_piano/main_menu_a_piano.wav
     python3 tools/music_ai/generate_music.py approve main_menu_b_strings --approved-by "Your Name"
 
@@ -186,6 +187,45 @@ def api(base, path, payload=None, timeout=60):
     return body.get("data")
 
 
+def api_multipart(base, path, fields, file_field, file_path, timeout=120):
+    """POST multipart/form-data (ACE-Step's way to upload reference audio)."""
+    boundary = "----fw" + hashlib.sha1(str(time.time()).encode()).hexdigest()
+    parts = []
+    for key, value in fields.items():
+        if isinstance(value, bool):
+            value = "true" if value else "false"  # The server parses form booleans from text.
+        parts.append(f'--{boundary}\r\nContent-Disposition: form-data; name="{key}"\r\n\r\n{value}\r\n'.encode())
+    parts.append((f'--{boundary}\r\nContent-Disposition: form-data; name="{file_field}"; filename="{file_path.name}"\r\n'
+                  "Content-Type: application/octet-stream\r\n\r\n").encode() + file_path.read_bytes() + b"\r\n")
+    parts.append(f"--{boundary}--\r\n".encode())
+    request = urllib.request.Request(base + path, data=b"".join(parts), method="POST",
+                                     headers={"Content-Type": f"multipart/form-data; boundary={boundary}"})
+    if os.environ.get("ACESTEP_API_KEY"):
+        request.add_header("Authorization", "Bearer " + os.environ["ACESTEP_API_KEY"])
+    with urllib.request.urlopen(request, timeout=timeout) as response:
+        body = json.loads(response.read())
+    if body.get("code", 200) != 200 or body.get("error"):
+        raise RuntimeError(f"ACE-Step API error on {path}: {body.get('error')}")
+    return body.get("data")
+
+
+def resolve_reference(value):
+    """A file path, or 'main_theme' = the approved main-menu track (carries the motif into other cues)."""
+    if value is None:
+        return None
+    if value == "main_theme":
+        sheet_path = MUSIC_DIR / "music_cues.json"
+        sheet = json.loads(sheet_path.read_text(encoding="utf-8")) if sheet_path.exists() else {}
+        variants = sheet.get("music_states", {}).get("main_menu", [])
+        if not variants:
+            sys.exit("--reference main_theme: no approved main-menu track yet (approve one first)")
+        return ROOT / sheet["cues"][variants[0]["cue"]]["stream"].removeprefix("res://")
+    path = Path(value).expanduser()
+    if not path.is_file():
+        sys.exit(f"reference audio not found: {path}")
+    return path
+
+
 def build_request(score, candidate, overrides):
     engine = score["engine"]
     request = {
@@ -209,12 +249,15 @@ def build_request(score, candidate, overrides):
     return request
 
 
-def generate_one(base, score, candidate, overrides, poll_seconds, timeout_seconds):
+def generate_one(base, score, candidate, overrides, poll_seconds, timeout_seconds, reference=None):
     folder = OUTPUT_DIR / candidate["id"]
     folder.mkdir(parents=True, exist_ok=True)
     request = build_request(score, candidate, overrides)
     started = time.time()
-    task = api(base, "/release_task", request)
+    if reference is not None:
+        task = api_multipart(base, "/release_task", request, "reference_audio", reference)
+    else:
+        task = api(base, "/release_task", request)
     task_id = task["task_id"]
     print(f"[{candidate['id']}] submitted task {task_id}; waiting (first run downloads and loads models)...")
     while True:
@@ -242,6 +285,9 @@ def generate_one(base, score, candidate, overrides, poll_seconds, timeout_second
         "candidate": candidate,
         "request": request,
         "task_id": task_id,
+        "reference_audio": None if reference is None else {
+            "file": str(reference.relative_to(ROOT)) if reference.is_relative_to(ROOT) else reference.name,
+            "sha256": hashlib.sha256(reference.read_bytes()).hexdigest()},
         "returned": {key: result.get(key) for key in ("metas", "seed_value", "lm_model", "dit_model", "generation_info")},
         "acestep_commit": acestep_commit(),
         "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
@@ -302,7 +348,8 @@ def approve(candidate_id, approved_by, notes):
         "location": candidate["location"],
         "source": f"ACE-Step 1.5 {record['request']['model']} (LM {record['returned'].get('lm_model')}), "
                   f"seed {record['request']['seed']}, {record['request']['inference_steps']} steps, "
-                  f"ACE-Step commit {record['acestep_commit']}",
+                  f"ACE-Step commit {record['acestep_commit']}"
+                  + (f", reference audio {record['reference_audio']['file']}" if record.get("reference_audio") else ""),
         "prompt": record["request"]["prompt"],
         "request": record["request"],
         "license": LICENSE_NOTE,
@@ -353,6 +400,7 @@ def command_generate(args):
     if unknown or not wanted:
         sys.exit("unknown or missing candidate ids: " + ", ".join(unknown) + " (see: generate_music.py list)")
     overrides = json.loads(args.overrides) if args.overrides else {}
+    reference = resolve_reference(args.reference)
     failures = 0
     for candidate_id in wanted:
         candidate = dict(table[candidate_id])
@@ -360,7 +408,7 @@ def command_generate(args):
             candidate["seed"] += args.seed_offset
             candidate["id"] = f"{candidate_id}_s{candidate['seed']}"
         try:
-            generate_one(args.api, score, candidate, overrides, args.poll, args.timeout)
+            generate_one(args.api, score, candidate, overrides, args.poll, args.timeout, reference)
         except Exception as error:
             failures += 1
             print(f"[{candidate_id}] FAILED: {error}", file=sys.stderr)
@@ -383,6 +431,7 @@ def main():
     gen.add_argument("--first-deliverable", action="store_true", help="the three main-menu directions")
     gen.add_argument("--all", action="store_true", help="every candidate in score.json")
     gen.add_argument("--seed-offset", type=int, default=0, help="explore alternates without editing score.json")
+    gen.add_argument("--reference", help="reference audio for style/motif: a file path, or 'main_theme' for the approved main-menu track")
     gen.add_argument("--overrides", help='JSON merged into the request, e.g. \'{"inference_steps": 12}\'')
     gen.add_argument("--poll", type=float, default=5.0)
     gen.add_argument("--timeout", type=float, default=3600.0)

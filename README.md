@@ -50,7 +50,7 @@ If you change things in Godot (scenes, settings), GitHub Desktop lists the chang
 
 ## Working with AI agents
 
-Claude Code and OpenAI Codex take turns developing this project. Shared rules are in `AGENTS.md`. Current state and where to resume are in `docs/PROJECT_STATUS.md` and `docs/AI_HANDOFF.md`.
+Claude Code and OpenAI Codex take turns developing this project. The shared rules and handoff log (`AGENTS.md`, `docs/PROJECT_STATUS.md`, `docs/AI_HANDOFF.md`) are proposed in PR #4. Audio workstream status is in `docs/AUDIO.md`.
 
 ## Architecture rules
 

@@ -122,4 +122,4 @@ Headless Godot uses the Dummy audio driver, so these tests confirm playback stat
 - The procedural assets are functional placeholders. Synthesized door, pager and ambience are plausible but not Foley-grade. The transition is a synthesized sketch, **not** the AI score.
 - TTS pronunciation and delivery have not been reviewed by ear. No speech recognition was available offline to check them automatically.
 - Only a corridor ambience exists so far. Nursing station and night currently reuse it, filtered.
-- Footsteps, badge reader (separate from the door), computer UI, elevator, distant conversations, historic intercom static bed, electrical disturbances and Ward Zero anomalies are not yet produced (see `docs/PROJECT_STATUS.md`).
+- Footsteps, badge reader (separate from the door), computer UI, elevator, distant conversations, historic intercom static bed, electrical disturbances and Ward Zero anomalies are not yet produced (see "Workstream status" below).
