@@ -2,7 +2,7 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
-**Last verified:** 2026-10-17 21:40 UTC by Claude Code (F2 zones session), against `origin` after `git fetch --prune`. `main` was at `4987123` (PR #21 merged); no other pull requests were open.
+**Last verified:** 2026-10-17 by Codex against `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125` (PR #28 merged), using fetched Git history and `git ls-remote`. GitHub REST/GraphQL PR APIs return Forbidden; current open PRs and hosted CI are **unverified**. Full local Godot 4.7 baseline passed. See [REPOSITORY_RECONCILIATION.md](REPOSITORY_RECONCILIATION.md).
 
 Status meanings:
 
@@ -19,7 +19,9 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 
 | PR | Branch | State |
 |---|---|---|
-| F2 | `claude/f2-zones` | Draft, waiting on owner review (zones and transitions) |
+| #28 | `claude/visual-direction-review` | Merged at `fb07887`; review recommendations still need approval |
+| #26 | `claude/f2-zones` | Merged at `9558c77` (zones and transitions) |
+| #25, #24, #23 | `assets/ashcroft-creative-references` | Merged (continuity protocol / reference integration) |
 | #22 | `assets/ashcroft-creative-references` | Merged (soundtrack and visual references) |
 | #21 | `claude/f1-campaign-contract` | Merged (F1 campaign contract, save v2) |
 | #20 | `claude/f0-foundation-audit` | Merged (F0 audit and architecture) |
@@ -36,7 +38,7 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 | #8, #7, #6, #1 | integration, chapter 1, environment, sprint 1 branches | Closed, superseded by #11 |
 | #5, #4, #3, #2 | audio, handoff system, adaptive audio, Codex QA | Merged |
 
-The branches of merged and closed PRs still exist on `origin`; nobody works on them.
+Remote branches may remain after merge. Branch existence alone does not prove active ownership. Open PR status is unavailable; historical soundtrack PR #27 and Stage 6 environment work must be checked before overlapping changes.
 
 ## Systems
 
@@ -55,15 +57,15 @@ The branches of merged and closed PRs still exist on `origin`; nobody works on t
 | Pharmacology engine | Completed (clinically approved) | `main` | `TestPharmacology` | Not wired to the EHR; its clue gates conflict with the separation rule (F0 C7, owner decision pending) |
 | Evidence board, clues, hypotheses | Completed | `main` | `test_sprint3.gd` | No source class or claim states yet (F3) |
 | Chapter 1 story director, sign-out, Bennett trust, after-hours W0-B beat | Completed | `main` | `test_sprint3.gd` | Beat 4 (second patient) not authored; staff lines are placeholders |
-| Playable Chapter 1 wing (AuthoredWorld) | Completed | `main` | `test_world.gd`; 7 environments loaded at once | On `claude/f2-zones` it is built as the clinical-wing zone |
+| Playable Chapter 1 wing (AuthoredWorld) | Completed | `main` | `test_world.gd`; 7 environments loaded at once | F2 is merged; built as the clinical-wing zone |
 | Environment art Stages 1–3 (+ nursing station props) | Completed | `main` | `.glb` validation | Untextured |
-| Environment Stage 4a security/admin, 4b research | Completed | `main` (PR #14, #17) | `.glb` validation | Reachable as zones on `claude/f2-zones` (locked in Chapter 1); no characters or props wired |
+| Environment Stage 4a security/admin, 4b research | Completed | `main` (PR #14, #17) | `.glb` validation | Reachable as zones on `main` (locked in Chapter 1); no characters or props wired |
 | Environment Stage 5 historic substructure | Completed | `main` (PR #19) | 138/138 `.glb` import in Godot 4.7 | Reachable through the service hatch on `claude/f2-zones` (locked in Chapter 1); the stair is a use-to-climb point, not walkable |
 | Adaptive audio engine, Chapter 1 audio, original soundtrack | Completed | `main` (PR #3, #5, #18) | TestAudio 271 passed | Listening review on the Mac pending; music contexts not fired yet (no title screen or credits) |
 | Hospital name in game data | Completed | `main` (PR #21) | `data/campaign.json` `institution.name` | Not shown on any screen yet; signage textures come with Stage 8 |
-| Zones and transitions (F2): `data/zones.json`, `ZoneDirector`, save version 3 with v2 migration | Done, not merged | `claude/f2-zones` | `test_zones.gd` (15 tests: seamless ward entry, 10 lift round trips with flat memory, door state across unload/save/load, arrivals on a floor, real v2 save from `main`) | Worker-thread streaming is off in headless runs (Godot's dummy renderer is not thread-safe), so it is untested until run on the Mac; arrival points are placeholders; security and research use the corridor ambience |
+| Zones and transitions (F2): `data/zones.json`, `ZoneDirector`, save version 3 with v2 migration | Completed | `main` (PR #26) | `test_zones.gd` (15 tests: seamless ward entry, 10 lift round trips with flat memory, door state across unload/save/load, arrivals on a floor, real v2 save from `main`) | Worker-thread streaming is off in headless runs (Godot's dummy renderer is not thread-safe), so it is untested until run on the Mac; arrival points are placeholders; security and research use the corridor ambience |
 | Anomaly evidence model and clinical/supernatural separation (F3) | Planned | | F0 §7, §8 | Waits on the owner's Psychosomatic Bleed decision |
-| Mara Ellis, Chapters 2–5 content, protagonist creator, title screen | Planned | | v1.1 handoff | Clinical and narrative approval needed first |
+| Mara Ellis, Chapters 2–5 content, title screen | Planned | | v1.1 handoff | Clinical and narrative approval needed first |
 | Ward Zero (Stage 6), exterior (Stage 7), textures (Stage 8) | Planned | | `docs/ENVIRONMENT_STAGES.md` | |
 
 ## Blocked
@@ -86,3 +88,11 @@ Headless checks do not cover these. They stay here until the owner confirms them
 - Audio mix, spatial audio, listening review of every asset
 - Accessibility toggles in play (reduce motion, flicker off)
 - Clinical correctness of anything marked pending
+
+## Codex continuation: protagonist specification and save QA
+
+- Approved requirements: fixed psychiatrist role, customizable background/appearance, moderate personal life, emergent personality. Recorded in `docs/design/GDD_AMENDMENTS.md` from the owner’s current handoff.
+- Proposed engineering plan: `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md`; creator/provider/v4 migration are **not implemented** and require owner review.
+- Baseline on `fb07887`: Python 6+3+3 passed; pharmacology 0 failures; QA 19 passed/0 failed/0 skipped; GLB 138/138; TestRunner 112/0; boot OK; audio 271/0; Chapter 1 sequence complete; runner exit 0. Headless Linux only; hosted CI not observed.
+- Independent implementation in progress: new save-compatibility regression suite; no runtime/save schema/clinical/visual change. Development results are recorded in the session handoff when complete.
+- Missing source dependency: private v1.1 bible package is not accessible here or committed. Available GDD, engineering contract, PDF character guide and reference READMEs were inspected. No replacement canon is invented.

@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Foundation F2 zones | `claude/f2-zones` (draft PR to `main`) | Claude | `fb9fc52` (see entry) | `data/zones.json`, `data/world_chapter1.json`, `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/world/{ZoneDirector,AuthoredWorld,AudioZoneTracker,ImportedDoor,ImportedInteractable}.gd`, `scripts/autoload/{SaveManager,ContentRegistry,EventBus,Settings}.gd` (EventBus: one signal; Settings: one key), `scripts/content/*`, `scripts/tests/test_zones.gd`, `scripts/tests/fixtures/saves/**`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT}.md` | Awaiting owner review. F3 waits on the Psychosomatic Bleed decision |
+| Protagonist specification / save QA | `codex/protagonist-foundation-cont-1` | Codex | `fb078877c59273c0856ec29f29e4ae43d3fc3125` (base; checkpoint below) | `docs/{PROJECT_STATUS,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER,REPOSITORY_RECONCILIATION}.md`, `docs/design/{GDD_AMENDMENTS,PROTAGONIST_CUSTOMIZATION_PLAN}.md`, new `scripts/tests/test_save_compatibility.gd` + UID | In progress; no runtime or asset changes |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -55,6 +55,24 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Codex · Protagonist specification / save QA baseline
+
+- **Branch:** `codex/protagonist-foundation-cont-1`, from `origin/main` at `fb078877c59273c0856ec29f29e4ae43d3fc3125`.
+- **Latest verified commit:** `fb078877c59273c0856ec29f29e4ae43d3fc3125` “Merge pull request #28 from biancaalexis132-png/claude/visual-direction-review”.
+- **Confirmed on GitHub:** `git ls-remote origin HEAD` returned that SHA; fetched history confirms F0 PR #20, F1 #21, F2 #26 and visual review #28 merged.
+- **Pull request:** none yet. Existing open PRs cannot be listed: both REST and GraphQL return Forbidden. Historical audio PR #27 and Stage 6 work remain reserved pending verification.
+- **State:** baseline complete; proposal written; independent regression tests in progress.
+
+**Accomplished:** reconciled objectively stale F2/visual-review merge status, recorded the owner’s explicit protagonist decisions, and wrote the phased technical proposal. Review recommendations D1–D9 are not approved by merging #28.
+
+**Files modified:** continuity/status docs, `docs/REPOSITORY_RECONCILIATION.md`, `docs/design/GDD_AMENDMENTS.md`, `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md`; new save-compatibility tests are being validated. No runtime, data, asset or audio files changed.
+
+**Tests on the base:** `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`: exit 0; Python 6+3+3 passed, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 112/0, boot OK, audio 271/0 and Chapter 1 `CH1_SEQUENCE_DONE`. Official engine archive SHA-512 verified. Hosted CI not observed. Development test run is separate and pending.
+
+**Known errors / dependencies:** system Godot is 4.6.3 (runner rejects it); use pinned local 4.7. Python mock-server tests emit ResourceWarnings about unclosed sockets but pass. Missing private v1.1 bible. Mac rendering/performance/input/listening untested. Clinical approvals, visual D1–D9 and F0 C2/C6/C7 remain open. No unresolved decision is implemented.
+
+**Next steps:** finish the new save regression suite and full QA, checkpoint results, push feature branch and verify exact SHA; create a draft PR if existing authentication permits. Do not start creator P1 before owner review of the proposal. Never merge or push main. The living handoff tracks remaining work.
 
 ### 2026-10-17 21:45 UTC · Claude Code · Foundation F2 zones
 
