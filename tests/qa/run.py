@@ -26,7 +26,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--godot", default=os.environ.get("GODOT", "godot"))
     args = parser.parse_args()
-    # Isolate Linux cache/config. Tests never call save_game/load_game.
+    # Isolate Linux cache/config so save/load tests never touch real user data.
     with tempfile.TemporaryDirectory(prefix="forensic-ward-qa-") as directory:
         env = dict(os.environ, XDG_DATA_HOME=directory,
                    XDG_CACHE_HOME=directory, XDG_CONFIG_HOME=directory)
@@ -37,13 +37,14 @@ def main():
         run(base + ["--editor", "--import"], env)
         run(base + ["res://tests/TestPharmacology.tscn"], env, r"PASSED: 0 failure\(s\)")
         run(base + ["res://tests/qa/TestQA.tscn"], env,
-            r"QA_RESULT passed=[1-9][0-9]* failed=0 skipped=2")
+            r"QA_RESULT passed=[1-9][0-9]* failed=0 skipped=0")
+        run(base + ["res://scripts/tests/TestRunner.tscn"], env, r"(?m)^PASSED: [1-9][0-9]* passed, 0 failed")
         run(base + ["--quit-after", "60"], env, r"\[The Forensic Ward\] Boot OK")
         run(base + ["res://tests/audio/TestAudio.tscn"], env, r"AUDIO_RESULT passed=[1-9][0-9]* failed=0")
         run(base + ["res://scenes/audio/Ch1AudioSequence.tscn", "--", "--exit-when-done"], env,
             r"(?s)corridor ambience \(day\).*secure door.*pager.*SUBTITLE ch1_b2_bennett_001.*"
             r"SUBTITLE ch1_b2_bennett_003.*night shift.*SUBTITLE ch1_b6_intercom_001.*unease transition.*CH1_SEQUENCE_DONE")
-    print("All executed checks passed; 2 gameplay coverage gaps remain (see docs/TESTING.md).")
+    print("All executed checks passed (see docs/TESTING.md).")
 
 
 if __name__ == "__main__":

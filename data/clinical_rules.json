@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1",
+  "rules": [
+    {
+      "id": "clinical_rule_catatonia_escalation_v1",
+      "review_status": "PENDING_PSYCHIATRIST_REVIEW",
+      "trigger_action": "evaluate_catatonia",
+      "patient_id": "pt_elias_ward",
+      "condition": {
+        "observations_present": [
+          "obs_mutism",
+          "obs_posturing"
+        ]
+      },
+      "non_medical_effects": [
+        "mark_assessment_started"
+      ],
+      "medical_effects": [],
+      "source_catalog_ids": [
+        "ref_sims_7",
+        "ref_kaplan_12"
+      ],
+      "notice": "No dose, prescribing, or treatment algorithm is approved in this fixture."
+    }
+  ]
+}

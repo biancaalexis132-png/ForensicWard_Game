@@ -1,51 +1,81 @@
 # The Forensic Ward
 
-A 3D psychological thriller / clinical forensic psychiatry simulator built in **Godot 4.7** (Forward+ renderer).
+A first-person psychological thriller and forensic psychiatry simulation for **macOS**, built in **Godot 4.7** (GDScript, Forward+ renderer).
 
-## Getting the project onto your computer (first time)
+- Design: `docs/design/` (Master GDD v0.1, engineering handoff)
+- Sprint 1 report (file tree, architecture, test checklist): `docs/SPRINT_01.md`
+- Clinical review record: `docs/clinical_review_log.md`
 
-You need two free programs: **Godot 4.7** and **GitHub Desktop**.
+## macOS setup
 
-1. Install **GitHub Desktop** from https://desktop.github.com and sign in with your GitHub account.
-2. In GitHub Desktop, choose **File → Clone repository…**, pick `biancaalexis132-png/ForensicWard_Game` and choose a local folder (for example `Documents/ForensicWard_Game`). Click **Clone**.
-3. Open **Godot**. In the Project Manager, click **Import**, browse to the cloned folder, select `project.godot`, then click **Import & Edit**.
-4. Press **F5** (Mac: **Cmd + B**), or click the ▶ Play button at the top right, to run the game. Click inside the game window so it receives key presses. You should see a dim room and a clinical monitor for sample patient PT-001:
-   - Press **N** a few times to end shifts. Watch the clozapine level climb and a sedation alert appear, because the ward is smoke-free and the patient's CYP1A2 induction wears off.
-   - Press **R** to cut clozapine to 300 mg/day, then keep pressing **N**. Sedation falls and a story clue unlocks.
-   - Press **O** and **P** to drain and restore Objectivity.
+You need two free programs:
 
-## Keyboard shortcuts
+1. **Godot 4.7 (standard, not .NET).** Download it from <https://godotengine.org/download/macos/>, open the `.zip`, and drag **Godot.app** into **Applications**.
+   - On first launch, if macOS says the app "can't be opened", **right-click Godot.app → Open → Open**. You only need to do this once.
+2. **GitHub Desktop.** Download it from <https://desktop.github.com> and sign in with your GitHub account.
 
-| Action | Windows / Linux | Mac |
-|---|---|---|
-| Run the game | F5 | Cmd + B |
-| Run the open scene (tests) | F6 | Cmd + R |
-| Stop the game | F8 | Cmd + . |
-| Save | Ctrl + S | Cmd + S |
+### Get the project
 
-## Getting updates
+1. In GitHub Desktop, click **File → Clone repository…**, choose `biancaalexis132-png/ForensicWard_Game`, pick a folder and click **Clone**. Skip this if you've already cloned it.
+2. To test a branch before it's merged (for example Sprint 1), click **Current Branch** at the top of GitHub Desktop and choose the branch, such as `claude/sprint-01-foundation`. Then click **Fetch origin**.
+3. Open Godot. If the project is already in the Project Manager list, double-click **The Forensic Ward**. Otherwise click **Import**, select the `project.godot` file in the cloned folder, and click **Import & Edit**.
+4. The first import takes a few seconds. The **Output** panel should show no red errors.
 
-When new code is pushed to GitHub, open GitHub Desktop and click **Fetch origin** and then **Pull origin**. Godot reloads the changed files on its own. If it asks, click **Reload**.
+### Run the game
 
-If you change things in Godot (scenes, settings), GitHub Desktop lists the changed files. Write a short summary, click **Commit to main** and then **Push origin**.
+- Press **Cmd + B**, or click **▶** at the top right of the editor.
+- Click inside the game window once so it captures the mouse.
+- To stop, press **Cmd + .** or close the window.
+
+| Control | Action |
+|---|---|
+| W A S D (or arrow keys) | Walk |
+| Shift | Walk faster |
+| Mouse | Look around |
+| E | Use the door / terminal / document / person under the crosshair |
+| Esc | Close the open panel, or open the pause menu (save, load, accessibility, quit) |
+| F1 | Pause menu (accessibility options) |
+| J / Tab | EHR / evidence board (placeholders until Sprints 2–3) |
+
+If the game shows **"Content validation failed"**, a file in `data/` has an error. The screen lists the file, the JSON path and what to fix.
+
+### Run the automated tests
+
+- **In the editor:** in the FileSystem panel, double-click `scripts/tests/TestRunner.tscn`, then press **Cmd + R** (Run Current Scene). The results appear on screen and in the **Output** panel.
+- **In Terminal:** from the project folder, run:
+  ```bash
+  /Applications/Godot.app/Contents/MacOS/Godot --headless --path . res://scripts/tests/TestRunner.tscn
+  ```
+  Exit code `0` means every test passed.
+
+### Renderer
+
+The project uses **Forward+** (Metal on Apple Silicon). If your Mac shows rendering problems or low frame rates, go to **Project → Project Settings → Rendering → Renderer → Rendering Method**, choose **mobile** (or **gl_compatibility** for older Intel GPUs), and restart the editor.
 
 ## Project layout
 
-| Folder | Contents |
-|---|---|
-| `autoload/` | Global singletons, always loaded: `EventBus` (signal hub) and `GameState` (save data, time, Objectivity) |
-| `systems/pharmacology/` | `PharmacologyEngine` (autoload): CYP/renal pharmacokinetics, side effects, QTc, alerts. See `docs/PHARMACOLOGY_ENGINE.md` |
-| `tests/` | Scenario tests. Open `tests/TestPharmacology.tscn` and press **F6** (Mac: **Cmd + R**) |
-| `docs/` | System documentation and the patient JSON schema |
-| `scenes/` | `.tscn` scenes; `scenes/main/Main.tscn` is the current boot scene |
-| `systems/` | Gameplay logic: PharmacologyEngine, Bleed system and similar |
-| `player/` | First-person controller |
-| `ui/` | EHR terminal, evidence board, HUD |
-| `data/patients/`, `data/drugs/` | JSON data authored by the narrative / clinical team |
-| `shaders/` | Visual distortion shaders (chromatic aberration, flicker) |
+```
+data/                  Authored JSON content (validated at boot)
+docs/                  Design docs, sprint reports, clinical review log
+scenes/main/           Main.tscn: composition root (world + player + UI)
+scenes/world/          HospitalGreybox.tscn and modular rooms/
+scenes/player/         FirstPersonController.tscn
+scenes/props/          Door, Terminal, CluePickup, Character, furniture
+scenes/ui/             HUD, InfoPanel, PauseMenu
+scripts/autoload/      Manager singletons (EventBus, ContentRegistry, TimeManager, ...)
+scripts/content/       JSON schemas and validator
+scripts/dialogue/      IntentMatcher (bounded free-text matching)
+scripts/player/        First-person controller
+scripts/interaction/   Interactable component
+scripts/world/         Room builder, doors, terminals, pickups, characters
+scripts/ui/, main/     UI controllers, Main
+scripts/tests/         TestRunner + test_*.gd suites
+staging/               Approved modules awaiting integration (ignored by Godot)
+```
 
-## Architecture rules
+## Ground rules
 
-- Systems communicate **only through `EventBus` signals** and never hold direct references to each other.
-- Persistent facts live in `GameState`. Game rules live in `systems/`.
-- Clinical and story content is data (JSON) and is never hard-coded.
+- Clinical rules are data with a `review_status`. Rules not marked `APPROVED` never apply in validated builds (GDD §8).
+- Authored content (`data/`) is immutable at runtime; managers own run state, and `SaveManager` saves it.
+- Systems talk through `EventBus` signals, never through each other's internals.
+- All patient data is fictional.

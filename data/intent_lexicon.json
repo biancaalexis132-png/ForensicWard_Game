@@ -1,0 +1,14 @@
+{
+	"schema_version": "0.1",
+	"notes": "Bounded free-text matching. Words are reduced to a canonical token, and stopwords are dropped before scoring against authored dialogue intents. Authored data: no clinical claims.",
+	"stopwords": ["a", "an", "the", "is", "are", "was", "were", "be", "he", "she", "they", "him", "her", "them", "his", "hers", "their", "you", "your", "i", "me", "my", "we", "us", "it", "its", "do", "does", "did", "doing", "can", "could", "would", "will", "should", "about", "of", "to", "for", "with", "on", "in", "at", "and", "or", "any", "anything", "how", "what", "why", "when", "where", "who", "there", "this", "that", "please", "tell", "ask", "asking", "been", "has", "have", "had", "much", "well", "ok", "okay", "doctor", "patient", "mr"],
+	"synonyms": {
+		"eating": ["eat", "eats", "ate", "eaten", "food", "meal", "meals", "intake", "hungry", "hunger", "appetite", "nutrition", "lunch", "breakfast", "dinner"],
+		"fluids": ["drink", "drinks", "drinking", "drank", "water", "fluid", "hydration", "hydrated", "thirsty"],
+		"motor": ["movement", "movements", "moving", "move", "moves", "posture", "posturing", "stiff", "rigid", "rigidity", "frozen", "still", "motionless"],
+		"exam": ["examine", "examination", "check", "assess", "assessment", "evaluate", "evaluation", "test"],
+		"ward": ["wing", "unit"],
+		"zero": ["0", "w0"],
+		"old": ["former", "historic", "historical", "sealed", "closed"]
+	}
+}

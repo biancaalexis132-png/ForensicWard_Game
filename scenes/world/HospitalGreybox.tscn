@@ -1,0 +1,126 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/HallwaySegment.tscn" id="1_hallwaysegment"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/Office.tscn" id="2_office"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/RecordsArchive.tscn" id="3_recordsarchive"]
+[ext_resource type="PackedScene" path="res://scenes/world/rooms/InterviewRoom.tscn" id="4_interviewroom"]
+[ext_resource type="PackedScene" path="res://scenes/props/Door.tscn" id="5_door"]
+[ext_resource type="PackedScene" path="res://scenes/props/Desk.tscn" id="6_desk"]
+[ext_resource type="PackedScene" path="res://scenes/props/Terminal.tscn" id="7_terminal"]
+[ext_resource type="PackedScene" path="res://scenes/props/Character.tscn" id="8_character"]
+[ext_resource type="Script" path="res://scripts/world/FlickerLight.gd" id="9_flickerlight"]
+
+[sub_resource type="Environment" id="Environment_ward"]
+background_mode = 1
+background_color = Color(0.02, 0.025, 0.03, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.55, 0.6, 0.62, 1)
+ambient_light_energy = 0.15
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+glow_intensity = 0.4
+fog_enabled = true
+fog_light_color = Color(0.32, 0.36, 0.38, 1)
+fog_density = 0.012
+
+[node name="HospitalGreybox" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ward")
+
+[node name="PlayerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2)
+
+[node name="Rooms" type="Node3D" parent="."]
+
+[node name="HallwayA" parent="Rooms" instance=ExtResource("1_hallwaysegment")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+open_sides = 1
+openings = Array[Vector4]([Vector4(2, -2, 1.2, 2.2)])
+
+[node name="HallwayB" parent="Rooms" instance=ExtResource("1_hallwaysegment")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+open_sides = 3
+openings = Array[Vector4]([Vector4(3, -2, 1.2, 2.2)])
+
+[node name="HallwayC" parent="Rooms" instance=ExtResource("1_hallwaysegment")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+open_sides = 2
+light_spacing = 8.0
+openings = Array[Vector4]([Vector4(2, 3, 1.2, 2.2), Vector4(0, 0, 1.2, 2.2)])
+
+[node name="Office" parent="Rooms" instance=ExtResource("2_office")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0, -6)
+
+[node name="RecordsArchive" parent="Rooms" instance=ExtResource("3_recordsarchive")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -17)
+light_energy = 0.7
+
+[node name="InterviewRoom" parent="Rooms" instance=ExtResource("4_interviewroom")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -16)
+light_color = Color(1, 0.94, 0.85, 1)
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="OfficeDoor" parent="Doors" instance=ExtResource("5_door")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -2, 0, -5.45)
+door_id = "door_office"
+display_name = "Office door"
+
+[node name="InterviewDoor" parent="Doors" instance=ExtResource("5_door")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2, 0, -13.45)
+door_id = "door_interview"
+display_name = "Interview room door"
+open_angle_degrees = -100.0
+
+[node name="ArchiveDoor" parent="Doors" instance=ExtResource("5_door")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -2, 0, -16.45)
+door_id = "door_archive"
+display_name = "Records archive door"
+required_access = "access_records_archive"
+locked_message = "Records Archive: badge access required. Ask the charge nurse."
+
+[node name="WardZeroDoor" parent="Doors" instance=ExtResource("5_door")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0, -23.925)
+door_id = "door_w0b"
+display_name = "W0-B door"
+required_access = "access_ward_zero"
+locked_message = "W0-B: sealed. Your badge is not recognised."
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="NurseStationDesk" parent="Props" instance=ExtResource("6_desk")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 1.5, 0, -9.6)
+
+[node name="SecurityPanel" parent="Props" instance=ExtResource("7_terminal")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -1.45, 0, -21.6)
+terminal_id = "security_panel_w0"
+title = "Security Access Log"
+mode = 1
+clue_id = "clue_access"
+
+[node name="Characters" type="Node3D" parent="."]
+
+[node name="NurseBennett" parent="Characters" instance=ExtResource("8_character")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, -11.2)
+kind = 0
+character_id = "staff_bennett"
+
+[node name="DrVoss" parent="Characters" instance=ExtResource("8_character")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3.4)
+kind = 0
+character_id = "staff_voss"
+
+[node name="EliasWard" parent="Characters" instance=ExtResource("8_character")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6, 0, -16.8)
+kind = 1
+character_id = "pt_elias_ward"
+
+[node name="WardZeroFlicker" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, -22.8)
+light_color = Color(0.8, 0.95, 0.9, 1)
+omni_range = 5.0
+shadow_enabled = true
+script = ExtResource("9_flickerlight")
+base_energy = 0.9
