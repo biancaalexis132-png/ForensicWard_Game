@@ -6,7 +6,7 @@ This is the **current-session** handoff: it is rewritten throughout a session so
 
 ## 12. Latest handoff timestamp
 
-2026-10-17 21:12 UTC · Claude Code · visual direction review session (start of session)
+2026-10-17 21:30 UTC · Claude Code · visual direction review session (character review done)
 
 ## 1. Current objective
 
@@ -21,11 +21,13 @@ Art-direction and asset review (no implementation): compare the character refere
 
 ## 3. Completed work
 
-- Session started, repository cloned, branch created, handoff files created.
+- Session started, repository cloned, branch created, handoff files created (commit `2e9dfca`).
+- Canon sources located: GDD v0.1 §5/§12 (`docs/design/*.docx`), design bible v1.1 + package `03_CLINICAL_PATIENTS_AND_RULES.md`, `09_SUPERNATURAL…` (project upload zip `/mnt/project-files/uploads/hearth/451cb4fc-e48e-46c2-8359-778bcc4e55ed`, NOT in the repo), `data/staff.json`, `data/patients.json`, `audio/voice_profiles.json`, `docs/F0_FOUNDATION_AUDIT.md` C4/C5.
+- Character package reviewed (6 sheets, ensemble board, guide PDF, README). Key findings: Bennett portrait does not match written casting; Voss looks too young, wrong jacket; Hale in tactical vest (violates guardrail); Rahman role conflict pre-exists in canon (pharmacist vs psychiatrist, C4); Elias and Mara portraits dishevelled, contradicting the clinical record ("appearance neat" / "clean"); ensemble board mislabels roles/ages and codes both patients as "Ward Zero" and otherworldly (must be rejected).
 
 ## 4. Current progress
 
-Stopped at: about to read the character reference package.
+Stopped at: character review done; next is Ward Zero boards.
 
 ## 5. Remaining tasks (priority order)
 
@@ -55,7 +57,7 @@ Stopped at: about to read the character reference package.
 
 ## 10. Next actions
 
-1. Read `assets/creative_references/Visual_References/Individual_Characters/README_CHARACTER_ASSETS.md` and the guide PDF.
+1. View the four `Ward_Zero/*.png` boards and the two `Concept_Boards/*.png`.
 
 ## 11. Creative constraints (standing)
 
