@@ -1,65 +1,55 @@
 # AI session handoff (living document)
 
-Updated 2026-10-17 · Codex · protagonist specification and save QA.
+Updated 2026-10-17 · Codex · immediate owner-requested continuity checkpoint.
 
-## Objective and last completed milestone
+## Current objective and exact stopping point
 
-Continued the existing game without redesigning foundations. Reconciled main, delivered a phased protagonist specification, and completed four independent save-compatibility regression tests. Full development QA passed. No creator, personality system, clinical effect, visual asset, runtime or save schema change was implemented.
+Complete authorized P1 validation, record D1–D3 character canon and reference regeneration, propose Chapter 1 opening alignment and compare the Elias screenplay **summary**. Current code/proposals are written; full combined QA and image generation/correction are still running. No Chapter 1 content/rules/beat timing or save version has been changed. Before any new substantial task, this checkpoint is being committed/pushed with permanent shared continuity rules.
 
-## Repository and remote checkpoint
+## Branch and verified checkpoints
 
-- Branch: `codex/protagonist-foundation-cont-1`, based on verified `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125` (PR #28 merge).
-- Latest verified implementation commit: `01739ff70136d191704b694fbf32d6b9e28ee26d` “Guard save rejection and optional provider compatibility”; pushed, and `git ls-remote origin refs/heads/codex/protagonist-foundation-cont-1` returned that exact SHA. A documentation-only final checkpoint follows it; resolve the final remote tip with the same command.
-- Prior checkpoint `2d30785b3394d7faf5fc5826bf8a460e0a591277` contains reconciliation and proposal.
-- PR: **not created**. `gh pr create --draft --base main --head codex/protagonist-foundation-cont-1 --title ... --body-file /workspace/protagonist-foundation-pr.md` failed: `Post "https://api.github.com/graphql": Forbidden`. REST listing also fails; direct API CONNECT is denied with 403. Current open PRs/reviews and hosted CI remain unverified.
-- F0 #20, F1 #21, F2 #26 and visual review #28 are merged. No merge or push to main was performed.
-- Historical soundtrack PR #27 (`claude/ashcroft-soundtrack`) and off-repository Stage 6 environment thread remain coordination reservations. Pull refs exist but do not establish open status. No overlap with their files.
-- Working tree after import cleanup: intended changes committed; generated reference `.import` companions removed because absent at clean baseline; ignored `.godot/` retained. No pre-existing changes were present.
+- Active branch: `codex/character-canon-opening-cont-1`, stacked on `codex/protagonist-schema-p1`; current pre-checkpoint HEAD `16b9761d8528f807caa8f10d76fcfeb9db7b5683`.
+- Latest verified remote P1 commit: `16b9761d8528f807caa8f10d76fcfeb9db7b5683`, pushed to `codex/protagonist-schema-p1`, confirmed by `git ls-remote`.
+- Main fetched at `dd247bed93fca9bb95cbf2864eae964975358c23` (PR #29 merged the earlier proposal/save tests).
+- Owner-confirmed PR #27 conflicts were resolved against that main. Original `claude/ashcroft-soundtrack` was fast-forward updated and verified at **`412b5010c8ccd8ba0e19e983b4346b5d90482d34`**. No agent merge or push to main. PR link: https://github.com/biancaalexis132-png/ForensicWard_Game/pull/27.
+- New P1/canon PRs are not created; current enforced network policy blocks `api.github.com` (CONNECT 403), although Git fetch/push works. Domain requirement is already saved in environment draft, not applied. Do not request a duplicate token or bypass proxy.
 
-## Files and workstream ownership
+## Last completed milestones
 
-Created `docs/REPOSITORY_RECONCILIATION.md`, `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md`, `scripts/tests/test_save_compatibility.gd` and `.uid`. Updated `docs/PROJECT_STATUS.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/design/GDD_AMENDMENTS.md`, this file and append-only `docs/AI_HANDOFF.md`. These are the only changed paths versus main. Claim is complete, awaiting review; do not take audio/environment/character-model ownership from this entry.
+1. PR #27 continuity conflicts combined without losing either workstream; preserved pushed history. A timing-sensitive existing audio test was diagnosed (3.4s sound took up to 3.804s to free) and changed to a bounded actual-player cleanup wait, retaining leak assertions. Full QA on `7feb43e` passed: Python 6+3+3, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 112/0, boot OK, audio 334/0 and complete Chapter 1 playback. Main then gained four save tests/docs via #29; combined TestRunner passed 116/0 on `f59da08`.
+2. P1 modules, synthetic fixtures and 15 tests are committed/pushed at `16b9761`. Import passed and TestRunner **131 passed / 0 failed**. Pure creation-draft/catalog validation only: no authored options, ContentRegistry hook, provider, creator UI, personality system or save-schema change.
+3. D1–D3 canon and two comparison proposals are drafted locally. Voice metadata changes only Rahman's direction from Clinical pharmacist to Consultant psychiatrist; all voice/line IDs, speed/language/FX/recordings unchanged. Hale staff title already correct; Rahman is absent from staff data and no speculative record is added.
 
-## Technical findings and decisions
+## Files changed / work in progress
 
-Actual runtime save version is 3 with v1→v2 chapter and v2→v3 zone migrations. ContentRegistry owns the immutable campaign catalog, not a separate `campaign` save provider (the historical F1 proposal differs). Keep the existing provider/checksum architecture. New tests prove rejected files preserve current providers, seed and successful-load events, added providers reset when absent, real legacy fixtures remain compatible, and added provider state round-trips/resets.
+P1 pushed files: `scripts/protagonist/{ProtagonistSchemas,ProtagonistValidator}.gd` + UIDs, `scripts/tests/test_protagonist.gd` + UID, `scripts/tests/fixtures/protagonist/*`, `docs/design/PROTAGONIST_INPUT_CONTRACT.md`, proposal/ID/continuity updates.
 
-Owner-approved requirements are recorded in GDD amendments: fixed psychiatrist role, customizable professional/appearance background, moderate personal life, emergent personality and equal essential care/evidence/outcome access. The proposed provider, v4 migration, catalog, UI and callback design are **not approved implementation**. P1 is the next review gate.
+Current uncommitted canon/proposal work (to commit next): `audio/voice_profiles.json`, reference README; `docs/design/GDD_AMENDMENTS.md`, `VISUAL_PRODUCTION_REVIEW.md`; new `CHARACTER_VISUAL_CANON.md`, `CHARACTER_REFERENCE_REGENERATION.md`, `CHAPTER1_OPENING_ALIGNMENT.md`, `ELIAS_EVALUATION_DRAFT_COMPARISON.md`; owner decision record under `docs/design/decisions/`; new ignored-for-Godot candidate reference folder. Original artwork/PDF/GDD binaries remain unchanged. Generated `.import` companions under reference folders are tool outputs absent at the initial baseline; clean only those untracked outputs before final commit. Never delete existing tracked imports.
 
-## Validation
+Shared continuity addition now prepared: `AGENTS.md` §9 and the explicit both-agent scope sentence in `CLAUDE.md`; this preserves prior rules and requires checkpointing after each significant milestone.
 
-From `/workspace/ForensicWard_Game`:
+## Running validations and reference generation
 
-`python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`
+- Full combined command from repo root: `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`; running, log `/tmp/forensic-p1-canon-final-qa.log`, shell session 21770. Do not claim completion until exit status and final runner marker are verified.
+- A clean isolated opening probe confirmed `clue_access` can fire `ch1_w0b_unease` on day shift with zero Elias observations/notes. This is event-gating evidence, not a manual playthrough. Probe/log are local `/tmp/forensic-opening-probe.gd` and `.log`; final deferred teardown is clean.
+- Generated Bennett reference candidate is local `/workspace/generated_images/exec-446a72d7-2b17-48c0-a999-f6779616a27b.png`; original source remains in Git. Other candidates are generating via tool cell 109. Voss and Elias initial outputs introduced unsupported height/biographical or DOB/prop text; corrective edits are running in cell 117. Do not promote those initial outputs as approved canon or copy them as final candidates.
+- Prompts are local `/workspace/character-generation-prompts.json` and `/workspace/character-correction-prompts.json`. Before finishing, copy inspected final candidates, exact prompts and a hash/provenance manifest into `assets/creative_references/Visual_References/Individual_Characters/Regenerated_2026_10_17/` (has `.gdignore`). Keep original generated files in place. Candidate faces/geometry are not final casting or riggable models. Record unresolved details and visual review limitations honestly.
 
-- Baseline on `fb07887`: exit 0; Python 6+3+3 passed; pharmacology 0 failures; QA 19/0/0; GLB 138/138; TestRunner 112/0; main boot OK; audio 271/0; complete Chapter 1 sequence.
-- Development tree matching `01739ff` (only later docs changed): exit 0; same checks, TestRunner **116 passed / 0 failed**. `CH1_SEQUENCE_DONE` and `All executed checks passed` observed. New test file was unchanged between run and commit. Four new tests include five rejection variants.
-- `git diff --check` passed. Test slot 99 and isolated temporary XDG directories used by the standard runner. No real saves touched.
-- Initial system-Godot run failed the version gate (4.6.3); corrected by SHA-512-verified official 4.7 install. It is not an unresolved test failure.
-- Expected rejection/tamper warnings occur in negative tests; Python mock-server socket ResourceWarnings are non-fatal. No unexplained failures or skipped checks.
-- Local logs `/tmp/forensic-ward-qa.log` and `/tmp/forensic-ward-development-qa.log` are not GitHub artifacts. Hosted CI not observed. Mac Forward+/Metal appearance, input, listening and memory/frame time remain untested.
+## Owner decisions and missing resources
 
-## Cloud setup
+D1 **Consultant Psychiatrist** for Rahman; D2 **Security Director** for Hale; D3 written guide authority, including Bennett Black woman/Rahman South Asian woman, are explicitly approved by the owner’s pasted file. **D4–D9 stay unresolved**, including Mara voice and missing v1.1 bible. No new clinical rule is approved. Fixed psychiatrist protagonist, moderate personal life and emergent personality remain approved requirements; later implementation phases are separate scopes.
 
-Godot 4.7 standard lives outside checkout at `/workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`; system `godot` is 4.6.3 and must not be used. Python/ffmpeg already available. No persistent server is needed. Installation/QA script and startup instructions were saved in the environment draft; additive custom network domain `api.github.com` was saved, preserving package-manager presets. Saving does not apply runtime changes or publish. Review/save environment settings and publish through the UI, then retry PR access using existing authentication before considering credential requirements. No token is requested.
+The owner approved a realistic first 20–25 minutes (arrival, Bennett handoff, substantial Elias clinical encounter, small administrative discrepancy, subtle infrastructure inconsistency), explicitly **not** overwriting the current chapter. Existing late-shift intercom day 1 + night + 15 in-game minutes, `pt_elias_ward`, beat IDs and review flags must remain.
 
-## Blockers and owner approvals
+The owner confirmed the full Elias screenplay is currently in ChatGPT, not in the repository/PR, and will be supplied standalone. Continue the requirements/approval mapping now; defer line-by-line review until supplied. Do not infer approved exam findings, refusal or normal suicide-risk findings from silence, and never causally link symptoms to the supernatural.
 
-- The private v1.1 design-bible/clinical package is unavailable here and absent from Git. Available GDD DOCX, engineering contract, character PDF, reference guides and current code/data were inspected; missing canon was not reconstructed.
-- Visual D1–D9 remain open: Rahman role, Hale title, written casting, Ward Zero date/signatory, 02:17 link, Mara voice, station layout, superseded boards and committing the bible.
-- F0 C2 Concordance/chapter titles, C6 Bleed, C7 pharmacology clue gates, C11 original music export and precise anomaly mechanism remain unresolved. Pending clinical content remains pending. F3 is not implemented.
-- Next substantial change needs owner review of `PROTAGONIST_CUSTOMIZATION_PLAN.md`, specifically P1 catalog/schema and pure validator scope. Fixed psychiatrist role/moderate personal life/emergent personality are already approved and should not be re-asked.
+Private v1.1 bible is unavailable; do not reconstruct it. Mac rendering/input/listening/frame time and optional generation dependencies remain untested. Hosted CI unobserved. Related soundtrack/environment/Stage 6 owners retain their files; this workstream edits no scene, zone, clinical rule or Chapter 1 dialogue/data file.
 
 ## Exact next steps
 
-1. Read AGENTS.md, CLAUDE.md, current status/progress, reconciliation, proposal and newest append-only handoff. Fetch origin and compare this branch/main; do not reset or rewrite pushed commits.
-2. Once API domain access is applied, retry `gh pr list --state open`, inspect relevant reviews, then open a **draft** PR from this branch to main with the prepared description (local `/workspace/protagonist-foundation-pr.md`, or reconstruct from this handoff and committed changes). Recheck PR state before creating a duplicate. Do not merge.
-3. Obtain owner approval for P1. After approval, implement only immutable option schema and pure profile validation with synthetic test fixtures; no creator UI, save version bump, personality scoring, casting changes or new clinical/narrative canon in P1.
-4. For later P2, capture real v3 save before adding a provider, implement explicit v3→v4 migration and test full v1/v2/v3 compatibility. Follow the plan’s small PR sequence, maintaining clinical independence and equal mandatory access.
-5. Before any environment/audio/visual task, verify the reserved external workstreams. Request the actual missing bible through the owner’s normal file workflow before relying on it. Mac checks require the owner’s hardware.
-
-## Active continuation — P1 / character canon / opening alignment
-
-Owner approved P1 by replying “continue” to the P1 scope question. Branch `codex/protagonist-schema-p1` starts at latest fetched main after PR #29. Claimed: new `scripts/protagonist/ProtagonistSchemas.gd`, `ProtagonistValidator.gd`, new `scripts/tests/test_protagonist.gd` and synthetic fixtures; input-contract docs, ID registry and own continuity updates. No runtime hooks or save-version change. Baseline 116/0 verified this session. P1 code is applied; import and all 131 TestRunner tests passed (15 new). Full standard QA will run after the separately authorized canon metadata change, validating the unchanged P1 modules too.
-
-The owner also confirmed PR #27: conflicts were resolved, tested and pushed to `claude/ashcroft-soundtrack` (see its remote tip; no agent merge). Separate upcoming commits will record owner-approved character D1–D3, correct only clearly determined metadata, prepare reference regeneration specs/candidates, and propose alignment with the approved Chapter 1 opening. D4–D9 and unapproved clinical rules remain untouched. No Chapter 1 scene/data/dialogue rewrite is authorized by the opening-direction approval.
+1. Verify this checkpoint push via `git ls-remote origin refs/heads/codex/character-canon-opening-cont-1`; record actual remote SHA. Commit/push the existing coherent canon/proposal files next, explicitly marking tests/candidates pending.
+2. Poll shell session 21770 or inspect `/tmp/forensic-p1-canon-final-qa.log`; require exit 0 and `All executed checks passed`. Diagnose any failure without disabling assertions. P1 import/TestRunner already passed 131/0.
+3. Finish/inspect reference generation and corrections, preserve old art, copy only reviewed candidates with exact prompt/hash manifest. Mark unapproved faces/details and D4–D9 clearly. No 3D production or automatic scene replacement.
+4. Finalize the canon/opening/Elias comparison docs and checkpoint all four continuity files after the validation/image milestone. The full screenplay line review waits for the owner's standalone file.
+5. Fetch main before final push, detect newer merges, resolve only supported conflicts while preserving history and current work. Push feature branches, verify exact SHAs; create draft PRs only if API access is applied. Never push main or auto-merge.
+6. End with the owner's CODEX SESSION HANDOFF fields. P2 persistence/provider and actual opening/clinical implementation remain separate review tasks; do not silently start a major rewrite.

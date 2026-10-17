@@ -44,3 +44,10 @@ Implementation and proposal are pushed; no unexplained QA failures. Draft PR cre
 - **Completed in feature branch:** pure protagonist catalog/creation-draft schema and validation, synthetic fixtures, 15 new tests. Import passed; TestRunner 131 passed / 0 failed. No shipped choices, gameplay hooks or save version change. Paths: `scripts/protagonist/`, `scripts/tests/test_protagonist.gd`, `docs/design/PROTAGONIST_INPUT_CONTRACT.md`.
 - **PR #27 conflicts resolved:** original soundtrack branch fast-forward pushed and verified at `412b5010c8ccd8ba0e19e983b4346b5d90482d34`; no agent merge. Full audio validation 334/0 and combined gameplay tests 116/0.
 - **Upcoming authorized work:** owner’s pasted character decision approves D1–D3; canon/metadata and regeneration documentation/candidates follow separately. New Chapter 1 opening direction requires comparison/proposal only, preserving current scenes/data/dialogue. D4–D9 remain unresolved.
+
+## Immediate continuity checkpoint — owner instruction, 2026-10-17
+
+- **Completed/pushed:** PR #27 conflict resolution at `412b501`; P1 pure validation at `16b9761`, import/TestRunner 131/0.
+- **In progress:** full combined QA (log `/tmp/forensic-p1-canon-final-qa.log`); D1–D3 canon/metadata documentation; corrected six character reference candidates/provenance; opening alignment and Elias screenplay-summary comparison. No clinical or Chapter 1 implementation activated.
+- **New permanent rule:** `AGENTS.md` §9 and explicit both-agent continuity scope in `CLAUDE.md`; shared checkpoint frequency applies to Codex and Claude.
+- **Pending:** image correction/inspection, final manifest, final QA completion and verified feature pushes. Full Elias script will be supplied standalone later; line review is deferred, not blocked on an unknown Git location. D4–D9 and clinical material remain unapproved. Exact resume steps and local/remote file distinction are in `AI_SESSION_HANDOFF.md`.

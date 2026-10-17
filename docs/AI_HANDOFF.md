@@ -56,6 +56,16 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 · Codex · Immediate shared continuity checkpoint
+
+- **Branch:** `codex/character-canon-opening-cont-1`, stacked on P1. Pre-checkpoint HEAD/latest verified P1 remote: `16b9761d8528f807caa8f10d76fcfeb9db7b5683`; `git ls-remote origin refs/heads/codex/protagonist-schema-p1` confirmed it.
+- **PRs:** PR #27 original branch updated and verified at `412b5010c8ccd8ba0e19e983b4346b5d90482d34`; PR #29 merged on main. New P1/canon PRs not created (API proxy restriction). No main push/agent merge.
+- **Completed:** PR #27 conflicts resolved/tested; P1 pure validation imported and 131/0 TestRunner passed. Permanent both-agent checkpoint rules prepared in AGENTS §9/CLAUDE, preserving earlier rules.
+- **Unfinished:** full combined QA still running; local D1–D3 canon/metadata docs, opening proposal and Elias-summary mapping await next coherent commit; six reference candidates/corrections and provenance manifest are not yet complete or pushed. Current precise paths and pending local files are listed in the living handoff.
+- **Tests:** full soundtrack QA exit 0 (audio 334/0, TestRunner 112/0), combined latest-main TestRunner 116/0; P1 import and TestRunner 131/0. Full combined QA log `/tmp/forensic-p1-canon-final-qa.log` is running, not passed yet. Mac/hosted CI unobserved. Initial fixed-timer audio failure was diagnosed/corrected, not hidden.
+- **Approvals/dependencies:** owner explicitly approved D1–D3 and opening direction, not clinical screenplay logic or chapter overwrite. Full screenplay remains in ChatGPT; owner will provide standalone text. D4–D9, pending clinical content and private v1.1 bible remain open/unavailable. Generated face/details are candidates only.
+- **Next exact action:** verify this checkpoint push, commit existing canon/proposal work, complete session 21770 QA and image cells 109/117, inspect/copy candidates with manifest, then update/push handoff again. `docs/AI_SESSION_HANDOFF.md` contains commands, file lists and exact resume steps. Do not begin new substantial tasks before those checkpoints.
+
 ### 2026-10-17 · Codex · Protagonist proposal and save QA complete
 
 - **Branch:** `codex/protagonist-foundation-cont-1`, based on `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125`.

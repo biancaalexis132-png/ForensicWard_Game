@@ -102,3 +102,7 @@ Headless checks do not cover these. They stay here until the owner confirms them
 PR #29 merged the proposal/save QA into main at `dd247bed93fca9bb95cbf2864eae964975358c23`. Owner approved P1 with “continue”. `codex/protagonist-schema-p1` adds only pure creation-draft/catalog contracts and synthetic tests: import passed, TestRunner 131/0 (15 new). No provider/save-schema/creator/gameplay change. Later phases remain proposed.
 
 PR #27’s conflicts against that main were resolved and pushed to `claude/ashcroft-soundtrack` at `412b5010c8ccd8ba0e19e983b4346b5d90482d34`; code was not merged to main by the agent. Full audio QA passed 334/0; the latest-main combined TestRunner passed 116/0. Hosted PR/CI status remains API-blocked. Character D1–D3 and opening-direction updates received this session are being recorded in a separate canon/proposal checkpoint.
+
+## Current continuation checkpoint
+
+P1 import and TestRunner passed **131/0** and are pushed at `16b9761` on `codex/protagonist-schema-p1`. PR #27 conflicts were resolved/pushed at `412b501` (full soundtrack audio 334/0; latest-main TestRunner 116/0), without an agent merge. Full combined P1/canon QA is running and is not yet claimed complete. Owner-approved D1–D3 and first-20–25-minute opening direction are being recorded; Elias screenplay summary remains pending clinical review and the full text is off-repository. Candidate artwork is under generation/correction, not final models/casting.

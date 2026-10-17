@@ -124,3 +124,13 @@ The entry must let the next agent resume without asking anyone: branch, verified
 - **Claude Code** reads `CLAUDE.md`, which points here. Cloud sessions run in a disposable container: anything not pushed is lost.
 - **Codex** reads `AGENTS.md` directly. Codex's PR review can be requested with the comment in `docs/TESTING.md`; it must not merge.
 - Agent-specific instructions go in that agent's own file and may only add detail. They may not loosen any rule here.
+
+## 9. Continuous checkpoints — Codex and Claude (owner instruction, 2026-10-17)
+
+These requirements apply equally to **OpenAI Codex and Claude Code**, including future sessions. They supplement every rule above and the continuity protocol in `CLAUDE.md`; they do not replace existing instructions.
+
+- Update `docs/AI_SESSION_HANDOFF.md` and `docs/AI_PROGRESS_TRACKER.md` immediately on starting/resuming a session, after every meaningful implementation milestone or major test/failure, before a large task or PR update, at any context/usage warning, and before stopping. Update verified status in `docs/PROJECT_STATUS.md` and append a new `docs/AI_HANDOFF.md` entry when checkpointing; never rewrite its historical entries.
+- Never finish more than one substantial implementation task without a handoff update. Checkpoint regularly even when no usage warning is visible. A recoverable handoff takes precedence over new work when capacity is uncertain.
+- Record the current objective and exact stopping point, branch and latest verified remote SHA, related PRs/owners, changed and uncommitted files, executed versus pending/failed tests, outstanding clinical/creative approvals, missing resources, blockers, and the next exact command or implementation step. Do not label untested work complete.
+- Commit and push coherent checkpoints on a dedicated feature branch; verify the remote SHA with `git ls-remote` before claiming GitHub persistence. Never push main, auto-merge, rewrite someone else's commits, or include credentials/temporary/macOS metadata. If push fails, preserve local work and provide the complete handoff in the final response.
+- At a context/usage warning, stop starting tasks, save work, update the handoff, commit/push if possible, verify it and provide a continuation summary. Before voluntarily ending, use the **CODEX SESSION HANDOFF** fields requested by the owner: workstream, last milestone, branch/verified SHA, PR, files, tests passed/failing, approvals, blockers, exact next task, handoff location and push verification. The same underlying information is required for Claude.

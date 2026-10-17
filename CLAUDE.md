@@ -17,8 +17,8 @@ These add detail only; they do not change any rule in `AGENTS.md`.
 
 # ASHCROFT SESSION CONTINUITY PROTOCOL
 
-This protocol is mandatory for all Claude Code sessions working on
-The Forensic Ward / Ashcroft State Forensic Hospital.
+This protocol is mandatory for **both Claude Code and OpenAI Codex** sessions working on
+The Forensic Ward / Ashcroft State Forensic Hospital. The shared checkpoint frequency, emergency procedure and verified-push requirements are explicit in `AGENTS.md` §9; all existing instructions below remain in force.
 
 ## 1. Start-of-session requirements
 
