@@ -83,3 +83,7 @@ D1–D3 source record and authoritative specification are written, exact contrad
 ## Main integration checkpoint
 
 Owner merged PR #27 at `6d2dd2d`; merged into the active feature branch. Previous pre-#27 run hit the diagnosed old audio timer (270/1) after 131/0 gameplay; merged bounded cleanup fix is now included. Full combined QA rerunning, not yet complete. Canon/opening/Elias documentation through `80ac668` is verified pushed. Candidate corrections and manifest remain in progress.
+
+## Reference candidates completed
+
+Six corrected candidate sheets, full prompts and provenance/hash manifest are packaged and inspected. Original artwork preserved; no 3D/model/clinical approval implied. Candidate owner selection, technical redraw and D4–D9 remain pending. Image generation/corrections are complete; final combined QA and exact final push checkpoint remain.

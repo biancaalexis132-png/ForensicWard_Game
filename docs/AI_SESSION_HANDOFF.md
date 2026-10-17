@@ -98,3 +98,9 @@ Private v1.1 bible is unavailable; do not reconstruct it. Mac rendering/input/li
 ## Canon documentation milestone
 
 D1–D3 specification, historical-review addendum, clear voice-role correction, preserved old-portrait notice and per-character regeneration briefs are complete as documentation. Opening/Elias comparisons are written; full screenplay is explicitly off-repository and pending. These files are now being committed/pushed; candidate images/manifest and final QA remain in progress. A pending clinical-review-log entry records the summary without changing existing flags. No next implementation task is started.
+
+## Reference-generation milestone completed
+
+All six corrected candidate sheets are inspected and packaged under `assets/creative_references/Visual_References/Individual_Characters/Regenerated_2026_10_17/`, with README, exact generation/correction prompts, dimensions, byte counts and SHA-256/source hashes in `manifest.json`. Six PNGs total 12,569,341 bytes. Four views/five expressions observed per sheet; exact faces/costumes/technical orthography remain owner/artist review, not production or clinical approval. Voss/Elias/Mara corrected passes removed unsupported incidental text/ID/property claims. Original project portraits unchanged; rejected initial generated passes remain local outside checkout and are identified by hash. No images are loaded by Godot due `.gdignore`.
+
+These asset files are now being committed/pushed with this milestone. Image tool cells 101/109/117/124 are complete; no generation work remains pending. The only ongoing validation is the final standard QA run on the merged-main tree (session 33227, `/tmp/forensic-final-merged-qa.log`). Do not claim that run passed before its completion marker and exit code.

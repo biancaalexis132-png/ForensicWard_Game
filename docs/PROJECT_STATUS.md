@@ -110,3 +110,5 @@ P1 import and TestRunner passed **131/0** and are pushed at `16b9761` on `codex/
 ## Approved character and opening documentation
 
 D1–D3 are recorded as **approved** in GDD amendments and `docs/design/CHARACTER_VISUAL_CANON.md`; remaining D4–D9 are open. Rahman’s voice direction now correctly says Consultant psychiatrist, preserving all voice/line IDs and recordings. `data/staff.json` already gives Hale Security Director; Rahman is not added with invented content. Regeneration briefs and preserved legacy-art notices are written; generated candidates remain under review. The opening tone and Elias summary proposals change no chapter scene, dialogue, clinical rule, review flag, beat identity or timing.
+
+Six regenerated character reference candidates are complete as **review candidates**, with 4 views/5 expression studies each and provenance/hash manifest in the `Regenerated_2026_10_17/` reference folder. They are not approved production models/casting, are ignored by Godot, and change no scene. Original portraits remain unchanged.

@@ -56,6 +56,14 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 · Codex · Character reference milestone
+
+- **Branch:** `codex/character-canon-opening-cont-1`; latest verified remote before this checkpoint `e585061111d3703318fae4655a675e1a2b9f0926` (main PR #27 merged into feature branch), confirmed with `git ls-remote`.
+- **Completed:** six corrected original reference candidates, exact generation/correction prompts and SHA-256/source-hash manifest under `assets/creative_references/Visual_References/Individual_Characters/Regenerated_2026_10_17/`; README and `.gdignore`. All original source portraits preserved. Voss/Elias/Mara incidental unsupported text/ID/property details corrected before packaging.
+- **Review status:** visually inspected four views/five expressions each, not verified orthography, facial-casting approval, riggable models or clinical content. Exact face/costume/likeness/rights and technical redraw remain owner/artist review. D4–D9 unresolved. Rejected generated passes remain local `/workspace/generated_images`, with hashes in manifest; final corrected candidates and prompts are saved in Git in this checkpoint.
+- **Tests:** PNG decode, dimensions and hash/source-hash verification passed for all six. P1 import/TestRunner 131/0 already passed. Full combined QA on merged main is running (session 33227, `/tmp/forensic-final-merged-qa.log`), not yet claimed complete. Standard main/clinical/dialogue/beat/save files remain unchanged by these references.
+- **Next:** verify this asset checkpoint push; finish final QA, sync the P1 branch against merged main without history rewrite, update all continuity docs and provide exact final SHA/next steps. Do not start new implementation while checkpoint/validation remains outstanding.
+
 ### 2026-10-17 · Codex · Immediate shared continuity checkpoint
 
 - **Branch:** `codex/character-canon-opening-cont-1`, stacked on P1. Pre-checkpoint HEAD/latest verified P1 remote: `16b9761d8528f807caa8f10d76fcfeb9db7b5683`; `git ls-remote origin refs/heads/codex/protagonist-schema-p1` confirmed it.

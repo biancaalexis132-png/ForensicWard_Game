@@ -1,0 +1,176 @@
+{
+	"schema_version": "1",
+	"date": "2026-10-17",
+	"purpose": "Original reference candidates correcting legacy concept mismatches; not final production models or new canon.",
+	"tool": "OpenAI image_gen",
+	"model_id": "not exposed",
+	"seed": "not exposed",
+	"prompts": "generation_prompts.json",
+	"rights_status": "Original AI-generated project reference candidates under provider/account terms; production rights clearance remains owner review. No third-party or identifiable real-person reference images were supplied.",
+	"clinical_approval": "None. These images establish no clinical findings, patient property policy, diagnosis, capacity, risk or movement approval.",
+	"production_approval": "Pending owner face/costume review and artist technical redraw; no scene integration.",
+	"assets": [
+		{
+			"character": "naomi_bennett",
+			"file": "naomi_bennett_candidate_v2.png",
+			"sha256": "28d49edb39e22a7c51640d45c36947cebffba7f2eff4eb62305f77414ad22b17",
+			"bytes": 2052751,
+			"dimensions": [
+				1312,
+				1199
+			],
+			"original_portrait": "assets/creative_references/Visual_References/Individual_Characters/naomi_bennett_reference.png",
+			"original_portrait_sha256": "3cab100a9bc1145477a9199354176fbd7da2bfbb839d0fa6a3d4fc2d22ad6f6e",
+			"prompt_key": "naomi_bennett",
+			"correction_prompt_key": null,
+			"status": "REFERENCE_CANDIDATE_OWNER_REVIEW_REQUIRED",
+			"source_authority": "docs/design/CHARACTER_VISUAL_CANON.md",
+			"visual_review": {
+				"reviewer": "Codex visual inspection; not owner approval",
+				"full_body_views_observed": 4,
+				"expression_studies_observed": 5,
+				"technical_orthographic_verified": false,
+				"notes": "Black woman/natural hair/navy scrubs and mature professional presentation inspected; exact face and hairstyle variant remain candidate choices.",
+				"needs_artist_scale_anatomy_and_view_consistency_review": true
+			}
+		},
+		{
+			"character": "evelyn_voss",
+			"file": "evelyn_voss_candidate_v2.png",
+			"sha256": "44c608f9b8af4527262f85e1095912398b42fdbac16873bd8347f7c5154a1a89",
+			"bytes": 1944541,
+			"dimensions": [
+				1312,
+				1199
+			],
+			"original_portrait": "assets/creative_references/Visual_References/Individual_Characters/evelyn_voss_reference.png",
+			"original_portrait_sha256": "9c428c316c928fe5b81d127495e6ccd5a5950672b6535185f0938076b036f309",
+			"prompt_key": "evelyn_voss",
+			"correction_prompt_key": "evelyn_voss",
+			"status": "REFERENCE_CANDIDATE_OWNER_REVIEW_REQUIRED",
+			"source_authority": "docs/design/CHARACTER_VISUAL_CANON.md",
+			"visual_review": {
+				"reviewer": "Codex visual inspection; not owner approval",
+				"full_body_views_observed": 4,
+				"expression_studies_observed": 5,
+				"technical_orthographic_verified": false,
+				"notes": "Mature professional presentation and charcoal/navy tailoring inspected. Corrected pass removes unsupported height/build and biography text. Exact face/ethnicity remain unapproved.",
+				"needs_artist_scale_anatomy_and_view_consistency_review": true
+			},
+			"superseded_generation_pass": {
+				"sha256": "39adb52f394532fcdceaa56cc29a8dd11b2bbfc2cdd2f36ed20ff5e84b5a1b7d",
+				"local_original_retained_at": "/workspace/generated_images/exec-041086b2-4c87-4e2e-93f6-cce2d1fc0600.png",
+				"in_repository": false,
+				"reason": "Unsupported incidental text/prop/biographical fields removed before candidate packaging."
+			}
+		},
+		{
+			"character": "marcus_hale",
+			"file": "marcus_hale_candidate_v2.png",
+			"sha256": "5395028330107ed649df490afb3f6f044f4834b531f7da73568a9a380b0bdfc5",
+			"bytes": 2264763,
+			"dimensions": [
+				1312,
+				1199
+			],
+			"original_portrait": "assets/creative_references/Visual_References/Individual_Characters/marcus_hale_reference.png",
+			"original_portrait_sha256": "238c6986a1cd981cd5c4496c2d9768a98b19518e1ddba88fe80015dad29e1127",
+			"prompt_key": "marcus_hale",
+			"correction_prompt_key": null,
+			"status": "REFERENCE_CANDIDATE_OWNER_REVIEW_REQUIRED",
+			"source_authority": "docs/design/CHARACTER_VISUAL_CANON.md",
+			"visual_review": {
+				"reviewer": "Codex visual inspection; not owner approval",
+				"full_body_views_observed": 4,
+				"expression_studies_observed": 5,
+				"technical_orthographic_verified": false,
+				"notes": "Security Director label and ordinary professional uniform inspected; no tactical vest. Candidate face/skin tone and uniform insignia are not final casting or approved production graphics.",
+				"needs_artist_scale_anatomy_and_view_consistency_review": true
+			}
+		},
+		{
+			"character": "leila_rahman",
+			"file": "leila_rahman_candidate_v2.png",
+			"sha256": "33faeff0f5bd4392f6e504bcaefb7ed4b6d46f51fdedea96b526138bb64d488d",
+			"bytes": 2049151,
+			"dimensions": [
+				1312,
+				1199
+			],
+			"original_portrait": "assets/creative_references/Visual_References/Individual_Characters/leila_rahman_reference.png",
+			"original_portrait_sha256": "558ec4f17780c435150d2ddced344cca633df8ae3637eab900b5fa1effa0a3a5",
+			"prompt_key": "leila_rahman",
+			"correction_prompt_key": null,
+			"status": "REFERENCE_CANDIDATE_OWNER_REVIEW_REQUIRED",
+			"source_authority": "docs/design/CHARACTER_VISUAL_CANON.md",
+			"visual_review": {
+				"reviewer": "Codex visual inspection; not owner approval",
+				"full_body_views_observed": 4,
+				"expression_studies_observed": 5,
+				"technical_orthographic_verified": false,
+				"notes": "Consultant Psychiatrist title and South Asian woman presentation inspected. Exact face, apparent age, hairstyle and costume variant still need owner review; no clinical role details added.",
+				"needs_artist_scale_anatomy_and_view_consistency_review": true
+			}
+		},
+		{
+			"character": "elias_ward",
+			"file": "elias_ward_candidate_v2.png",
+			"sha256": "c450406684fca3df7309e8d8a886b48d0a7f3c2b2b2fc02c6f66a985e35fd2b8",
+			"bytes": 2093687,
+			"dimensions": [
+				1312,
+				1199
+			],
+			"original_portrait": "assets/creative_references/Visual_References/Individual_Characters/elias_ward_reference.png",
+			"original_portrait_sha256": "e2cd81fb031010761667f1ed5c926b43d4450a3033a1533d44be7f960065819c",
+			"prompt_key": "elias_ward",
+			"correction_prompt_key": "elias_ward",
+			"status": "REFERENCE_CANDIDATE_OWNER_REVIEW_REQUIRED",
+			"source_authority": "docs/design/CHARACTER_VISUAL_CANON.md",
+			"visual_review": {
+				"reviewer": "Codex visual inspection; not owner approval",
+				"full_body_views_observed": 4,
+				"expression_studies_observed": 5,
+				"technical_orthographic_verified": false,
+				"notes": "Clean ordinary presentation inspected. Corrected pass removes invented DOB/record band and unapproved property panel. Neutral standing/expressions are concept studies, not clinically approved movement or capacity/risk findings.",
+				"needs_artist_scale_anatomy_and_view_consistency_review": true
+			},
+			"superseded_generation_pass": {
+				"sha256": "e4eaf7ae827408cad32df7ced6b7354a611330e0a70f422abeed97fa65326e50",
+				"local_original_retained_at": "/workspace/generated_images/exec-4ed18ba2-38cd-4158-bd3d-75a6d3f65fa7.png",
+				"in_repository": false,
+				"reason": "Unsupported incidental text/prop/biographical fields removed before candidate packaging."
+			}
+		},
+		{
+			"character": "mara_ellis",
+			"file": "mara_ellis_candidate_v2.png",
+			"sha256": "64e8776fff93ba30baf424a670dc22c8da2eb18b9425f41c03e349f8be5e0f8d",
+			"bytes": 2164448,
+			"dimensions": [
+				1312,
+				1199
+			],
+			"original_portrait": "assets/creative_references/Visual_References/Individual_Characters/mara_ellis_reference.png",
+			"original_portrait_sha256": "a550eef3eecf236f21a7ee87b19e976a5c0db90aab6f95cd31b10d818bcf143f",
+			"prompt_key": "mara_ellis",
+			"correction_prompt_key": "mara_ellis",
+			"status": "REFERENCE_CANDIDATE_OWNER_REVIEW_REQUIRED",
+			"source_authority": "docs/design/CHARACTER_VISUAL_CANON.md",
+			"visual_review": {
+				"reviewer": "Codex visual inspection; not owner approval",
+				"full_body_views_observed": 4,
+				"expression_studies_observed": 5,
+				"technical_orthographic_verified": false,
+				"notes": "Clean cardigan/ordinary presentation inspected. Corrected pass removes staff-like patient badge and allowed-property claim. Incidental descriptive copy is not a clinical capacity/risk finding; exact face remains provisional.",
+				"needs_artist_scale_anatomy_and_view_consistency_review": true
+			},
+			"superseded_generation_pass": {
+				"sha256": "e1ab09f556ae7d1ff7c865cb0593ee8093c372c8ee19907c8aa97fadaea9d1a7",
+				"local_original_retained_at": "/workspace/generated_images/exec-1125fe3c-103f-4108-bdbf-4d8d9a606620.png",
+				"in_repository": false,
+				"reason": "Unsupported incidental text/prop/biographical fields removed before candidate packaging."
+			}
+		}
+	]
+}
