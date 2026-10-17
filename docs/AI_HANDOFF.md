@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Foundation F1 campaign contract | `claude/f1-campaign-contract` (draft PR to `main`) | Claude | `fa098c944aa9f33d9810649b5689c2504a2f5ffc` | `data/campaign.json`, `scripts/autoload/{ContentRegistry,SaveManager,EventBus}.gd` (EventBus: one signal), `scripts/content/*`, `scripts/narrative/*`, `scripts/tests/test_campaign.gd`, `scripts/tests/test_content.gd`, `scripts/tests/fixtures/**`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT}.md`, `docs/design/GDD_AMENDMENTS.md` | Awaiting owner review. F2 (zones) next, after this merges |
+| Foundation F2 zones | `claude/f2-zones` (draft PR to `main`) | Claude | `fb9fc52` (see entry) | `data/zones.json`, `data/world_chapter1.json`, `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/world/{ZoneDirector,AuthoredWorld,AudioZoneTracker,ImportedDoor,ImportedInteractable}.gd`, `scripts/autoload/{SaveManager,ContentRegistry,EventBus,Settings}.gd` (EventBus: one signal; Settings: one key), `scripts/content/*`, `scripts/tests/test_zones.gd`, `scripts/tests/fixtures/saves/**`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT}.md` | Awaiting owner review. F3 waits on the Psychosomatic Bleed decision |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -55,6 +55,51 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 21:45 UTC · Claude Code · Foundation F2 zones
+
+- **Branch:** `claude/f2-zones` (based on `main` at `4987123`)
+- **Latest verified commit:** `fb9fc525fb8cefb0f63fd08ecda4051925ef72bc` "Add zone manifest, ZoneDirector and save version 3"
+- **Confirmed on GitHub:** see `git ls-remote origin claude/f2-zones`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; waiting on owner review
+
+**Accomplished**
+- `data/zones.json` (global, in `ContentRegistry.MANIFEST`): zones `zone_clinical_wing`, `zone_security_admin` (ground), `zone_research_level` (research), `zone_historic_sublevel` (sublevel), `zone_ward_zero` (placeholder); connections `conn_ward_entry` (seamless door), `conn_restricted_lift` and `conn_service_hatch` (fade). Each zone has its environments, floor-plan bounds and audio rooms, which moved here from `world_chapter1.json`.
+- Chapter world files now name a `start_zone`; entries may name a `zone` (default: the start zone) and are wired when that zone is built.
+- `ContentValidator`: built zones need existing environments and bounds, zones on one level must not overlap, a connection joins two zones, seamless stays on one level and names door/door zone/anchor, fade names node and arrival per end, world `start_zone` is built, `zone_`/`conn_` prefixes.
+- `AuthoredWorld`: `build_zone`, `unload_zone`, `has_zone`, `get_zone_ids`, `get_zone_root`, `get_persistent_nodes`, `find_zone_node`; builds only the start zone in `_ready`; `PlayerSpawn` lives on the world, not the zone.
+- `ZoneDirector` (child of `Main`, provider `zones`): current zone from bounds, streams the zone behind a connection door when the player may open it and is within 10 m (or the door is open), always keeps the zone that holds a connection door, fade transitions (time paused, input off, free everything, build target, place on arrival), per-zone door state across unloads, perf CSV behind the `perf_log` setting. `EventBus.zone_changed` added.
+- `ImportedDoor.before_open` hook (connection doors build the zone behind first); doors without config read "Records Office door". `ImportedInteractable` uses a method for `game_loaded` so unloaded zones disconnect cleanly; `mesh_aabb` is static.
+- `SaveManager` v3: `_migrate_from_2` moves `world.objects` to `zones.objects.zone_clinical_wing`.
+
+**Files modified**
+- See commit `fb9fc52`; new `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, `scripts/tests/fixtures/saves/save_v2_ch1_doors_open.json` (a real v2 save captured from `main` at `4987123`: office and interview doors open, player at (-0.5, 0, -12), 09:35).
+
+**Unfinished**
+- Arrival points in `zones.json` are hand-placed (`placeholder_arrival`); the environment workstream should add `MARK_Arrival_*` markers.
+- Not built: Ward Zero connection, lift stop at the historic landing (needs a floor choice), quality presets.
+- Security and research use the `corridor` ambience; `audio/cues.json` has no wing ambience for them.
+
+**Known errors**
+- none. Found while testing: Godot's dummy renderer (headless) is not thread-safe for mesh creation; threaded loading there logged "unimplemented base type encountered in renderer scene cull" and leaked meshes. `ZoneDirector.stream_on_threads` is false in headless runs, so CI loads on the main thread and the threaded path is untested until the Mac check.
+- Not caused by F2: PR #22 put `assets/creative_references/` (about 42 MB of music and concept boards) inside the Godot project with no `.gdignore`, so Godot imports it and an export would ship it. A one-line `.gdignore` there would stop that if the owner wants.
+
+**Tests** (on `fb9fc52`)
+- `GODOT=<4.7-stable linux, SHA-512 verified> python3 tests/qa/run.py`: exit 0. Python 6/6, 3/3, 3/3; TestQA 19/0/0; GLB 138/138; TestRunner 112 passed / 0 failed (97 before, 15 new in `test_zones.gd`); TestAudio 271/0.
+- Ten lift round trips: static memory +8 KB, object count unchanged.
+- CI: not observed yet for this branch
+
+**Dependencies not available to remote agents**
+- Mac: transition feel, streaming hitch, frame time and memory with `perf_log` on.
+
+**Next steps**
+1. Owner reviews the F2 PR.
+2. F3 (anomaly evidence model, flag off) after the owner decides Psychosomatic Bleed (F0 §9).
+
+**Notes for the other agent**
+- Geometry belongs to zones (`data/zones.json`); chapter world files only wire gameplay onto it. Do not add `environments` back to a world file.
+- Never build two levels at once; the validator rejects overlapping zones on one level.
 
 ### 2026-10-17 20:50 UTC · Claude Code · Foundation F1 campaign contract
 

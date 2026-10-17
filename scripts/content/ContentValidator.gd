@@ -117,6 +117,7 @@ static func check_references(documents: Dictionary) -> Array[String]:
 	var source_ids: Dictionary = _collect_ids(sources, _file(documents, "source_catalog"), "items", errors)
 	var staff_ids: Dictionary = _collect_ids(staff, _file(documents, "staff"), "staff", errors)
 	var chapter_ids: Dictionary = _check_campaign(documents, errors)
+	var zones_by_id: Dictionary = _check_zones(documents, errors)
 
 	# Observation ids are unique per patient; rules reference them.
 	var observations_by_patient: Dictionary = {}
@@ -178,6 +179,17 @@ static func check_references(documents: Dictionary) -> Array[String]:
 	for key: String in _keys(documents, ContentRegistry.WORLD_KEY):
 		var world: Dictionary = _data(documents, key)
 		var file: String = _file(documents, key)
+		_require_known(world["start_zone"], zones_by_id, "zone", file, "start_zone", errors)
+		if zones_by_id.get(world["start_zone"], {}).get("status", "built") != "built":
+			errors.append("[%s] start_zone: '%s' is a placeholder zone with no environments yet." % [file, world["start_zone"]])
+		for door_id: String in world["doors"]:
+			if world["doors"][door_id].has("zone"):
+				_require_known(world["doors"][door_id]["zone"], zones_by_id, "zone", file, "doors.%s.zone" % door_id, errors)
+		for list_name: String in ["interactables", "characters"]:
+			for i: int in world[list_name].size():
+				if world[list_name][i].has("zone"):
+					_require_known(world[list_name][i]["zone"], zones_by_id, "zone", file,
+							"%s[%d].zone" % [list_name, i], errors)
 		for i: int in world["interactables"].size():
 			var entry: Dictionary = world["interactables"][i]
 			if entry["type"] in ["clue_terminal", "clue_pickup"]:
@@ -256,9 +268,87 @@ static func _check_campaign(documents: Dictionary, errors: Array[String]) -> Dic
 	return chapter_ids
 
 
-## Ids of patients, staff, clues, hypotheses, objectives and beats must carry
-## their kind's prefix (ContentSchemas.ID_PREFIXES) and be unique across every
-## file and chapter, so a later chapter can never shadow an earlier id.
+## Zone rules: a built zone has environments that exist and floor-plan
+## bounds; zones on one level never overlap (the level decides what may be
+## loaded together). A connection joins two different zones; a seamless one
+## stays on one level and names its door, the zone whose geometry holds that
+## door, and an anchor point; a fade one names, per end, the node the player
+## uses and where they arrive. Returns zone id -> zone.
+static func _check_zones(documents: Dictionary, errors: Array[String]) -> Dictionary:
+	if not documents.has("zones"):
+		return {}
+	var data: Dictionary = _data(documents, "zones")
+	var file: String = _file(documents, "zones")
+	var zones: Array = data["zones"]
+	var by_id: Dictionary = {}
+	for i: int in _collect_ids(zones, file, "zones", errors).values():
+		by_id[zones[i]["id"]] = zones[i]
+	for i: int in zones.size():
+		var zone: Dictionary = zones[i]
+		var where: String = "[%s] zones[%d]" % [file, i]
+		if zone["status"] == "built" and (zone["environments"].is_empty() or zone["bounds"].is_empty()):
+			errors.append("%s: a built zone needs environments and bounds." % where)
+		if zone["status"] == "placeholder" and not zone["environments"].is_empty():
+			errors.append("%s: a placeholder zone lists no environments; mark it built once they exist." % where)
+		for j: int in zone["environments"].size():
+			var path: String = zone["environments"][j]
+			if not path.begins_with("res://assets/") or not ResourceLoader.exists(path):
+				errors.append("%s.environments[%d]: '%s' is not an imported scene under res://assets/." % [where, j, path])
+		for j: int in zone["bounds"].size():
+			if not _rect_is_valid(zone["bounds"][j]):
+				errors.append("%s.bounds[%d]: min_xz must be below max_xz on both axes." % [where, j])
+		for j: int in i:
+			if zones[j]["level"] == zone["level"] and _bounds_overlap(zones[j]["bounds"], zone["bounds"]):
+				errors.append("%s: bounds overlap %s on level '%s'; zones on one level must not overlap." % [
+						where, zones[j]["id"], zone["level"]])
+	var connections: Array = data["connections"]
+	_collect_ids(connections, file, "connections", errors)
+	for i: int in connections.size():
+		var connection: Dictionary = connections[i]
+		var where: String = "[%s] connections[%d]" % [file, i]
+		var ends: Array = connection["ends"]
+		if ends.size() != 2 or ends[0]["zone"] == ends[ends.size() - 1]["zone"]:
+			errors.append("%s.ends: a connection joins exactly two different zones." % where)
+			continue
+		for j: int in 2:
+			_require_known(ends[j]["zone"], by_id, "zone", file, "connections[%d].ends[%d].zone" % [i, j], errors)
+		if not (by_id.has(ends[0]["zone"]) and by_id.has(ends[1]["zone"])):
+			continue
+		var same_level: bool = by_id[ends[0]["zone"]]["level"] == by_id[ends[1]["zone"]]["level"]
+		if connection["transition"] == "seamless":
+			if not same_level:
+				errors.append("%s: a seamless connection stays on one level; use \"fade\" between levels." % where)
+			for field: String in ["door_id", "door_zone", "anchor_xz"]:
+				if not connection.has(field):
+					errors.append("%s: a seamless connection needs \"%s\"." % [where, field])
+			if connection.has("door_zone") and not connection["door_zone"] in [ends[0]["zone"], ends[1]["zone"]]:
+				errors.append("%s.door_zone: '%s' is not one of the connection's zones." % [where, connection["door_zone"]])
+		else:
+			for j: int in 2:
+				if not ends[j].has("node") or not ends[j].has("arrival"):
+					errors.append("%s.ends[%d]: a fade connection needs \"node\" and \"arrival\" at each end." % [where, j])
+	return by_id
+
+
+static func _rect_is_valid(rect: Dictionary) -> bool:
+	return rect["min_xz"][0] < rect["max_xz"][0] and rect["min_xz"][1] < rect["max_xz"][1]
+
+
+## True when any rectangle of `a` shares area with any rectangle of `b`
+## (touching edges is fine: neighbouring zones meet at a doorway).
+static func _bounds_overlap(a: Array, b: Array) -> bool:
+	for ra: Dictionary in a:
+		for rb: Dictionary in b:
+			if ra["min_xz"][0] < rb["max_xz"][0] and rb["min_xz"][0] < ra["max_xz"][0] \
+					and ra["min_xz"][1] < rb["max_xz"][1] and rb["min_xz"][1] < ra["max_xz"][1]:
+				return true
+	return false
+
+
+## Ids of patients, staff, clues, hypotheses, objectives, beats, zones and
+## connections must carry their kind's prefix (ContentSchemas.ID_PREFIXES)
+## and be unique across every file and chapter, so a later chapter can never
+## shadow an earlier id.
 static func check_global_ids(documents: Dictionary) -> Array[String]:
 	var errors: Array[String] = []
 	var seen: Dictionary = {}  # id -> "file path"
@@ -268,6 +358,8 @@ static func check_global_ids(documents: Dictionary) -> Array[String]:
 		["clue", "clues", "clues", _data(documents, "clues").get("clues", [])],
 		["hypothesis", "clues", "hypotheses", _data(documents, "clues").get("hypotheses", [])],
 	]
+	groups.append(["zone", "zones", "zones", _data(documents, "zones").get("zones", [])])
+	groups.append(["connection", "zones", "connections", _data(documents, "zones").get("connections", [])])
 	for key: String in _keys(documents, ContentRegistry.STORY_KEY):
 		groups.append(["objective", key, "objectives", _data(documents, key).get("objectives", [])])
 		groups.append(["beat", key, "beats", _data(documents, key).get("beats", [])])
