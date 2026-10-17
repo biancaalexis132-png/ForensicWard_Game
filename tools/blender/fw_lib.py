@@ -88,6 +88,17 @@ PALETTE = {
     "M_Plastic_AED_Green": ("#1F8A4C", 0.45, 0.0, {}),
     "M_Linen_White": ("#ECECE6", 0.95, 0.0, {}),
     "M_Fabric_LaundryBag_Blue": ("#4F6F9A", 0.95, 0.0, {}),
+    # Stage 4: security and administration wing.
+    "M_Concrete_Grey": ("#8C8E8C", 0.9, 0.0, {}),
+    "M_Wall_SecurityBlueGrey": ("#7F8B93", 0.8, 0.0, {}),
+    "M_Wall_AdminTaupe": ("#C9C1B3", 0.85, 0.0, {}),
+    "M_Floor_Epoxy_Security": ("#55595B", 0.4, 0.0, {}),
+    "M_Carpet_Admin": ("#4A5560", 1.0, 0.0, {}),
+    "M_Metal_Dark": ("#2E3336", 0.45, 0.7, {}),
+    "M_Wood_Executive": ("#6A4932", 0.45, 0.0, {}),
+    "M_Upholstery_Leather_Black": ("#1E1F21", 0.55, 0.0, {}),
+    "M_Glass_Reinforced": ("#B6C4CA", 0.08, 0.0, {"alpha": 0.3}),
+    "M_Emissive_VideoWall": ("#1B2A33", 0.3, 0.0, {"emission": ("#3E6E8A", 1.6)}),
     "M_Collision": ("#FF00FF", 1.0, 0.0, {}),
 }
 
