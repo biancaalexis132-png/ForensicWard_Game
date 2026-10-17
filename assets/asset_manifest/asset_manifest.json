@@ -1,0 +1,1613 @@
+{
+  "assets": {
+    "DOOR_Interior_Single_1000": {
+      "asset_id": "DOOR_Interior_Single_1000",
+      "asset_name": "DOOR Interior Single 1000",
+      "category": "door",
+      "collision": "Leaf box collider(s) parented to each leaf (-colonly); frame relies on wall colliders",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.12,
+        0.26,
+        2.26
+      ],
+      "export_file": "assets/exports/modular/DOOR_Interior_Single_1000.glb",
+      "implementation_notes": "Origin at opening centre, floor level, wall plane y = 0. Leaf node origin is the hinge: rotate it about Godot Y to open. Push side is -Y (front).",
+      "intended_location": "Matching MOD_Wall_2m_Door* opening",
+      "markers": [],
+      "materials": [
+        "M_Door_Laminate_Wood",
+        "M_Glass_Wired",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 384
+    },
+    "DOOR_Secure_Double_1800": {
+      "asset_id": "DOOR_Secure_Double_1800",
+      "asset_name": "DOOR Secure Double 1800",
+      "category": "door",
+      "collision": "Leaf box collider(s) parented to each leaf (-colonly); frame relies on wall colliders",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.924,
+        0.32,
+        2.292
+      ],
+      "export_file": "assets/exports/modular/DOOR_Secure_Double_1800.glb",
+      "implementation_notes": "Origin at opening centre, floor level, wall plane y = 0. Leaf node origin is the hinge: rotate it about Godot Y to open. Push side is -Y (front).",
+      "intended_location": "Matching MOD_Wall_2m_Door* opening",
+      "markers": [],
+      "materials": [
+        "M_Door_Secure_SteelBlue",
+        "M_Glass_Wired",
+        "M_Plastic_Black",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 684
+    },
+    "DOOR_Secure_Single_1200": {
+      "asset_id": "DOOR_Secure_Single_1200",
+      "asset_name": "DOOR Secure Single 1200",
+      "category": "door",
+      "collision": "Leaf box collider(s) parented to each leaf (-colonly); frame relies on wall colliders",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.32,
+        0.32,
+        2.29
+      ],
+      "export_file": "assets/exports/modular/DOOR_Secure_Single_1200.glb",
+      "implementation_notes": "Origin at opening centre, floor level, wall plane y = 0. Leaf node origin is the hinge: rotate it about Godot Y to open. Push side is -Y (front).",
+      "intended_location": "Matching MOD_Wall_2m_Door* opening",
+      "markers": [],
+      "materials": [
+        "M_Door_Secure_SteelBlue",
+        "M_Glass_Wired",
+        "M_Plastic_Black",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 396
+    },
+    "DOOR_Service_Historic_1200": {
+      "asset_id": "DOOR_Service_Historic_1200",
+      "asset_name": "DOOR Service Historic 1200",
+      "category": "door",
+      "collision": "Leaf box collider(s) parented to each leaf (-colonly); frame relies on wall colliders",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.32,
+        0.26,
+        2.26
+      ],
+      "export_file": "assets/exports/modular/DOOR_Service_Historic_1200.glb",
+      "implementation_notes": "Origin at opening centre, floor level, wall plane y = 0. Leaf node origin is the hinge: rotate it about Godot Y to open. Push side is -Y (front).",
+      "intended_location": "Matching MOD_Wall_2m_Door* opening",
+      "markers": [],
+      "materials": [
+        "M_Paint_Historic_Cream",
+        "M_Paint_Historic_Green",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 240
+    },
+    "ENV_ClinicalCorridor_20m": {
+      "asset_id": "ENV_ClinicalCorridor_20m",
+      "asset_name": "Main clinical corridor, 20 m",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.32,
+        20.26,
+        3.131
+      ],
+      "export_file": "assets/exports/clinical/env/ENV_ClinicalCorridor_20m.glb",
+      "implementation_notes": "Place at the Godot origin (shared Chapter 1 frame). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh; state nodes carry state_group/state/default_visible extras.",
+      "intended_location": "Chapter 1: main clinical corridor (spawn, all room doors, W0-B, ward entry)",
+      "markers": [
+        "CAM_CR_Overview",
+        "CAM_CR_W0B",
+        "CAM_IR_ObservationWindow",
+        "LIGHTMARK_Corridor_00",
+        "LIGHTMARK_Corridor_02",
+        "LIGHTMARK_Corridor_04",
+        "LIGHTMARK_Corridor_06",
+        "LIGHTMARK_Corridor_08",
+        "MARK_PlayerSpawn"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Door_Laminate_Wood",
+        "M_Door_Secure_SteelBlue",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LED_Red",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Corridor",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Glass_Wired",
+        "M_Mirror_OneWay_Room",
+        "M_Paint_Historic_Cream",
+        "M_Paint_Historic_Green",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Rubber_Dark",
+        "M_Safety_Red",
+        "M_Signage_Blue",
+        "M_Signage_Panel",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_Archive",
+        "M_Wall_InterviewBlueGrey",
+        "M_Wall_NurseStation",
+        "M_Wall_OfficeSage",
+        "M_Wall_PatientRoom",
+        "M_Wall_Protection_Green",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 11210
+    },
+    "ENV_InterviewRoom_A": {
+      "asset_id": "ENV_InterviewRoom_A",
+      "asset_name": "Psychiatric interview room A",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.112,
+        4.224,
+        3.131
+      ],
+      "export_file": "assets/exports/clinical/env/ENV_InterviewRoom_A.glb",
+      "implementation_notes": "Place at the Godot origin (shared Chapter 1 frame). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh; state nodes carry state_group/state/default_visible extras.",
+      "intended_location": "Chapter 1: Elias Ward interview",
+      "markers": [
+        "CAM_IR_CU_Patient",
+        "CAM_IR_CU_Psychiatrist",
+        "CAM_IR_Establishing",
+        "CAM_IR_OTS_OnPatient",
+        "CAM_IR_OTS_OnPsychiatrist",
+        "LIGHTMARK_PROP_Light_VandalResistant",
+        "LIGHTMARK_PROP_Light_VandalResistant.001",
+        "MARK_Eye_Patient",
+        "MARK_Eye_Psychiatrist",
+        "MARK_Seat_Patient",
+        "MARK_Seat_Psychiatrist",
+        "MARK_Standing_Staff_Door"
+      ],
+      "materials": [
+        "M_Acoustic_Fabric",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Interview",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Polyurethane_Interview",
+        "M_Safety_Red",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Wall_InterviewBlueGrey",
+        "M_Wall_PatientRoom",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2648
+    },
+    "ENV_NursingStation": {
+      "asset_id": "ENV_NursingStation",
+      "asset_name": "Nursing station (glazed counter onto the corridor)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.612,
+        4.224,
+        3.131
+      ],
+      "export_file": "assets/exports/clinical/env/ENV_NursingStation.glb",
+      "implementation_notes": "Place at the Godot origin (shared Chapter 1 frame). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh; state nodes carry state_group/state/default_visible extras.",
+      "intended_location": "Chapter 1: charge nurse (Bennett) station",
+      "markers": [
+        "CAM_NS_Establishing",
+        "LIGHTMARK_NursingStation_-32_107",
+        "LIGHTMARK_NursingStation_-32_92",
+        "MARK_Character_NurseBennett"
+      ],
+      "materials": [
+        "M_Acoustic_Fabric",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Floor_Vinyl_Corridor",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_NurseStation",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3852
+    },
+    "ENV_PatientRoom_01": {
+      "asset_id": "ENV_PatientRoom_01",
+      "asset_name": "Patient bedroom 01 (single, anti-ligature)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.64,
+        4.224,
+        3.12
+      ],
+      "export_file": "assets/exports/clinical/env/ENV_PatientRoom_01.glb",
+      "implementation_notes": "Place at the Godot origin (shared Chapter 1 frame). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh; state nodes carry state_group/state/default_visible extras.",
+      "intended_location": "Chapter 1: patient bedroom",
+      "markers": [
+        "CAM_PR01_Establishing",
+        "LIGHTMARK_PROP_Light_VandalResistant.002",
+        "MARK_Bed_01"
+      ],
+      "materials": [
+        "M_Ceiling_Tile",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Interview",
+        "M_Glass_Clear",
+        "M_Paper",
+        "M_Plastic_OffWhite",
+        "M_Polyurethane_Interview",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Teal",
+        "M_Wall_PatientRoom",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 808
+    },
+    "ENV_PatientRoom_02": {
+      "asset_id": "ENV_PatientRoom_02",
+      "asset_name": "Patient bedroom 02 (single, anti-ligature)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.54,
+        4.1,
+        3.12
+      ],
+      "export_file": "assets/exports/clinical/env/ENV_PatientRoom_02.glb",
+      "implementation_notes": "Place at the Godot origin (shared Chapter 1 frame). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh; state nodes carry state_group/state/default_visible extras.",
+      "intended_location": "Chapter 1: patient bedroom",
+      "markers": [
+        "CAM_PR02_Establishing",
+        "LIGHTMARK_PROP_Light_VandalResistant.003",
+        "MARK_Bed_02"
+      ],
+      "materials": [
+        "M_Ceiling_Tile",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Interview",
+        "M_Glass_Clear",
+        "M_Paper",
+        "M_Plastic_OffWhite",
+        "M_Polyurethane_Interview",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Teal",
+        "M_Wall_PatientRoom",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 748
+    },
+    "ENV_PsychiatristOffice": {
+      "asset_id": "ENV_PsychiatristOffice",
+      "asset_name": "Psychiatrist's office",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.64,
+        4.224,
+        3.12
+      ],
+      "export_file": "assets/exports/clinical/env/ENV_PsychiatristOffice.glb",
+      "implementation_notes": "Place at the Godot origin (shared Chapter 1 frame). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh; state nodes carry state_group/state/default_visible extras.",
+      "intended_location": "Chapter 1: player's office / EHR workstation",
+      "markers": [
+        "CAM_OF_EHR_Closeup",
+        "CAM_OF_Establishing",
+        "LIGHTMARK_PsychiatristOffice_-42_32",
+        "LIGHTMARK_PsychiatristOffice_-42_47",
+        "MARK_Character_DrVoss",
+        "MARK_Seat_Psychiatrist_Desk"
+      ],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Binder_Maroon",
+        "M_Binder_Navy",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Floor_Vinyl_WoodOffice",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Upholstery_Teal",
+        "M_Wall_OfficeSage",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3784
+    },
+    "ENV_RecordsArchive": {
+      "asset_id": "ENV_RecordsArchive",
+      "asset_name": "Records archive (badge access)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.112,
+        4.224,
+        3.131
+      ],
+      "export_file": "assets/exports/clinical/env/ENV_RecordsArchive.glb",
+      "implementation_notes": "Place at the Godot origin (shared Chapter 1 frame). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh; state nodes carry state_group/state/default_visible extras.",
+      "intended_location": "Chapter 1: archive, 1968 roster clue",
+      "markers": [
+        "CAM_AR_Establishing",
+        "LIGHTMARK_RecordsArchive_-35_152",
+        "LIGHTMARK_RecordsArchive_-35_167"
+      ],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Corridor",
+        "M_Folder_Manila",
+        "M_Glass_OneWay_Observer",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Teal",
+        "M_Wall_Archive",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 4108
+    },
+    "MOD_Ceiling_2x2_LightPanel": {
+      "asset_id": "MOD_Ceiling_2x2_LightPanel",
+      "asset_name": "Ceiling 2 x 2 m with LED panel",
+      "category": "modular_architecture",
+      "collision": "None (out of reach)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        2.0,
+        0.055
+      ],
+      "export_file": "assets/exports/modular/MOD_Ceiling_2x2_LightPanel.glb",
+      "implementation_notes": "Origin at the -X/-Y corner at floor level; ceiling underside at z = 3.0. LIGHTMARK empty marks where Godot should place a light.",
+      "intended_location": "Ceilings at 3.0 m",
+      "markers": [
+        "LIGHTMARK_MOD_Ceiling_2x2_LightPanel"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Emissive_LightPanel",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 96
+    },
+    "MOD_Ceiling_2x2_ReturnGrille": {
+      "asset_id": "MOD_Ceiling_2x2_ReturnGrille",
+      "asset_name": "Ceiling 2 x 2 m with return-air grille",
+      "category": "modular_architecture",
+      "collision": "None (out of reach)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        2.0,
+        0.06
+      ],
+      "export_file": "assets/exports/modular/MOD_Ceiling_2x2_ReturnGrille.glb",
+      "implementation_notes": "Origin at the -X/-Y corner at floor level; ceiling underside at z = 3.0.",
+      "intended_location": "Ceilings at 3.0 m",
+      "markers": [],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 240
+    },
+    "MOD_Ceiling_2x2_Tile": {
+      "asset_id": "MOD_Ceiling_2x2_Tile",
+      "asset_name": "Suspended ceiling 2 x 2 m, 500 grid",
+      "category": "modular_architecture",
+      "collision": "None (out of reach)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        2.0,
+        0.032
+      ],
+      "export_file": "assets/exports/modular/MOD_Ceiling_2x2_Tile.glb",
+      "implementation_notes": "Origin at the -X/-Y corner at floor level; ceiling underside at z = 3.0.",
+      "intended_location": "Ceilings at 3.0 m",
+      "markers": [],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 84
+    },
+    "MOD_Corridor_Corner_L": {
+      "asset_id": "MOD_Corridor_Corner_L",
+      "asset_name": "Corridor corner (south -> east)",
+      "category": "modular_architecture",
+      "collision": "Floor, wall and post box colliders",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.212,
+        3.212,
+        3.12
+      ],
+      "export_file": "assets/exports/modular/MOD_Corridor_Corner_L.glb",
+      "implementation_notes": "3 x 3 m square from y = 0 to 3 on the centreline; connects to 2 m slices on open sides.",
+      "intended_location": "Corridor junctions",
+      "markers": [],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Corridor",
+        "M_Rubber_Dark",
+        "M_Skirting_Coved",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_Protection_Green",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 372
+    },
+    "MOD_Corridor_Crossing": {
+      "asset_id": "MOD_Corridor_Crossing",
+      "asset_name": "Corridor crossing",
+      "category": "modular_architecture",
+      "collision": "Floor, wall and post box colliders",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.2,
+        3.2,
+        3.12
+      ],
+      "export_file": "assets/exports/modular/MOD_Corridor_Crossing.glb",
+      "implementation_notes": "3 x 3 m square from y = 0 to 3 on the centreline; connects to 2 m slices on open sides.",
+      "intended_location": "Corridor junctions",
+      "markers": [],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Corridor",
+        "M_Steel_Painted_White",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 204
+    },
+    "MOD_Corridor_Straight_2m": {
+      "asset_id": "MOD_Corridor_Straight_2m",
+      "asset_name": "Corridor slice 2 m (2.8 m clear)",
+      "category": "modular_architecture",
+      "collision": "Floor + wall box colliders",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.224,
+        2.0,
+        3.12
+      ],
+      "export_file": "assets/exports/modular/MOD_Corridor_Straight_2m.glb",
+      "implementation_notes": "Origin on the centreline at the slice start (y = 0); runs +Y for 2 m. Walls at x = +/-1.5 (2.8 m clear). Chain end to end; rotate 180 degrees to mirror.",
+      "intended_location": "Clinical corridors",
+      "markers": [],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Floor_Vinyl_Corridor",
+        "M_Rubber_Dark",
+        "M_Skirting_Coved",
+        "M_Upholstery_Charcoal",
+        "M_Wall_Protection_Green",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 288
+    },
+    "MOD_Corridor_Straight_2m_DoorEast1200": {
+      "asset_id": "MOD_Corridor_Straight_2m_DoorEast1200",
+      "asset_name": "Corridor slice 2 m, 1200 opening east",
+      "category": "modular_architecture",
+      "collision": "Floor + wall box colliders",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.224,
+        2.0,
+        3.12
+      ],
+      "export_file": "assets/exports/modular/MOD_Corridor_Straight_2m_DoorEast1200.glb",
+      "implementation_notes": "Origin on the centreline at the slice start (y = 0); runs +Y for 2 m. Walls at x = +/-1.5 (2.8 m clear). Chain end to end; rotate 180 degrees to mirror.",
+      "intended_location": "Clinical corridors",
+      "markers": [],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Floor_Vinyl_Corridor",
+        "M_Rubber_Dark",
+        "M_Skirting_Coved",
+        "M_Upholstery_Charcoal",
+        "M_Wall_Protection_Green",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 348
+    },
+    "MOD_Corridor_Straight_2m_DoorWest1000": {
+      "asset_id": "MOD_Corridor_Straight_2m_DoorWest1000",
+      "asset_name": "Corridor slice 2 m, 1000 opening west",
+      "category": "modular_architecture",
+      "collision": "Floor + wall box colliders",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.224,
+        2.0,
+        3.12
+      ],
+      "export_file": "assets/exports/modular/MOD_Corridor_Straight_2m_DoorWest1000.glb",
+      "implementation_notes": "Origin on the centreline at the slice start (y = 0); runs +Y for 2 m. Walls at x = +/-1.5 (2.8 m clear). Chain end to end; rotate 180 degrees to mirror.",
+      "intended_location": "Clinical corridors",
+      "markers": [],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Floor_Vinyl_Corridor",
+        "M_Rubber_Dark",
+        "M_Skirting_Coved",
+        "M_Upholstery_Charcoal",
+        "M_Wall_Protection_Green",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 384
+    },
+    "MOD_Corridor_Straight_2m_Light": {
+      "asset_id": "MOD_Corridor_Straight_2m_Light",
+      "asset_name": "Corridor slice 2 m with ceiling light",
+      "category": "modular_architecture",
+      "collision": "Floor + wall box colliders",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.224,
+        2.0,
+        3.12
+      ],
+      "export_file": "assets/exports/modular/MOD_Corridor_Straight_2m_Light.glb",
+      "implementation_notes": "Origin on the centreline at the slice start (y = 0); runs +Y for 2 m. Walls at x = +/-1.5 (2.8 m clear). Chain end to end; rotate 180 degrees to mirror.",
+      "intended_location": "Clinical corridors",
+      "markers": [
+        "LIGHTMARK_MOD_Corridor_Straight_2m_Light"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Corridor",
+        "M_Rubber_Dark",
+        "M_Skirting_Coved",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_Protection_Green",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 300
+    },
+    "MOD_Corridor_T_Junction": {
+      "asset_id": "MOD_Corridor_T_Junction",
+      "asset_name": "Corridor T-junction",
+      "category": "modular_architecture",
+      "collision": "Floor, wall and post box colliders",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.2,
+        3.212,
+        3.12
+      ],
+      "export_file": "assets/exports/modular/MOD_Corridor_T_Junction.glb",
+      "implementation_notes": "3 x 3 m square from y = 0 to 3 on the centreline; connects to 2 m slices on open sides.",
+      "intended_location": "Corridor junctions",
+      "markers": [],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Corridor",
+        "M_Rubber_Dark",
+        "M_Skirting_Coved",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_Protection_Green",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 288
+    },
+    "MOD_Floor_2x2_Vinyl": {
+      "asset_id": "MOD_Floor_2x2_Vinyl",
+      "asset_name": "Floor slab 2 x 2 m, sheet vinyl",
+      "category": "modular_architecture",
+      "collision": "Box collider",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        2.0,
+        0.1
+      ],
+      "export_file": "assets/exports/modular/MOD_Floor_2x2_Vinyl.glb",
+      "implementation_notes": "Origin at the -X/-Y corner; top surface at z = 0. Swap material per room.",
+      "intended_location": "Room/corridor floors",
+      "markers": [],
+      "materials": [
+        "M_Floor_Vinyl_Corridor"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 12
+    },
+    "MOD_Wall_0p5m_Plain": {
+      "asset_id": "MOD_Wall_0p5m_Plain",
+      "asset_name": "Plain wall 0.5 m",
+      "category": "modular_architecture",
+      "collision": "Box collider",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.5,
+        0.224,
+        3.0
+      ],
+      "export_file": "assets/exports/modular/MOD_Wall_0p5m_Plain.glb",
+      "implementation_notes": "Origin at left end, floor level; front face -Y. Rotate in 90-degree steps.",
+      "intended_location": "Any wall run on the 2 m module grid",
+      "markers": [],
+      "materials": [
+        "M_Skirting_Coved",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 36
+    },
+    "MOD_Wall_1m_Plain": {
+      "asset_id": "MOD_Wall_1m_Plain",
+      "asset_name": "Plain wall 1 m",
+      "category": "modular_architecture",
+      "collision": "Box collider",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.0,
+        0.224,
+        3.0
+      ],
+      "export_file": "assets/exports/modular/MOD_Wall_1m_Plain.glb",
+      "implementation_notes": "Origin at left end, floor level; front face -Y. Rotate in 90-degree steps.",
+      "intended_location": "Any wall run on the 2 m module grid",
+      "markers": [],
+      "materials": [
+        "M_Skirting_Coved",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 36
+    },
+    "MOD_Wall_2m_CorridorProtected": {
+      "asset_id": "MOD_Wall_2m_CorridorProtected",
+      "asset_name": "Corridor wall 2 m with PVC dado protection (front)",
+      "category": "modular_architecture",
+      "collision": "Box collider",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        0.224,
+        3.0
+      ],
+      "export_file": "assets/exports/modular/MOD_Wall_2m_CorridorProtected.glb",
+      "implementation_notes": "Origin at left end, floor level; front face -Y. Rotate in 90-degree steps.",
+      "intended_location": "Any wall run on the 2 m module grid",
+      "markers": [],
+      "materials": [
+        "M_Skirting_Coved",
+        "M_Wall_Protection_Green",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 48
+    },
+    "MOD_Wall_2m_Door1000": {
+      "asset_id": "MOD_Wall_2m_Door1000",
+      "asset_name": "Wall 2 m, 1000 door opening",
+      "category": "modular_architecture",
+      "collision": "Box colliders on solid sections; door gaps open",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        0.224,
+        3.0
+      ],
+      "export_file": "assets/exports/modular/MOD_Wall_2m_Door1000.glb",
+      "implementation_notes": "Origin at left end, floor level; front face -Y. Rotate in 90-degree steps.",
+      "intended_location": "Any wall run on the 2 m module grid",
+      "markers": [],
+      "materials": [
+        "M_Skirting_Coved",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 84
+    },
+    "MOD_Wall_2m_Door1200": {
+      "asset_id": "MOD_Wall_2m_Door1200",
+      "asset_name": "Corridor wall 2 m, 1200 secure-door opening",
+      "category": "modular_architecture",
+      "collision": "Box colliders on solid sections; door gaps open",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        0.224,
+        3.0
+      ],
+      "export_file": "assets/exports/modular/MOD_Wall_2m_Door1200.glb",
+      "implementation_notes": "Origin at left end, floor level; front face -Y. Rotate in 90-degree steps.",
+      "intended_location": "Any wall run on the 2 m module grid",
+      "markers": [],
+      "materials": [
+        "M_Skirting_Coved",
+        "M_Wall_Protection_Green",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 108
+    },
+    "MOD_Wall_2m_Door1800": {
+      "asset_id": "MOD_Wall_2m_Door1800",
+      "asset_name": "Corridor wall 2 m, 1800 double-door opening",
+      "category": "modular_architecture",
+      "collision": "Box colliders on solid sections; door gaps open",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        0.224,
+        3.0
+      ],
+      "export_file": "assets/exports/modular/MOD_Wall_2m_Door1800.glb",
+      "implementation_notes": "Origin at left end, floor level; front face -Y. Rotate in 90-degree steps.",
+      "intended_location": "Any wall run on the 2 m module grid",
+      "markers": [],
+      "materials": [
+        "M_Skirting_Coved",
+        "M_Wall_Protection_Green",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 108
+    },
+    "MOD_Wall_2m_ExteriorWindow": {
+      "asset_id": "MOD_Wall_2m_ExteriorWindow",
+      "asset_name": "Exterior window 1600 x 1400 with venetian blind",
+      "category": "modular_architecture",
+      "collision": "Box collider",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        0.28,
+        3.0
+      ],
+      "export_file": "assets/exports/modular/MOD_Wall_2m_ExteriorWindow.glb",
+      "implementation_notes": "Origin at left end, floor level; front face -Y. Rotate in 90-degree steps.",
+      "intended_location": "Any wall run on the 2 m module grid",
+      "markers": [],
+      "materials": [
+        "M_Glass_Clear",
+        "M_Skirting_Coved",
+        "M_Steel_Painted_White",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 660
+    },
+    "MOD_Wall_2m_ObservationWindow": {
+      "asset_id": "MOD_Wall_2m_ObservationWindow",
+      "asset_name": "Observation window: one-way glass (front = observer side)",
+      "category": "modular_architecture",
+      "collision": "Box collider",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        0.28,
+        3.0
+      ],
+      "export_file": "assets/exports/modular/MOD_Wall_2m_ObservationWindow.glb",
+      "implementation_notes": "Origin at left end, floor level; front face -Y. Rotate in 90-degree steps.",
+      "intended_location": "Any wall run on the 2 m module grid",
+      "markers": [],
+      "materials": [
+        "M_Glass_OneWay_Observer",
+        "M_Mirror_OneWay_Room",
+        "M_Skirting_Coved",
+        "M_Steel_Painted_White",
+        "M_Wall_Protection_Green",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 168
+    },
+    "MOD_Wall_2m_Plain": {
+      "asset_id": "MOD_Wall_2m_Plain",
+      "asset_name": "Plain wall 2 m",
+      "category": "modular_architecture",
+      "collision": "Box collider",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        0.224,
+        3.0
+      ],
+      "export_file": "assets/exports/modular/MOD_Wall_2m_Plain.glb",
+      "implementation_notes": "Origin at left end, floor level; front face -Y. Rotate in 90-degree steps.",
+      "intended_location": "Any wall run on the 2 m module grid",
+      "markers": [],
+      "materials": [
+        "M_Skirting_Coved",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 36
+    },
+    "MOD_Wall_CornerPost": {
+      "asset_id": "MOD_Wall_CornerPost",
+      "asset_name": "0.2 x 0.2 corner post (fills wall junctions)",
+      "category": "modular_architecture",
+      "collision": "Box collider",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.2,
+        0.2,
+        3.0
+      ],
+      "export_file": "assets/exports/modular/MOD_Wall_CornerPost.glb",
+      "implementation_notes": "Origin at the grid intersection.",
+      "intended_location": "Every wall junction/end on the grid",
+      "markers": [],
+      "materials": [
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/modular/FW_Modular_Kit.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 12
+    },
+    "PROP_Acoustic_Panel": {
+      "asset_id": "PROP_Acoustic_Panel",
+      "asset_name": "Fabric acoustic wall panel 1200x600",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.2,
+        0.04,
+        0.6
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Acoustic_Panel.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: mounting surface",
+      "intended_location": "Walls/ceilings throughout the clinical wing",
+      "markers": [],
+      "materials": [
+        "M_Acoustic_Fabric"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 12
+    },
+    "PROP_Bed_AntiLigature": {
+      "asset_id": "PROP_Bed_AntiLigature",
+      "asset_name": "Anti-ligature plinth bed with mattress",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.95,
+        2.05,
+        0.58
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Bed_AntiLigature.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: floor centre",
+      "intended_location": "Offices, interview rooms, nursing station (see supervision notes)",
+      "markers": [],
+      "materials": [
+        "M_Paper",
+        "M_Plastic_OffWhite",
+        "M_Polyurethane_Interview",
+        "M_Upholstery_Teal"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 48
+    },
+    "PROP_Bin_Waste": {
+      "asset_id": "PROP_Bin_Waste",
+      "asset_name": "Waste bin (staff areas)",
+      "category": "furniture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.344,
+        0.344,
+        0.415
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Bin_Waste.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: floor centre",
+      "intended_location": "Offices, interview rooms, nursing station (see supervision notes)",
+      "markers": [],
+      "materials": [
+        "M_Plastic_Black",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 184
+    },
+    "PROP_Bookcase_Binders": {
+      "asset_id": "PROP_Bookcase_Binders",
+      "asset_name": "Steel bookcase with clinical binders",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.904,
+        0.352,
+        1.9
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Bookcase_Binders.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: floor centre",
+      "intended_location": "Offices, interview rooms, nursing station (see supervision notes)",
+      "markers": [],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Binder_Maroon",
+        "M_Binder_Navy",
+        "M_Folder_Manila",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 612
+    },
+    "PROP_Cabinet_Filing_4Drawer": {
+      "asset_id": "PROP_Cabinet_Filing_4Drawer",
+      "asset_name": "Locking 4-drawer filing cabinet",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.47,
+        0.653,
+        1.32
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Cabinet_Filing_4Drawer.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: floor centre",
+      "intended_location": "Offices, interview rooms, nursing station (see supervision notes)",
+      "markers": [],
+      "materials": [
+        "M_Paper",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 192
+    },
+    "PROP_Camera_Dome": {
+      "asset_id": "PROP_Camera_Dome",
+      "asset_name": "Ceiling dome CCTV camera",
+      "category": "security",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.18,
+        0.18,
+        0.112
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Camera_Dome.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: mounting surface",
+      "intended_location": "Corridors, secure doors, interview rooms",
+      "markers": [],
+      "materials": [
+        "M_Glass_OneWay_Observer",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 532
+    },
+    "PROP_Chair_Interview_Weighted": {
+      "asset_id": "PROP_Chair_Interview_Weighted",
+      "asset_name": "Weighted moulded interview chair (anti-ligature, no gaps, cannot be lifted)",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.64,
+        0.63,
+        0.953
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Chair_Interview_Weighted.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: floor centre",
+      "intended_location": "Offices, interview rooms, nursing station (see supervision notes)",
+      "markers": [],
+      "materials": [
+        "M_Polyurethane_Interview"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 60
+    },
+    "PROP_Chair_Office": {
+      "asset_id": "PROP_Chair_Office",
+      "asset_name": "Task chair (staff only)",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.613,
+        0.599,
+        1.056
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Chair_Office.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: floor centre",
+      "intended_location": "Offices, interview rooms, nursing station (see supervision notes)",
+      "markers": [],
+      "materials": [
+        "M_Plastic_Black",
+        "M_Steel_Brushed",
+        "M_Upholstery_Charcoal"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 604
+    },
+    "PROP_Chair_Visitor": {
+      "asset_id": "PROP_Chair_Visitor",
+      "asset_name": "Visitor chair, sled base",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.5,
+        0.53,
+        0.881
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Chair_Visitor.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: floor centre",
+      "intended_location": "Offices, interview rooms, nursing station (see supervision notes)",
+      "markers": [],
+      "materials": [
+        "M_Steel_Brushed",
+        "M_Upholstery_Teal"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 120
+    },
+    "PROP_Clock_Wall_Caged": {
+      "asset_id": "PROP_Clock_Wall_Caged",
+      "asset_name": "Wall clock behind polycarbonate guard",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.35,
+        0.07,
+        0.35
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Clock_Wall_Caged.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: mounting surface",
+      "intended_location": "Walls/ceilings throughout the clinical wing",
+      "markers": [],
+      "materials": [
+        "M_Clock_Face",
+        "M_Glass_Clear",
+        "M_Plastic_Black"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 416
+    },
+    "PROP_Desk_Clinical": {
+      "asset_id": "PROP_Desk_Clinical",
+      "asset_name": "Clinical office desk 1600",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.6,
+        0.8,
+        0.75
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Desk_Clinical.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: floor centre",
+      "intended_location": "Offices, interview rooms, nursing station (see supervision notes)",
+      "markers": [],
+      "materials": [
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 132
+    },
+    "PROP_Duress_Strip_2m": {
+      "asset_id": "PROP_Duress_Strip_2m",
+      "asset_name": "Staff duress (panic) strip, 2 m",
+      "category": "security",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        0.031,
+        0.05
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Duress_Strip_2m.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: mounting surface",
+      "intended_location": "Corridors, secure doors, interview rooms",
+      "markers": [],
+      "materials": [
+        "M_Safety_Red",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 24
+    },
+    "PROP_Folder_MedicalChart": {
+      "asset_id": "PROP_Folder_MedicalChart",
+      "asset_name": "Paper medical chart folder",
+      "category": "document",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.24,
+        0.31,
+        0.024
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Folder_MedicalChart.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: mounting surface",
+      "intended_location": "Desks, nursing station, archives",
+      "markers": [],
+      "materials": [
+        "M_Folder_Manila",
+        "M_Paper",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 36
+    },
+    "PROP_Frame_Certificate": {
+      "asset_id": "PROP_Frame_Certificate",
+      "asset_name": "Framed qualification certificate",
+      "category": "decor",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.32,
+        0.023,
+        0.42
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Frame_Certificate.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: mounting surface",
+      "intended_location": "Staff offices only",
+      "markers": [],
+      "materials": [
+        "M_Paper",
+        "M_Plastic_Black"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 24
+    },
+    "PROP_Handrail_Wall_2m": {
+      "asset_id": "PROP_Handrail_Wall_2m",
+      "asset_name": "Anti-ligature closed-profile handrail, 2 m",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.85,
+        0.07,
+        0.05
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Handrail_Wall_2m.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: mounting surface",
+      "intended_location": "Walls/ceilings throughout the clinical wing",
+      "markers": [],
+      "materials": [
+        "M_Rubber_Dark",
+        "M_Upholstery_Charcoal"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 36
+    },
+    "PROP_Intercom_Speaker": {
+      "asset_id": "PROP_Intercom_Speaker",
+      "asset_name": "Vandal-resistant intercom panel",
+      "category": "security",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.14,
+        0.029,
+        0.22
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Intercom_Speaker.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: mounting surface",
+      "intended_location": "Corridors, secure doors, interview rooms",
+      "markers": [],
+      "materials": [
+        "M_Plastic_Black",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 572
+    },
+    "PROP_Light_VandalResistant": {
+      "asset_id": "PROP_Light_VandalResistant",
+      "asset_name": "Tamper-resistant flush luminaire",
+      "category": "lighting",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.4,
+        0.4,
+        0.053
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Light_VandalResistant.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: mounting surface",
+      "intended_location": "Patient-accessible rooms (tamper-resistant)",
+      "markers": [
+        "LIGHTMARK_PROP_Light_VandalResistant"
+      ],
+      "materials": [
+        "M_Emissive_LightPanel",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 244
+    },
+    "PROP_NoticeBoard": {
+      "asset_id": "PROP_NoticeBoard",
+      "asset_name": "Staff notice board with pinned notices",
+      "category": "decor",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.2,
+        0.033,
+        0.9
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_NoticeBoard.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: mounting surface",
+      "intended_location": "Staff offices only",
+      "markers": [],
+      "materials": [
+        "M_Acoustic_Fabric",
+        "M_Folder_Manila",
+        "M_Paper",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 96
+    },
+    "PROP_Phone_Institutional": {
+      "asset_id": "PROP_Phone_Institutional",
+      "asset_name": "Institutional desk phone",
+      "category": "clinical_equipment",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.2,
+        0.224,
+        0.101
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Phone_Institutional.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: mounting surface",
+      "intended_location": "Staff-only areas",
+      "markers": [],
+      "materials": [
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 168
+    },
+    "PROP_Reader_Access": {
+      "asset_id": "PROP_Reader_Access",
+      "asset_name": "Access card reader with status LEDs",
+      "category": "security",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.05,
+        0.024,
+        0.1
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Reader_Access.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: mounting surface",
+      "intended_location": "Corridors, secure doors, interview rooms",
+      "markers": [],
+      "materials": [
+        "M_Emissive_LED_Green",
+        "M_Emissive_LED_Red",
+        "M_Plastic_Black",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 48
+    },
+    "PROP_Shelving_Archive": {
+      "asset_id": "PROP_Shelving_Archive",
+      "asset_name": "Steel archive shelving with record boxes",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.835,
+        0.485,
+        2.2
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Shelving_Archive.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: floor centre",
+      "intended_location": "Offices, interview rooms, nursing station (see supervision notes)",
+      "markers": [],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Folder_Manila",
+        "M_Paper",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 720
+    },
+    "PROP_Sign_Room": {
+      "asset_id": "PROP_Sign_Room",
+      "asset_name": "Room identification sign mount",
+      "category": "signage",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.3,
+        0.016,
+        0.15
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Sign_Room.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: mounting surface",
+      "intended_location": "Beside room doors at 1.5 m",
+      "markers": [],
+      "materials": [
+        "M_Signage_Blue",
+        "M_Signage_Panel",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 36
+    },
+    "PROP_Table_Interview_Fixed": {
+      "asset_id": "PROP_Table_Interview_Fixed",
+      "asset_name": "Interview table, floor-fixed pedestal, radiused corners",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.2,
+        0.8,
+        0.74
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Table_Interview_Fixed.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: floor centre",
+      "intended_location": "Offices, interview rooms, nursing station (see supervision notes)",
+      "markers": [],
+      "materials": [
+        "M_Plastic_Black",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 160
+    },
+    "PROP_Terminal_EHR": {
+      "asset_id": "PROP_Terminal_EHR",
+      "asset_name": "EHR workstation (24\" monitor, keyboard, mouse, thin client)",
+      "category": "clinical_equipment",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.722,
+        0.405,
+        0.552
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Terminal_EHR.glb",
+      "implementation_notes": "Staff-only / supervised areas (not for unsupervised patient spaces). Origin: mounting surface",
+      "intended_location": "Staff-only areas",
+      "markers": [],
+      "materials": [
+        "M_Emissive_LED_Green",
+        "M_Emissive_Screen",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 264
+    },
+    "PROP_Vent_Grille_Wall": {
+      "asset_id": "PROP_Vent_Grille_Wall",
+      "asset_name": "Anti-ligature ventilation grille 600x300",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.6,
+        0.023,
+        0.3
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Vent_Grille_Wall.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: mounting surface",
+      "intended_location": "Walls/ceilings throughout the clinical wing",
+      "markers": [],
+      "materials": [
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 144
+    },
+    "PROP_Wardrobe_AntiLigature": {
+      "asset_id": "PROP_Wardrobe_AntiLigature",
+      "asset_name": "Anti-ligature open wardrobe, sloped top",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.808,
+        0.585,
+        2.0
+      ],
+      "export_file": "assets/exports/clinical/props/PROP_Wardrobe_AntiLigature.glb",
+      "implementation_notes": "Approved for patient-accessible areas. Origin: floor centre",
+      "intended_location": "Offices, interview rooms, nursing station (see supervision notes)",
+      "markers": [],
+      "materials": [
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 96
+    }
+  },
+  "schema_version": "1.0"
+}
