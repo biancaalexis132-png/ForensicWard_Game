@@ -128,3 +128,7 @@ Future tests: static graph reachability for every state/failure; same semantic i
 ## Validation at this checkpoint
 
 Source/code comparison and runtime/package preservation checks only establish this proposal's grounding. Standard Godot4.7 QA on identical application bytes from inspection checkpoint8e30681 through final docs passed exit0: Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, boot OK, audio334/0, Chapter1 sequence61.0s. Command `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`; local log `/tmp/forensic-inspection-spec-qa.log`. Whitespace, package/runtime preservation and resolved-conflict checks passed. Prior latest run on the separate Naomi branch had gameplay131/0 and audio333/1 cinematic-resume timing assertion; reduced probe passed, cause unconfirmed. No audio/test patch is bundled here. Actual repeated-corridor behavior, safety invariants, independence engine and Mac performance are unimplemented/unvalidated. No new clinical approval granted.
+
+## Revised manuscript availability — 2026-10-17
+
+V2 five-file package now available on main1dbd26a. Earlier missing-text statements describe the preceding checkpoint. Actual line-reference review is in [REVISED_SCREENPLAYS_V2_TECHNICAL_REVIEW.md](REVISED_SCREENPLAYS_V2_TECHNICAL_REVIEW.md). In particular Ch3 explicitly prohibits dynamic substitution/teleportation; earlier repeated-presentation options here are future Ch4 proposals, not Ch3 implementation instructions. Source documents preserved.

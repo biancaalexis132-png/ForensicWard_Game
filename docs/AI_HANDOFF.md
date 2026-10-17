@@ -10,8 +10,8 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Ch3 inspection specification | `codex/chapter3-inspection-spec` | Codex | `8cff9bcfc15956cb2828b2ff783b7ebcb7c5031e` | New spec/canon and own continuity docs | DraftPR32; complete proposal, full QA passed |
-| Screenplay integration | `codex/screenplay-continuity-review` | Owner/Codex review | `78d0d8a4aaa84f6c92aa377f0381ccabfcd4b391` | Existing audit and approved canon/docs | Owner merged Naomi proposal PR31 here; no modeling approval implied |
+| Revised v2 review | `codex/revised-screenplays-v2-review` | Codex | `6212d14c5249f65d59ca8d772702352472a4e950` | New review/spec addendum and own continuity | DraftPR33, review and fullQA passed |
+| Screenplay integration | `codex/screenplay-continuity-review` | Owner/Codex review | `ca7488980be3dd4d065810ae2f75cc6741727906` | Existing audit/canon/proposals | PR31/32 owner-merged here, not main; no modeling/effect approval implied |
 | Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex | `74715227bf5581b09a3b2746870082576fffe71f` | Pure validator/test module | Complete for review, no runtime creator |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -57,6 +57,30 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Codex · Revised v2 final recoverable handoff
+
+- **Branch:** `codex/revised-screenplays-v2-review`; latest verified remote before final docs **6212d14c5249f65d59ca8d772702352472a4e950**, final tip via ls-remote. Base **ca7488980be3dd4d065810ae2f75cc6741727906** owner-merged PR32/31 integration; ordinary main merge brings v2 source **1dbd26a96288d7947ebd6a90b151ba1f6a0fc2a6**. Requested docs branch absent, files all on main. No agent merge/main push/history rewrite.
+- **PR:** draft33 https://github.com/biancaalexis132-png/ForensicWard_Game/pull/33, base screenplay integration; verified OPEN/draft. It includes upstream v2 docs already on main and new line-reference review. No packages replaced.
+- **Completed/files:** `REVISED_SCREENPLAYS_V2_TECHNICAL_REVIEW.md`, dated availability/Ch3 no-geometry addendum to earlier inspection spec, four handoff/status docs. Every v2 scene/contract mapped by line ranges, older scene gaps/clinical facts identified,12-test plan and safe-return/source/replay PR order. Claims only those docs; no runtime/assets/clinical flags/new effects/model work.
+- **Tests on unchanged application bytes from84257e2:** `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64` **exit0**, Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, boot OK, audio334/0, Chapter1sequence62.2s. Log `/tmp/forensic-revised-v2-qa.log`. Whitespace/package/runtime preservation/conflict checks pass. New inspection/source-independence tests not implemented/run; Mac/clinical validation/hostedCI not claimed. Earlier intermittent cinematic timing failure remains recorded, not purported fixed.
+- **Decisions/blockers:** Mara35 SI/HI headline vs79 limited reply; additional sleep/history/collateral/formulation source/clinical review; static Ch3 vs approved future Ch4 effect; old scene/transport mapping; legal egress/roster/state lifecycle; interrupted journal vs durable record preservation; source/clock/control/status schema; D4–D9/F0 unresolved items. SaveManager already temp-writes/renames/checksums; missing inspection recovery must not replace working save architecture.
+- **Exact next:** owner reviews R1 bounded pure inspection lifecycle/recovery contract, then real F2 fault-injection lab and source-lineage/claim validator, then persistence/replay; no major effect before reviewed foundations and Mac tests. Re-fetch PR33/base/main and coordinate before shared code. Naomi remains separate approved-for-review proposal, no substantial modeling started. Full prior Mara source still unavailable beyond draft assertions; do not invent approval. Living handoff `docs/AI_SESSION_HANDOFF.md`; no uncommitted app implementation, final docs committed/pushed/verified before ending.
+
+
+### 2026-10-17 · Codex · V2 line-reference review milestone
+
+- Branch `codex/revised-screenplays-v2-review`; latest verified remote `84257e24970ded8e7195aea9b46b876610ad933f`. Main/source `1dbd26a96288d7947ebd6a90b151ba1f6a0fc2a6`, all five v2 files fully read and compared in new `REVISED_SCREENPLAYS_V2_TECHNICAL_REVIEW.md` with exact source line ranges, code anchors, all12 acceptance-test mappings and foundations-first PR sequence.
+- Important gaps: Mara35 SI/HI summary vs79 no HI inference/new source-specific clinical facts; Ch3 explicitly static continuous route, no teleport; old scenes/transport not mapped; crash checkpoint vs preserving durable observations needs journal/atomic policy; current EvidenceManager lacks source independence/status model. Clinical flags unchanged; source packages/runtime preserved. Earlier spec gets dated availability correction only.
+- Current standard QA session79985 `/tmp/forensic-revised-v2-qa.log`: gameplay131/0, boot OK, audio/sequence pending. Next verify docs/preservation, push milestone, draft PR then final QA/handoff. No new system/model/effect implementation.
+
+
+### 2026-10-17 · Codex · Revised screenplay v2 intake checkpoint
+
+- Branch `codex/revised-screenplays-v2-review`, from owner-merged screenplay base `ca7488980be3dd4d065810ae2f75cc6741727906` (PR32); main now `1dbd26a96288d7947ebd6a90b151ba1f6a0fc2a6`, five v2 files available. Requested docs/revised-screenplays-v2 branch absent; no blocker because main has package. Latest previously verified inspection remote e36e155.
+- Claim new line-reference audit/own continuity only; package/clinical/runtime untouched. Initial reading, Ch3 middle lines and technical mapping next. Previous full QA passed131/334; current pending.
+- Next compare all actual lines to old manuscripts/F2/campaign/review flags, report support/gaps/tests/approvals and foundations-first PRs; checkpoint after findings.
+
 
 ### 2026-10-17 · Codex · Controlled-inspection final session handoff
 
