@@ -63,6 +63,42 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 19:30 UTC · Claude Code · CI fix: macOS AppleDouble files
+
+- **Branch:** `claude/remove-appledouble-metadata` (based on `main` at `782f642`)
+- **Latest verified commit:** `a0c00e8b97ee1d804d2ecb9484760b6f0b866483` "Remove macOS AppleDouble files and skip them in content QA"
+- **Confirmed on GitHub:** `git ls-remote origin claude/remove-appledouble-metadata` printed `a0c00e8` at 19:28 UTC; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished
+
+**Accomplished**
+- `main` at `782f642` ("will music i think") tracked 583 `._*` AppleDouble files written by macOS on the exFAT SSD; `tests/qa/test_json.py` failed with `UnicodeDecodeError` on `data/patients/._PT-001.json`. All 583 untracked; every one had the AppleDouble magic and a genuine companion file, which is kept.
+
+**Files modified**
+- `.gitignore`: ignores `._*`, `.DS_Store`, `.AppleDouble`, `.Spotlight-V100`, `.Trashes`, `.fseventsd`, `__MACOSX/` and similar.
+- `tests/qa/test_json.py`: `content_files()` skips `._*` and `__MACOSX`; UTF-8 reads; new tests for the skip rule and for no tracked macOS metadata.
+- `tests/qa/test_audio_manifest.py`: same skip for `audio/` and `data/narrative/`.
+
+**Unfinished**
+- none
+
+**Known errors**
+- Runtime loaders that list folders (`systems/audio/AudioDirector.gd` `_load_narrative`, `tools/godot/validate_glb_imports.gd`) do not skip `._*`; on the exFAT drive untracked `._*.json` files would still reach them. Not changed here.
+
+**Tests** (on `a0c00e8`)
+- `GODOT=<4.7-stable linux, SHA-512 verified> python3 tests/qa/run.py`: exit 0, QA_RESULT passed=19 failed=0 skipped=0, AUDIO_RESULT passed=211 failed=0, Python content 6/6 and audio 3/3 OK. Also passed with planted `._*` files in `data/patients`, `data/narrative` and `audio`.
+- CI: not observed yet
+
+**Dependencies not available to remote agents**
+- none
+
+**Next steps**
+1. Owner: run `dot_clean -m .` in the project folder on the Mac (or keep the project on an APFS volume) so the files stop reappearing locally.
+2. The headless import generated `.import` files for the five `assets/audio/music/*.ogg` tracks from `782f642`; they were not committed here. Commit them with the music workstream.
+
+**Notes for the other agent**
+- No PR #20 existed; the failure was on `main` itself, so the fix is on this branch per AGENTS.md §3.
+
 ### 2026-10-17 18:45 UTC · Claude Code · Environment Stage 4a security and admin wing
 
 - **Branch:** `claude/environment-stage-4` (based on `main` at `6feaaa5`, which includes PR #13)
