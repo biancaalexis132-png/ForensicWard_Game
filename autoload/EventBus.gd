@@ -33,16 +33,26 @@ signal game_mode_changed(previous_mode: int, new_mode: int)
 
 # --- Clinical (EHR / pharmacology) -----------------------------------------
 
+## A patient was admitted and their pharmacology state initialized.
+@warning_ignore("unused_signal")
+signal patient_admitted(patient_id: String)
+
 ## The player opened a patient's chart.
 @warning_ignore("unused_signal")
 signal patient_selected(patient_id: String)
 
-## A medication order was signed. `order` holds drug_id, dose_mg, route, frequency.
+## A medication order was signed. `order` holds drug_id and daily_dose_mg
+## (dose 0 stops the drug; it then washes out over its half-life).
 @warning_ignore("unused_signal")
 signal medication_ordered(patient_id: String, order: Dictionary)
 
+## A medication was stopped. The drug washes out over its half-life.
+@warning_ignore("unused_signal")
+signal medication_discontinued(patient_id: String, drug_id: String)
+
 ## PharmacologyEngine finished recalculating a patient's clinical state.
-## `state` holds keys such as sedation, psychosis_control, eps, qtc_ms.
+## `state` is PharmacologyEngine.get_state(): sedation, eps, akathisia, qtc_ms,
+## symptoms, interview_reliability, levels, alerts, ...
 @warning_ignore("unused_signal")
 signal patient_state_updated(patient_id: String, state: Dictionary)
 

@@ -1,0 +1,184 @@
+{
+	"_meta": {
+		"description": "Drug database for PharmacologyEngine. Effects are values at relative exposure E = 1.0 (steady state of a CYP normal metabolizer with normal renal function on reference_daily_dose_mg).",
+		"pathways": "Fraction of clearance per route. CYP1A2, CYP2B6, CYP2C9, CYP2C19, CYP2D6, CYP3A4 scale with genotype, inhibition, induction and inflammation. Keys starting with RENAL scale with eGFR. OTHER (UGT, etc.) is unaffected.",
+		"strength": "inhibits / induces use FDA interaction-strength classes: weak, moderate, strong.",
+		"effect_channels": "antipsychotic, antidepressant, mood_stabilizer, agitation_control, eps_relief, akathisia_relief (efficacy) / sedation, eps, akathisia, anticholinergic, serotonergic (adverse). qtc_ms = QTc increase in ms at E = 1.0.",
+		"sources": "Reference values from Stahl's Prescriber's Guide 8e, Maudsley Prescribing Guidelines 15e, Stahl's Essential Psychopharmacology 5e and the Day 4-7 resident lecture scripts. Effect magnitudes are game calibrations, not clinical data. Verify before treating any value as factual.",
+		"version": 1
+	},
+	"drugs": [
+		{
+			"id": "haloperidol", "name": "Haloperidol", "class": "FGA antipsychotic",
+			"half_life_hours": 21, "reference_daily_dose_mg": 10, "max_daily_dose_mg": 20,
+			"pathways": {"CYP3A4": 0.5, "CYP2D6": 0.25, "OTHER": 0.25},
+			"inhibits": {"CYP2D6": "weak"},
+			"effects": {"antipsychotic": 0.7, "sedation": 0.2, "eps": 0.55, "akathisia": 0.4, "anticholinergic": 0.05},
+			"qtc_ms": 6,
+			"source": "High D2 potency, high EPS/akathisia; moderate QTc effect (Maudsley)."
+		},
+		{
+			"id": "risperidone", "name": "Risperidone", "class": "SGA antipsychotic",
+			"half_life_hours": 20, "reference_daily_dose_mg": 4, "max_daily_dose_mg": 16,
+			"pathways": {"CYP2D6": 0.3, "CYP3A4": 0.2, "RENAL": 0.5},
+			"effects": {"antipsychotic": 0.72, "sedation": 0.25, "eps": 0.35, "akathisia": 0.3},
+			"qtc_ms": 4,
+			"source": "Modelled as active moiety (risperidone + 9-OH-risperidone/paliperidone, renally cleared), so CYP2D6 status changes the moiety only modestly."
+		},
+		{
+			"id": "aripiprazole", "name": "Aripiprazole", "class": "SGA antipsychotic (D2 partial agonist)",
+			"half_life_hours": 75, "reference_daily_dose_mg": 15, "max_daily_dose_mg": 30,
+			"pathways": {"CYP2D6": 0.5, "CYP3A4": 0.5},
+			"effects": {"antipsychotic": 0.65, "sedation": 0.1, "eps": 0.1, "akathisia": 0.45},
+			"qtc_ms": 0,
+			"source": "Label: halve dose in CYP2D6 PM or with strong CYP2D6/CYP3A4 inhibitors. Akathisia is the dominant adverse effect."
+		},
+		{
+			"id": "olanzapine", "name": "Olanzapine", "class": "SGA antipsychotic",
+			"half_life_hours": 33, "reference_daily_dose_mg": 15, "max_daily_dose_mg": 20,
+			"pathways": {"CYP1A2": 0.6, "CYP2D6": 0.05, "OTHER": 0.35},
+			"effects": {"antipsychotic": 0.75, "sedation": 0.55, "eps": 0.12, "akathisia": 0.1, "anticholinergic": 0.3},
+			"qtc_ms": 2,
+			"source": "CYP1A2 + UGT1A4; smokers clear ~30-40% faster."
+		},
+		{
+			"id": "quetiapine", "name": "Quetiapine", "class": "SGA antipsychotic",
+			"half_life_hours": 7, "reference_daily_dose_mg": 600, "max_daily_dose_mg": 800,
+			"pathways": {"CYP3A4": 0.9, "OTHER": 0.1},
+			"effects": {"antipsychotic": 0.55, "sedation": 0.6, "eps": 0.04, "akathisia": 0.05, "anticholinergic": 0.25},
+			"qtc_ms": 6,
+			"source": "Sensitive CYP3A4 substrate: large changes with ketoconazole/clarithromycin (up) and carbamazepine (down)."
+		},
+		{
+			"id": "clozapine", "name": "Clozapine", "class": "SGA antipsychotic (treatment-resistant schizophrenia)",
+			"half_life_hours": 12, "reference_daily_dose_mg": 300, "max_daily_dose_mg": 900,
+			"pathways": {"CYP1A2": 0.7, "CYP3A4": 0.2, "CYP2D6": 0.05, "OTHER": 0.05},
+			"effects": {"antipsychotic": 0.85, "sedation": 0.5, "eps": 0.02, "anticholinergic": 0.55},
+			"qtc_ms": 5,
+			"tdm": {"unit": "ng/mL", "level_at_reference": 400, "therapeutic_range": [350, 600], "warning_above": 750, "critical_above": 1000},
+			"source": "Maudsley: target plasma level ≥ 350 ng/mL; seizure risk rises above ~1000 ng/mL. Levels rise ~50% or more after smoking cessation (loss of CYP1A2 induction)."
+		},
+		{
+			"id": "lithium", "name": "Lithium carbonate", "class": "Mood stabilizer",
+			"half_life_hours": 24, "reference_daily_dose_mg": 900, "max_daily_dose_mg": 1800,
+			"pathways": {"RENAL_LITHIUM": 1.0},
+			"effects": {"mood_stabilizer": 0.7, "sedation": 0.1, "eps": 0.15},
+			"qtc_ms": 0,
+			"tdm": {"unit": "mmol/L", "level_at_reference": 0.8, "therapeutic_range": [0.6, 1.0], "warning_above": 1.2, "critical_above": 1.5},
+			"source": "Not metabolized; renal clearance only. NSAIDs, thiazides, ACE inhibitors/ARBs and dehydration raise levels. eps channel represents tremor."
+		},
+		{
+			"id": "fluoxetine", "name": "Fluoxetine", "class": "SSRI",
+			"half_life_hours": 168, "reference_daily_dose_mg": 20, "max_daily_dose_mg": 80,
+			"pathways": {"CYP2D6": 0.6, "CYP2C9": 0.2, "OTHER": 0.2},
+			"inhibits": {"CYP2D6": "strong", "CYP2C19": "moderate"},
+			"effects": {"antidepressant": 0.6, "serotonergic": 0.45, "akathisia": 0.12, "sedation": 0.05},
+			"qtc_ms": 2,
+			"source": "Half-life lumps fluoxetine (2-4 d) with norfluoxetine (7-15 d): inhibition builds and persists for weeks."
+		},
+		{
+			"id": "paroxetine", "name": "Paroxetine", "class": "SSRI",
+			"half_life_hours": 21, "reference_daily_dose_mg": 20, "max_daily_dose_mg": 60,
+			"pathways": {"CYP2D6": 0.8, "OTHER": 0.2},
+			"inhibits": {"CYP2D6": "strong"},
+			"effects": {"antidepressant": 0.6, "serotonergic": 0.45, "anticholinergic": 0.25, "sedation": 0.2},
+			"qtc_ms": 1,
+			"source": "Strong CYP2D6 inhibitor; the most anticholinergic SSRI."
+		},
+		{
+			"id": "sertraline", "name": "Sertraline", "class": "SSRI",
+			"half_life_hours": 26, "reference_daily_dose_mg": 100, "max_daily_dose_mg": 200,
+			"pathways": {"CYP2C19": 0.4, "CYP2B6": 0.2, "CYP3A4": 0.2, "CYP2D6": 0.1, "OTHER": 0.1},
+			"inhibits": {"CYP2D6": "weak"},
+			"effects": {"antidepressant": 0.6, "serotonergic": 0.45},
+			"qtc_ms": 3,
+			"source": "Multiple pathways, so it is a weak victim; mild CYP2D6 inhibition at higher doses."
+		},
+		{
+			"id": "citalopram", "name": "Citalopram", "class": "SSRI",
+			"half_life_hours": 35, "reference_daily_dose_mg": 20, "max_daily_dose_mg": 40,
+			"pathways": {"CYP2C19": 0.5, "CYP3A4": 0.3, "CYP2D6": 0.2},
+			"effects": {"antidepressant": 0.6, "serotonergic": 0.45, "sedation": 0.1},
+			"qtc_ms": 8.5,
+			"source": "Dose-dependent QTc prolongation (FDA thorough QT: ~8.5 ms at 20 mg). Max 20 mg in CYP2C19 PM or age > 60."
+		},
+		{
+			"id": "fluvoxamine", "name": "Fluvoxamine", "class": "SSRI",
+			"half_life_hours": 15, "reference_daily_dose_mg": 100, "max_daily_dose_mg": 300,
+			"pathways": {"CYP2D6": 0.6, "CYP1A2": 0.3, "OTHER": 0.1},
+			"inhibits": {"CYP1A2": "strong", "CYP2C19": "strong", "CYP3A4": "weak"},
+			"effects": {"antidepressant": 0.55, "serotonergic": 0.45, "sedation": 0.25},
+			"qtc_ms": 2,
+			"source": "Strong CYP1A2 inhibitor: can raise clozapine/olanzapine levels several-fold."
+		},
+		{
+			"id": "carbamazepine", "name": "Carbamazepine", "class": "Anticonvulsant mood stabilizer",
+			"half_life_hours": 35, "reference_daily_dose_mg": 400, "max_daily_dose_mg": 1600,
+			"pathways": {"CYP3A4": 0.75, "OTHER": 0.25},
+			"induces": {"CYP3A4": "strong", "CYP1A2": "moderate", "CYP2C19": "moderate", "CYP2C9": "moderate"},
+			"effects": {"mood_stabilizer": 0.55, "sedation": 0.3, "eps": 0.05},
+			"qtc_ms": 0,
+			"tdm": {"unit": "mg/L", "level_at_reference": 12.0, "therapeutic_range": [4, 12], "warning_above": 12, "critical_above": 15},
+			"source": "Autoinduction: half-life falls from ~35 h to ~12-17 h over the first weeks. Strong CYP3A4 inducer. reference dose = un-induced equivalent."
+		},
+		{
+			"id": "lorazepam", "name": "Lorazepam", "class": "Benzodiazepine",
+			"half_life_hours": 14, "reference_daily_dose_mg": 2, "max_daily_dose_mg": 4,
+			"pathways": {"OTHER": 1.0},
+			"effects": {"agitation_control": 0.6, "sedation": 0.45, "akathisia_relief": 0.3},
+			"qtc_ms": 0,
+			"source": "Glucuronidation only (no CYP), so it is preferred when hepatic function or interactions are a concern."
+		},
+		{
+			"id": "benztropine", "name": "Benztropine", "class": "Anticholinergic (antiparkinsonian)",
+			"half_life_hours": 24, "reference_daily_dose_mg": 2, "max_daily_dose_mg": 6,
+			"pathways": {"OTHER": 1.0},
+			"effects": {"eps_relief": 0.6, "anticholinergic": 0.35, "sedation": 0.1},
+			"qtc_ms": 0,
+			"source": "Treats parkinsonism/dystonia; does not treat akathisia well; adds anticholinergic burden."
+		},
+		{
+			"id": "propranolol", "name": "Propranolol", "class": "Beta blocker",
+			"half_life_hours": 4, "reference_daily_dose_mg": 40, "max_daily_dose_mg": 120,
+			"pathways": {"CYP2D6": 0.4, "CYP1A2": 0.4, "CYP2C19": 0.1, "OTHER": 0.1},
+			"effects": {"akathisia_relief": 0.5, "sedation": 0.05},
+			"qtc_ms": 0,
+			"source": "First-line for antipsychotic-induced akathisia (Maudsley)."
+		},
+		{
+			"id": "clarithromycin", "name": "Clarithromycin", "class": "Macrolide antibiotic",
+			"half_life_hours": 5, "reference_daily_dose_mg": 1000, "max_daily_dose_mg": 1000,
+			"pathways": {"CYP3A4": 0.6, "RENAL": 0.4},
+			"inhibits": {"CYP3A4": "strong"},
+			"effects": {},
+			"qtc_ms": 8,
+			"source": "Strong (mechanism-based) CYP3A4 inhibitor and QTc-prolonging."
+		},
+		{
+			"id": "ciprofloxacin", "name": "Ciprofloxacin", "class": "Fluoroquinolone antibiotic",
+			"half_life_hours": 4, "reference_daily_dose_mg": 1000, "max_daily_dose_mg": 1500,
+			"pathways": {"RENAL": 0.65, "OTHER": 0.35},
+			"inhibits": {"CYP1A2": "strong"},
+			"effects": {},
+			"qtc_ms": 3,
+			"source": "CYP1A2 inhibitor: raises clozapine/olanzapine exposure."
+		},
+		{
+			"id": "linezolid", "name": "Linezolid", "class": "Oxazolidinone antibiotic (reversible MAOI)",
+			"half_life_hours": 5, "reference_daily_dose_mg": 1200, "max_daily_dose_mg": 1200,
+			"pathways": {"RENAL": 0.35, "OTHER": 0.65},
+			"effects": {"serotonergic": 0.7},
+			"qtc_ms": 0,
+			"source": "MAO inhibition: serotonin toxicity risk with SSRIs (pharmacodynamic interaction)."
+		},
+		{
+			"id": "ibuprofen", "name": "Ibuprofen", "class": "NSAID",
+			"half_life_hours": 2, "reference_daily_dose_mg": 1200, "max_daily_dose_mg": 2400,
+			"pathways": {"CYP2C9": 0.9, "OTHER": 0.1},
+			"inhibits": {"RENAL_LITHIUM": "weak"},
+			"effects": {},
+			"qtc_ms": 0,
+			"source": "NSAIDs reduce renal lithium clearance (lithium levels up ~25-60%)."
+		}
+	]
+}

@@ -1,0 +1,24 @@
+{
+	"id": "PT-001",
+	"name": "Patient 001 (placeholder)",
+	"age": 38,
+	"sex": "M",
+	"weight_kg": 84,
+	"egfr": 96,
+	"baseline_qtc_ms": 421,
+	"potassium_mmol_l": 4.1,
+	"phenotypes": {"CYP2D6": "IM", "CYP2C19": "NM", "CYP1A2": "NM", "CYP3A4": "NM"},
+	"smoking": {"cigarettes_per_day": 25, "smoking_on_ward": false},
+	"inflammation": false,
+	"baseline_symptoms": {"psychosis": 0.85, "depression": 0.3, "mania": 0.05, "agitation": 0.6},
+	"home_medications": [
+		{"drug_id": "clozapine", "daily_dose_mg": 400, "at_steady_state": true}
+	],
+	"clue_gates": [
+		{
+			"clue_id": "pt001_trial_memory",
+			"requires": {"psychosis_max": 0.35, "sedation_max": 0.55, "min_hours_treated": 144, "no_critical_alerts": true}
+		}
+	],
+	"_design_note": "Heavy smoker stable on clozapine. The ward is smoke-free, so CYP1A2 de-induction raises clozapine levels over ~1 week, causing over-sedation that blocks the interview clue until the player lowers the dose."
+}

@@ -1,0 +1,24 @@
+{
+	"id": "PT-002",
+	"name": "Patient 002 (placeholder)",
+	"age": 29,
+	"sex": "F",
+	"weight_kg": 61,
+	"egfr": 110,
+	"baseline_qtc_ms": 438,
+	"potassium_mmol_l": 3.9,
+	"phenotypes": {"CYP2D6": "NM", "CYP2C19": "PM", "CYP3A4": "NM"},
+	"smoking": {"cigarettes_per_day": 0, "smoking_on_ward": false},
+	"inflammation": false,
+	"baseline_symptoms": {"psychosis": 0.55, "depression": 0.75, "mania": 0.0, "agitation": 0.3},
+	"home_medications": [
+		{"drug_id": "aripiprazole", "daily_dose_mg": 15, "at_steady_state": true}
+	],
+	"clue_gates": [
+		{
+			"clue_id": "pt002_ward_b_testimony",
+			"requires": {"depression_max": 0.4, "agitation_max": 0.45, "interview_reliability_min": 0.6}
+		}
+	],
+	"_design_note": "Depressed on aripiprazole. Adding fluoxetine (strong CYP2D6 inhibitor) slowly raises aripiprazole exposure and causes akathisia. She is a CYP2C19 poor metabolizer, so citalopram needs a reduced dose and has QTc risk. Sertraline at a modest dose is the clean choice."
+}

@@ -13,12 +13,13 @@ config_version=5
 config/name="The Forensic Ward"
 config/description="3D psychological thriller / clinical forensic psychiatry simulator."
 run/main_scene="res://scenes/main/Main.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
 
 EventBus="*res://autoload/EventBus.gd"
 GameState="*res://autoload/GameState.gd"
+PharmacologyEngine="*res://systems/pharmacology/PharmacologyEngine.gd"
 
 [display]
 
