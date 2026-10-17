@@ -2,7 +2,11 @@
 
 Updated 2026-10-17 · Codex · Five-chapter screenplay review.
 
-## Current workstream and stopping point
+## Current Ch2/Ch3 inspection specification checkpoint
+
+Branch `codex/chapter3-inspection-spec` based on verified screenplay `0ead6cbd79710577852ab9a79522a5a61b960a46`, latest main `052859a984d7db599282914cbc300cc8cecc887b`. Claim new Ch2/Ch3 inspection-spec and own canon/continuity only. Scope: summary-to-existing-script/F2 comparison, deterministic repeat/safe-egress requirements and independent evidence/replay proposal; no effect implementation. Exact expanded scene text not supplied. Naomi separate draft PR31 on `codex/naomi-production-proposal` verified `58ea1077d76a39b7d703243732201149155a1ebf`; awaiting modeling proposal approval, no edits to that workstream. Its last QA gameplay131/0, audio333/1 cinematic timing assertion; reduced probe passes, cause unconfirmed. Current QA pending. Next read package Ch2/3 and F2/error/persistence contracts, write bounded spec and checkpoint.
+
+## Previous completed screenplay workstream
 
 All 11 PR #30 package files reviewed against main; chapter audit, detailed Elias mapping, owner decision matrix and small PR sequence completed in `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`. No runtime or package modifications in this workstream. Full Godot4.7 QA passed exit0: Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, boot OK, audio334/0, Chapter1 sequence62.9s. Mara Chapter2 placement AND autonomous clinical story/investigative separation now owner-approved. Canon amendments, Ch1 reconciliation and Chapter2 crosswalk completed; clinical/dialogue logic pending. Next: verify/push final documentation checkpoint; owner reviews N1 runtime proposal and missing clinical source.
 

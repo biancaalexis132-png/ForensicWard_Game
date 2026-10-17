@@ -10,6 +10,8 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Ch3 inspection specification | `codex/chapter3-inspection-spec` | Codex | `0ead6cbd79710577852ab9a79522a5a61b960a46` | New spec/canon and own continuity docs | Docs only; exact expanded script absent |
+| Naomi production | `codex/naomi-production-proposal` | Codex | `58ea1077d76a39b7d703243732201149155a1ebf` | Separate character proposal | Draft PR31, awaits approval; no modeling |
 | Screenplay audit | `codex/screenplay-continuity-review` | Codex | `30e13f87f64e46c152dad2034a2a8c2c3e152dc6` | New audit and own continuity docs only | PR #30 package available; review starting, no runtime edits |
 | Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex; owner approved “continue” | `74715227bf5581b09a3b2746870082576fffe71f` (verified synchronized P1 checkpoint) | `scripts/protagonist/*`, new `scripts/tests/test_protagonist.gd` + fixtures, input-contract/ID/proposal docs and own continuity updates | Complete for review; synchronized TestRunner 131/0 and combined full QA passed |
 
@@ -56,6 +58,13 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Codex · Ch2/Ch3 inspection-spec start
+
+- Branch `codex/chapter3-inspection-spec`, from verified remote screenplay `0ead6cbd79710577852ab9a79522a5a61b960a46`; main unchanged052859a. Separate Naomi draft PR31 verified58ea107, no overlap with its proposal/assets.
+- Current owner summaries: institutional perspectives proposed; Ch3 first actual authorized Security/Facilities entry approved, exact scenes/effect proposed. Exact expanded text absent; summary-level comparison only. Claimed new spec/current canon and own continuity docs, no runtime.
+- Prior screenplay full QA pass131/334; later Naomi same-runtime run audio333/1 cinematic fixed-timer assertion, reduced probe pass, cause unconfirmed. Current tests pending. Next compare Ch2/3 source and F2/evidence/save, document deterministic bounded repeats/safe-return/event replay, checkpoint.
+
 
 ### 2026-10-17 · Codex · Audit, Mara canon and final QA checkpoint
 

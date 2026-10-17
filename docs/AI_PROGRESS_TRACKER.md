@@ -4,6 +4,8 @@ Updated 2026-10-17 · current status is authoritative above the preserved earlie
 
 | Workstream | Current status | Evidence / next step |
 |---|---|---|
+| Ch2 institutional / Ch3 inspection spec | In progress | Summary comparison and deterministic safe-return/evidence/replay design; no runtime effects |
+| Naomi character production | Separate draft PR31 | Verified58ea107; proposal complete, modeling approval pending; no overlapping asset/runtime edits |
 | Mara Ch2 placement | Placement and agency canon recorded; crosswalk complete | Preserve age37, prior records work, disputed mood label, insomnia/fatigue/anxiety/checking, Dana collateral, Lillian Oct12/14 1988 conflict; no clinical activation |
 | Five-chapter screenplay PR #30 | Review in progress | 11 files reviewed; chapter audit and owner decisions in FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md; hashes match; full QA passed exit0, 131 gameplay/334 audio; no activation |
 | P0 campaign reconciliation/save regression | Merged by owner PR #29 | Main `dd247be`; baseline/save contracts retained |
