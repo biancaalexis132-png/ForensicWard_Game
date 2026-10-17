@@ -972,3 +972,260 @@ STAGE3_PROP_BUILDERS = [
     prop_cart_medication, prop_bed_hospital, prop_trolley_linen, prop_cart_crash, prop_cabinet_aed,
     prop_cylinder_oxygen, prop_monitor_vitals, prop_bin_sharps, prop_dispenser_handgel, prop_wheelchair,
 ]
+
+
+# --------------------------------------------------------------------------
+# Stage 4: security and administration wing
+# (origin: floor centre unless noted; front faces -Y)
+# --------------------------------------------------------------------------
+
+def _screens(coll, root, aid, boxes, mat="M_Emissive_Screen", hint=None):
+    """One UV'd mesh holding every screen face, so Godot can swap textures."""
+    smb = MeshBuilder()
+    for size, centre in boxes:
+        smb.box(size, centre, mat)
+    screen = smb.build(aid + "_Screens", coll, root)
+    L.planar_uv(screen, ("x", "z"))
+    if hint:
+        screen["godot_hint"] = hint
+    return screen
+
+
+def prop_console_security(coll, aid="PROP_Console_SecurityDesk", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Operator console 2.4 m: three monitors, radio base and push-to-talk mic.
+    The operator sits on the -Y side."""
+    root = _root(coll, aid, "security", loc, rot, "Security operator console with three monitors")
+    mb = MeshBuilder()
+    w, d, h = 2.4, 0.9, 0.75
+    mb.box((w, d, 0.04), (0, 0, h - 0.02), "M_Plastic_Black")
+    mb.box((w, 0.04, h - 0.04), (0, d / 2 - 0.02, (h - 0.04) / 2), "M_Metal_Dark")
+    for x in (-w / 2 + 0.02, w / 2 - 0.02, -0.4, 0.4):
+        mb.box((0.04, d - 0.04, h - 0.04), (x, 0, (h - 0.04) / 2), "M_Metal_Dark")
+    mb.box((w, 0.3, 0.12), (0, d / 2 - 0.15, h + 0.06), "M_Metal_Dark")                   # Equipment riser.
+    screens = []
+    for i, x in enumerate((-0.75, 0.0, 0.75)):
+        yaw = (0.25, 0.0, -0.25)[i]
+        with mb.at((x, d / 2 - 0.2, h + 0.12), (0, 0, yaw)):
+            mb.box((0.62, 0.04, 0.38), (0, 0, 0.29), "M_Plastic_Black")
+            mb.box((0.06, 0.06, 0.12), (0, 0.03, 0.06), "M_Plastic_Black")
+        screens.append((x, yaw))
+    for x in (-0.75, 0.0, 0.75):
+        mb.box((0.44, 0.14, 0.015), (x, -0.15, h + 0.008), "M_Plastic_Black")             # Keyboards.
+    mb.box((0.2, 0.16, 0.08), (-1.0, -0.05, h + 0.04), "M_Plastic_Black")                 # Radio base.
+    mb.cyl(0.006, 0.25, (-1.05, 0.0, h + 0.2), "M_Steel_Brushed", segs=6)                 # Mic gooseneck.
+    mb.box((0.12, 0.08, 0.03), (1.0, -0.2, h + 0.015), "M_Safety_Red")                    # Alarm acknowledge.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    smb = MeshBuilder()
+    for x, yaw in screens:
+        with smb.at((x, d / 2 - 0.2, h + 0.12), (0, 0, yaw)):
+            smb.box((0.58, 0.004, 0.34), (0, -0.022, 0.29), "M_Emissive_Screen")
+    screen = smb.build(aid + "_Screens", coll, root)
+    L.planar_uv(screen, ("x", "z"))
+    screen["godot_hint"] = "Camera feeds / access log: ViewportTexture per monitor."
+    L.collision_box(aid + "_COL", coll, root, (w, d, h + 0.2), (0, 0, (h + 0.2) / 2))
+    return root
+
+
+def prop_videowall(coll, aid="PROP_VideoWall_3x2", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """3 x 2 wall of 55" displays; origin at wall surface centre, faces -Y."""
+    root = _root(coll, aid, "security", loc, rot, "Surveillance video wall, 3 x 2 displays")
+    mb = MeshBuilder()
+    pw, ph = 1.22, 0.69
+    mb.box((3 * pw + 0.08, 0.06, 2 * ph + 0.08), (0, -0.03, 0), "M_Metal_Dark")
+    boxes = []
+    for c in range(3):
+        for r in range(2):
+            cx, cz = (c - 1) * pw, (r - 0.5) * ph
+            mb.box((pw - 0.01, 0.05, ph - 0.01), (cx, -0.085, cz), "M_Plastic_Black")
+            boxes.append(((pw - 0.04, 0.004, ph - 0.04), (cx, -0.112, cz)))
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    _screens(coll, root, aid, boxes, "M_Emissive_VideoWall", "Six camera feeds; UVs span the whole wall.")
+    return root
+
+
+def prop_cabinet_keys(coll, aid="PROP_Cabinet_Keys_Wall", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Electronic key cabinet; origin at wall surface centre, faces -Y."""
+    root = _root(coll, aid, "security", loc, rot, "Electronic key-control cabinet with keypad")
+    mb = MeshBuilder()
+    mb.box((0.6, 0.14, 0.8), (0, -0.07, 0), "M_Steel_Painted_Grey")
+    mb.box((0.56, 0.01, 0.76), (0, -0.145, 0), "M_Steel_Painted_Grey")
+    mb.box((0.12, 0.012, 0.16), (0.18, -0.152, 0.15), "M_Plastic_Black")                  # Keypad.
+    mb.box((0.03, 0.03, 0.1), (-0.24, -0.16, 0), "M_Steel_Brushed")
+    led = MeshBuilder()
+    led.box((0.01, 0.004, 0.01), (0.18, -0.16, 0.26), "M_Emissive_LED_Red")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    led.build(aid + "_LED", coll, root)["godot_hint"] = "Red = locked; swap to green when authorised."
+    return root
+
+
+def prop_lockers(coll, aid="PROP_Lockers_Staff_4", loc=(0, 0, 0), rot=(0, 0, 0)):
+    root = _root(coll, aid, "furniture", loc, rot, "Staff locker bank, 4 full-height doors")
+    mb = MeshBuilder()
+    w, d, h = 1.2, 0.5, 1.85
+    mb.box((w, d, h), (0, 0, h / 2 + 0.1), "M_Steel_Painted_Grey")
+    mb.box((w, d - 0.05, 0.1), (0, 0.02, 0.05), "M_Plastic_Black")                        # Plinth.
+    for i in range(4):
+        x = -w / 2 + w / 8 + i * w / 4
+        mb.box((w / 4 - 0.012, 0.01, h - 0.02), (x, -d / 2 - 0.005, h / 2 + 0.1), "M_Steel_Painted_White")
+        for z in (h - 0.05, h - 0.09, h - 0.13):
+            mb.box((0.12, 0.004, 0.012), (x, -d / 2 - 0.011, z), "M_Plastic_Black")      # Vents.
+        mb.box((0.03, 0.02, 0.06), (x + 0.1, -d / 2 - 0.02, 1.05), "M_Steel_Brushed")     # Lock.
+        mb.box((0.1, 0.002, 0.03), (x, -d / 2 - 0.011, h - 0.25), "M_Paper")              # Name card.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    L.collision_box(aid + "_COL", coll, root, (w, d, h + 0.1), (0, 0, (h + 0.1) / 2))
+    return root
+
+
+def prop_detector_walkthrough(coll, aid="PROP_Detector_WalkThrough", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Walk-through metal detector arch; walk direction is local Y."""
+    root = _root(coll, aid, "security", loc, rot, "Walk-through metal detector")
+    mb = MeshBuilder()
+    inner, depth, h = 0.8, 0.6, 2.2
+    for side in (-1, 1):
+        mb.box((0.12, depth, h), (side * (inner / 2 + 0.06), 0, h / 2), "M_Plastic_OffWhite")
+        mb.box((0.14, depth + 0.1, 0.04), (side * (inner / 2 + 0.06), 0, 0.02), "M_Plastic_Black")
+    mb.box((inner + 0.24, depth, 0.18), (0, 0, h + 0.09), "M_Plastic_OffWhite")
+    mb.box((0.3, 0.02, 0.1), (0, -depth / 2 - 0.01, h + 0.09), "M_Plastic_Black")         # Display.
+    for z in (0.4, 0.8, 1.2, 1.6, 2.0):
+        mb.box((0.02, 0.01, 0.06), (-(inner / 2 + 0.121), -depth / 2 + 0.06, z), "M_Plastic_Black")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    led = MeshBuilder()
+    led.box((0.04, 0.004, 0.02), (0.08, -depth / 2 - 0.022, h + 0.09), "M_Emissive_LED_Green")
+    led.build(aid + "_LED", coll, root)["godot_hint"] = "Swap to M_Emissive_LED_Red on an alarm."
+    for side in (-1, 1):
+        L.collision_box("%s_COL_%s" % (aid, "L" if side < 0 else "R"), coll, root, (0.12, depth, h),
+                        (side * (inner / 2 + 0.06), 0, h / 2))
+    return root
+
+
+def prop_table_conference(coll, aid="PROP_Table_Conference_3m", loc=(0, 0, 0), rot=(0, 0, 0)):
+    root = _root(coll, aid, "furniture", loc, rot, "Conference table 3.0 x 1.2 m with cable box")
+    mb = MeshBuilder()
+    mb.box((3.0, 1.2, 0.04), (0, 0, 0.72), "M_Wood_Executive")
+    for x in (-0.95, 0.95):
+        mb.box((0.12, 0.7, 0.66), (x, 0, 0.37), "M_Metal_Dark")
+        mb.box((0.5, 0.9, 0.03), (x, 0, 0.015), "M_Metal_Dark")
+    mb.box((0.3, 0.12, 0.012), (0, 0, 0.746), "M_Metal_Dark")                             # Cable box lid.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    L.collision_box(aid + "_COL", coll, root, (3.0, 1.2, 0.74), (0, 0, 0.37))
+    return root
+
+
+def prop_seating_waiting(coll, aid="PROP_Seating_Waiting_3", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Floor-fixed beam seating, three seats. Seats face -Y."""
+    root = _root(coll, aid, "furniture", loc, rot, "Floor-fixed beam seating, 3 seats")
+    mb = MeshBuilder()
+    mb.box((1.75, 0.06, 0.06), (0, 0.05, 0.38), "M_Steel_Brushed")                       # Beam.
+    for x in (-0.7, 0.7):
+        mb.box((0.06, 0.06, 0.38), (x, 0.05, 0.19), "M_Steel_Brushed")
+        mb.box((0.06, 0.5, 0.02), (x, 0.05, 0.01), "M_Steel_Brushed")
+    for i in range(3):
+        x = (i - 1) * 0.58
+        mb.box((0.52, 0.46, 0.05), (x, -0.02, 0.44), "M_Upholstery_Teal")
+        mb.box((0.52, 0.05, 0.42), (x, 0.24, 0.7), "M_Upholstery_Teal", rot=(-0.12, 0, 0))
+    for x in (-0.87, -0.29, 0.29, 0.87):
+        mb.box((0.04, 0.4, 0.03), (x, 0.0, 0.62), "M_Plastic_Black")                      # Armrests.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    L.collision_box(aid + "_COL", coll, root, (1.8, 0.6, 0.9), (0, 0.04, 0.45))
+    return root
+
+
+def prop_desk_executive(coll, aid="PROP_Desk_Executive", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Medical director's desk. The occupant sits on the +Y side."""
+    root = _root(coll, aid, "furniture", loc, rot, "Executive desk, wood, with modesty panel")
+    mb = MeshBuilder()
+    w, d, h = 1.8, 0.9, 0.76
+    mb.box((w, d, 0.045), (0, 0, h - 0.0225), "M_Wood_Executive")
+    for x in (-w / 2 + 0.25, w / 2 - 0.25):
+        mb.box((0.45, d - 0.06, h - 0.045), (x, 0, (h - 0.045) / 2), "M_Wood_Executive")
+        for z in (0.55, 0.3):
+            mb.box((0.12, 0.02, 0.012), (x, d / 2 - 0.02, z), "M_Steel_Brushed")
+    mb.box((w - 0.95, 0.03, 0.45), (0, -d / 2 + 0.02, 0.45), "M_Wood_Executive")          # Modesty panel.
+    mb.box((0.5, 0.35, 0.004), (0.1, 0.1, h + 0.002), "M_Upholstery_Leather_Black")       # Desk pad.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    L.collision_box(aid + "_COL", coll, root, (w, d, h), (0, 0, h / 2))
+    return root
+
+
+def prop_printer_badge(coll, aid="PROP_Printer_Badge", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """ID card printer; origin on the desk surface."""
+    root = _root(coll, aid, "security", loc, rot, "ID badge printer")
+    mb = MeshBuilder()
+    mb.box((0.22, 0.38, 0.22), (0, 0, 0.11), "M_Plastic_OffWhite")
+    mb.box((0.1, 0.06, 0.02), (0, -0.2, 0.06), "M_Plastic_Black")                         # Output tray.
+    mb.box((0.06, 0.004, 0.03), (0.05, -0.192, 0.18), "M_Plastic_Black")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.01)
+    return root
+
+
+def prop_door_elevator(coll, aid="PROP_Door_Elevator", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Elevator landing doors in a wall opening 1.1 x 2.1 m. Origin at the
+    opening centre, floor level, wall plane; the landing side is -Y.
+    Leaves are separate nodes so Godot can slide them along local X."""
+    root = _root(coll, aid, "door", loc, rot, "Elevator landing doors with call panel and key switch")
+    root["opening_width_m"] = 1.1
+    w, h = 1.1, 2.1
+    mb = MeshBuilder()
+    for side in (-1, 1):
+        mb.box((0.08, WALL_T + 0.04, h + 0.08), (side * (w / 2 + 0.04), 0, (h + 0.08) / 2), "M_Steel_Brushed")
+    mb.box((w + 0.16, WALL_T + 0.04, 0.08), (0, 0, h + 0.04), "M_Steel_Brushed")
+    mb.box((w, 0.3, 0.02), (0, 0, 0.01), "M_Steel_Brushed")                               # Sill.
+    mb.box((w + 0.2, WALL_T + 0.04, 0.6), (0, 0, h + 0.38), "M_Metal_Dark")                # Hoistway header.
+    mb.box((0.1, 0.02, 0.24), (w / 2 + 0.25, -(WALL_T / 2 + 0.01), 1.1), "M_Steel_Brushed")  # Call panel.
+    mb.cyl(0.018, 0.01, (w / 2 + 0.25, -(WALL_T / 2 + 0.025), 1.14), "M_Plastic_Black", axis="Y", segs=12)
+    mb.box((0.03, 0.01, 0.03), (w / 2 + 0.25, -(WALL_T / 2 + 0.025), 1.04), "M_Steel_Painted_Grey")  # Key switch.
+    mb.box((0.3, 0.01, 0.08), (0, -(WALL_T / 2 + 0.025), h + 0.2), "M_Plastic_Black")     # Floor indicator.
+    mb.build(aid + "_Frame", coll, root, bevel=0.002)
+    for side, sign in (("L", -1), ("R", 1)):
+        lmb = MeshBuilder()
+        lmb.box((w / 2, 0.03, h), (sign * w / 4, 0, h / 2), "M_Steel_Brushed")
+        leaf = lmb.build("%s_Leaf_%s" % (aid, side), coll, root, loc=(0, -0.05, 0))
+        leaf["godot_hint"] = "Slide along local X by %.2f m to open." % (sign * w / 2)
+        L.collision_box("%s_Leaf_%s_COL" % (aid, side), coll, leaf, (w / 2, 0.03, h), (sign * w / 4, 0, h / 2))
+    return root
+
+
+def prop_panel_electrical(coll, aid="PROP_Panel_Electrical", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Distribution board; origin at wall surface centre, faces -Y."""
+    root = _root(coll, aid, "fixture", loc, rot, "Electrical distribution board (maintenance only)")
+    mb = MeshBuilder()
+    mb.box((0.8, 0.2, 1.2), (0, -0.1, 0), "M_Steel_Painted_Grey")
+    mb.box((0.38, 0.01, 1.16), (-0.2, -0.205, 0), "M_Steel_Painted_Grey")
+    mb.box((0.38, 0.01, 1.16), (0.2, -0.205, 0), "M_Steel_Painted_Grey")
+    for x in (-0.03, 0.03):
+        mb.box((0.02, 0.03, 0.12), (x, -0.22, 0), "M_Steel_Brushed")
+    mb.box((0.1, 0.004, 0.09), (0.2, -0.212, 0.4), "M_Plastic_Sharps_Yellow")            # Warning label.
+    mb.cyl(0.03, 0.6, (0.2, -0.1, 0.9), "M_Metal_Dark", segs=10)                          # Conduit up.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    return root
+
+
+def prop_pipes_wall(coll, aid="PROP_Pipes_Wall_2m", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """2 m bundle of service pipes; origin at left end on the wall, faces -Y."""
+    root = _root(coll, aid, "fixture", loc, rot, "Wall-run service pipes, 2 m")
+    mb = MeshBuilder()
+    for i, (r, z, mat) in enumerate(((0.05, 0.0, "M_Steel_Painted_Grey"), (0.035, 0.14, "M_Paint_Historic_Green"),
+                                     (0.025, 0.25, "M_Steel_Brushed"))):
+        mb.cyl(r, 2.0, (1.0, -0.08 - r, z), mat, axis="X", segs=12)
+    for x in (0.3, 1.0, 1.7):
+        mb.box((0.04, 0.16, 0.36), (x, -0.08, 0.12), "M_Metal_Dark")                       # Brackets.
+    mb.build(aid + "_Mesh", coll, root)
+    return root
+
+
+def prop_display_wall(coll, aid="PROP_Display_Wall_65", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Meeting-room display; origin at wall surface centre, faces -Y."""
+    root = _root(coll, aid, "decor", loc, rot, "Wall-mounted 65-inch meeting display")
+    mb = MeshBuilder()
+    mb.box((1.46, 0.05, 0.84), (0, -0.045, 0), "M_Plastic_Black")
+    mb.box((0.3, 0.02, 0.3), (0, -0.01, 0), "M_Metal_Dark")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    _screens(coll, root, aid, [((1.42, 0.004, 0.8), (0, -0.072, 0))], hint="Presentation / video call surface.")
+    return root
+
+
+STAGE4_SECURITY_PROP_BUILDERS = [
+    prop_console_security, prop_videowall, prop_cabinet_keys, prop_lockers, prop_detector_walkthrough,
+    prop_table_conference, prop_seating_waiting, prop_desk_executive, prop_printer_badge, prop_door_elevator,
+    prop_panel_electrical, prop_pipes_wall, prop_display_wall,
+]

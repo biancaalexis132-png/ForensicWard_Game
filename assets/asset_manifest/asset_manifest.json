@@ -101,6 +101,50 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 240
     },
+    "ENV_AdminConference": {
+      "asset_id": "ENV_AdminConference",
+      "asset_name": "Administrative conference room",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.224,
+        3.131
+      ],
+      "export_file": "assets/exports/security/env/ENV_AdminConference.glb",
+      "implementation_notes": "Place at the Godot origin (Chapter 1 shared frame, north of y = 20). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh.",
+      "intended_location": "Admin: conference room",
+      "markers": [
+        "CAM_AC_Establishing",
+        "LIGHTMARK_AdminConference_-37_370",
+        "LIGHTMARK_AdminConference_-37_385"
+      ],
+      "materials": [
+        "M_Carpet_Admin",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Grey",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Metal_Dark",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_AdminTaupe",
+        "M_Wall_WarmWhite",
+        "M_Wood_Executive"
+      ],
+      "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 5280
+    },
     "ENV_ClinicalCorridor_20m": {
       "asset_id": "ENV_ClinicalCorridor_20m",
       "asset_name": "Main clinical corridor, 20 m",
@@ -166,6 +210,56 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 11210
     },
+    "ENV_CredentialingOffice": {
+      "asset_id": "ENV_CredentialingOffice",
+      "asset_name": "Staff credentialing and access office",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.131
+      ],
+      "export_file": "assets/exports/security/env/ENV_CredentialingOffice.glb",
+      "implementation_notes": "Place at the Godot origin (Chapter 1 shared frame, north of y = 20). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh.",
+      "intended_location": "Admin: staff credentialing and access office",
+      "markers": [
+        "CAM_CR_Establishing",
+        "LIGHTMARK_CredentialingOffice_-37_250",
+        "LIGHTMARK_CredentialingOffice_-37_265"
+      ],
+      "materials": [
+        "M_Acoustic_Fabric",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Grey",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Floor_Vinyl_Corridor",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Upholstery_Teal",
+        "M_Wall_AdminTaupe",
+        "M_Wall_SecurityBlueGrey",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2968
+    },
     "ENV_InterviewRoom_A": {
       "asset_id": "ENV_InterviewRoom_A",
       "asset_name": "Psychiatric interview room A",
@@ -218,6 +312,101 @@
       "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 2648
+    },
+    "ENV_MaintenanceAccess": {
+      "asset_id": "ENV_MaintenanceAccess",
+      "asset_name": "Maintenance access area (Price)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.224,
+        3.12
+      ],
+      "export_file": "assets/exports/security/env/ENV_MaintenanceAccess.glb",
+      "implementation_notes": "Place at the Godot origin (Chapter 1 shared frame, north of y = 20). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh.",
+      "intended_location": "Security wing: maintenance access (service hatch)",
+      "markers": [
+        "CAM_MA_Establishing",
+        "LIGHTMARK_MaintenanceAccess_37_380",
+        "MARK_Character_SamuelPrice"
+      ],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Concrete_Grey",
+        "M_Emissive_LightPanel",
+        "M_Floor_Epoxy_Security",
+        "M_Folder_Manila",
+        "M_Metal_Dark",
+        "M_Paint_Historic_Green",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_Sharps_Yellow",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Wall_SecurityBlueGrey",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2152
+    },
+    "ENV_MedicalDirectorOffice": {
+      "asset_id": "ENV_MedicalDirectorOffice",
+      "asset_name": "Medical director's office (Dr Voss)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.64,
+        4.112,
+        3.12
+      ],
+      "export_file": "assets/exports/security/env/ENV_MedicalDirectorOffice.glb",
+      "implementation_notes": "Place at the Godot origin (Chapter 1 shared frame, north of y = 20). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh.",
+      "intended_location": "Admin: medical director's office",
+      "markers": [
+        "CAM_MD_Establishing",
+        "LIGHTMARK_MedicalDirectorOffice_-37_330",
+        "LIGHTMARK_MedicalDirectorOffice_-37_345",
+        "MARK_Character_DrVoss_Director"
+      ],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Binder_Maroon",
+        "M_Binder_Navy",
+        "M_Carpet_Admin",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Grey",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Upholstery_Leather_Black",
+        "M_Upholstery_Teal",
+        "M_Wall_AdminTaupe",
+        "M_Wall_WarmWhite",
+        "M_Wood_Executive"
+      ],
+      "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3792
     },
     "ENV_NursingStation": {
       "asset_id": "ENV_NursingStation",
@@ -446,6 +635,354 @@
       "source_file": "assets/blender/clinical/FW_Chapter1_ClinicalWing.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 4108
+    },
+    "ENV_RecordsOffice": {
+      "asset_id": "ENV_RecordsOffice",
+      "asset_name": "Administrative records office",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.131
+      ],
+      "export_file": "assets/exports/security/env/ENV_RecordsOffice.glb",
+      "implementation_notes": "Place at the Godot origin (Chapter 1 shared frame, north of y = 20). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh.",
+      "intended_location": "Admin: records office",
+      "markers": [
+        "CAM_RO_Establishing",
+        "LIGHTMARK_RecordsOffice_-37_290",
+        "LIGHTMARK_RecordsOffice_-37_305"
+      ],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Grey",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Floor_Vinyl_Corridor",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_AdminTaupe",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 4228
+    },
+    "ENV_RestrictedLiftLobby": {
+      "asset_id": "ENV_RestrictedLiftLobby",
+      "asset_name": "Restricted elevator lobby",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        6.224,
+        4.25,
+        3.131
+      ],
+      "export_file": "assets/exports/security/env/ENV_RestrictedLiftLobby.glb",
+      "implementation_notes": "Place at the Godot origin (Chapter 1 shared frame, north of y = 20). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh.",
+      "intended_location": "Security wing: restricted elevator lobby",
+      "markers": [
+        "CAM_LL_Establishing",
+        "LIGHTMARK_RestrictedLiftLobby_0_415",
+        "LIGHTMARK_RestrictedLiftLobby_0_430"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Concrete_Grey",
+        "M_Emissive_LightPanel",
+        "M_Floor_Epoxy_Security",
+        "M_Glass_OneWay_Observer",
+        "M_Metal_Dark",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Signage_Blue",
+        "M_Signage_Panel",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 1772
+    },
+    "ENV_SecureInterviewSuite": {
+      "asset_id": "ENV_SecureInterviewSuite",
+      "asset_name": "Secure interview suite",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.131
+      ],
+      "export_file": "assets/exports/security/env/ENV_SecureInterviewSuite.glb",
+      "implementation_notes": "Place at the Godot origin (Chapter 1 shared frame, north of y = 20). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh.",
+      "intended_location": "Security wing: secure interview suite",
+      "markers": [
+        "CAM_SI_Establishing",
+        "CAM_SI_OTS_OnClinician",
+        "CAM_SI_OTS_OnPatient",
+        "LIGHTMARK_PROP_Light_VandalResistant",
+        "LIGHTMARK_PROP_Light_VandalResistant.001",
+        "LIGHTMARK_SecureInterview_0",
+        "LIGHTMARK_SecureInterview_1",
+        "MARK_Seat_Clinician",
+        "MARK_Seat_Patient",
+        "MARK_Standing_Officer"
+      ],
+      "materials": [
+        "M_Acoustic_Fabric",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Grey",
+        "M_Emissive_LightPanel",
+        "M_Floor_Vinyl_Interview",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Polyurethane_Interview",
+        "M_Safety_Red",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Wall_SecurityBlueGrey",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2444
+    },
+    "ENV_SecurityControl": {
+      "asset_id": "ENV_SecurityControl",
+      "asset_name": "Security control room (Hale)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        8.112,
+        3.131
+      ],
+      "export_file": "assets/exports/security/env/ENV_SecurityControl.glb",
+      "implementation_notes": "Place at the Godot origin (Chapter 1 shared frame, north of y = 20). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh.",
+      "intended_location": "Security wing: security control room",
+      "markers": [
+        "CAM_SC_Establishing",
+        "CAM_SC_OverOperator",
+        "LIGHTMARK_SecurityControl_37_252",
+        "LIGHTMARK_SecurityControl_37_272",
+        "LIGHTMARK_SecurityControl_37_292",
+        "LIGHTMARK_SecurityControl_37_312",
+        "MARK_Character_MarcusHale",
+        "MARK_Seat_Operator"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Grey",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LED_Red",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Emissive_VideoWall",
+        "M_Floor_Epoxy_Security",
+        "M_Folder_Manila",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Metal_Dark",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Safety_Red",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_SecurityBlueGrey",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 4676
+    },
+    "ENV_SecurityCorridor_20m": {
+      "asset_id": "ENV_SecurityCorridor_20m",
+      "asset_name": "Controlled-access security corridor, 20 m, with interlock",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.27,
+        20.13,
+        3.131
+      ],
+      "export_file": "assets/exports/security/env/ENV_SecurityCorridor_20m.glb",
+      "implementation_notes": "Place at the Godot origin (Chapter 1 shared frame, north of y = 20). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh.",
+      "intended_location": "Security wing: controlled-access corridor north of the ward entry",
+      "markers": [
+        "CAM_SW_ControlWindow",
+        "CAM_SW_Corridor",
+        "LIGHTMARK_SecurityCorridor_20m_0_212",
+        "LIGHTMARK_SecurityCorridor_20m_0_237",
+        "LIGHTMARK_SecurityCorridor_20m_0_262",
+        "LIGHTMARK_SecurityCorridor_20m_0_287",
+        "LIGHTMARK_SecurityCorridor_20m_0_307",
+        "LIGHTMARK_SecurityCorridor_20m_0_332",
+        "LIGHTMARK_SecurityCorridor_20m_0_357",
+        "LIGHTMARK_SecurityCorridor_20m_0_382",
+        "MARK_Waypoint_WardEntry"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Grey",
+        "M_Door_Laminate_Wood",
+        "M_Door_Secure_SteelBlue",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LED_Red",
+        "M_Emissive_LightPanel",
+        "M_Floor_Epoxy_Security",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Glass_Reinforced",
+        "M_Glass_Wired",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Signage_Blue",
+        "M_Signage_Panel",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Wall_AdminTaupe",
+        "M_Wall_SecurityBlueGrey"
+      ],
+      "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 11608
+    },
+    "ENV_SurveillanceMonitoring": {
+      "asset_id": "ENV_SurveillanceMonitoring",
+      "asset_name": "Surveillance monitoring room",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.182,
+        3.131
+      ],
+      "export_file": "assets/exports/security/env/ENV_SurveillanceMonitoring.glb",
+      "implementation_notes": "Place at the Godot origin (Chapter 1 shared frame, north of y = 20). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh.",
+      "intended_location": "Security wing: surveillance monitoring",
+      "markers": [
+        "CAM_SM_Establishing",
+        "LIGHTMARK_SurveillanceMonitoring_30_340"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Concrete_Grey",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Emissive_VideoWall",
+        "M_Floor_Epoxy_Security",
+        "M_Folder_Manila",
+        "M_Glass_OneWay_Observer",
+        "M_Metal_Dark",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Safety_Red",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Wall_SecurityBlueGrey",
+        "M_Wall_WarmWhite"
+      ],
+      "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2744
+    },
+    "ENV_VisitorScreening": {
+      "asset_id": "ENV_VisitorScreening",
+      "asset_name": "Visitor screening and waiting",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.63,
+        4.112,
+        3.131
+      ],
+      "export_file": "assets/exports/security/env/ENV_VisitorScreening.glb",
+      "implementation_notes": "Place at the Godot origin (Chapter 1 shared frame, north of y = 20). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* light positions; *_Ceiling is a separate mesh.",
+      "intended_location": "Security wing: visitor screening and waiting",
+      "markers": [
+        "CAM_VS_Establishing",
+        "LIGHTMARK_VisitorScreening_-37_210",
+        "LIGHTMARK_VisitorScreening_-37_225",
+        "MARK_Character_ScreeningOfficer"
+      ],
+      "materials": [
+        "M_Ceiling_Grid",
+        "M_Ceiling_Tile",
+        "M_Clock_Face",
+        "M_Concrete_Grey",
+        "M_Door_Secure_SteelBlue",
+        "M_Emissive_LED_Green",
+        "M_Emissive_LightPanel",
+        "M_Emissive_Screen",
+        "M_Floor_Epoxy_Security",
+        "M_Glass_Clear",
+        "M_Glass_OneWay_Observer",
+        "M_Glass_Wired",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Safety_Red",
+        "M_Skirting_Coved",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Upholstery_Charcoal",
+        "M_Upholstery_Teal",
+        "M_Wall_SecurityBlueGrey",
+        "M_Wall_WarmWhite",
+        "M_Wood_Laminate_Desk"
+      ],
+      "source_file": "assets/blender/security/FW_SecurityAdminWing.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 3948
     },
     "MOD_Ceiling_2x2_LightPanel": {
       "asset_id": "MOD_Ceiling_2x2_LightPanel",
@@ -1190,6 +1727,31 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 192
     },
+    "PROP_Cabinet_Keys_Wall": {
+      "asset_id": "PROP_Cabinet_Keys_Wall",
+      "asset_name": "Electronic key-control cabinet with keypad",
+      "category": "security",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.6,
+        0.175,
+        0.8
+      ],
+      "export_file": "assets/exports/security/props/PROP_Cabinet_Keys_Wall.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: wall surface (opening centre for the elevator).",
+      "intended_location": "Security control room",
+      "markers": [],
+      "materials": [
+        "M_Emissive_LED_Red",
+        "M_Plastic_Black",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 60
+    },
     "PROP_Camera_Dome": {
       "asset_id": "PROP_Camera_Dome",
       "asset_name": "Ceiling dome CCTV camera",
@@ -1363,6 +1925,32 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 416
     },
+    "PROP_Console_SecurityDesk": {
+      "asset_id": "PROP_Console_SecurityDesk",
+      "asset_name": "Security operator console with three monitors",
+      "category": "security",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.4,
+        0.903,
+        1.35
+      ],
+      "export_file": "assets/exports/security/props/PROP_Console_SecurityDesk.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: floor centre (desk surface for the badge printer).",
+      "intended_location": "Security control room, surveillance monitoring room",
+      "markers": [],
+      "materials": [
+        "M_Emissive_Screen",
+        "M_Metal_Dark",
+        "M_Plastic_Black",
+        "M_Safety_Red",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 272
+    },
     "PROP_Cylinder_Oxygen_Trolley": {
       "asset_id": "PROP_Cylinder_Oxygen_Trolley",
       "asset_name": "Oxygen cylinder on transport trolley",
@@ -1414,6 +2002,54 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 132
     },
+    "PROP_Desk_Executive": {
+      "asset_id": "PROP_Desk_Executive",
+      "asset_name": "Executive desk, wood, with modesty panel",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.8,
+        0.9,
+        0.764
+      ],
+      "export_file": "assets/exports/security/props/PROP_Desk_Executive.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: floor centre (desk surface for the badge printer).",
+      "intended_location": "Medical director's office",
+      "markers": [],
+      "materials": [
+        "M_Steel_Brushed",
+        "M_Upholstery_Leather_Black",
+        "M_Wood_Executive"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 108
+    },
+    "PROP_Detector_WalkThrough": {
+      "asset_id": "PROP_Detector_WalkThrough",
+      "asset_name": "Walk-through metal detector",
+      "category": "security",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.061,
+        0.7,
+        2.38
+      ],
+      "export_file": "assets/exports/security/props/PROP_Detector_WalkThrough.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: floor centre (desk surface for the badge printer).",
+      "intended_location": "Visitor screening",
+      "markers": [],
+      "materials": [
+        "M_Emissive_LED_Green",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 144
+    },
     "PROP_Dispenser_HandGel": {
       "asset_id": "PROP_Dispenser_HandGel",
       "asset_name": "Wall hand-gel dispenser (staff areas)",
@@ -1437,6 +2073,55 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 36
+    },
+    "PROP_Display_Wall_65": {
+      "asset_id": "PROP_Display_Wall_65",
+      "asset_name": "Wall-mounted 65-inch meeting display",
+      "category": "decor",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.46,
+        0.074,
+        0.84
+      ],
+      "export_file": "assets/exports/security/props/PROP_Display_Wall_65.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: wall surface (opening centre for the elevator).",
+      "intended_location": "Administrative conference room",
+      "markers": [],
+      "materials": [
+        "M_Emissive_Screen",
+        "M_Metal_Dark",
+        "M_Plastic_Black"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 36
+    },
+    "PROP_Door_Elevator": {
+      "asset_id": "PROP_Door_Elevator",
+      "asset_name": "Elevator landing doors with call panel and key switch",
+      "category": "door",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.5,
+        0.3,
+        2.78
+      ],
+      "export_file": "assets/exports/security/props/PROP_Door_Elevator.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: wall surface (opening centre for the elevator).",
+      "intended_location": "Restricted elevator lobby",
+      "markers": [],
+      "materials": [
+        "M_Metal_Dark",
+        "M_Plastic_Black",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 164
     },
     "PROP_Duress_Strip_2m": {
       "asset_id": "PROP_Duress_Strip_2m",
@@ -1581,6 +2266,32 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 244
     },
+    "PROP_Lockers_Staff_4": {
+      "asset_id": "PROP_Lockers_Staff_4",
+      "asset_name": "Staff locker bank, 4 full-height doors",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.2,
+        0.53,
+        1.95
+      ],
+      "export_file": "assets/exports/security/props/PROP_Lockers_Staff_4.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: floor centre (desk surface for the badge printer).",
+      "intended_location": "Security control room, visitor screening (visitor belongings)",
+      "markers": [],
+      "materials": [
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 312
+    },
     "PROP_Monitor_VitalSigns_Stand": {
       "asset_id": "PROP_Monitor_VitalSigns_Stand",
       "asset_name": "Mobile vital-signs monitor on stand",
@@ -1633,6 +2344,31 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 96
     },
+    "PROP_Panel_Electrical": {
+      "asset_id": "PROP_Panel_Electrical",
+      "asset_name": "Electrical distribution board (maintenance only)",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.8,
+        0.235,
+        1.8
+      ],
+      "export_file": "assets/exports/security/props/PROP_Panel_Electrical.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: wall surface (opening centre for the elevator).",
+      "intended_location": "Maintenance access area",
+      "markers": [],
+      "materials": [
+        "M_Metal_Dark",
+        "M_Plastic_Sharps_Yellow",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 108
+    },
     "PROP_Phone_Institutional": {
       "asset_id": "PROP_Phone_Institutional",
       "asset_name": "Institutional desk phone",
@@ -1655,6 +2391,54 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 168
+    },
+    "PROP_Pipes_Wall_2m": {
+      "asset_id": "PROP_Pipes_Wall_2m",
+      "asset_name": "Wall-run service pipes, 2 m",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.0,
+        0.18,
+        0.36
+      ],
+      "export_file": "assets/exports/security/props/PROP_Pipes_Wall_2m.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: wall surface (opening centre for the elevator).",
+      "intended_location": "Maintenance access area, service corridors",
+      "markers": [],
+      "materials": [
+        "M_Metal_Dark",
+        "M_Paint_Historic_Green",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 168
+    },
+    "PROP_Printer_Badge": {
+      "asset_id": "PROP_Printer_Badge",
+      "asset_name": "ID badge printer",
+      "category": "security",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.22,
+        0.42,
+        0.22
+      ],
+      "export_file": "assets/exports/security/props/PROP_Printer_Badge.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: floor centre (desk surface for the badge printer).",
+      "intended_location": "Credentialing and access office",
+      "markers": [],
+      "materials": [
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 36
     },
     "PROP_Reader_Access": {
       "asset_id": "PROP_Reader_Access",
@@ -1680,6 +2464,30 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 48
+    },
+    "PROP_Seating_Waiting_3": {
+      "asset_id": "PROP_Seating_Waiting_3",
+      "asset_name": "Floor-fixed beam seating, 3 seats",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.78,
+        0.55,
+        0.911
+      ],
+      "export_file": "assets/exports/security/props/PROP_Seating_Waiting_3.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: floor centre (desk surface for the badge printer).",
+      "intended_location": "Visitor screening and waiting",
+      "markers": [],
+      "materials": [
+        "M_Plastic_Black",
+        "M_Steel_Brushed",
+        "M_Upholstery_Teal"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 180
     },
     "PROP_Shelving_Archive": {
       "asset_id": "PROP_Shelving_Archive",
@@ -1729,6 +2537,29 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 36
+    },
+    "PROP_Table_Conference_3m": {
+      "asset_id": "PROP_Table_Conference_3m",
+      "asset_name": "Conference table 3.0 x 1.2 m with cable box",
+      "category": "furniture",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.0,
+        1.2,
+        0.752
+      ],
+      "export_file": "assets/exports/security/props/PROP_Table_Conference_3m.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: floor centre (desk surface for the badge printer).",
+      "intended_location": "Administrative conference room",
+      "markers": [],
+      "materials": [
+        "M_Metal_Dark",
+        "M_Wood_Executive"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 72
     },
     "PROP_Table_Interview_Fixed": {
       "asset_id": "PROP_Table_Interview_Fixed",
@@ -1829,6 +2660,30 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 144
+    },
+    "PROP_VideoWall_3x2": {
+      "asset_id": "PROP_VideoWall_3x2",
+      "asset_name": "Surveillance video wall, 3 x 2 displays",
+      "category": "security",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.74,
+        0.114,
+        1.46
+      ],
+      "export_file": "assets/exports/security/props/PROP_VideoWall_3x2.glb",
+      "implementation_notes": "Staff-only / security-controlled areas (not patient-accessible). Origin: wall surface (opening centre for the elevator).",
+      "intended_location": "Security control and surveillance rooms",
+      "markers": [],
+      "materials": [
+        "M_Emissive_VideoWall",
+        "M_Metal_Dark",
+        "M_Plastic_Black"
+      ],
+      "source_file": "assets/blender/security/FW_Props_Security.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 156
     },
     "PROP_Wardrobe_AntiLigature": {
       "asset_id": "PROP_Wardrobe_AntiLigature",

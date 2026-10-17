@@ -7,7 +7,7 @@ Pipeline, conventions and validation: see [`ENVIRONMENT_PIPELINE.md`](ENVIRONMEN
 | 1 Modular architecture | Walls, openings, windows, floors, ceilings, corridor slices and junctions, doors | **Done (v1, untextured)** |
 | 2 Opening-chapter environments | Corridor, office, Interview Room A, nursing station, 2 patient rooms (plus records archive) | **Done (v1, untextured)** |
 | 3 Clinical and cinematic props | EHR terminal, clinical furniture, fixtures, interview camera markers, medication, ward-bed, linen and emergency equipment | **Done (v1, untextured).** 36 props and interview cameras. The nursing station now carries the medication cart (with sharps bin), resuscitation trolley, AED cabinet and hand-gel dispenser; the other Stage 3 props are library-only until the rooms that need them exist. |
-| 4 Security, admin and research wings | | Not started |
+| 4 Security, admin and research wings | Security corridor, visitor screening, credentialing, records, medical director's office, conference room, secure interview suite, security control, surveillance, maintenance access, restricted lift lobby; research wing | **4a security and admin wing done (v1, untextured).** 13 props and 11 rooms north of the clinical wing. 4b research wing not started. |
 | 5 Historic substructure | | Not started (the W0-B historic service door exists) |
 | 6 Ward Zero canonical layout and anomaly states | | Not started. The state mechanism exists: `state_group` extras plus `WorldStateManager` on the gameplay branch. |
 | 7 Apartment, parking, exterior | | Not started |
@@ -58,6 +58,22 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 - **`ENV_RecordsArchive`.** Archive shelving with record boxes, reading desk and the 1968 roster document.
 - **`ENV_PatientRoom_01` / `_02`.** Anti-ligature plinth bed and open wardrobe, tamper-resistant light, exterior window, solid ceiling. No CCTV in bedrooms (privacy).
 
+## Stage 4a deliverables (security and admin wing)
+
+| Deliverable | Location |
+|---|---|
+| Prop source | `assets/blender/security/FW_Props_Security.blend` |
+| Prop exports (13) | `assets/exports/security/props/*.glb` |
+| Wing source | `assets/blender/security/FW_SecurityAdminWing.blend` |
+| Room exports (11) | `assets/exports/security/env/*.glb` |
+| Renders | `assets/renders/stage4/` (props sheet, six room shots, plan) |
+| Build script | `tools/blender/build_stage4_security_admin.py` (`--fast` skips renders) |
+
+- **Layout.** The wing shares the Chapter 1 frame and starts at y = 20, directly north of the clinical corridor. A 20 m concrete security corridor (x ±1.5, y 20–40) has a double-door interlock at y = 32 and a secure door into the restricted lift lobby (y 40–44).
+- **West side, south to north:** visitor screening (walk-through detector, belongings lockers, waiting seats, visitor entrance on the west wall), credentialing (badge printer, access-control terminal), records office, medical director's office (Dr. Voss marker, window), conference room.
+- **East side, south to north:** secure interview suite (the clinician's seat is nearer the exit, enforced by an assert), security control (console, 3x2 video wall, key cabinet, reinforced window onto the corridor, Hale marker), surveillance monitoring, maintenance access (electrical panel, pipes, a service hatch hinting at Stage 5).
+- Every door has a badge reader and a room sign. Each room has camera markers, collision and light markers; the security rooms use cooler light.
+
 ## Design assumptions (labelled, pending creative review)
 
 - The corridor is 2.8 m clear and ceilings are 3.0 m throughout.
@@ -65,6 +81,7 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 - Interview and patient-room doors swing outward (anti-barricade). Office and staff doors swing inward.
 - W0-B is placed as a historic service door at the south end of the clinical corridor, as a Chapter 1 story hook. Ward Zero itself (Stage 6) lies beneath.
 - Room numbering, signage text and staff positions are provisional.
+- Stage 4a: the wing's position north of the clinical corridor, the room adjacencies and the Voss and Hale marker positions are assumptions; the GDD names the rooms but not a floor plan.
 
 ## Known issues and unfinished work
 

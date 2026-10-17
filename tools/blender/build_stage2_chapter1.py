@@ -110,7 +110,7 @@ def add_preview_light(name, loc, watts, size=(0.4, 0.4), color="#FFF4E5"):
 
 
 def room_shell(coll, root, x0, x1, y0, y1, paint, floor_mat, walls, lights=(), solid_ceiling=False,
-               floor_extend=None):
+               floor_extend=None, light_color="#FFF4E5"):
     """Floor + ceiling + the walls listed in `walls` ({side: kwargs}).
     Sides not listed are owned by a neighbour. Lights: (cx, cy, sx, sy)."""
     fx0, fx1, fy0, fy1 = floor_extend or (x0, x1, y0, y1)
@@ -132,7 +132,7 @@ def room_shell(coll, root, x0, x1, y0, y1, paint, floor_mat, walls, lights=(), s
                     ((fx0 + fx1) / 2, (fy0 + fy1) / 2, -0.05))
     for cx, cy, sx, sy in lights:
         lightmark(coll, root, "LIGHTMARK_%s_%d_%d" % (root.name.replace("ENV_", ""), int(cx * 10), int(cy * 10)),
-                  (cx, cy, WALL_H - 0.1), size=(sx, sy), watts=55)
+                  (cx, cy, WALL_H - 0.1), size=(sx, sy), watts=55, color=light_color)
 
 
 # --------------------------------------------------------------------------
