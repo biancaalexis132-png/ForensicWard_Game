@@ -12,3 +12,7 @@ export_presets.cfg
 .DS_Store
 Thumbs.db
 *.tmp
+
+# Blender backups and Python caches
+*.blend1
+__pycache__/
