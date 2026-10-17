@@ -113,11 +113,13 @@ func test_w0b_and_ward_entry_stay_locked() -> void:
 func test_ehr_terminal_opens_record_once_per_day() -> void:
 	var terminal: Interactable = _world().get_interactable("OF_Terminal_EHR").interactable
 	_interact(terminal)
-	check(_info_panel().is_open, "EHR placeholder panel open")
-	check(not _player().input_enabled, "player frozen while panel open")
-	_info_panel().close()
+	var ehr: EHRScreen = _main.get_node("EHRScreen")
+	check(ehr.is_open, "EHR screen open")
+	check(not _player().input_enabled, "player frozen while the EHR is open")
+	ehr.close()
+	check(_player().input_enabled, "control returns when the EHR closes")
 	_interact(terminal)
-	_info_panel().close()
+	ehr.close()
 	check_eq(PatientManager.get_state("pt_elias_ward")["audit"].size(), 1, "record-open event not duplicated")
 
 
