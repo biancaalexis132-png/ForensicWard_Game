@@ -2,9 +2,25 @@
 import copy
 import json
 from pathlib import Path
+import shutil
+import subprocess
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+def is_macos_metadata(path):
+    """macOS writes AppleDouble "._name" companions on exFAT/FAT/network drives."""
+    return path.name.startswith("._") or "__MACOSX" in path.parts
+
+
+def content_files(directory, pattern="*.json", recursive=True):
+    found = directory.rglob(pattern) if recursive else directory.glob(pattern)
+    return sorted(p for p in found if p.is_file() and not is_macos_metadata(p))
+
+
+def read_json(path):
+    return decode(path.read_text(encoding="utf-8"))
 
 
 def decode(text):
@@ -55,14 +71,14 @@ def patient_errors(data, drug_ids):
 
 class ContentTests(unittest.TestCase):
     def test_all_json_syntax(self):
-        paths = sorted((ROOT / "data").rglob("*.json"))
+        paths = content_files(ROOT / "data")
         self.assertTrue(paths, "no content discovered")
         for path in paths:
             with self.subTest(path=path.relative_to(ROOT)):
-                decode(path.read_text())
+                read_json(path)
 
     def test_drugs_and_patient_references(self):
-        database = decode((ROOT / "data/drugs/drugs.json").read_text())
+        database = read_json(ROOT / "data/drugs/drugs.json")
         self.assertIsInstance(database, dict)
         drugs = database["drugs"]
         self.assertIsInstance(drugs, list)
@@ -80,15 +96,30 @@ class ContentTests(unittest.TestCase):
                 self.assertIsInstance(drug["pathways"], dict)
                 self.assertTrue(all(number(v) for v in drug["pathways"].values()))
                 self.assertAlmostEqual(sum(drug["pathways"].values()), 1.0, places=5)
-        paths = sorted((ROOT / "data/patients").glob("*.json"))
+        paths = content_files(ROOT / "data/patients", recursive=False)
         self.assertTrue(paths)
         patient_ids = set()
         for path in paths:
             with self.subTest(patient=path.name):
-                data = decode(path.read_text())
+                data = read_json(path)
                 self.assertEqual(patient_errors(data, ids), [])
                 self.assertNotIn(data["id"], patient_ids)
                 patient_ids.add(data["id"])
+
+    def test_macos_metadata_is_skipped_not_genuine_content(self):
+        for name in ("data/patients/._PT-001.json", "data/__MACOSX/patients/PT-001.json"):
+            self.assertTrue(is_macos_metadata(ROOT / name), name)
+        for name in ("data/patients/PT-001.json", "data/patients/_draft.json", "data/patients/.hidden.json"):
+            self.assertFalse(is_macos_metadata(ROOT / name), name)
+
+    def test_no_macos_metadata_tracked(self):
+        git = shutil.which("git")
+        if not git or not (ROOT / ".git").exists():
+            self.skipTest("not a git checkout")
+        listed = subprocess.run([git, "-C", str(ROOT), "ls-files", "-z"], capture_output=True, check=True)
+        tracked = [p for p in listed.stdout.decode("utf-8", "replace").split("\0") if p]
+        bad = [p for p in tracked if is_macos_metadata(Path(p)) or Path(p).name == ".DS_Store"]
+        self.assertEqual(bad, [], "macOS metadata committed; git rm --cached it (see .gitignore)")
 
     def test_reject_invalid_json(self):
         for text in ('{', '{"id":1,"id":2}', '{"dose":NaN}', '{"dose":Infinity}'):

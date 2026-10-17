@@ -9,9 +9,22 @@
 export_presets.cfg
 
 # OS / editor junk
-.DS_Store
 Thumbs.db
 *.tmp
+
+# macOS metadata (AppleDouble "._*" files appear when the project sits on
+# exFAT/FAT/network drives; run `dot_clean -m .` on the Mac to remove them)
+._*
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+.DocumentRevisions-V100
+.VolumeIcon.icns
+__MACOSX/
 
 # Blender backups and Python caches
 *.blend1

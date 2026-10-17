@@ -9,6 +9,11 @@ REQUIRED = ("file", "ids", "category", "source", "license", "location", "duratio
             "integration_status", "review_status", "sha256")
 
 
+def narrative_files():
+    # Skip macOS AppleDouble "._*" companions written on exFAT/FAT drives.
+    return sorted(p for p in (ROOT / "data/narrative").glob("*.json") if not p.name.startswith("._"))
+
+
 def load(path):
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
@@ -18,7 +23,8 @@ class AudioManifestTests(unittest.TestCase):
         assets = load("audio/manifest.json")["assets"]
         listed = {asset["file"] for asset in assets}
         on_disk = {p.relative_to(ROOT).as_posix() for p in (ROOT / "audio").rglob("*")
-                   if p.suffix in AUDIO_EXTENSIONS and "music_ai" not in p.parts}
+                   if p.suffix in AUDIO_EXTENSIONS and "music_ai" not in p.parts
+                   and not p.name.startswith("._")}
         self.assertEqual(listed, on_disk)
         for asset in assets:
             with self.subTest(file=asset["file"]):
@@ -30,7 +36,7 @@ class AudioManifestTests(unittest.TestCase):
         profiles = load("audio/voice_profiles.json")["profiles"]
         index = load("audio/voice/voice_lines.json")
         ids = set()
-        for path in sorted((ROOT / "data/narrative").glob("*.json")):
+        for path in narrative_files():
             data = json.loads(path.read_text(encoding="utf-8"))
             for scene in data["scenes"]:
                 for line in scene["lines"]:
@@ -44,9 +50,9 @@ class AudioManifestTests(unittest.TestCase):
 
     def test_cue_references(self):
         cues = load("audio/cues.json")
-        lines = {line["id"] for p in (ROOT / "data/narrative").glob("*.json")
+        lines = {line["id"] for p in narrative_files()
                  for scene in json.loads(p.read_text(encoding="utf-8"))["scenes"] for line in scene["lines"]}
-        scenes = {scene["id"] for p in (ROOT / "data/narrative").glob("*.json")
+        scenes = {scene["id"] for p in narrative_files()
                   for scene in json.loads(p.read_text(encoding="utf-8"))["scenes"]}
         for cue_id, cue in cues["cues"].items():
             with self.subTest(cue=cue_id):
