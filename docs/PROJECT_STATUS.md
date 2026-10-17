@@ -139,3 +139,5 @@ Inspection review final validation: full Godot4.7 runner exit0, gameplay131/0, a
 ## Revised screenplay v2 review — 2026-10-17
 
 Main now `1dbd26a96288d7947ebd6a90b151ba1f6a0fc2a6` adds five v2 documents only. On `codex/revised-screenplays-v2-review`, all five have line-referenced comparison in `REVISED_SCREENPLAYS_V2_TECHNICAL_REVIEW.md`. Ch3 route is static/ambiguous, Ch4 major loop remains proposed; safety/source foundations absent in runtime. Existing campaign Ch2–5 planned, clinical flags pending, F2/savev3 unchanged. Current full QA in progress; no new effect or clinical activation. PR31/32 owner-merged to screenplay integration branch, not main.
+
+V2 review final validation: full Godot4.7 QA exit0 (Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, audio334/0, boot/Chapter1sequence62.2s). Draft PR33 against screenplay integration base; review changes docs only. New inspection/independence acceptance tests remain proposed/unimplemented, clinical flags unchanged; Mac/hostedCI not claimed.
