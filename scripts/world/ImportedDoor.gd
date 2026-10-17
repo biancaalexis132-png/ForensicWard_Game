@@ -16,6 +16,9 @@ var locked_message: String = "Locked."
 var open_angle_degrees: float = 100.0
 var swing_seconds: float = 0.6
 var is_open: bool = false
+## Optional Callable run just before the player opens the door. ZoneDirector
+## sets it on connection doors so the zone behind is loaded first.
+var before_open: Callable = Callable()
 
 var _leaves: Array[Node3D] = []
 var _closed_rotations: Array[float] = []
@@ -27,7 +30,8 @@ func setup(door_root: Node3D, config: Dictionary) -> void:
 	var extras: Dictionary = door_root.get_meta("extras", {})
 	door_id = str(extras.get("door_id", door_root.name.to_snake_case()))
 	required_access = str(extras.get("required_access", ""))
-	display_name = str(config.get("display_name", door_root.name))
+	# Doors the chapter does not configure read "Records Office door", not "Door_RecordsOffice".
+	display_name = str(config.get("display_name", door_root.name.trim_prefix("Door_").capitalize() + " door"))
 	locked_message = str(config.get("locked_message", "%s: locked." % display_name))
 	open_angle_degrees = float(config.get("open_angle_degrees", 100.0))
 	for child: Node in door_root.get_children():
@@ -102,4 +106,6 @@ func _on_interacted(_interactor: Node) -> void:
 	if is_locked():
 		EventBus.notification_requested.emit(locked_message)
 		return
+	if not is_open and before_open.is_valid():
+		before_open.call()
 	set_open(not is_open, true)

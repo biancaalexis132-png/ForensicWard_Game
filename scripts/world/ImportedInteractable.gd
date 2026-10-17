@@ -34,7 +34,7 @@ func setup(target: Node3D, config: Dictionary) -> void:
 	interactable.prompt = ("Take " if kind == "clue_pickup" else "Use ") + title
 	var shape: CollisionShape3D = CollisionShape3D.new()
 	var box: BoxShape3D = BoxShape3D.new()
-	var aabb: AABB = _local_mesh_aabb(target)
+	var aabb: AABB = mesh_aabb(target)
 	box.size = Vector3(maxf(aabb.size.x + PADDING, MIN_SIZE), maxf(aabb.size.y + PADDING, MIN_SIZE),
 			maxf(aabb.size.z + PADDING, MIN_SIZE))
 	shape.shape = box
@@ -43,7 +43,8 @@ func setup(target: Node3D, config: Dictionary) -> void:
 	target.add_child(interactable)
 	interactable.interacted.connect(_on_interacted)
 	if kind == "clue_pickup":
-		EventBus.game_loaded.connect(func(_slot: int) -> void: _refresh())
+		# A method, not a lambda: the connection ends when the zone is freed.
+		EventBus.game_loaded.connect(_on_game_loaded)
 		_refresh()
 
 
@@ -62,6 +63,10 @@ func _on_interacted(_interactor: Node) -> void:
 			EventBus.shift_signout_requested.emit()
 
 
+func _on_game_loaded(_slot: int) -> void:
+	_refresh()
+
+
 ## Picked-up documents disappear; state comes from EvidenceManager, so it is
 ## always correct after loading a save.
 func _refresh() -> void:
@@ -71,7 +76,9 @@ func _refresh() -> void:
 	interactable.monitorable = not taken
 
 
-func _local_mesh_aabb(root: Node3D) -> AABB:
+## Bounds of every mesh under `root`, in root's local space. ZoneDirector
+## uses it to size the interactable on a lift or hatch.
+static func mesh_aabb(root: Node3D) -> AABB:
 	var result: AABB = AABB()
 	var first: bool = true
 	for node: Node in [root] + root.find_children("*", "MeshInstance3D", true, false):

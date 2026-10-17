@@ -18,6 +18,7 @@ const DEFAULTS: Dictionary = {
 	"flash_effects": true,     ## Flickering lights and flashes.
 	"subtitles": true,
 	"text_scale": 1.0,
+	"perf_log": false,         ## Debug: ZoneDirector writes user://perf_log.csv around zone transitions.
 }
 ## Audio volumes and audio accessibility (reduce startling audio, music
 ## intensity) are owned by AudioDirector (systems/audio), not here.

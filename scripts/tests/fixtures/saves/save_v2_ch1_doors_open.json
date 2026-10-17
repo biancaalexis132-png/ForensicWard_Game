@@ -1,0 +1,125 @@
+{
+	"checksum": "f69da33dd5a801fc117125d73916f93c2b72513050fc61f4a6e942d3d1be7e98",
+	"game_version": "0.1.0-sprint1",
+	"save_version": 2,
+	"saved_at_unix": 1792270901,
+	"seed": 1968,
+	"state": {
+		"chapter": {
+			"chapters": {
+				"ch1": {
+					"fired": [],
+					"flags": [],
+					"pending": [],
+					"talked_to": []
+				}
+			},
+			"current": "ch1"
+		},
+		"dialogue": {
+			"current_state": {},
+			"transcripts": {}
+		},
+		"evidence": {
+			"acquired": {},
+			"hypotheses": {
+				"hyp_identity_reuse": {
+					"clue_ids": [
+						"clue_transfer",
+						"clue_roster"
+					],
+					"origin": "authored",
+					"status": "unresolved",
+					"title": "Historical identifiers may have been reused"
+				}
+			},
+			"links": [],
+			"pinned": [],
+			"verifications": {}
+		},
+		"game_state": {
+			"collected_items": [],
+			"flags": {},
+			"objectivity": 100.0,
+			"pinned_clues": [],
+			"unlocked_clues": []
+		},
+		"patients": {
+			"pt_elias_ward": {
+				"assessment": {},
+				"audit": [],
+				"flags": [],
+				"location": "clinical_unit",
+				"notes": [],
+				"observations": {},
+				"processed_events": [],
+				"rapport": 0.0
+			}
+		},
+		"time": {
+			"queue": [],
+			"sequence": 0.0,
+			"total_minutes": 575.0
+		},
+		"trust": {
+			"access": {},
+			"vectors": {
+				"staff_bennett": {
+					"respect": 0.0,
+					"suspicion": 0.0,
+					"trust": 5.0
+				},
+				"staff_hale": {
+					"respect": 0.0,
+					"suspicion": 10.0,
+					"trust": -5.0
+				},
+				"staff_voss": {
+					"respect": 10.0,
+					"suspicion": 0.0,
+					"trust": 0.0
+				}
+			}
+		},
+		"world": {
+			"objects": {
+				"door:door_archive": {
+					"open": false
+				},
+				"door:door_interview": {
+					"open": true
+				},
+				"door:door_nurse_station": {
+					"open": false
+				},
+				"door:door_office": {
+					"open": true
+				},
+				"door:door_patient_01": {
+					"open": false
+				},
+				"door:door_patient_02": {
+					"open": false
+				},
+				"door:door_w0b": {
+					"open": false
+				},
+				"door:door_ward_entry": {
+					"open": false
+				}
+			},
+			"player": {
+				"pitch": 0.0,
+				"position": [
+					-0.5,
+					0.0,
+					-12.0
+				],
+				"yaw": 1.25
+			}
+		},
+		"world_states": {
+			"states": {}
+		}
+	}
+}
