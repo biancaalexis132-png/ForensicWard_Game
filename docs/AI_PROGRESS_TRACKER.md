@@ -4,6 +4,7 @@ Updated 2026-10-17 · current status is authoritative above the preserved earlie
 
 | Workstream | Current status | Evidence / next step |
 |---|---|---|
+| Five-chapter screenplay PR #30 | Review in progress | All 11 files available on main `052859a`; chapter continuity/clinical audit next; no activation |
 | P0 campaign reconciliation/save regression | Merged by owner PR #29 | Main `dd247be`; baseline/save contracts retained |
 | PR #27 soundtrack conflicts | Resolved, pushed, merged by owner | Original branch verified `412b501`; main merge `6d2dd2d`; bounded audio assertion fixed; audio 334/0 |
 | P1 pure catalog/creation-draft validation | Complete for review | `codex/protagonist-schema-p1` verified `74715227bf5581b09a3b2746870082576fffe71f`; 15 new tests, 131/0 |

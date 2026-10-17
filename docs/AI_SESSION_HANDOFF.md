@@ -2,7 +2,11 @@
 
 Updated 2026-10-17 · Codex · P1 / approved character canon / opening and Elias review.
 
-## Current objective and exact stopping point
+## Screenplay review checkpoint — 2026-10-17
+
+Active branch `codex/screenplay-continuity-review`, stacked on verified `30e13f87f64e46c152dad2034a2a8c2c3e152dc6`. Owner merged PR #30: main `052859a984d7db599282914cbc300cc8cecc887b`; source `2e3863e16d882560dde87ba3bf018c5b6a29016d`. All 11 package files now available; reading/audit not yet completed. Claimed: new screenplay audit and own continuity updates only; package and application files remain unchanged. Next: read all 11, compare main and approved D1–D3/opening, write chapter audit and small-PR sequence. Clinical flags remain pending. Prior full QA passed; new docs-only review checks pending. API PR inventory remains blocked. Earlier full-screenplay-missing statements below are historical, superseded by PR #30.
+
+## Previous objective and exact stopping point
 
 Authorized work is complete for review: P1 pure catalog/profile validation; PR #27 conflict resolution; D1–D3 canon and minimal metadata reconciliation; six corrected character reference candidates/provenance; Chapter 1 opening alignment and Elias screenplay-summary comparison; permanent shared continuity rules. Final full QA passed. Current action is merging the synchronized P1 documentation checkpoint into this stacked branch and saving final verified remote state. No new implementation is started.
 
@@ -101,4 +105,3 @@ Required by the Ashcroft Session Continuity Protocol in `CLAUDE.md` §2. The det
 - **Pending approvals:** the Suno licence. The owner approved the Chapter 1 realignment (records archive) on 2026-10-17.
 - **Next steps for a new session:** read PR #27's comments and CI; act on owner feedback.
 - **Creative and clinical constraints:** no music under clinical interviews or the Bennett handover; no anomaly audio in Chapter 1; never tie anomalies to patients' psychiatric symptoms.
-

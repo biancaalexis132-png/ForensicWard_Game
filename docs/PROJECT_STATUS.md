@@ -2,7 +2,9 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
-**Last verified:** 2026-10-17 against `origin/main` **`6d2dd2d3ec1bebf3624a706da2f864efd711206e`** (owner-merged PR #27; PR #29 also merged). Feature combined QA passed exit 0: Python 6+3+3, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 131/0, audio 334/0, boot and complete Chapter 1 sequence. Main does not yet contain unmerged P1/canon/reference work. Hosted CI/new PR state remains unverified because API access is blocked.
+**Screenplay availability update (2026-10-17):** Owner merged PR #30 at `052859a984d7db599282914cbc300cc8cecc887b`; all 11 draft package files are present. This is documentation availability, not approval or implemented Chapters 2–5. Audit in progress on `codex/screenplay-continuity-review`.
+
+**Previous runtime verification:** 2026-10-17 against `origin/main` **`6d2dd2d3ec1bebf3624a706da2f864efd711206e`** (owner-merged PR #27; PR #29 also merged). Feature combined QA passed exit 0: Python 6+3+3, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 131/0, audio 334/0, boot and complete Chapter 1 sequence. Main does not yet contain unmerged P1/canon/reference work. Hosted CI/new PR state remains unverified because API access is blocked.
 
 Status meanings:
 

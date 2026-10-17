@@ -10,6 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Screenplay audit | `codex/screenplay-continuity-review` | Codex | `30e13f87f64e46c152dad2034a2a8c2c3e152dc6` | New audit and own continuity docs only | PR #30 package available; review starting, no runtime edits |
 | Protagonist P1 validation | `codex/protagonist-schema-p1` | Codex; owner approved “continue” | `74715227bf5581b09a3b2746870082576fffe71f` (verified synchronized P1 checkpoint) | `scripts/protagonist/*`, new `scripts/tests/test_protagonist.gd` + fixtures, input-contract/ID/proposal docs and own continuity updates | Complete for review; synchronized TestRunner 131/0 and combined full QA passed |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -55,6 +56,14 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Codex · Screenplay review starting checkpoint
+
+- Branch `codex/screenplay-continuity-review`, stacked on verified remote `30e13f87f64e46c152dad2034a2a8c2c3e152dc6`; main PR #30 `052859a984d7db599282914cbc300cc8cecc887b` merged into feature only. Source package `2e3863e16d882560dde87ba3bf018c5b6a29016d`.
+- Claimed only new audit and own continuity docs. All 11 files now accessible; full reading pending. No working dialogue, clinical rules, scene or save change.
+- Prior combined full QA passed (131 gameplay, 334 audio); new doc-only checks pending. Hosted PR/CI inventory API-blocked. Clinical review and Ch2–5 expansion pending.
+- Next: read every package file, compare current main and approved canon, write chapter continuity audit/first PR recommendation; checkpoint and verify push.
+
 
 ### 2026-10-17 · Codex · P1 validation synchronized and tested
 
