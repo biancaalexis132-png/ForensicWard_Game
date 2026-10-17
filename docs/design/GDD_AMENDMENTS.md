@@ -50,3 +50,7 @@ Source: owner message “APPROVED STORY PLACEMENT — MARA ELLIS”. Mara (`pt_m
 ## Approved Mara agency and investigative separation — 2026-10-17
 
 Owner instruction “APPROVED CANON — MARA ELLIS: CLINICAL AGENCY AND INVESTIGATIVE SEPARATION” establishes autonomous motivations/goals and independent clinical care/recovery; preserve dossier/collateral/uncertainty/legal questions. Document sharing is voluntary. Specific concerns may be corroborated without endorsing all interpretations. No supernatural-witness/psychic/investigator/exposition role; no symptom/diagnosis/treatment evidence. Mandatory mystery evidence has independent authorized archive/staff/security/environment routes even if documents are declined or rapport limited. Preserve confidentiality/consent/boundaries. New dialogue and clinical content remain gated. Crosswalk above defines review/test requirements; no runtime change.
+
+## Approved Chapter3 first WardZero entry — 2026-10-17
+
+Owner message “CHARACTER PRODUCTION AND CHAPTER3 CONTINUATION” approves Chapter3 as the **first actual entry** through a formal Security and Facilities inspection. Earlier documentary/door investigation is not entry. New supervised inspection, possible repeated junction, temporary navigation discrepancy, coordinated safe return and independent preservation are drafted material; exact dialogue and supernatural mechanics remain proposed. No clinical change or anomaly activation authorized. See `CHARACTER_PRODUCTION_NAOMI_FIRST.md` for pipeline proposal and implementation boundaries.

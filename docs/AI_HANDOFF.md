@@ -58,6 +58,14 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-17 · Codex · Bennett audit/proposal milestone
+
+- Branch `codex/naomi-production-proposal`; latest verified remote `8ba76103d8b6b6a5d56865ca7bb4b35a16908e7a`. New `docs/design/CHARACTER_PRODUCTION_NAOMI_FIRST.md`: all ten requested deliverables, exact asset/capability inventory, licensed original/art workflow, rig/face/audio integration, budgets, small PR gates and conditional schedule. GDD/audit addenda record Ch3 first actual entry through formal Security/Facilities inspection; new scene dialogue/mechanics still proposed.
+- All138 tracked GLBs parsed: zero skins/clips/morph targets; capsules are placeholders, six candidate sheets only2D. All10 compressed blend headers v0500; installedBlender4.3.2 open failure diagnosed as mismatch, source internal armature/actions not verified. No file edits from tools; no model/animation generation.
+- Standard Godot4.7 QA in session98607 (`/tmp/forensic-character-proposal-qa.log`), result pending at checkpoint. PDF read; Bennett original/candidate inspected; whitespace/runtime-preservation checks next.
+- API now ready/responding; openPR list empty, no concurrent remote PR claimed. Next finish QA, open narrow stacked docs draft PR, final handoff/push verification. Modeling requires owner proposal/appearance/resource approval first; missing artist/technical sheet/licenses/rig/Mac validation explicitly documented.
+
+
 ### 2026-10-17 · Codex · Character-production start checkpoint
 
 - Branch `codex/naomi-production-proposal`, based on verified remote screenplay tip `0ead6cbd79710577852ab9a79522a5a61b960a46`; latest main unchanged PR30 `052859a984d7db599282914cbc300cc8cecc887b`. Previous full QA passed131 gameplay/334 audio; new audit/QA pending.
