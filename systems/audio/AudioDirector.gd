@@ -765,8 +765,8 @@ func _load_cue_sheet_music(data: Dictionary) -> void:
 
 func _load_narrative() -> void:
 	for file_name: String in DirAccess.get_files_at(NARRATIVE_DIR):
-		if not file_name.ends_with(".json"):
-			continue
+		if not file_name.ends_with(".json") or file_name.begins_with("._"):
+			continue # "._*" are macOS AppleDouble metadata, not narrative data.
 		var data: Dictionary = _read_json(NARRATIVE_DIR.path_join(file_name))
 		var speakers: Dictionary = data.get("speakers", {})
 		for scene: Dictionary in data.get("scenes", []):
