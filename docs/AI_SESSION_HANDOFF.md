@@ -53,3 +53,7 @@ Private v1.1 bible is unavailable; do not reconstruct it. Mac rendering/input/li
 4. Finalize the canon/opening/Elias comparison docs and checkpoint all four continuity files after the validation/image milestone. The full screenplay line review waits for the owner's standalone file.
 5. Fetch main before final push, detect newer merges, resolve only supported conflicts while preserving history and current work. Push feature branches, verify exact SHAs; create draft PRs only if API access is applied. Never push main or auto-merge.
 6. End with the owner's CODEX SESSION HANDOFF fields. P2 persistence/provider and actual opening/clinical implementation remain separate review tasks; do not silently start a major rewrite.
+
+## Canon documentation milestone
+
+D1–D3 specification, historical-review addendum, clear voice-role correction, preserved old-portrait notice and per-character regeneration briefs are complete as documentation. Opening/Elias comparisons are written; full screenplay is explicitly off-repository and pending. These files are now being committed/pushed; candidate images/manifest and final QA remain in progress. A pending clinical-review-log entry records the summary without changing existing flags. No next implementation task is started.

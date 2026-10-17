@@ -16,9 +16,9 @@ _Last updated: 2026-10-17 · Codex protagonist foundation continuation._
 
 ## Pending (not started, waiting on approval)
 
-- **Approve character canon sheets and decisions D1–D9** · review §2 and "Open decisions" · deps: owner · next: owner comments on the draft PR or in the thread.
+- **Remaining visual decisions D4–D9 and final production sheets** · review §2 and "Open decisions" · deps: owner · next: owner comments on the draft PR or in the thread.
 - **V1: mark ensemble and concept boards superseded** · `assets/creative_references/Visual_References/{Individual_Characters,Concept_Boards}/` · deps: D8 · next: small docs PR.
-- **V2: `docs/design/CHARACTER_VISUAL_CANON.md`** · deps: D1–D3 · next: write from review §2.
+- **V2: `docs/design/CHARACTER_VISUAL_CANON.md`** · D1–D3 approved by owner 2026-10-17 · current specification written; reference candidates and final face/technical review remain.
 - **V3: neutral mannequin stand-in replacing the capsule** · `scenes/props/Character.tscn` · deps: approval · validation: `test_world.gd` · next: keep node paths and collision.
 - **V4–V8: Ward Zero kit, props, rooms W1–W8, trim sheets, playable zone** · `tools/blender/build_stage6_*.py`, `assets/exports/wardzero/**` (proposed) · deps: approval, the environment thread's Stage 6 PR, F2 zones · next: review that PR first.
 - **V9: first anomaly `anom_clock_offset`** · deps: F3 anomaly model · validation: determinism test plus a test that clinical state cannot trigger it.
@@ -29,11 +29,11 @@ _Last updated: 2026-10-17 · Codex protagonist foundation continuation._
 ## Blocked
 
 - **Environment Stage 6 (Ward Zero)** · environment thread · blocked on owner approval of plans; this review feeds it.
-- **Rahman content and voice direction** · `data/staff.json`, `audio/voice_profiles.json` · blocked on D1 (F0 C4).
+- **Rahman future content** · D1 resolved: Consultant Psychiatrist; voice direction label corrected, existing casting retained. Full responsibilities/dialogue await the accessible approved bible and specific content review; no speculative staff entry.
 
 ## Verified corrections / coordination
 
-F0 PR #20, F1 #21, F2 #26 and review #28 are merged on `fb07887`; stale historical handoff text remains as history. Current PR list and hosted CI cannot be verified because GitHub API access returns Forbidden. Preserve historical audio/Stage 6 workstream ownership until verified. The owner’s current protagonist decisions are recorded in GDD amendments; visual D1–D9 and full F3 remain undecided. Private v1.1 package is not available in this environment.
+F0 PR #20, F1 #21, F2 #26 and review #28 are merged on `fb07887`; stale historical handoff text remains as history. Current PR list and hosted CI cannot be verified because GitHub API access returns Forbidden. Preserve historical audio/Stage 6 workstream ownership until verified. The owner’s current protagonist decisions are recorded in GDD amendments; D1–D3 were subsequently approved in this session; D4–D9 and full F3 remain undecided. Private v1.1 package is not available in this environment.
 
 ## Continuation stopping point
 
@@ -51,3 +51,7 @@ Implementation and proposal are pushed; no unexplained QA failures. Draft PR cre
 - **In progress:** full combined QA (log `/tmp/forensic-p1-canon-final-qa.log`); D1–D3 canon/metadata documentation; corrected six character reference candidates/provenance; opening alignment and Elias screenplay-summary comparison. No clinical or Chapter 1 implementation activated.
 - **New permanent rule:** `AGENTS.md` §9 and explicit both-agent continuity scope in `CLAUDE.md`; shared checkpoint frequency applies to Codex and Claude.
 - **Pending:** image correction/inspection, final manifest, final QA completion and verified feature pushes. Full Elias script will be supplied standalone later; line review is deferred, not blocked on an unknown Git location. D4–D9 and clinical material remain unapproved. Exact resume steps and local/remote file distinction are in `AI_SESSION_HANDOFF.md`.
+
+## Canon/proposal checkpoint
+
+D1–D3 source record and authoritative specification are written, exact contradictory files/corrections mapped, and individual regeneration briefs supplied. Only Rahman’s profession in voice direction changes; no IDs/voice cast/clinical logic changes. Opening alignment and Elias summary comparison are written without overwriting chapter content. Full screenplay remains off-repository/pending clinical review; standalone text will arrive later. Candidate images/provenance and full combined QA are still pending finalization.

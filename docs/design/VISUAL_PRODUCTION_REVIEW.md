@@ -1,6 +1,6 @@
 # Visual production review: characters and Ward Zero
 
-**Status:** proposal for owner approval. Nothing here is approved canon, nothing has been implemented, and no character model, scene or environment has been changed.
+**Status:** historical proposal; owner-approved D1–D3 are recorded in the dated addendum below. Other recommendations, D4–D9 and implementation details remain proposed. Original findings are preserved; no character model, scene or environment is changed by this documentation update.
 **Reviewed:** 2026-10-17 by Claude Code, against `main` at `e533e8b` (PR #24 merged the creative references).
 **Branch:** `claude/visual-direction-review` (draft PR, never merged by an agent).
 
@@ -333,3 +333,13 @@ V4 to V6 overlap with the Stage 6 work the environment thread is doing now. If i
 | D7 | Does Ward Zero need its own station, or does it reuse Stage 5's abandoned station? | A smaller ward station (W3), different in layout and era |
 | D8 | Concept boards: mark superseded or remove | Mark superseded; keep for history |
 | D9 | Commit the v1.1 design bible package into `docs/design/` so agents can cite it | Yes |
+
+## Owner-decision addendum — 2026-10-17
+
+The owner’s explicit written update resolves **D1, D2 and D3**. D1: Rahman is **Consultant Psychiatrist**, not Clinical Pharmacist; this also supersedes the old guide’s generic Staff Psychiatrist label. D2: Hale is **Security Director**, with senior professional hospital security attire and no default tactical styling. D3: written casting is authoritative; Bennett is a Black woman, Rahman a South Asian woman, and other established written descriptions govern age, role and presentation over generated imagery.
+
+The decision record is preserved at `docs/design/decisions/2026-10-17_CHARACTER_IDENTITIES_APPROVAL.md`. Current canon and individual regeneration briefs are `CHARACTER_VISUAL_CANON.md` and `CHARACTER_REFERENCE_REGENERATION.md`. The original tables and observations above describe the historical review, not unresolved D1–D3 questions. Heights, hex palettes, specific face/hair variants, added props and other production recommendations above are not automatically approved by D3.
+
+Reconciled metadata: Rahman’s voice **direction** now says Consultant psychiatrist while preserving voice `af_aoede`, speed, language, effects and all IDs/recordings. `data/staff.json` already gives Hale Security Director and does not define Rahman; no speculative staff entry, permissions, introduction or trust vector is added. Original PDF/PNG text is preserved, with an authority notice in the reference README. Existing portraits are retained and superseded only as production references; replacement sheets are review candidates, not final meshes/casting approval.
+
+**D4–D9 remain unresolved**, including Mara’s voice, Ward Zero historical details/location decisions, concept-board handling and the absent v1.1 bible. Psychiatric illness is not supernatural evidence; patients remain ordinary people. The owner also separately reaffirmed fixed psychiatrist protagonist role, moderate personal life and emergent personality. No clinical logic or treatment approval is changed.

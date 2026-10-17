@@ -75,7 +75,7 @@ Remote branches may remain after merge. Branch existence alone does not prove ac
 | Clinical rules `clinical_rule_catatonia_escalation_v1`, `clinical_rule_medical_review_request_v1` as medical logic | Psychiatrist review | Owner |
 | Elias Ward dialogue and EHR action wording | Psychiatrist review | Owner |
 | Chapter 1 story lines in `data/story_chapter1.json` | Narrative and clinical review | Owner |
-| Pharmacology clue gates (F0 C7), Psychosomatic Bleed (C6), Concordance thread (C2), player title (C3), staff roles (C4) | Owner decisions listed in F0 §9 | Owner |
+| Pharmacology clue gates (F0 C7), Psychosomatic Bleed (C6), Concordance thread (C2), player title (C3), remaining staff roles (C4; Rahman/Hale D1–D2 resolved) | Owner decisions listed in F0 §9 | Owner |
 | AI music (ACE-Step, Stable Audio) | The owner's Mac or a GPU, and a licence check | Owner |
 
 ## Untested on hardware
@@ -106,3 +106,7 @@ PR #27’s conflicts against that main were resolved and pushed to `claude/ashcr
 ## Current continuation checkpoint
 
 P1 import and TestRunner passed **131/0** and are pushed at `16b9761` on `codex/protagonist-schema-p1`. PR #27 conflicts were resolved/pushed at `412b501` (full soundtrack audio 334/0; latest-main TestRunner 116/0), without an agent merge. Full combined P1/canon QA is running and is not yet claimed complete. Owner-approved D1–D3 and first-20–25-minute opening direction are being recorded; Elias screenplay summary remains pending clinical review and the full text is off-repository. Candidate artwork is under generation/correction, not final models/casting.
+
+## Approved character and opening documentation
+
+D1–D3 are recorded as **approved** in GDD amendments and `docs/design/CHARACTER_VISUAL_CANON.md`; remaining D4–D9 are open. Rahman’s voice direction now correctly says Consultant psychiatrist, preserving all voice/line IDs and recordings. `data/staff.json` already gives Hale Security Director; Rahman is not added with invented content. Regeneration briefs and preserved legacy-art notices are written; generated candidates remain under review. The opening tone and Elias summary proposals change no chapter scene, dialogue, clinical rule, review flag, beat identity or timing.

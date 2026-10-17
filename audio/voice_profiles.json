@@ -7,7 +7,7 @@
 		"staff_bennett": {"name": "Nurse Naomi Bennett", "voice": "af_sarah",   "speed": 1.0,  "lang": "en-us", "fx": "dialogue", "direction": "Brisk, practical, warm under pressure."},
 		"pt_elias_ward": {"name": "Elias Ward",          "voice": "am_echo",    "speed": 0.82, "lang": "en-us", "fx": "dialogue", "direction": "Rarely speaks; quiet, slow, flat."},
 		"staff_mercer":  {"name": "Dr Adrian Mercer",    "voice": "bm_george",  "speed": 0.95, "lang": "en-gb", "fx": "dialogue", "direction": "Senior psychiatrist; confident, unhurried."},
-		"staff_rahman":  {"name": "Dr Leila Rahman",     "voice": "af_aoede",   "speed": 1.02, "lang": "en-us", "fx": "dialogue", "direction": "Clinical pharmacist; precise and quick."},
+		"staff_rahman":  {"name": "Dr Leila Rahman",     "voice": "af_aoede",   "speed": 1.02, "lang": "en-us", "fx": "dialogue", "direction": "Consultant psychiatrist; precise and quick."},
 		"staff_hale":    {"name": "Marcus Hale",         "voice": "am_onyx",    "speed": 0.94, "lang": "en-us", "fx": "dialogue", "direction": "Security director; low, clipped, guarded."},
 		"staff_price":   {"name": "Samuel Price",        "voice": "bm_lewis",   "speed": 0.96, "lang": "en-gb", "fx": "dialogue", "direction": "Maintenance supervisor; weary, plain-spoken."},
 		"intercom":      {"name": "Hospital intercom",   "voice": "af_alloy",   "speed": 0.9,  "lang": "en-us", "fx": "intercom", "direction": "Neutral PA announcer through an old ceiling speaker system."},

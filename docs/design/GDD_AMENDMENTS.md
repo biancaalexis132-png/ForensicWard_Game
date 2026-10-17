@@ -24,3 +24,21 @@ Source: owner message “CONTINUE DEVELOPMENT — THE FORENSIC WARD”, sections
 | Personal history and psychiatric symptoms cannot explain away or substantiate the genuine supernatural phenomenon | Reinforces existing clinical/supernatural separation |
 
 The owner has not resolved visual-review D1–D9, Psychosomatic Bleed C6 or pharmacology clue-gate C7. Do not infer these approvals from the protagonist decisions. Fixed psychiatrist role does not settle exact voiced title wording. Proposed implementation: [PROTAGONIST_CUSTOMIZATION_PLAN.md](PROTAGONIST_CUSTOMIZATION_PLAN.md).
+
+## Approved character identities and casting — 2026-10-17
+
+Source: owner-supplied “APPROVED CANON UPDATE — ASHCROFT CHARACTER IDENTITIES AND VISUAL CASTING”, preserved verbatim in [decisions/2026-10-17_CHARACTER_IDENTITIES_APPROVAL.md](decisions/2026-10-17_CHARACTER_IDENTITIES_APPROVAL.md).
+
+| Decision | Approved value | Supersedes / boundary |
+|---|---|---|
+| D1 | Dr Leila Rahman is **Consultant Psychiatrist** | Supersedes “clinical pharmacist” in locked GDD §5/legacy voice direction and the provisional “Staff Psychiatrist” guide label. No voice casting, dialogue IDs or clinical logic changes. |
+| D2 | Marcus Hale is **Security Director** | Standardizes provisional “security chief”/“Head of Security” labels; professional hospital presentation, no default tactical styling or psychiatric authority. |
+| D3 | Written casting guide is authoritative over generated imagery | Bennett is a Black woman; Rahman is a South Asian woman; preserve other established written descriptions. Original concept faces are not production approvals; regenerate inconsistent references without stereotypes or unauthorized likenesses. |
+
+Authoritative current specification: [CHARACTER_VISUAL_CANON.md](CHARACTER_VISUAL_CANON.md). Locked DOCX, original PDF and images are retained as historical sources; this amendment governs contradictions. D4–D9 remain unresolved. No blanket approval of the visual review or patient medical content is implied.
+
+## Approved Chapter 1 opening direction — 2026-10-17
+
+Source: owner message “APPROVED CREATIVE DIRECTION — CHAPTER 1 OPENING” in this session. The first 20–25 minutes should be carried by realistic psychiatric hospital drama: ordinary arrival/psychiatrist onboarding, Bennett’s orientation/morning handoff, substantial Elias evaluation (EHR, interview, MSE, formulation, documentation), a small objective documentation discrepancy with plausible administrative explanations, then a subtle older-infrastructure/service-access inconsistency. No immediate supernatural reveal, frightening patient stereotype, jump scare, apparition or persistent ominous music. Personality emerges through choices; essential competence/story access is equal across backgrounds.
+
+This is creative direction, **not authority to overwrite existing Chapter 1** or activate clinical content. Comparison and phased proposal: `CHAPTER1_OPENING_ALIGNMENT.md`. The Elias screenplay summary remains pending clinical review; the owner confirmed its full text is off-repository in ChatGPT and will be supplied separately. Existing patient/beat IDs, provenance, clinical review flags and late-shift timing must be retained; no normal risk finding/refusal is inferred from silence, no examination finding is established without examination, and symptoms never cause supernatural events. See `ELIAS_EVALUATION_DRAFT_COMPARISON.md`.
