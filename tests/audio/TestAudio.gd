@@ -291,27 +291,33 @@ func test_soundtrack() -> void:
 	var bed_duck := AudioServer.get_bus_effect(AudioServer.get_bus_index("AmbienceBed"), 1) as AudioEffectAmplify
 	var music_duck := AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 1) as AudioEffectAmplify
 
-	# Narrative exploration: day corridor and nursing station only; Ward Zero and night stay without score.
+	# Narrative exploration, per the bible's Chapter 1 cue table: the records
+	# archive by day only. Handover and assessment rooms have no foreground
+	# music; Ward Zero and night stay without score.
 	AudioDirector.stop_music(0.01)
 	GameState.start_shift(1, "day")
 	AudioDirector.set_location("ward_zero", 0.2)
 	await wait(0.3)
-	AudioDirector.set_location("corridor", 0.2)
-	check(AudioDirector.get_music_state() == "exploration" and AudioDirector.get_music_cue() == "mus_narrative", "corridor by day plays the narrative theme")
+	AudioDirector.set_location("records_archive", 0.2)
+	check(AudioDirector.get_music_state() == "exploration" and AudioDirector.get_music_cue() == "mus_narrative", "records archive by day plays the narrative theme")
 	var narrative: AudioStreamPlayer = AudioDirector.get_active_music()
 	await wait(3.3)
 	check(narrative.playing and absf(narrative.volume_db - -8.1) < 0.5, "narrative theme sits under the ambience at its cue level")
 	check(AudioDirector.get_active_ambience().playing, "ambience keeps playing under exploration music")
-	AudioDirector.set_location("nursing_station", 0.2)
-	await wait(0.2)
-	check(AudioDirector.get_active_music() == narrative and narrative.playing, "moving between exploration rooms does not restart the theme")
+	for room: String in ["corridor", "nursing_station"]:
+		AudioDirector.set_location(room, 0.2)
+		await wait(3.3)
+		check(not narrative.playing and AudioDirector.get_music_cue() == "", room + " by day has no foreground music")
+		AudioDirector.set_location("records_archive", 0.2)
+		await wait(3.3)
+		narrative = AudioDirector.get_active_music()
 	AudioDirector.set_location("ward_zero", 0.2)
 	await wait(3.3)
 	check(not narrative.playing and AudioDirector.get_music_cue() == "", "Ward Zero fades exploration music out")
 	GameState.start_shift(1, "night")
-	AudioDirector.set_location("corridor", 0.2)
+	AudioDirector.set_location("records_archive", 0.2)
 	await wait(0.2)
-	check(AudioDirector.get_music_cue() == "", "night corridor keeps controlled silence")
+	check(AudioDirector.get_music_cue() == "", "night archive keeps controlled silence")
 	GameState.start_shift(1, "day")
 	await wait(4.3)
 	check(AudioDirector.get_music_cue() == "mus_narrative" and AudioDirector.get_active_music().playing, "day shift brings the narrative theme back")
@@ -345,6 +351,8 @@ func test_soundtrack() -> void:
 	cinematic.seek(cinematic.stream.get_length() - 1.0)
 	await wait(1.6)
 	check(AudioDirector.get_music_context() == "emotional" and AudioDirector.get_music_cue() == "mus_emotional", "cinematic plays once, then the emotional scene resumes")
+	AudioDirector.set_location("records_archive", 0.2)
+	await wait(0.3)
 	EventBus.narrative_event_fired.emit("music_emotional_end", {})
 	await get_tree().process_frame
 	check(AudioDirector.get_music_context() == "" and AudioDirector.get_music_cue() == "mus_narrative", "ending the scene hands music back to the location")
@@ -366,6 +374,7 @@ func test_soundtrack() -> void:
 	check(menu_again != menu and menu_again.playing and menu_again.get_playback_position() < 2.0 and menu.playing, "main theme crossfades its tail into a fresh start")
 	await wait(4.0)
 	check(not menu.playing and menu_again.playing, "old pass fades out after the loop crossfade")
+	AudioDirector.set_location("records_archive", 0.2)
 	AudioDirector.end_music_context("main_menu")
 	await wait(3.0)
 	check(AudioDirector.get_active_ambience().playing and AudioDirector.get_music_cue() == "mus_narrative", "leaving the menu restores ambience and exploration music")

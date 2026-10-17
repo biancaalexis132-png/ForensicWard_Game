@@ -275,8 +275,7 @@
 				"volume_db": 0.0,
 				"lowpass_hz": 20000.0,
 				"detail": "amb_distant_staff",
-				"detail_volume_db": -14.0,
-				"music_state": "exploration"
+				"detail_volume_db": -14.0
 			},
 			"night": {
 				"ambience": "amb_corridor_day",
@@ -295,8 +294,7 @@
 				"volume_db": -7.0,
 				"lowpass_hz": 6000.0,
 				"detail": "amb_nursing_station",
-				"detail_volume_db": 0.0,
-				"music_state": "exploration"
+				"detail_volume_db": 0.0
 			},
 			"night": {
 				"ambience": "amb_corridor_day",
@@ -371,6 +369,24 @@
 				"room_size": 0.7,
 				"damping": 0.5,
 				"wet": 0.16
+			}
+		},
+		"records_archive": {
+			"day": {
+				"ambience": "amb_corridor_day",
+				"volume_db": -12.0,
+				"lowpass_hz": 4000.0,
+				"music_state": "exploration"
+			},
+			"night": {
+				"ambience": "amb_corridor_day",
+				"volume_db": -14.0,
+				"lowpass_hz": 2000.0
+			},
+			"reverb": {
+				"room_size": 0.5,
+				"damping": 0.75,
+				"wet": 0.12
 			}
 		}
 	},
