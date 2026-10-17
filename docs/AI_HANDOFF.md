@@ -14,6 +14,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Sprint 1 foundation | `claude/sprint-01-foundation` (PR #1) | Claude | `f626aad7be1c9a443762a5b2cd3591601c1b14bc` | Superseded by the integration PR | Close after the integration PR merges |
 | Environment art | `claude/environment-production` (PR #6) | Claude | `e321b4a7f8d60f8b4400ea668959c25ac6b122e0` | `tools/blender/**`, `tools/godot/validate_glb_imports.gd`, `assets/blender/**`, `assets/exports/**`, `assets/asset_manifest/**`, `assets/renders/**`, `docs/ENVIRONMENT_*.md` | Stages 1–2 done; Stages 3–8 next |
 | Chapter 1 playable | `claude/chapter1-playable` (PR #7) | Claude | `60ed74fe882385535425f2038add243f93cc4b9e` | `scripts/world/**`, `scripts/autoload/WorldStateManager.gd`, `data/world_chapter1.json`, `scenes/world/Chapter1Ward.tscn`, `scripts/tests/test_world.gd`, `docs/CHAPTER1_PLAYABLE.md` | Integration branch merged in; awaiting review |
+| Sprint 2 EHR and interview | `claude/sprint-02-ehr-interview` (PR #9, draft, base `claude/chapter1-playable`) | Claude | see newest log entry | `scripts/ui/{EHRScreen,InterviewScreen,UIStyle}.gd`, `scenes/ui/{EHRScreen,InterviewScreen}.tscn`, `scripts/tests/test_sprint2.gd`, Sprint 2 edits to managers and data | Awaiting review |
 | Audio production | `claude/audio-production` | Claude (separate session) | none pushed yet | `audio/**`, `tools/audio/**`, `systems/audio/**`, `scenes/audio/**`, `tests/audio/**`, `docs/AUDIO*.md` | Active, not on GitHub yet |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -59,6 +60,60 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Claude Code · Sprint 2 EHR and interview
+
+- **Branch:** `claude/sprint-02-ehr-interview` (based on `claude/chapter1-playable` at `7b11143`)
+- **Latest verified commit:** the commit carrying this entry; `git ls-remote origin claude/sprint-02-ehr-interview`
+- **Pull request:** #9 (draft, stacked on #7; merge order #8, #6, #7, #9)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- The GDD §13 MVP loop is playable end to end in the Blender-built wing:
+  1. Interview Elias with the `CAM_IR_*` cameras, using typed or structured questions.
+  2. Questions record the findings with provenance.
+  3. Open the EHR (terminal or J) and save a structured note.
+  4. Commit a clinical action through ClinicalRules; the chart updates deterministically.
+  5. Save and load.
+
+**Files modified**
+- `scripts/ui/EHRScreen.gd`, `scripts/ui/InterviewScreen.gd`, `scripts/ui/UIStyle.gd`, and both `.tscn` files: new.
+- `scripts/main/Main.gd`: panel routing (info / interview / ehr); Esc closes the topmost panel; J toggles the EHR.
+- `scripts/autoload/PatientManager.gd`: `save_note`/`get_notes`, `perform_action`, `action_event_id`; review flags in the audit trail.
+- `scripts/autoload/DialogueManager.gd`: `records_observations`, `last_recorded_observations`, `QUESTION_MINUTES`.
+- `scripts/autoload/TimeManager.gd`: `format_minutes`.
+- `scripts/autoload/EventBus.gd`: `patient_note_saved`.
+- `scripts/content/*` and `scripts/autoload/ContentRegistry.gd`:
+  - schema for `actions` and `records_observations`;
+  - reference checks;
+  - `get_actions`/`get_action`.
+- `data/clinical_rules.json`: two actions and one new PENDING placeholder rule.
+- `data/dialogue.json`: `records_observations` on two choices.
+- `scripts/world/{Character,WorldActions,ImportedInteractable,Terminal}.gd`: patients open the interview; terminals open the EHR.
+
+**Unfinished**
+- No MAR/medication tab; PharmacologyEngine is still not used in play.
+- The close-up and reverse interview shots are unused (capsule stand-ins).
+
+**Known errors**
+- none. Expected warnings come from negative tests.
+
+**Tests** (on this branch)
+- `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64`: exit 0.
+  - TestQA: 19/0/0.
+  - GLB validation: 58 assets.
+  - TestRunner: 62 passed.
+  - TestAudio: 92 passed.
+  - Ch1 audio sequence: done.
+- CI: not observed.
+
+**Next steps**
+1. Sprint 3 on a new branch from this one:
+   - evidence board UI (link and pin clues, hypotheses);
+   - shift sign-in/sign-out loop;
+   - Bennett trust effects;
+   - the after-hours W0-B intercom beat and the disputed EHR transfer entry (GDD §12 beat 6).
+2. Owner: review the new authored clinical wording listed in PR #9.
 
 ### 2026-10-17 · Claude Code · Chapter 1 playable
 

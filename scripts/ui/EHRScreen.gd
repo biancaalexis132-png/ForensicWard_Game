@@ -119,7 +119,8 @@ func submit_note() -> String:
 		_note_status.text = "Nothing to save: cite a recorded finding, a consideration, or write a plan."
 		return ""
 	TimeManager.advance(NOTE_MINUTES, "documentation")
-	_plan.text = ""
+	var none: Array[String] = []
+	set_note_selection(none, none, "")
 	_note_status.text = "Note saved to the chart (%s)." % note_id
 	EventBus.notification_requested.emit("Note saved to %s's chart" % ContentRegistry.get_patient(patient_id).get("name", ""))
 	_refresh()
@@ -306,7 +307,9 @@ func _describe_result(action_id: String, result: Dictionary) -> String:
 	if result["rule_ids"].is_empty():
 		lines.append("No rule applied: the findings this action needs are not documented yet. The request is logged in the audit trail.")
 	for effect: Dictionary in result["effects"]:
-		lines.append("Chart updated: %s." % UIStyle.humanize(str(effect["path"]).get_slice(".", 3)))
+		# "patients.<id>.assessment.started" -> "assessment: started"
+		var field: PackedStringArray = str(effect["path"]).split(".").slice(2)
+		lines.append("Chart updated: %s." % UIStyle.humanize(": ".join(field)))
 	for flag: Dictionary in result["review_flags"]:
 		lines.append("[color=#%s]Review flag (%s): %s[/color]" % [UIStyle.WARNING.to_html(false), flag["rule_id"], flag["reason"]])
 	return "\n".join(lines)
