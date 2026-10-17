@@ -1,0 +1,29 @@
+{
+	"schema_version": "0.1",
+	"_note": "Audio cue sheet read by systems/audio/AudioDirector.gd. Cues name streams; locations pick ambience and room acoustics per shift; events map explicit narrative event IDs to timed audio actions. Anomaly audio is only ever started by an event listed here, never by the player's Objectivity or bleed stage.",
+	"cues": {
+		"amb_corridor_day": {"stream": "res://audio/ambience/amb_corridor_day_loop.ogg", "bus": "AmbienceBed", "loop": true},
+		"sfx_door_secure_open": {"stream": "res://audio/sfx/sfx_door_secure_open.ogg", "bus": "SFX", "max_distance": 30.0},
+		"sfx_pager_alert": {"stream": "res://audio/sfx/sfx_pager_alert.ogg", "bus": "SFX", "max_distance": 12.0},
+		"mus_transition_unease": {"stream": "res://audio/music/mus_transition_unease_01.ogg", "bus": "Music", "startle": true, "duck_ambience_db": -9.0}
+	},
+	"locations": {
+		"corridor": {
+			"day": {"ambience": "amb_corridor_day", "volume_db": 0.0, "lowpass_hz": 20000.0},
+			"night": {"ambience": "amb_corridor_day", "volume_db": -5.0, "lowpass_hz": 2200.0},
+			"reverb": {"room_size": 0.6, "damping": 0.55, "wet": 0.18}
+		},
+		"nursing_station": {
+			"day": {"ambience": "amb_corridor_day", "volume_db": -7.0, "lowpass_hz": 6000.0},
+			"night": {"ambience": "amb_corridor_day", "volume_db": -10.0, "lowpass_hz": 1800.0},
+			"reverb": {"room_size": 0.35, "damping": 0.7, "wet": 0.1}
+		}
+	},
+	"events": {
+		"ch1_secure_door_opened": [{"at": 0.0, "sfx": "sfx_door_secure_open"}],
+		"ch1_pager_bennett": [{"at": 0.0, "sfx": "sfx_pager_alert"}],
+		"ch1_bennett_handover": [{"at": 0.0, "scene": "ch1_b2_bennett_handover"}],
+		"ch1_after_hours_intercom": [{"at": 0.0, "line": "ch1_b6_intercom_001"}],
+		"ch1_w0b_unease": [{"at": 0.0, "stinger": "mus_transition_unease"}]
+	}
+}

@@ -1,0 +1,6 @@
+# Offline audio generation tools (not needed to run the game).
+# Install into a virtual environment: python3 -m venv .venv-audio && .venv-audio/bin/pip install -r tools/audio/requirements.txt
+kokoro-onnx==0.6.1
+soundfile==0.14.0
+numpy>=2.0
+scipy>=1.13

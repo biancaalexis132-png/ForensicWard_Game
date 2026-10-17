@@ -1,0 +1,168 @@
+{
+	"schema_version": "0.1",
+	"assets": [
+		{
+			"file": "audio/ambience/amb_corridor_day_loop.ogg",
+			"category": "ambience",
+			"duration_seconds": 60.0,
+			"ids": [
+				"amb_corridor_day"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "corridor, nursing_station (day and night variants via bus filtering)",
+			"notes": "Seamless 60 s loop",
+			"review_status": "pending_listening_review",
+			"sha256": "26699a65414964f6038d0f98a4c866e8b1e4579e7be132240eaf56f0e2a57633",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py corridor (seed 1101): pink-noise ventilation, duct resonances, 120 Hz ballast hum, distant door thumps and footsteps, synthetic corridor reverb; 4 s equal-power loop crossfade"
+		},
+		{
+			"file": "audio/music/mus_transition_unease_01.ogg",
+			"category": "music_transition",
+			"duration_seconds": 9.5,
+			"ids": [
+				"mus_transition_unease",
+				"ch1_w0b_unease"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "story transitions (Ward Zero foreshadowing)",
+			"notes": "Placeholder-grade synthesized transition, not AI-generated music; flagged startle so accessibility can soften it",
+			"review_status": "pending_listening_review",
+			"sha256": "cb976c160803467c5f5e0bc9f987750fdf2c7be1956689727d9d89c0419b6668",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py transition (seed 4404): additive low-string cluster A1/A2 with late Bb2 minor-second rub, two additive piano notes (E5, D#5), reverse noise swell, synthetic hall reverb"
+		},
+		{
+			"file": "audio/sfx/sfx_door_secure_open.ogg",
+			"category": "sfx",
+			"duration_seconds": 3.4,
+			"ids": [
+				"sfx_door_secure_open",
+				"ch1_secure_door_opened"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "secure doors (3D positional)",
+			"review_status": "pending_listening_review",
+			"sha256": "6690e300dbccd6917af370c4717f19dde8e1dee65e6efc0c4c65547533834f16",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py door (seed 2202): badge-reader accept beep, maglock release, latch, door swing, hinge, hydraulic closer"
+		},
+		{
+			"file": "audio/sfx/sfx_pager_alert.ogg",
+			"category": "sfx",
+			"duration_seconds": 1.8,
+			"ids": [
+				"sfx_pager_alert",
+				"ch1_pager_bennett"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "player pager (2D)",
+			"review_status": "pending_listening_review",
+			"sha256": "5d08e00d5adb67e4c17fe43176c88588a84cc12623176cab69f19493f31647c1",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py pager (seed 3303): three 3.1 kHz beep bursts through a small-speaker model plus vibration buzz"
+		},
+		{
+			"file": "audio/voice/ch1/ch1_b2_bennett_001.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.416,
+			"ids": [
+				"ch1_b2_bennett_001",
+				"ch1_bennett_handover"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "a5488c1af726322a6347ae804ffd4b91f4252fec5b07fb2e5511b38a4c97099f",
+			"source": "Kokoro TTS voice 'af_sarah' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_bennett",
+			"text": "Doctor? You're the new attending. I'm Naomi Bennett, charge nurse on this unit."
+		},
+		{
+			"file": "audio/voice/ch1/ch1_b2_bennett_002.ogg",
+			"category": "dialogue",
+			"duration_seconds": 8.299,
+			"ids": [
+				"ch1_b2_bennett_002",
+				"ch1_bennett_handover"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "0de8ed1fc14d1adf061d8f2cbcf635fa53d964e604e83a8f15eee5c3bf3393be",
+			"source": "Kokoro TTS voice 'af_sarah' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_bennett",
+			"text": "Elias Ward. Twenty-nine. He hasn't said a word since admission, he's barely eating, and he's held the same posture for most of the afternoon."
+		},
+		{
+			"file": "audio/voice/ch1/ch1_b2_bennett_003.ogg",
+			"category": "dialogue",
+			"duration_seconds": 7.765,
+			"ids": [
+				"ch1_b2_bennett_003",
+				"ch1_bennett_handover"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "6216e2f54bd2c7cdefacc64b3173ac27693732588b938101f58fd371e516042d",
+			"source": "Kokoro TTS voice 'af_sarah' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_bennett",
+			"text": "Vitals at two. The intake chart is at the station. He's in the interview room now, and I'd like you to see him before the evening round."
+		},
+		{
+			"file": "audio/voice/ch1/ch1_b2_player_001.ogg",
+			"category": "dialogue",
+			"duration_seconds": 1.994,
+			"ids": [
+				"ch1_b2_player_001",
+				"ch1_bennett_handover"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "72dc7f7c7bb3b6d16d45fb7a710b43e6db96e067bc9a972cdb7ad99b4e7d57b3",
+			"source": "Kokoro TTS voice 'am_liam' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Good to meet you. What do I need to know?"
+		},
+		{
+			"file": "audio/voice/ch1/ch1_b2_player_002.ogg",
+			"category": "dialogue",
+			"duration_seconds": 3.123,
+			"ids": [
+				"ch1_b2_player_002",
+				"ch1_bennett_handover"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"location": "nursing_station",
+			"review_status": "pending_listening_review",
+			"sha256": "a48804abc2800fa58f9090fde22d9014684a2be6e4ac4714d3f03be74abb5f29",
+			"source": "Kokoro TTS voice 'am_liam' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Has anyone checked his vitals and fluid intake today?"
+		},
+		{
+			"file": "audio/voice/ch1/ch1_b6_intercom_001.ogg",
+			"category": "intercom",
+			"duration_seconds": 8.762,
+			"ids": [
+				"ch1_b6_intercom_001",
+				"ch1_after_hours_intercom"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); stock synthetic voice, not cloned from a real person. Usable in the commercial game.",
+			"location": "corridor",
+			"review_status": "pending_listening_review",
+			"sha256": "fc7ec41c66de80886a38bbf00ad8b86ad20f5ceb28e2d38eff5c18b904da80e3",
+			"source": "Kokoro TTS voice 'af_alloy' speed 0.9, fx 'intercom' (tools/audio/generate_voice.py)",
+			"speaker": "intercom",
+			"text": "Transfer team to W-Zero-B. Transfer team to W-Zero-B, please."
+		}
+	]
+}

@@ -20,6 +20,7 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 EventBus="*res://autoload/EventBus.gd"
 GameState="*res://autoload/GameState.gd"
 PharmacologyEngine="*res://systems/pharmacology/PharmacologyEngine.gd"
+AudioDirector="*res://systems/audio/AudioDirector.gd"
 
 [display]
 

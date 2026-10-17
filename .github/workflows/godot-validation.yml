@@ -13,6 +13,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
       - name: Install checksum-verified Godot 4.7
         shell: bash
         run: |

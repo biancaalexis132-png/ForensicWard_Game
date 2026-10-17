@@ -1,0 +1,34 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch1",
+	"provisional": true,
+	"_note": "Provisional Chapter 1 lines for the audio pipeline. Wording is owned by the narrative team and is pending clinical review; edit text here and re-run tools/audio/generate_voice.py. Line IDs are stable: never reuse an ID for different wording.",
+	"clinical_review_status": "PENDING",
+	"speakers": {
+		"player": "You",
+		"staff_bennett": "Nurse Bennett",
+		"intercom": "Intercom"
+	},
+	"scenes": [
+		{
+			"id": "ch1_b2_bennett_handover",
+			"beat": "Beat 2: Nurse Bennett flags Elias Ward",
+			"location": "nursing_station",
+			"lines": [
+				{"id": "ch1_b2_bennett_001", "speaker": "staff_bennett", "text": "Doctor? You're the new attending. I'm Naomi Bennett, charge nurse on this unit."},
+				{"id": "ch1_b2_player_001", "speaker": "player", "text": "Good to meet you. What do I need to know?"},
+				{"id": "ch1_b2_bennett_002", "speaker": "staff_bennett", "text": "Elias Ward. Twenty-nine. He hasn't said a word since admission, he's barely eating, and he's held the same posture for most of the afternoon."},
+				{"id": "ch1_b2_player_002", "speaker": "player", "text": "Has anyone checked his vitals and fluid intake today?"},
+				{"id": "ch1_b2_bennett_003", "speaker": "staff_bennett", "text": "Vitals at two. The intake chart is at the station. He's in the interview room now, and I'd like you to see him before the evening round."}
+			]
+		},
+		{
+			"id": "ch1_b6_after_hours_intercom",
+			"beat": "Beat 6: after-hours intercom announces W0-B",
+			"location": "corridor",
+			"lines": [
+				{"id": "ch1_b6_intercom_001", "speaker": "intercom", "text": "Transfer team to W-Zero-B. Transfer team to W-Zero-B, please."}
+			]
+		}
+	]
+}
