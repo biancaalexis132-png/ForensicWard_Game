@@ -10,6 +10,7 @@ export_presets.cfg
 
 # OS / editor junk
 .DS_Store
+._*
 Thumbs.db
 *.tmp
 
