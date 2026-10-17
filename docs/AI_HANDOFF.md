@@ -10,6 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Sprints 1–3 integration | `claude/integration-sprints-1-3` (draft PR to `main`) | Claude | `99c2eaf453e13d44932f73a7c7f30ad54a18bf3e` | `README.md` (merge resolution), `docs/INTEGRATION_SPRINTS_1_3.md`, `docs/PROJECT_STATUS.md`, this file. Otherwise no edits beyond the merge | Awaiting owner review and merge; replaces PRs #1, #6, #7, #8 |
 | Sprint 1 integration | `claude/integrate-sprint-01` (draft PR) | Claude | `8ca85bce79f08f19ce75e00c33502a4e4af14146` | `project.godot`, `scripts/autoload/EventBus.gd`, `scripts/autoload/GameState.gd`, `scenes/main/Main.*`, `scripts/main/Main.gd`, `tests/qa/run.py`, `tests/qa/TestQA.gd`, `docs/TESTING.md` | Awaiting owner review and merge |
 | Sprint 1 foundation | `claude/sprint-01-foundation` (PR #1) | Claude | `f626aad7be1c9a443762a5b2cd3591601c1b14bc` | Superseded by the integration PR | Close after the integration PR merges |
 | Environment art | `claude/environment-production` (PR #6) | Claude | `e321b4a7f8d60f8b4400ea668959c25ac6b122e0` | `tools/blender/**`, `tools/godot/validate_glb_imports.gd`, `assets/blender/**`, `assets/exports/**`, `assets/asset_manifest/**`, `assets/renders/**`, `docs/ENVIRONMENT_*.md` | Stages 1–2 done; Stages 3–8 next |
@@ -61,6 +62,47 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 17:40 UTC · Claude Code · Sprints 1–3 integration
+
+- **Branch:** `claude/integration-sprints-1-3` (based on `claude/chapter1-playable` at `b11f58c`, with `main` at `f6efda8` merged in)
+- **Latest verified commit:** `99c2eaf453e13d44932f73a7c7f30ad54a18bf3e` "Merge main (audio PR #5) into the Sprints 1-3 integration branch"
+- **Confirmed on GitHub:** `git ls-remote origin claude/integration-sprints-1-3` printed `99c2eaf` at 17:25 UTC; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; imports and passes every suite
+
+**Accomplished**
+- Checked every source branch with `git merge-base --is-ancestor`: `claude/chapter1-playable` already contained PRs #1, #8, #6, #9 and #10. Only `main`'s PR #5 (audio) was missing. Merged `origin/main` into a new branch from `claude/chapter1-playable`; no cherry-picks, no rewritten history.
+- Compared every file on each source branch with the integrated tree. Nothing functional is missing; see `docs/INTEGRATION_SPRINTS_1_3.md` → Functionality check.
+
+**Files modified**
+- `README.md`: merge conflict resolved (integrated layout plus `main`'s audio, music AI and agent-rules entries).
+- `docs/INTEGRATION_SPRINTS_1_3.md`: new. Branch provenance, conflict resolution, per-file preservation check, full test report, open items.
+- `docs/PROJECT_STATUS.md`, `docs/AI_HANDOFF.md`: this branch's rows and entry.
+
+**Unfinished**
+- none in this branch.
+
+**Known errors**
+- none. Expected warnings come only from negative tests (save tamper, note validation, locked dialogue choice).
+
+**Tests** (on `99c2eaf`)
+- `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64` (4.7.stable.official.5b4e0cb0f, SHA-512 verified): exit 0. JSON 4 OK, audio manifest 3 OK, music AI 3 OK, TestPharmacology 0 failures (8 cases), TestQA 19 passed / 0 failed / 0 skipped, `.glb` validation 58/58, TestRunner 80 passed / 0 failed, boot OK, TestAudio 211 passed, Ch1 audio sequence done.
+- Blender 5.0.1 (`bpy`, Python 3.11) re-ran `tools/blender/build_stage1_modular.py`, `build_stage1_props.py`, `build_stage2_chapter1.py` in a scratch copy: STAGE1 OK 25, PROPS OK 26, STAGE2 OK 7; rebuilt exports pass `.glb` validation 58/58. 8 rebuilt `.glb` differ byte-wise from the committed ones with identical glTF structure; committed files left unchanged.
+- CI: not observed yet; check the draft PR.
+
+**Dependencies not available to remote agents**
+- Mac-only checks (Forward+/Metal rendering, input feel, audio mix). ACE-Step and Stable Audio need the owner's Mac.
+
+**Next steps**
+1. Owner reviews and merges the integration draft PR into `main`.
+2. After it merges, close PRs #1, #6, #7 and #8 (all fully contained). PRs #9 and #10 are already closed.
+3. Follow-up: remove the tracked `assets/blender/modular/FW_Modular_Kit.blend1` backup (now gitignored).
+4. Next feature work branches from `main` after the merge, in the `scripts/` layout.
+
+**Notes for the other agent**
+- `claude/environment-production` was still at `e321b4a` when this branch was built. If that session pushes more, merge `origin/claude/environment-production` into a continuation branch from this one rather than into the old PRs.
+- Do not reintroduce `autoload/`, `staging/` or `main`'s old demo `scenes/main/Main.gd`.
 
 ### 2026-10-17 · Claude Code · Sprint 3 story, evidence board, shift loop
 

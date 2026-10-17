@@ -2,7 +2,7 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
-**Last verified:** 2026-10-17 by Claude Code (integration session), against `origin` after `git fetch --prune`.
+**Last verified:** 2026-10-17 17:40 UTC by Claude Code (Sprints 1–3 integration session), against `origin` after `git fetch --prune`.
 
 Status meanings:
 
@@ -17,14 +17,15 @@ Status meanings:
 
 | Branch | Tip | State | Notes |
 |---|---|---|---|
-| `main` | `91ad354` | Integration branch | Includes PR #2 (QA runner, CI), PR #3 (adaptive audio) and PR #4 (handoff system). |
+| `main` | `f6efda8` | Integration branch | Includes PR #2 (QA runner, CI), PR #3 (adaptive audio) and PR #4 (handoff system) and PR #5 (ACE-Step pipeline, environment sound set). |
+| `claude/integration-sprints-1-3` | see `docs/AI_HANDOFF.md` | Draft PR to `main`, not merged | **The one branch to merge.** `claude/chapter1-playable` (which already holds #1, #8, #6, #9, #10) plus `main` at `f6efda8`. Full `run.py` green, Blender rebuild green. Report: `docs/INTEGRATION_SPRINTS_1_3.md`. Replaces PRs #1, #6, #7, #8. |
 | `claude/integrate-sprint-01` | see `docs/AI_HANDOFF.md` | Draft PR open, not merged | `main` + PR #1 reconciled; every `run.py` suite green locally. Supersedes merging PR #1 directly. |
 | `claude/sprint-01-foundation` | `f626aad` | PR #1 open, not merged | Sprint 1 foundation. Merge the integration PR instead; PR #1 can then be closed. |
 | `claude/environment-production` | `e321b4a` | PR #6 open, not merged | Blender sources, `.glb` exports, manifest, renders (Stages 1–2). Adds files only; no conflicts with `main`. |
 | `claude/chapter1-playable` | see `docs/AI_HANDOFF.md` | PR #7 draft, not merged | Playable Chapter 1 in the Blender-built wing; contains PR #8 and PR #6. Merge order: #8, #6, #7. |
 | `claude/sprint-02-ehr-interview` | see `docs/AI_HANDOFF.md` | PR #9 draft, stacked on #7 | Sprint 2: EHR, cinematic interview, observation capture, notes, clinical actions. |
 | `claude/sprint-03-evidence-shift` | see `docs/AI_HANDOFF.md` | Draft PR, stacked on #9 | Sprint 3: story director, evidence board, shift sign-out, Bennett trust, after-hours W0-B beat. |
-| `claude/quirky-ptolemy-6j16b7` | `a99782e` | PR #5 closed | Audio sound set / ACE-Step pipeline. |
+| `claude/quirky-ptolemy-6j16b7` | `a99782e` | PR #5 merged | Audio sound set / ACE-Step pipeline. |
 | `codex/sprint-01-tests` | `d1d7479` | PR #2 merged | Codex QA runner and CI. |
 
 Not on GitHub at the time of checking: `claude/audio-production`.
@@ -39,7 +40,7 @@ Not on GitHub at the time of checking: `claude/audio-production`.
 | Headless QA runner and CI | Completed; extended on integration branch | `main` | `tests/qa/run.py`, `.github/workflows/godot-validation.yml` | Integration branch adds `scripts/tests/TestRunner.tscn` and requires `skipped=0` |
 | Adaptive audio engine (`AudioDirector`) | Completed | `main` | `TestAudio` 92 passed; Ch1 sequence completes | All assets `pending_listening_review`; mix untested on Mac |
 | Chapter 1 audio milestone (ambience, door, pager, intercom, Bennett exchange, unease transition) | Completed | `main` | `audio/manifest.json`, `docs/AUDIO_MANIFEST.md` | Listening review by owner pending |
-| Full audio production (all voices, score, more ambience) | Active | `claude/audio-production` (not pushed yet) | none on GitHub yet | Stable Audio and ACE-Step need the owner's Mac |
+| Full audio production (all voices, score, more ambience) | Partly completed | `main` (PR #5: environment sound set, ACE-Step client); `claude/audio-production` not on GitHub | `TestAudio` 211 passed on the integration branch; `tests/music_ai` 3 OK | Stable Audio and ACE-Step need the owner's Mac |
 | Manager autoloads (Settings, SaveManager, ContentRegistry, TimeManager, PatientManager, ClinicalRules, DialogueManager, EvidenceManager, TrustManager) | Done, not merged | `claude/integrate-sprint-01` | 43/43 TestRunner tests pass inside `run.py` | |
 | JSON content schemas and validator | Done, not merged | `claude/sprint-01-foundation` | Content tests in `scripts/tests/test_content.gd` | |
 | First-person controller | Done, not merged | `claude/sprint-01-foundation` | `test_world.gd` movement and wall tests | Input feel and mouse recapture untested on Mac |
@@ -61,7 +62,7 @@ Not on GitHub at the time of checking: `claude/audio-production`.
 
 | Item | Blocked on | Who can unblock |
 |---|---|---|
-| Sprint 1 on `main` | Owner review and merge of the integration draft PR | Owner |
+| Sprints 1–3 on `main` | Owner review and merge of the `claude/integration-sprints-1-3` draft PR | Owner |
 | Clinical rule `clinical_rule_catatonia_escalation_v1` as medical logic | Psychiatrist review | Owner |
 | Elias Ward dialogue content, including the `records_observations` links and EHR action wording added in Sprint 2 | Psychiatrist review | Owner |
 | Clinical rule `clinical_rule_medical_review_request_v1` | Psychiatrist review | Owner |
@@ -70,7 +71,7 @@ Not on GitHub at the time of checking: `claude/audio-production`.
 
 ## Integration risks
 
-The PR #1 conflicts (`project.godot`, `EventBus.gd`, the removed `GameState`, the staged pharmacology, the replaced `Main`) are resolved on `claude/integrate-sprint-01`; see the newest `docs/AI_HANDOFF.md` entry. Merging PR #1 by itself would still break `main`'s runner, so merge the integration PR instead.
+Every open PR (#1, #6, #7, #8) conflicts with `main` on its own. `claude/integration-sprints-1-3` contains all of them plus current `main` and merges cleanly; merge that one PR and close the others once it is merged. Details and the per-file check are in `docs/INTEGRATION_SPRINTS_1_3.md`. Merging PR #1 by itself would still break `main`'s runner.
 
 ## Untested on hardware
 
