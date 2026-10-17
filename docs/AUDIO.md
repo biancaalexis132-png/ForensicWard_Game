@@ -7,6 +7,7 @@ The Forensic Ward's audio has three separate production pipelines feeding one Go
 | Dialogue and announcements | Kokoro TTS (offline) | `audio/voice/<chapter>/<line_id>.ogg` | Any machine with Python 3.11+ |
 | Sound effects, ambience, transitions | Procedural synthesis (`tools/audio/synth_sfx.py`) | `audio/sfx/`, `audio/ambience/`, `audio/music/` | Any machine with Python 3.11+ and ffmpeg |
 | AI-generated score | ACE-Step 1.5 on Apple Silicon | `audio/music_ai/<track>/` | The Mac only: see [MUSIC_AI_MAC_GUIDE.md](MUSIC_AI_MAC_GUIDE.md) |
+| Original soundtrack | Supplied by the owner | `assets/audio/music/` (used unmodified) | n/a: see [Soundtrack](#soundtrack) |
 
 All three feed `AudioDirector` (`systems/audio/AudioDirector.gd`, autoload). The asset list is in [AUDIO_MANIFEST.md](AUDIO_MANIFEST.md). AI music has its own manifest, `audio/music_ai/manifest.json`, which is created when the first track is approved.
 
@@ -20,6 +21,7 @@ audio/
   ambience/  sfx/  music/   procedural assets (.ogg + Godot .import)
   voice/<chapter>/       dialogue clips named by stable line ID; voice_lines.json records what produced them
   music_ai/              approved ACE-Step tracks + music_cues.json + manifest.json (created by approve)
+assets/audio/music/      owner-supplied soundtrack recordings (never edited; levels are set per cue)
 data/narrative/*.json    dialogue text, the single source of truth (never duplicated in audio scripts)
 systems/audio/AudioDirector.gd
 scenes/audio/Ch1AudioSequence.tscn   playable Chapter 1 audio check
@@ -48,11 +50,12 @@ API (all data-driven from `audio/cues.json`):
 - `play_music(cue)`, `set_music_state(state)`, `set_music_intensity(0..1)`: a music state has calm/tense variants (`min_intensity`). Changing the intensity crossfades between variants over 4 s and opens the Music low-pass filter.
 - `play_stinger(cue)`: one-shot transition. `duck_ambience_db` creates a controlled silence under it.
 - `play_line(line_id[, emitter])` / `play_scene(scene_id)`: plays dialogue from `data/narrative`. `EventBus.subtitle_shown` fires when the voice starts, with the clip's exact duration, and `subtitle_cleared` fires when it ends or is skipped. Music ducks by 9 dB and ambience by 4 dB while anyone speaks, and both are restored 1.2 s after the last line. Unvoiced lines still show their subtitles.
-- `trigger_event(id)`: also connected to `EventBus.narrative_event_fired`. It runs timed actions (`sfx`, `stinger`, `music`, `music_state`, `line`, `scene`, `intensity`). Events without audio are ignored.
+- `start_music_context(id)` / `end_music_context(id)`: see [Soundtrack](#soundtrack).
+- `trigger_event(id)`: also connected to `EventBus.narrative_event_fired`. It runs timed actions (`sfx`, `stinger`, `music`, `music_state`, `music_context`, `end_music_context`, `line`, `scene`, `intensity`). Events without audio are ignored.
 
 Accessibility settings are stored in `user://audio_settings.cfg`:
 
-- **Volume:** separate Music, Ambient, SFX and Voice volumes (0..1). Setting a volume to 0 mutes that bus.
+- **Volume:** separate Master, Music, Ambient, SFX and Voice volumes (0..1). Setting a volume to 0 mutes that bus. The pause menu has a slider for each, plus the reduce-startling-audio toggle.
 - **`reduce_startling_audio`:** cues flagged `startle` play 10 dB quieter and fade in over 0.6 s.
 - **`music_intensity_cap`:** caps how intense the music can get.
 - **Subtitles:** these are always emitted, so no information depends on audio alone.
@@ -60,6 +63,27 @@ Accessibility settings are stored in `user://audio_settings.cfg`:
 **Clinical/narrative rule:** AudioDirector never listens to Objectivity or bleed-stage changes. Anomaly audio can only be started by an explicit narrative event in `cues.json`. A test enforces this.
 
 **Merge note:** the unmerged `claude/sprint-01-foundation` branch (PR #1) has its own `Settings` autoload with volume sliders and a `default_bus_layout.tres` (Ambient/Voice/Music). When that branch is merged, keep a single source of truth for volumes: either have `Settings` call `AudioDirector.set_setting`, or move the audio keys into `Settings`. AudioDirector already reuses buses with the same names.
+
+## Soundtrack
+
+Five original tracks live in `assets/audio/music/`. They are referenced in place and never re-encoded, trimmed or normalized: each cue's `volume_db` brings it to about -20 LUFS integrated (the level the AI score pipeline targets), measured with ffmpeg `ebur128`.
+
+| Track | Cue | Context | Repeats | Ambience |
+|---|---|---|---|---|
+| `music_main_theme.ogg` | `mus_main_theme` | music context `main_menu` (event `music_main_menu`) | loops, 4 s tail-to-head crossfade | stopped |
+| `music_main_theme_alt.ogg` | `mus_main_theme_alt` | music context `cinematic` (event `music_cinematic`) | plays once, then hands music back | ducked 12 dB |
+| `music_emotional.ogg` | `mus_emotional` | music context `emotional` (events `music_emotional_begin` / `music_emotional_end`) | loops, 5 s crossfade | ducked 6 dB |
+| `music_narrative.ogg` | `mus_narrative` | music state `exploration`: corridor and nursing station by day | last 8 s fade, 45 s of silence, plays again | kept; the bed sits 6 dB below the other tracks |
+| `music_ending_credits.ogg` | `mus_ending_credits` | music context `ending_credits` (event `music_credits`) | plays once | stopped |
+
+How playback works:
+
+- **Contexts take over the music and hand it back.** Contexts stack: the newest plays, and ending it returns to the one below or, when none is left, to the location's music state and ambience. A context whose track plays once ends by itself. While a context is active, room changes keep its music, and a context that stops ambience keeps the world silent behind it.
+- **Exploration follows the room.** Ward Zero, the historical wing and every location at night have no music state, so entering them fades the exploration theme out and leaves the ambience and its controlled silence. Music started explicitly (`play_music`, an event's `music_state`) is not stopped by room changes.
+- **Repeats.** None of the tracks is a seamless loop: each has a composed fade-in and ending, and `music_narrative.ogg` ends at full level. So the imports keep `loop=false`, and AudioDirector repeats them itself: `loop_crossfade` crossfades the tail into a fresh start, `tail_fade` with `repeat_after` fades the ending out and rests in silence first. Pausing the game pauses the rest as well.
+- **Dialogue.** Every track is on the Music bus, so dialogue ducks it by 9 dB. A context's ambience duck adds to the dialogue duck instead of replacing it.
+- **Triggers.** Story data fires the events above through `EventBus.narrative_event_fired`, or code calls `AudioDirector.start_music_context(id)`. No scene fires the main-menu, cinematic, emotional or credits events yet, because the game has no title screen, cinematics or credits scene, and no story beat is marked emotional. Those scenes should fire the events when they are built.
+- `music_main_theme.m4a` (an Opus copy of the main theme) is ignored: Godot cannot import `.m4a`.
 
 ## Regenerating assets
 
@@ -133,6 +157,7 @@ The project-wide status board and handoff log are proposed in PR #4 (`docs/PROJE
 | AudioDirector, Chapter 1 sequence | Merged to `main` (PR #3) |
 | Environment set: footsteps ×3 surfaces, badge accept/deny, EHR UI, elevator, distant staff, nursing station, historic static, electrical flicker/surge, Ward Zero bed + knocks + pressure swell | On `claude/quirky-ptolemy-6j16b7` (PR #5), tests green; not reviewed by ear |
 | ACE-Step 1.5 Mac kit with reference-audio support | On PR #5; **AI music milestone open**: no ACE-Step audio exists yet |
+| Original soundtrack (5 tracks) | `claude/audio-production`: contexts, exploration state, repeats, pause-menu volumes; tests green; not reviewed by ear on the Mac |
 | Gameplay hooks | Not wired: the player controller (PR #1) should call footsteps per surface, doors and badge readers should fire the `ch1_badge_*` events, and the EHR should fire `ch1_ehr_*` |
 
 Next steps, in order:

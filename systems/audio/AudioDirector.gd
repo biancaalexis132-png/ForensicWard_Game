@@ -9,9 +9,11 @@ extends Node
 ##
 ## Features: location ambience with day/night variants and crossfades, room
 ## reverb per location, music states whose calm/intense variants crossfade with
-## an intensity control, one-shot and 3D positional SFX, dialogue playback that
-## drives subtitles and ducks music and ambience, per-bus volume settings and a
-## "reduce startling audio" accessibility option.
+## an intensity control, music contexts (main menu, cinematic, emotional scene,
+## credits) that take over the music and hand it back, repeat handling for
+## through-composed tracks, one-shot and 3D positional SFX, dialogue playback
+## that drives subtitles and ducks music and ambience, per-bus volume settings
+## and a "reduce startling audio" accessibility option.
 ##
 ## Listens to EventBus.shift_started (day/night) and EventBus.narrative_event_fired
 ## (authored audio events). It deliberately does NOT listen to objectivity or
@@ -45,6 +47,10 @@ const DIALOGUE_DUCK_ATTACK: float = 0.3
 const DIALOGUE_DUCK_RELEASE: float = 1.2
 ## Crossfade time when intensity moves a music state to another variant.
 const MUSIC_VARIANT_FADE: float = 4.0
+## Fade-in when a "repeat_after" cue starts again after its rest.
+const MUSIC_REPEAT_FADE: float = 6.0
+## Default crossfade into and out of a music context.
+const MUSIC_CONTEXT_FADE: float = 3.0
 
 ## Player-facing settings. Volumes are linear 0..1.
 const SETTING_DEFAULTS: Dictionary = {
@@ -72,6 +78,8 @@ var _cues: Dictionary = {}
 var _locations: Dictionary = {}
 var _events: Dictionary = {}
 var _music_states: Dictionary = {} ## state_id -> [{cue, min_intensity}] sorted ascending
+var _music_contexts: Dictionary = {} ## context_id -> {cue, ambience: keep|duck|stop, ambience_db, fade}
+var _context_stack: Array[String] = [] ## Active contexts, newest last.
 var _lines: Dictionary = {}  ## line_id -> {id, chapter, speaker, speaker_name, text}
 var _scenes: Dictionary = {} ## scene_id -> Array of line ids
 
@@ -79,6 +87,14 @@ var _location: String = ""
 var _shift: String = "day"
 var _music_intensity: float = 1.0
 var _music_state: String = ""
+## True while the music state came from the location, so leaving for a
+## location without one fades it out (explicitly started music is left alone).
+var _music_from_location: bool = false
+var _music_cue: String = "" ## Cue on the active music slot.
+var _music_token: int = 0 ## Bumped on every music change; stale repeats compare it.
+var _music_cycle_done: bool = false ## The current play-through has begun its repeat or tail fade.
+var _dialogue_ducked: bool = false
+var _context_ambience_db: float = 0.0 ## Ambience duck held by the active music context.
 var _ambience_players: Array[AudioStreamPlayer] = []
 var _detail_players: Array[AudioStreamPlayer] = [] ## Optional second ambience layer.
 var _music_players: Array[AudioStreamPlayer] = []
@@ -110,6 +126,10 @@ func _ready() -> void:
 	_shift = GameState.shift
 	EventBus.shift_started.connect(_on_shift_started)
 	EventBus.narrative_event_fired.connect(_on_narrative_event_fired)
+
+
+func _process(_delta: float) -> void:
+	_update_music_cycle()
 
 
 # ===========================================================================
@@ -209,10 +229,12 @@ func _on_shift_started(_day: int, shift: String) -> void:
 func _apply_location(fade_seconds: float) -> void:
 	var location: Dictionary = _locations[_location]
 	var layer: Dictionary = location.get(_shift, location.get("day", {}))
-	_crossfade(_ambience_players, "ambience", str(layer.get("ambience", "")), float(layer.get("volume_db", 0.0)), fade_seconds)
-	_crossfade(_detail_players, "detail", str(layer.get("detail", "")), float(layer.get("detail_volume_db", 0.0)), fade_seconds)
-	if layer.has("music_state"):
-		set_music_state(str(layer["music_state"]), maxf(fade_seconds, 3.0))
+	var context: Dictionary = _music_contexts.get(get_music_context(), {})
+	if context.get("ambience", "keep") != "stop":
+		_crossfade(_ambience_players, "ambience", str(layer.get("ambience", "")), float(layer.get("volume_db", 0.0)), fade_seconds)
+		_crossfade(_detail_players, "detail", str(layer.get("detail", "")), float(layer.get("detail_volume_db", 0.0)), fade_seconds)
+	if context.is_empty(): # A music context keeps the music until it ends.
+		_follow_location_music(str(layer.get("music_state", "")), maxf(fade_seconds, 3.0))
 	var cutoff: float = float(layer.get("lowpass_hz", LOWPASS_OPEN_HZ))
 	_tween(_ambience_lowpass, "cutoff_hz", cutoff, fade_seconds)
 	var reverb: Dictionary = location.get("reverb", {})
@@ -223,6 +245,17 @@ func _apply_location(fade_seconds: float) -> void:
 	_voice_reverb.wet = float(reverb.get("wet", 0.0)) * 0.5 # Keep dialogue intelligible.
 
 
+## Enters the location's music state, or fades out music the previous
+## location started when this one has none (e.g. leaving the corridor for
+## Ward Zero, which relies on ambience and controlled silence).
+func _follow_location_music(state_id: String, fade_seconds: float) -> void:
+	if not state_id.is_empty():
+		set_music_state(state_id, fade_seconds)
+		_music_from_location = true
+	elif _music_from_location:
+		stop_music(fade_seconds)
+
+
 # ===========================================================================
 # Music
 # ===========================================================================
@@ -231,6 +264,7 @@ func _apply_location(fade_seconds: float) -> void:
 ## Playing a cue directly leaves any music state.
 func play_music(cue_id: String, fade_seconds: float = 3.0) -> void:
 	_music_state = ""
+	_music_from_location = false
 	_crossfade(_music_players, "music", cue_id, 0.0, fade_seconds)
 
 
@@ -245,11 +279,120 @@ func set_music_state(state_id: String, fade_seconds: float = 4.0) -> void:
 		push_warning("AudioDirector: unknown music state '%s'" % state_id)
 		return
 	_music_state = state_id
+	_music_from_location = false
 	_crossfade(_music_players, "music", _variant_for_intensity(), 0.0, fade_seconds)
 
 
 func get_music_state() -> String:
 	return _music_state
+
+
+## Starts a music context from audio/cues.json "music_contexts" (main_menu,
+## cinematic, emotional, ending_credits). Its cue crossfades in and it may stop
+## or duck the ambience bed. Contexts stack: the newest one plays, and ending
+## it returns to the one below, or to the location's music when none is left.
+## A context whose cue plays once ends by itself when the cue finishes.
+func start_music_context(context_id: String) -> void:
+	if not _music_contexts.has(context_id):
+		push_warning("AudioDirector: unknown music context '%s'" % context_id)
+		return
+	_context_stack.erase(context_id)
+	_context_stack.append(context_id)
+	_apply_music_context(float(_music_contexts[context_id].get("fade", MUSIC_CONTEXT_FADE)))
+
+
+## Ends a context (a no-op if it is not active). Fades over the context's own fade time.
+func end_music_context(context_id: String) -> void:
+	if not context_id in _context_stack:
+		return
+	var was_current: bool = get_music_context() == context_id
+	_context_stack.erase(context_id)
+	if was_current:
+		_apply_music_context(float(_music_contexts[context_id].get("fade", MUSIC_CONTEXT_FADE)))
+
+
+## Forgets every context without restoring anything (scene teardown, tests).
+func clear_music_contexts() -> void:
+	_context_stack.clear()
+	_context_ambience_db = 0.0
+	_update_ambience_duck(0.01)
+
+
+## The music context currently playing, or "" when the location drives music.
+func get_music_context() -> String:
+	return _context_stack.back() if not _context_stack.is_empty() else ""
+
+
+## Adds or replaces a context: {cue, ambience: "keep"|"duck"|"stop", ambience_db, fade}.
+func register_music_context(context_id: String, context: Dictionary) -> void:
+	_music_contexts[context_id] = context
+
+
+func _apply_music_context(fade_seconds: float) -> void:
+	var context_id: String = get_music_context()
+	var context: Dictionary = _music_contexts.get(context_id, {})
+	_context_ambience_db = float(context.get("ambience_db", -6.0)) if context.get("ambience") == "duck" else 0.0
+	_update_ambience_duck(fade_seconds)
+	if context.is_empty():
+		# Back to the world: the location restores its ambience and music.
+		_music_from_location = true
+		if _location.is_empty():
+			stop_music(fade_seconds)
+		else:
+			_apply_location(fade_seconds)
+		return
+	if context.get("ambience") == "stop":
+		_crossfade(_ambience_players, "ambience", "", 0.0, fade_seconds)
+		_crossfade(_detail_players, "detail", "", 0.0, fade_seconds)
+	elif not _location.is_empty() and not get_active_ambience().playing:
+		_apply_location(fade_seconds) # Coming back from a context that stopped ambience.
+	var cue_id: String = str(context.get("cue", ""))
+	play_music(cue_id, fade_seconds)
+	var cue: Dictionary = _cues.get(cue_id, {})
+	if not cue.is_empty() and not (cue.get("loop", false) or cue.has("loop_crossfade") or cue.has("repeat_after")):
+		get_active_music().finished.connect(
+				_on_context_music_finished.bind(context_id, _music_token), CONNECT_ONE_SHOT)
+
+
+func _on_context_music_finished(context_id: String, token: int) -> void:
+	if token == _music_token:
+		end_music_context(context_id)
+
+
+## Repeats through-composed tracks that are not native loops (see cues.json
+## "_note"): "loop_crossfade" crossfades the tail into a fresh start;
+## "tail_fade" fades the last seconds out and "repeat_after" rests in silence
+## before playing again. Runs every frame; cheap when nothing is due.
+func _update_music_cycle() -> void:
+	if _music_cycle_done or _music_cue.is_empty():
+		return
+	var player: AudioStreamPlayer = get_active_music()
+	if not player.playing or player.stream == null:
+		return
+	var cue: Dictionary = _cues.get(_music_cue, {})
+	var remaining: float = player.stream.get_length() - player.get_playback_position()
+	var crossfade: float = float(cue.get("loop_crossfade", 0.0))
+	var tail: float = float(cue.get("tail_fade", 0.0))
+	if crossfade > 0.0 and remaining <= crossfade:
+		_music_cycle_done = true
+		_crossfade(_music_players, "music", _music_cue, 0.0, crossfade, true)
+	elif tail > 0.0 and remaining <= tail:
+		_music_cycle_done = true
+		_fade(player, SILENT_DB, remaining, true)
+		if cue.has("repeat_after"):
+			_repeat_music_after(_music_cue, remaining + float(cue["repeat_after"]))
+
+
+func _repeat_music_after(cue_id: String, seconds: float) -> void:
+	var token: int = _music_token
+	await get_tree().create_timer(seconds, false).timeout # Pausing the game pauses the rest too.
+	if token == _music_token:
+		_crossfade(_music_players, "music", cue_id, 0.0, MUSIC_REPEAT_FADE, true)
+
+
+## The cue on the active music slot, or "" when music is off (for tests and debugging).
+func get_music_cue() -> String:
+	return _music_cue
 
 
 ## Adds or replaces a music state. Variants: [{cue, min_intensity}].
@@ -444,9 +587,16 @@ func play_scene(scene_id: String, emitters: Dictionary = {}) -> void:
 
 ## Ducks (true) or restores (false) music and ambience around speech.
 func _set_dialogue_duck(active: bool) -> void:
+	_dialogue_ducked = active
 	var seconds: float = DIALOGUE_DUCK_ATTACK if active else DIALOGUE_DUCK_RELEASE
 	_tween(_music_duck, "volume_db", DIALOGUE_DUCK_MUSIC_DB if active else 0.0, seconds)
-	_tween(_ambience_duck, "volume_db", DIALOGUE_DUCK_AMBIENCE_DB if active else 0.0, seconds)
+	_update_ambience_duck(seconds)
+
+
+## The ambience duck is the sum of the dialogue duck and the music context's duck.
+func _update_ambience_duck(seconds: float) -> void:
+	var duck_db: float = (DIALOGUE_DUCK_AMBIENCE_DB if _dialogue_ducked else 0.0) + _context_ambience_db
+	_tween(_ambience_duck, "volume_db", duck_db, seconds)
 
 
 ## Restores the mix shortly after speech ends, unless another line starts
@@ -524,6 +674,10 @@ func trigger_event(event_id: String, payload: Dictionary = {}) -> void:
 			play_music(action["music"])
 		elif action.has("music_state"):
 			set_music_state(action["music_state"])
+		elif action.has("music_context"):
+			start_music_context(action["music_context"])
+		elif action.has("end_music_context"):
+			end_music_context(action["end_music_context"])
 		elif action.has("stop_music"):
 			stop_music(float(action["stop_music"]))
 		elif action.has("intensity"):
@@ -606,12 +760,13 @@ func _load_cue_sheet_music(data: Dictionary) -> void:
 	var states: Dictionary = data.get("music_states", {})
 	for state_id: String in states:
 		register_music_state(state_id, states[state_id])
+	_music_contexts.merge(data.get("music_contexts", {}), true)
 
 
 func _load_narrative() -> void:
 	for file_name: String in DirAccess.get_files_at(NARRATIVE_DIR):
-		if not file_name.ends_with(".json"):
-			continue
+		if not file_name.ends_with(".json") or file_name.begins_with("._"):
+			continue # "._*" are macOS AppleDouble metadata, not narrative data.
 		var data: Dictionary = _read_json(NARRATIVE_DIR.path_join(file_name))
 		var speakers: Dictionary = data.get("speakers", {})
 		for scene: Dictionary in data.get("scenes", []):
@@ -666,16 +821,26 @@ func _cue_stream(cue_id: String, cue: Dictionary) -> AudioStream:
 
 
 ## Two-slot crossfade used by ambience, its detail layer and music. Same cue:
-## only retargets volume. `layer` is a key of _slots.
-func _crossfade(players: Array[AudioStreamPlayer], layer: String, cue_id: String, target_db: float, fade_seconds: float) -> void:
+## only retargets volume, unless `restart` (a repeat crossfading into its own
+## start). `layer` is a key of _slots.
+func _crossfade(players: Array[AudioStreamPlayer], layer: String, cue_id: String, target_db: float,
+		fade_seconds: float, restart: bool = false) -> void:
 	var slot: int = _slots[layer]
 	var current: AudioStreamPlayer = players[slot]
 	var cue: Dictionary = _cues.get(cue_id, {})
 	var stream_path: String = cue.get("stream", "")
 	target_db += float(cue.get("volume_db", 0.0))
-	if current.playing and current.stream != null and current.stream.resource_path == stream_path:
+	if not restart and current.playing and current.stream != null and current.stream.resource_path == stream_path:
+		if layer == "music" and _music_cue != cue_id: # Catching a pass that was fading out.
+			_music_token += 1
+			_music_cue = cue_id
+			_music_cycle_done = false
 		_fade(current, target_db, fade_seconds)
 		return
+	if layer == "music":
+		_music_token += 1
+		_music_cue = cue_id if not cue.is_empty() else ""
+		_music_cycle_done = false
 	for player: AudioStreamPlayer in players: # Includes a slot still fading out.
 		if player.playing:
 			_fade(player, SILENT_DB, fade_seconds, true)
