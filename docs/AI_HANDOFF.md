@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `7feb43e734666717e970a0342b1198dedeb81d68` (local validation checkpoint; push pending) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Main updated through PR #29; final compatibility check running |
+| Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -55,6 +55,21 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 · Codex · Resolve owner-confirmed PR #27 conflicts
+
+- **Branch:** `claude/ashcroft-soundtrack` (PR #27), updated from a temporary continuation `codex/ashcroft-soundtrack-conflicts-cont-1` under the owner’s explicit request identifying PR #27.
+- **Latest verified commit:** `f59da089582ef27a6e58fc5eecc21a48d381a876` “Merge latest main and reconcile active workstreams after PR 29”.
+- **Confirmed on GitHub:** ordinary non-force push `HEAD:refs/heads/claude/ashcroft-soundtrack`; `git ls-remote` returned the exact SHA above. Parent history preserved; main not pushed or merged by the agent. This documentation-only checkpoint follows it.
+- **State:** conflicts resolved against `origin/main` `dd247bed93fca9bb95cbf2864eae964975358c23`. `git merge-tree --write-tree origin/main HEAD` exited 0; no unmerged index entries. Existing PR #27 updated via its head branch; API/hosted CI status unavailable due enforced API domain restriction.
+
+**Resolution:** preserve soundtrack and visual/protagonist continuity records in both living docs; combine active-workstream table, removing already merged F2/P0 claims. Keep all append-only historical entries. Audio integration content remains unchanged.
+
+**Validation correction:** first full QA run found 333 audio assertions passed / 1 failed: the existing fixed 3.6-second cleanup wait was too short for a 3.4-second clip with Dummy audio buffering. A three-play probe measured 3.466, 3.587 and 3.804 seconds until both actual players freed themselves. `tests/audio/TestAudio.gd` now waits for those objects with a bounded clip-duration-plus-one-second deadline; the original leak assertion remains, including original child count. No runtime audio behavior changed.
+
+**Tests:** full `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64` on `7feb43e`: exit 0, Python 6+3+3, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 112/0, boot OK, audio 334/0, complete Chapter 1 playback (`CH1_SEQUENCE_DONE`). Main then advanced by PR #29 (docs and four save tests only); isolated TestRunner on the combined `f59da08` tree passed **116/0** with no script errors. Other previously checked runtime/data/audio files unchanged. `git diff --check` passed. Hosted CI and Mac listening unobserved; licence confirmation remains owner task.
+
+**Next:** owner reviews PR #27; no agent merge. Ongoing P1 validation, D1–D3 canon reconciliation and the newly approved opening-tone proposal use separate development commits/branch. Those approvals do not permit rewriting Chapter 1 or activating clinical effects. GitHub API remains blocked; use existing Git authentication, not a new token request.
 
 ### 2026-10-17 · Codex · Protagonist proposal and save QA complete
 
