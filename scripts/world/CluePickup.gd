@@ -19,10 +19,7 @@ func _ready() -> void:
 
 
 func _on_interacted(_interactor: Node) -> void:
-	var clue: Dictionary = ContentRegistry.get_clue(clue_id)
-	if EvidenceManager.acquire_clue(clue_id, "pickup:" + name):
-		EventBus.notification_requested.emit("Evidence recorded: " + clue["title"])
-	EventBus.ui_panel_requested.emit("info", {"title": clue["title"], "body": ClueText.describe(clue)})
+	WorldActions.reveal_clue(clue_id, "pickup:" + name)
 	_refresh()
 
 

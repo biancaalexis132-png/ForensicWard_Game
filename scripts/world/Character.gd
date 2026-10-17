@@ -12,12 +12,21 @@ enum Kind { STAFF, PATIENT }
 @export var kind: Kind = Kind.STAFF
 ## staff id (data/staff.json) or patient id (data/patients.json).
 @export var character_id: String = ""
+## Seated on a chair that has its own collider: shorter silhouette, no body collision.
+@export var seated: bool = false
 
 @onready var _interactable: Interactable = $Interactable
 @onready var _name_label: Label3D = $NameLabel
 
 
 func _ready() -> void:
+	if seated:
+		# Scale only the visual: physics bodies must not be non-uniformly scaled.
+		var mesh: Node3D = $Body/Mesh
+		mesh.scale = Vector3(1.0, 0.65, 1.0)
+		mesh.position.y = -0.1
+		($Body/Collision as CollisionShape3D).disabled = true
+		_name_label.position.y = 1.55
 	_interactable.interactable_id = "character:" + character_id
 	_interactable.interacted.connect(_on_interacted)
 	var display_name: String = _display_name()
