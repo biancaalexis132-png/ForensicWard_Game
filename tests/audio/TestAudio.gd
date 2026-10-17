@@ -36,6 +36,7 @@ func _ready() -> void:
 	await test_music_states_and_dialogue_ducking()
 	await test_environment_set()
 	await test_soundtrack()
+	await test_ashcroft_soundtrack()
 	await test_pause_menu_audio_settings()
 	# Release playbacks before quitting; the audio server frees them on its next mix.
 	AudioDirector.stop_ambience(0.01)
@@ -122,8 +123,17 @@ func test_events_and_positional_sfx() -> void:
 	check(door != null and door.playing and door.global_position.is_equal_approx(Vector3(4, 1, -2)), "door event with position plays in 3D")
 	EventBus.narrative_event_fired.emit("unmapped_story_event", {})
 	check(AudioDirector.get_child_count() == before + 2, "unmapped events play nothing")
-	await wait(3.6)
-	check(AudioDirector.get_child_count() == before, "one-shot players free themselves when finished")
+	if pager == null or door == null:
+		return  # The creation assertions above already report the missing players.
+	# The Dummy audio driver can finish later than a fixed SceneTree timer
+	# (a 3.4 s clip took up to 3.8 s in the cloud). Wait for the actual objects
+	# to be freed, bounded by clip duration plus one second; a leak still fails.
+	var duration: float = maxf(pager.stream.get_length(), door.stream.get_length())
+	var deadline: int = Time.get_ticks_msec() + int((duration + 1.0) * 1000.0)
+	while (is_instance_valid(pager) or is_instance_valid(door)) and Time.get_ticks_msec() < deadline:
+		await wait(0.05)
+	check(not is_instance_valid(pager) and not is_instance_valid(door)
+			and AudioDirector.get_child_count() == before, "one-shot players free themselves when finished")
 
 func test_startle_accessibility() -> void:
 	AudioDirector.set_setting("reduce_startling_audio", false)
@@ -290,27 +300,33 @@ func test_soundtrack() -> void:
 	var bed_duck := AudioServer.get_bus_effect(AudioServer.get_bus_index("AmbienceBed"), 1) as AudioEffectAmplify
 	var music_duck := AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 1) as AudioEffectAmplify
 
-	# Narrative exploration: day corridor and nursing station only; Ward Zero and night stay without score.
+	# Narrative exploration, per the bible's Chapter 1 cue table: the records
+	# archive by day only. Handover and assessment rooms have no foreground
+	# music; Ward Zero and night stay without score.
 	AudioDirector.stop_music(0.01)
 	GameState.start_shift(1, "day")
 	AudioDirector.set_location("ward_zero", 0.2)
 	await wait(0.3)
-	AudioDirector.set_location("corridor", 0.2)
-	check(AudioDirector.get_music_state() == "exploration" and AudioDirector.get_music_cue() == "mus_narrative", "corridor by day plays the narrative theme")
+	AudioDirector.set_location("records_archive", 0.2)
+	check(AudioDirector.get_music_state() == "exploration" and AudioDirector.get_music_cue() == "mus_narrative", "records archive by day plays the narrative theme")
 	var narrative: AudioStreamPlayer = AudioDirector.get_active_music()
 	await wait(3.3)
 	check(narrative.playing and absf(narrative.volume_db - -8.1) < 0.5, "narrative theme sits under the ambience at its cue level")
 	check(AudioDirector.get_active_ambience().playing, "ambience keeps playing under exploration music")
-	AudioDirector.set_location("nursing_station", 0.2)
-	await wait(0.2)
-	check(AudioDirector.get_active_music() == narrative and narrative.playing, "moving between exploration rooms does not restart the theme")
+	for room: String in ["corridor", "nursing_station"]:
+		AudioDirector.set_location(room, 0.2)
+		await wait(3.3)
+		check(not narrative.playing and AudioDirector.get_music_cue() == "", room + " by day has no foreground music")
+		AudioDirector.set_location("records_archive", 0.2)
+		await wait(3.3)
+		narrative = AudioDirector.get_active_music()
 	AudioDirector.set_location("ward_zero", 0.2)
 	await wait(3.3)
 	check(not narrative.playing and AudioDirector.get_music_cue() == "", "Ward Zero fades exploration music out")
 	GameState.start_shift(1, "night")
-	AudioDirector.set_location("corridor", 0.2)
+	AudioDirector.set_location("records_archive", 0.2)
 	await wait(0.2)
-	check(AudioDirector.get_music_cue() == "", "night corridor keeps controlled silence")
+	check(AudioDirector.get_music_cue() == "", "night archive keeps controlled silence")
 	GameState.start_shift(1, "day")
 	await wait(4.3)
 	check(AudioDirector.get_music_cue() == "mus_narrative" and AudioDirector.get_active_music().playing, "day shift brings the narrative theme back")
@@ -344,6 +360,8 @@ func test_soundtrack() -> void:
 	cinematic.seek(cinematic.stream.get_length() - 1.0)
 	await wait(1.6)
 	check(AudioDirector.get_music_context() == "emotional" and AudioDirector.get_music_cue() == "mus_emotional", "cinematic plays once, then the emotional scene resumes")
+	AudioDirector.set_location("records_archive", 0.2)
+	await wait(0.3)
 	EventBus.narrative_event_fired.emit("music_emotional_end", {})
 	await get_tree().process_frame
 	check(AudioDirector.get_music_context() == "" and AudioDirector.get_music_cue() == "mus_narrative", "ending the scene hands music back to the location")
@@ -365,6 +383,7 @@ func test_soundtrack() -> void:
 	check(menu_again != menu and menu_again.playing and menu_again.get_playback_position() < 2.0 and menu.playing, "main theme crossfades its tail into a fresh start")
 	await wait(4.0)
 	check(not menu.playing and menu_again.playing, "old pass fades out after the loop crossfade")
+	AudioDirector.set_location("records_archive", 0.2)
 	AudioDirector.end_music_context("main_menu")
 	await wait(3.0)
 	check(AudioDirector.get_active_ambience().playing and AudioDirector.get_music_cue() == "mus_narrative", "leaving the menu restores ambience and exploration music")
@@ -395,6 +414,109 @@ func test_soundtrack() -> void:
 	AudioDirector.set_setting("volume_music", 1.0)
 	AudioDirector.clear_music_contexts()
 	AudioDirector.stop_music(0.01)
+
+## The Ashcroft score is referenced in place from assets/creative_references
+## and assigned per the design bible: ordinary hospital beds, patient
+## follow-up, oversight, the Ward Zero temporal echo and the Chapter 5 finale.
+func test_ashcroft_soundtrack() -> void:
+	var tracks: Dictionary = {
+		"mus_waiting_room": "music_waiting_room.ogg", "mus_compassion": "music_compassion.ogg",
+		"mus_procedure": "music_procedure.ogg", "mus_temporal_fracture": "music_temporal_fracture.ogg",
+		"mus_final_revelation": "music_final_revelation.ogg", "mus_main_theme_variant2": "music_main_theme_variant2.ogg",
+	}
+	var cues: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(AudioDirector.CUES_PATH))
+	var streams: Array = []
+	for cue: Dictionary in cues["cues"].values():
+		streams.append(cue.get("stream", ""))
+	for cue_id: String in tracks:
+		var cue: Dictionary = cues["cues"].get(cue_id, {})
+		var path: String = "res://assets/creative_references/Music/Ready_For_Godot/" + tracks[cue_id]
+		check(cue.get("stream", "") == path and cue.get("bus") == "Music", "Ashcroft cue on Music bus: " + cue_id)
+		check(streams.count(path) == 1, "Ashcroft track referenced by exactly one cue: " + cue_id)
+		var stream := load(path) as AudioStreamOggVorbis
+		check(stream != null and stream.get_length() > 150.0 and not stream.loop, "Ashcroft stream loads unmodified (no import loop): " + cue_id)
+	for context_id: String in ["patient_follow_up", "oversight", "ward_zero_anomaly", "final_revelation", "finale_motif"]:
+		check(cues["music_contexts"].has(context_id), "music context defined: " + context_id)
+	for location_id: String in cues["locations"]:
+		for shift: String in ["day", "night"]:
+			var state_id: String = cues["locations"][location_id].get(shift, {}).get("music_state", "")
+			for variant: Dictionary in cues["music_states"].get(state_id, []):
+				check(variant["cue"] != "mus_temporal_fracture", "no location plays the temporal echo: %s %s" % [location_id, shift])
+	check(cues["locations"]["ward_zero"]["day"].get("music_state", "") == "" and cues["locations"]["ward_zero"]["night"].get("music_state", "") == "", "Ward Zero has no location music")
+	var bed_duck := AudioServer.get_bus_effect(AudioServer.get_bus_index("AmbienceBed"), 1) as AudioEffectAmplify
+
+	# Reception by day: the waiting-room bed under ambience; night stays silent.
+	AudioDirector.clear_music_contexts()
+	AudioDirector.stop_music(0.01)
+	GameState.start_shift(2, "day")
+	AudioDirector.set_location("reception", 0.2)
+	await get_tree().process_frame
+	check(AudioDirector.get_music_state() == "hospital_ordinary" and AudioDirector.get_music_cue() == "mus_waiting_room", "reception by day plays the waiting-room bed")
+	await wait(3.3)
+	check(absf(AudioDirector.get_active_music().volume_db - -11.8) < 0.5 and AudioDirector.get_active_ambience().playing, "waiting-room bed sits under the reception ambience")
+	GameState.start_shift(2, "night")
+	await wait(4.3)
+	check(AudioDirector.get_music_cue() == "" and not AudioDirector.get_active_music().playing, "reception at night keeps controlled silence")
+
+	# Ward Zero: the location alone, bleed and intensity never start the temporal echo.
+	AudioDirector.set_location("ward_zero", 0.2)
+	AudioDirector.set_music_intensity(1.0, 0.01)
+	await wait(0.5)
+	check(AudioDirector.get_music_cue() == "" and AudioDirector.get_music_context() == "", "Ward Zero location starts no music")
+	EventBus.narrative_event_fired.emit("w0_temporal_echo_begin", {})
+	await get_tree().process_frame
+	check(AudioDirector.get_music_context() == "ward_zero_anomaly" and AudioDirector.get_music_cue() == "mus_temporal_fracture", "explicit event starts the temporal echo")
+	await wait(5.3)
+	check(AudioDirector.get_active_ambience().playing and absf(bed_duck.volume_db) < 0.2, "temporal echo keeps the Ward Zero ambience at full level")
+	var echo: AudioStreamPlayer = AudioDirector.get_active_music()
+	echo.seek(echo.stream.get_length() - 1.0)
+	await wait(1.6)
+	check(AudioDirector.get_music_context() == "" and AudioDirector.get_music_cue() == "", "temporal echo plays once, then Ward Zero returns to silence")
+	EventBus.narrative_event_fired.emit("w0_temporal_echo_begin", {})
+	await get_tree().process_frame
+	EventBus.narrative_event_fired.emit("w0_temporal_echo_end", {})
+	await get_tree().process_frame
+	check(AudioDirector.get_music_context() == "", "end event closes the temporal echo early")
+	EventBus.narrative_event_fired.emit("w0_temporal_echo_begin", {})
+	await get_tree().process_frame
+	echo = AudioDirector.get_active_music()
+	echo.seek(echo.stream.get_length() - 1.0)
+	await wait(1.6)
+	check(AudioDirector.get_music_context() == "", "a play-once context cut short still ends itself next time")
+	AudioDirector.set_music_intensity(0.0, 0.01)
+
+	# Patient follow-up and oversight loop under their duck and hand back.
+	GameState.start_shift(2, "day")
+	AudioDirector.set_location("reception", 0.2)
+	EventBus.narrative_event_fired.emit("music_oversight_begin", {})
+	await get_tree().process_frame
+	check(AudioDirector.get_music_cue() == "mus_procedure", "oversight event plays the procedure theme")
+	await wait(4.3)
+	check(absf(bed_duck.volume_db - -4.0) < 0.2 and absf(AudioDirector.get_active_music().volume_db - -7.7) < 0.5, "oversight ducks ambience lightly at the procedure cue level")
+	EventBus.narrative_event_fired.emit("music_patient_follow_up_begin", {})
+	await get_tree().process_frame
+	check(AudioDirector.get_music_cue() == "mus_compassion", "patient follow-up plays the compassion theme")
+	EventBus.narrative_event_fired.emit("music_patient_follow_up_end", {})
+	await get_tree().process_frame
+	check(AudioDirector.get_music_context() == "oversight", "ending follow-up returns to oversight")
+	EventBus.narrative_event_fired.emit("music_oversight_end", {})
+	await get_tree().process_frame
+	check(AudioDirector.get_music_cue() == "mus_waiting_room", "ending oversight hands music back to the location")
+
+	# Chapter 5 finale: revelation, then the four-note recapitulation, then credits.
+	EventBus.narrative_event_fired.emit("music_final_revelation", {})
+	await get_tree().process_frame
+	check(AudioDirector.get_music_cue() == "mus_final_revelation", "final revelation event plays its theme")
+	EventBus.narrative_event_fired.emit("music_finale_motif", {})
+	await get_tree().process_frame
+	check(AudioDirector.get_music_cue() == "mus_main_theme_variant2", "finale motif plays the four-note variant")
+	EventBus.narrative_event_fired.emit("music_credits", {})
+	await get_tree().process_frame
+	check(AudioDirector.get_music_cue() == "mus_ending_credits", "credits follow the finale")
+	AudioDirector.clear_music_contexts()
+	AudioDirector.stop_music(0.01)
+	await wait(4.3)
+	check(absf(bed_duck.volume_db) < 0.2, "finale contexts release the ambience duck")
 
 func test_pause_menu_audio_settings() -> void:
 	var menu: PauseMenu = (load("res://scenes/ui/PauseMenu.tscn") as PackedScene).instantiate()
