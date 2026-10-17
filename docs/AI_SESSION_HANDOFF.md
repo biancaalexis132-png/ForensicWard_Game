@@ -1,57 +1,47 @@
 # AI session handoff (living document)
 
-Updated 2026-10-17 · Codex · Five-chapter screenplay review.
+Updated2026-10-17 · Codex · Ch2/Ch3 controlled-inspection proposal.
 
-## Character production proposal — completed for review
+## Current workstream and exact stopping point
 
-Branch `codex/naomi-production-proposal`, stacked on verified screenplay remote `0ead6cbd79710577852ab9a79522a5a61b960a46`; main `052859a984d7db599282914cbc300cc8cecc887b` unchanged. Objective: audit real assets/rig/animation capabilities; propose Bennett-first realistic pipeline, not model yet. Owner approves Ch3 first actual WardZero entry through formal Security/Facilities inspection only; dialogue and anomaly mechanics still proposed. Claimed new proposal and own canon/handoff docs, no runtime/asset edits. Blender4.3.2 available; first inspection shows capsule Character.tscn and no animation classes in searched project code. Audit/proposal complete: all138 GLBs zero skins/clips/morph targets; ten .blend headers v0500, local4.3.2 incompatible (source internal rig inspection not complete). PDF and Bennett original/candidate reviewed; capsules only, existing voice/subtitles no lip-sync. New `docs/design/CHARACTER_PRODUCTION_NAOMI_FIRST.md` covers all ten deliverables, budgets, small PRs, dependencies and conditional milestone estimates. Ch3 entry canon amendment added; mechanics/dialogue not approved. QA failed: gameplay131/0, audio333/1 at existing fixed1.6s cinematic-resume assertion; no source change. Isolated corrected-XDG public-API probe passed, context resumed after1015ms; root cause of suite failure unconfirmed. Draft PR31 open, verified isDraft=true, base screenplay branch. Proposal-only work complete; next owner approves P1 technical reference/licensing/art route before modeling. Latest verified remote before final docs: `92a1b2549a0bae7f0660f3c71c9d92ff7c30dbd3`; final docs tip via git ls-remote.
+`docs/design/CHAPTER2_3_INSPECTION_CONTINUATION_SPEC.md` is complete for review: summary-level Ch2 institutional/Ch3 inspection crosswalk, Ch4 reveal conflict, F2 gaps, bounded deterministic repeated-junction design, lawful safe return/recovery, independent-source logging/replay, save/performance/accessibility requirements and small PRs. GDD records only the approved Ch3 first-entry premise. No runtime/effect/clinical/script replacement.
 
-## Previous screenplay workstream (historical; current result above)
+Owner confirms expanded manuscripts exist only in ChatGPT; revised files will follow. Do not ask again for their Git path or claim line-by-line review. Mandatory evidence/care remain independent of Mara disclosure, rapport/personality, diagnosis, treatment or Bleed.
 
-All 11 PR #30 package files reviewed against main; chapter audit, detailed Elias mapping, owner decision matrix and small PR sequence completed in `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`. No runtime or package modifications in this workstream. Full Godot4.7 QA passed exit0: Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, boot OK, audio334/0, Chapter1 sequence62.9s. Mara Chapter2 placement AND autonomous clinical story/investigative separation now owner-approved. Canon amendments, Ch1 reconciliation and Chapter2 crosswalk completed; clinical/dialogue logic pending. Next: verify/push final documentation checkpoint; owner reviews N1 runtime proposal and missing clinical source.
+## Branches, PRs and verified remote state
 
-## Verified repository state
+- Active `codex/chapter3-inspection-spec`, initially from screenplay **0ead6cbd79710577852ab9a79522a5a61b960a46**. Latest verified inspection remote **8cff9bcfc15956cb2828b2ff783b7ebcb7c5031e** (ordinary merge preserving both documentation histories); final handoff commit follows. Get exact final tip with `git ls-remote origin refs/heads/codex/chapter3-inspection-spec`.
+- Draft PR32 https://github.com/biancaalexis132-png/ForensicWard_Game/pull/32, base `codex/screenplay-continuity-review`. GitHub API works; old blocked notes are historical. No agent PR merge/main push.
+- Owner merged Naomi PR31 into **screenplay branch**, not main, at **78d0d8a4aaa84f6c92aa377f0381ccabfcd4b391**; this base is merged normally into inspection branch. Source Naomi **58ea1077d76a39b7d703243732201149155a1ebf**. Shared doc conflicts resolved preserving both histories; no runtime conflicts. Proposal/implementation approval gates remain: merge is not a claim that modeling was approved.
+- Main remains **052859a984d7db599282914cbc300cc8cecc887b**, owner PR30. PR27/29 also merged previously. P1 validation source **74715227bf5581b09a3b2746870082576fffe71f**, no runtime creator/provider/save bump.
 
-- Active branch `codex/screenplay-continuity-review`, stacked on `codex/character-canon-opening-cont-1` verified `30e13f87f64e46c152dad2034a2a8c2c3e152dc6`.
-- Latest verified review remote **ab7198f3b2f17f7a738a68925a4db36c9d4dcbea**; final handoff commit follows. Resolve final SHA using `git ls-remote origin refs/heads/codex/screenplay-continuity-review`.
-- Main **052859a984d7db599282914cbc300cc8cecc887b**: owner-merged PR #30. Source `assets/ashcroft-creative-references` **2e3863e16d882560dde87ba3bf018c5b6a29016d**. Main merged into feature normally; no agent main push/PR merge/history rewrite.
-- PR #27 conflicts resolved on authorized original branch at `412b5010c8ccd8ba0e19e983b4346b5d90482d34`, subsequently owner-merged main `6d2dd2d3ec1bebf3624a706da2f864efd711206e`. PR #29 P0 also merged.
-- P1 feature remote **74715227bf5581b09a3b2746870082576fffe71f**. Pure validator/15 tests only; no provider, UI, catalog registration, personality meter or save bump. P1/canon changes are inherited dependencies, not new audit changes.
-- Draft review PR attempt and open-PR inventory failed: `Post "https://api.github.com/graphql": Forbidden`. Git works. Draft body local `/workspace/screenplay-audit-pr.md`, reconstructible from audit. Target preceding canon branch; retarget only after dependencies merge. No new PR URL claimed; check owner-created PRs before duplicating. Hosted CI unobserved.
+## Files, ownership and completed work
 
-## Files and last completed milestones
+Current new spec plus `GDD_AMENDMENTS.md` and four continuity/status files only. Runtime/package preservation diff from8e30681 passed. No asset/model/audio/scene/clinical/save code claimed or changed. No half-written implementation; ignored local QA caches/logs not committed.
 
-Additional milestone: `CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md`, GDD/canon/F0/ID registry reconciliation and clinical-log placement-only entry. Preserve age37, records work, disputed label, sleep/fatigue/anxiety/checking, Dana and October12/14,1988 Lillian documents. Full prior risk/collateral/legal source remains unavailable; no reconstruction. New agency canon requires independent authorized evidence route for declined disclosure/limited rapport and care/recovery independent of WardZero. Ch1 second patient remains unassigned, Jordan unapproved.
+Naomi remains a separate production workstream: `docs/design/CHARACTER_PRODUCTION_NAOMI_FIRST.md`, fully proposed workflow;138 GLBs have no skins/animations/morphs, current people capsules;2D portraits are not models. Ten environment Blender sources5.0 incompatible with installed4.3.2; internal rigs not verified. Requires approved technical reference/face/resource licensing/art support, compatible Blender, rig/morph/clip sources and actual Mac profiling. No substantial modeling started.
 
-This review: new `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`; availability addenda in `CHAPTER1_OPENING_ALIGNMENT.md` and `ELIAS_EVALUATION_DRAFT_COMPARISON.md`; four continuity/status docs. Claims only these docs; no scene/clinical/audio/zone shared file claimed. Git diff from starting checkpoint confirms source package and runtime unchanged.
+Mara Ch2 recurring introduction, agency and clinical-investigative independence are approved; `CHAPTER2_MARA_IMPLEMENTATION_CROSSWALK.md` preserves owner-provided anchors, complete prior clinical source still missing. D1–D3 roles/casting approved; exact clinical rules/dialogue remain pending. Previous full audit and reference provenance remain on base, not duplicated as new inspection work.
 
-Audit identifies: early daytime unease, unexamined motor observation recording, pending-vs-completed exam note mismatch, mandatory hypothesis vs unresolved records path, sign-out bypasses, Jordan/Mara conflict, missing later clinical cases/branch graphs, unapproved corroboration/reveal protocols, four-source ambiguity and overlapping endings. Ch2–5 remain planned in campaign data. Existing F1 chapter archive, F2 streaming and v3 checksum/migrations preserved.
+## Tests and evidence
 
-Earlier complete work (inherited): D1–D3 decision/canon docs and Rahman direction-only profession correction; six inspected candidate reference sheets with hashes/exact prompts (not approved models/faces/clinical animation); opening/Elias summary reviews; permanent both-agent continuity AGENTS §9/CLAUDE. Originals preserved. Detailed history remains append-only in AI_HANDOFF and Git.
+Current standard command: `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`, log `/tmp/forensic-inspection-spec-qa.log`, session96137. Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, boot OK, audio334/0 so far; final Chapter1 sequence61.0s completed; **runner exit0, all executed checks passed**. Same runtime bytes from start checkpoint8e30681 through final docs; no untested runtime merge.
 
-## Validation and known failures
+Earlier Naomi run audio333/1 at existing cinematic-resume fixed1.6s assertion, reduced public-API probe resumed after1015ms; no root cause established or test/audio change. Current audio pass does not erase that intermittent failure. Whitespace/runtime preservation/conflict checks passed. Hosted CI not observed; Mac/clinical correctness/new proposed inspection behavior and safe-return invariants are not implemented or tested.
 
-- Standard runner: `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`; `/tmp/forensic-screenplay-qa.log`, session82146. Completed exit0; all executed checks passed, including131 gameplay/334 audio and full Chapter1 sequence.
-- TestRunner131/0, boot OK; all ten manifest payload byte counts and SHA256 match. `git diff --check` and preservation diff passed.
-- Prior combined full QA passed: Python6+3+3, pharmacology0 failures, QA19/0/0, GLB138/138, gameplay131/0, audio334/0 and full Chapter1. Prior audio cleanup failure was fixed in PR27 without changing runtime sound behavior; not hidden or skipped.
-- Headless does not validate Mac Metal, input, listening, first25-minute pacing, clinical correctness or 8GB performance. Expected negative-save warnings/nonfatal Python socket ResourceWarnings may appear.
+## Approvals and dependencies
 
-## Outstanding owner approvals and dependencies
+Approved: Ch3 first actual WardZero entry through authorized Security/Facilities inspection; Mara placement/agency/care independence; existing roles/casting and clinical-realism separation. Pending: exact revised scripts, Ch3 discrepancy vs Ch4 reveal, repeat limit/presentation and safety/re-entry policy, source facts/controls/claim independence, F3/C6/C7 decisions, durable event/save contract, D4–D9/Stage6 geometry/anchors and clinical material. EvidenceManager's method strings do not prove independence; F2 successful transitions do not yet provide failure-safe inspection rollback.
 
-Audit matrix C1/N1–N7: clinical Elias findings/unknowns/risk/plan/actions; exact arrival/Bennett script and late cue presentation/gate; unresolved-record completion and sign-out safety policy; Ch1 second-patient disposition and Mara legal/clinical facts (Ch2 introduction approved); Concordance/titles/Ch2–5 arcs; anomaly evidence protocols/F3 and C6 Bleed/C7 pharmacology gates; endings/eligibility/four-source facts. D4–D9 remain open (history,02:17,Mara voice,W3,boards,missing approved v1.1 bible). Candidate visual designs need owner/artist review.
+Do not turn the proposed safety/spec tests into approval of an anomaly. No narrative or clinical rule is activated. Missing private bible/dossier/Blender source dependencies must be supplied, not recreated. Correct Godot4.7 installed under `/workspace/.tools`; local Blender4.3.2 not source-ready.
 
-Already approved: Mara Ch2 recurring introduction and agency/clinical-investigative independence; fixed psychiatrist/equivalent competence, moderate personal life/emergent personality, hospital-first opening, D1–D3 casting/roles. Do not ask those again or infer broader clinical approval. The new proposed bible does not replace missing approved private sources. Ch2–5 clinical slots need actual authoring, not extrapolation.
+## Exact next task
 
-GitHub API restriction blocks PR/review/CI coordination; use supported environment configuration if owner enables domain, not token requests or proxy bypass. Cloud onboarding skill catalog currently returns no skills; earlier Godot install/start/domain draft saved, publication not claimed. Correct Godot installed outside checkout; system4.6.3 rejected by runner. No private Claude assets assumed.
-
-## Exact resume steps
-
-1. Read AGENTS/CLAUDE/current handoff/status/latest append-only entry. `git fetch origin refs/heads/main:refs/remotes/origin/main`; verify branch tip with `git ls-remote`, status and conflicts before editing.
-2. Read `docs/design/FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md`, especially C1/N1–N7 and PR sequence. Package source is now present; do not wait for standalone Elias text again.
-3. Check owner-created PRs/review comments and active file claims when API permits. Review this docs diff against preceding canon branch; keep P1/canon dependencies separate.
-4. Recommended first runtime PR after N1 review: add `intercom_heard` prerequisite to existing `beat_b6_unease` plus tests for day/no cue,15min intercom, both clue orders, once-only save/reload. Decide exact stinger/shutter treatment and already-fired saves first. Never gate supernatural truth on patient findings. No F3 implementation or clinical activation authorized by this audit.
-5. Continue exact clinical/script approvals in small slices from audit roadmap; keep all pending flags, existing IDs/provenance and late timing. Never mark Ch2–5 playable from manuscript alone.
-6. Checkpoint each milestone and before new substantial work. Commit/push feature only, verify remote SHA; owner merges. No uncommitted application work to recover; ignored caches/local logs are not required project assets.
+1. QA complete. Verify final handoff commit/push using ls-remote (no uncommitted app work). Before any new work fetch main/base and check PR32 reviews/active file claims; never reset/rewrite shared history.
+2. Owner reviews spec N1–N6. Receive revised Ch2/3 files for actual line-by-line comparison; keep existing manuscripts intact until reviewed.
+3. Earliest bounded future engineering PR only after N3 review: pure route-graph/safety contract validator with synthetic non-anomaly fixtures, disabled/inert integration. No approved effect implementation yet. Then production-approved non-supernatural route lab and source/replay contract separately; preserve F1/F2/save versions until bounded review.
+4. Naomi separately: review production proposal P1 technical-reference/licensing route before substantial model work; don't depend on full cast production to review inspection logic. Coordinate geometry/audio/scene owners before runtime changes.
+5. Maintain checkpoints each milestone, keep AI_HANDOFF append-only, feature pushes verified; owner alone merges. Include exact current SHA/test result in final report.
 
 ## Preserved soundtrack workstream record
 

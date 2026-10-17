@@ -4,8 +4,10 @@ Updated 2026-10-17 · current status is authoritative above the preserved earlie
 
 | Workstream | Current status | Evidence / next step |
 |---|---|---|
-| Current QA finding | Audio333/1; gameplay131/0 | Existing fixed1.6s cinematic-resume assertion failed; reduced public-API probe passes1015ms; root cause unconfirmed, no test patch |
-| Bennett-first production proposal | Draft PR31 open; proposal complete | 138 GLBs zero skin/animation/morph; Blender5.0 sources vs local4.3.2; ten-deliverable Naomi plan, no modeling |
+| Ch2 institutional / Ch3 inspection spec | Draft PR32; proposal and full QA complete | Summary comparison, deterministic safe-return/evidence/replay design; revised scripts confirmed not in Git; no runtime effects |
+| Naomi character production | Proposal PR31 owner-merged into screenplay base | Verified58ea107; proposal complete, modeling approval pending; no overlapping asset/runtime edits |
+| Earlier Naomi QA finding | Audio333/1; gameplay131/0; current audio334/0 | Existing fixed1.6s cinematic-resume assertion failed; reduced public-API probe passes1015ms; root cause unconfirmed, no test patch; current full inspection QA passed exit0 |
+| Bennett-first production proposal | PR31 merged to screenplay base; proposal complete | 138 GLBs zero skin/animation/morph; Blender5.0 sources vs local4.3.2; ten-deliverable Naomi plan, no modeling |
 | Ch3 first WardZero entry | Owner approved placement/access | Canon amendment recorded; formal Security/Facilities inspection only; proposed dialogue/navigation effects not approved |
 | Mara Ch2 placement | Placement and agency canon recorded; crosswalk complete | Preserve age37, prior records work, disputed mood label, insomnia/fatigue/anxiety/checking, Dana collateral, Lillian Oct12/14 1988 conflict; no clinical activation |
 | Five-chapter screenplay PR #30 | Review in progress | 11 files reviewed; chapter audit and owner decisions in FIVE_CHAPTER_SCREENPLAY_CONTINUITY_AUDIT.md; hashes match; full QA passed exit0, 131 gameplay/334 audio; no activation |
@@ -22,7 +24,7 @@ Updated 2026-10-17 · current status is authoritative above the preserved earlie
 | P2 persistence/creator/content | Not implemented | Separate bounded scope; preserve save v3 until reviewed migration |
 | D4–D9, Mac/clinical/art review | Pending | No implicit approval; missing approved v1.1 bible remains external; screenplay now present |
 
-Exact branches/checkpoints/files/commands/blockers/resume steps: `AI_SESSION_HANDOFF.md`. New PR automation is API-blocked; no merge by the agent.
+Exact branches/checkpoints/files/commands/blockers/resume steps: `AI_SESSION_HANDOFF.md`. API access restored; PR32 is the current inspection draft. PR31 owner-merged to screenplay base, not main; no merge by agent.
 
 ## Earlier checklist and milestone record (preserved history)
 
