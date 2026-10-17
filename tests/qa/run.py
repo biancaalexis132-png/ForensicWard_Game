@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+"""Portable, fail-closed Godot runner; no third-party Python dependencies."""
+import argparse
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+import tempfile
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def run(command, env, expected=None):
+    print("+", " ".join(map(str, command)), flush=True)
+    result = subprocess.run(command, cwd=ROOT, env=env, text=True,
+                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=120)
+    print(result.stdout, end="", flush=True)
+    if result.returncode or re.search(r"(?m)^(?:SCRIPT ERROR:|ERROR:|FAIL(?:ED)?:)", result.stdout):
+        raise RuntimeError(f"command failed (exit {result.returncode})")
+    if expected and not re.search(expected, result.stdout):
+        raise RuntimeError(f"missing completion evidence: {expected}")
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--godot", default=os.environ.get("GODOT", "godot"))
+    args = parser.parse_args()
+    # Isolate Linux cache/config. Tests never call save_game/load_game.
+    with tempfile.TemporaryDirectory(prefix="forensic-ward-qa-") as directory:
+        env = dict(os.environ, XDG_DATA_HOME=directory,
+                   XDG_CACHE_HOME=directory, XDG_CONFIG_HOME=directory)
+        run([sys.executable, "tests/qa/test_json.py"], env, r"\bOK\b")
+        run([args.godot, "--version"], env, r"(?m)^4\.7\.")
+        base = [args.godot, "--headless", "--path", str(ROOT)]
+        run(base + ["--editor", "--import"], env)
+        run(base + ["res://tests/TestPharmacology.tscn"], env, r"PASSED: 0 failure\(s\)")
+        run(base + ["res://tests/qa/TestQA.tscn"], env,
+            r"QA_RESULT passed=[1-9][0-9]* failed=0 skipped=2")
+        run(base + ["--quit-after", "60"], env, r"\[The Forensic Ward\] Boot OK")
+    print("All executed checks passed; 2 gameplay coverage gaps remain (see docs/TESTING.md).")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except (OSError, RuntimeError, subprocess.TimeoutExpired) as error:
+        print(f"QA runner failed: {error}", file=sys.stderr)
+        sys.exit(1)
