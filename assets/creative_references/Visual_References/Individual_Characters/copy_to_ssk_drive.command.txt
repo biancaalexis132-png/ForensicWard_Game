@@ -1,0 +1,14 @@
+# Paste directly into Terminal (zsh). Files are copied, not moved. Existing destination files are preserved.
+DRIVE=$(find /Volumes -maxdepth 1 -type d -name 'SSK Drive*' -print -quit)
+SOURCE="$HOME/Downloads/Ashcroft_Character_References_v1_0"
+DEST="$DRIVE/ForensicWard_Game/assets/creative_references/Visual_References/Individual_Characters"
+if [[ -z "$DRIVE" || ! -f "$DRIVE/ForensicWard_Game/project.godot" ]]; then
+  echo "ERROR: SSK Drive or Godot project not found"
+elif [[ ! -d "$SOURCE" ]]; then
+  echo "ERROR: Extract ZIP to ~/Downloads/Ashcroft_Character_References_v1_0 first"
+else
+  mkdir -p "$DEST"
+  rsync -avh --ignore-existing --exclude='._*' --exclude='.DS_Store' "$SOURCE/" "$DEST/"
+  echo "Files on SSD:"
+  find "$DEST" -maxdepth 1 -type f ! -name '._*' -print
+fi
