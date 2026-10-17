@@ -30,6 +30,7 @@ _Last updated: 2026-10-17 · Codex protagonist foundation continuation._
 
 ## Completed
 
+- **Chapter 5 finale screenplay/state-contract review** · `docs/design/screenplays/ForensicWard_Chapter5_Finale_v2/`, `docs/AI_HANDOFF.md`, `docs/AI_SESSION_HANDOFF.md` · deps: verified `origin/main` and existing F0–F3 contracts · validation: static cross-check against Chapter 4 Scene 09 and current save/evidence/campaign managers; automated Godot QA unavailable in this workspace · next: owner/clinical review of the creative draft; do not implement gates or effects before approval.
 - **Session handoff system** · `docs/AI_SESSION_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md` · deps: `CLAUDE.md` protocol (PR #25) · validation: merged in PR #28 · next: keep current every session.
 - **Character and Ward Zero visual production review** · `docs/design/VISUAL_PRODUCTION_REVIEW.md`; inputs `assets/creative_references/Visual_References/**` · deps: PR #24, #25 (merged) · validation: merged in PR #28; recommendations still proposals; current main baseline QA passed · next: owner approval.
 

@@ -10,6 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Chapter 5 finale review | `biancaalexis132-png-chapter5-finale-review` | Copilot / current session | `122a8c505d5e7738b08d874314aade8a1cd87ab1` (`origin/main`) | `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md` | Review complete; handoff checkpoint pending remote verification; no runtime changes |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -55,6 +56,47 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-17 23:06 UTC · Copilot · Chapter 5 finale review
+
+- **Branch:** `biancaalexis132-png-chapter5-finale-review` (based on `origin/main` at `122a8c505d5e7738b08d874314aade8a1cd87ab1`)
+- **Latest verified commit:** `122a8c505d5e7738b08d874314aade8a1cd87ab1` "Chp 5"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/main` printed `122a8c505d5e7738b08d874314aade8a1cd87ab1`. `docs/chapter5-finale-v2` was absent from fetched refs and GitHub branch lookup returned HTTP 404; the exact Chapter 5 v2.1 package is committed on `origin/main`.
+- **Pull request:** none for this review branch. `gh pr list --state open` returned no open PRs.
+- **State:** review complete; documentation-only checkpoint. No screenplay, runtime, save schema, anomaly effect, or clinical rule was changed.
+
+**Accomplished**
+- Reviewed `docs/design/screenplays/ForensicWard_Chapter5_Finale_v2/` against the original five-chapter manuscripts, revised Chapter 4 Scene 09, F0/F1/F2/F3 contracts, campaign fixture tests, `ChapterDirector`, `SaveManager`, `EvidenceManager`, `PatientManager`, `TrustManager`, and `ZoneDirector`.
+- Confirmed the major corridor-loop reveal remains in Chapter 4, Scene 09; Chapter 5 is a continuation/response and retains all three proposed endings. Clinical and environmental records remain expressly separate, and no treatment decision or patient state is made an anomaly trigger.
+- Identified the main implementation gaps: no Chapter 5 runtime story/state ships; no persisted clinical-responsibility checklist/escalation handoff; no explicit institutional report/review and ending lifecycle; Ending B's periodic review and Ending C's bounded investigation need concrete persisted obligations; evidence verification currently stores an arbitrary method string and game minute, not source lineage, raw capture integrity, clocks, custody, or validated independence; no Chapter 5 deterministic/replay tests exist.
+- Recorded a proposed test expansion: per-gate failure cases; A/B/C reachability independent of profile/trust/belief; safe inspection abort/reload idempotence; provenance lineage/copy/common-clock rejection; deterministic replay and save/load before/after decision; Chapter 4 reveal placement guard; clinical-state invariance; legacy-save provider-state preservation.
+
+**Files modified**
+- `docs/AI_HANDOFF.md`: this review record and active-workstream row.
+- `docs/AI_PROGRESS_TRACKER.md`: completed review entry.
+- `docs/AI_SESSION_HANDOFF.md`: current review checkpoint and exact continuation boundaries.
+
+**Known errors**
+- The user-designated branch `docs/chapter5-finale-v2` is not a GitHub ref (GitHub branch lookup returned 404). The package itself is available at the verified `origin/main` SHA above, so the review is based on those exact tracked files.
+- The `docs/PROJECT_STATUS.md` verification header still cites `fb078877...`; it is stale relative to the fetched `origin/main` `122a8c5...`. No runtime status changed in this review.
+
+**Tests** (on the documentation checkpoint)
+- `python3 tests/qa/test_json.py`: **6 passed, 0 failed**, exit 0.
+- `git diff --check`: passed.
+- `python3 tests/qa/run.py --godot /Applications/Godot.app/Contents/MacOS/Godot`: not run; the documented Godot 4.7 binary is not installed at that path.
+- CI: not observed.
+
+**Dependencies not available to remote agents**
+- Godot 4.7 is not installed at the documented macOS path or available on `PATH` in this workspace. No other external dependency is needed for this documentation review.
+
+**Next steps**
+1. Commit and push this documentation-only checkpoint on `biancaalexis132-png-chapter5-finale-review`; verify the exact remote SHA with `git ls-remote`.
+2. Keep Chapter 5 text, proposed state names and all clinical content in draft/review status pending owner and clinical approval.
+3. Before implementation, design a deterministic story-state/report lifecycle and an evidence-source dependency graph against existing F2/F3 responsibilities; add synthetic tests before any anomaly effects.
+4. If persistent runtime state is later approved, preserve save v3 and implement/test an explicit v3→v4 migration while retaining v1→v2→v3 migration coverage and the protagonist profile owner.
+
+**Notes for the other agent**
+- The Chapter 5 package is already on `main`; do not treat the nonexistent branch name as an implementation branch or create a duplicate screenplay. Do not move the Chapter 4 Scene 09 loop reveal into Chapter 5. Do not add or activate clinical decision rules, supernatural triggers, or automatic merges.
 
 ### 2026-10-17 · Codex · Resolve owner-confirmed PR #27 conflicts
 
