@@ -14,6 +14,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Naomi v06 independent technical audit | `codex/naomi-v06-validation` | Codex cloud | `3621ae1e679577c50009dc1f1837d2b5600b9e6e` | `tools/character_animation/audit_naomi_v06.py`, `tools/godot/validate_naomi_v06.gd*`, `tests/qa/test_naomi_v06_audit.py`, dedicated `docs/handoffs/2026-10-18_codex_naomi_v06*` | Audit complete; candidate incomplete, matching Blender and Mac checks pending. Existing controllers/assets/preview remain reserved to their owners. |
 | Soundtrack owner approval documentation | `claude/codex-soundtrack-owner-approval` (draft PR; Codex's `codex/soundtrack-owner-approval` rebased onto `main` `f9dba61`) | Codex, recovered by Claude Code (cloud) | see Log | `audio/manifest.json`, generated `docs/AUDIO_MANIFEST.md`, `docs/AUDIO.md`; additive soundtrack-only continuity entries | Owner APPROVED all 11 tracks for private/personal/noncommercial use; no audio or runtime changes. Waiting on owner review of the draft PR. |
 | Graphic-novel cutscenes (CutsceneDirector, Chapter 1 pilot) | `claude/cutscene-director` (draft PR, see Log) | Claude Code (cloud) | see Log | `scripts/cutscene/**`, `scenes/cutscene/**`, `data/cutscenes/**`, `assets/cutscenes/**`, `tools/cutscenes/**`, `scripts/tests/test_cutscene.gd`, `tests/qa/test_cutscenes.py`, `docs/CUTSCENES.md`, `docs/design/cutscenes/**`; small edits to `scripts/main/Main.gd`, `scenes/main/Main.tscn`, `scripts/autoload/EventBus.gd` (two signals), `tests/qa/run.py` (one line) | Waiting on owner review of the pilot's look and placement; off in the campaign |
 | Naomi v03 visual development | `claude/naomi-v03` (draft PR, see Log) | Claude Code | see Log | `tools/blender/characters/{build_naomi_v03.py,naomi_v03.json}`, `assets/**/Naomi_Bennett_v03*`, `assets/renders/characters/`, `assets/asset_manifest/naomi_character_manifest_v03.json`, `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, Naomi production docs | Merged in PR #49 (row kept for history; the owner removes it). v03 is the development baseline, not production |
@@ -22,6 +23,37 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Naomi in-game review preview | `claude/naomi-review-preview` (draft PR #46) | Claude Code | `6b6893d` | `scripts/world/{Character,CharacterVisualPreview}.gd`, `scripts/tests/test_character_preview.gd`, `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md` and `ingame_review_v02/` | Waiting on owner review of the model in game; preview is off by default |
 | Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` (code/test checkpoint; docs-only follow-up is pushed) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Merged in PR #45 at `a202caf` (row kept for history; the owner removes it). v02 still fails visual criteria. |
 | Foundation F3 anomaly model | `claude/f3-anomaly-model` (draft PR to `main`) | Claude | `5283735` (see entry) | `data/anomalies.json`, `data/clues.json` (source_class, claim_state), `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/narrative/{AnomalyLedger,ChapterDirector,StoryLogic}.gd`, `scripts/autoload/{ContentRegistry,EventBus}.gd` (EventBus: two signals), `scripts/content/*`, `project.godot` (one setting), `scripts/tests/test_anomaly.gd`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER}.md` | Merged in PR #44 at `fec5933` (row kept for history; the owner removes it). |
+
+### 2026-10-18 · Codex · Naomi v06 independent validation
+
+- **Branch:** `codex/naomi-v06-validation`, from fetched `origin/main` `0c104b264a985522643c60d1c059c37c24c7d881`.
+- **Latest verified implementation:** `3621ae1e679577c50009dc1f1837d2b5600b9e6e`, confirmed by `git ls-remote origin refs/heads/codex/naomi-v06-validation`. A docs-only recovery commit follows.
+- **Pull request:** draft creation follows this entry; resolve with `gh pr list --head codex/naomi-v06-validation`. No merge or auto-merge.
+- **State:** coherent independent audit complete; Naomi technical acceptance **blocked**, not owner-approved.
+
+**Accomplished / files**
+- Added binary/sparse-accessor audit `tools/character_animation/audit_naomi_v06.py`, Godot import/morph probe `tools/godot/validate_naomi_v06.gd` plus UID, and three real-asset regressions in `tests/qa/test_naomi_v06_audit.py`.
+- Actual plain v06 lacks all 22 visemes; v06_mpfb contains 32 shapes. Both have ten clips, ten embedded images, valid finite/nonnegative normalized exported weights and valid joint indices.
+- Candidate-specific JSON evidence and severity/acceptance checklist: `docs/handoffs/2026-10-18_codex_naomi_v06_{payload_report.json,validation.md}`. Shared status/session updates are additive; older entries untouched.
+- GitHub API verified PRs #59, #61, #62, #63 merged; open PR list empty before this increment. Remote main remained `0c104b2`. Historical handoff claims of draft PRs are stale. Keep existing controller/preview claims reserved until coordinated; remote unpushed work cannot be observed.
+
+**Executed tests**
+- `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`: exit 0, Python 6+4+5+3; pharmacology 0 failures; QA 19/0/0; GLB 161/0; TestRunner 176/0; boot OK; audio 336/0; `CH1_SEQUENCE_DONE`; `All executed checks passed`. Run started on base `0c104b2`; no pre-existing runtime/data/assets/tests were modified during execution. New standalone probes are outside this runner.
+- On implementation `3621ae1`, `python3 tests/qa/test_naomi_v06_audit.py -v`: 3 passed, 0 failed; includes corrupted skin-weight rejection.
+- On `3621ae1`, `python3 tools/character_animation/audit_naomi_v06.py`: exit 1 expected, plain v06 missing 22 morphs; MPFB zero payload failures; output matches committed JSON.
+- On `3621ae1`, isolated writable XDG directories + Godot `--headless --path . --script tools/godot/validate_naomi_v06.gd`: exit 1 expected, `NAOMI_VALIDATION_FAILURES=22`; MPFB 32 usable shape values, missing=[]; both ten clips.
+- Initial QA without sandbox network access hit mock-server socket PermissionError; rerun with network access passed. Initial direct Godot probe used unwritable user data and crashed; corrected with scratch XDG directories. Extra editor import without network access emitted debugger socket errors; standard runner import with network access passed. No tests disabled or weakened.
+- Blender 4.3.2 cannot open actual newer sources (original or decompressed): `incomplete header, may be from a newer version of Blender`. Source texture/path/weight/action/geometry checks **not run** in compatible Blender. Mac performance and visual/video review **not run**. Hosted CI **not observed**.
+
+**Unfinished / exact next task**
+1. Open `assets/blender/characters/Naomi_Bennett_v06.blend` and `_v06_mpfb.blend` in production Blender, inspect images/material paths, actions and evaluated deformation; preserve originals.
+2. Coordinate with existing face/preview owner: explicitly expose v06_mpfb for review, reconcile candidate naming/reports, then separately integrate dialogue visemes. Runtime currently only animates mouth_open; preview has no v06 entry. No overlapping edits were made.
+3. On Mac compare bounded baseline/v04/v05/v05_mpfb/v06 frame times and static proxies on/off, inspect gestures/blinks/gaze/clothes/placement, then capture short in-game owner-review video only after technical gates pass.
+4. After that checkpoint prioritize Chapter 1 gameplay QA and small canonical Chapter 2 playable slices. No clinical or supernatural content invented here.
+
+**Recovery / dependencies**
+- Workspace `/workspace/ForensicWard_Game`; production code/data/assets unchanged. Scratch `work/` remains untracked, not required to reproduce; no generated textures/sidecars deleted or newly staged. Production Blender/MPFB packs and target Mac remain external dependencies.
+- Run `git ls-remote origin refs/heads/codex/naomi-v06-validation` for the final docs checkpoint, and read the dedicated handoff. Technical readiness and owner visual approval remain distinct.
 
 ### 2026-10-18 13:32 UTC · Copilot · Naomi handoff follow-up
 

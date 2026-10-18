@@ -75,6 +75,13 @@ No new large-file or LFS pattern is introduced.
 
 ## Reproduce / next exact tasks
 
+Executed full QA: exit 0, Python 6+4+5+3, pharmacology 0 failures, QA 19/0/0,
+GLB 161/0, TestRunner 176/0, boot OK, audio 336/0, complete Chapter 1 audio
+sequence. New audit regressions 3/0. Probes report 22 expected acceptance
+failures on plain v06 and zero payload failures on MPFB. These results do not
+establish target-device appearance or performance. See AI_HANDOFF for commands,
+implementation SHA and corrected sandbox/XDG startup failures.
+
 1. `python3 tests/qa/test_naomi_v06_audit.py -v` — three real-asset regressions,
    including intentionally corrupted skin-weight rejection.
 2. `python3 tools/character_animation/audit_naomi_v06.py` — exit 1 expected while
