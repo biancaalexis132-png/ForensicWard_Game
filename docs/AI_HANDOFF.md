@@ -8,11 +8,11 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
-**GitHub state correction (verified 2026-10-18 UTC):** `origin/main` is `03f1585a62bd33db7dcfe8116b50db71f8ee171b`, after screenplay PR #34, Naomi acting PR #35, and Jordan package PR #36. `gh pr list --state open` returned no open PRs. The Naomi #35 row and top handoff below were written before its merge and are preserved as historical records, not current PR state. A separate Naomi character-pipeline session remains active; this review does not claim or edit its files.
+**GitHub state correction (verified 2026-10-18 UTC):** `origin/main` is `03f1585a62bd33db7dcfe8116b50db71f8ee171b`, after screenplay PR #34, Naomi acting PR #35, and Jordan package PR #36. Before this review’s PR was opened, `gh pr list --state open` returned no open PRs; draft PR #38 now contains this review branch. The Naomi #35 row and top handoff below were written before its merge and are preserved as historical records, not current PR state. A separate Naomi character-pipeline session remains active; this review does not claim or edit its files.
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Jordan Vale CP-001 v2 review | `biancaalexis132-png-jordan-vale-v2-review` | Copilot / current session | `7876d53317da79b375a33ae06a2b66020928dc9b` (verified remote) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; review handoff updates in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md` | Review report pushed; continuity checkpoint and draft PR pending |
+| Jordan Vale CP-001 v2 review | `biancaalexis132-png-jordan-vale-v2-review` (draft PR #38) | Copilot / current session | `16d55f64af6e2139e509b4ed9810fa462150e423` (verified remote checkpoint) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; review handoff updates in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md` | Draft review PR open; awaiting owner and psychiatrist decisions |
 | Naomi Chapter 1 acting cues | `biancaalexis132-png-naomi-chapter1-acting` (PR #35) | Copilot / current session | `3e4dfea90830222c46e0bb7cbe92ad515e7ccef3` (verified remote checkpoint) | `scripts/acting/**`, `scripts/world/Character.gd`, `scripts/autoload/EventBus.gd`, `systems/audio/AudioDirector.gd`, `tests/audio/TestAudio.gd`, `scripts/tests/test_naomi_acting.gd`, `docs/AUDIO.md` | Draft PR open; awaiting owner review |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
@@ -66,7 +66,7 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - **Reviewed source:** `origin/docs/jordan-vale-v2` at `8131b240afd77710b277f010b8b096c1a6b684d2`; merged as PR #36. PR #35 and PR #34 are also merged. `gh pr list --state open` returned no open PRs.
 - **Latest verified commit:** `7876d53317da79b375a33ae06a2b66020928dc9b` "Review Jordan Vale CP-001 v2 package"
 - **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned the exact SHA above.
-- **Pull request:** none yet; create a draft PR to `main` after the final continuity checkpoint.
+- **Pull request:** draft PR #38 to `main`, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/38.
 - **State:** documentation review report pushed; no clinical approval, runtime/data adoption, SaveManager change, or source-package edits.
 
 **Accomplished**
@@ -95,10 +95,9 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - Hosted CI: not observed.
 
 **Next steps**
-1. Finish the handoff/progress/status checkpoint and run `git show --check` plus `git diff --check`.
-2. Push and verify the final SHA with `git ls-remote`.
-3. Open a draft PR to `main`; do not merge.
-4. Owner resolves canon/source questions; psychiatrist reviews case-specific clinical material before any schema/runtime PR.
+1. Push and verify the final PR-head SHA with `git ls-remote`; confirm the PR remains draft.
+2. Owner resolves canon/source questions; psychiatrist reviews case-specific clinical material before any schema/runtime PR.
+3. Do not merge or change clinical status; any implementation must follow the gated sequence in `REVIEW.md`.
 
 **Notes for the other agent**
 - Keep the nine source package files, runtime, patient data, clinical rules and SaveManager unchanged in this review.

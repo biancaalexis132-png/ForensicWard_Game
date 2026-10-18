@@ -2,7 +2,7 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
-**Last GitHub state verified:** 2026-10-18 against `origin/main` `03f1585a62bd33db7dcfe8116b50db71f8ee171b` after PR #36. Fetched refs and `git ls-remote` confirmed the main and reviewed source branch tips; `gh pr list --state open` returned no open PRs. This review did not rerun the full Godot suite or observe hosted CI; prior local baseline results remain documented below and in the handoffs.
+**Last GitHub state verified:** 2026-10-18 against `origin/main` `03f1585a62bd33db7dcfe8116b50db71f8ee171b` after PR #36. Fetched refs and `git ls-remote` confirmed the main and reviewed source branch tips. The pre-review open-PR query was empty; draft review PR #38 has since been opened. This review did not rerun the full Godot suite or observe hosted CI; prior local baseline results remain documented below and in the handoffs.
 
 Status meanings:
 
@@ -19,6 +19,7 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 
 | PR | Branch | State |
 |---|---|---|
+| #38 | `biancaalexis132-png-jordan-vale-v2-review` | Draft, documentation-only review against `main` |
 | #36 | `docs/jordan-vale-v2` | Merged at `03f1585` (Jordan Vale CP-001 v2 authoring package; clinical approval remains pending) |
 | #35 | `biancaalexis132-png-naomi-chapter1-acting` | Merged at `21205c3` |
 | #34 | `docs/complete-campaign-v1` | Merged at `a075d73` |
