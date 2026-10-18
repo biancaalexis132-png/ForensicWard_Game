@@ -8,11 +8,19 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
-**GitHub state correction (verified 2026-10-18 13:31 UTC):** `origin/main` is `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`; PR #43 (Stage 6) and PR #42 (CIG slot/fallback) are merged, PR #44 and Naomi draft PR #45 are open. The Naomi branch is pushed at `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc`; PR #45's hosted `validate` check is in progress. Naomi v01 and v02 remain unapproved and not integrated.
+**GitHub state correction (verified 2026-10-18 13:32 UTC):** `origin/main` is `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`; PR #43 (Stage 6) and PR #42 (CIG slot/fallback) are merged, PR #44 and Naomi draft PR #45 are open. The Naomi code-validation checkpoint is `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc`; the branch also contains docs-only handoff checkpoint `bb56860e0906182c3300f57b80b5e64e88421c02`. PR #45's hosted `validate` check on the handoff head is in progress. Naomi v01 and v02 remain unapproved and not integrated.
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` (pushed; PR #45 draft) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Active; v02 is structurally valid but fails visual criteria and is not for runtime integration. Hosted validation is in progress. |
+| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` (code/test checkpoint; docs-only follow-up is pushed) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Active; v02 is structurally valid but fails visual criteria and is not for runtime integration. Hosted validation is in progress. |
+
+### 2026-10-18 13:32 UTC · Copilot · Naomi handoff follow-up
+
+- **Branch:** `biancaalexis132-png-naomi-model-refinement`, based on `main` `7e5bd2a`.
+- **Latest verified code commit:** `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc`; a docs-only continuity commit `bb56860e0906182c3300f57b80b5e64e88421c02` follows it on the remote branch.
+- **GitHub:** draft PR #45 is open against `main`; hosted `validate` is in progress on the docs-updated PR head as checked at 13:32 UTC. No merge or runtime integration.
+- **Completed since the prior entry:** the final regenerated v02 GLB was reimported in Godot 4.7; the import validator passed 154/154 with zero failures. Generated Godot `.import` sidecars and extracted textures were removed from the worktree.
+- **State / next step:** v02 still fails the documented silhouette and garment-boundary review; preserve it as an owner-review candidate only. Keep PR #45 draft and unmerged; record hosted check completion in a follow-up handoff.
 
 ### 2026-10-18 13:31 UTC · Copilot · Naomi procedural visual refinement
 
