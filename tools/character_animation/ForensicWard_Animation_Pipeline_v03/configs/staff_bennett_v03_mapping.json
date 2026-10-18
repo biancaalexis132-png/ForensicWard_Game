@@ -1,0 +1,62 @@
+{
+  "status": "BONE_MAPPING_VERIFIED_2026-10-18_BLENDER_5.2.2_LOCAL_MAC",
+  "character_id": "staff_bennett",
+  "source_blend": "assets/blender/characters/Naomi_Bennett_v03.blend",
+  "rig_name": "Naomi_Bennett_Rig",
+  "notes": "Bone names copied from inspect_blender_rig.py output on Naomi_Bennett_v03.blend. Clip names follow Naomi's acting cue JSON. Small amplitudes: a pipeline validation set, not final acting. frames: clip length at the scene rate (24 fps), so 96 frames is a 4 s breath.",
+  "bones": {
+    "chest": "spine_03",
+    "neck": "neck_01",
+    "head": "head"
+  },
+  "clips": [
+    {
+      "name": "idle_neutral",
+      "degrees": {
+        "chest": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "head": [
+          0.0,
+          0.0,
+          0.8
+        ]
+      },
+      "frames": 120
+    },
+    {
+      "name": "idle_breathing",
+      "degrees": {
+        "chest": [
+          2.0,
+          0.0,
+          0.0
+        ],
+        "neck": [
+          -0.8,
+          0.0,
+          0.0
+        ]
+      },
+      "frames": 96
+    },
+    {
+      "name": "listen_neutral",
+      "degrees": {
+        "neck": [
+          2.0,
+          0.0,
+          0.0
+        ],
+        "head": [
+          1.5,
+          0.0,
+          2.5
+        ]
+      },
+      "frames": 72
+    }
+  ]
+}
