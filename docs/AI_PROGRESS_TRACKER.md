@@ -1,5 +1,15 @@
 # AI progress tracker
 
+## Graphic-novel cutscenes — Claude Code (cloud), 2026-10-18
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Reusable CutsceneDirector (panels, parallax, subtitles, music context, skip/replay, restore, error recovery) | Done, draft PR | AudioDirector, EventBus, Main panels | `scripts/cutscene/`, `scenes/cutscene/` | `test_cutscene.gd` 17 pass | Owner review |
+| Chapter 1 seven-panel pilot, review-only | Done, draft PR; not approved | Naomi v04 capture; stage 2/4 renders | `data/cutscenes/`, `assets/cutscenes/ch01_pilot/`, `tools/cutscenes/` | Contract test; in-engine stills | Owner watches on the Mac |
+| Mac Forward+ look, M1 frame time and memory | Not started | Owner's Mac | | No measurement | Owner / local thread |
+| Campaign trigger for the pilot | Blocked on owner approval | Pilot approval and placement | | | After approval |
+| Chapter 2–5 sequences and ending overlays | Not started | Pilot approval | | | In chapter order after approval |
+
 ## Soundtrack owner decision — Codex, October 18, 2026
 
 | Task | State | Dependencies | Paths | Validation | Next action |

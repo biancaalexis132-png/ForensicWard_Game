@@ -1,5 +1,16 @@
 # AI session handoff
 
+## Graphic-novel cutscenes — Claude Code (cloud), 2026-10-18 18:35 UTC
+
+- **Objective:** reusable review-only CutsceneDirector and a seven-panel Chapter 1 pilot in the painted graphic-novel style; later chapters in order after approval.
+- **Branch / PR:** `claude/cutscene-director`, draft PR to `main`. Code commit `0ecf743`; `main` `37a2a71` merged in.
+- **Completed:** director, registry, review scene, pilot data, painted plates and their generator, review stills, `docs/CUTSCENES.md` reconciliation with both SSK packages.
+- **Tests:** TestRunner 171/0; cutscene contract 5 OK; full QA in the PR.
+- **Exact stopping point:** pushed; waiting on owner review of the pilot.
+- **Pending approvals:** pilot visuals and placement; staff-entry stand-in plate; music cue (`mus_waiting_room` vs `mus_main_theme_alt`); Day 1 morning vs afternoon canon; Naomi likeness.
+- **Next steps:** see the 2026-10-18 18:35 UTC entry in `docs/AI_HANDOFF.md`.
+- **Constraints:** cinematics off in the campaign; no invented dialogue or captions; no clinical, story or save writes; reveal boundaries (Ch3 Ward Zero entry, Ch4 S09 loop, three Ch5 endings); never Git on the SSK drive.
+
 ## Owner soundtrack approval update — Codex, October 18, 2026
 
 - **Current task:** record the owner's soundtrack decision; no animation or cutscene implementation in this scoped update. Broader takeover work remains for a separate continuation.
