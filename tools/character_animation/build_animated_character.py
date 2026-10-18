@@ -309,10 +309,14 @@ class Face:
         gap = np.maximum(up_m - lo_m, 0.0)
         region = ((fwd > -0.15 * r) & (dist < 2.3 * r)).astype(float)
         region = region * (1.0 - smoothstep(1.7 * r, 2.3 * r, dist))
-        region = region * (1.0 - smoothstep(42.0, 60.0, np.abs(az)))
+        region = region * (1.0 - smoothstep(self.cfg.get("lid_corner_deg", [42.0, 60.0])[0],
+                                            self.cfg.get("lid_corner_deg", [42.0, 60.0])[1], np.abs(az)))
         w_upper = region * (el >= up_m - 1.5) * (1.0 - smoothstep(up_m + 5.0, up_m + 32.0, el))
         w_lower = region * (el <= lo_m + 1.5) * (1.0 - smoothstep(-lo_m + 4.0, -lo_m + 22.0, -el))
-        return w_upper, w_lower, gap
+        # A turn about the lateral axis changes elevation by only cos(azimuth) of the
+        # angle, so toward the corners the lid must turn further to close the gap.
+        reach = 1.0 / np.maximum(np.cos(np.radians(az)), 0.45)
+        return w_upper * reach, w_lower * reach, gap
 
     def rotate_about(self, co: np.ndarray, pivot: Vector, axis: Vector, deg: np.ndarray) -> np.ndarray:
         """Displacement of each point rotated by its own angle about axis through pivot."""
@@ -324,11 +328,13 @@ class Face:
         rot = p * np.cos(th) + cross * np.sin(th) + k * dot * (1 - np.cos(th))
         return rot - p
 
-    def lid_delta(self, co: np.ndarray, side: str, upper_deg, lower_deg, gap_scaled=False):
+    def lid_delta(self, co: np.ndarray, side: str, upper_deg, lower_deg, gap_scaled=False, overlap_deg=0.0):
         centre, _r = self.eyes[side]
         wu, wl, gap = self.lid_weights(side, co)
         if gap_scaled:
-            angle = wu * gap * upper_deg - wl * gap * lower_deg
+            # The upper lid travels past the meeting point by overlap_deg, so a full
+            # blink leaves no sliver of eye showing between the lids.
+            angle = wu * (gap * upper_deg + overlap_deg) - wl * gap * lower_deg
         else:
             angle = wu * upper_deg - wl * lower_deg
         return self.rotate_about(co, centre, self.frame.left, angle)
@@ -393,7 +399,7 @@ def build_face_details(face: Face, profile: dict) -> dict:
     created["lash_faces"] = len(bm.faces)
     brow_cfg = cfg.get("brows")
     brow_faces_start = len(bm.faces)
-    if brow_cfg:
+    if brow_cfg and brow_cfg.get("mode", "strips") == "strips":
         tree = BVHTree.FromObject(body, bpy.context.evaluated_depsgraph_get())
         for side in ("L", "R"):
             c, _r = face.eyes[side]
@@ -429,17 +435,17 @@ def build_face_details(face: Face, profile: dict) -> dict:
             uv.data[li].uv = ((0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0))[k] if is_brow else (0.5, 0.5)
     lash_mat = dark_material(cfg.get("lashes", {}).get("material", "Lash"),
                              cfg.get("lashes", {}).get("color_srgb_hex", "#140d0a"))
-    brow_mat = brow_material(cfg.get("lashes", {}).get("color_srgb_hex", "#140d0a"))
+    has_brows = created["brow_faces"] > 0
+    brow_mat = brow_material(cfg.get("lashes", {}).get("color_srgb_hex", "#140d0a")) if has_brows else None
     obj = bpy.data.objects.new("FaceDetails", mesh)
     bpy.context.scene.collection.objects.link(obj)
     head_bone = profile["bones"]["head"]
     group = obj.vertex_groups.new(name=head_bone)
     group.add(list(range(len(mesh.vertices))), 1.0, "REPLACE")
     # Joining maps these slots onto the body's by material.
-    body.data.materials.append(lash_mat)
-    body.data.materials.append(brow_mat)
-    mesh.materials.append(lash_mat)
-    mesh.materials.append(brow_mat)
+    for mat in (lash_mat, brow_mat) if has_brows else (lash_mat,):
+        body.data.materials.append(mat)
+        mesh.materials.append(mat)
     bpy.ops.object.select_all(action="DESELECT")
     obj.select_set(True)
     body.select_set(True)
@@ -518,8 +524,10 @@ def build_face_shapes(face: Face, library: dict) -> list[str]:
     blink = library["face_shapes"]["blink"]
     close = blink["close_fraction"]
     low = blink["lower_lid_share"]
+    overlap = blink.get("overlap_deg", 0.0)
     for side in ("L", "R"):
-        shapes[f"blink_{side}"] = face.lid_delta(co, side, close * (1 - low), close * low, gap_scaled=True)
+        shapes[f"blink_{side}"] = face.lid_delta(co, side, close * (1 - low), close * low, gap_scaled=True,
+                                                 overlap_deg=overlap)
     shapes["blink"] = shapes["blink_L"] + shapes["blink_R"]
 
     lm = face.landmarks()
@@ -577,8 +585,422 @@ def build_face_shapes(face: Face, library: dict) -> list[str]:
         key = body.shape_key_add(name=name, from_mix=False)
         flat = (co + delta).astype(np.float32).ravel()
         key.data.foreach_set("co", flat)
+        # New keys can start at 1.0; the saved file and the GLB must rest at neutral.
+        key.value = 0.0
         names.append(name)
     return names
+
+
+# --------------------------------------------------------------------------- skin and eyes
+
+def value_noise(points: np.ndarray, cell: float, seed: int) -> np.ndarray:
+    """Smooth 3D value noise in [-1, 1], continuous across UV seams because it lives in space."""
+    p = points / cell
+    i0 = np.floor(p).astype(np.int64)
+    f = p - i0
+    f = f * f * (3.0 - 2.0 * f)
+
+    def lattice(ix, iy, iz):
+        h = (ix * 73856093) ^ (iy * 19349663) ^ (iz * 83492791) ^ (seed * 2654435761)
+        h = (h ^ (h >> 13)) * 1274126177
+        return ((h & 0xFFFF) / 32767.5) - 1.0
+
+    out = np.zeros(len(points))
+    for dx in (0, 1):
+        for dy in (0, 1):
+            for dz in (0, 1):
+                w = (f[:, 0] if dx else 1 - f[:, 0]) * (f[:, 1] if dy else 1 - f[:, 1]) * \
+                    (f[:, 2] if dz else 1 - f[:, 2])
+                out += w * lattice(i0[:, 0] + dx, i0[:, 1] + dy, i0[:, 2] + dz)
+    return out
+
+
+def bake_positions(body: bpy.types.Object, size: int, material_index: int) -> tuple[np.ndarray, np.ndarray]:
+    """World position of every texel of the faces using one material (rest pose)."""
+    tmp = body.copy()
+    tmp.data = body.data.copy()
+    tmp.modifiers.clear()
+    bpy.context.scene.collection.objects.link(tmp)
+    bm = bmesh.new()
+    bm.from_mesh(tmp.data)
+    bmesh.ops.delete(bm, geom=[f for f in bm.faces if f.material_index != material_index], context="FACES")
+    bm.to_mesh(tmp.data)
+    bm.free()
+    image = bpy.data.images.new("_PositionBake", size, size, alpha=True, float_buffer=True)
+    image.generated_color = (0, 0, 0, 0)
+    mat = bpy.data.materials.new("_PositionBake")
+    mat.use_nodes = True
+    nt = mat.node_tree
+    nt.nodes.clear()
+    out = nt.nodes.new("ShaderNodeOutputMaterial")
+    emit = nt.nodes.new("ShaderNodeEmission")
+    geo = nt.nodes.new("ShaderNodeNewGeometry")
+    nt.links.new(geo.outputs["Position"], emit.inputs["Color"])
+    nt.links.new(emit.outputs["Emission"], out.inputs["Surface"])
+    img = nt.nodes.new("ShaderNodeTexImage")
+    img.image = image
+    nt.nodes.active = img
+    tmp.data.materials.clear()
+    tmp.data.materials.append(mat)
+    scene = bpy.context.scene
+    engine = scene.render.engine
+    scene.render.engine = "CYCLES"
+    scene.cycles.device = "CPU"
+    scene.cycles.samples = 1
+    select_only(tmp)
+    bpy.ops.object.bake(type="EMIT", margin=0, use_clear=False)
+    px = np.empty(size * size * 4, dtype=np.float32)
+    image.pixels.foreach_get(px)
+    px = px.reshape(size, size, 4)
+    scene.render.engine = engine
+    bpy.data.objects.remove(tmp, do_unlink=True)
+    bpy.data.materials.remove(mat)
+    bpy.data.images.remove(image)
+    return px[..., :3].astype(np.float64), px[..., 3] > 0.5
+
+
+def brow_alpha(face: Face, side: str, pos: np.ndarray, cfg: dict, rng: np.random.Generator) -> np.ndarray:
+    """Coverage of painted brow hairs at each position (texel), in [0, 1].
+
+    Hairs grow upward at the inner end and sweep toward the temple along the arch;
+    upper-row hairs angle down and lower-row hairs angle up, so they meet along
+    the arch as real brow hair does. Units are metres in the face's own frame.
+    """
+    f = face.frame
+    centre, _r = face.eyes[side]
+    rel = pos - np.array(centre)
+    bx = rel @ np.array(face.out[side])
+    bz = rel @ np.array(f.up)
+    x0, x1 = cfg["inner_m"], cfg["outer_m"]
+
+    def arch(x):
+        s = np.clip((x - x0) / (x1 - x0), 0, 1)
+        return cfg["height_m"] + cfg["arch_m"] * np.sin(np.pi * np.minimum(1.0, s * 1.25)) - cfg["tail_drop_m"] * s ** 2
+
+    def half(x):
+        s = np.clip((x - x0) / (x1 - x0), 0, 1)
+        return cfg["inner_half_m"] + (cfg["tail_half_m"] - cfg["inner_half_m"]) * s ** 1.2
+
+    near = (bx > x0 - 0.004) & (bx < x1 + 0.004) & (np.abs(bz - arch(bx)) < half(bx) + 0.003) & \
+        ((rel @ np.array(f.forward)) > -0.01)
+    alpha = np.zeros(len(pos))
+    if not near.any():
+        return alpha
+    px, pz = bx[near], bz[near]
+    # Soft underlayer so the brow reads as a shape from the counter.
+    s = np.clip((px - x0) / (x1 - x0), 0, 1)
+    inside = 1.0 - smoothstep(half(px) * 0.55, half(px) * 1.05, np.abs(pz - arch(px)))
+    ends = smoothstep(x0 - 0.002, x0 + 0.003, px) * (1.0 - smoothstep(x1 - 0.004, x1 + 0.001, px))
+    clear = 1.0 - cfg["fill"] * (1.0 - 0.45 * s) * inside * ends
+    feather = cfg["hair_feather_m"]
+    for _ in range(cfg["hairs"]):
+        hs = rng.beta(1.3, 1.6)
+        hx = x0 + (x1 - x0) * hs
+        t = rng.uniform(-1, 1)
+        medial = 1.0 - smoothstep(0.06, 0.2, hs)
+        # Round the inner end: hairs there sit nearer the arch line and are shorter.
+        hz = arch(hx) + t * half(hx) * 0.85 * (0.55 + 0.45 * smoothstep(0.0, 0.12, hs))
+        body_angle = 14.0 - 24.0 * t
+        angle = math.radians(medial * rng.normal(62, 12) + (1 - medial) * (body_angle + rng.normal(0, 6)))
+        length = rng.uniform(*cfg["hair_length_m"]) * (1.0 - 0.35 * hs) * (1.0 - 0.35 * medial)
+        width = rng.uniform(*cfg["hair_width_m"])
+        dx, dz = math.cos(angle), math.sin(angle)
+        ax, az = px - hx, pz - hz
+        along = ax * dx + az * dz
+        across = np.abs(-ax * dz + az * dx)
+        u = np.clip(along / length, 0, 1)
+        w = width * 0.5 * (1.0 - 0.7 * u)  # hairs taper toward the tip
+        cover = np.clip((w + feather - across) / feather, 0, 1) * (along > 0) * (along < length)
+        clear *= 1.0 - cover * rng.uniform(0.6, 0.95) * (1.0 - 0.3 * medial)
+    alpha[near] = 1.0 - clear
+    return alpha
+
+
+def paint_skin(face: Face, profile: dict) -> dict:
+    """Paint hair-like brows into the skin texture and give the skin matte micro-detail.
+
+    The brows are painted rather than modelled so they mipmap like the rest of the
+    skin and read as brows at counter distance. A roughness map and a faint
+    pore normal map break the uniform sheen that made the skin look plastic.
+    """
+    cfg = profile["skin"]
+    body = face.body
+    mat = body.data.materials[0]
+    bsdf = mat.node_tree.nodes["Principled BSDF"]
+    if not bsdf.inputs["Base Color"].is_linked:
+        raise RuntimeError("Skin material has no base colour texture to paint")
+    tex_node = bsdf.inputs["Base Color"].links[0].from_node
+    source = tex_node.image
+    size = source.size[0]
+    pos, valid = bake_positions(body, size, 0)
+    rgba = np.empty(size * size * 4, dtype=np.float32)
+    source.pixels.foreach_get(rgba)
+    rgba = rgba.reshape(size, size, 4)
+
+    report = {"texture_size": size}
+    brows = profile["face"].get("brows")
+    if brows and brows.get("mode") == "painted":
+        hair = np.array([int(brows["color_srgb_hex"].lstrip("#")[i:i + 2], 16) / 255 for i in (0, 2, 4)])
+        rng = np.random.default_rng(brows.get("seed", 7))
+        flat = rgba.reshape(-1, 4)
+        idx = np.flatnonzero(valid.ravel())
+        total = np.zeros(len(idx))
+        for side in ("L", "R"):
+            a = brow_alpha(face, side, pos.reshape(-1, 3)[idx], brows, rng)
+            total = 1.0 - (1.0 - total) * (1.0 - a)
+        flat[idx, :3] = flat[idx, :3] * (1.0 - total[:, None]) + hair[None, :] * total[:, None]
+        report["brow_texels"] = int((total > 0.05).sum())
+        painted = bpy.data.images.new(f"{profile['display_name'].split()[0]}_Skin_BaseColor_{profile['version']}",
+                                      size, size, alpha=False)
+        painted.pixels.foreach_set(flat.astype(np.float32).ravel())
+        painted.pack()
+        tex_node.image = painted
+
+    # Roughness and pore normal at half resolution: enough for micro-variation.
+    detail = size // 2
+    p = pos.reshape(detail, 2, detail, 2, 3).mean(axis=(1, 3))
+    ok = valid.reshape(detail, 2, detail, 2).all(axis=(1, 3))
+    pts = p.reshape(-1, 3)
+    rough = cfg["roughness"] + cfg["roughness_variation"] * (
+        0.7 * value_noise(pts, 0.0012, 1) + 0.3 * value_noise(pts, 0.006, 2))
+    rough = np.clip(rough, 0.3, 0.95).reshape(detail, detail)
+    orm = np.ones((detail, detail, 4), dtype=np.float32)
+    orm[..., 1] = np.where(ok, rough, cfg["roughness"])
+    orm[..., 2] = 0.0
+    height = (value_noise(pts, cfg["pore_size_m"], 3) + 0.4 * value_noise(pts, cfg["pore_size_m"] * 3, 4))
+    height = np.where(ok.ravel(), height, 0.0).reshape(detail, detail)
+    gy, gx = np.gradient(height)
+    both = ok & np.roll(ok, 1, 0) & np.roll(ok, -1, 0) & np.roll(ok, 1, 1) & np.roll(ok, -1, 1)
+    gx, gy = np.where(both, gx, 0.0), np.where(both, gy, 0.0)
+    k = cfg["pore_normal_strength"]
+    n = np.stack([-gx * k, -gy * k, np.ones_like(gx)], axis=-1)
+    n /= np.linalg.norm(n, axis=-1, keepdims=True)
+    nrm = np.ones((detail, detail, 4), dtype=np.float32)
+    nrm[..., :3] = n * 0.5 + 0.5
+
+    def data_image(name: str, pixels: np.ndarray) -> bpy.types.Image:
+        img = bpy.data.images.new(name, detail, detail, alpha=False)
+        img.colorspace_settings.name = "Non-Color"
+        img.pixels.foreach_set(pixels.astype(np.float32).ravel())
+        img.pack()
+        return img
+
+    stem = f"{profile['display_name'].split()[0]}_Skin"
+    nt = mat.node_tree
+    orm_node = nt.nodes.new("ShaderNodeTexImage")
+    orm_node.image = data_image(f"{stem}_Roughness_{profile['version']}", orm)
+    sep = nt.nodes.new("ShaderNodeSeparateColor")
+    nt.links.new(orm_node.outputs["Color"], sep.inputs["Color"])
+    nt.links.new(sep.outputs["Green"], bsdf.inputs["Roughness"])
+    nrm_node = nt.nodes.new("ShaderNodeTexImage")
+    nrm_node.image = data_image(f"{stem}_Normal_{profile['version']}", nrm)
+    nmap = nt.nodes.new("ShaderNodeNormalMap")
+    nt.links.new(nrm_node.outputs["Color"], nmap.inputs["Color"])
+    nt.links.new(nmap.outputs["Normal"], bsdf.inputs["Normal"])
+    bsdf.inputs["Specular IOR Level"].default_value = cfg["specular"]
+    report.update({"roughness": cfg["roughness"], "roughness_variation": cfg["roughness_variation"],
+                   "specular": cfg["specular"], "detail_size": detail})
+    return report
+
+
+def add_eye_bones(rig: bpy.types.Object, face: Face, profile: dict) -> dict:
+    """One bone per eye under the head, so the game can aim the eyes (gaze)."""
+    names = profile["eye_bones"]
+    head = profile["bones"]["head"]
+    inv = rig.matrix_world.inverted()
+    bpy.ops.object.select_all(action="DESELECT")
+    rig.select_set(True)
+    bpy.context.view_layer.objects.active = rig
+    bpy.ops.object.mode_set(mode="EDIT")
+    bones = rig.data.edit_bones
+    for side in ("L", "R"):
+        name = names[side.lower()]
+        if name in bones:
+            raise RuntimeError(f"Rig already has a bone named {name}")
+        centre, r = face.eyes[side]
+        bone = bones.new(name)
+        bone.head = inv @ centre
+        bone.tail = inv @ (centre + face.frame.forward * r * 1.5)
+        bone.align_roll(inv.to_3x3() @ face.frame.up)
+        bone.parent = bones[head]
+        bone.use_deform = True
+    bpy.ops.object.mode_set(mode="OBJECT")
+    out = {}
+    for side, key in (("L", "eye_l"), ("R", "eye_r")):
+        eye = bpy.data.objects[profile["objects"][key]]
+        for g in list(eye.vertex_groups):
+            eye.vertex_groups.remove(g)
+        group = eye.vertex_groups.new(name=names[side.lower()])
+        group.add(list(range(len(eye.data.vertices))), 1.0, "REPLACE")
+        out[eye.name] = names[side.lower()]
+    return out
+
+
+# --------------------------------------------------------------------------- clothing tidy
+
+def _islands(bm: bmesh.types.BMesh) -> list[list[bmesh.types.BMVert]]:
+    seen, islands = set(), []
+    for v in bm.verts:
+        if v.index in seen:
+            continue
+        stack, island = [v], []
+        seen.add(v.index)
+        while stack:
+            cur = stack.pop()
+            island.append(cur)
+            for e in cur.link_edges:
+                o = e.other_vert(cur)
+                if o.index not in seen:
+                    seen.add(o.index)
+                    stack.append(o)
+        islands.append(island)
+    return islands
+
+
+def tidy_shoes(obj: bpy.types.Object, frame: CharacterFrame) -> dict:
+    """Replace each crumpled shoe with its convex hull: a clean clog with a flat sole.
+
+    The v03 shoes followed the toes of the body underneath, so they creased into
+    claw shapes. The hull keeps the shoe's size and footprint; edges sharper than
+    45 degrees (the sole rim) stay crisp and the rest is smooth-shaded. Skin
+    weights are copied back from the original shoe.
+    """
+    source = obj.copy()
+    source.data = obj.data.copy()
+    bpy.context.scene.collection.objects.link(source)
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    left = np.array(frame.left)
+    sides: dict[bool, list] = {True: [], False: []}
+    for island in _islands(bm):
+        c = np.mean([v.co[:] for v in island], axis=0)
+        sides[bool(c @ left > 0)].extend(v.co.copy() for v in island)
+    bm.free()
+    out = bmesh.new()
+    report = {}
+    for side, points in sides.items():
+        if len(points) < 4:
+            continue
+        verts = [out.verts.new(p) for p in points]
+        result = bmesh.ops.convex_hull(out, input=verts)
+        drop = {v for v in result["geom_interior"] + result["geom_unused"] if isinstance(v, bmesh.types.BMVert)}
+        bmesh.ops.delete(out, geom=list(drop), context="VERTS")
+        report["left" if side else "right"] = len([g for g in result["geom"] if isinstance(g, bmesh.types.BMFace)])
+    for f in out.faces:
+        f.smooth = True
+        f.material_index = 0
+    up = frame.up
+    sole = min(v.co.dot(up) for v in out.verts)
+    crease = out.edges.layers.float.new("crease_edge")
+    for e in out.edges:
+        low = all(v.co.dot(up) < sole + 0.006 for v in e.verts)
+        if low and e.calc_face_angle(0.0) > math.radians(35):
+            e[crease] = 1.0
+    out.to_mesh(obj.data)
+    out.free()
+    obj.data.update()
+    # Subdivision rounds the hull's facets into a moulded shoe; the creased rim keeps the sole.
+    select_only(obj)
+    sub = obj.modifiers.new("ShoeRound", "SUBSURF")
+    sub.levels = 2
+    bpy.ops.object.modifier_move_to_index(modifier=sub.name, index=0)
+    bpy.ops.object.modifier_apply(modifier=sub.name)
+    for v in obj.data.vertices:
+        if v.co.dot(up) < sole + 0.002:
+            v.co += up * (sole - v.co.dot(up))
+    obj.data.update()
+    for g in list(obj.vertex_groups):
+        obj.vertex_groups.remove(g)
+    for g in source.vertex_groups:
+        obj.vertex_groups.new(name=g.name)
+    select_only(obj)
+    mod = obj.modifiers.new("ShoeWeights", "DATA_TRANSFER")
+    mod.object = source
+    mod.use_vert_data = True
+    mod.data_types_verts = {"VGROUP_WEIGHTS"}
+    mod.vert_mapping = "POLYINTERP_NEAREST"
+    mod.layers_vgroup_select_src = "ALL"
+    mod.layers_vgroup_select_dst = "NAME"
+    bpy.ops.object.modifier_move_to_index(modifier=mod.name, index=0)
+    bpy.ops.object.modifier_apply(modifier=mod.name)
+    for v in obj.data.vertices:
+        ws = sorted(((g.weight, g.group) for g in v.groups), reverse=True)
+        for _w, gi in ws[4:]:
+            obj.vertex_groups[gi].remove([v.index])
+    mesh = source.data
+    bpy.data.objects.remove(source, do_unlink=True)
+    bpy.data.meshes.remove(mesh)
+    report["vertices"] = len(obj.data.vertices)
+    return report
+
+
+def level_hems(obj: bpy.types.Object, frame: CharacterFrame, max_height_m: float, band_m: float) -> dict:
+    """Give each trouser leg a straight, unfolded hem.
+
+    The garments are closed shells with thickness, so the hem is found by height.
+    Per leg, the lowest point in each direction around the leg gives the ragged
+    hem line; everything below its 90th percentile is lifted to it. In the band
+    above, each vertex's distance from the leg axis eases toward the mean for its
+    height (separately for the outer and inner wall), which irons out the folds
+    that made the hem look torn. The ironing fades out at the top of the band.
+    """
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    bm.normal_update()
+    up, left, forward = frame.up, frame.left, frame.forward
+    report = []
+    for leg_side in (True, False):
+        leg = [v for v in bm.verts if v.co.dot(up) < max_height_m and (v.co.dot(left) > 0) == leg_side]
+        if len(leg) < 8:
+            continue
+        low = min(v.co.dot(up) for v in leg)
+        hem = [v for v in leg if v.co.dot(up) < low + band_m * 1.5]
+        centre = sum((v.co for v in hem), Vector()) / len(hem)
+        centre -= up * centre.dot(up)
+
+        def radial(v):
+            d = v.co - centre
+            return d - up * d.dot(up)
+
+        sectors: dict[int, float] = {}
+        for v in hem:
+            d = radial(v)
+            k = int((math.degrees(math.atan2(d.dot(left), d.dot(forward))) + 180.0) // 10)
+            sectors[k] = min(sectors.get(k, 9.0), v.co.dot(up))
+        mins = np.array(list(sectors.values()))
+        target = float(np.percentile(mins, 90))
+        for v in hem:
+            if v.co.dot(up) < target:
+                v.co += up * (target - v.co.dot(up))
+        band = [v for v in hem if v.co.dot(up) < target + band_m]
+        heights = np.array([v.co.dot(up) for v in band])
+        radii = np.array([radial(v).length for v in band])
+        outer = np.array([v.normal.dot(radial(v)) >= 0 for v in band])
+        bins = np.arange(target, target + band_m + 0.01, 0.01)
+        for wall in (True, False):
+            sel = outer == wall
+            if sel.sum() < 4:
+                continue
+            means = []
+            for b0 in bins:
+                m = sel & (np.abs(heights - b0) < 0.008)
+                means.append(radii[m].mean() if m.any() else np.nan)
+            means = np.array(means)
+            ok = ~np.isnan(means)
+            if ok.sum() < 1:
+                continue
+            for v, h, r in zip(np.array(band)[sel], heights[sel], radii[sel]):
+                want = float(np.interp(h, bins[ok], means[ok]))
+                w = 1.0 - smoothstep(0.0, band_m, h - target)
+                d = radial(v)
+                if d.length > 1e-6:
+                    v.co += d.normalized() * (want - r) * float(w)
+        report.append({"side": "left" if leg_side else "right", "hem_height_m": round(target, 4),
+                       "ragged_range_m": round(float(mins.max() - mins.min()), 4), "band_vertices": len(band)})
+    bm.to_mesh(obj.data)
+    bm.free()
+    obj.data.update()
+    return {"hems": report}
 
 
 # --------------------------------------------------------------------------- clips
@@ -834,6 +1256,16 @@ def main() -> None:
     validate_library(library, bones)
     face = Face(profile, frame, body)
     details = build_face_details(face, profile)
+    if profile.get("skin"):
+        details["skin"] = paint_skin(face, profile)
+    if profile.get("eye_bones"):
+        details["eye_bones"] = add_eye_bones(rig, face, profile)
+    tidy = profile.get("clothing_tidy", {})
+    if tidy.get("shoes"):
+        details["shoes"] = tidy_shoes(bpy.data.objects[tidy["shoes"]], frame)
+    if tidy.get("trousers"):
+        details["trouser_hems"] = level_hems(bpy.data.objects[tidy["trousers"]], frame,
+                                             tidy["hem_max_height_m"], tidy["hem_band_m"])
     shape_names = build_face_shapes(face, library)
     clips = build_clips(rig, frame, library, bones)
 

@@ -7,7 +7,8 @@ extends RefCounted
 ## for gesture clips on a player named GestureAnimationPlayer, so gesture clips
 ## move there; body clips stay and loop. Gesture clips only animate the neck and
 ## arms and body clips never do, so both players run at once without fighting.
-## Models without these clips or morph targets are left exactly as imported.
+## Models with eye bones get a CharacterGazeRig. Models without these clips,
+## morph targets or bones are left exactly as imported.
 
 const BODY_LOOP_CLIPS: PackedStringArray = [
 	"idle_neutral", "idle_breathing", "listen_neutral", "stand_conversational",
@@ -31,6 +32,12 @@ static func setup(model: Node3D) -> AnimationPlayer:
 		face.name = "CharacterFaceRig"
 		face.configure(model)
 		model.add_child(face)
+	var gaze: CharacterGazeRig = CharacterGazeRig.new()
+	if gaze.configure(model):
+		gaze.name = "CharacterGazeRig"
+		model.add_child(gaze)
+	else:
+		gaze.free()
 	return body_player
 
 

@@ -116,7 +116,7 @@
   ],
   "face_shapes": {
     "notes": "Morph targets on the face mesh. Expression shapes are authored at the intensity used in game (the acting adapter sets them to 1.0). Lid values are degrees of eyelid rotation over the eyeball (positive closes); other values are millimetres in the character frame.",
-    "blink": {"close_fraction": 0.92, "lower_lid_share": 0.12},
+    "blink": {"close_fraction": 1.0, "lower_lid_share": 0.12, "overlap_deg": 3.0},
     "expressions": {
       "attentive":              {"brow_raise": 1.4, "lid": -3.0},
       "warm_subtle":            {"mouth_corner_up": 2.2, "mouth_corner_back": 1.0, "cheek_up": 1.1, "lower_lid": 3.0},
@@ -125,6 +125,6 @@
       "focused":                {"brow_raise": -0.6, "brow_knit": 0.9, "lid": 3.5},
       "calm_professional":      {"lid": 2.0, "mouth_corner_up": 0.5}
     },
-    "speech": {"mouth_open_deg": 4.0}
+    "speech": {"mouth_open_deg": 6.5}
   }
 }
