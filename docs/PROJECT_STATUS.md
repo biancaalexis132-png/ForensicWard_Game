@@ -2,7 +2,9 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
-**Last GitHub state verified:** 2026-10-18 against fetched `origin/main` `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`. PR #43 (Ward Zero Stage 6) and PR #42 (optional character visual slot/fallback) are merged; PR #44 and Naomi draft PR #45 are open. Naomi v01 remains unapproved and not integrated. Versioned v02 candidate assets are generated on `biancaalexis132-png-naomi-model-refinement`, merged with this latest main; v02 is structurally valid but still fails visual review and is not ready for runtime integration.
+**Last GitHub state verified:** 2026-10-18 14:15 UTC against `origin/main` `a202caf` (PR #45 merged). Open: draft PR #44 (F3, `main` merged in at `1a1fb10`) and draft PR #46 (Naomi review-only preview). Naomi v02 is viewable in game only with `-- --character-preview=staff_bennett`; it is not approved.
+
+Earlier snapshot: verified against fetched `origin/main` `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`. PR #43 (Ward Zero Stage 6) and PR #42 (optional character visual slot/fallback) are merged; PR #44 and Naomi draft PR #45 are open. Naomi v01 remains unapproved and not integrated. Versioned v02 candidate assets are generated on `biancaalexis132-png-naomi-model-refinement`, merged with this latest main; v02 is structurally valid but still fails visual review and is not ready for runtime integration.
 
 Status meanings:
 
@@ -19,8 +21,9 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 
 | PR | Branch | State |
 |---|---|---|
-| #45 | `biancaalexis132-png-naomi-model-refinement` | Draft, Naomi v02 automated refinement; open, hosted validation in progress |
-| #44 | `claude/f3-anomaly-model` | Draft, anomaly evidence model; open |
+| #46 | `claude/naomi-review-preview` | Draft, review-only switch to view Naomi v02 at the nursing station |
+| #45 | `biancaalexis132-png-naomi-model-refinement` | Merged at `a202caf` (Naomi v02 candidate; fails visual QA, not approved) |
+| #44 | `claude/f3-anomaly-model` | Draft, anomaly evidence model; `main` merged in at `1a1fb10`, QA green locally |
 | #43 | `claude/environment-stage-6` | Merged at `7e5bd2a` (Ward Zero rooms and anomaly states) |
 | #42 | `biancaalexis132-png-cig-1-character-integration` | Merged at `de5cbfc` (optional character visual slot/fallback) |
 | #41 | `docs/character-integration-gate-v1` | Merged at `8281b06` (CIG proposal and GLB preflight validator) |
@@ -79,7 +82,8 @@ Remote branches may remain after merge. Branch existence alone does not prove ac
 | Naomi Chapter 1 acting-cue presentation | Completed on `main` (PR #35 merged) | `scripts/acting/NaomiActingController.gd`, `CharacterActingAdapter.gd`; wired only to `staff_bennett` | Merged PR #35; prior branch evidence: cue validator 5/5, TestRunner 122/0, TestAudio 336/0 | Real-model animation/face/gesture feel remains untested on Mac; separate Naomi model pipeline is a different workstream |
 | Optional WardCharacter 3D visual slot and placeholder fallback | Completed on `main` (PR #42 merged at `de5cbfc`) | `scripts/world/Character.gd`, `scenes/props/Character.tscn`, `scripts/tests/test_character_visual.gd` | Historical Godot 4.7 TestRunner 127/0 covered fallback, scene attachment, dialogue, save/load and zone rebuild; GLB import validator 139/139 | No approved character model is attached; owner Mac render/performance review is untested |
 | Continuing Practice / CP-001 Jordan v2 | Planned (authoring package merged by #36; design review on this branch) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/` | `REVIEW.md` | No case schema, validator, loader, lifecycle or clinical rules; all case details remain pending review; current SaveManager is v3 |
-| Naomi 3D character base and builder | Base milestone merged (PR #37 at `47a68f4`); v02 candidate generated on `biancaalexis132-png-naomi-model-refinement` (not merged) | `tools/blender/characters/`, Naomi v02 Blender/GLB/renders and asset manifests | Blender 5.2.2 validator: 53 joints, 32,281 triangles, 3 embedded textures, 4 renders; CIG preflight: 15 meshes, 69 nodes, 1 skin, 0 animations; Godot 4.7 import validator 154/154; TestRunner 127/0 | v02 close render shows facial features but full-body views still read as one continuous lower garment with angular garment/skin boundaries; QA checklist fails. Owner appearance review, further procedural refinement, animation, LOD, runtime integration and target-device performance remain pending |
+| Naomi 3D character base and builder | Base merged (PR #37 at `47a68f4`); v02 candidate merged (PR #45 at `a202caf`), not approved | `tools/blender/characters/`, Naomi v02 Blender/GLB/renders and asset manifests | Blender 5.2.2 validator: 53 joints, 32,281 triangles, 3 embedded textures, 4 renders; CIG preflight: 15 meshes, 69 nodes, 1 skin, 0 animations; Godot 4.7 import validator 154/154; TestRunner 127/0 | v02 close render shows facial features but full-body views still read as one continuous lower garment with angular garment/skin boundaries; QA checklist fails. Owner appearance review, further procedural refinement, animation, LOD, runtime integration and target-device performance remain pending |
+| Naomi in-game review preview | Done, not merged (draft PR #46) | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md` | TestRunner 131/0 and full QA exit 0 in a Linux container; in-game captures on software OpenGL | Off by default. Untested on Mac; no frame-time measurement. v02 fails appearance review in game too (hair strips, trousers, T-pose) |
 | Elias and Rahman character production specifications | Merged as design package (PR #39 at `3887b66`) | `docs/design/characters/Elias_Ward_Character_Production_v1/`, `docs/design/characters/Rahman_Character_Production_v1/` | Production docs and review gates | Does not constitute clinical or canon approval, nor runtime integration |
 | Anomaly evidence model and clinical/supernatural separation (F3) | Planned | | F0 §7, §8 | Waits on the owner's Psychosomatic Bleed decision |
 | Mara Ellis, Chapters 2–5 content, title screen | Planned | | v1.1 handoff | Clinical and narrative approval needed first |

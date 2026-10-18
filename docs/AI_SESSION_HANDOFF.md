@@ -1,5 +1,17 @@
 # AI session handoff
 
+## Naomi in-game review preview — Claude Code, 2026-10-18 14:15 UTC
+
+- **Objective:** let the owner see Naomi in the real Chapter 1 nursing station without approving or defaulting the model; record what is still missing.
+- **Branch / PR:** `claude/naomi-review-preview` from `main` `a202caf`; code commit `6b6893dc3aff22e64745e7510ee3e1c8370bee81`; draft PR #46. PR #44's conflicts with `main` resolved at `1a1fb10` (docs only).
+- **Completed:** review-only `--character-preview` switch, 4 tests, in-game captures, `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md`.
+- **Finding:** v02 fits technically (1.70 m, feet on floor, 53-joint rig, imports and attaches) but fails appearance: flat hair strips over face and chest, skirt-like trousers, jagged hems, T-pose through the desk, cartoon-scaled eyes. Bennett's marker faces into the office, so from the counter the player sees her back.
+- **Tests:** `tests/qa/run.py` exit 0 on `6b6893d` (TestRunner 131/0, QA 19/0/0, GLB 154/154, audio 336/0).
+- **Exact stopping point:** code and docs pushed; waiting on owner review and hosted CI for #46.
+- **Pending approvals:** Naomi appearance; model direction (procedural vs artist vs licensed); Bennett's facing.
+- **Next steps:** see the 2026-10-18 14:15 UTC entry in `docs/AI_HANDOFF.md`.
+- **Constraints:** off by default; no story, dialogue, clinical, save or world-layout change; Ward Zero and anomaly work untouched.
+
 ## Naomi procedural visual refinement — Copilot, 2026-10-18 13:31 UTC
 
 - **Objective:** generate and validate a versioned automated Naomi visual-review candidate; preserve v01, approved design boundaries and all runtime/clinical/save/gameplay systems.
