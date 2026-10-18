@@ -67,3 +67,11 @@ Objectives: `obj_ch2_handoff`, `obj_ch2_worklist`, `obj_ch2_export`,
 Chapter-local flags: `ch2_clinical_work_owned`, `ch2_discrepancy_recorded`,
 `ch2_sources_requested`, `ch2_opening_complete`. They record ownership and
 unresolved administrative workflow, never clinical completion or verified evidence.
+
+## Chapter 2 records-review continuation (2026-10-18)
+
+Objectives: `obj_ch2_clock_review`, `obj_ch2_order_review`, `obj_ch2_dependency_review`, `obj_ch2_preservation_review`, `obj_ch2_review_memo`, `obj_ch2_review_return`.
+Interactions: `interaction_ch2_clock_review`, `interaction_ch2_order_review`, `interaction_ch2_dependency_review`, `interaction_ch2_custody_review`, `interaction_ch2_review_memo`, `interaction_ch2_review_return`.
+Flags: `ch2_clock_reviewed`, `ch2_order_reviewed`, `ch2_dependencies_reviewed`, `ch2_preservation_followup`, `ch2_followup_clock_authority`, `ch2_followup_source_lineage`, `ch2_records_review_complete`.
+Feedback-only options carry no progress flag. Memo emphasis is recorded once;
+all missing source questions remain outstanding under either choice.
