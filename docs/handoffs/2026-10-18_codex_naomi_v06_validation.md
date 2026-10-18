@@ -2,6 +2,10 @@
 
 ## Continuation: source gate resolved
 
+Draft source-continuation PR: https://github.com/biancaalexis132-png/ForensicWard_Game/pull/65.
+Checkpoint `e75064907ef8588a8c497803a0a2725e0d339b77` pushed and verified on
+`codex/naomi-v06-validation-cont-1`; this documentation-link checkpoint follows.
+
 Official bpy **5.2.2 LTS** under Python 3.13 now opens both original sources.
 Implementation `0d6e36989019a7dea4d59484b6b514ca8caafaca` is pushed and verified.
 `tools/character_animation/audit_naomi_source.py` inspects material dependencies,

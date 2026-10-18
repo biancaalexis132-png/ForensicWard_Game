@@ -33,6 +33,8 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 ### 2026-10-18 · Codex · Naomi Blender source validation continuation
 
+- **Publication:** draft PR #65, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/65. Latest verified continuation checkpoint `e75064907ef8588a8c497803a0a2725e0d339b77`, remote checked with git ls-remote. Source evidence and scripts are preserved; a link-only docs checkpoint follows.
+
 - **Branch:** `codex/naomi-v06-validation-cont-1`, continuing verified implementation `0d6e36989019a7dea4d59484b6b514ca8caafaca`; initial PR #64 merged at `c09eb35` while this work ran. New source increment needs its own draft PR to main.
 - **Accomplished:** matching official bpy 5.2.2 / Python 3.13 opens both originals. Ten material textures per source are packed and decode; no missing external image/library dependencies. Ten actions per source have pose motion and finite evaluated geometry at five sample frames. Morph counts match actual GLBs (10 plain, 32 MPFB). Original hashes unchanged.
 - **New files:** `tools/character_animation/audit_naomi_source.py`, `requirements-source-audit.txt`, `tests/qa/test_naomi_source_audit.py`; four reproducible CPU diagnostic stills and compact source summary in `docs/handoffs/naomi_v06_source_review/`. No pre-existing asset/controller edited. New diagnostics have .gdignore; generated runtime textures/import sidecars untouched.
