@@ -8,11 +8,11 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
-**GitHub state correction (verified 2026-10-18 UTC):** `origin/main` is `47a68f40b09423b3253091e25b4715ce82447113`, after Naomi character PR #37 and Elias/Rahman production package PR #39; both are merged. Jordan package PR #36 and Naomi acting PR #35 are also merged. Draft review PR #38 is open and GitHub reports it mergeable; `validate` is pending on current head `0279db8`. The #35/#37 rows and earlier Naomi notes were written before their merges and are preserved only as historical context; they are not current PR state. Naomi model refinement remains separate from this review.
+**GitHub state correction (verified 2026-10-18 00:56 UTC):** `origin/main` is `47a68f40b09423b3253091e25b4715ce82447113`, after Naomi character PR #37 and Elias/Rahman production package PR #39; both are merged. Jordan package PR #36 and Naomi acting PR #35 are also merged. Draft review PR #38 was open and `MERGEABLE` at pushed head `3f162e3`; hosted `validate` is pending on that head (run 39084612239). This handoff update will advance the PR head, so refresh checks afterward. The #35/#37 rows and earlier Naomi notes were written before their merges and are preserved only as historical context; they are not current PR state. Naomi model refinement remains separate from this review.
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Jordan Vale CP-001 v2 review | `biancaalexis132-png-jordan-vale-v2-review` (draft PR #38) | Copilot / current session | `0279db890abb05483feb6b08463d63a738b51810` (verified remote; validate pending) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; review handoff updates in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md` | Merge from `origin/main` resolved and pushed; PR remains draft/mergeable, awaiting validation and owner/psychiatrist decisions |
+| Jordan Vale CP-001 v2 review | `biancaalexis132-png-jordan-vale-v2-review` (draft PR #38) | Copilot / current session | `3f162e3caee3739137ec0cf9df93f226dc72023c` (verified remote; validate pending) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; review handoff updates in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md` | Merge from `origin/main` resolved and pushed; PR remains draft/mergeable, awaiting validation and owner/psychiatrist decisions |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -58,6 +58,18 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 00:56 UTC · Copilot · Jordan review final push verification
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review`, includes merge commit from `origin/main` `47a68f40b09423b3253091e25b4715ce82447113`
+- **Latest verified commit:** `3f162e3caee3739137ec0cf9df93f226dc72023c` "Record Jordan review merge checkpoint"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned `3f162e3caee3739137ec0cf9df93f226dc72023c`.
+- **Pull request:** #38 remains open/draft; GitHub reports `MERGEABLE`. Hosted `validate` is pending on this head (run 39084612239).
+- **State:** PR #38 now includes current main; the four handoff conflicts are resolved. This review branch has not been merged.
+
+`git show --check --oneline HEAD`, JSON syntax parsing, and `git diff --check` passed. The nine Jordan source files still match `origin/docs/jordan-vale-v2`. Full local Godot QA was not run. No runtime, SaveManager, schema or clinical status changed.
+
+Next: refresh CI/mergeability after this handoff update is pushed; keep PR #38 draft and do not merge. Owner and qualified psychiatrist decisions remain pending.
 
 ### 2026-10-18 00:54 UTC · Copilot · Jordan review merge reconciliation
 

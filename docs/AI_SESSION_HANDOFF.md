@@ -8,7 +8,9 @@
 
 **Completed:** Resolved conflicts in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, and `docs/PROJECT_STATUS.md`. Preserved Naomi character PR #37 and Elias/Rahman production package PR #39 additions from main, and corrected current status to show #35, #36, #37, and #39 merged. Naomi refinement remains independent. The Jordan `REVIEW.md` and all nine source package files are unchanged.
 
-**Validation on `0279db8`:** JSON syntax parse passed; `git show --check --oneline HEAD` passed; explicit nine-file comparison against `origin/docs/jordan-vale-v2` passed. Hosted PR #38 `validate` is pending (run 39084497112); GitHub currently reports mergeable despite check state `UNSTABLE`. Full local Godot QA was not run because this is a docs-only Jordan review/merge and no Jordan runtime or schema changed.
+**Post-push verification:** The continuity checkpoint `3f162e3caee3739137ec0cf9df93f226dc72023c` is pushed and `git ls-remote` verified the exact SHA. PR #38 remains open/draft; GitHub reports `MERGEABLE`, and `validate` is pending on this head (run 39084612239). The next continuity update will advance the head and needs a fresh CI check.
+
+**Validation on `0279db8`:** JSON syntax parse passed; `git show --check --oneline HEAD` passed; explicit nine-file comparison against `origin/docs/jordan-vale-v2` passed. Hosted PR #38 `validate` was pending on merge commit `0279db8` (run 39084497112) and is superseded by the latest run. Full local Godot QA was not run because this is a docs-only Jordan review/merge and no Jordan runtime or schema changed.
 
 **Next exact steps:** 1) Push the continuity checkpoint and recheck the newest PR #38 validation/mergeability state. 2) Keep the PR draft and do not merge. 3) Owner resolves the canon/source/authority questions and a qualified psychiatrist reviews case-specific content before any schema/runtime proposal. No clinical content has been approved or activated.
 

@@ -2,7 +2,7 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
-**Last GitHub state verified:** 2026-10-18 against fetched `origin/main` `47a68f40b09423b3253091e25b4715ce82447113` (includes merged PRs #37 and #39). PRs #35 and #36 are also merged. At the last PR query, draft review PR #38 was open at merge checkpoint `0279db8`, merged with current main without history rewrite; GitHub reported `MERGEABLE`, with required `validate` pending (run 39084497112). The continuity checkpoint below advances the PR head, so refresh hosted status after pushing. An earlier hosted `validate` passed on docs-only head `b79ea11` in 3m50s; no check was reported on `ef22d09`. This documentation review did not run the full local Godot suite, and CI is not clinical validation. Historical Naomi model checks are recorded below.
+**Last GitHub state verified:** 2026-10-18 against fetched `origin/main` `47a68f40b09423b3253091e25b4715ce82447113` (includes merged PRs #37 and #39). PRs #35 and #36 are also merged. At the last PR query, draft review PR #38 was open at `3f162e3`, merged with current main without history rewrite; GitHub reported `MERGEABLE`, with required `validate` pending (run 39084612239). This continuity update will advance the PR head, so refresh hosted status after pushing. An earlier hosted `validate` passed on docs-only head `b79ea11` in 3m50s; no check was reported on `ef22d09`. This documentation review did not run the full local Godot suite, and CI is not clinical validation. Historical Naomi model checks are recorded below.
 
 Status meanings:
 
