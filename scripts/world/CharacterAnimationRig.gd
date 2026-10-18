@@ -43,7 +43,7 @@ static func _prepare_players(body_player: AnimationPlayer) -> void:
 			if String(clip) in BODY_LOOP_CLIPS:
 				animation.loop_mode = Animation.LOOP_LINEAR
 			elif String(clip) in GESTURE_CLIPS and library_name == &"":
-				gesture_library.add_animation(clip, animation)
+				gesture_library.add_animation(clip, _without_held_tracks(animation))
 	if not gesture_library.get_animation_list().is_empty():
 		# The imported library is shared by every instance of the scene: edit a copy.
 		var main_library: AnimationLibrary = body_player.get_animation_library(&"").duplicate()
@@ -59,6 +59,18 @@ static func _prepare_players(body_player: AnimationPlayer) -> void:
 		body_player.get_parent().add_child(gesture_player)
 	if body_player.has_animation(IDLE_CLIP) and body_player.current_animation.is_empty():
 		body_player.play(IDLE_CLIP)
+
+
+## The glTF importer gives every clip a one-key track holding the rest pose for each
+## bone some other clip animates. On the gesture player those would freeze the body
+## clip's spine and head while a gesture plays, so gesture clips keep only the bones
+## they actually move.
+static func _without_held_tracks(animation: Animation) -> Animation:
+	var trimmed: Animation = animation.duplicate() as Animation
+	for track: int in range(trimmed.get_track_count() - 1, -1, -1):
+		if trimmed.track_get_key_count(track) <= 1:
+			trimmed.remove_track(track)
+	return trimmed
 
 
 static func _find_body_player(model: Node3D) -> AnimationPlayer:

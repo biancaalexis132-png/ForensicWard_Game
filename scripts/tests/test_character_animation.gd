@@ -86,6 +86,11 @@ func test_idle_moves_the_skeleton() -> void:
 	var inhale: Quaternion = skeleton.get_bone_pose_rotation(bone)
 	var degrees: float = rad_to_deg(exhale.angle_to(inhale))
 	check(degrees > 0.4 and degrees < 3.0, "breathing turns the chest subtly (%.2f degrees)" % degrees)
+	# A gesture applied after the body clip must leave the breathing chest alone.
+	var gesture: AnimationPlayer = _player(model, true)
+	gesture.play(&"small_greeting_nod")
+	gesture.seek(0.35, true)
+	check(skeleton.get_bone_pose_rotation(bone).is_equal_approx(inhale), "a gesture does not freeze the breathing")
 
 
 func test_acting_cues_drive_body_gesture_and_face() -> void:

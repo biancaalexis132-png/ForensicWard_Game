@@ -221,7 +221,4 @@ func _find_blend_shape(semantic_name: String) -> MeshInstance3D:
 
 
 func _blend_shape_index(mesh: MeshInstance3D, semantic_name: String) -> int:
-	for index: int in mesh.get_blend_shape_count():
-		if str(mesh.get_blend_shape_name(index)) == semantic_name:
-			return index
-	return -1
+	return mesh.find_blend_shape_by_name(StringName(semantic_name))
