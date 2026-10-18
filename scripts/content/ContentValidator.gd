@@ -238,8 +238,12 @@ static func check_references(documents: Dictionary) -> Array[String]:
 		var interactable_ids: Dictionary = {}
 		for entry: Dictionary in _data(documents, ContentRegistry.WORLD_KEY + chapter_id).get("interactables", []):
 			interactable_ids[entry["node"]] = true
-		for entry: Dictionary in _data(documents, ContentRegistry.WORLD_KEY + chapter_id).get("characters", []):
-			interactable_ids["character:" + str(entry["character_id"])] = true
+		var characters: Array = _data(documents, ContentRegistry.WORLD_KEY + chapter_id).get("characters", [])
+		for i: int in characters.size():
+			interactable_ids["character:" + str(characters[i]["character_id"])] = true
+			if characters[i].has("present_when"):
+				StoryLogic.check_condition(characters[i]["present_when"], "[%s] characters[%d].present_when" % [
+						_file(documents, ContentRegistry.WORLD_KEY + chapter_id), i], refs, errors)
 		for i: int in interactions.size():
 			var interaction: Dictionary = interactions[i]
 			var path: String = "[%s] interactions[%d]" % [file, i]

@@ -232,6 +232,7 @@ func _build_characters(root: Node3D, zone_id: String, entries: Array) -> void:
 		character.kind = WardCharacter.Kind.STAFF if entry["kind"] == "staff" else WardCharacter.Kind.PATIENT
 		character.character_id = entry["character_id"]
 		character.seated = bool(entry.get("seated", false))
+		character.present_when = entry.get("present_when", {})
 		character.name = "Character_" + str(entry["character_id"])
 		root.add_child(character)
 		var xf: Transform3D = marker.global_transform

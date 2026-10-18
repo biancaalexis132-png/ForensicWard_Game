@@ -59,7 +59,8 @@ func open(data: Dictionary) -> void:
 	visible = true
 	is_open = true
 	_census.clear()
-	var ids: Array[String] = ContentRegistry.get_patient_ids()
+	var ids: Array[String] = []
+	ids.assign(ContentRegistry.get_patient_ids().filter(PatientManager.is_admitted))
 	for id: String in ids:
 		_census.add_item(ContentRegistry.get_patient(id).get("name", id))
 		_census.set_item_metadata(_census.item_count - 1, id)

@@ -1,50 +1,131 @@
 {
-  "patients": [
-    {
-      "schema_version": "0.1",
-      "id": "pt_elias_ward",
-      "name": "Elias Ward",
-      "age": 29,
-      "fictional": true,
-      "legal_status": "competency_restoration_transfer",
-      "arrival_shift": 1,
-      "presentation": {
-        "complaints": [
-          "mutism",
-          "marked_reduction_in_movement",
-          "posturing",
-          "poor_oral_intake"
-        ],
-        "observations": [
-          {
-            "id": "obs_mutism",
-            "source": "nursing_report",
-            "timestamp": "day1_0814",
-            "text": "Not speaking following transfer; duration not independently verified."
-          },
-          {
-            "id": "obs_posturing",
-            "source": "physician_observation",
-            "timestamp": "day1_pending",
-            "text": "Possible posturing requires structured bedside examination."
-          }
-        ]
-      },
-      "differential_tags": [
-        "catatonia",
-        "medical_or_neurologic_cause",
-        "medication_related_syndrome",
-        "primary_psychiatric_disorder"
-      ],
-      "clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
-      "record_discrepancies": [
-        "transfer_identifier_collision",
-        "inactive_authorizer"
-      ],
-      "initial_rapport": 0,
-      "narrative_flags": [],
-      "current_location": "clinical_unit",
-      "must_not_auto_transfer_if": "medically_unstable"
-    }
-  ]
+	"patients": [
+		{
+			"schema_version": "0.1",
+			"id": "pt_elias_ward",
+			"name": "Elias Ward",
+			"age": 29,
+			"fictional": true,
+			"legal_status": "competency_restoration_transfer",
+			"arrival_shift": 1,
+			"presentation": {
+				"complaints": [
+					"mutism",
+					"marked_reduction_in_movement",
+					"posturing",
+					"poor_oral_intake"
+				],
+				"observations": [
+					{
+						"id": "obs_mutism",
+						"source": "nursing_report",
+						"timestamp": "day1_0814",
+						"text": "Not speaking following transfer; duration not independently verified."
+					},
+					{
+						"id": "obs_posturing",
+						"source": "physician_observation",
+						"timestamp": "day1_pending",
+						"text": "Possible posturing requires structured bedside examination."
+					}
+				]
+			},
+			"differential_tags": [
+				"catatonia",
+				"medical_or_neurologic_cause",
+				"medication_related_syndrome",
+				"primary_psychiatric_disorder"
+			],
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"record_discrepancies": [
+				"transfer_identifier_collision",
+				"inactive_authorizer"
+			],
+			"initial_rapport": 0,
+			"narrative_flags": [],
+			"current_location": "clinical_unit",
+			"must_not_auto_transfer_if": "medically_unstable"
+		},
+		{
+			"schema_version": "0.1",
+			"id": "pt_mara_ellis",
+			"name": "Mara Ellis",
+			"age": 37,
+			"fictional": true,
+			"legal_status": "legal_question_requires_order_verification",
+			"arrival_shift": 2,
+			"presentation": {
+				"complaints": [
+					"fatigue_with_reported_reduced_sleep",
+					"anxiety",
+					"repeated_checking"
+				],
+				"observations": [
+					{
+						"id": "obs_mara_organized_account",
+						"source": "physician_observation",
+						"timestamp": "day2_interview",
+						"text": "Organized, goal-directed account of the two record copies; distinguishes a question from an accusation.",
+						"verified": false,
+						"reliability": "clinician observation, single interview",
+						"provenance": "Chapter 2 Scene 03 interview (owner-approved scene)"
+					},
+					{
+						"id": "obs_mara_reduced_sleep",
+						"source": "patient_report",
+						"timestamp": "day2_interview",
+						"text": "Reports four to five hours of sleep with exhaustion and difficulty stopping document checking. Reduced sleep with fatigue; does not demonstrate decreased need for sleep or mania.",
+						"verified": false,
+						"reliability": "patient report",
+						"provenance": "Chapter 2 Scene 03 interview (owner-approved scene)"
+					},
+					{
+						"id": "obs_mara_mood_history_unverified",
+						"source": "patient_report",
+						"timestamp": "day2_interview",
+						"text": "Acknowledges past difficult periods. The earlier mood-disorder label needs dates, symptom duration, functional change, prior notes and collateral; no bipolar or psychotic diagnosis is established by this exchange.",
+						"verified": false,
+						"reliability": "patient report; prior label unverified",
+						"provenance": "Chapter 2 Scene 03 interview (owner-approved scene)"
+					},
+					{
+						"id": "obs_mara_alternatives_considered",
+						"source": "patient_report",
+						"timestamp": "day2_interview",
+						"text": "Offers alternative explanations for the date conflict (copying mistakes, indexing, later entry). Implausibility is not a substitute for a delusion assessment.",
+						"verified": false,
+						"reliability": "patient report",
+						"provenance": "Chapter 2 Scene 03 interview (owner-approved scene)"
+					},
+					{
+						"id": "obs_mara_safety_by_report",
+						"source": "patient_report",
+						"timestamp": "day2_interview",
+						"text": "Reports past hopelessness; says she is not thinking about hurting herself now. This is patient report, not a guarantee of safety: full risk formulation, protective factors and prior history remain necessary. Harm to others was not answered; do not record a negative.",
+						"verified": false,
+						"reliability": "patient report; risk formulation incomplete",
+						"provenance": "Chapter 2 Scene 03 interview (owner-approved scene)"
+					},
+					{
+						"id": "obs_mara_collateral_consent",
+						"source": "patient_report",
+						"timestamp": "day2_interview",
+						"text": "Names her sister Dana as someone who knows her sleep and routine; worried Dana will think she is accused. Purpose and applicable consent must be clarified before any contact.",
+						"verified": false,
+						"reliability": "patient report; collateral not yet obtained",
+						"provenance": "Chapter 2 Scene 03 interview (owner-approved scene)"
+					}
+				]
+			},
+			"differential_tags": [
+				"sleep_disturbance_with_fatigue",
+				"anxiety",
+				"prior_mood_label_requires_verification"
+			],
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"initial_rapport": 0,
+			"narrative_flags": [],
+			"current_location": "clinical_unit"
+		}
+	]
 }

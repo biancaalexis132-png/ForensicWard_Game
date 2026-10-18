@@ -7,7 +7,7 @@ var _dialogue_key: String = ContentRegistry.DIALOGUE_KEY + "dialogue.json"
 
 func test_shipped_content_is_valid() -> void:
 	check(ContentRegistry.is_valid, "res://data should validate. Errors: %s" % str(ContentRegistry.errors))
-	check_eq(ContentRegistry.get_patient_ids(), ["pt_elias_ward"] as Array[String], "patient ids")
+	check_eq(ContentRegistry.get_patient_ids(), ["pt_elias_ward", "pt_mara_ellis"] as Array[String], "patient ids")
 	check_eq(ContentRegistry.get_clue_ids().size(), 3, "clue count")
 	check(not ContentRegistry.get_dialogue("pt_elias_ward").is_empty(), "Elias has dialogue")
 

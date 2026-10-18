@@ -28,6 +28,12 @@ func get_definition(patient_id: String) -> Dictionary:
 	return ContentRegistry.get_patient(patient_id)
 
 
+## True once the patient's authored arrival shift has begun. Later arrivals
+## keep state from a new game but stay off the census until then.
+func is_admitted(patient_id: String) -> bool:
+	return int(get_definition(patient_id).get("arrival_shift", 1)) <= TimeManager.get_shift_day()
+
+
 ## A deep copy, so callers can't mutate state behind the manager's back.
 func get_state(patient_id: String) -> Dictionary:
 	return _state.get(patient_id, {}).duplicate(true)
