@@ -1,10 +1,16 @@
 # AI progress tracker
 
-## Naomi Chapter 1 acting cues — Copilot, 2026-10-18
+## Naomi 3D character base — Copilot, 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Add model-independent acting cue controller for the five authored Chapter 1 dialogue IDs | Complete on draft PR #35; not merged | Canonical cue package on `main` `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`; no dependency on unfinished 3D model | `scripts/acting/**`, Bennett-only integration, AudioDirector lifecycle signal, focused tests | Cue validator 5 IDs/voices; TestRunner 122/0; TestAudio 336/0; full runner blocked at music pipeline: 1 pass/2 failures because local FFmpeg lacks `libvorbis` | Owner review; then request Mac performance review |
+| Build a reproducible, licensed Naomi model base and Godot GLB | Base milestone pushed on `biancaalexis132-png-naomi-character-pipeline` at `2a6ffda`; no model PR yet | Blender 5.2.2 LTS, MPFB2 2.0.18; current main `21205c3` includes merged acting adapter | `tools/blender/characters/**`, Naomi-specific Blender/GLB/renders and asset manifests | Blender validator: 53 joints, 42,583 triangles, 2 embedded textures, 4 renders; Godot GLB 139/139; full runner blocked only at two `libvorbis` music previews | Owner review of renders; refine likeness/hair/clothing, then stage animations/integration separately |
+
+## Naomi Chapter 1 acting cues — Copilot, 2026-10-18 (merged in PR #35)
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Add model-independent acting cue controller for the five authored Chapter 1 dialogue IDs | Merged to `main` in PR #35 at `21205c3`; owner/Mac review pending | Canonical cue package merged on `main`; no dependency on unfinished 3D model | `scripts/acting/**`, Bennett-only integration, AudioDirector lifecycle signal, focused tests | Cue validator 5 IDs/voices; TestRunner 122/0; TestAudio 336/0; the repository runner's two music-preview cases still fail for missing local FFmpeg `libvorbis` | Owner review; then request Mac performance review |
 
 ## Merge reconciliation — Codex, 2026-10-17
 
