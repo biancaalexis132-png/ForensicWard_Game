@@ -3,6 +3,7 @@
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
 **Last GitHub state verified:** 2026-10-18 against fetched `origin/main` `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`. PR #43 (Ward Zero Stage 6) and PR #42 (optional character visual slot/fallback) are merged; PR #44 and Naomi draft PR #45 are open. Naomi v01 remains unapproved and not integrated. Versioned v02 candidate assets are generated on `biancaalexis132-png-naomi-model-refinement`, merged with this latest main; v02 is structurally valid but still fails visual review and is not ready for runtime integration.
+F3 (`claude/f3-anomaly-model`, draft PR #44) has `main` at `de5cbfc` merged in and is waiting on owner review.
 
 Status meanings:
 
@@ -20,7 +21,7 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 | PR | Branch | State |
 |---|---|---|
 | #45 | `biancaalexis132-png-naomi-model-refinement` | Draft, Naomi v02 automated refinement; open, hosted validation in progress |
-| #44 | `claude/f3-anomaly-model` | Draft, anomaly evidence model; open |
+| #44 | `claude/f3-anomaly-model` | Draft, waiting on owner review (F3 anomaly model, flag off) |
 | #43 | `claude/environment-stage-6` | Merged at `7e5bd2a` (Ward Zero rooms and anomaly states) |
 | #42 | `biancaalexis132-png-cig-1-character-integration` | Merged at `de5cbfc` (optional character visual slot/fallback) |
 | #41 | `docs/character-integration-gate-v1` | Merged at `8281b06` (CIG proposal and GLB preflight validator) |
@@ -67,7 +68,7 @@ Remote branches may remain after merge. Branch existence alone does not prove ac
 | EHR (census, summary, observations with provenance, notes, orders, audit) | Completed | `main` | `test_sprint2.gd` | No MAR/medication tab; observations have no polarity (unknown vs negative) yet |
 | `ClinicalRules` governance (validated / prototype) | Completed | `main` | validated mode refuses pending rules (tested) | Both rules pending review |
 | Pharmacology engine | Completed (clinically approved) | `main` | `TestPharmacology` | Not wired to the EHR; its clue gates conflict with the separation rule (F0 C7, owner decision pending) |
-| Evidence board, clues, hypotheses | Completed | `main` | `test_sprint3.gd` | No source class or claim states yet (F3) |
+| Evidence board, clues, hypotheses | Completed | `main` | `test_sprint3.gd` | Clues carry `source_class` and `claim_state` on `claude/f3-anomaly-model` (F3) |
 | Chapter 1 story director, sign-out, Bennett trust, after-hours W0-B beat | Completed | `main` | `test_sprint3.gd` | Beat 4 (second patient) not authored; staff lines are placeholders |
 | Playable Chapter 1 wing (AuthoredWorld) | Completed | `main` | `test_world.gd`; 7 environments loaded at once | F2 is merged; built as the clinical-wing zone |
 | Environment art Stages 1–3 (+ nursing station props) | Completed | `main` | `.glb` validation | Untextured |
@@ -81,7 +82,7 @@ Remote branches may remain after merge. Branch existence alone does not prove ac
 | Continuing Practice / CP-001 Jordan v2 | Planned (authoring package merged by #36; design review on this branch) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/` | `REVIEW.md` | No case schema, validator, loader, lifecycle or clinical rules; all case details remain pending review; current SaveManager is v3 |
 | Naomi 3D character base and builder | Base milestone merged (PR #37 at `47a68f4`); v02 candidate generated on `biancaalexis132-png-naomi-model-refinement` (not merged) | `tools/blender/characters/`, Naomi v02 Blender/GLB/renders and asset manifests | Blender 5.2.2 validator: 53 joints, 32,281 triangles, 3 embedded textures, 4 renders; CIG preflight: 15 meshes, 69 nodes, 1 skin, 0 animations; Godot 4.7 import validator 154/154; TestRunner 127/0 | v02 close render shows facial features but full-body views still read as one continuous lower garment with angular garment/skin boundaries; QA checklist fails. Owner appearance review, further procedural refinement, animation, LOD, runtime integration and target-device performance remain pending |
 | Elias and Rahman character production specifications | Merged as design package (PR #39 at `3887b66`) | `docs/design/characters/Elias_Ward_Character_Production_v1/`, `docs/design/characters/Rahman_Character_Production_v1/` | Production docs and review gates | Does not constitute clinical or canon approval, nor runtime integration |
-| Anomaly evidence model and clinical/supernatural separation (F3) | Planned | | F0 §7, §8 | Waits on the owner's Psychosomatic Bleed decision |
+| Anomaly evidence model and clinical/supernatural separation (F3): `data/anomalies.json`, `AnomalyLedger`, validator separation rules, clue `source_class` and `claim_state` | Done, not merged | `claude/f3-anomaly-model` | `test_anomaly.gd` (15 tests: flag off changes nothing, ledger on/off/removed give identical game state, Chapter 1 capped at reported, save/load without re-firing, no clinical signal connected, objectivity never reveals the anomaly, testimony never counts, validator rules) | Flag `forensic_ward/narrative/anomaly_enabled` ships off; Psychosomatic Bleed is presentation only (owner, 2026-10-17); pharmacology clue gates on PT-001 and PT-002 are reported at boot as known exceptions until F0 C7 is decided |
 | Mara Ellis, Chapters 2–5 content, title screen | Planned | | v1.1 handoff | Clinical and narrative approval needed first |
 | Environment Stage 6 Ward Zero (7 props, 7 rooms, swappable anomaly states) | Completed on `main` in PR #43 at `7e5bd2a` | `tools/blender/build_stage6_ward_zero.py`, `assets/exports/wardzero/**` | Godot 4.7 import validator now checks 154 assets with 0 failures on the Naomi refinement merge | Not wired into gameplay; anomaly states provisional pending owner review |
 | Exterior (Stage 7), textures (Stage 8) | Planned | | `docs/ENVIRONMENT_STAGES.md` | |

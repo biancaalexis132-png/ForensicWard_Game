@@ -20,7 +20,7 @@ Rules for stable ids across all five chapters. `ContentValidator.check_global_id
 | Beat | `beat_` | yes |
 | Observation | `obs_` | per patient (convention, not yet enforced) |
 | Zone, zone connection | `zone_`, `conn_` | yes |
-| Anomaly episode | `anom_` | planned (F3) |
+| Anomaly episode | `anom_` | yes |
 | Chapter | `ch<n>` | yes |
 
 Pharmacology placeholder patients (`data/patients/PT-001.json`, `PT-002.json`) use a separate upper-case scheme read only by `PharmacologyEngine`. When a story patient needs pharmacology, link it from the `pt_*` record instead of adding a second patient id (F0 C8).
@@ -40,6 +40,7 @@ Pharmacology placeholder patients (`data/patients/PT-001.json`, `PT-002.json`) u
 | Clinical rules | `clinical_rule_catatonia_escalation_v1`, `clinical_rule_medical_review_request_v1` |
 | Zones (`data/zones.json`) | `zone_clinical_wing`, `zone_security_admin`, `zone_research_level`, `zone_historic_sublevel`, `zone_ward_zero` (placeholder) |
 | Zone connections | `conn_ward_entry`, `conn_restricted_lift`, `conn_service_hatch` |
+| Anomaly episodes (`data/anomalies.json`) | `anom_ch1_after_hours_intercom`, `anom_ch1_inactive_credential`, `anom_ch1_w0b_unease` |
 | Chapter 1 voice scenes and lines | `ch1_b2_bennett_handover` (`ch1_b2_bennett_001`–`003`, `ch1_b2_player_001`–`002`), `ch1_b6_after_hours_intercom` (`ch1_b6_intercom_001`) |
 
 ## Reserved, no content yet

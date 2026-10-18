@@ -25,6 +25,14 @@ const PATIENT_LOCATIONS: Array[String] = [
 	"clinical_unit", "interview_room", "medical_unit", "seclusion", "ward_zero", "transferred_out",
 ]
 const HYPOTHESIS_STATUSES: Array[String] = ["unresolved", "supported", "refuted"]
+## Where a clue's information comes from. Testimony (a patient's report, a
+## staff member's account) is recorded and shown, but never counts toward
+## the anomaly evidence ladder (F0 audit section 7).
+const SOURCE_CLASSES: Array[String] = ["instrument", "document", "physical", "access_log", "staff_testimony",
+		"patient_report"]
+const TESTIMONY_SOURCE_CLASSES: Array[String] = ["staff_testimony", "patient_report"]
+## A clue's authored standing before the player verifies anything.
+const CLAIM_STATES: Array[String] = ["reported", "verified", "corroborated", "disputed", "refuted", "unresolved"]
 ## Non-medical effects ClinicalRules knows how to apply. Medical effects have
 ## no vocabulary yet: none are approved.
 const NON_MEDICAL_EFFECTS: Array[String] = ["mark_assessment_started", "mark_medical_review_requested"]
@@ -156,6 +164,10 @@ const CLUES_FILE: Dictionary = {
 					"id": _ID, "title": _STRING, "source": _STRING, "provenance": _STRING,
 					"verified": {"type": "bool"}, "description": _STRING,
 				},
+				"optional": {
+					"source_class": {"type": "enum", "values": SOURCE_CLASSES},
+					"claim_state": {"type": "enum", "values": CLAIM_STATES},
+				},
 			},
 		},
 		"hypotheses": {
@@ -225,7 +237,7 @@ const CHAPTER_ID_PATTERN: String = "^ch[0-9]+$"
 ## stay unique and readable through all five chapters.
 const ID_PREFIXES: Dictionary = {
 	"patient": "pt_", "staff": "staff_", "clue": "clue_", "hypothesis": "hyp_",
-	"objective": "obj_", "beat": "beat_", "zone": "zone_", "connection": "conn_",
+	"objective": "obj_", "beat": "beat_", "zone": "zone_", "connection": "conn_", "anomaly": "anom_",
 }
 
 ## Campaign index: institution, chapters and the files each one loads
@@ -418,6 +430,46 @@ const ZONES_FILE: Dictionary = {
 					"door_id": _ID, "door_zone": _ID, "anchor_xz": _XZ,
 					"required_access": _ID, "locked_message": _STRING, "notes": _STRING,
 				},
+			},
+		},
+	},
+	"optional": {"notes": _STRING},
+}
+
+
+## Anomaly evidence (data/anomalies.json, AnomalyLedger). The anomaly is a
+## property of places, instruments and time: an episode's condition may only
+## use these StoryLogic kinds, never patients, clinical actions, notes,
+## staff relationships or the physician's strain.
+const ANOMALY_CONDITIONS: Array[String] = ["shift", "day", "flag", "clue_acquired", "hypothesis_supported",
+		"chapter_completed", "chapter_flag", "zone", "world_state", "all", "any"]
+## How an episode shows itself. Each has a plausible mundane reading, which
+## Chapter 1 needs (a sound, a device log entry, a changed room).
+const ANOMALY_MANIFESTATIONS: Array[String] = ["audio_event", "device_log", "world_state"]
+## The evidence ladder, lowest first. It is computed from evidence, never set
+## by dialogue. "accepted" is not reachable from evidence alone yet.
+const ANOMALY_LEVELS: Array[String] = ["none", "reported", "inconsistent_records", "instrumented", "corroborated",
+		"accepted"]
+## Chapter 1 stays ambiguous: its cap may not rise above this.
+const ANOMALY_CHAPTER1_MAX_LEVEL: String = "reported"
+
+const ANOMALIES_FILE: Dictionary = {
+	"type": "object",
+	"required": {
+		"schema_version": _STRING,
+		## Highest ladder level each chapter may reach; a chapter not listed stays at "none".
+		"chapter_caps": {"type": "map", "values": {"type": "enum", "values": ANOMALY_LEVELS}},
+		"episodes": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": {
+					"id": _ID, "chapter": _ID, "zone": _ID, "title": _STRING,
+					"when": {"type": "any"},
+					"manifestations": {"type": "array", "min_items": 1, "items": {"type": "any"}},
+					"readings": _IDS,
+				},
+				"optional": {"notes": _STRING, "mundane_readings": _STRINGS},
 			},
 		},
 	},

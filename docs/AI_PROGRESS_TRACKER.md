@@ -1,5 +1,14 @@
 # AI progress tracker
 
+## F3 anomaly evidence model — Claude Code, 2026-10-18
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| F3 anomaly evidence model and clinical/supernatural separation, flag off | Draft PR #44 open, assigned to owner | F1, F2 (merged); Bleed answered: presentation only | `data/anomalies.json`, `scripts/narrative/AnomalyLedger.gd`, `scripts/content/*`, `scripts/tests/test_anomaly.gd` | TestRunner 127/0 and QA green on `5283735`; hosted CI pending | Owner review; fix CI if red |
+| F3 merge | Blocked on owner review | PR #44 | | | Owner |
+| Pharmacology clue gates in gameplay | Blocked on F0 C7 | Owner | `data/patients/PT-00{1,2}.json` | Reported at boot as known exceptions | Owner decides remove or move to story |
+| `.gdignore` for `assets/creative_references/` (keeps 42 MB of references out of imports) | Pending owner go-ahead | | `assets/creative_references/` | | Owner |
+
 ## Naomi procedural visual refinement — Copilot, 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |

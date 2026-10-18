@@ -12,9 +12,10 @@ extends Node3D
 ##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
 ##   "ehr"        EHRScreen (also opened with J)
 ##   "evidence"   EvidenceBoard (also opened with Tab)
-## ChapterDirector (story), AudioZoneTracker (ambience per room) and
-## ZoneDirector (which zones are loaded, transitions) are children of Main,
-## so they exist exactly while the playable world does.
+## ChapterDirector (story), AnomalyLedger (anomaly evidence, flag off by
+## default), AudioZoneTracker (ambience per room) and ZoneDirector (which
+## zones are loaded, transitions) are children of Main, so they exist exactly
+## while the playable world does.
 ##
 ## Also registers the "world" save provider: the player transform. Door
 ## state is saved per zone by ZoneDirector ("zones").

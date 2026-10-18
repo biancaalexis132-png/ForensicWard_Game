@@ -16,6 +16,8 @@ extends RefCounted
 ##   {"trust_at_least": {"staff_id", "axis", "value"}}
 ##   {"chapter_completed": chapter_id}           that chapter was completed
 ##   {"chapter_flag": {"chapter", "flag"}}       a flag set in another chapter
+##   {"zone": zone_id}                           the player is in that zone
+##   {"world_state": {"group", "state"}}         WorldStateManager state
 ##   {"all": [conditions]}, {"any": [conditions]}
 ## An action is an object with exactly one key:
 ##   {"audio_event": event_id}       EventBus.narrative_event_fired
@@ -29,7 +31,7 @@ extends RefCounted
 
 const CONDITIONS: Array[String] = ["talked_to", "observations_recorded", "note_saved", "action_committed",
 		"clue_acquired", "hypothesis_supported", "shift", "day", "flag", "trust_at_least", "chapter_completed",
-		"chapter_flag", "all", "any"]
+		"chapter_flag", "zone", "world_state", "all", "any"]
 const ACTIONS: Array[String] = ["audio_event", "notify", "flag", "chart_entry", "world_state", "start_chapter"]
 ## The flag ChapterDirector sets when a chapter ends.
 const CHAPTER_COMPLETE_FLAG: String = "chapter_complete"
@@ -39,7 +41,7 @@ const TRUST_AXES: Array[String] = ["respect", "trust", "suspicion"]
 
 
 ## Validates a condition. `refs` holds id sets: patients, clues, hypotheses,
-## staff and (optionally) chapters.
+## staff and (optionally) chapters and zones.
 static func check_condition(condition: Variant, path: String, refs: Dictionary, errors: Array[String]) -> void:
 	if not condition is Dictionary or condition.size() != 1:
 		errors.append("%s: a condition is an object with exactly one key (one of %s)." % [path, ", ".join(CONDITIONS)])
@@ -84,6 +86,11 @@ static func check_condition(condition: Variant, path: String, refs: Dictionary, 
 				errors.append("%s: needs {\"chapter\", \"flag\"}." % at)
 			else:
 				_check_ref(value["chapter"], refs.get("chapters", {}), "chapter", at + ".chapter", errors)
+		"zone":
+			_check_ref(value, refs.get("zones", {}), "zone", at, errors)
+		"world_state":
+			if not value is Dictionary or not value.has_all(["group", "state"]):
+				errors.append("%s: needs {\"group\", \"state\"}." % at)
 		"all", "any":
 			if not value is Array or value.is_empty():
 				errors.append("%s: must be a non-empty list of conditions." % at)
@@ -121,7 +128,8 @@ static func check_action(action: Variant, path: String, refs: Dictionary, errors
 
 ## Evaluates a condition against live game state. `story` supplies the
 ## director's own state: {"talked_to": Array, "flags": Array,
-## "chapters": {chapter_id: {"flags": Array}}} (every chapter it has state for).
+## "chapters": {chapter_id: {"flags": Array}}} (every chapter it has state for),
+## and optionally "zone": the player's current zone id.
 static func evaluate(condition: Dictionary, story: Dictionary) -> bool:
 	var kind: String = condition.keys()[0]
 	var value: Variant = condition[kind]
@@ -151,6 +159,10 @@ static func evaluate(condition: Dictionary, story: Dictionary) -> bool:
 			return CHAPTER_COMPLETE_FLAG in story.get("chapters", {}).get(value, {}).get("flags", [])
 		"chapter_flag":
 			return value["flag"] in story.get("chapters", {}).get(value["chapter"], {}).get("flags", [])
+		"zone":
+			return story.get("zone", "") == value
+		"world_state":
+			return WorldStateManager.get_state(value["group"]) == value["state"]
 		"all":
 			return value.all(func(c: Dictionary) -> bool: return evaluate(c, story))
 		"any":

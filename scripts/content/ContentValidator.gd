@@ -206,7 +206,7 @@ static func check_references(documents: Dictionary) -> Array[String]:
 	for hypothesis: Dictionary in hypotheses:
 		hypothesis_ids[hypothesis["id"]] = true
 	var refs: Dictionary = {"patients": patient_ids, "clues": clue_ids, "hypotheses": hypothesis_ids,
-			"staff": staff_ids, "chapters": chapter_ids}
+			"staff": staff_ids, "chapters": chapter_ids, "zones": zones_by_id}
 	for key: String in _keys(documents, ContentRegistry.STORY_KEY):
 		var story: Dictionary = _data(documents, key)
 		var file: String = _file(documents, key)
@@ -238,8 +238,151 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			for j: int in sign_out[list_name].size():
 				_require_known(sign_out[list_name][j]["staff_id"], staff_ids, "staff", file,
 						"sign_out.%s[%d].staff_id" % [list_name, j], errors)
+	var clinical_ids: Dictionary = {}
+	for id_set: Dictionary in [patient_ids, source_ids] + observations_by_patient.values():
+		clinical_ids.merge(id_set)
+	for list_name: String in ["rules", "actions"]:
+		for item: Dictionary in _data(documents, "clinical_rules").get(list_name, []):
+			clinical_ids[item["id"]] = true
+	var reading_ids: Dictionary = _check_anomalies(documents, refs, clues, clinical_ids, errors)
+	_check_clinical_files_ignore_anomalies(documents, reading_ids, errors)
 	errors.append_array(check_global_ids(documents))
 	return errors
+
+
+## Anomaly rules (F0 audit section 7): an episode's condition uses only
+## ContentSchemas.ANOMALY_CONDITIONS and names no patient, observation,
+## clinical action, rule or source; manifestations use the closed
+## vocabulary; readings are clues with a source class; Chapter 1's cap stays
+## at "reported". Returns the reading clue ids.
+static func _check_anomalies(documents: Dictionary, refs: Dictionary, clues: Array, clinical_ids: Dictionary,
+		errors: Array[String]) -> Dictionary:
+	if not documents.has("anomalies"):
+		return {}
+	var data: Dictionary = _data(documents, "anomalies")
+	var file: String = _file(documents, "anomalies")
+	var levels: Array[String] = ContentSchemas.ANOMALY_LEVELS
+	for chapter_id: String in data["chapter_caps"]:
+		_require_known(chapter_id, refs.get("chapters", {}), "chapter", file, "chapter_caps.%s" % chapter_id, errors)
+	var ch1_cap: String = str(data["chapter_caps"].get("ch1", "none"))
+	if levels.find(ch1_cap) > levels.find(ContentSchemas.ANOMALY_CHAPTER1_MAX_LEVEL):
+		errors.append("[%s] chapter_caps.ch1: '%s' is too high; Chapter 1 stays ambiguous, so its cap may not rise above '%s'." % [
+				file, ch1_cap, ContentSchemas.ANOMALY_CHAPTER1_MAX_LEVEL])
+	var clues_by_id: Dictionary = {}
+	for clue: Dictionary in clues:
+		clues_by_id[clue["id"]] = clue
+	var reading_ids: Dictionary = {}
+	var episodes: Array = data["episodes"]
+	_collect_ids(episodes, file, "episodes", errors)
+	for i: int in episodes.size():
+		var episode: Dictionary = episodes[i]
+		var at: String = "[%s] episodes[%d]" % [file, i]
+		_require_known(episode["chapter"], refs.get("chapters", {}), "chapter", file, "episodes[%d].chapter" % i, errors)
+		_require_known(episode["zone"], refs.get("zones", {}), "zone", file, "episodes[%d].zone" % i, errors)
+		StoryLogic.check_condition(episode["when"], at + ".when", refs, errors)
+		_check_anomaly_condition(episode["when"], at + ".when", errors)
+		for j: int in episode["manifestations"].size():
+			_check_manifestation(episode["manifestations"][j], "%s.manifestations[%d]" % [at, j], errors)
+		for j: int in episode["readings"].size():
+			var clue_id: String = episode["readings"][j]
+			_require_known(clue_id, clues_by_id, "clue", file, "episodes[%d].readings[%d]" % [i, j], errors)
+			if clues_by_id.has(clue_id) and not clues_by_id[clue_id].has("source_class"):
+				errors.append("%s.readings[%d]: clue '%s' needs a source_class to count as a reading." % [at, j, clue_id])
+			reading_ids[clue_id] = true
+		for text: String in _strings_in(episode["when"]):
+			if clues_by_id.has(text) and clues_by_id[text].get("source_class", "") in ContentSchemas.TESTIMONY_SOURCE_CLASSES:
+				errors.append("%s.when: '%s' is testimony (%s). Testimony is recorded, but it can never cause an episode." % [
+						at, text, clues_by_id[text]["source_class"]])
+		for text: String in _strings_in([episode["when"], episode["manifestations"]]):
+			if clinical_ids.has(text):
+				errors.append("%s: names the clinical id '%s'. Anomaly episodes never refer to patients, observations, clinical actions or rules." % [
+						at, text])
+	return reading_ids
+
+
+static func _check_anomaly_condition(condition: Variant, path: String, errors: Array[String]) -> void:
+	if not condition is Dictionary or condition.size() != 1:
+		return  # StoryLogic.check_condition reports the shape.
+	var kind: String = condition.keys()[0]
+	if not kind in ContentSchemas.ANOMALY_CONDITIONS:
+		errors.append("%s: an anomaly condition may not use '%s'. Anomalies are observed through places, instruments and time (%s), never through patients, clinical work, staff relationships or the physician's state." % [
+				path, kind, ", ".join(ContentSchemas.ANOMALY_CONDITIONS)])
+	elif kind in ["all", "any"] and condition[kind] is Array:
+		for i: int in condition[kind].size():
+			_check_anomaly_condition(condition[kind][i], "%s.%s[%d]" % [path, kind, i], errors)
+
+
+static func _check_manifestation(manifestation: Variant, path: String, errors: Array[String]) -> void:
+	if not manifestation is Dictionary or manifestation.size() != 1 \
+			or not manifestation.keys()[0] in ContentSchemas.ANOMALY_MANIFESTATIONS:
+		errors.append("%s: a manifestation is an object with one key, one of %s." % [path,
+				", ".join(ContentSchemas.ANOMALY_MANIFESTATIONS)])
+		return
+	var kind: String = manifestation.keys()[0]
+	var value: Variant = manifestation[kind]
+	if kind == "world_state":
+		if not value is Dictionary or not value.has_all(["group", "state"]):
+			errors.append("%s.world_state: needs {\"group\", \"state\"}." % path)
+	elif not value is String or (value as String).is_empty():
+		errors.append("%s.%s: must be non-empty text." % [path, kind])
+
+
+## Clinical content (patients, clinical rules, dialogue) never names an
+## anomaly episode or an anomaly reading, so the anomaly can never be read off
+## a patient's record or interview.
+static func _check_clinical_files_ignore_anomalies(documents: Dictionary, reading_ids: Dictionary,
+		errors: Array[String]) -> void:
+	var keys: Array[String] = ["patients", "clinical_rules"]
+	keys.append_array(_keys(documents, ContentRegistry.DIALOGUE_KEY))
+	var prefix: String = ContentSchemas.ID_PREFIXES["anomaly"]
+	for key: String in keys:
+		if not documents.has(key):
+			continue
+		for text: String in _strings_in(documents[key]["data"]):
+			if text.begins_with(prefix) or reading_ids.has(text):
+				errors.append("[%s]: names the anomaly id or reading '%s'. Clinical files never refer to the anomaly; it is evidenced through places, instruments and time." % [
+						_file(documents, key), text])
+
+
+## Every string inside a JSON value (keys of objects excluded), depth first.
+static func _strings_in(value: Variant) -> Array[String]:
+	var found: Array[String] = []
+	if value is String:
+		found.append(value)
+	elif value is Array:
+		for item: Variant in value:
+			found.append_array(_strings_in(item))
+	elif value is Dictionary:
+		for item: Variant in value.values():
+			found.append_array(_strings_in(item))
+	return found
+
+
+## Known exceptions to the separation rule, reported rather than silently
+## allowed: the pharmacology placeholder patients unlock clues from symptom
+## and sedation levels (F0 C7, owner decision pending). They are not
+## anomaly readings and must never become one.
+static func separation_exceptions(directory: String, reading_ids: Array) -> Dictionary:
+	var notices: Array[String] = []
+	var errors: Array[String] = []
+	var folder: String = directory.path_join("patients")
+	if not DirAccess.dir_exists_absolute(folder):
+		return {"notices": notices, "errors": errors}
+	for file_name: String in DirAccess.get_files_at(folder):
+		if not file_name.ends_with(".json"):
+			continue
+		var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(folder.path_join(file_name)))
+		if not data is Dictionary:
+			continue
+		for gate: Variant in data.get("clue_gates", []):
+			var clue_id: String = str(gate.get("clue_id", "")) if gate is Dictionary else ""
+			var where: String = "[patients/%s] clue_gates" % file_name
+			if clue_id in reading_ids:
+				errors.append("%s: '%s' is an anomaly reading; a symptom level can never unlock anomaly evidence." % [where, clue_id])
+			else:
+				notices.append("%s: known exception (F0 C7): pharmacology unlocks '%s' from symptom levels. It stays outside the anomaly ladder until the owner decides C7." % [
+						where, clue_id])
+	return {"notices": notices, "errors": errors}
 
 
 ## Campaign rules: chapter ids look like ch1, ch2...; the start chapter is
@@ -357,6 +500,7 @@ static func check_global_ids(documents: Dictionary) -> Array[String]:
 		["staff", "staff", "staff", _data(documents, "staff").get("staff", [])],
 		["clue", "clues", "clues", _data(documents, "clues").get("clues", [])],
 		["hypothesis", "clues", "hypotheses", _data(documents, "clues").get("hypotheses", [])],
+		["anomaly", "anomalies", "episodes", _data(documents, "anomalies").get("episodes", [])],
 	]
 	groups.append(["zone", "zones", "zones", _data(documents, "zones").get("zones", [])])
 	groups.append(["connection", "zones", "connections", _data(documents, "zones").get("connections", [])])
