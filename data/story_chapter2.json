@@ -4,7 +4,7 @@
 	"title": "Chapter 2: The Missing Hours",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received.",
+	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received. Scene 06 (Hale's Door): Hale scopes the question and the player requests one permitted follow-up. No access, escort or inspection is granted; Ward Zero entry stays in Chapter 3.",
 	"objectives": [
 		{
 			"id": "obj_ch2_handoff",
@@ -165,10 +165,68 @@
 					}
 				]
 			}
+		},
+		{
+			"id": "obj_ch2_hale_scope",
+			"text": "Marcus Hale is waiting in the office. Ask him how the restricted designation appeared in a live request.",
+			"complete_when": {
+				"flag": "ch2_hale_question_scoped"
+			}
+		},
+		{
+			"id": "obj_ch2_hale_request",
+			"text": "Ask Hale for one permitted follow-up.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch2_hale_clinical_risk_check"
+					},
+					{
+						"flag": "ch2_hale_report_summary"
+					},
+					{
+						"flag": "ch2_hale_facilities_plans"
+					}
+				]
+			}
 		}
 	],
 	"beats": [],
 	"staff_lines": [
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_hale_clinical_risk_check"
+					},
+					{
+						"flag": "ch2_hale_report_summary"
+					},
+					{
+						"flag": "ch2_hale_facilities_plans"
+					}
+				]
+			},
+			"text": "Your request is logged. Any inspection still needs authorization, Facilities, a safe route and a reason to enter. None of that is in place."
+		},
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_analyst_next_source_extraction"
+					},
+					{
+						"flag": "ch2_analyst_next_identifier_crosswalk"
+					},
+					{
+						"flag": "ch2_analyst_next_second_review"
+					}
+				]
+			},
+			"text": "Doctor. Records said you'd have questions about W0-B. Ask them properly and I'll answer what I can."
+		},
 		{
 			"staff_id": "staff_bennett",
 			"when": {
@@ -684,6 +742,95 @@
 				]
 			},
 			"completed_body": "The next check is recorded. The discrepancy and all four candidate explanations remain open until source material is received and reviewed."
+		},
+		{
+			"id": "interaction_ch2_hale_scope",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: the restricted designation",
+			"body": "Hale: The historical label isn't an operational ward assignment. And the clinical transfer system isn't the security badge system.\n\nWhat do you ask him?",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_analyst_next_source_extraction"
+					},
+					{
+						"flag": "ch2_analyst_next_identifier_crosswalk"
+					},
+					{
+						"flag": "ch2_analyst_next_second_review"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "ask_badge",
+					"label": "Ask for a badge so you can look at W0-B yourself",
+					"response": "Hale: That door has a control list. Curiosity isn't on it. Your access is unchanged."
+				},
+				{
+					"id": "claim_opened",
+					"label": "Say the transfer request proves someone opened W0-B",
+					"response": "Hale: A request in the transfer system isn't a door event. Nothing you've shown me says that door opened. Ask me what you actually need to know."
+				},
+				{
+					"id": "ask_designation",
+					"label": "Ask how the restricted designation appeared in a live request",
+					"flag": "ch2_hale_question_scoped",
+					"response": "Player: I'm asking how the restricted designation appeared in a live request.\n\nHale: Appropriate question. The answer needs an authorized audit, not an unauthorized inspection.\n\nPlayer: What would a legitimate inspection require?\n\nHale: Authorization, Facilities, a safe route, and a reason to enter.\n\nQuestion recorded. Ask Hale for one permitted follow-up."
+				}
+			],
+			"unavailable_body": "Hale is not here yet.",
+			"expires_when": {
+				"flag": "ch2_hale_question_scoped"
+			}
+		},
+		{
+			"id": "interaction_ch2_hale_request",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: permitted follow-up",
+			"body": "Hale: I can do one of these without anyone breaking policy. Pick.\n\n[b]Not available[/b]\nBadge access, escort or inspection of W0-B. No authorization exists.",
+			"when": {
+				"flag": "ch2_hale_question_scoped"
+			},
+			"options": [
+				{
+					"id": "ask_escort",
+					"label": "Ask Hale to escort you into W0-B today",
+					"response": "Hale: No. Not today and not on my word alone. An inspection needs authorization, Facilities and a safe route first. Choose something I can actually do."
+				},
+				{
+					"id": "clinical_risk_check",
+					"label": "Request a clinical risk check on the transfer request",
+					"flag": "ch2_hale_clinical_risk_check",
+					"response": "Hale: Security won't act on a transfer to a non-operational designation while the audit runs. Whether the request put a patient at risk is a clinical question; that review is yours.\n\nFollow-up recorded: clinical risk check requested. No patient is moved and no access changes."
+				},
+				{
+					"id": "report_summary",
+					"label": "Ask for a permitted summary of the access-log report",
+					"flag": "ch2_hale_report_summary",
+					"response": "Hale: You'll get the summary the policy allows: what was logged and when, not the raw badge data. It won't name anyone the audit hasn't.\n\nFollow-up recorded: permitted report summary requested. The credential audit stays with Information Security."
+				},
+				{
+					"id": "facilities_plans",
+					"label": "Ask about archived facilities plans for the historic wing",
+					"flag": "ch2_hale_facilities_plans",
+					"response": "Hale: Facilities keeps those. I'll ask them to release what's archived to you through Records. Plans aren't permission to go anywhere.\n\nFollow-up recorded: archived facilities plans requested. No route or access is authorized."
+				}
+			],
+			"unavailable_body": "Ask Hale about the designation first.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch2_hale_clinical_risk_check"
+					},
+					{
+						"flag": "ch2_hale_report_summary"
+					},
+					{
+						"flag": "ch2_hale_facilities_plans"
+					}
+				]
+			}
 		}
 	],
 	"sign_out": {

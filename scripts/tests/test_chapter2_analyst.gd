@@ -162,7 +162,7 @@ func _run(choice: String, flag: String) -> void:
 	for other: String in ["ch2_analyst_next_source_extraction", "ch2_analyst_next_identifier_crosswalk",
 			"ch2_analyst_next_second_review"]:
 		check(other == flag or not _director().has_flag(other), "only one next check: " + other)
-	check(_objective().is_empty(), "authored Chapter 2 objectives so far complete")
+	check_eq(_objective(), "obj_ch2_hale_scope", "analyst hands on to Hale")
 	check(not _director().has_completed("ch2"), "Chapter 2 not falsely completed")
 	check(_director().has_flag("ch2_sources_requested"), "source request still pending")
 	check_eq(_canonical(EvidenceManager.to_save_data()), evidence, "no evidence promoted")
