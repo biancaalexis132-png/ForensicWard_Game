@@ -1,0 +1,62 @@
+{
+  "package": "ForensicWard_Complete_Campaign_Package_v1",
+  "chapter_scene_counts": {
+    "ch1": 12,
+    "ch2": 10,
+    "ch3": 10,
+    "ch4": 10,
+    "ch5": 10
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "c84e6b74044dad849669d44237576debfc40bc25b1b81e05a589d2d14dd49e4b",
+      "bytes": 2191
+    },
+    {
+      "path": "chapters/CH01_THE_ADMISSION_EXPANDED_SCREENPLAY.md",
+      "sha256": "758effd8171e0df182d7b710dac8d3c0b314d3c560036eb9c87fa1c5ce9d5c57",
+      "bytes": 26238
+    },
+    {
+      "path": "chapters/CH02_THE_MISSING_HOURS_EXPANDED_SCREENPLAY.md",
+      "sha256": "9cbdb7032a29e3ad84980f604e978008495e0df374d07a25f76d728fae5986c6",
+      "bytes": 20737
+    },
+    {
+      "path": "chapters/CH03_BENEATH_THE_HOSPITAL_EXPANDED_SCREENPLAY.md",
+      "sha256": "a9a6d7756c45dd17f974103146c989c80e2e9670ce079a4eced346118f99c45c",
+      "bytes": 20689
+    },
+    {
+      "path": "chapters/CH04_THE_OFFICIAL_RECORD_EXPANDED_SCREENPLAY.md",
+      "sha256": "97a66556d5a97bc33b87ad6d55ecb509f9370a56ec74798320dc313a0460e108",
+      "bytes": 21132
+    },
+    {
+      "path": "chapters/CH05_BEYOND_THE_LINES_EXPANDED_SCREENPLAY.md",
+      "sha256": "ee2d321104e4be76416ae7237fb97fef7f8fa84625d0bf8d3447d52c1d4ba4b8",
+      "bytes": 23373
+    },
+    {
+      "path": "production/ASSET_AND_AUDIO_SHOTLIST.md",
+      "sha256": "37772e00b05159cca10b1432937c515238d4082da6f8434b4310ed67b357a0ae",
+      "bytes": 2020
+    },
+    {
+      "path": "production/CAMPAIGN_GAMEPLAY_CONTRACT.md",
+      "sha256": "7137a58748125117987a71a4d908c56b8d0eaf194d122bce4ce670c47dbf5514",
+      "bytes": 3743
+    },
+    {
+      "path": "production/CLINICAL_EDITORIAL_REVIEW.md",
+      "sha256": "ab5420866caed4c7911df10a0196d5f08706ca5393165b9bf24119e4d235a00c",
+      "bytes": 1213
+    },
+    {
+      "path": "production/GODOT_IMPLEMENTATION_ROADMAP.md",
+      "sha256": "47c35a715768e601edc8bf7e469e70360949d01ce6860e399f74e7b4ace574c1",
+      "bytes": 2939
+    }
+  ]
+}
