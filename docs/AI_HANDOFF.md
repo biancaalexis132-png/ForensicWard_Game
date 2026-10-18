@@ -160,6 +160,35 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-18 18:40 UTC · Claude Code (owner's Mac, Remote Control) · Naomi Mac validation, v05_mpfb, frame times
+
+- **Branch:** work merged to `main` via PR #54 (v04 Mac review take, `08e22e7`) and PR #57 (v05_mpfb, `733b01b`); this doc update is on `claude/local-mac-handoff` from `main` `e9262b4`
+- **Latest verified commit:** `e9262b4` (main after PR #58); `733b01b` for the v05_mpfb content
+- **Pull request:** #52, #54 and #57 merged; this doc PR is a draft
+- **State:** finished; v04 stays the default preview; v05_mpfb is **not approved**
+
+**Accomplished**
+- **PR #52:** ffmpeg libvorbis fallback to `oggenc` (vorbis-tools 1.4.3 installed on the Mac with the owner's OK). The full runner now passes on the Mac.
+- **MPFB2 CC0 packs installed on the Mac** with the owner's OK: system assets, eyebrows01, eyelashes01, visemes01 and faceunits01. Each pack JSON states CC0. Zips are in `~/MPFB_Packs/`.
+- **PR #54:** v04 rebuilt on the Mac matches cloud v04 in structure. Adds `tools/godot/capture_character_performance.gd` (force-drawn frames; `--write-movie` repeats frames on a throttled Mac window) and the `ingame_review_v04_mac/` take.
+- **PR #57:** `tools/character_animation/bake_mpfb_face_shapes.py` and `mpfb_face_mapping.json` bake MPFB faceunits into the 10 stable morph names and add 22 `viseme_<name>` morphs. This yields `Naomi_Bennett_v05_mpfb` (preview `staff_bennett:v05_mpfb`), with the full blink and a visible `mouth_open`. Also adds `tools/godot/measure_character_frame_time.gd` and `scripts/tests/test_character_mpfb_face.gd`. Details are in `docs/handoffs/2026-10-18_naomi_v05_mpfb.md`, and the v04 validation in `docs/handoffs/2026-10-18_naomi_v04_mac_validation.md`.
+- **Mac frame time** (M1 MacBook Air 8 GB, 1280×720, mean / p95 at the counter): capsule 9.5/9.2 ms, v03 10.2/13.2, v04 13.7/17.7, v05_mpfb 14.3/17.9. All within the 33 ms budget. **Open flag:** v04 and v05_mpfb render 533k primitives and 828 draw calls against v03's 42k and 48, from a GLB with the same triangle count.
+
+**Known errors**
+- v05_mpfb: closed lids show the lash line as a dark arc; there is no mouth interior; visemes are not driven yet.
+- The primitive and draw-call multiplication above is not yet investigated.
+
+**Tests** (Mac, Godot 4.7.2, `main` `37a2a71`)
+- `python3 tests/qa/run.py --godot /Applications/Godot.app/Contents/MacOS/Godot`: exit 0. Music 3/3, QA 19/0/0, GLB 158/0, TestRunner 158/0, audio 336/0.
+
+**Dependencies not available to remote agents**
+- The MPFB2 faceunits01 and visemes01 packs, which `bake_mpfb_face_shapes.py` needs; they are installed only on the owner's Mac. Mac frame-time runs need a window, not `--headless`.
+
+**Next steps**
+1. Owner decides whether MPFB face shapes replace the hand-built ones (compare `ingame_review_v05_mpfb/face_v04_top_v05_mpfb_bottom.png`).
+2. The cloud v05 refinement thread investigates the draw-call multiplication and, if approved, adds the bake as an optional builder step.
+3. Re-measure frame time on the Mac after each Naomi version with `measure_character_frame_time.gd`.
+
 ### 2026-10-18 · Claude Code (cloud) · Soundtrack owner approval recovered into a draft PR
 
 - **Branch:** `claude/codex-soundtrack-owner-approval`. Codex's two commits (`9768772`, `ad9dccc`) rebased from `b5c9d3a` onto current `main` `f9dba61` with no conflicts; content unchanged. The `codex/` branch is left as it was.

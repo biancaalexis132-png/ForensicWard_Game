@@ -1,5 +1,14 @@
 # AI session handoff
 
+## Naomi Mac validation and v05_mpfb — Claude Code (owner's Mac), 2026-10-18 18:40 UTC
+
+- **Objective:** validate cloud v04 on the owner's Mac, measure frame time and bake MPFB face shapes; review only.
+- **Branches / PRs:** #52 (ffmpeg fallback), #54 (v04 Mac review take) and #57 (v05_mpfb) are merged. This doc update is `claude/local-mac-handoff`.
+- **Completed:** the oggenc fallback; 5 CC0 MPFB packs on the Mac; v04 Mac rebuild and take; the `bake_mpfb_face_shapes.py` bake step; v05_mpfb; the frame-time probe; full QA passing on the Mac.
+- **Exact stopping point:** all merged; waiting on the owner's face-shape decision.
+- **Next steps:** investigate v04's 533k primitives and 828 draw calls (cloud v05 thread). Re-measure on the Mac after each Naomi version.
+- **Constraints:** never run git in the SSK copy; the clean clone is `~/ForensicWard_Campaign_Publish`.
+
 ## Character canon reconciliation and Rahman base model — Claude Code (cloud), 2026-10-18 18:30 UTC
 
 - **Objective:** fold the owner's 2026-10-18 18:05 UTC decisions (Rahman Consultant Psychiatrist; Hale Security Director, no tactical armour; Naomi, Voss, Elias, Mara traits; Mara from Chapter 2) into the docs, then build the next unfinished character in the visual lane: Dr Leila Rahman's base model, as a review candidate.
