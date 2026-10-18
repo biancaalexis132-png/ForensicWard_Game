@@ -8,9 +8,11 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
+**GitHub state correction (verified 2026-10-18 00:56 UTC):** `origin/main` is `47a68f40b09423b3253091e25b4715ce82447113`, after Naomi character PR #37 and Elias/Rahman production package PR #39; both are merged. Jordan package PR #36 and Naomi acting PR #35 are also merged. Draft review PR #38 was open and `MERGEABLE` at pushed head `3f162e3`; hosted `validate` is pending on that head (run 39084612239). This handoff update will advance the PR head, so refresh checks afterward. The #35/#37 rows and earlier Naomi notes were written before their merges and are preserved only as historical context; they are not current PR state. Naomi model refinement remains separate from this review.
+
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Naomi 3D character base | `biancaalexis132-png-naomi-character-pipeline` (draft PR #37) | Copilot / current session | `ff1b4059f5d728d37c24fe47762ecb7bff8948fd` (verified remote checkpoint; docs-only commit atop tested base) | `tools/blender/characters/**`, Naomi-specific files in `assets/blender/characters/` and `assets/exports/characters/`, both Naomi asset-manifest records | Draft PR open; owner visual review/refinement and game integration remain |
+| Jordan Vale CP-001 v2 review | `biancaalexis132-png-jordan-vale-v2-review` (draft PR #38) | Copilot / current session | `3f162e3caee3739137ec0cf9df93f226dc72023c` (verified remote; validate pending) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; review handoff updates in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md` | Merge from `origin/main` resolved and pushed; PR remains draft/mergeable, awaiting validation and owner/psychiatrist decisions |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -57,6 +59,115 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-18 00:56 UTC · Copilot · Jordan review final push verification
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review`, includes merge commit from `origin/main` `47a68f40b09423b3253091e25b4715ce82447113`
+- **Latest verified commit:** `3f162e3caee3739137ec0cf9df93f226dc72023c` "Record Jordan review merge checkpoint"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned `3f162e3caee3739137ec0cf9df93f226dc72023c`.
+- **Pull request:** #38 remains open/draft; GitHub reports `MERGEABLE`. Hosted `validate` is pending on this head (run 39084612239).
+- **State:** PR #38 now includes current main; the four handoff conflicts are resolved. This review branch has not been merged.
+
+`git show --check --oneline HEAD`, JSON syntax parsing, and `git diff --check` passed. The nine Jordan source files still match `origin/docs/jordan-vale-v2`. Full local Godot QA was not run. No runtime, SaveManager, schema or clinical status changed.
+
+Next: refresh CI/mergeability after this handoff update is pushed; keep PR #38 draft and do not merge. Owner and qualified psychiatrist decisions remain pending.
+
+### 2026-10-18 00:54 UTC · Copilot · Jordan review merge reconciliation
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review`, merged with `origin/main` `47a68f40b09423b3253091e25b4715ce82447113`
+- **Latest verified commit:** `0279db890abb05483feb6b08463d63a738b51810` "Merge origin/main and reconcile Jordan review handoffs"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned `0279db890abb05483feb6b08463d63a738b51810`.
+- **Pull request:** draft PR #38 to `main`; open, GitHub reports `MERGEABLE`; `validate` is pending on this exact head.
+- **State:** conflict merge resolved without rewriting history. Naomi PR #37 and production documentation PR #39 additions were preserved; #37 and #39 are merged in current main. Jordan’s nine source files and review report are unchanged.
+
+**Accomplished**
+- Resolved conflicts in the continuity/status files and merged the fetched main commit, preserving both Jordan and upstream Naomi/production-batch records.
+- Updated PR inventory and current workstream status to show #35, #36, #37, and #39 merged, while #38 remains draft and unmerged.
+
+**Files modified**
+- `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md`: combined the conflicting status/handoff records and corrected live PR state.
+- Incoming Naomi assets/builder and Elias/Rahman production specifications from main were preserved unchanged by the merge.
+
+**Validation** (on `0279db8`)
+- `python3 -m json.tool docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/case_cp001_v2.json`: passed JSON syntax parsing.
+- `git show --check --oneline HEAD`: passed.
+- `git diff --quiet origin/docs/jordan-vale-v2 -- docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/{CHANGELOG.md,CLINICAL_REVIEW_MATRIX.md,COPILOT_HANDOFF.md,FIVE_SHIFT_SCREENPLAY.md,GAMEPLAY_CONTRACT.md,LONGITUDINAL_TIMELINE.md,PATIENT_DOSSIER.md,README.md,case_cp001_v2.json}`: passed; all nine source files remain unchanged.
+- Hosted PR #38 `validate`: pending on `0279db8` when checked; GitHub reported `MERGEABLE`, status `UNSTABLE` pending required check.
+- Full local Godot QA: not run; no Jordan runtime or schema changes were made.
+
+**Next steps**
+1. Check PR #38 hosted validation after this handoff checkpoint is pushed; retain draft status and do not merge.
+2. Owner resolves canon/source/authority questions and a qualified psychiatrist reviews the case-specific clinical material before any schema/runtime proposal.
+
+**Notes for the other agent**
+- Keep clinical content pending; do not activate case JSON/rules or change SaveManager/runtime/schema.
+- PR #37’s base milestone is merged, but Naomi refinement remains a separate workstream. PR #39 adds production specifications only; their gates do not constitute clinical or canon approval.
+
+### 2026-10-18 00:52 UTC · Copilot · Final CP-001 review checkpoint
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review`, based on `origin/main` `03f1585a62bd33db7dcfe8116b50db71f8ee171b`
+- **Latest verified content checkpoint:** `ef22d090c926f2fa50115478ed5eed95dee93b77` "Record CP-001 review validation result"; `git ls-remote` returned this exact branch SHA.
+- **Pull request:** draft PR #38 to `main`, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/38; open, no reviews/comments observed.
+- **Hosted CI:** `validate` passed on `b79ea11d675f40aeee3420676890e4a3ba8bcd7f` in 3m50s (run 39083958547). The latest docs-only checkpoint `ef22d09` has no check reported: `gh pr checks 38` returned “no checks reported on the 'biancaalexis132-png-jordan-vale-v2-review' branch”; `gh run list` shows the most recent run is still the successful `b79ea11` run.
+- **State:** review report and continuity documents are pushed; nine source files, runtime, clinical rules and save schema remain unchanged. No clinical approval is granted.
+
+JSON syntax, `git show --check`, `git diff --check`, and source-package unchanged checks passed. Full local Godot QA was not run because the diff is documentation-only. Treat the successful hosted check as evidence for its exact head SHA only, not as clinical review or validation of a later commit.
+
+Next step: owner reviews the draft report; owner resolves canon/source/authority decisions and the qualified psychiatrist completes section-specific content approval before any implementation.
+
+### 2026-10-18 00:50 UTC · Copilot · CP-001 review CI checkpoint
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review` (based on `origin/main` `03f1585a62bd33db7dcfe8116b50db71f8ee171b`)
+- **Latest verified review checkpoint:** `b79ea11d675f40aeee3420676890e4a3ba8bcd7f` "Record CP-001 review PR state"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned `b79ea11d675f40aeee3420676890e4a3ba8bcd7f`.
+- **Pull request:** draft PR #38 to `main`, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/38.
+- **CI:** hosted `validate` check passed on this checkpoint in 3m50s: https://github.com/biancaalexis132-png/ForensicWard_Game/actions/runs/39083958547/job/117546508688. This is not clinical validation.
+- **State:** documentation-only review is complete and pushed; no clinical-content or runtime changes.
+
+The findings and approval gates in the preceding review entry remain current. Owner and qualified psychiatrist decisions are pending. The final PR-state checkpoint below this entry is documentation-only; refresh the live PR/check state after any further push.
+
+### 2026-10-18 00:37 UTC · Copilot · Jordan Vale CP-001 v2 review
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review` (based on `origin/main` at `03f1585a62bd33db7dcfe8116b50db71f8ee171b`)
+- **Reviewed source:** `origin/docs/jordan-vale-v2` at `8131b240afd77710b277f010b8b096c1a6b684d2`; merged as PR #36. PR #35 and PR #34 are also merged. `gh pr list --state open` returned no open PRs.
+- **Latest verified commit:** `7876d53317da79b375a33ae06a2b66020928dc9b` "Review Jordan Vale CP-001 v2 package"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned the exact SHA above.
+- **Pull request:** draft PR #38 to `main`, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/38.
+- **State:** documentation review report pushed; no clinical approval, runtime/data adoption, SaveManager change, or source-package edits.
+
+**Accomplished**
+- Reviewed all nine files in the CP-001 v2 package and compared the claims against current main’s patient schema/content loader, PatientManager, SaveManager v3/migrations, ChapterDirector/campaign, Chapter 5 ending proposal, clinical approval register and historical references.
+- Added `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md` with eight ranked findings, evidence citations, approval dispositions and gated implementation sequence.
+- Verified the Jordan source branch/merge and PR state against fetched GitHub refs. Current main is beyond the older `fb07887` handoff baseline. Historical handoff entries are retained.
+- Confirmed no CP-001 v1 path/package in the fetched repository refs/file history; the v2 claim to retain/derive from v1 is not independently verifiable.
+- Confirmed PR #35 acting cues merged; the Naomi 3D/model pipeline is still a separate active session/branch. The review’s proposed Naomi dialogue remains unlinked and untouched; the owner of that session was notified of the boundary.
+
+**Files modified at the verified report commit**
+- `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`: design-only, clinical-content and implementation review. The nine source files are unchanged.
+
+**Findings / approvals**
+- P1: reconcile Jordan’s identity with the existing Chapter 1 “provisional, not canon” character; owner decision and author correction.
+- P1: historical diagnosis provenance and specific symptom/dialogue review; psychiatrist decision required. Mood/anxiety statements remain symptoms/proposed dialogue, not diagnoses.
+- P1: review safety, legal-authority, consent and collateral scope; do not infer risk, capacity, legal status, or treatment.
+- P1: author source/event provenance, then add a separate schema/validator and coordinated lifecycle/save contract. No case runtime or case validator exists; current SaveManager remains v3 and Chapter 5 is planned.
+- P2: define source-time versus in-game time, task ownership/acknowledgment semantics, and recover the referenced v1 baseline or correct its provenance claim.
+- All clinical content stays pending; Ward Zero remains independent from clinical state. No rules or patient content were activated.
+
+**Tests**
+- `python3 -m json.tool docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/case_cp001_v2.json`: passed JSON syntax parsing; no CP schema validation exists.
+- `git show --check --oneline 7876d53317da79b375a33ae06a2b66020928dc9b`: passed.
+- `git diff --check`: passed on the continuity-doc working tree.
+- Full Godot QA: not run; documentation-only review with no runtime or shipped content changes.
+- Hosted CI: not observed.
+
+**Next steps**
+1. Push and verify the final PR-head SHA with `git ls-remote`; confirm the PR remains draft.
+2. Owner resolves canon/source questions; psychiatrist reviews case-specific clinical material before any schema/runtime PR.
+3. Do not merge or change clinical status; any implementation must follow the gated sequence in `REVIEW.md`.
+
+**Notes for the other agent**
+- Keep the nine source package files, runtime, patient data, clinical rules and SaveManager unchanged in this review.
+- Use one shared, reviewed v3→v4 plan only after Continuing Practice, finale and protagonist state ownership are approved.
+- Naomi’s model work remains on its separate branch; no proposed CP dialogue is an approved acting cue.
 ### 2026-10-18 00:43 UTC · Copilot · Naomi 3D PR checkpoint
 
 - **Branch:** `biancaalexis132-png-naomi-character-pipeline` (based on `origin/main` at `21205c3c71d4543a2fa4abe0d54e172ce725db01`)
@@ -142,7 +253,6 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 **Notes for the other agent**
 - Acting-cue PR #35 merged into `main` at `21205c3`; its model-independent adapter does not require specific bones. Keep the 53-joint asset optional until visual review and scene integration. Preserve `staff_bennett`, existing voice/dialogue IDs, and all pending clinical review status.
-
 ### 2026-10-18 00:16 UTC · Copilot · Naomi Chapter 1 acting cues
 
 - **Branch:** `biancaalexis132-png-naomi-chapter1-acting` (based on `origin/main` at `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`)

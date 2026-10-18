@@ -1,10 +1,24 @@
 # AI progress tracker
 
-## Naomi 3D character base — Copilot, 2026-10-18
+## Jordan Vale CP-001 v2 review — Copilot, 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Build a reproducible, licensed Naomi model base and Godot GLB | Draft PR #37 open; tested base checkpoint `2a6ffda` | Blender 5.2.2 LTS, MPFB2 2.0.18; current main `21205c3` includes merged acting adapter | `tools/blender/characters/**`, Naomi-specific Blender/GLB/renders and asset manifests | Blender validator: 53 joints, 42,583 triangles, 2 embedded textures, 4 renders; Godot GLB 139/139; full runner blocked only at two `libvorbis` music previews | Owner review of renders; refine likeness/hair/clothing, then stage animations/integration separately |
+| Review the nine-file Jordan Vale v2 package without changing its source or activating runtime content | Current main merge resolved; checkpoint `3f162e3` pushed; PR #38 remains draft and GitHub reports mergeable; hosted `validate` pending | Owner’s limited narrative direction; qualified psychiatrist review still required | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; continuity docs | JSON syntax PASS; `git show --check` and `git diff --check` PASS; source package unchanged; hosted `validate` pending on `3f162e3`; no CP schema validator; full local Godot QA not run | Check hosted validation after continuity push; owner resolves identity/source questions; psychiatrist reviews exact case material before schema/runtime implementation |
+
+Review findings: Chapter 1 still labels Jordan provisional/not canon; v1 package is absent from fetched repository history; historical diagnosis source and all clinical screenplay details remain pending; safety/legal/collateral scope and provenance need review; current runtime has no CP loader/lifecycle and SaveManager remains v3. See `REVIEW.md` for source citations, severity, dispositions and implementation gates. No source files, patient data, clinical rules, runtime, or save schema changed.
+
+Coordination: Naomi acting-cue PR #35, Naomi character-base PR #37, and Elias/Rahman production-specification PR #39 are merged in current `origin/main` `47a68f4`. Naomi refinement remains a separate workstream; CP Naomi lines remain proposals. This review changes no clinical approval or runtime behavior.
+
+## Naomi 3D character base — Copilot, 2026-10-18 (base merged in PR #37; refinement remains)
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Build a reproducible, licensed Naomi model base and Godot GLB | Base merged in PR #37 at `47a68f4`; follow-on refinement remains separate | Blender 5.2.2 LTS, MPFB2 2.0.18; current main includes merged acting adapter and production package | `tools/blender/characters/**`, Naomi-specific Blender/GLB/renders and asset manifests | Historical base validation: Blender validator 53 joints, 42,583 triangles, 2 embedded textures, 4 renders; Godot GLB 139/139; full runner blocked by two `libvorbis` music previews | Owner review of renders; refine likeness/hair/clothing, then stage animations/integration separately |
+
+## Elias and Rahman character production specifications — merged in PR #39
+
+`docs/design/characters/Elias_Ward_Character_Production_v1/` and `docs/design/characters/Rahman_Character_Production_v1/` are design/production specifications merged to `main` at `3887b66` (included in `47a68f4`). They do not by themselves approve clinical content, canon, animation, or runtime integration; use their review gates before implementation.
 
 ## Naomi Chapter 1 acting cues — Copilot, 2026-10-18 (merged in PR #35)
 

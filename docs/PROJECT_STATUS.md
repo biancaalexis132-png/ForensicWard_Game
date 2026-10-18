@@ -2,7 +2,7 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
-**Last verified:** 2026-10-18 by Copilot against `origin/main` `21205c3c71d4543a2fa4abe0d54e172ce725db01` (PR #35 merged), using fetched Git history and `gh`. Draft model PR #37 is open against `main`; hosted CI was not observed. Full local Godot 4.7 checks on the merged model branch passed except the full runner's two music-preview cases, blocked by local FFmpeg missing `libvorbis`. See [REPOSITORY_RECONCILIATION.md](REPOSITORY_RECONCILIATION.md).
+**Last GitHub state verified:** 2026-10-18 against fetched `origin/main` `47a68f40b09423b3253091e25b4715ce82447113` (includes merged PRs #37 and #39). PRs #35 and #36 are also merged. At the last PR query, draft review PR #38 was open at `3f162e3`, merged with current main without history rewrite; GitHub reported `MERGEABLE`, with required `validate` pending (run 39084612239). This continuity update will advance the PR head, so refresh hosted status after pushing. An earlier hosted `validate` passed on docs-only head `b79ea11` in 3m50s; no check was reported on `ef22d09`. This documentation review did not run the full local Godot suite, and CI is not clinical validation. Historical Naomi model checks are recorded below.
 
 Status meanings:
 
@@ -19,8 +19,12 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 
 | PR | Branch | State |
 |---|---|---|
-| #37 | `biancaalexis132-png-naomi-character-pipeline` | Draft; automated Naomi base for review |
-| #35 | `biancaalexis132-png-naomi-chapter1-acting` | Merged at `21205c3` (Naomi acting cues) |
+| #38 | `biancaalexis132-png-jordan-vale-v2-review` | Draft, documentation-only review against `main` |
+| #39 | `docs/character-production-batch-v1` | Merged at `3887b66` (Elias and Rahman production specifications; approval gates remain) |
+| #37 | `biancaalexis132-png-naomi-character-pipeline` | Merged at `47a68f4` (Naomi base milestone; owner review/refinement remain) |
+| #36 | `docs/jordan-vale-v2` | Merged at `03f1585` (Jordan Vale CP-001 v2 authoring package; clinical approval remains pending) |
+| #35 | `biancaalexis132-png-naomi-chapter1-acting` | Merged at `21205c3` |
+| #34 | `docs/complete-campaign-v1` | Merged at `a075d73` |
 | #28 | `claude/visual-direction-review` | Merged at `fb07887`; review recommendations still need approval |
 | #26 | `claude/f2-zones` | Merged at `9558c77` (zones and transitions) |
 | #25, #24, #23 | `assets/ashcroft-creative-references` | Merged (continuity protocol / reference integration) |
@@ -40,7 +44,7 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 | #8, #7, #6, #1 | integration, chapter 1, environment, sprint 1 branches | Closed, superseded by #11 |
 | #5, #4, #3, #2 | audio, handoff system, adaptive audio, Codex QA | Merged |
 
-Remote branches may remain after merge. Branch existence alone does not prove active ownership. Historical soundtrack PR #27 and Stage 6 environment work must be checked before overlapping changes.
+Remote branches may remain after merge. Branch existence alone does not prove active ownership. At this verification, PR #38 is the open review PR; historical soundtrack PR #27 and Stage 6 environment work must be checked before overlapping changes.
 
 ## Systems
 
@@ -66,8 +70,10 @@ Remote branches may remain after merge. Branch existence alone does not prove ac
 | Adaptive audio engine, Chapter 1 audio, original soundtrack | Completed | `main` (PR #3, #5, #18) | TestAudio 271 passed | Listening review on the Mac pending; music contexts not fired yet (no title screen or credits) |
 | Hospital name in game data | Completed | `main` (PR #21) | `data/campaign.json` `institution.name` | Not shown on any screen yet; signage textures come with Stage 8 |
 | Zones and transitions (F2): `data/zones.json`, `ZoneDirector`, save version 3 with v2 migration | Completed | `main` (PR #26) | `test_zones.gd` (15 tests: seamless ward entry, 10 lift round trips with flat memory, door state across unload/save/load, arrivals on a floor, real v2 save from `main`) | Worker-thread streaming is off in headless runs (Godot's dummy renderer is not thread-safe), so it is untested until run on the Mac; arrival points are placeholders; security and research use the corridor ambience |
-| Naomi Chapter 1 acting-cue presentation | Completed (PR #35 merged at `21205c3`) | `scripts/acting/NaomiActingController.gd`, `CharacterActingAdapter.gd`; wired only to `staff_bennett` | Main; cue validator 5/5, TestRunner 122/0, TestAudio 336/0 | Owner/Mac review of real-model animation, face and gesture feel remains |
-| Naomi 3D character base and builder | Active (draft PR #37; not merged) | `tools/blender/characters/`, `assets/blender/characters/Naomi_Bennett_Base_v01.blend`, `assets/exports/characters/Naomi_Bennett_Base_v01.glb`, both Naomi asset manifests | Tested code at `2a6ffda`; Blender validator: 53 joints / 42,583 triangles / 4 renders; Godot 4.7 GLB validator: 139/139 | Automated base only; face/hair/clothing review, animations, LOD, Chapter 1 integration and target-device performance remain |
+| Naomi Chapter 1 acting-cue presentation | Completed on `main` (PR #35 merged) | `scripts/acting/NaomiActingController.gd`, `CharacterActingAdapter.gd`; wired only to `staff_bennett` | Merged PR #35; prior branch evidence: cue validator 5/5, TestRunner 122/0, TestAudio 336/0 | Real-model animation/face/gesture feel remains untested on Mac; separate Naomi model pipeline is a different workstream |
+| Continuing Practice / CP-001 Jordan v2 | Planned (authoring package merged by #36; design review on this branch) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/` | `REVIEW.md` | No case schema, validator, loader, lifecycle or clinical rules; all case details remain pending review; current SaveManager is v3 |
+| Naomi 3D character base and builder | Base milestone merged (PR #37 at `47a68f4`); refinement remains separate | `tools/blender/characters/`, Naomi Blender/GLB/renders and asset manifests | Historical base validation: 53 joints / 42,583 triangles / 4 renders; Godot 4.7 GLB validation 139/139 | Automated base only; face/hair/clothing review, animations, LOD, Chapter 1 integration and target-device performance remain |
+| Elias and Rahman character production specifications | Merged as design package (PR #39 at `3887b66`) | `docs/design/characters/Elias_Ward_Character_Production_v1/`, `docs/design/characters/Rahman_Character_Production_v1/` | Production docs and review gates | Does not constitute clinical or canon approval, nor runtime integration |
 | Anomaly evidence model and clinical/supernatural separation (F3) | Planned | | F0 §7, §8 | Waits on the owner's Psychosomatic Bleed decision |
 | Mara Ellis, Chapters 2–5 content, title screen | Planned | | v1.1 handoff | Clinical and narrative approval needed first |
 | Ward Zero (Stage 6), exterior (Stage 7), textures (Stage 8) | Planned | | `docs/ENVIRONMENT_STAGES.md` | |
@@ -101,9 +107,9 @@ Headless checks do not cover these. They stay here until the owner confirms them
 - Focused validation: cue validator 5 IDs/voice mappings; TestRunner 122/0; TestAudio 336/0. The repository runner stops in music generation because local FFmpeg lacks `libvorbis` (music pipeline 1 passed/2 failed); subsequent suites were run directly on the merged Naomi model branch and passed. CI is not observed.
 - The adapter is capability-driven and the current placeholder requires no clips, facial blend shapes, or named bones. Realistic-model playback/visual review remains for the owner on Mac. Do not modify the active Naomi model-builder branch from this workstream.
 
-## Naomi 3D character base (active branch; base milestone only)
+## Naomi 3D character base (merged base milestone; follow-on refinement remains)
 
-- Branch `biancaalexis132-png-naomi-character-pipeline` is pushed through verified documentation checkpoint `ff1b4059f5d728d37c24fe47762ecb7bff8948fd`, atop tested code `2a6ffda5e580c551b0f2f235861960e0d7662657`; it includes current main `21205c3`. Draft PR #37 is open; do not merge automatically.
+- PR #37 merged to `main` at `47a68f4`; its Naomi base milestone is now integrated. The follow-on visual review/refinement, animation, scene integration and target-device performance work remain separate and incomplete.
 - Builder, configuration, validator and exact Mac commands live in `tools/blender/characters/`. Generated outputs are `assets/blender/characters/Naomi_Bennett_Base_v01.blend`, `assets/exports/characters/Naomi_Bennett_Base_v01.glb`, and four review renders. The model is an automated base, not a finished realistic Naomi; its face, pulled-back twists, clothing fit/deformation and rendered likeness still require owner/artist review.
 - Exact MPFB2 v2.0.18 inputs, CC0-1.0 license evidence, GPL tool-code notice, macro weights, output sizes and limitations are in `assets/asset_manifest/naomi_character_manifest.json`; the common GLB manifest records imported dimensions and materials. No Mixamo or non-MPFB assets were used; this workstream made no gameplay, dialogue, clinical, or save changes.
 - Blender 5.2.2 build/validator passed; GLB is 53 joints / 42,583 triangles with two embedded textures. Godot 4.7 import and 139/139 GLB asset checks passed; QA 19/0/0, TestRunner 122/0, TestAudio 336/0, pharmacology 0 failures, boot and Chapter 1 audio sequence passed. The full runner's only failures are two music-preview tests blocked by local FFmpeg `Unknown encoder 'libvorbis'`.

@@ -1,5 +1,41 @@
 # AI session handoff
 
+## Jordan Vale review merge reconciliation — Copilot, 2026-10-18 00:54 UTC
+
+**Objective:** Resolve the four continuity/status conflicts by merging latest `origin/main` into the Jordan documentation-review branch, preserving all upstream Naomi/production work and the Jordan review. Do not alter the nine Jordan source files, runtime, SaveManager, clinical rules, or clinical approval state; keep PR #38 draft and do not merge it.
+
+**Branch / base / checkpoint:** `biancaalexis132-png-jordan-vale-v2-review`, merged with `origin/main` `47a68f40b09423b3253091e25b4715ce82447113`. Merge commit `0279db890abb05483feb6b08463d63a738b51810` is pushed and verified by `git ls-remote`. PR #38 is open and draft; GitHub reports `MERGEABLE`, with `validate` pending on this head.
+
+**Completed:** Resolved conflicts in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, and `docs/PROJECT_STATUS.md`. Preserved Naomi character PR #37 and Elias/Rahman production package PR #39 additions from main, and corrected current status to show #35, #36, #37, and #39 merged. Naomi refinement remains independent. The Jordan `REVIEW.md` and all nine source package files are unchanged.
+
+**Post-push verification:** The continuity checkpoint `3f162e3caee3739137ec0cf9df93f226dc72023c` is pushed and `git ls-remote` verified the exact SHA. PR #38 remains open/draft; GitHub reports `MERGEABLE`, and `validate` is pending on this head (run 39084612239). The next continuity update will advance the head and needs a fresh CI check.
+
+**Validation on `0279db8`:** JSON syntax parse passed; `git show --check --oneline HEAD` passed; explicit nine-file comparison against `origin/docs/jordan-vale-v2` passed. Hosted PR #38 `validate` was pending on merge commit `0279db8` (run 39084497112) and is superseded by the latest run. Full local Godot QA was not run because this is a docs-only Jordan review/merge and no Jordan runtime or schema changed.
+
+**Next exact steps:** 1) Push the continuity checkpoint and recheck the newest PR #38 validation/mergeability state. 2) Keep the PR draft and do not merge. 3) Owner resolves the canon/source/authority questions and a qualified psychiatrist reviews case-specific content before any schema/runtime proposal. No clinical content has been approved or activated.
+
+## Jordan Vale CP-001 v2 clinical-content and implementation review — Copilot, 2026-10-18 00:37 UTC
+
+**Objective:** Review the nine-file Jordan Vale CP-001 v2 case package as documentation only. Identify content/provenance gaps and implementation blockers; do not change the source package, activate content/rules, modify the runtime or SaveManager, or merge.
+
+**Branch / base / checkpoint:** `biancaalexis132-png-jordan-vale-v2-review`, based on verified `origin/main` `03f1585a62bd33db7dcfe8116b50db71f8ee171b`. Review source is `origin/docs/jordan-vale-v2` `8131b240afd77710b277f010b8b096c1a6b684d2`, merged by PR #36. Report commit `7876d53317da79b375a33ae06a2b66020928dc9b` and continuity checkpoint `16d55f64af6e2139e509b4ed9810fa462150e423` are pushed and `git ls-remote` verified. Draft PR #38 to `main` is open.
+
+**GitHub state:** PR #36 (Jordan package), #35 (Naomi acting cues), and #34 (campaign screenplay package) are merged. Before this review PR was opened, `gh pr list --state open` returned no open PRs; the draft review PR is now open. This main state is later than the `fb07887` base cited by older handoff/status text. The PR #35 acting-cue work is merged; a separate Naomi character pipeline remains active on `biancaalexis132-png-naomi-character-pipeline` at fetched remote `2a6ffda5e580c551b0f2f235861960e0d7662657`. No Naomi model or cue files were touched; a scope note was sent to that session.
+
+**Completed / findings:** Added `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`. The report covers all nine source files, separates high-level owner-approved narrative direction from clinical approval, cites current canon/schema/save/ending evidence, ranks eight findings, and gives gated next steps. Main blockers: Chapter 1 still labels Jordan provisional/not canon; the referenced v1 package is absent from fetched refs/file history; the historical diagnosis source is not authored; all case dialogue/clinical content remains pending; current SaveManager is v3 and Continuing Practice has no runtime/schema/lifecycle; ending A/B/C state is still proposed; no CP validator exists. The report does not invent medical, risk, legal, or timeline facts.
+
+**Source files:** All nine files at the reviewed source SHA remain unchanged. No patient data, clinical rules, executable content, SaveManager state, or runtime files changed.
+
+**Review priorities and approvals:** Owner must resolve whether CP-001 is the same person as Chapter 1’s provisional Jordan and correct missing v1/source provenance. A qualified psychiatrist must review the exact clinical material, symptom prompts, consent language, and any safety/escalation scope. Owner review is separately required for legal setting, player authority, canon, and the gameplay contract. All content remains pending. No diagnosis, risk conclusion, legal status, or treatment effect is approved.
+
+**Validation:** `python3 -m json.tool docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/case_cp001_v2.json` passed syntax parsing; this is not schema validation. Existing `ContentValidator` does not load the proposal JSON and there is no CP schema validator. `git show --check` passed on the review and continuity checkpoints; `git diff --check` passed. Hosted PR #38 `validate` check passed in 3m50s on `b79ea11d675f40aeee3420676890e4a3ba8bcd7f` (https://github.com/biancaalexis132-png/ForensicWard_Game/actions/runs/39083958547/job/117546508688). Full local Godot QA was not run because changes are documentation-only. The CI run is not clinical validation.
+
+**Next exact steps:**
+1. Push the CI-result handoff update and verify the exact branch SHA with `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review`; confirm the PR remains draft and its current hosted check is green.
+2. Owner resolves identity/source questions; psychiatrist reviews case content and completes section-specific signoff before any schema/runtime PR. Never merge.
+3. Keep later work gated: documentation/canon corrections; separate case-schema/validator PR; approved consolidated v3→v4 design across CP/finale/protagonist; lifecycle tests; content activation only after approvals.
+
+**Constraints / coordination:** Keep the supernatural and clinical domains independent; Ward Zero cannot change diagnosis, treatment, case access, or eligibility. Preserve access across endings and profiles. Naomi CP lines are proposals only and remain separate from acting/model work. Report and continuity checkpoints through `b79ea11d675f40aeee3420676890e4a3ba8bcd7f` are pushed and verified; CI-result notes are the current documentation-only follow-up and are not yet pushed.
 ## Naomi 3D character base — Copilot, 2026-10-18
 
 - **Last updated:** 2026-10-18 00:43 UTC
