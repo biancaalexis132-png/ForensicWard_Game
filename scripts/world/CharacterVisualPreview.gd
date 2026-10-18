@@ -22,6 +22,13 @@ const CANDIDATES: Dictionary = {
 const DEFAULT_VERSION: Dictionary = {
 	"staff_bennett": "v02",
 }
+## Where the previewed model stands, relative to the character's marker. Only the
+## model moves; the interaction box, collision and name label stay on the marker.
+## Bennett's marker sits inside the nursing-station desk facing into the office, so
+## the model steps back to the office side and turns to face the corridor counter.
+const PLACEMENT: Dictionary = {
+	"staff_bennett": {"yaw_degrees": 180.0, "offset": Vector3(-0.05, 0.0, 0.55)},
+}
 
 static var _requests: Dictionary = {}
 static var _parsed: bool = false
@@ -68,6 +75,13 @@ static func requested_version(character_id: String) -> String:
 
 static func candidate_path(character_id: String, version: String) -> String:
 	return str((CANDIDATES.get(character_id, {}) as Dictionary).get(version, ""))
+
+
+## Transform to apply to a previewed model under WardCharacter/VisualRoot.
+static func placement_for(character_id: String) -> Transform3D:
+	var placement: Dictionary = PLACEMENT.get(character_id, {})
+	var basis: Basis = Basis(Vector3.UP, deg_to_rad(float(placement.get("yaw_degrees", 0.0))))
+	return Transform3D(basis, placement.get("offset", Vector3.ZERO))
 
 
 ## The requested candidate scene, or null when no preview is requested or it cannot load.

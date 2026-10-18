@@ -36,6 +36,11 @@ func test_arguments_select_only_known_candidates() -> void:
 				"Naomi %s GLB is imported" % version)
 
 
+func test_placement_is_identity_without_an_entry() -> void:
+	check_eq(CharacterVisualPreview.placement_for("staff_voss"), Transform3D.IDENTITY,
+			"characters without a placement keep the model on their marker")
+
+
 func test_preview_is_off_by_default() -> void:
 	CharacterVisualPreview.set_requests({})
 	var bennett: WardCharacter = _spawn_character("staff_bennett")
@@ -53,6 +58,8 @@ func test_requested_candidate_attaches_without_changing_interaction() -> void:
 		var model: Node = visual_root.get_child(0)
 		check_eq(model.find_children("*", "Skeleton3D", true, false).size(), 1, "candidate keeps its rig")
 		check_eq((model as Node3D).scale, Vector3.ONE, "candidate is not rescaled")
+		check_eq((model as Node3D).transform, CharacterVisualPreview.placement_for("staff_bennett"),
+				"only the review placement is applied to the model")
 	check(not (bennett.get_node("Body/Mesh") as MeshInstance3D).visible, "placeholder hides behind the model")
 	check(not (bennett.get_node("Body/Collision") as CollisionShape3D).disabled, "standing collision is unchanged")
 	check_eq((bennett.get_node("Interactable") as Interactable).interactable_id,
@@ -79,6 +86,14 @@ func test_preview_changes_no_saved_state_and_survives_zone_rebuild() -> void:
 	var bennett: WardCharacter = world.get_character("staff_bennett")
 	check(bennett != null and bennett.get_node("VisualRoot").get_child_count() == 1,
 			"nursing-station Bennett shows the candidate")
+	if bennett != null and bennett.get_node("VisualRoot").get_child_count() == 1:
+		var model: Node3D = bennett.get_node("VisualRoot").get_child(0)
+		# glTF models face +Z; the corridor counter is on the +X side of the nursing station.
+		check(model.global_basis.z.normalized().dot(Vector3.RIGHT) > 0.99, "previewed Naomi faces the counter")
+		check(model.global_position.x < bennett.global_position.x - 0.4,
+				"previewed Naomi stands on the office side of the desk, not inside it")
+		check_eq((bennett.get_node("Interactable") as Node3D).global_position,
+				bennett.global_transform * Vector3(0.0, 0.9, 0.0), "interaction box stays on the marker")
 	check_eq(SaveManager.capture_state(), plain_state, "game state is identical with and without the preview")
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "save with the preview on")
 	var save_data: Variant = JSON.parse_string(
