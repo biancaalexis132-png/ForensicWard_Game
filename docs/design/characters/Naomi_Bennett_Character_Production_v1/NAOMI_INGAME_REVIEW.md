@@ -45,7 +45,7 @@ Captured in the Linux container on software OpenGL (lighting approximate), with 
 - `v04_listen.png`: `listen_neutral` with `attentive`: slight lean and head tilt.
 - `v04_speak.png`: `stand_conversational` with `warm_subtle` and `mouth_open`. In play the mouth follows a syllable rhythm while her line plays; there is no lip sync.
 - `v04_concerned.png`: `concerned_restrained`.
-- `v04_counter_idle.png` and `v04_counter_chart.png`: from the counter, idle and mid `restrained_chart_indication`. The scrub hem no longer follows the hand.
+- `v04_counter_idle.png` and `v04_counter_chart.png`: from the counter, idle and mid `restrained_chart_indication`. From here the monitor hides her right forearm, so the gesture barely shows; the Blender sheet `assets/renders/characters/Naomi_Bennett_v04_body_clips.png` shows it, with the scrub hem no longer following the hand.
 
 `v04_face_comparison.png` puts the six face frames side by side.
 
