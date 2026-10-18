@@ -80,7 +80,8 @@ Remote branches may remain after merge. Branch existence alone does not prove ac
 | Elias and Rahman character production specifications | Merged as design package (PR #39 at `3887b66`) | `docs/design/characters/Elias_Ward_Character_Production_v1/`, `docs/design/characters/Rahman_Character_Production_v1/` | Production docs and review gates | Does not constitute clinical or canon approval, nor runtime integration |
 | Anomaly evidence model and clinical/supernatural separation (F3) | Planned | | F0 §7, §8 | Waits on the owner's Psychosomatic Bleed decision |
 | Mara Ellis, Chapters 2–5 content, title screen | Planned | | v1.1 handoff | Clinical and narrative approval needed first |
-| Ward Zero (Stage 6), exterior (Stage 7), textures (Stage 8) | Planned | | `docs/ENVIRONMENT_STAGES.md` | |
+| Environment Stage 6 Ward Zero (7 props, 7 rooms, swappable anomaly states) | Done, not merged | `claude/environment-stage-6` (PR) | 152/152 `.glb` import in Godot 4.7 | Not wired into gameplay; anomaly states provisional pending owner review |
+| Exterior (Stage 7), textures (Stage 8) | Planned | | `docs/ENVIRONMENT_STAGES.md` | |
 
 ## Blocked
 
