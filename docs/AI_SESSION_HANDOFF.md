@@ -1,5 +1,13 @@
 # AI session handoff
 
+## Codex dialogue visemes — 2026-10-18
+
+- Owner: "continue i approve of the animations so far"; scoped approval recorded, no broader likeness/performance approval inferred.
+- Branch `codex/dialogue-viseme-integration`, implementation `44b2ff5418b027868ec562d8d98569ad06d909b2` pushed and verified; integrates merged source/preview PRs #65/#66.
+- Existing face rig now uses approximate text visemes with jaw fallback and lifecycle/pause support. Ten real-model regressions; full QA exit 0: TestRunner 187/0, GLBs 161/0, audio 336/0 and Chapter 1 sequence complete. Two AudioDirector timers fixed for unvoiced/gap pause. Dedicated handoff records commands, recovery checkpoint and draft link.
+- Linux diagnostic MP4/still in `docs/handoffs/dialogue_viseme_diagnostic/`; target Mac review remains pending. Exact resume: `Godot --path . -s res://tools/godot/review_dialogue_visemes.gd` on the Mac, then speaking/idle frame time and gesture-shadow checks. No asset, clinical dialogue, save schema or cutscene change.
+- Dedicated recovery: `docs/handoffs/2026-10-18_codex_dialogue_visemes.md`. All earlier workstream entries preserved.
+
 ## Codex explicit v06 preview — 2026-10-18
 
 - Branch `codex/naomi-v06-review-preview`, implementation `ca8b689166e69fcb4cf97aab2d621789be04ac54` pushed and verified. Independent source validation is draft PR #65; initial audit PR #64 merged.

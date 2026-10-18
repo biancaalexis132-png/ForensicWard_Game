@@ -562,7 +562,7 @@ func play_line(line_id: String, emitter: Node3D = null) -> bool:
 	else:
 		push_warning("AudioDirector: no voice clip for '%s'; showing subtitle only" % line_id)
 		duration = clampf(line["text"].split(" ").size() * 0.4, 2.0, 12.0)
-		get_tree().create_timer(duration).timeout.connect(
+		get_tree().create_timer(duration, false).timeout.connect(
 				_on_unvoiced_timeout.bind(line_id, _current_line_token))
 	EventBus.subtitle_shown.emit(line_id, line["speaker_name"], line["text"], duration)
 	var completed: bool = false
@@ -587,7 +587,7 @@ func play_scene(scene_id: String, emitters: Dictionary = {}) -> void:
 			return # Stopped or replaced by another line.
 		if index < line_ids.size() - 1:
 			var token: int = _dialogue_token
-			await get_tree().create_timer(LINE_GAP_SECONDS).timeout
+			await get_tree().create_timer(LINE_GAP_SECONDS, false).timeout
 			if token != _dialogue_token:
 				return # Dialogue was stopped or restarted during the pause.
 
