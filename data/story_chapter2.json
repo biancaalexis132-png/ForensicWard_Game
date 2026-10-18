@@ -4,7 +4,7 @@
 	"title": "Chapter 2: The Missing Hours",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received. Scene 06 (Hale's Door): Hale scopes the question and the player requests one permitted follow-up. No access, escort or inspection is granted; Ward Zero entry stays in Chapter 3.",
+	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received. Scene 06 (Hale's Door): Hale scopes the question and the player requests one permitted follow-up. No access, escort or inspection is granted; Ward Zero entry stays in Chapter 3. Scene 07 (An Incomplete Witness): a Facilities technician recalls hearing the old lift bell during a scheduled shutdown but did not see anyone use it. Recorded as witness memory only; no clue, evidence or anomaly is created.",
 	"objectives": [
 		{
 			"id": "obj_ch2_handoff",
@@ -189,10 +189,68 @@
 					}
 				]
 			}
+		},
+		{
+			"id": "obj_ch2_witness_account",
+			"text": "A Facilities technician is at the interview room door. Ask what they actually noticed during the shutdown.",
+			"complete_when": {
+				"flag": "ch2_witness_account_recorded"
+			}
+		},
+		{
+			"id": "obj_ch2_witness_followup",
+			"text": "Decide how to follow up the technician's recollection.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch2_witness_work_orders"
+					},
+					{
+						"flag": "ch2_witness_as_reported"
+					},
+					{
+						"flag": "ch2_witness_timing"
+					}
+				]
+			}
 		}
 	],
 	"beats": [],
 	"staff_lines": [
+		{
+			"staff_id": "staff_facilities_tech",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_witness_work_orders"
+					},
+					{
+						"flag": "ch2_witness_as_reported"
+					},
+					{
+						"flag": "ch2_witness_timing"
+					}
+				]
+			},
+			"text": "I've told you what I heard. I didn't see anything, and I'd rather that's how it's written."
+		},
+		{
+			"staff_id": "staff_facilities_tech",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_hale_clinical_risk_check"
+					},
+					{
+						"flag": "ch2_hale_report_summary"
+					},
+					{
+						"flag": "ch2_hale_facilities_plans"
+					}
+				]
+			},
+			"text": "Security said you might want a word about the shutdown. I'll tell you what I can."
+		},
 		{
 			"staff_id": "staff_hale",
 			"when": {
@@ -828,6 +886,90 @@
 					},
 					{
 						"flag": "ch2_hale_facilities_plans"
+					}
+				]
+			}
+		},
+		{
+			"id": "interaction_ch2_witness_account",
+			"interactable_id": "character:staff_facilities_tech",
+			"title": "Facilities technician: the shutdown",
+			"body": "Technician: I heard the old lift bell. Could've been the test cycle. Sound carries strangely through the pipes.\n\nWhat do you ask?",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_hale_clinical_risk_check"
+					},
+					{
+						"flag": "ch2_hale_report_summary"
+					},
+					{
+						"flag": "ch2_hale_facilities_plans"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "leading",
+					"label": "\"So someone took the old lift down during the shutdown?\"",
+					"response": "Technician: I didn't say that. I heard a bell. If you write it that way you're writing something I never saw.\n\nThat question suggested an answer. Ask it again without one."
+				},
+				{
+					"id": "ask_seen",
+					"label": "\"Did you actually see anyone use the elevator?\"",
+					"flag": "ch2_witness_account_recorded",
+					"response": "Technician: No. I wouldn't say I did.\n\nRecorded as reported: heard what sounded like the old lift bell during a scheduled shutdown; possibly the test cycle; did not see anyone use the lift. This is witness memory, not an observation of movement."
+				}
+			],
+			"unavailable_body": "The technician is busy.",
+			"expires_when": {
+				"flag": "ch2_witness_account_recorded"
+			}
+		},
+		{
+			"id": "interaction_ch2_witness_followup",
+			"interactable_id": "character:staff_facilities_tech",
+			"title": "Facilities technician: follow-up",
+			"body": "Technician: Anything else? I've got closers to finish.\n\n[b]On record[/b]\nHeard a bell during a scheduled shutdown; did not see the lift used; timing not checked.",
+			"when": {
+				"flag": "ch2_witness_account_recorded"
+			},
+			"options": [
+				{
+					"id": "record_movement",
+					"label": "Record that the lift moved during the shutdown",
+					"response": "Nobody saw the lift move. A remembered bell can't be written up as movement. Choose a follow-up that checks it."
+				},
+				{
+					"id": "work_orders",
+					"label": "Ask which work orders covered the shutdown and test cycle",
+					"flag": "ch2_witness_work_orders",
+					"response": "Technician: Facilities logs every test cycle. I'll send you the work-order numbers for that shift.\n\nFollow-up recorded: confirm scheduled work orders. The bell may match a test; nothing is concluded yet."
+				},
+				{
+					"id": "as_reported",
+					"label": "Keep the recollection exactly as reported, with its uncertainty",
+					"flag": "ch2_witness_as_reported",
+					"response": "Follow-up recorded: the statement stands in the technician's own words, including \"could've been the test cycle\" and \"I wouldn't say I did\". No inference is added."
+				},
+				{
+					"id": "verify_timing",
+					"label": "Ask when they heard it, without suggesting a time",
+					"flag": "ch2_witness_timing",
+					"response": "Technician: Late in the shift. I didn't look at a clock.\n\nFollow-up recorded: timing to be checked against shift and work-order records. No time is assigned from memory."
+				}
+			],
+			"unavailable_body": "Ask what the technician noticed first.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch2_witness_work_orders"
+					},
+					{
+						"flag": "ch2_witness_as_reported"
+					},
+					{
+						"flag": "ch2_witness_timing"
 					}
 				]
 			}

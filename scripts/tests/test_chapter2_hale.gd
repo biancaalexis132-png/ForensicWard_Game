@@ -174,7 +174,7 @@ func _run_hale(choice: String, flag: String) -> void:
 	check_eq(_director().get_chapter_flags("ch2"), flags, "escort refused")
 	_talk_hale(choice)
 	check(_director().has_flag(flag), "follow-up recorded: " + flag)
-	check(_objective().is_empty(), "authored Chapter 2 objectives so far complete")
+	check_eq(_objective(), "obj_ch2_witness_account", "Hale hands on to the witness")
 	check(not _director().has_completed("ch2"), "Chapter 2 not falsely completed")
 	check_eq(_canonical(TrustManager.to_save_data()), trust, "no access granted")
 	check_eq(_canonical(PatientManager.to_save_data()), patients, "no patient moved or changed")
