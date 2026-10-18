@@ -47,7 +47,9 @@ Captured in the Linux container on software OpenGL (lighting approximate), with 
 - `v04_concerned.png`: `concerned_restrained`.
 - `v04_counter_idle.png` and `v04_counter_chart.png`: from the counter, idle and mid `restrained_chart_indication`. The scrub hem no longer follows the hand.
 
-Still visibly wrong: glossy, plastic-looking skin; lumpy shoes and trouser hems; eyes do not track the player. None of this is approved.
+`v04_face_comparison.png` puts the six face frames side by side.
+
+Still visibly wrong: the new brows read as drawn outlines rather than hair; the blink leaves a visible gap at full value; the speaking mouth is barely visible at this distance; the skin is glossy and plastic-looking; the shoes and trouser hems are lumpy; the eyes do not track the player; a small white square sits by the left temple (already in v03). None of this is approved.
 
 ## What the in-game captures show (v02)
 
