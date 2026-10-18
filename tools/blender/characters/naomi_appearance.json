@@ -1,0 +1,59 @@
+{
+  "character": {
+    "name": "Naomi Bennett",
+    "character_id": "staff_bennett",
+    "role": "Charge Nurse",
+    "production_status": "AUTOMATED_BASE_REQUIRES_MANUAL_REFINEMENT"
+  },
+  "mpfb": {
+    "version": "2.0.18",
+    "scale": 0.1,
+    "macro_morphs": {
+      "gender": 1.0,
+      "age": 0.62,
+      "muscle": 0.46,
+      "weight": 0.52,
+      "proportions": 0.5,
+      "height": 0.5,
+      "cupsize": 0.5,
+      "firmness": 0.5,
+      "race": {
+        "african": 0.94,
+        "asian": 0.03,
+        "caucasian": 0.03
+      }
+    }
+  },
+  "skin": {
+    "srgb_hex": "#895B45",
+    "texture_size": 2048,
+    "roughness": 0.46,
+    "noise_strength": 0.008
+  },
+  "scrubs": {
+    "srgb_hex": "#172D4A",
+    "texture_size": 1024,
+    "roughness": 0.78,
+    "weave_strength": 0.018
+  },
+  "hair": {
+    "srgb_hex": "#211713",
+    "highlight_srgb_hex": "#39261E",
+    "twist_count": 32,
+    "twist_radius": 0.0045
+  },
+  "eyes": {
+    "sclera_srgb_hex": "#D8C8B7",
+    "iris_srgb_hex": "#493020",
+    "pupil_srgb_hex": "#17110E"
+  },
+  "mesh": {
+    "export_decimate_ratio": 0.42,
+    "triangle_budget": 45000
+  },
+  "render": {
+    "width": 1200,
+    "height": 1600,
+    "samples": 32
+  }
+}
