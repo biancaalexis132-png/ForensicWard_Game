@@ -1,5 +1,11 @@
 # Project status
 
+**Owner animation decision (2026-10-18):** "continue i approve of the animations so far".
+Animations shown so far are approved. New dialogue-viseme work, full model
+geometry/likeness, cutscene use and Mac performance are separate pending gates.
+`codex/dialogue-viseme-integration` adds a deterministic text-based approximation
+through the existing face/audio event lifecycle; see its dedicated handoff.
+
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
 **Naomi v06 correction (Codex, 2026-10-18):** fetched main `0c104b2` includes merged PRs #61–#63. Independent payload/Godot audit on pushed `codex/naomi-v06-validation` `3621ae1` finds plain v06 has ten stable morphs and **no visemes**, while v06_mpfb has all 32 expected morphs. Both have ten clips and valid exported weights. Runtime still drives mouth_open; preview has no v06 selector. Matching Blender source checks and all v06 Mac visual/performance checks remain unverified. Technical readiness and owner approval are not reached. See `docs/handoffs/2026-10-18_codex_naomi_v06_validation.md`; historical rows below are superseded for this candidate.
