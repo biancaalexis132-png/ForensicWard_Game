@@ -4997,6 +4997,37 @@
       "source_file": "assets/blender/characters/Naomi_Bennett_v03.blend",
       "status": "Visual-development candidate; owner appearance review pending; not approved, not production-ready, not the default visual",
       "triangles_base": 44692
+    },
+    "Naomi_Bennett_v04": {
+      "asset_id": "Naomi_Bennett_v04",
+      "asset_name": "Naomi Bennett character v04 (animation development)",
+      "category": "character",
+      "collision": "Not generated; WardCharacter retains runtime contact and interaction behavior",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.5027,
+        0.347,
+        1.6899
+      ],
+      "export_file": "assets/exports/characters/Naomi_Bennett_v04.glb",
+      "implementation_notes": "v03 plus the cast animation standard: 10 clips (6 body, 4 gesture), 10 face morph targets, eyelashes and brow strokes, clothing re-skinned from the full body. Built by tools/character_animation/build_animated_character.py; provenance in assets/asset_manifest/naomi_character_manifest_v04.json. Shown only with --character-preview.",
+      "intended_location": "Chapter 1: Charge Nurse Naomi Bennett",
+      "markers": [],
+      "materials": [
+        "Naomi_Eye",
+        "Naomi_Hair.001",
+        "Naomi_Hair_Cap",
+        "Naomi_ID_Badge",
+        "Naomi_Scrubs_Top",
+        "Naomi_Scrubs_Trousers",
+        "Naomi_Shoes.001",
+        "Naomi_Skin.001",
+        "Naomi_Lash",
+        "Brow"
+      ],
+      "source_file": "assets/blender/characters/Naomi_Bennett_v04.blend",
+      "status": "Animation-development candidate; owner review pending; not approved, not production-ready, not the default visual",
+      "triangles_base": 44812
     }
   },
   "schema_version": "1.0"

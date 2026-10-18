@@ -10,6 +10,7 @@ const GAZE_ADAPTER_GROUP: StringName = &"character_gaze_adapter"
 const GESTURE_ADAPTER_GROUP: StringName = &"character_gesture_adapter"
 const GESTURE_PLAYER_NAME: StringName = &"GestureAnimationPlayer"
 const ANIMATION_BLEND_SECONDS: float = 0.3
+const FALLBACK_BODY_CLIP: String = "idle_neutral"
 
 var _actor_root: Node3D
 var _active_face_shapes: Dictionary = {}
@@ -77,20 +78,23 @@ func _apply_body(semantic_name: String) -> void:
 	if semantic_name.is_empty():
 		return
 	var player: AnimationPlayer = null
+	# The clip actually played: the requested one, or idle_neutral when the rig lacks it.
+	var clip_name: String = semantic_name
 	if semantic_name != "none":
 		player = _find_animation_player(semantic_name, false)
 		if player == null:
-			player = _find_animation_player("idle_neutral", false)
+			clip_name = FALLBACK_BODY_CLIP
+			player = _find_animation_player(clip_name, false)
 	if player == null:
 		_stop_body_animation()
 	if semantic_name == "none" or player == null:
 		return
 	if player != _active_body_player:
 		_stop_body_animation()
-	if player.current_animation != semantic_name:
-		player.play(semantic_name, ANIMATION_BLEND_SECONDS)
+	if player.current_animation != clip_name:
+		player.play(clip_name, ANIMATION_BLEND_SECONDS)
 	_active_body_player = player
-	_active_body_animation = StringName(semantic_name)
+	_active_body_animation = StringName(clip_name)
 
 
 func _apply_face(semantic_name: String) -> void:

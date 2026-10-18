@@ -4,7 +4,7 @@ extends RefCounted
 ##
 ## Unapproved character models can be viewed in the real Chapter 1 scene without
 ## being wired into it: run the game with `-- --character-preview=staff_bennett`
-## (or `staff_bennett:v02` / `:v01` for an older candidate). Without the argument every
+## (or `staff_bennett:v03`, `:v02`, `:v01` for an older candidate). Without the argument every
 ## WardCharacter keeps its placeholder. Nothing here touches story, dialogue,
 ## clinical or save state; WardCharacter.set_visual_scene still validates the model
 ## and falls back to the capsule if it is missing or invalid.
@@ -18,10 +18,11 @@ const CANDIDATES: Dictionary = {
 		"v01": "res://assets/exports/characters/Naomi_Bennett_Base_v01.glb",
 		"v02": "res://assets/exports/characters/Naomi_Bennett_Base_v02.glb",
 		"v03": "res://assets/exports/characters/Naomi_Bennett_v03.glb",
+		"v04": "res://assets/exports/characters/Naomi_Bennett_v04.glb",
 	},
 }
 const DEFAULT_VERSION: Dictionary = {
-	"staff_bennett": "v03",
+	"staff_bennett": "v04",
 }
 ## Where the previewed model stands, relative to the character's marker. Only the
 ## model moves; the interaction box, collision and name label stay on the marker.
