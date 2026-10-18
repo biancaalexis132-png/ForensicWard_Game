@@ -1,0 +1,341 @@
+[
+  {
+    "animations": [
+      "idle_breathing",
+      "idle_neutral",
+      "listen_neutral",
+      "restrained_chart_indication",
+      "return_to_workstation",
+      "small_acknowledgement_nod",
+      "small_greeting_nod",
+      "stand_conversational",
+      "subtle_workstation_indication",
+      "turn_from_workstation"
+    ],
+    "blocking_failures": [
+      "missing morph: viseme_aa_02",
+      "missing morph: viseme_aa_ah_ax_01",
+      "missing morph: viseme_ao_03",
+      "missing morph: viseme_aw_09",
+      "missing morph: viseme_ay_11",
+      "missing morph: viseme_d_t_n_19",
+      "missing morph: viseme_er_05",
+      "missing morph: viseme_ey_eh_uh_04",
+      "missing morph: viseme_f_v_18",
+      "missing morph: viseme_h_12",
+      "missing morph: viseme_k_g_ng_20",
+      "missing morph: viseme_l_14",
+      "missing morph: viseme_ow_08",
+      "missing morph: viseme_oy_10",
+      "missing morph: viseme_p_b_m_21",
+      "missing morph: viseme_r_13",
+      "missing morph: viseme_s_z_15",
+      "missing morph: viseme_sh_ch_jh_zh_16",
+      "missing morph: viseme_sil_00",
+      "missing morph: viseme_th_dh_17",
+      "missing morph: viseme_w_uw_07",
+      "missing morph: viseme_y_iy_ih_ix_06"
+    ],
+    "images": [
+      {
+        "bytes": 1360128,
+        "embedded": true,
+        "name": "Naomi_Skin_BaseColor_v06",
+        "signature_valid": true
+      },
+      {
+        "bytes": 226428,
+        "embedded": true,
+        "name": "Naomi_Skin_Roughness_v06",
+        "signature_valid": true
+      },
+      {
+        "bytes": 35048,
+        "embedded": true,
+        "name": "Naomi_Eye_BaseColor",
+        "signature_valid": true
+      },
+      {
+        "bytes": 947,
+        "embedded": true,
+        "name": "Naomi_Badge_BaseColor",
+        "signature_valid": true
+      },
+      {
+        "bytes": 46018,
+        "embedded": true,
+        "name": "Naomi_Hair_Normal",
+        "signature_valid": true
+      },
+      {
+        "bytes": 54213,
+        "embedded": true,
+        "name": "Naomi_Hair_BaseColor",
+        "signature_valid": true
+      },
+      {
+        "bytes": 1847629,
+        "embedded": true,
+        "name": "Naomi_Scrubs_Top_Normal",
+        "signature_valid": true
+      },
+      {
+        "bytes": 1181423,
+        "embedded": true,
+        "name": "Naomi_Scrubs_Top_BaseColor",
+        "signature_valid": true
+      },
+      {
+        "bytes": 1847030,
+        "embedded": true,
+        "name": "Naomi_Scrubs_Trousers_Normal",
+        "signature_valid": true
+      },
+      {
+        "bytes": 1172506,
+        "embedded": true,
+        "name": "Naomi_Scrubs_Trousers_BaseColor",
+        "signature_valid": true
+      }
+    ],
+    "limits": "Image signatures only; Godot import must prove decode. No visual, Blender, gesture-shadow or Mac performance verdict.",
+    "meshes": [
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {
+          "attentive": 0.0017798203976225006,
+          "blink": 0.014263349378888688,
+          "blink_L": 0.014263349378888688,
+          "blink_R": 0.014263349378888688,
+          "calm_professional": 0.0008153277670817036,
+          "concerned_restrained": 0.0011695061502596468,
+          "focused": 0.0015226634596324936,
+          "mouth_open": 0.011321582373308279,
+          "professionally_serious": 0.0011334590838615194,
+          "warm_subtle": 0.0025464406267620802
+        },
+        "name": "Naomi_Bennett_Body_Mesh"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Eye_L"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Eye_R"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Bennett_Body_Mesh.005"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_ID_Badge"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Twists"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Bennett_Body_Mesh.004"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Bennett_Body_Mesh.002"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Bennett_Body_Mesh.003"
+      }
+    ],
+    "path": "assets/exports/characters/Naomi_Bennett_v06.glb",
+    "sha256": "0f322db678eb35aa672dea7d4f8e13ea240db9abc6aefc94e801f6eb8db82721"
+  },
+  {
+    "animations": [
+      "idle_breathing",
+      "idle_neutral",
+      "listen_neutral",
+      "restrained_chart_indication",
+      "return_to_workstation",
+      "small_acknowledgement_nod",
+      "small_greeting_nod",
+      "stand_conversational",
+      "subtle_workstation_indication",
+      "turn_from_workstation"
+    ],
+    "blocking_failures": [],
+    "images": [
+      {
+        "bytes": 1360128,
+        "embedded": true,
+        "name": "Naomi_Skin_BaseColor_v06",
+        "signature_valid": true
+      },
+      {
+        "bytes": 226428,
+        "embedded": true,
+        "name": "Naomi_Skin_Roughness_v06",
+        "signature_valid": true
+      },
+      {
+        "bytes": 35048,
+        "embedded": true,
+        "name": "Naomi_Eye_BaseColor",
+        "signature_valid": true
+      },
+      {
+        "bytes": 947,
+        "embedded": true,
+        "name": "Naomi_Badge_BaseColor",
+        "signature_valid": true
+      },
+      {
+        "bytes": 46018,
+        "embedded": true,
+        "name": "Naomi_Hair_Normal",
+        "signature_valid": true
+      },
+      {
+        "bytes": 54213,
+        "embedded": true,
+        "name": "Naomi_Hair_BaseColor",
+        "signature_valid": true
+      },
+      {
+        "bytes": 1847629,
+        "embedded": true,
+        "name": "Naomi_Scrubs_Top_Normal",
+        "signature_valid": true
+      },
+      {
+        "bytes": 1181423,
+        "embedded": true,
+        "name": "Naomi_Scrubs_Top_BaseColor",
+        "signature_valid": true
+      },
+      {
+        "bytes": 1847030,
+        "embedded": true,
+        "name": "Naomi_Scrubs_Trousers_Normal",
+        "signature_valid": true
+      },
+      {
+        "bytes": 1172506,
+        "embedded": true,
+        "name": "Naomi_Scrubs_Trousers_BaseColor",
+        "signature_valid": true
+      }
+    ],
+    "limits": "Image signatures only; Godot import must prove decode. No visual, Blender, gesture-shadow or Mac performance verdict.",
+    "meshes": [
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {
+          "attentive": 0.0021319179393665443,
+          "blink": 0.016574140200664313,
+          "blink_L": 0.012613429751666698,
+          "blink_R": 0.012613429751666698,
+          "calm_professional": 0.0022029816108930446,
+          "concerned_restrained": 0.0018229324748989455,
+          "focused": 0.00243318524417493,
+          "mouth_open": 0.01781828542226947,
+          "professionally_serious": 0.002035493637800788,
+          "viseme_aa_02": 0.02133288623164203,
+          "viseme_aa_ah_ax_01": 0.007433052143513727,
+          "viseme_ao_03": 0.007951100211517485,
+          "viseme_aw_09": 0.010401979792733508,
+          "viseme_ay_11": 0.008440421030474873,
+          "viseme_d_t_n_19": 0.005000979374381619,
+          "viseme_er_05": 0.010916478990084763,
+          "viseme_ey_eh_uh_04": 0.006811763100638829,
+          "viseme_f_v_18": 0.0052962297899194575,
+          "viseme_h_12": 0.014098554633924395,
+          "viseme_k_g_ng_20": 0.007256034664537546,
+          "viseme_l_14": 0.009033851731421622,
+          "viseme_ow_08": 0.006829348394608832,
+          "viseme_oy_10": 0.006191924466698968,
+          "viseme_p_b_m_21": 0.004742347351122635,
+          "viseme_r_13": 0.0045277103016350025,
+          "viseme_s_z_15": 0.005821520019628879,
+          "viseme_sh_ch_jh_zh_16": 0.00512442947240556,
+          "viseme_sil_00": 0.0,
+          "viseme_th_dh_17": 0.002847778966574177,
+          "viseme_w_uw_07": 0.005714010523922932,
+          "viseme_y_iy_ih_ix_06": 0.009044888448135667,
+          "warm_subtle": 0.006597309509082372
+        },
+        "name": "Naomi_Bennett_Body_Mesh"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Eye_L"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Eye_R"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Bennett_Body_Mesh.005"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_ID_Badge"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Twists"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Bennett_Body_Mesh.004"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Bennett_Body_Mesh.002"
+      },
+      {
+        "bad_joint_vertices": 0,
+        "bad_weight_vertices": 0,
+        "morph_max_offset_m": {},
+        "name": "Naomi_Bennett_Body_Mesh.003"
+      }
+    ],
+    "path": "assets/exports/characters/Naomi_Bennett_v06_mpfb.glb",
+    "sha256": "d47f41f099f8ea2435644b44cd86dc63a113b70aa9b8f51c0807cbb667bd51bf"
+  }
+]

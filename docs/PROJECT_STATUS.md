@@ -2,6 +2,8 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
+**Naomi v06 correction (Codex, 2026-10-18):** fetched main `0c104b2` includes merged PRs #61–#63. Independent payload/Godot audit on pushed `codex/naomi-v06-validation` `3621ae1` finds plain v06 has ten stable morphs and **no visemes**, while v06_mpfb has all 32 expected morphs. Both have ten clips and valid exported weights. Runtime still drives mouth_open; preview has no v06 selector. Matching Blender source checks and all v06 Mac visual/performance checks remain unverified. Technical readiness and owner approval are not reached. See `docs/handoffs/2026-10-18_codex_naomi_v06_validation.md`; historical rows below are superseded for this candidate.
+
 **Last GitHub state verified:** 2026-10-18 14:15 UTC against `origin/main` `a202caf` (PR #45 merged). PR #44 (F3) then merged at `fec5933`. Open: draft PR #46 (Naomi review-only preview). Naomi v02 is viewable in game only with `-- --character-preview=staff_bennett`; it is not approved.
 
 Earlier snapshot: verified against fetched `origin/main` `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`. PR #43 (Ward Zero Stage 6) and PR #42 (optional character visual slot/fallback) are merged; PR #44 and Naomi draft PR #45 are open. Naomi v01 remains unapproved and not integrated. Versioned v02 candidate assets are generated on `biancaalexis132-png-naomi-model-refinement`, merged with this latest main; v02 is structurally valid but still fails visual review and is not ready for runtime integration.

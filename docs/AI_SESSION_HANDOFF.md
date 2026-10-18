@@ -276,3 +276,13 @@ Godot 4.7 standard lives outside checkout at `/workspace/.tools/godot-4.7/Godot_
 3. Obtain owner approval for P1. After approval, implement only immutable option schema and pure profile validation with synthetic test fixtures; no creator UI, save version bump, personality scoring, casting changes or new clinical/narrative canon in P1.
 4. For later P2, capture real v3 save before adding a provider, implement explicit v3→v4 migration and test full v1/v2/v3 compatibility. Follow the plan’s small PR sequence, maintaining clinical independence and equal mandatory access.
 5. Before any environment/audio/visual task, verify the reserved external workstreams. Request the actual missing bible through the owner’s normal file workflow before relying on it. Mac checks require the owner’s hardware.
+## Codex Naomi v06 independent validation — 2026-10-18
+
+Dedicated additive workstream handoff: `docs/handoffs/2026-10-18_codex_naomi_v06_validation.md`.
+Branch `codex/naomi-v06-validation`; implementation `3621ae1e679577c50009dc1f1837d2b5600b9e6e`
+was pushed and confirmed by `git ls-remote`. Both actual GLBs audited: plain
+v06 lacks 22 visemes; v06_mpfb contains them. No controller, preview, asset or
+other agent's branch changed. Matching Blender and Mac review remain blocked;
+see newest AI_HANDOFF entry for exact tests and PR checkpoint. Next task: source
+inspection in production Blender, then coordinate explicit v06_mpfb preview
+with the preview owner before Mac capture. All other entries are preserved.
