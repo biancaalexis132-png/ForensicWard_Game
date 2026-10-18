@@ -8,12 +8,11 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
-**GitHub state correction (verified 2026-10-18 00:56 UTC):** `origin/main` is `47a68f40b09423b3253091e25b4715ce82447113`, after Naomi character PR #37 and Elias/Rahman production package PR #39; both are merged. Jordan package PR #36 and Naomi acting PR #35 are also merged. Draft review PR #38 was open and `MERGEABLE` at pushed head `3f162e3`; hosted `validate` is pending on that head (run 39084612239). This handoff update will advance the PR head, so refresh checks afterward. The #35/#37 rows and earlier Naomi notes were written before their merges and are preserved only as historical context; they are not current PR state. Naomi model refinement remains separate from this review.
+**GitHub state correction (verified 2026-10-18 01:13 UTC):** `origin/main` is `96ef65ed40ced591f576326e21fcd60f9da9d3a7`, beyond the older `47a68f4` checkpoint recorded below; `git log 47a68f4..origin/main` confirms merges of PRs #38, #40 and #41. PRs #35–#41 are merged; `gh pr list --state open` returned no open PRs before the CIG implementation branch was prepared. Historical rows below are preserved as history, not current PR state. Naomi's model-builder/refinement remains a separate workstream; its base asset still needs owner visual review and has no animation clips.
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Jordan Vale CP-001 v2 review | `biancaalexis132-png-jordan-vale-v2-review` (draft PR #38) | Copilot / current session | `3f162e3caee3739137ec0cf9df93f226dc72023c` (verified remote; validate pending) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; review handoff updates in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md` | Merge from `origin/main` resolved and pushed; PR remains draft/mergeable, awaiting validation and owner/psychiatrist decisions |
-| Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
+| CIG-1 optional character visual slot | `biancaalexis132-png-cig-1-character-integration` | Copilot / current session | `387ceba5fc6d5abf9c564ef876c9c475825e2493` (verified remote; test results below) | `scripts/world/Character.gd`, `scenes/props/Character.tscn`, `scripts/tests/test_character_visual.gd`, and CIG continuity/status docs | Implementation checkpoint pushed; documentation checkpoint and draft PR are being prepared. Naomi asset integration remains gated on owner visual review and authored animations. |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -58,6 +57,57 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 01:13 UTC · Copilot · CIG-1 optional character visual slot
+
+- **Branch:** `biancaalexis132-png-cig-1-character-integration` (based on `main` at `96ef65e`)
+- **Latest verified commit:** `387ceba5fc6d5abf9c564ef876c9c475825e2493` "Add optional character visual slot"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-cig-1-character-integration` printed `387ceba5fc6d5abf9c564ef876c9c475825e2493`.
+- **Pull request:** none yet; create a draft PR after this continuity checkpoint is pushed.
+- **State:** unfinished but coherent. Optional runtime slot/fallback groundwork is complete; the Naomi asset itself is not integrated.
+
+**Accomplished**
+- Added `VisualRoot` and an optional `PackedScene` visual slot to `WardCharacter`; retained `Body/Mesh`, collision, interaction, label, character IDs, dialogue flow and save providers.
+- Seated scaling now applies only to the legacy placeholder capsule. Imported visuals keep their authored transform and are rejected (with a warning and visible fallback) when the root is not `Node3D` or no renderable mesh is present.
+- Added deterministic tests for initial fallback, seated behavior, valid/invalid/empty visuals, pre-tree configuration, Naomi dialogue with a clipless visual, save/load state invariance, and character fallback after zone unload/rebuild.
+- Confirmed the Naomi GLB is present and licensed in `assets/asset_manifest/naomi_character_manifest.json`, but its review status is pending; it is an automated base, not yet approved for integration, and has zero embedded animation clips. It was imported/validated by Godot but not attached to a game character.
+
+**Files modified**
+- `scripts/world/Character.gd`, `scenes/props/Character.tscn`: optional visual node/resource, validation and fallback.
+- `scripts/tests/test_character_visual.gd` and `.uid`: focused regression coverage.
+- `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md`: current CIG checkpoint and refreshed GitHub state.
+
+**Unfinished**
+- Actual Naomi model integration, animation playback on her rig, rendered/pose review and owner Mac profiling: blocked pending owner visual approval and an authored animation deliverable. Do not claim the automated base is the approved integration target.
+- Draft PR creation and hosted CI observation: not done yet.
+
+**Known errors**
+- Full `python3 tests/qa/run.py --godot /tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot` exits 1 in `tests/music_ai/test_generate_music.py`: `Unknown encoder 'libvorbis'` for `test_generate_verify_and_approve` and `test_reference_audio_uses_approved_main_theme`. No FFmpeg/Vorbis replacement was installed; the runner stops before Godot suites, which were then executed directly.
+- Godot emits expected warnings for deliberately invalid/empty visual test fixtures; no script errors remain.
+
+**Tests** (on `387ceba`)
+- `python3 -m unittest discover -s docs/design/characters/ForensicWard_Character_Integration_Gate_v1/tools -p 'test_*.py'`: 3 passed.
+- `python3 docs/design/characters/ForensicWard_Character_Integration_Gate_v1/tools/check_character_glb.py assets/exports/characters/Naomi_Bennett_Base_v01.glb`: structurally valid; 17 meshes, 71 nodes, 1 skin, 0 animations, 12 materials, 2 textures.
+- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --version`: `4.7.stable.official.5b4e0cb0f`; official universal macOS release verified against its published SHA-512.
+- `Godot --headless --path . --editor --import`: exit 0, no errors. `tools/godot/validate_glb_imports.gd`: 139 assets checked, 0 failures.
+- `Godot --headless --path . res://scripts/tests/TestRunner.tscn`: 127 passed / 0 failed.
+- `Godot --headless --path . res://tests/TestPharmacology.tscn`: 0 failures; `res://tests/qa/TestQA.tscn`: 19 passed / 0 failed / 0 skipped.
+- `Godot --headless --path . --quit-after 60`: boot OK; `res://tests/audio/TestAudio.tscn`: 336 passed / 0 failed; `res://scenes/audio/Ch1AudioSequence.tscn -- --exit-when-done`: completed in 63.2 seconds with Naomi subtitles and `CH1_SEQUENCE_DONE`.
+- `git diff --check`: passed. CI: not observed.
+
+**Dependencies not available to remote agents**
+- Naomi Blender builder dependency MPFB2 2.0.18 is local-only for rebuilding the source; no rebuild was done. Owner's visual and target-device review is still required.
+- Full runner music tests need an FFmpeg build with the `libvorbis` encoder; none was installed during this work.
+
+**Next steps**
+1. Create a draft PR to `main`; after creation update this handoff, the active-workstream table and `docs/PROJECT_STATUS.md` with the PR number/state.
+2. Have the owner review the Naomi preview and approve/refine the base before attaching `Naomi_Bennett_Base_v01.glb` to `staff_bennett`.
+3. Author/approve rig animations and validate actual animation/acting behavior before claiming CIG-1 model acceptance.
+4. Run the documented visual/performance review on the owner's Apple Silicon 8 GB Mac; no rendering-quality or performance claim is made by headless tests.
+
+**Notes for the other agent**
+- Keep `data/world_chapter1.json`, dialogue/story/clinical state, save schema and Naomi builder sources unchanged.
+- The historical latest handoff and project-status snapshot were stale at `47a68f4`; live `origin/main` advanced to `96ef65e` through #38/#40/#41 merges. No PR was open at the pre-creation check.
 
 ### 2026-10-18 00:56 UTC · Copilot · Jordan review final push verification
 

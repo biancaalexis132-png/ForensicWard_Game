@@ -1,5 +1,17 @@
 # AI session handoff
 
+## CIG-1 optional character visual slot — Copilot, 2026-10-18 01:13 UTC
+
+- **Current objective:** prove an optional 3D visual can sit behind the existing WardCharacter interface without changing interaction, story, clinical or save behavior. Do not integrate the automated Naomi base before owner visual approval.
+- **Branch / base / checkpoint:** `biancaalexis132-png-cig-1-character-integration`, based on `main` `96ef65ed40ced591f576326e21fcd60f9da9d3a7`. Implementation commit `387ceba5fc6d5abf9c564ef876c9c475825e2493` is pushed and `git ls-remote` verified. Continuity edits are being prepared; draft PR not yet created.
+- **GitHub reconciliation:** current `origin/main` is `96ef65e`, later than the `47a68f4` SHA in prior handoffs. PR #38 (Jordan review), #40 (Hale/Mara package), and #41 (CIG documentation) merged after that recorded SHA. Naomi acting #35 and base #37 remain merged. No open PRs were found before preparing this CIG PR.
+- **Completed:** `Character.tscn` now has `VisualRoot`. `WardCharacter` accepts an optional `PackedScene`, validates the root and renderable mesh, preserves the capsule fallback on invalid resources, and keeps the seated 0.65Y scaling on the placeholder only. The `.uid` for the new test is generated and retained. Gameplay interaction IDs, collisions, label, dialogue, story, clinical state and save schema are unchanged.
+- **Tests:** official Godot 4.7 universal macOS build downloaded and SHA-512 verified; editor import exit 0; 127/0 TestRunner, 19/0/0 QA, 139/139 GLB imports, 0 Pharmacology failures, boot OK, 336/0 TestAudio, Chapter 1 audio sequence complete. CIG Python preflight tests 3/3; Naomi GLB has 1 skin and zero animations. Full repo runner exits at two music tests with `Unknown encoder 'libvorbis'`; exact details are in the AI handoff.
+- **Failures/blockers:** no runtime model/animation integration yet. Naomi's main-branch base has pending visual review and no animation clips. The Mac's rendered appearance/performance review is not done. Hosted CI not observed.
+- **Files changed:** `scripts/world/Character.gd`, `scenes/props/Character.tscn`, `scripts/tests/test_character_visual.gd`, its `.uid`, and continuity/status docs.
+- **Next exact steps:** (1) finish and push continuity docs; (2) create a draft PR to `main`, record its number and refresh hosted checks; (3) wait for owner visual approval and authored animation assets before integrating Naomi; (4) run visual/pose/performance review on owner hardware.
+- **Creative/clinical constraints:** do not alter `data/world_chapter1.json`, existing IDs/dialogue, clinical approval, story progression, or saves; do not tie supernatural content to symptoms; do not edit Naomi builder files or report placeholder success as model acceptance.
+
 ## Jordan Vale review merge reconciliation — Copilot, 2026-10-18 00:54 UTC
 
 **Objective:** Resolve the four continuity/status conflicts by merging latest `origin/main` into the Jordan documentation-review branch, preserving all upstream Naomi/production work and the Jordan review. Do not alter the nine Jordan source files, runtime, SaveManager, clinical rules, or clinical approval state; keep PR #38 draft and do not merge it.
