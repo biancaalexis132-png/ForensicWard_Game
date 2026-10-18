@@ -96,6 +96,43 @@ def ffmpeg(*args):
     return subprocess.run(["ffmpeg", "-hide_banner", "-nostats", *args], capture_output=True, text=True)
 
 
+def vorbis_encoder():
+    """"libvorbis" when ffmpeg has it, else "oggenc" (Xiph vorbis-tools), else None.
+
+    Homebrew's ffmpeg 9 is built without libvorbis, so on a Mac the fallback writes a
+    24-bit WAV with ffmpeg and encodes it with oggenc at the same -q quality scale.
+    """
+    if re.search(r"\blibvorbis\b", ffmpeg("-encoders").stdout):
+        return "libvorbis"
+    return "oggenc" if shutil.which("oggenc") else None
+
+
+def encode_vorbis(source, args, target, quality):
+    """Runs ffmpeg's filter args on source and writes target as OGG Vorbis."""
+    encoder = vorbis_encoder()
+    if encoder == "libvorbis":
+        result = ffmpeg("-y", "-v", "error", "-i", str(source), *args, "-c:a", "libvorbis", "-q:a", str(quality),
+                        "-map_metadata", "-1", str(target))
+        if result.returncode != 0:
+            raise RuntimeError(f"ffmpeg failed for {target}: {result.stderr[-500:]}")
+        return
+    if encoder is None:
+        raise RuntimeError(f"ffmpeg failed for {target}: no Vorbis encoder. This ffmpeg lacks libvorbis; "
+                           "install Xiph's encoder with: brew install vorbis-tools")
+    wav = target.with_name(target.stem + ".encode-tmp.wav")
+    try:
+        result = ffmpeg("-y", "-v", "error", "-i", str(source), *args, "-c:a", "pcm_s24le",
+                        "-map_metadata", "-1", str(wav))
+        if result.returncode != 0:
+            raise RuntimeError(f"ffmpeg failed for {target}: {result.stderr[-500:]}")
+        result = subprocess.run(["oggenc", "-Q", "--discard-comments", "-q", str(quality), "-o", str(target), str(wav)],
+                                capture_output=True, text=True)
+        if result.returncode != 0:
+            raise RuntimeError(f"oggenc failed for {target}: {result.stderr[-500:]}")
+    finally:
+        wav.unlink(missing_ok=True)
+
+
 def probe_duration(path):
     out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
                          capture_output=True, text=True)
@@ -166,10 +203,7 @@ def encode(source, target, loop, quality=6):
         args = ["-i", str(source), "-filter_complex", graph, "-map", "[out]"]
     else:
         args = ["-af", f"{norm},aresample=48000,afade=t=out:st={max(probe_duration(source) - 2.0, 0)}:d=2"]
-    result = ffmpeg("-y", "-v", "error", "-i", str(source), *args, "-c:a", "libvorbis", "-q:a", str(quality),
-                    "-map_metadata", "-1", str(target))
-    if result.returncode != 0:
-        raise RuntimeError(f"ffmpeg failed for {target}: {result.stderr[-500:]}")
+    encode_vorbis(source, args, target, quality)
 
 
 # --- ACE-Step API ----------------------------------------------------------------------
@@ -373,6 +407,10 @@ def approve(candidate_id, approved_by, notes):
 def command_check(args):
     require_ffmpeg()
     print("ffmpeg/ffprobe: OK")
+    encoder = vorbis_encoder()
+    if encoder is None:
+        sys.exit("No Vorbis encoder: this ffmpeg lacks libvorbis. Install it with: brew install vorbis-tools")
+    print("Vorbis encoder:", encoder)
     try:
         health = api(args.api, "/health", timeout=10)
         print("ACE-Step API:", json.dumps(health))
