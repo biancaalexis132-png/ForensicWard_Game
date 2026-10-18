@@ -5028,6 +5028,35 @@
       "source_file": "assets/blender/characters/Naomi_Bennett_v04.blend",
       "status": "Animation-development candidate; owner review pending; not approved, not production-ready, not the default visual",
       "triangles_base": 44812
+    },
+    "Naomi_Bennett_v04_local": {
+      "asset_id": "Naomi_Bennett_v04_local",
+      "asset_name": "Naomi Bennett character v04_local (local Mac animation-pipeline validation)",
+      "category": "character",
+      "collision": "Not generated; WardCharacter retains runtime contact and interaction behavior",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.5027,
+        0.347,
+        1.6899
+      ],
+      "export_file": "assets/exports/characters/Naomi_Bennett_v04_local.glb",
+      "implementation_notes": "v03 mesh, rig and materials unchanged, plus three small validation clips (idle_neutral, idle_breathing, listen_neutral) authored by tools/character_animation/ForensicWard_Animation_Pipeline_v03 on the owner's Mac (Blender 5.2.2). No facial shape keys. Provenance in assets/asset_manifest/naomi_character_manifest_v04_local.json. Not wired into CharacterVisualPreview.",
+      "intended_location": "Chapter 1: Charge Nurse Naomi Bennett",
+      "markers": [],
+      "materials": [
+        "Naomi_Eye",
+        "Naomi_Hair.001",
+        "Naomi_Hair_Cap",
+        "Naomi_ID_Badge",
+        "Naomi_Scrubs_Top",
+        "Naomi_Scrubs_Trousers",
+        "Naomi_Shoes.001",
+        "Naomi_Skin.001"
+      ],
+      "source_file": "assets/blender/characters/Naomi_Bennett_v04_local.blend",
+      "status": "Pipeline validation build; not approved, not production-ready, not the default visual; superseded by the cloud v04 build when that lands",
+      "triangles_base": 44692
     }
   },
   "schema_version": "1.0"

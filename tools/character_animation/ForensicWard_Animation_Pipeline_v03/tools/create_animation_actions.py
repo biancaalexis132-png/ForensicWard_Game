@@ -26,7 +26,11 @@ for spec in cfg['clips']:
     bones=[rig.pose.bones[cfg['bones'][role]] for role in spec['degrees']]
     initial={b.name:b.rotation_quaternion.copy() for b in bones}
     for b in bones:b.rotation_mode='QUATERNION'
-    for frame,multiplier in ((1,0.0),(13,1.0),(25,0.0)):
+    # Optional per-clip length in frames (default 25 keeps the original 1 s test loop).
+    # Breathing and idle loops need several seconds to read as natural at 24 fps.
+    last=int(spec.get('frames',25))
+    if last<3:raise RuntimeError('Clip '+name+' needs at least 3 frames')
+    for frame,multiplier in ((1,0.0),(1+(last-1)//2,1.0),(last,0.0)):
         scene.frame_set(frame)
         for role,deg in spec['degrees'].items():
             b=rig.pose.bones[cfg['bones'][role]]
