@@ -1,5 +1,15 @@
 # AI progress tracker
 
+## Jordan Vale CP-001 v2 review — Copilot, 2026-10-18
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Review the nine-file Jordan Vale v2 package without changing its source or activating runtime content | Review report complete and pushed at `7876d53317da79b375a33ae06a2b66020928dc9b`; continuity checkpoint / draft PR pending | Owner’s limited narrative direction; qualified psychiatrist review still required; current `main` is `03f1585a62bd33db7dcfe8116b50db71f8ee171b` | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; continuity docs | JSON syntax PASS; no CP schema validator; docs-only `git diff --check` to rerun on final checkpoint; full Godot QA not run | Push final continuity checkpoint, verify remote SHA, open draft PR. Then owner resolves identity/source questions and psychiatrist reviews content before any implementation |
+
+Review findings: Chapter 1 still labels Jordan provisional/not canon; v1 package is absent from fetched repository history; historical diagnosis source and all clinical screenplay details remain pending; safety/legal/collateral scope and provenance need review; current runtime has no CP loader/lifecycle and SaveManager remains v3. See `REVIEW.md` for source citations, severity, dispositions and implementation gates. No source files, patient data, clinical rules, runtime, or save schema changed.
+
+Coordination: PR #35 (Naomi acting cues) is merged. Naomi model work remains active on its separate branch; proposed CP Naomi lines are not linked to those cues. Preserve branch/file ownership.
+
 ## Naomi Chapter 1 acting cues — Copilot, 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |

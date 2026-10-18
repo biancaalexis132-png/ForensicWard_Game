@@ -8,8 +8,11 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
+**GitHub state correction (verified 2026-10-18 UTC):** `origin/main` is `03f1585a62bd33db7dcfe8116b50db71f8ee171b`, after screenplay PR #34, Naomi acting PR #35, and Jordan package PR #36. `gh pr list --state open` returned no open PRs. The Naomi #35 row and top handoff below were written before its merge and are preserved as historical records, not current PR state. A separate Naomi character-pipeline session remains active; this review does not claim or edit its files.
+
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Jordan Vale CP-001 v2 review | `biancaalexis132-png-jordan-vale-v2-review` | Copilot / current session | `7876d53317da79b375a33ae06a2b66020928dc9b` (verified remote) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; review handoff updates in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md` | Review report pushed; continuity checkpoint and draft PR pending |
 | Naomi Chapter 1 acting cues | `biancaalexis132-png-naomi-chapter1-acting` (PR #35) | Copilot / current session | `3e4dfea90830222c46e0bb7cbe92ad515e7ccef3` (verified remote checkpoint) | `scripts/acting/**`, `scripts/world/Character.gd`, `scripts/autoload/EventBus.gd`, `systems/audio/AudioDirector.gd`, `tests/audio/TestAudio.gd`, `scripts/tests/test_naomi_acting.gd`, `docs/AUDIO.md` | Draft PR open; awaiting owner review |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
@@ -56,6 +59,51 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 00:37 UTC · Copilot · Jordan Vale CP-001 v2 review
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review` (based on `origin/main` at `03f1585a62bd33db7dcfe8116b50db71f8ee171b`)
+- **Reviewed source:** `origin/docs/jordan-vale-v2` at `8131b240afd77710b277f010b8b096c1a6b684d2`; merged as PR #36. PR #35 and PR #34 are also merged. `gh pr list --state open` returned no open PRs.
+- **Latest verified commit:** `7876d53317da79b375a33ae06a2b66020928dc9b` "Review Jordan Vale CP-001 v2 package"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned the exact SHA above.
+- **Pull request:** none yet; create a draft PR to `main` after the final continuity checkpoint.
+- **State:** documentation review report pushed; no clinical approval, runtime/data adoption, SaveManager change, or source-package edits.
+
+**Accomplished**
+- Reviewed all nine files in the CP-001 v2 package and compared the claims against current main’s patient schema/content loader, PatientManager, SaveManager v3/migrations, ChapterDirector/campaign, Chapter 5 ending proposal, clinical approval register and historical references.
+- Added `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md` with eight ranked findings, evidence citations, approval dispositions and gated implementation sequence.
+- Verified the Jordan source branch/merge and PR state against fetched GitHub refs. Current main is beyond the older `fb07887` handoff baseline. Historical handoff entries are retained.
+- Confirmed no CP-001 v1 path/package in the fetched repository refs/file history; the v2 claim to retain/derive from v1 is not independently verifiable.
+- Confirmed PR #35 acting cues merged; the Naomi 3D/model pipeline is still a separate active session/branch. The review’s proposed Naomi dialogue remains unlinked and untouched; the owner of that session was notified of the boundary.
+
+**Files modified at the verified report commit**
+- `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`: design-only, clinical-content and implementation review. The nine source files are unchanged.
+
+**Findings / approvals**
+- P1: reconcile Jordan’s identity with the existing Chapter 1 “provisional, not canon” character; owner decision and author correction.
+- P1: historical diagnosis provenance and specific symptom/dialogue review; psychiatrist decision required. Mood/anxiety statements remain symptoms/proposed dialogue, not diagnoses.
+- P1: review safety, legal-authority, consent and collateral scope; do not infer risk, capacity, legal status, or treatment.
+- P1: author source/event provenance, then add a separate schema/validator and coordinated lifecycle/save contract. No case runtime or case validator exists; current SaveManager remains v3 and Chapter 5 is planned.
+- P2: define source-time versus in-game time, task ownership/acknowledgment semantics, and recover the referenced v1 baseline or correct its provenance claim.
+- All clinical content stays pending; Ward Zero remains independent from clinical state. No rules or patient content were activated.
+
+**Tests**
+- `python3 -m json.tool docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/case_cp001_v2.json`: passed JSON syntax parsing; no CP schema validation exists.
+- `git show --check --oneline 7876d53317da79b375a33ae06a2b66020928dc9b`: passed.
+- `git diff --check`: passed on the continuity-doc working tree.
+- Full Godot QA: not run; documentation-only review with no runtime or shipped content changes.
+- Hosted CI: not observed.
+
+**Next steps**
+1. Finish the handoff/progress/status checkpoint and run `git show --check` plus `git diff --check`.
+2. Push and verify the final SHA with `git ls-remote`.
+3. Open a draft PR to `main`; do not merge.
+4. Owner resolves canon/source questions; psychiatrist reviews case-specific clinical material before any schema/runtime PR.
+
+**Notes for the other agent**
+- Keep the nine source package files, runtime, patient data, clinical rules and SaveManager unchanged in this review.
+- Use one shared, reviewed v3→v4 plan only after Continuing Practice, finale and protagonist state ownership are approved.
+- Naomi’s model work remains on its separate branch; no proposed CP dialogue is an approved acting cue.
 
 ### 2026-10-18 00:16 UTC · Copilot · Naomi Chapter 1 acting cues
 
