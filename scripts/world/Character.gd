@@ -41,6 +41,11 @@ func _ready() -> void:
 	_interactable.prompt = ("Talk to " if kind == Kind.STAFF else "Approach ") + display_name
 	if visual_scene != null:
 		set_visual_scene(visual_scene)
+	else:
+		# Review-only: off unless the game was started with --character-preview.
+		var preview: PackedScene = CharacterVisualPreview.scene_for(character_id)
+		if preview != null:
+			set_visual_scene(preview)
 	if kind == Kind.STAFF and character_id == "staff_bennett":
 		_naomi_acting = NaomiActingController.new()
 		_naomi_acting.name = "NaomiActingController"
