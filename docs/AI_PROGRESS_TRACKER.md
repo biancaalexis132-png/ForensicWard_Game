@@ -4,7 +4,7 @@
 
 | Task | State | Dependencies | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Add model-independent acting cue controller for the five authored Chapter 1 dialogue IDs | Complete on feature branch; not merged | Canonical cue package on `main` `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`; no dependency on unfinished 3D model | `scripts/acting/**`, Bennett-only integration, AudioDirector lifecycle signal, focused tests | Cue validator 5 IDs/voices; TestRunner 122/0; TestAudio 336/0; full runner blocked at music pipeline: 1 pass/2 failures because local FFmpeg lacks `libvorbis` | Push docs checkpoint, open draft PR to `main`, then request owner/Mac performance review |
+| Add model-independent acting cue controller for the five authored Chapter 1 dialogue IDs | Complete on draft PR #35; not merged | Canonical cue package on `main` `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`; no dependency on unfinished 3D model | `scripts/acting/**`, Bennett-only integration, AudioDirector lifecycle signal, focused tests | Cue validator 5 IDs/voices; TestRunner 122/0; TestAudio 336/0; full runner blocked at music pipeline: 1 pass/2 failures because local FFmpeg lacks `libvorbis` | Owner review; then request Mac performance review |
 
 ## Merge reconciliation — Codex, 2026-10-17
 

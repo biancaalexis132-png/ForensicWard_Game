@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Naomi Chapter 1 acting cues | `biancaalexis132-png-naomi-chapter1-acting` | Copilot / current session | `9d27aa1dd1566d3b6c4adaaffed821b189383562` (verified remote checkpoint) | `scripts/acting/**`, `scripts/world/Character.gd`, `scripts/autoload/EventBus.gd`, `systems/audio/AudioDirector.gd`, `tests/audio/TestAudio.gd`, `scripts/tests/test_naomi_acting.gd`, `docs/AUDIO.md` | Implementation pushed; preparing draft PR |
+| Naomi Chapter 1 acting cues | `biancaalexis132-png-naomi-chapter1-acting` (PR #35) | Copilot / current session | `3e4dfea90830222c46e0bb7cbe92ad515e7ccef3` (verified remote checkpoint) | `scripts/acting/**`, `scripts/world/Character.gd`, `scripts/autoload/EventBus.gd`, `systems/audio/AudioDirector.gd`, `tests/audio/TestAudio.gd`, `scripts/tests/test_naomi_acting.gd`, `docs/AUDIO.md` | Draft PR open; awaiting owner review |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -62,8 +62,8 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - **Branch:** `biancaalexis132-png-naomi-chapter1-acting` (based on `origin/main` at `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`)
 - **Latest verified commit:** `9d27aa1dd1566d3b6c4adaaffed821b189383562` "Add Naomi acting cue system"
 - **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-naomi-chapter1-acting` printed `9d27aa1dd1566d3b6c4adaaffed821b189383562` at 2026-10-18 00:16 UTC. This documentation checkpoint will sit on top; query the branch ref for its final SHA.
-- **Pull request:** none yet; create a draft PR to `main` after this checkpoint is pushed.
-- **State:** implementation pushed, finished for review; not merged.
+- **Pull request:** draft PR #35 to `main`, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/35.
+- **State:** implementation and handoff checkpoint pushed, finished for review; not merged.
 
 **Accomplished**
 - Added an additive `NaomiActingController` driven by the canonical `docs/design/characters/Naomi_Acting_Cues_v1/naomi_acting_cues.json`; cues use the existing five IDs in `ch1_b2_bennett_handover`, with no dialogue text, story, clinical content, or review-status changes.
@@ -99,9 +99,8 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - Local Godot 4.7 binary: `/tmp/godot-4.7-acting/Godot.app/Contents/MacOS/Godot`. The machine's FFmpeg 9.0.2 lacks the `libvorbis` encoder. Realistic Naomi model/rig remains under active work on a separate branch.
 
 **Next steps**
-1. Push this continuity checkpoint and verify the exact branch SHA with `git ls-remote origin refs/heads/biancaalexis132-png-naomi-chapter1-acting`.
-2. Create a draft PR to `main`, report its link and verified head to the coordinating session, and do not merge.
-3. Keep future model integration behind the adapter capability contract; request owner/Mac review for animation, face, gesture and transition feel.
+1. Owner reviews draft PR #35; agent does not merge.
+2. Keep future model integration behind the adapter capability contract; request owner/Mac review for animation, face, gesture and transition feel.
 
 **Notes for the other agent**
 - The source performance package is on `main` at `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`. Do not copy its cue JSON into a duplicate file.
