@@ -1,5 +1,7 @@
 # Project status
 
+**Chapter 1 continuity (2026-10-18, draft PR #68):** location story conditions now follow actual zone transitions and existing zone save state. Full QA passed on `e13fb0cec0b501d566fec090b8c14aac55766254`: game179/0, GLB161/0, audio336/0, boot and Chapter1 sequence passed. Two new regressions reproduced the missing-location bug before fixing it. No campaign text, clinical facts, access gates or Naomi assets changed. Not merged; see `docs/handoffs/2026-10-18_codex_chapter1_zone_continuity.md`.
+
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
 **Naomi v06 correction (Codex, 2026-10-18):** fetched main `0c104b2` includes merged PRs #61–#63. Independent payload/Godot audit on pushed `codex/naomi-v06-validation` `3621ae1` finds plain v06 has ten stable morphs and **no visemes**, while v06_mpfb has all 32 expected morphs. Both have ten clips and valid exported weights. Runtime still drives mouth_open; preview has no v06 selector. Matching Blender source checks and all v06 Mac visual/performance checks remain unverified. Technical readiness and owner approval are not reached. See `docs/handoffs/2026-10-18_codex_naomi_v06_validation.md`; historical rows below are superseded for this candidate.
