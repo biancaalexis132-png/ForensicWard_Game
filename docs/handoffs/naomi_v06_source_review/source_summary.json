@@ -1,0 +1,1029 @@
+[
+  {
+    "actions": [
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          121.0
+        ],
+        "max_pose_matrix_delta": 0.03737515211105347,
+        "name": "idle_breathing",
+        "sample_frames": [
+          1.0,
+          31.0,
+          61.0,
+          91.0,
+          121.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          241.0
+        ],
+        "max_pose_matrix_delta": 0.048881206661462784,
+        "name": "idle_neutral",
+        "sample_frames": [
+          1.0,
+          61.0,
+          121.0,
+          181.0,
+          241.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          181.0
+        ],
+        "max_pose_matrix_delta": 0.03489714115858078,
+        "name": "listen_neutral",
+        "sample_frames": [
+          1.0,
+          46.0,
+          91.0,
+          136.0,
+          181.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          61.0
+        ],
+        "max_pose_matrix_delta": 0.4783188998699188,
+        "name": "restrained_chart_indication",
+        "sample_frames": [
+          1.0,
+          16.0,
+          31.0,
+          46.0,
+          61.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          37.0
+        ],
+        "max_pose_matrix_delta": 0.40531235933303833,
+        "name": "return_to_workstation",
+        "sample_frames": [
+          1.0,
+          10.0,
+          19.0,
+          28.0,
+          37.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          28.0
+        ],
+        "max_pose_matrix_delta": 0.08093515038490295,
+        "name": "small_acknowledgement_nod",
+        "sample_frames": [
+          1.0,
+          7.75,
+          14.5,
+          21.25,
+          28.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          37.0
+        ],
+        "max_pose_matrix_delta": 0.11812879890203476,
+        "name": "small_greeting_nod",
+        "sample_frames": [
+          1.0,
+          10.0,
+          19.0,
+          28.0,
+          37.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          181.0
+        ],
+        "max_pose_matrix_delta": 0.06114722788333893,
+        "name": "stand_conversational",
+        "sample_frames": [
+          1.0,
+          46.0,
+          91.0,
+          136.0,
+          181.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          49.0
+        ],
+        "max_pose_matrix_delta": 0.20527254790067673,
+        "name": "subtle_workstation_indication",
+        "sample_frames": [
+          1.0,
+          13.0,
+          25.0,
+          37.0,
+          49.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          37.0
+        ],
+        "max_pose_matrix_delta": 0.40531235933303833,
+        "name": "turn_from_workstation",
+        "sample_frames": [
+          1.0,
+          10.0,
+          19.0,
+          28.0,
+          37.0
+        ]
+      }
+    ],
+    "blender_version": "5.2.2 LTS",
+    "blocking_failures": [
+      "missing morph: viseme_aa_02",
+      "missing morph: viseme_aa_ah_ax_01",
+      "missing morph: viseme_ao_03",
+      "missing morph: viseme_aw_09",
+      "missing morph: viseme_ay_11",
+      "missing morph: viseme_d_t_n_19",
+      "missing morph: viseme_er_05",
+      "missing morph: viseme_ey_eh_uh_04",
+      "missing morph: viseme_f_v_18",
+      "missing morph: viseme_h_12",
+      "missing morph: viseme_k_g_ng_20",
+      "missing morph: viseme_l_14",
+      "missing morph: viseme_ow_08",
+      "missing morph: viseme_oy_10",
+      "missing morph: viseme_p_b_m_21",
+      "missing morph: viseme_r_13",
+      "missing morph: viseme_s_z_15",
+      "missing morph: viseme_sh_ch_jh_zh_16",
+      "missing morph: viseme_sil_00",
+      "missing morph: viseme_th_dh_17",
+      "missing morph: viseme_w_uw_07",
+      "missing morph: viseme_y_iy_ih_ix_06"
+    ],
+    "images": [
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Badge_BaseColor",
+        "packed": true,
+        "pixel_count": 65536,
+        "size": [
+          128,
+          128
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Eye_BaseColor",
+        "packed": true,
+        "pixel_count": 262144,
+        "size": [
+          256,
+          256
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Hair_BaseColor",
+        "packed": true,
+        "pixel_count": 262144,
+        "size": [
+          256,
+          256
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Hair_Normal",
+        "packed": true,
+        "pixel_count": 262144,
+        "size": [
+          256,
+          256
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Scrubs_Top_BaseColor",
+        "packed": true,
+        "pixel_count": 4194304,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Scrubs_Top_Normal",
+        "packed": true,
+        "pixel_count": 4194304,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Scrubs_Trousers_BaseColor.001",
+        "packed": true,
+        "pixel_count": 4194304,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Scrubs_Trousers_Normal",
+        "packed": true,
+        "pixel_count": 4194304,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Skin_BaseColor_v06",
+        "packed": true,
+        "pixel_count": 16777216,
+        "size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Skin_Roughness_v06",
+        "packed": true,
+        "pixel_count": 4194304,
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "limits": "Five evaluated frames per clip; no visible clipping, blink closure, Mac performance, Godot placement or shadow verdict.",
+    "meshes": [
+      {
+        "armature_bound": true,
+        "name": "Naomi_Bennett_Body",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 5194,
+        "unweighted_vertices": 0,
+        "vertices": 5274
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Eye_L",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 262
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Eye_R",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 262
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Hair_Cap",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 287,
+        "unweighted_vertices": 0,
+        "vertices": 287
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_ID_Badge",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 8
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Natural_Twists",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 12564
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Practical_Shoes",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 3220
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Scrub_Top",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 1987
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Scrub_Trousers",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 1672
+      }
+    ],
+    "morph_max_offset_m": {
+      "attentive": 0.0017798203990572032,
+      "blink": 0.014263349312633433,
+      "blink_L": 0.014263349312633433,
+      "blink_R": 0.014263349312633433,
+      "calm_professional": 0.0008153277669455348,
+      "concerned_restrained": 0.0011695061480995975,
+      "focused": 0.0015226634927826617,
+      "mouth_open": 0.011321582192833994,
+      "professionally_serious": 0.0011334590773968201,
+      "warm_subtle": 0.0025464406475778846
+    },
+    "path": "assets/blender/characters/Naomi_Bennett_v06.blend",
+    "sha256_after": "d7b45d7987035e759c52ae113330f566cb23ad42f94d9109e8792c84082be073",
+    "sha256_before": "d7b45d7987035e759c52ae113330f566cb23ad42f94d9109e8792c84082be073",
+    "significant_warnings": [
+      "Naomi_Bennett_Body: 5194 source weight sums differ from one; compare normalized GLB export",
+      "Naomi_Hair_Cap: 287 source weight sums differ from one; compare normalized GLB export"
+    ]
+  },
+  {
+    "actions": [
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          121.0
+        ],
+        "max_pose_matrix_delta": 0.03737515211105347,
+        "name": "idle_breathing",
+        "sample_frames": [
+          1.0,
+          31.0,
+          61.0,
+          91.0,
+          121.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          241.0
+        ],
+        "max_pose_matrix_delta": 0.048881206661462784,
+        "name": "idle_neutral",
+        "sample_frames": [
+          1.0,
+          61.0,
+          121.0,
+          181.0,
+          241.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          181.0
+        ],
+        "max_pose_matrix_delta": 0.03489714115858078,
+        "name": "listen_neutral",
+        "sample_frames": [
+          1.0,
+          46.0,
+          91.0,
+          136.0,
+          181.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          61.0
+        ],
+        "max_pose_matrix_delta": 0.4783188998699188,
+        "name": "restrained_chart_indication",
+        "sample_frames": [
+          1.0,
+          16.0,
+          31.0,
+          46.0,
+          61.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          37.0
+        ],
+        "max_pose_matrix_delta": 0.40531235933303833,
+        "name": "return_to_workstation",
+        "sample_frames": [
+          1.0,
+          10.0,
+          19.0,
+          28.0,
+          37.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          28.0
+        ],
+        "max_pose_matrix_delta": 0.08093515038490295,
+        "name": "small_acknowledgement_nod",
+        "sample_frames": [
+          1.0,
+          7.75,
+          14.5,
+          21.25,
+          28.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          37.0
+        ],
+        "max_pose_matrix_delta": 0.11812879890203476,
+        "name": "small_greeting_nod",
+        "sample_frames": [
+          1.0,
+          10.0,
+          19.0,
+          28.0,
+          37.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          181.0
+        ],
+        "max_pose_matrix_delta": 0.06114722788333893,
+        "name": "stand_conversational",
+        "sample_frames": [
+          1.0,
+          46.0,
+          91.0,
+          136.0,
+          181.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          49.0
+        ],
+        "max_pose_matrix_delta": 0.20527254790067673,
+        "name": "subtle_workstation_indication",
+        "sample_frames": [
+          1.0,
+          13.0,
+          25.0,
+          37.0,
+          49.0
+        ]
+      },
+      {
+        "all_geometry_finite": true,
+        "evaluated_meshes": [
+          "Naomi_Bennett_Body",
+          "Naomi_Eye_L",
+          "Naomi_Eye_R",
+          "Naomi_Hair_Cap",
+          "Naomi_ID_Badge",
+          "Naomi_Natural_Twists",
+          "Naomi_Practical_Shoes",
+          "Naomi_Scrub_Top",
+          "Naomi_Scrub_Trousers"
+        ],
+        "frame_range": [
+          1.0,
+          37.0
+        ],
+        "max_pose_matrix_delta": 0.40531235933303833,
+        "name": "turn_from_workstation",
+        "sample_frames": [
+          1.0,
+          10.0,
+          19.0,
+          28.0,
+          37.0
+        ]
+      }
+    ],
+    "blender_version": "5.2.2 LTS",
+    "blocking_failures": [],
+    "images": [
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Badge_BaseColor",
+        "packed": true,
+        "pixel_count": 65536,
+        "size": [
+          128,
+          128
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Eye_BaseColor",
+        "packed": true,
+        "pixel_count": 262144,
+        "size": [
+          256,
+          256
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Hair_BaseColor",
+        "packed": true,
+        "pixel_count": 262144,
+        "size": [
+          256,
+          256
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Hair_Normal",
+        "packed": true,
+        "pixel_count": 262144,
+        "size": [
+          256,
+          256
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Scrubs_Top_BaseColor",
+        "packed": true,
+        "pixel_count": 4194304,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Scrubs_Top_Normal",
+        "packed": true,
+        "pixel_count": 4194304,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Scrubs_Trousers_BaseColor.001",
+        "packed": true,
+        "pixel_count": 4194304,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Scrubs_Trousers_Normal",
+        "packed": true,
+        "pixel_count": 4194304,
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Skin_BaseColor_v06",
+        "packed": true,
+        "pixel_count": 16777216,
+        "size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "decoded": true,
+        "external_path": "",
+        "name": "Naomi_Skin_Roughness_v06",
+        "packed": true,
+        "pixel_count": 4194304,
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "limits": "Five evaluated frames per clip; no visible clipping, blink closure, Mac performance, Godot placement or shadow verdict.",
+    "meshes": [
+      {
+        "armature_bound": true,
+        "name": "Naomi_Bennett_Body",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 5194,
+        "unweighted_vertices": 0,
+        "vertices": 5274
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Eye_L",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 262
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Eye_R",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 262
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Hair_Cap",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 287,
+        "unweighted_vertices": 0,
+        "vertices": 287
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_ID_Badge",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 8
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Natural_Twists",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 12564
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Practical_Shoes",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 3220
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Scrub_Top",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 1987
+      },
+      {
+        "armature_bound": true,
+        "name": "Naomi_Scrub_Trousers",
+        "negative_weight_vertices": 0,
+        "nonfinite_weight_vertices": 0,
+        "unnormalized_vertices": 0,
+        "unweighted_vertices": 0,
+        "vertices": 1672
+      }
+    ],
+    "morph_max_offset_m": {
+      "attentive": 0.0021319179358253587,
+      "blink": 0.016574140401279535,
+      "blink_L": 0.012613429752137051,
+      "blink_R": 0.012613429752137051,
+      "calm_professional": 0.002202981607214109,
+      "concerned_restrained": 0.0018229325060803987,
+      "focused": 0.0024331852535943387,
+      "mouth_open": 0.017818285554503703,
+      "professionally_serious": 0.0020354936063489725,
+      "viseme_aa_02": 0.021332886057694192,
+      "viseme_aa_ah_ax_01": 0.007433052150205189,
+      "viseme_ao_03": 0.007951100092607409,
+      "viseme_aw_09": 0.010401979899251939,
+      "viseme_ay_11": 0.008440421035525872,
+      "viseme_d_t_n_19": 0.005000979378089037,
+      "viseme_er_05": 0.010916479081117836,
+      "viseme_ey_eh_uh_04": 0.006811763123000528,
+      "viseme_f_v_18": 0.0052962298009873385,
+      "viseme_h_12": 0.014098554422719805,
+      "viseme_k_g_ng_20": 0.007256034592991542,
+      "viseme_l_14": 0.009033851805638435,
+      "viseme_ow_08": 0.006829348426959559,
+      "viseme_oy_10": 0.006191924425921263,
+      "viseme_p_b_m_21": 0.004742347368727582,
+      "viseme_r_13": 0.004527710309260918,
+      "viseme_s_z_15": 0.005821520094005842,
+      "viseme_sh_ch_jh_zh_16": 0.005124429462331196,
+      "viseme_sil_00": 0.0,
+      "viseme_th_dh_17": 0.0028477790013779402,
+      "viseme_w_uw_07": 0.005714010621849318,
+      "viseme_y_iy_ih_ix_06": 0.009044888300042731,
+      "warm_subtle": 0.006597309551738212
+    },
+    "path": "assets/blender/characters/Naomi_Bennett_v06_mpfb.blend",
+    "sha256_after": "9d485e0de57a722ab74fb5fe17922600f59048411f92caf27653435c051d8658",
+    "sha256_before": "9d485e0de57a722ab74fb5fe17922600f59048411f92caf27653435c051d8658",
+    "significant_warnings": [
+      "Naomi_Bennett_Body: 5194 source weight sums differ from one; compare normalized GLB export",
+      "Naomi_Hair_Cap: 287 source weight sums differ from one; compare normalized GLB export"
+    ]
+  }
+]

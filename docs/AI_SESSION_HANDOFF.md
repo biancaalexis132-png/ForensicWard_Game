@@ -286,3 +286,16 @@ other agent's branch changed. Matching Blender and Mac review remain blocked;
 see newest AI_HANDOFF entry for exact tests and PR checkpoint. Next task: source
 inspection in production Blender, then coordinate explicit v06_mpfb preview
 with the preview owner before Mac capture. All other entries are preserved.
+
+### Codex source-validation continuation
+
+Implementation `0d6e36989019a7dea4d59484b6b514ca8caafaca` pushed and verified on
+the original branch; PR #64 then merged without this new increment. Source work
+continues on `codex/naomi-v06-validation-cont-1` for a new draft PR. Official bpy 5.2.2 with Python 3.13 resolves
+the source-opening obstacle: ten packed textures load and ten clips animate
+finite geometry in each file; originals unchanged. Source test suite 4/0.
+Diagnostic stills show significant lid-rim and hem defects, so readiness is
+still blocked. Reports and reproducible stills: `docs/handoffs/naomi_v06_source_review/`.
+Owner confirmed all other sessions stopped. Next task: version significant fixes,
+then explicit MPFB preview and Mac validation. No existing asset/controller
+was edited. Final tests and remote checkpoint are in the newest AI_HANDOFF entry.
