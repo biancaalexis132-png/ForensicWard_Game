@@ -1,7 +1,7 @@
 extends SceneTree
 ## Bounded diagnostic in the existing nursing station, using real authored audio.
 ## No preview registration dependency and no gameplay/save/clinical content writes.
-## godot --path . -s res://tools/godot/review_dialogue_visemes.gd --quit-after 300
+## godot --path . -s res://tools/godot/review_dialogue_visemes.gd
 ## Optional engine --write-movie captures this eight-second diagnostic.
 
 func _initialize() -> void:
@@ -39,6 +39,17 @@ func _run() -> void:
 	var audio: Node = root.get_node("AudioDirector")
 	audio.call("play_line", "ch1_b2_bennett_001", actor)
 	await create_timer(8.0, false).timeout
+	# Match Main's audio teardown, including releasing the native OGG playback.
+	for node: Node in actor.find_children("*", "AudioStreamPlayer3D", true, false):
+		var voice: AudioStreamPlayer3D = node as AudioStreamPlayer3D
+		voice.stop()
+		voice.stream = null
 	audio.call("stop_dialogue")
+	# Let the existing awaitable line/duck-release callbacks settle before teardown.
+	await create_timer(1.0, false).timeout
+	world.queue_free()
+	layer.queue_free()
+	await process_frame
+	await process_frame
 	print("VISEME_REVIEW_DONE")
 	quit(0)

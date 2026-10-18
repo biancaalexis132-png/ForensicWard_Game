@@ -45,10 +45,12 @@ nursing-station actor and plays the existing first Naomi line for a bounded
 eight-second take. It is never invoked by normal gameplay. A manual invocation:
 
 ```sh
-godot --path . -s res://tools/godot/review_dialogue_visemes.gd --quit-after 300
+godot --path . -s res://tools/godot/review_dialogue_visemes.gd
 ```
 
-Optional `--write-movie` captures a diagnostic. Linux Compatibility/llvmpipe
+An eight-second take is followed by bounded audio teardown. Optional engine
+`--write-movie take.avi --fixed-fps 30 --quit-after 360` captures a diagnostic.
+Linux Compatibility/llvmpipe
 footage is not Mac Forward+/Metal appearance/performance evidence and does not
 establish technical readiness. No new default character or cutscene was set.
 
