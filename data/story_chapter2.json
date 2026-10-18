@@ -4,7 +4,7 @@
 	"title": "Chapter 2: The Missing Hours",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry.",
+	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received.",
 	"objectives": [
 		{
 			"id": "obj_ch2_handoff",
@@ -140,6 +140,30 @@
 			"text": "Send Mara's date question to Records from the office workstation, separately from her clinical record.",
 			"complete_when": {
 				"flag": "ch2_mara_records_referred"
+			}
+		},
+		{
+			"id": "obj_ch2_analyst_candidates",
+			"text": "At the Records worksheet, go through the analyst's candidate explanations for the discrepancy.",
+			"complete_when": {
+				"flag": "ch2_analyst_candidates_logged"
+			}
+		},
+		{
+			"id": "obj_ch2_analyst_next_check",
+			"text": "Choose the next authorized check with the Records analyst.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch2_analyst_next_source_extraction"
+					},
+					{
+						"flag": "ch2_analyst_next_identifier_crosswalk"
+					},
+					{
+						"flag": "ch2_analyst_next_second_review"
+					}
+				]
 			}
 		}
 	],
@@ -579,6 +603,87 @@
 				"flag": "ch2_mara_records_referred"
 			},
 			"completed_body": "Mara's date question is with Records, separate from her clinical record. No finding about the copies has been made."
+		},
+		{
+			"id": "interaction_ch2_analyst_candidates",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "Records analyst: candidate explanations",
+			"body": "The Records analyst has the worksheet open.\n\nAnalyst: The familiar explanations aren't glamorous. They're also where we have to start.\n\n[b]Candidates[/b]\nClock skew between the console and the export: could explain the four-minute display difference.\nMigrated location codes: could explain why an entry is labelled with an old designation.\nExport sorting: could explain the repeated minute.\nIdentifier collision: could explain an entry attached to the wrong record.\n\n[b]Status[/b]\nNone has been tested against source material; no source packet has been received.\n\nPlayer: And when they don't account for every line?",
+			"when": {
+				"flag": "ch2_mara_records_referred"
+			},
+			"options": [
+				{
+					"id": "accept_skew",
+					"label": "Accept clock skew as the explanation for the whole discrepancy",
+					"response": "Analyst: Skew might cover the four minutes. It doesn't touch the repeated row, and we haven't checked a single source clock yet. One candidate isn't an answer."
+				},
+				{
+					"id": "claim_altered_time",
+					"label": "Treat whatever stays unexplained as proven altered time",
+					"response": "Analyst: Unexplained means unexplained. Contradictory timestamps are a records problem until a source shows otherwise. That isn't evidence of anything else."
+				},
+				{
+					"id": "log_candidates",
+					"label": "Log all four as untested candidates and keep the mismatch open",
+					"flag": "ch2_analyst_candidates_logged",
+					"response": "Analyst: We preserve the mismatch and keep checking.\n\nCandidates logged: clock skew, migrated location codes, export sorting, identifier collision. Each may explain part of the discrepancy; none is confirmed. The discrepancy stays unresolved."
+				}
+			],
+			"unavailable_body": "Complete the current objective first. The records discrepancy remains unresolved.",
+			"expires_when": {
+				"flag": "ch2_analyst_candidates_logged"
+			},
+			"completed_body": "Four candidate explanations are logged as untested. Choose the next check with the analyst at this worksheet."
+		},
+		{
+			"id": "interaction_ch2_analyst_next_check",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "Records analyst: next check",
+			"body": "Analyst: I can start one of these properly this week. Which first?\n\n[b]Still open[/b]\nAll four candidates; clock authority and offsets; raw ordering; source lineage; preservation confirmation.",
+			"when": {
+				"flag": "ch2_analyst_candidates_logged"
+			},
+			"options": [
+				{
+					"id": "close_as_migration",
+					"label": "Close the discrepancy as a migration artefact",
+					"response": "Analyst: Not on what we have. A migration might explain the label, not the timing. Closing it now would be deciding the answer first."
+				},
+				{
+					"id": "source_extraction",
+					"label": "Request a source extraction of the original console log",
+					"flag": "ch2_analyst_next_source_extraction",
+					"response": "Next check recorded: source extraction requested through Records' authorized process. It tests clock skew and export sorting once received. Nothing is received yet; every candidate stays open."
+				},
+				{
+					"id": "identifier_crosswalk",
+					"label": "Build an identifier crosswalk between the old and current systems",
+					"flag": "ch2_analyst_next_identifier_crosswalk",
+					"response": "Next check recorded: identifier crosswalk between legacy and current codes. It tests migrated location codes and identifier collision. Clock and ordering questions stay open."
+				},
+				{
+					"id": "second_review",
+					"label": "Request a neutral second review of the worksheet",
+					"flag": "ch2_analyst_next_second_review",
+					"response": "Next check recorded: neutral second review requested. A reviewer outside the team re-checks the candidates and the method. No candidate is confirmed in the meantime."
+				}
+			],
+			"unavailable_body": "Log the candidate explanations first.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch2_analyst_next_source_extraction"
+					},
+					{
+						"flag": "ch2_analyst_next_identifier_crosswalk"
+					},
+					{
+						"flag": "ch2_analyst_next_second_review"
+					}
+				]
+			},
+			"completed_body": "The next check is recorded. The discrepancy and all four candidate explanations remain open until source material is received and reviewed."
 		}
 	],
 	"sign_out": {
