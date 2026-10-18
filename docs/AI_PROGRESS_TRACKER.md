@@ -1,5 +1,15 @@
 # AI progress tracker
 
+## Dialogue visemes — Codex, 2026-10-18
+
+Owner approved animations shown so far. `codex/dialogue-viseme-integration`
+adds approximate text-driven mouth shapes through CharacterFaceRig, with jaw
+fallback and pause/skip/completion/load coverage (TestRunner 184/0). True phoneme
+timing is unavailable. Full QA and publication checkpoint are recorded in the
+dedicated `docs/handoffs/2026-10-18_codex_dialogue_visemes.md` before handoff.
+Mac visual/performance review remains required; no cosmetic additions or
+campaign/clinical content changes are included.
+
 ## Naomi v05 refinement — Claude Code (cloud), 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |
