@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/world/Chapter1Ward.tscn" id="2_world"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/world/AudioZoneTracker.gd" id="11_audio_zones"]
 [ext_resource type="Script" path="res://scripts/world/ZoneDirector.gd" id="12_zones"]
 [ext_resource type="Script" path="res://scripts/narrative/AnomalyLedger.gd" id="13_anomaly"]
+[ext_resource type="PackedScene" path="res://scenes/cutscene/CutsceneDirector.tscn" id="14_cutscene"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
@@ -44,3 +45,5 @@ script = ExtResource("12_zones")
 [node name="InfoPanel" parent="." instance=ExtResource("5_info")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_pause")]
+
+[node name="CutsceneDirector" parent="." instance=ExtResource("14_cutscene")]

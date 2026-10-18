@@ -134,6 +134,14 @@ signal subtitle_cleared(line_id: String)
 @warning_ignore("unused_signal")
 signal dialogue_line_finished(line_id: String, completed: bool)
 
+## A graphic-novel cutscene (CutsceneDirector) began. Cutscenes never change
+## story, clinical or save state; these signals are for UI, audio and tests.
+@warning_ignore("unused_signal")
+signal cutscene_started(cutscene_id: String)
+## reason: "completed" | "skipped" | "invalid" | "not_approved" | "interrupted" | "timeout".
+@warning_ignore("unused_signal")
+signal cutscene_finished(cutscene_id: String, reason: String)
+
 # --- Staff trust and access --------------------------------------------------------
 
 ## axis: "respect" | "trust" | "suspicion".

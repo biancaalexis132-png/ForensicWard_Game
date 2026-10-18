@@ -1,0 +1,99 @@
+"""Static contract for graphic-novel cutscenes (data/cutscenes/*.json).
+
+Mirrors the runtime checks in scripts/cutscene/CutsceneRegistry.gd so a broken
+cutscene is caught before Godot starts, and adds repository-level checks:
+every panel texture has a provenance entry, and no cutscene is enabled in the
+campaign before the owner approves it.
+"""
+import json
+from pathlib import Path
+import unittest
+
+ROOT = Path(__file__).resolve().parents[2]
+CUTSCENES = ROOT / "data/cutscenes"
+RESERVED_CUES = {"mus_temporal_fracture", "mus_final_revelation", "mus_ending_credits"}
+
+
+def res_path(path):
+    assert path.startswith("res://"), path
+    return ROOT / path[len("res://"):]
+
+
+def load(path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+class CutsceneContractTests(unittest.TestCase):
+    def setUp(self):
+        self.files = sorted(p for p in CUTSCENES.glob("*.json") if not p.name.startswith("._"))
+        campaign = load(ROOT / "data/campaign.json")
+        self.chapters = [c["id"] for c in campaign["chapters"]]
+        self.captions = {"institution.name": campaign["institution"]["name"]}
+        self.captions.update({f"chapter.{c['id']}.title": c["title"] for c in campaign["chapters"]})
+        self.cues = set(load(ROOT / "audio/cues.json")["cues"])
+        self.lines = {}
+        for path in (ROOT / "data/narrative").glob("*.json"):
+            narrative = load(path)
+            for scene in narrative.get("scenes", []):
+                for line in scene.get("lines", []):
+                    self.lines[line["id"]] = narrative.get("chapter", "")
+
+    def test_cutscenes_exist(self):
+        self.assertTrue(self.files, "no cutscenes found")
+
+    def test_review_only_until_approved(self):
+        for path in self.files:
+            data = load(path)
+            with self.subTest(path=path.name):
+                self.assertEqual(path.stem, data["cutscene_id"])
+                self.assertEqual(data["mode"], "review_only")
+                self.assertIs(data["approved"], False, "only the owner approves a cutscene")
+                self.assertEqual(data["trigger"], {"kind": "manual_preview"})
+                self.assertEqual(data["fallback_action"], "restore_world")
+
+    def test_references_exist(self):
+        for path in self.files:
+            data = load(path)
+            chapter = self.chapters.index(data["chapter_id"])
+            music = data.get("music")
+            if music:
+                self.assertIn(music["cue"], self.cues, path.name)
+                self.assertNotIn(music["cue"], RESERVED_CUES, f"{path.name}: reveal cue used in a cutscene")
+            for panel in data["panels"]:
+                with self.subTest(path=path.name, panel=panel["id"]):
+                    self.assertGreater(panel["duration_seconds"], 0)
+                    self.assertTrue(1 <= len(panel["layers"]) <= 3)
+                    for layer in panel["layers"]:
+                        self.assertTrue(res_path(layer["texture"]).is_file(), layer["texture"])
+                    for key in ("text", "caption", "subtitle"):
+                        self.assertNotIn(key, panel, "no literal text in panels")
+                    if panel.get("caption_ref") is not None:
+                        self.assertIn(panel["caption_ref"], self.captions)
+                    if panel.get("line_id") is not None:
+                        self.assertIn(panel["line_id"], self.lines, "dialogue must already exist")
+                        self.assertLessEqual(self.chapters.index(self.lines[panel["line_id"]]), chapter)
+
+    def test_every_texture_has_provenance(self):
+        for path in self.files:
+            for panel in load(path)["panels"]:
+                for layer in panel["layers"]:
+                    texture = res_path(layer["texture"])
+                    manifest = load(texture.parent / "manifest.json")
+                    entries = {a["path"]: a for a in manifest["assets"]}
+                    rel = texture.relative_to(ROOT).as_posix()
+                    with self.subTest(texture=rel):
+                        self.assertIn(rel, entries)
+                        self.assertEqual(manifest["review_status"], "UNAPPROVED_REVIEW_ONLY")
+                        source = entries[rel]["source"]
+                        if source != "procedural":
+                            self.assertTrue((ROOT / source).is_file(), source)
+
+    def test_pilot_shape(self):
+        data = load(CUTSCENES / "cs_ch01_first_shift_pilot.json")
+        self.assertEqual(len(data["panels"]), 7)
+        self.assertEqual(sum(p["duration_seconds"] for p in data["panels"]), 52)
+        self.assertEqual(data["chapter_id"], "ch1")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

@@ -15,6 +15,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
 | Soundtrack owner approval documentation | `claude/codex-soundtrack-owner-approval` (draft PR; Codex's `codex/soundtrack-owner-approval` rebased onto `main` `f9dba61`) | Codex, recovered by Claude Code (cloud) | see Log | `audio/manifest.json`, generated `docs/AUDIO_MANIFEST.md`, `docs/AUDIO.md`; additive soundtrack-only continuity entries | Owner APPROVED all 11 tracks for private/personal/noncommercial use; no audio or runtime changes. Waiting on owner review of the draft PR. |
+| Graphic-novel cutscenes (CutsceneDirector, Chapter 1 pilot) | `claude/cutscene-director` (draft PR, see Log) | Claude Code (cloud) | see Log | `scripts/cutscene/**`, `scenes/cutscene/**`, `data/cutscenes/**`, `assets/cutscenes/**`, `tools/cutscenes/**`, `scripts/tests/test_cutscene.gd`, `tests/qa/test_cutscenes.py`, `docs/CUTSCENES.md`, `docs/design/cutscenes/**`; small edits to `scripts/main/Main.gd`, `scenes/main/Main.tscn`, `scripts/autoload/EventBus.gd` (two signals), `tests/qa/run.py` (one line) | Waiting on owner review of the pilot's look and placement; off in the campaign |
 | Naomi v03 visual development | `claude/naomi-v03` (draft PR, see Log) | Claude Code | see Log | `tools/blender/characters/{build_naomi_v03.py,naomi_v03.json}`, `assets/**/Naomi_Bennett_v03*`, `assets/renders/characters/`, `assets/asset_manifest/naomi_character_manifest_v03.json`, `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, Naomi production docs | Merged in PR #49 (row kept for history; the owner removes it). v03 is the development baseline, not production |
 | Naomi v04 animation and cast animation standard | `claude/naomi-animation-v04` (draft PR, see Log) | Claude Code (cloud) | see Log | `tools/character_animation/**`, `assets/**/Naomi_Bennett_v04*`, `scripts/world/{CharacterAnimationRig,CharacterFaceRig,CharacterVisualPreview,Character}.gd`, `scripts/acting/CharacterActingAdapter.gd`, `scripts/tests/test_character_{animation,preview}.gd`, `scripts/tests/test_naomi_acting.gd`, the four continuity docs | Waiting on owner review of v04 in game and Mac validation by the local thread; supersedes PR #51 |
 | Naomi in-game review preview | `claude/naomi-review-preview` (draft PR #46) | Claude Code | `6b6893d` | `scripts/world/{Character,CharacterVisualPreview}.gd`, `scripts/tests/test_character_preview.gd`, `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md` and `ingame_review_v02/` | Waiting on owner review of the model in game; preview is off by default |
@@ -189,6 +190,51 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 2. The cloud v05 refinement thread investigates the draw-call multiplication and, if approved, adds the bake as an optional builder step.
 3. Re-measure frame time on the Mac after each Naomi version with `measure_character_frame_time.gd`.
 
+### 2026-10-18 18:35 UTC · Claude Code (cloud) · Graphic-novel cutscenes and Chapter 1 pilot
+
+- **Branch:** `claude/cutscene-director` (based on `main` at `f9dba61`, then `origin/main` `37a2a71` merged in cleanly)
+- **Latest verified commit:** see the PR head; code commit `0ecf743816d89078e06ae82ed90f7f05998fc659` "Add review-only CutsceneDirector and Chapter 1 graphic-novel pilot"
+- **Confirmed on GitHub:** `git ls-remote origin claude/cutscene-director` printed `0ecf743` before the merge and docs commits; the final head is recorded in the PR
+- **Pull request:** draft PR #59 to `main`; hosted `validate` passed on `19969f7`; `main` `e9262b4` (PR #58) and then `ac89efd` (PR #60) merged in afterwards; each time only the handoff docs conflicted and both sides were kept
+- **State:** finished first milestone (framework plus pilot), review-only
+
+**Accomplished**
+- `scripts/cutscene/CutsceneDirector.gd`: CanvasLayer player, child of `Main` (panel id `cutscene`). Panels with up to 3 parallax layers, push/pan, dissolve/cut/fade-through-black, captions from `campaign.json`, existing dialogue lines through `AudioDirector.play_line`, a runtime music context, skip (Esc), advance (Enter/Space/E), replay (R, review only), Reduce Motion, watchdog, one idempotent restore. Only current and next textures held; next loads on a thread.
+- `scripts/cutscene/CutsceneRegistry.gd`: schema v1 validation and cross-references (lines, cues, captions, textures, chapter order, reserved reveal cues).
+- `scripts/cutscene/CutscenePreview.gd` + `.tscn`: review scene, `--capture-dir` stills.
+- `data/cutscenes/cs_ch01_first_shift_pilot.json`: 7 panels, 52 s, `approved: false`, `manual_preview`.
+- `tools/cutscenes/paint_panels.py` + `ch01_pilot_plates.json`: repaints repo renders into 1600x900 plates in `assets/cutscenes/ch01_pilot/` with provenance `manifest.json`.
+- Review stills: `docs/design/cutscenes/ch01_pilot_review/`. Reconciliation with the owner's two SSK packages (read-only, not committed): `docs/CUTSCENES.md`.
+
+**Files modified**
+- `scripts/main/Main.gd`, `scenes/main/Main.tscn`: CutsceneDirector node, top of `_panels`, `cutscene` panel id.
+- `scripts/autoload/EventBus.gd`: `cutscene_started`, `cutscene_finished`.
+- `tests/qa/run.py`: runs `tests/qa/test_cutscenes.py`.
+
+**Unfinished**
+- No campaign trigger by design. Chapters 2–5 sequences not started (waiting on pilot approval, per the owner's order).
+
+**Known errors**
+- Quitting with `--quit-after` while a cutscene's music plays prints "ERROR: 2 resources still in use at exit" (music still fading). Not hit by QA; the window-close path silences audio first.
+
+**Tests** (on `0ecf743`, Linux container, Godot 4.7 stable SHA-512 verified)
+- `godot --headless --path . res://scripts/tests/TestRunner.tscn`: 171 passed, 0 failed (17 new in `test_cutscene.gd`).
+- `python3 tests/qa/test_cutscenes.py`: 5 OK.
+- `python3 tests/qa/run.py` on `19969f7`: exit 0; TestRunner 174/0, QA 19/0/0, GLB 158/0, Pharmacology 0 failures, audio 336/0, Chapter 1 audio sequence done, cutscene contract 5 OK. Re-run after the `e9262b4` merge: see the latest PR head.
+- CI: hosted `validate` success on `19969f7` and `c0d8c81` (PR #59); re-runs after the `ac89efd` merge.
+
+**Dependencies not available to remote agents**
+- Forward+ look, frame time and memory on the 8 GB M1; listening check of `mus_waiting_room` under ward ambience. The SSK packages (read through the owner's folder access).
+
+**Next steps**
+1. Owner: watch `-- --cutscene-preview=cs_ch01_first_shift_pilot` on the Mac and decide the open items in `docs/CUTSCENES.md` (staff-entry stand-in, music cue, Day 1 timing conflict, Naomi likeness).
+2. Apply the owner's notes to `data/cutscenes/cs_ch01_first_shift_pilot.json` / `tools/cutscenes/ch01_pilot_plates.json`, repaint, re-capture.
+3. Only after approval: add a campaign trigger (new `trigger.kind`, owner-approved placement) and the Chapter 2 sequence, in chapter order.
+
+**Notes for the other agent**
+- Never set `approved: true`; only the owner does. Do not use Ward Zero imagery before Chapter 3 or a corridor-loop reveal before Chapter 4 Scene 09.
+- Never run Git on the SSK drive.
+
 ### 2026-10-18 · Claude Code (cloud) · Soundtrack owner approval recovered into a draft PR
 
 - **Branch:** `claude/codex-soundtrack-owner-approval`. Codex's two commits (`9768772`, `ad9dccc`) rebased from `b5c9d3a` onto current `main` `f9dba61` with no conflicts; content unchanged. The `codex/` branch is left as it was.
@@ -323,7 +369,7 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - `python3 tests/qa/run.py --godot /Applications/Godot.app/Contents/MacOS/Godot`: stopped at the music test (2 failures above).
 - The same runner with only the music step removed: exit 0. test_json OK, audio manifest OK, pharmacology 0 failures, QA 19/0/0, GLB validation 156 assets / 0 failures, TestRunner 147/0, boot OK, audio 336/0, Ch1 audio sequence done.
 - Toolkit unit tests: 5/5 OK.
-- CI: see the PR.
+- CI: hosted `validate` success on `19969f7` (PR #59).
 
 **Dependencies not available to remote agents**
 - Owner's Mac Blender 5.2.2 and MPFB2 install. The build is reproducible in any Blender 5.2.2; MPFB was not used.
