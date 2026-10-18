@@ -33,6 +33,7 @@ var _fired: Array[String] = []
 var _pending: Array[String] = []
 var _objective_id: String = ""
 var _evaluating: bool = false
+var _active_interaction: String = ""
 
 
 func _ready() -> void:
@@ -42,6 +43,10 @@ func _ready() -> void:
 	EventBus.interacted.connect(_on_interacted)
 	EventBus.scheduled_event_fired.connect(_on_scheduled_event)
 	EventBus.shift_signout_requested.connect(sign_out)
+	EventBus.story_option_selected.connect(_on_story_option_selected)
+	EventBus.ui_panel_closed.connect(func(panel_id: String) -> void:
+		if panel_id == "info":
+			_active_interaction = "")
 	for signal_name: String in ["observation_recorded", "patient_note_saved", "clinical_action_committed",
 			"clue_acquired", "hypothesis_updated", "shift_started", "trust_changed", "zone_changed"]:
 		var argc: int = 0
@@ -49,7 +54,9 @@ func _ready() -> void:
 			if info["name"] == signal_name:
 				argc = info["args"].size()
 		EventBus.connect(signal_name, evaluate.unbind(argc))
-	EventBus.game_loaded.connect(func(_slot: int) -> void: evaluate())
+	EventBus.game_loaded.connect(func(_slot: int) -> void:
+		_active_interaction = ""
+		evaluate())
 	evaluate.call_deferred()
 
 
@@ -175,7 +182,13 @@ func sign_out() -> String:
 		body = "[b]End of %s[/b] (playable slice)\n\n%s\n\n%s" % [story["title"],
 				_shift_summary(), _relationship_summary()]
 		EventBus.chapter_completed.emit(_chapter_id)
-	EventBus.ui_panel_requested.emit("info", {"title": config["title"], "body": body})
+	var panel: Dictionary = {"title": config["title"], "body": body}
+	var next_chapter: String = str(story.get("next_chapter", ""))
+	if has_completed(_chapter_id) and ContentRegistry.is_chapter_playable(next_chapter):
+		_active_interaction = "continue:" + _chapter_id
+		panel["interaction_id"] = _active_interaction
+		panel["options"] = [{"id": "continue", "label": "Return for the next day shift"}]
+	EventBus.ui_panel_requested.emit("info", panel)
 	return body
 
 
@@ -284,6 +297,7 @@ func _current_state() -> Dictionary:
 
 
 func _set_current(chapter_id: String, state: Dictionary) -> void:
+	_active_interaction = ""
 	_chapter_id = chapter_id
 	_talked_to.assign(state.get("talked_to", []))
 	_flags.assign(state.get("flags", []))
@@ -293,6 +307,24 @@ func _set_current(chapter_id: String, state: Dictionary) -> void:
 
 
 func _on_interacted(interactable_id: String) -> void:
+	# The prop's local signal has already opened sign-out before this event.
+	# Retain the continuation choice it just displayed.
+	for entry: Dictionary in ContentRegistry.get_world(_chapter_id).get("interactables", []):
+		if entry["node"] == interactable_id and entry["type"] == "shift_signout":
+			return
+	_active_interaction = ""
+	for interaction: Dictionary in _story().get("interactions", []):
+		if interaction["interactable_id"] != interactable_id:
+			continue
+		if not StoryLogic.evaluate(interaction["when"], _story_state()):
+			if not interactable_id.begins_with("character:"):
+				EventBus.ui_panel_requested.emit("info", {"title": interaction["title"], "body": interaction["unavailable_body"]})
+			continue
+		_active_interaction = interaction["id"]
+		var panel: Dictionary = interaction.duplicate(true)
+		panel["interaction_id"] = _active_interaction
+		EventBus.ui_panel_requested.emit("info", panel)
+		break
 	if not interactable_id.begins_with("character:"):
 		return
 	var character_id: String = interactable_id.trim_prefix("character:")
@@ -340,3 +372,27 @@ func reset_state() -> void:
 	_set_current(ContentRegistry.get_start_chapter_id(), {})
 	if is_inside_tree():
 		evaluate.call_deferred()
+
+
+func _on_story_option_selected(interaction_id: String, option_id: String) -> void:
+	if interaction_id.is_empty() or interaction_id != _active_interaction:
+		return
+	if interaction_id == "continue:" + _chapter_id and option_id == "continue":
+		var next_chapter: String = str(_story().get("next_chapter", ""))
+		_active_interaction = ""
+		if has_completed(_chapter_id) and start_chapter(next_chapter):
+			var target: int = TimeManager.total_minutes - TimeManager.get_minute_of_day() + TimeManager.DAY_SHIFT_START
+			if target <= TimeManager.total_minutes:
+				target += TimeManager.MINUTES_PER_DAY
+			TimeManager.advance(target - TimeManager.total_minutes, "chapter_transition")
+		return
+	for interaction: Dictionary in _story().get("interactions", []):
+		if interaction["id"] != interaction_id or not StoryLogic.evaluate(interaction["when"], _story_state()):
+			continue
+		for option: Dictionary in interaction["options"]:
+			if option["id"] != option_id:
+				continue
+			_active_interaction = ""
+			set_flag(option["flag"])
+			EventBus.ui_panel_requested.emit("info", {"title": interaction["title"], "body": option["response"]})
+			return

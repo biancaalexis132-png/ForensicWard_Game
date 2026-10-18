@@ -231,6 +231,22 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			StoryLogic.check_condition(line["when"], "[%s] staff_lines[%d].when" % [file, i], refs, errors)
 			if line.has("verify_clue"):
 				_require_known(line["verify_clue"], clue_ids, "clue", file, "staff_lines[%d].verify_clue" % i, errors)
+		if story.has("next_chapter"):
+			_require_known(story["next_chapter"], chapter_ids, "chapter", file, "next_chapter", errors)
+		var interactions: Array = story.get("interactions", [])
+		_collect_ids(interactions, file, "interactions", errors)
+		var interactable_ids: Dictionary = {}
+		for entry: Dictionary in _data(documents, ContentRegistry.WORLD_KEY + chapter_id).get("interactables", []):
+			interactable_ids[entry["node"]] = true
+		for entry: Dictionary in _data(documents, ContentRegistry.WORLD_KEY + chapter_id).get("characters", []):
+			interactable_ids["character:" + str(entry["character_id"])] = true
+		for i: int in interactions.size():
+			var interaction: Dictionary = interactions[i]
+			var path: String = "[%s] interactions[%d]" % [file, i]
+			_require_known(interaction["interactable_id"], interactable_ids, "interactable", file,
+					"interactions[%d].interactable_id" % i, errors)
+			StoryLogic.check_condition(interaction["when"], path + ".when", refs, errors)
+			_collect_ids(interaction["options"], file, "interactions[%d].options" % i, errors)
 		var sign_out: Dictionary = story["sign_out"]
 		for j: int in sign_out["handover_patients"].size():
 			_require_known(sign_out["handover_patients"][j], patient_ids, "patient", file, "sign_out.handover_patients[%d]" % j, errors)
@@ -507,6 +523,7 @@ static func check_global_ids(documents: Dictionary) -> Array[String]:
 	for key: String in _keys(documents, ContentRegistry.STORY_KEY):
 		groups.append(["objective", key, "objectives", _data(documents, key).get("objectives", [])])
 		groups.append(["beat", key, "beats", _data(documents, key).get("beats", [])])
+		groups.append(["interaction", key, "interactions", _data(documents, key).get("interactions", [])])
 	for group: Array in groups:
 		var kind: String = group[0]
 		var file: String = _file(documents, group[1])

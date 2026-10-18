@@ -1,0 +1,138 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch2",
+	"title": "Chapter 2: The Missing Hours",
+	"provisional": true,
+	"clinical_review_status": "PENDING",
+	"notes": "First playable nonclinical opening only, based on revised Chapter 2 Scenes 01\u201302. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. Records discrepancy remains reported and unresolved.",
+	"objectives": [
+		{
+			"id": "obj_ch2_handoff",
+			"text": "Begin the new shift with Naomi at the nursing station.",
+			"complete_when": {
+				"talked_to": "staff_bennett"
+			}
+		},
+		{
+			"id": "obj_ch2_worklist",
+			"text": "Review the worklist at the handover board and retain clinical follow-up responsibility.",
+			"complete_when": {
+				"flag": "ch2_clinical_work_owned"
+			}
+		},
+		{
+			"id": "obj_ch2_export",
+			"text": "Compare the maintenance export in Records. Keep the discrepancy unresolved.",
+			"complete_when": {
+				"flag": "ch2_discrepancy_recorded"
+			}
+		},
+		{
+			"id": "obj_ch2_sources",
+			"text": "Request authorized source records from the office workstation.",
+			"complete_when": {
+				"flag": "ch2_sources_requested"
+			}
+		},
+		{
+			"id": "obj_ch2_return",
+			"text": "Return to Naomi and acknowledge outstanding work.",
+			"complete_when": {
+				"flag": "ch2_opening_complete"
+			}
+		}
+	],
+	"beats": [],
+	"staff_lines": [
+		{
+			"staff_id": "staff_bennett",
+			"when": {
+				"chapter_completed": "ch1"
+			},
+			"text": "Morning, Doctor. The W0-B access ticket is still with Information Security. The useful news is that we have patients to see. I can show you the reports, but do not take my summary as your examination. Keep the clinical work separate from the audit request."
+		}
+	],
+	"interactions": [
+		{
+			"id": "interaction_ch2_worklist",
+			"interactable_id": "NS_NoticeBoard",
+			"title": "New-shift worklist",
+			"body": "Clinical work remains the priority. Review the existing EHR and retain responsibility for outstanding assessment and follow-up. The administrative audit is a separate work item. This handoff does not replace examination or establish new findings.",
+			"when": {
+				"talked_to": "staff_bennett"
+			},
+			"options": [
+				{
+					"id": "retain_review",
+					"label": "Retain responsibility for clinical review and follow-up",
+					"flag": "ch2_clinical_work_owned",
+					"response": "You retain responsibility for the outstanding clinical review and follow-up. No clinical task is marked completed. The records discrepancy can be investigated separately."
+				}
+			],
+			"unavailable_body": "Begin the new shift with Naomi before accepting outstanding work."
+		},
+		{
+			"id": "interaction_ch2_export",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "Maintenance export comparison",
+			"body": "Two representations of a maintenance entry display a four-minute discrepancy. One export repeats a minute. The raw time zone, clock source and sort order have not been verified. This is a reported records discrepancy; it does not establish missing time.",
+			"when": {
+				"flag": "ch2_clinical_work_owned"
+			},
+			"options": [
+				{
+					"id": "record_unresolved",
+					"label": "Record the discrepancy as unresolved",
+					"flag": "ch2_discrepancy_recorded",
+					"response": "Comparison recorded as unresolved. Request the authorized source-system export and preservation of the originals before drawing conclusions."
+				}
+			],
+			"unavailable_body": "Confirm who owns the outstanding clinical review at the handover board before pursuing the audit."
+		},
+		{
+			"id": "interaction_ch2_source_request",
+			"interactable_id": "OF_Document_TransferSummary",
+			"title": "Authorized source request",
+			"body": "Request preservation of the original records and an authorized source-system export. Ask for the raw offsets, clock source and sort order. Making a request does not grant access or authenticate a record.",
+			"when": {
+				"flag": "ch2_discrepancy_recorded"
+			},
+			"options": [
+				{
+					"id": "request_sources",
+					"label": "Submit preservation and source-export request",
+					"flag": "ch2_sources_requested",
+					"response": "Request submitted for authorized Records review. Source access and reconciliation remain pending. The originals must be retained; no independent corroboration or loss of time is established."
+				}
+			],
+			"unavailable_body": "Record the comparison as unresolved in Records before requesting source material."
+		},
+		{
+			"id": "interaction_ch2_return_handoff",
+			"interactable_id": "character:staff_bennett",
+			"title": "New-shift handoff",
+			"body": "Bennett: We have patients to see. Keep the clinical work moving while Records checks the source material.\n\nThe audit request remains unresolved. You retain the outstanding clinical work.",
+			"when": {
+				"flag": "ch2_sources_requested"
+			},
+			"options": [
+				{
+					"id": "acknowledge_handoff",
+					"label": "Acknowledge the outstanding work and records follow-up",
+					"flag": "ch2_opening_complete",
+					"response": "Handoff acknowledged. Clinical review remains assigned to you, and the source-export request remains with Records. Continue routine care while the source material is reconciled."
+				}
+			],
+			"unavailable_body": "The source request is not yet recorded. Clinical review remains separate from the audit."
+		}
+	],
+	"sign_out": {
+		"title": "Clinical handoff",
+		"handover_patients": [
+			"pt_elias_ward"
+		],
+		"documented_trust": [],
+		"undocumented_trust": [],
+		"undocumented_message": "Outstanding clinical review still requires an appropriate handoff."
+	}
+}

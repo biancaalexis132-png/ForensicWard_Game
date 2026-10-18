@@ -41,6 +41,7 @@ const TIME_PAUSE_REASON: String = "ui"
 
 func _ready() -> void:
 	EventBus.ui_panel_requested.connect(_on_ui_panel_requested)
+	EventBus.chapter_started.connect(_on_chapter_started)
 	EventBus.ui_panel_closed.connect(func(_panel_id: String) -> void: _update_input_mode())
 	_pause_menu.closed.connect(_update_input_mode)
 	SaveManager.register_provider(WORLD_PROVIDER_KEY, self)
@@ -186,6 +187,7 @@ func to_save_data() -> Dictionary:
 
 
 func load_save_data(data: Dictionary) -> void:
+	_sync_chapter_world()
 	var player: Dictionary = data.get("player", {})
 	var position_values: Array = player.get("position", [])
 	if position_values.size() == 3:
@@ -194,4 +196,24 @@ func load_save_data(data: Dictionary) -> void:
 
 
 func reset_state() -> void:
+	_sync_chapter_world()
 	_place_at_spawn()
+
+
+func _sync_chapter_world() -> bool:
+	var chapter: ChapterDirector = $ChapterDirector
+	if not _world is AuthoredWorld or not _world.configure_chapter(chapter.get_chapter_id()):
+		return false
+	for panel: CanvasLayer in _panels:
+		if panel.get("is_open"):
+			panel.call("close")
+	return true
+
+
+func _on_chapter_started(_chapter_id: String) -> void:
+	if not _sync_chapter_world():
+		return
+	_silence_audio()
+	_zones.reset_state()
+	_place_at_spawn()
+	_update_input_mode()

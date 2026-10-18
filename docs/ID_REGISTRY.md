@@ -18,6 +18,7 @@ Rules for stable ids across all five chapters. `ContentValidator.check_global_id
 | Hypothesis | `hyp_` | yes |
 | Objective | `obj_` | yes |
 | Beat | `beat_` | yes |
+| Story interaction | `interaction_` | yes (globally unique); option IDs scoped to interaction |
 | Observation | `obs_` | per patient (convention, not yet enforced) |
 | Zone, zone connection | `zone_`, `conn_` | yes |
 | Anomaly episode | `anom_` | yes |
@@ -56,3 +57,13 @@ From the v1.1 handoff package. Reserving an id does not approve its content.
 | Later hypotheses | `hyp_time_gap` (Ch2), `hyp_legacy_bridge` (Ch3), `hyp_known_risk_not_remediated` (Ch4) |
 
 Not reserved on purpose: the package's `obs_elias_*` set, which would duplicate the meaning of `obs_mutism` and `obs_posturing` (F0 §3).
+
+## Chapter 2 opening increment (2026-10-18)
+
+Objectives: `obj_ch2_handoff`, `obj_ch2_worklist`, `obj_ch2_export`,
+`obj_ch2_sources`, `obj_ch2_return`. Story interactions:
+`interaction_ch2_worklist`, `interaction_ch2_export`,
+`interaction_ch2_source_request`, `interaction_ch2_return_handoff`.
+Chapter-local flags: `ch2_clinical_work_owned`, `ch2_discrepancy_recorded`,
+`ch2_sources_requested`, `ch2_opening_complete`. They record ownership and
+unresolved administrative workflow, never clinical completion or verified evidence.
