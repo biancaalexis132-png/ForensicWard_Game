@@ -8,11 +8,11 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
-**GitHub state correction (verified 2026-10-18 12:54 UTC):** `origin/main` is `de5cbfcb6a269ffa48822030a06b74bb0b7d63d3`; PR #42 is merged there. PRs #43 and #44 are open against main. Older CIG snapshots and the 96ef65e current-state note below are preserved as history, not live state. Naomi v01 remains unapproved and not integrated; this feature branch now owns the procedural refinement workstream.
+**GitHub state correction (verified 2026-10-18 13:23 UTC):** `origin/main` is `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`; PR #43 (Stage 6) and PR #42 (CIG slot/fallback) are merged, and PR #44 is open. The Naomi refinement branch still needs to merge the new main tip. Naomi v01 and v02 remain unapproved and not integrated.
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `de5cbfcb6a269ffa48822030a06b74bb0b7d63d3` (main base; feature checkpoint to be pushed) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Active audit/refinement; v01 fails visual review, v02 not generated. |
+| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `b740f8ab83733fd797be344e6e9b4eefa5a5769a` (v02 candidate commit; merge from latest main in progress) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Active; generated v02 passes structural checks but fails owner visual criteria and is not for runtime integration. |
 
 ### 2026-10-18 12:55 UTC · Copilot · Naomi procedural visual refinement audit
 
@@ -53,7 +53,6 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 **Notes for the other agent**
 - Keep `staff_bennett` unmodified; do not attach the v01 or v02 asset to the runtime slot. No clinical, save, story or gameplay systems are in scope. Renders are for owner review, not proof of photorealism or Mac performance.
-
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
 ## Entry template
@@ -97,6 +96,41 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 01:45 UTC · Claude Code · Environment Stage 6 Ward Zero
+
+- **Branch:** `claude/environment-stage-6` (from `main` at `33b2e8c`, after F0 merged), then `main` at `de5cbfc` merged in
+- **Latest verified commit:** `30d2fee` "Restyle Ward Zero from the owner's reference boards; add echo and displaced-sign states" (on `6e2b1f0`), plus merge `7351c42` of `main`
+- **Confirmed on GitHub:** see `git ls-remote origin claude/environment-stage-6`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; imports and passes every suite. Layout and every anomaly state await owner review
+
+**Accomplished**
+- 7 props (`assets/exports/wardzero/props/`): historic slave clock (hands as a separate child), two-pen chart recorder, teleprinter, relay cabinet with a door mimic panel, motor-generator set, modern sensor tripod, fluorescent batten.
+- 7 rooms (`assets/exports/wardzero/env/`) on the Stage 5 sublevel south of the sealed corridor: threshold (behind the `sealed_corridor_end` brick), a 16 m service corridor, observation room with a wire-mesh window into the isolation cell, service store, instrument room and plant room (`MARK_Audio_W0Hum`). A service stair tops out at (0.6, -0.6), just beyond the Chapter 1 W0-B door, under a floor hatch (asserted). Every room root has `audio_location: ward_zero`.
+- Styled from the owner's Ward Zero boards (`assets/creative_references/Visual_References/Ward_Zero/`): cinderblock over a pale green dado, fluorescent battens, overhead pipes, puddle zones only. Following the visual-review thread's proposal, no "Ward Zero" signage, names, dates, notes, red stains or restraint chairs from the boards are used; signage says "SERVICE B" and "LOWER LEVEL B".
+- Seven anomaly `state_group`s (`w0_clock_offset`, `w0_recorder_trace`, `w0_teleprinter_log`, `w0_door_mimic`, `w0_cell_chair`, `w0_echo_wheelchair`, `w0_displaced_sign`) plus `w0_instrument_kit` for a supervised observation. Every default state has an ordinary reading; none reacts to a patient. State nodes carry `story_tag: ward_zero_anomaly`, `manifestation`, `approval_status: provisional_owner_review` and `earliest_chapter` (echo and displaced sign are `ch3`), and have no collision (asserted).
+
+**Files modified**
+- New: `tools/blender/build_stage6_ward_zero.py`, `assets/blender/wardzero/*.blend`, exports and `.import` files, `assets/renders/stage6/*.png`.
+- `tools/blender/fw_assets.py`, `tools/blender/fw_lib.py` (Stage 6 sections), `assets/asset_manifest/asset_manifest.{json,md}`, `docs/ENVIRONMENT_STAGES.md`, `docs/ENVIRONMENT_PIPELINE.md`, `docs/PROJECT_STATUS.md`, this file.
+
+**Unfinished**
+- Not wired into gameplay: no zone in `data/zones.json`, no stair climb, no transition at `MARK_Link_W0B`; the ground-floor stair head beyond `Door_W0B` is not modelled.
+- Repeating corridors and reflection mismatches from the boards need Godot work (F3 or later).
+- The reference boards also show a nurses' station, records archive and treatment room; those exist as Stage 5 rooms and were not restyled.
+
+**Known errors**
+- None found. Puddles are flat low-roughness colour; Godot reflections are untested on the Mac.
+
+**Tests** (on the merged tree, before this doc commit)
+- `python3 tests/qa/run.py` with Godot 4.7 (4.7.stable.official.5b4e0cb0f): exit 0. TestQA 19 / 0 / 0, `.glb` validation 153/153, TestRunner 127 / 0, TestAudio 336 / 0, "All executed checks passed". Generated `.import` files for creative references and character exports were left uncommitted.
+- `build_stage6_ward_zero.py` with Blender 5.0.1 (`bpy`): "STAGE6 WARD ZERO OK: 7 props, 7 environments exported".
+
+**Next steps**
+1. Owner reviews the layout, the look and each anomaly state, and approves or cuts them.
+2. F2/F3: a `zone_ward_zero` entry, the W0-B and sealed-corridor transitions, and F3 manifestations driving these state groups.
+3. Stage 7 exterior and apartment.
 
 ### 2026-10-18 01:16 UTC · Copilot · CIG-1 optional character visual slot
 
