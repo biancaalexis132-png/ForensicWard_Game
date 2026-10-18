@@ -1,0 +1,82 @@
+{
+  "schema_version": "proposal_0.2",
+  "case_id": "cp_001",
+  "title": "The Follow-Up Visit \u2014 Schizophrenia and Longitudinal Recovery",
+  "status": "DRAFT",
+  "clinical_review_status": "PENDING",
+  "patient": {
+    "proposed_id": "pt_cp001_jordan_vale",
+    "name": "Jordan Vale",
+    "age": 36,
+    "pronouns": "they/them",
+    "legal_status": "UNAUTHORED"
+  },
+  "mode": "continuing_practice",
+  "mandatory": false,
+  "chapter_dependencies": [
+    "chapter_5_completed"
+  ],
+  "ending_access": [
+    "A",
+    "B",
+    "C"
+  ],
+  "encounters": [
+    {
+      "id": "cp001_encounter_1",
+      "title": "Establishing Trust",
+      "clinical_review_status": "PENDING"
+    },
+    {
+      "id": "cp001_encounter_2",
+      "title": "A Difficult Morning",
+      "clinical_review_status": "PENDING"
+    },
+    {
+      "id": "cp001_encounter_3",
+      "title": "The Treatment Conversation",
+      "clinical_review_status": "PENDING"
+    },
+    {
+      "id": "cp001_encounter_4",
+      "title": "A Setback, Not a Failure",
+      "clinical_review_status": "PENDING"
+    },
+    {
+      "id": "cp001_encounter_5",
+      "title": "A Plan That Belongs to Jordan",
+      "clinical_review_status": "PENDING"
+    }
+  ],
+  "source_ids": [
+    "source_cp001_referral",
+    "source_cp001_nursing_shift",
+    "source_cp001_patient_report",
+    "source_cp001_medication_reconciliation",
+    "source_cp001_family"
+  ],
+  "no_automatic_medical_effects": true,
+  "pending_approvals": [
+    "fictional forensic legal context",
+    "patient dossier",
+    "risk and consent scripts",
+    "clinical assessment and plan workflow",
+    "medication information if any",
+    "save schema",
+    "runtime integration"
+  ],
+  "diagnostic_direction": {
+    "established_chart_diagnosis": "schizophrenia",
+    "status": "OWNER_APPROVED_NARRATIVE_DIRECTION_CLINICAL_REVIEW_PENDING",
+    "current_psychosis_findings": "NOT_AUTHORED",
+    "mood_disorder": "NOT_ESTABLISHED",
+    "anxiety_disorder": "NOT_ESTABLISHED",
+    "no_automatic_diagnostic_scoring": true
+  },
+  "case_version": "2.0",
+  "approved_direction": [
+    "established schizophrenia historical chart diagnosis",
+    "potentially co-occurring mood and anxiety symptoms",
+    "longitudinal patient-centered recovery"
+  ]
+}
