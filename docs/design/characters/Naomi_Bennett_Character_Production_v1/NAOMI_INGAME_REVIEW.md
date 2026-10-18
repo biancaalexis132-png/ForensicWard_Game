@@ -27,7 +27,7 @@ git switch claude/naomi-review-preview
 /Applications/Godot.app/Contents/MacOS/Godot --path . -- --character-preview=staff_bennett
 ```
 
-The import step creates the GLB's `.import` file and extracted textures; they are generated, so do not commit them. The Output log prints `Review preview: staff_bennett uses unapproved candidate v02`. Walk from the spawn to the nursing station. Naomi stands inside the office behind the counter and faces into the room, so go through the office door to see her face. Swap the last argument for `staff_bennett:v01` to compare.
+The import step creates the GLB's `.import` file and extracted textures; they are generated, so do not commit them. The Output log prints `Review preview: staff_bennett uses unapproved candidate v02`. Walk from the spawn to the nursing station. In the preview Naomi stands on the office side of the desk and faces the corridor counter, so you see her face through the counter window. Swap the last argument for `staff_bennett:v01` to compare.
 
 From the editor instead: Project > Project Settings > Editor > Run > Main Run Args = `-- --character-preview=staff_bennett`, then press Play. That setting is written to `project.godot`; clear it before committing.
 
@@ -65,7 +65,7 @@ Ordered by what blocks the next step. Owner or artist decisions are marked.
 9. Breathing, listening, talking and the gesture clips named in `docs/design/characters/Naomi_Acting_Cues_v1/`, exported in the GLB or a separate animation library, wired through `CharacterActingAdapter` groups.
 
 **Placement**
-10. Decide which way Bennett faces. The marker faces into the office, away from the counter. *Owner decision: face the counter, or keep her working at the desk until the player comes in.* This is a world-data change in `data/world_chapter1.json` / the zone scene, not a model change.
+10. Done for the preview (owner decision 2026-10-18: face the counter). `CharacterVisualPreview.PLACEMENT` turns the model 180° and steps it 0.55 m back from the marker to the office side of the desk; see `ingame_review_v02/ingame_v02_counter_facing.png`. The marker itself (inside the desk, facing into the office) is unchanged, so normal play is unchanged; move the marker in world data only when Naomi becomes the default.
 
 **Optimization (8 GB Mac)**
 11. v02 is 32,281 triangles in 15 meshes and 11 materials. Merge meshes and materials where the rig allows, add a lower LOD, and cap textures at 2K.
