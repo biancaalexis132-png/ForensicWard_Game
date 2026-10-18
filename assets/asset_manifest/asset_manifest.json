@@ -5118,6 +5118,26 @@
       "source_file": "assets/blender/characters/Naomi_Bennett_v05.blend",
       "status": "Refinement candidate; owner review pending; not approved, not production-ready, not the default visual",
       "triangles_base": 49034
+    },
+    "Naomi_Bennett_v06": {
+      "path": "res://assets/exports/characters/Naomi_Bennett_v06.glb",
+      "category": "character",
+      "tags": [
+        "naomi",
+        "character",
+        "animated"
+      ]
+    },
+    "Naomi_Bennett_v06_mpfb": {
+      "path": "res://assets/exports/characters/Naomi_Bennett_v06_mpfb.glb",
+      "category": "character",
+      "tags": [
+        "naomi",
+        "character",
+        "animated",
+        "mpfb",
+        "visemes"
+      ]
     }
   },
   "schema_version": "1.0"
