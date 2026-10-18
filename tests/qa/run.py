@@ -32,6 +32,7 @@ def main():
                    XDG_CACHE_HOME=directory, XDG_CONFIG_HOME=directory)
         run([sys.executable, "tests/qa/test_json.py"], env, r"\bOK\b")
         run([sys.executable, "tests/qa/test_audio_manifest.py"], env, r"\bOK\b")
+        run([sys.executable, "tests/qa/test_cutscenes.py"], env, r"\bOK\b")
         run([sys.executable, "tests/music_ai/test_generate_music.py"], env, r"\bOK\b")
         run([args.godot, "--version"], env, r"(?m)^4\.7\.")
         base = [args.godot, "--headless", "--path", str(ROOT)]
