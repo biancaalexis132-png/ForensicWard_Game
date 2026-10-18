@@ -21,10 +21,11 @@ const CANDIDATES: Dictionary = {
 		"v04": "res://assets/exports/characters/Naomi_Bennett_v04.glb",
 		# Mac pipeline validation build from PR #51 (three small clips, no face morphs).
 		"v04_local": "res://assets/exports/characters/Naomi_Bennett_v04_local.glb",
+		"v05": "res://assets/exports/characters/Naomi_Bennett_v05.glb",
 	},
 }
 const DEFAULT_VERSION: Dictionary = {
-	"staff_bennett": "v04",
+	"staff_bennett": "v05",
 }
 ## Where the previewed model stands, relative to the character's marker. Only the
 ## model moves; the interaction box, collision and name label stay on the marker.

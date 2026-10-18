@@ -320,6 +320,7 @@
   },
   "blender_version": "5.2.2 LTS",
   "profile": "tools/character_animation/profiles/staff_bennett.json",
+  "profile_sha256": "6c5df8bbb6ed6d80b634ac56e26b2c98528d452a7ffb618e3d94a3bd000e4418",
   "face_details": {
     "lash_faces": 38,
     "brow_faces": 0,
@@ -344,15 +345,15 @@
       "hems": [
         {
           "side": "left",
-          "hem_height_m": 0.1068,
-          "ragged_range_m": 0.0509,
-          "band_vertices": 47
+          "hem_height_m": 0.0899,
+          "ragged_range_m": 0.0734,
+          "band_vertices": 67
         },
         {
           "side": "right",
-          "hem_height_m": 0.1175,
-          "ragged_range_m": 0.0583,
-          "band_vertices": 45
+          "hem_height_m": 0.0899,
+          "ragged_range_m": 0.0708,
+          "band_vertices": 64
         }
       ]
     }

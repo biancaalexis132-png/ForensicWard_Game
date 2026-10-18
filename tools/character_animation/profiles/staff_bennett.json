@@ -121,6 +121,7 @@
     "shoes": "Naomi_Practical_Shoes",
     "trousers": "Naomi_Scrub_Trousers",
     "hem_max_height_m": 0.3,
-    "hem_band_m": 0.06
+    "hem_band_m": 0.06,
+    "hem_shoe_overlap_m": 0.015
   }
 }

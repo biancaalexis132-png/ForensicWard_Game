@@ -5057,6 +5057,36 @@
       "source_file": "assets/blender/characters/Naomi_Bennett_v04_local.blend",
       "status": "Pipeline validation build; not approved, not production-ready, not the default visual; superseded by the cloud v04 build when that lands",
       "triangles_base": 44692
+    },
+    "Naomi_Bennett_v05": {
+      "asset_id": "Naomi_Bennett_v05",
+      "asset_name": "Naomi Bennett character v05 (refinement)",
+      "category": "character",
+      "collision": "Not generated; WardCharacter retains runtime contact and interaction behavior",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.5027,
+        0.347,
+        1.6899
+      ],
+      "export_file": "assets/exports/characters/Naomi_Bennett_v05.glb",
+      "implementation_notes": "v04 refined: hair-like brows painted into the skin texture, roughness and pore normal maps on the skin, eye bones for gaze, a blink that closes fully, moulded clog shoes and straight trouser hems. Same 10 clips and 10 face morph targets. Built by tools/character_animation/build_animated_character.py; provenance in assets/asset_manifest/naomi_character_manifest_v05.json. Shown only with --character-preview.",
+      "intended_location": "Chapter 1: Charge Nurse Naomi Bennett",
+      "markers": [],
+      "materials": [
+        "Naomi_Skin.001",
+        "Naomi_Lash",
+        "Naomi_Eye",
+        "Naomi_Hair_Cap",
+        "Naomi_ID_Badge",
+        "Naomi_Hair.001",
+        "Naomi_Shoes.001",
+        "Naomi_Scrubs_Top",
+        "Naomi_Scrubs_Trousers"
+      ],
+      "source_file": "assets/blender/characters/Naomi_Bennett_v05.blend",
+      "status": "Refinement candidate; owner review pending; not approved, not production-ready, not the default visual",
+      "triangles_base": 49034
     }
   },
   "schema_version": "1.0"

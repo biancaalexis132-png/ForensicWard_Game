@@ -24,7 +24,7 @@ const PLAYER_RANGE: float = 7.0
 const WORKSTATION_RANGE: float = 4.0
 const WORKSTATION_FIRST_SECONDS: float = 1.2
 ## Fallback when no terminal is near: down and toward her right.
-const WORKSTATION_FALLBACK_DEG: Vector2 = Vector2(-20.0, -15.0)
+const WORKSTATION_FALLBACK_DEG: Vector2 = Vector2(-18.0, -11.0)
 ## Saccades are fast; this is the exponential rate toward the target angle.
 const EYE_RATE: float = 18.0
 const MICRO_INTERVAL: Vector2 = Vector2(0.5, 1.8)

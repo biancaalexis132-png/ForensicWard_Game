@@ -28,6 +28,8 @@ func configure(model: Node3D) -> void:
 	_targets.clear()
 	for node: Node in model.find_children("*", "MeshInstance3D", true, false):
 		var mesh: MeshInstance3D = node as MeshInstance3D
+		if mesh.cast_shadow == GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY:
+			continue  # A still shadow proxy: blinking it would redraw shadow maps.
 		var blink: int = mesh.find_blend_shape_by_name(BLINK_SHAPE)
 		var mouth: int = mesh.find_blend_shape_by_name(MOUTH_SHAPE)
 		if blink >= 0 or mouth >= 0:

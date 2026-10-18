@@ -1,12 +1,12 @@
 extends TestCase
-## Verifies the cast animation standard on the real Naomi v04 GLB: clips import with
+## Verifies the cast animation standard on the real Naomi v05 GLB: clips import with
 ## keys, loop, split onto the body and gesture players, reach the acting adapter,
 ## and the face morphs blink and take expressions. Also checks that the runtime clip
 ## lists match tools/character_animation/clip_library.json.
 
 const CHARACTER_SCENE: PackedScene = preload("res://scenes/props/Character.tscn")
 const CLIP_LIBRARY: String = "res://tools/character_animation/clip_library.json"
-const VERSION: String = "v04"
+const VERSION: String = "v05"
 const GREETING_ID: String = "ch1_b2_bennett_001"
 
 var _characters: Array[WardCharacter] = []
@@ -46,7 +46,7 @@ func test_runtime_clip_lists_match_the_clip_library() -> void:
 					"cue gesture is in the standard: " + cue["gesture"])
 
 
-func test_v04_clips_import_with_keys_and_split_by_player() -> void:
+func test_clips_import_with_keys_and_split_by_player() -> void:
 	var bennett: WardCharacter = _spawn_preview_bennett()
 	var model: Node3D = bennett.get_node("VisualRoot").get_child(0)
 	var body: AnimationPlayer = _player(model, false)
@@ -142,6 +142,68 @@ func test_face_rig_blinks_and_moves_the_mouth_when_speaking() -> void:
 	check_eq(mesh.get_blend_shape_value(mouth), 0.0, "the mouth closes after speech")
 
 
+func test_gaze_turns_the_eyes_toward_the_player_within_limits() -> void:
+	var bennett: WardCharacter = _spawn_preview_bennett()
+	var model: Node3D = bennett.get_node("VisualRoot").get_child(0)
+	var gaze: CharacterGazeRig = model.get_node_or_null("CharacterGazeRig")
+	check(gaze != null and gaze.has_eyes(), "gaze rig attached to a model with eye bones")
+	if gaze == null:
+		return
+	var controller: NaomiActingController = bennett.get_node("NaomiActingController")
+	check(controller.get_adapter().has_capability("gaze", "player"), "adapter finds the gaze rig")
+	var skeleton: Skeleton3D = model.find_children("*", "Skeleton3D", true, false)[0]
+	var eye: int = skeleton.find_bone("eye_l")
+	var head: Vector3 = (skeleton.global_transform * skeleton.get_bone_global_pose(skeleton.find_bone("head"))).origin
+	var front: Vector3 = model.global_basis.z.normalized()
+	var her_left: Vector3 = model.global_basis.x.normalized()
+	var camera: Camera3D = Camera3D.new()
+	runner.add_child(camera)
+	camera.current = true
+	camera.global_position = head + front * 1.5 + her_left * 0.5
+	gaze.set_gaze_directive(&"player")
+	for i: int in 20:
+		gaze._process(1.0 / 30.0)
+	var angles: Vector2 = gaze.get_eye_angles()
+	check(angles.x > 10.0 and angles.x <= CharacterGazeRig.MAX_YAW_DEG + 1.0,
+			"eyes turn toward a player on her left (%.1f degrees)" % angles.x)
+	var turned: Quaternion = skeleton.get_bone_pose_rotation(eye)
+	check(not turned.is_equal_approx(skeleton.get_bone_rest(eye).basis.get_rotation_quaternion()), "the eye bone is posed")
+	camera.global_position = head - front * 2.0
+	for i: int in 30:
+		gaze._process(1.0 / 30.0)
+	check(gaze.get_eye_angles().length() < 2.0, "a player behind her leaves the eyes at rest")
+	gaze.set_gaze_directive(&"workstation")
+	for i: int in 30:
+		gaze._process(1.0 / 30.0)
+	check(gaze.get_eye_angles().y < -5.0, "workstation gaze looks down")
+	camera.queue_free()
+
+
+func test_animated_model_casts_a_static_shadow() -> void:
+	var bennett: WardCharacter = _spawn_preview_bennett()
+	var model: Node3D = bennett.get_node("VisualRoot").get_child(0)
+	var skinned: int = 0
+	for node: Node in model.find_children("*", "MeshInstance3D", true, false):
+		var mesh: MeshInstance3D = node as MeshInstance3D
+		if mesh.skin == null:
+			continue
+		skinned += 1
+		check_eq(mesh.cast_shadow, GeometryInstance3D.SHADOW_CASTING_SETTING_OFF, "animated mesh casts no shadow: " + mesh.name)
+		var proxy: MeshInstance3D = mesh.get_parent().get_node_or_null(String(mesh.name) + CharacterAnimationRig.SHADOW_PROXY_SUFFIX)
+		check(proxy != null and proxy.mesh == mesh.mesh and proxy.skin == null, "static shadow copy exists: " + mesh.name)
+		if proxy != null:
+			check_eq(proxy.cast_shadow, GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY, "proxy only casts shadow")
+	check(skinned >= 5, "the model's skinned meshes were found (%d)" % skinned)
+	var face: CharacterFaceRig = model.get_node("CharacterFaceRig")
+	face.blink()
+	face._process(CharacterFaceRig.BLINK_SECONDS * 0.5)
+	for node: Node in model.find_children("*" + CharacterAnimationRig.SHADOW_PROXY_SUFFIX, "MeshInstance3D", true, false):
+		var proxy: MeshInstance3D = node as MeshInstance3D
+		var index: int = proxy.find_blend_shape_by_name(&"blink")
+		if index >= 0:
+			check_eq(proxy.get_blend_shape_value(index), 0.0, "the shadow copy does not blink")
+
+
 func test_second_instance_gets_its_own_players() -> void:
 	var first: WardCharacter = _spawn_preview_bennett()
 	var second: WardCharacter = _spawn_preview_bennett()
@@ -181,6 +243,7 @@ func _player(model: Node, gesture: bool) -> AnimationPlayer:
 
 func _face_mesh(model: Node) -> MeshInstance3D:
 	for node: Node in model.find_children("*", "MeshInstance3D", true, false):
-		if (node as MeshInstance3D).find_blend_shape_by_name(&"blink") >= 0:
-			return node as MeshInstance3D
+		var mesh: MeshInstance3D = node as MeshInstance3D
+		if mesh.find_blend_shape_by_name(&"blink") >= 0 and mesh.cast_shadow != GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY:
+			return mesh
 	return null

@@ -208,7 +208,8 @@ func _face_meshes() -> Array[MeshInstance3D]:
 		return meshes
 	for node: Node in _actor_root.find_children("*", "MeshInstance3D", true, false):
 		var mesh: MeshInstance3D = node as MeshInstance3D
-		if mesh.get_blend_shape_count() > 0:
+		# Shadow-only copies (CharacterAnimationRig) keep a still face on purpose.
+		if mesh.get_blend_shape_count() > 0 and mesh.cast_shadow != GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY:
 			meshes.append(mesh)
 	return meshes
 

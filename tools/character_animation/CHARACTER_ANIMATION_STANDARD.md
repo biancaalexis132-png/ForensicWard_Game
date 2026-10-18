@@ -1,6 +1,6 @@
 # Cast animation standard
 
-Every Forensic Ward character model uses these clip and face-control names, so `CharacterActingAdapter`, `CharacterAnimationRig` and the acting-cue files work with any of them. Naomi Bennett (v04) is the first model built to this standard. The names come from Naomi's acting cues (`docs/design/characters/Naomi_Acting_Cues_v1/naomi_acting_cues.json`), and a test (`scripts/tests/test_character_animation.gd`) keeps `clip_library.json` and the runtime lists in step.
+Every Forensic Ward character model uses these clip and face-control names, so `CharacterActingAdapter`, `CharacterAnimationRig` and the acting-cue files work with any of them. Naomi Bennett (v04, refined in v05) is the first model built to this standard. The names come from Naomi's acting cues (`docs/design/characters/Naomi_Acting_Cues_v1/naomi_acting_cues.json`), and a test (`scripts/tests/test_character_animation.gd`) keeps `clip_library.json` and the runtime lists in step.
 
 ## Body clips (imported AnimationPlayer)
 
@@ -25,11 +25,35 @@ Gestures animate only the neck and arms. `CharacterAnimationRig` moves them from
 
 | Morph | Driven by |
 |---|---|
-| `blink`, `blink_L`, `blink_R` | `CharacterFaceRig`: irregular blinks every 2.2–5.5 s, with an occasional double blink |
+| `blink`, `blink_L`, `blink_R` | `CharacterFaceRig`: irregular blinks every 2.2–5.5 s, with an occasional double blink. At 1.0 the lids meet fully. |
 | `mouth_open` | `CharacterFaceRig` while the adapter reports the character speaking (no lip sync) |
 | `attentive`, `warm_subtle`, `concerned_restrained`, `professionally_serious`, `focused`, `calm_professional` | The adapter, by cue `face` name, at value 1.0. Each is authored at in-game intensity, so it stays restrained. |
 
-`neutral` means no expression morph. Gaze is not implemented yet. `character_gaze_adapter` is the hook for it.
+`neutral` means no expression morph.
+
+## Eye bones and gaze
+
+Models carry one bone per eye, `eye_l` and `eye_r`, under the head (`eye_bones` in the profile), with each eyeball weighted fully to its bone. `CharacterGazeRig` turns only those bones, by at most 26° sideways and 12° up or down, toward the cue's `gaze` target:
+
+| Directive | Target |
+|---|---|
+| `player` | the active camera, within 7 m and in front of her (beyond 60° to the side the eyes rest) |
+| `workstation` | the nearest EHR terminal within 4 m, else down and to her right |
+| `workstation_then_player` | the workstation for 1.2 s, then the player |
+
+Small fixational movements keep a held gaze from looking frozen.
+
+## Shadows
+
+An animated mesh makes every shadowed light around it redraw its shadow map each frame. `CharacterAnimationRig` therefore turns shadow casting off on the skinned meshes and adds a still, shadow-only copy of each in the rest pose. The copies never blink or animate.
+
+## Profile options for appearance
+
+These run in the builder before the face morphs:
+- `face.brows.mode: "painted"`: brows painted as individual hairs into the skin texture, so they mipmap with the skin and read as brows at counter distance. `"strips"` keeps the older alpha-strip brows.
+- `skin`: roughness level and variation, specular, and a faint pore normal map. These are baked from a position map of the skin's UVs.
+- `clothing_tidy.shoes`: replaces creased shoes with a rounded clog cut from their convex hull, and copies the skin weights back.
+- `clothing_tidy.trousers`: makes each leg's hem straight, irons out the folds above it, and stretches the hem down over the shoe tops.
 
 ## Building a character to the standard
 
@@ -53,7 +77,7 @@ The builder needs only Blender 5.2.2. It does not need MPFB2 to be enabled, beca
 
 ```sh
 cd ~/ForensicWard_Campaign_Publish
-git fetch origin && git switch claude/naomi-animation-v04
+git fetch origin && git switch main
 /Applications/Blender.app/Contents/MacOS/Blender --version          # expect 5.2.2
 /Applications/Blender.app/Contents/MacOS/Blender --background --python-exit-code 1 \
     --python tools/character_animation/build_animated_character.py -- \
@@ -62,4 +86,4 @@ git fetch origin && git switch claude/naomi-animation-v04
 /Applications/Godot.app/Contents/MacOS/Godot --path . -- --character-preview=staff_bennett
 ```
 
-The build writes `assets/exports/characters/Naomi_Bennett_v04.glb`, the v04 .blend, the review sheets in `assets/renders/characters/` and `tools/character_animation/reports/staff_bennett_v04_rig_report.json`. To check MPFB2 itself, run `Blender --background --python-expr "import addon_utils; print([m.__name__ for m in addon_utils.modules() if 'mpfb' in m.__name__.lower()], addon_utils.check('bl_ext.blender_org.mpfb'))"`. MPFB2 is only needed to make a new base body, or to use its CC0 skin, eyebrow and eyelash assets.
+The build writes `assets/exports/characters/Naomi_Bennett_v05.glb`, the v05 .blend, the review sheets in `assets/renders/characters/` and `tools/character_animation/reports/staff_bennett_v05_rig_report.json`. To check MPFB2 itself, run `Blender --background --python-expr "import addon_utils; print([m.__name__ for m in addon_utils.modules() if 'mpfb' in m.__name__.lower()], addon_utils.check('bl_ext.blender_org.mpfb'))"`. MPFB2 is only needed to make a new base body, or to use its CC0 skin, eyebrow and eyelash assets.

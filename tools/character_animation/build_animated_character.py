@@ -10,7 +10,10 @@ swing) and converted per bone from its rest orientation.
 What it does, in order:
 1. Opens the source .blend read-only and checks the rig against the skinned mesh
    (every mapped bone must sit inside the vertices weighted to it).
-2. Adds eyelashes and brow strokes to the face mesh.
+2. Adds eyelashes (and, if the profile asks, brow strokes) to the face mesh. Optional
+   profile steps: paint brows and matte skin detail into the skin textures (`skin`,
+   `face.brows.mode: painted`), add eye bones for gaze (`eye_bones`), and tidy shoes
+   and trouser hems (`clothing_tidy`).
 3. Authors face morph targets: blink, blink_L, blink_R, mouth_open and the
    expression names used by the acting cues.
 4. Authors the body and gesture clips as actions on the rig (rest pose untouched).
@@ -937,7 +940,8 @@ def tidy_shoes(obj: bpy.types.Object, frame: CharacterFrame) -> dict:
     return report
 
 
-def level_hems(obj: bpy.types.Object, frame: CharacterFrame, max_height_m: float, band_m: float) -> dict:
+def level_hems(obj: bpy.types.Object, frame: CharacterFrame, max_height_m: float, band_m: float,
+               cover_top_m: float | None = None) -> dict:
     """Give each trouser leg a straight, unfolded hem.
 
     The garments are closed shells with thickness, so the hem is found by height.
@@ -946,6 +950,8 @@ def level_hems(obj: bpy.types.Object, frame: CharacterFrame, max_height_m: float
     above, each vertex's distance from the leg axis eases toward the mean for its
     height (separately for the outer and inner wall), which irons out the folds
     that made the hem look torn. The ironing fades out at the top of the band.
+    If cover_top_m is given (the top of the shoes less an overlap), the ironed
+    band is then stretched down to it so no ankle gap shows between hem and shoe.
     """
     bm = bmesh.new()
     bm.from_mesh(obj.data)
@@ -998,6 +1004,11 @@ def level_hems(obj: bpy.types.Object, frame: CharacterFrame, max_height_m: float
                 d = radial(v)
                 if d.length > 1e-6:
                     v.co += d.normalized() * (want - r) * float(w)
+        if cover_top_m is not None and cover_top_m < target:
+            drop = target - cover_top_m
+            for v in band:
+                v.co -= up * drop * float(1.0 - smoothstep(0.0, band_m, v.co.dot(up) - target))
+            target = cover_top_m
         report.append({"side": "left" if leg_side else "right", "hem_height_m": round(target, 4),
                        "ragged_range_m": round(float(mins.max() - mins.min()), 4), "band_vertices": len(band)})
     bm.to_mesh(obj.data)
@@ -1267,8 +1278,12 @@ def main() -> None:
     if tidy.get("shoes"):
         details["shoes"] = tidy_shoes(bpy.data.objects[tidy["shoes"]], frame)
     if tidy.get("trousers"):
+        cover = None
+        if tidy.get("shoes"):
+            shoes = bpy.data.objects[tidy["shoes"]]
+            cover = max(v.co.dot(frame.up) for v in shoes.data.vertices) - tidy.get("hem_shoe_overlap_m", 0.0)
         details["trouser_hems"] = level_hems(bpy.data.objects[tidy["trousers"]], frame,
-                                             tidy["hem_max_height_m"], tidy["hem_band_m"])
+                                             tidy["hem_max_height_m"], tidy["hem_band_m"], cover)
     shape_names = build_face_shapes(face, library)
     clips = build_clips(rig, frame, library, bones)
 
