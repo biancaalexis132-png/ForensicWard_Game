@@ -8,12 +8,15 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
+**GitHub state correction (verified 2026-10-18 14:15 UTC, Claude Code):** `origin/main` is `a202caf` (PR #45 Naomi v02 merged at 13:37 UTC). PRs #34–#43 and #45 are merged. Open: draft PR #44 (F3 anomaly model; `main` merged in at `1a1fb10`, docs-only conflicts resolved, full QA passed) and draft PR #46 (Naomi review-only preview). Naomi v02 is still unapproved; it is attached only when the game is started with `-- --character-preview=staff_bennett`.
+
 **GitHub state correction (verified 2026-10-18 13:32 UTC):** `origin/main` is `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`; PR #43 (Stage 6) and PR #42 (CIG slot/fallback) are merged, PR #44 and Naomi draft PR #45 are open. The Naomi code-validation checkpoint is `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc`; the branch also contains docs-only handoff checkpoint `bb56860e0906182c3300f57b80b5e64e88421c02`. PR #45's hosted `validate` check on the handoff head is in progress. Naomi v01 and v02 remain unapproved and not integrated.
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Foundation F3 anomaly model | `claude/f3-anomaly-model` (draft PR to `main`) | Claude | `5283735` (see entry) | `data/anomalies.json`, `data/clues.json` (source_class, claim_state), `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/narrative/{AnomalyLedger,ChapterDirector,StoryLogic}.gd`, `scripts/autoload/{ContentRegistry,EventBus}.gd` (EventBus: two signals), `scripts/content/*`, `project.godot` (one setting), `scripts/tests/test_anomaly.gd`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER}.md` | Awaiting owner review |
-| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` (code/test checkpoint; docs-only follow-up is pushed) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Active; v02 is structurally valid but fails visual criteria and is not for runtime integration. Hosted validation is in progress. |
+| Naomi in-game review preview | `claude/naomi-review-preview` (draft PR #46) | Claude Code | `6b6893d` | `scripts/world/{Character,CharacterVisualPreview}.gd`, `scripts/tests/test_character_preview.gd`, `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md` and `ingame_review_v02/` | Waiting on owner review of the model in game; preview is off by default |
+| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` (code/test checkpoint; docs-only follow-up is pushed) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Merged in PR #45 at `a202caf` (row kept for history; the owner removes it). v02 still fails visual criteria. |
+| Foundation F3 anomaly model | `claude/f3-anomaly-model` (draft PR to `main`) | Claude | `5283735` (see entry) | `data/anomalies.json`, `data/clues.json` (source_class, claim_state), `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/narrative/{AnomalyLedger,ChapterDirector,StoryLogic}.gd`, `scripts/autoload/{ContentRegistry,EventBus}.gd` (EventBus: two signals), `scripts/content/*`, `project.godot` (one setting), `scripts/tests/test_anomaly.gd`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER}.md` | Merged in PR #44 at `fec5933` (row kept for history; the owner removes it). |
 
 ### 2026-10-18 13:32 UTC · Copilot · Naomi handoff follow-up
 
@@ -153,6 +156,47 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 14:15 UTC · Claude Code · Naomi in-game review preview
+
+- **Branch:** `claude/naomi-review-preview` (based on `main` at `a202caf`)
+- **Latest verified commit:** `6b6893dc3aff22e64745e7510ee3e1c8370bee81` "Add a review-only switch to view Naomi v02 at the nursing station"
+- **Confirmed on GitHub:** `git ls-remote origin claude/naomi-review-preview` printed `6b6893d…` at 14:08 UTC
+- **Pull request:** #46 (draft, assigned to the owner)
+- **State:** finished; the model itself is not approved
+
+**Accomplished**
+- `scripts/world/CharacterVisualPreview.gd`: review-only map of character id to candidate GLB (Naomi v01, v02). Enabled only by `-- --character-preview=staff_bennett[:v01]`; off in normal play, tests and CI.
+- `scripts/world/Character.gd`: `_ready` asks for a preview only when no `visual_scene` is set and uses the existing `set_visual_scene` slot (capsule fallback kept).
+- `scripts/tests/test_character_preview.gd`: 4 tests (parsing; off by default; real v02 attaches with rig, interaction id, collision, dialogue and acting cue unchanged; Chapter 1 state identical with and without preview, no model path in the save, zone rebuild keeps it).
+- `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md`: Mac viewing commands, in-game findings, and the ordered list of missing model, rigging, animation, texture, placement and optimization tasks. Captures in `ingame_review_v02/` (`.gdignore`).
+- PR #44: merged `main` at `a202caf` into `claude/f3-anomaly-model` as `1a1fb10`, resolving conflicts in the four continuity docs only (both sides kept, stale CIG row dropped). `tests/qa/run.py` exit 0 there, TestRunner 142/0.
+
+**Files modified**
+- See the claimed files in the workstream row, plus `docs/{AI_HANDOFF,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER,PROJECT_STATUS}.md`.
+
+**Unfinished**
+- none in code. The model work listed in `NAOMI_INGAME_REVIEW.md` is unassigned.
+
+**Known errors**
+- none. Expected warnings only: tests feed an unknown id and version to the parser on purpose.
+
+**Tests** (on `6b6893d`, Linux container, Godot 4.7.stable.official.5b4e0cb0f, SHA-512 verified)
+- `GODOT=<godot> python3 tests/qa/run.py`: exit 0. Python 6+3+3 OK, pharmacology 0 failures, QA 19/0/0, GLB 154/154, TestRunner 131/0, audio 336/0, Chapter 1 audio sequence complete. FFmpeg in this container has libvorbis, so the music tests ran and passed.
+- In-game captures: Godot 4.7 `--rendering-driver opengl3` on Xvfb/llvmpipe. Not representative of Mac lighting or performance.
+- CI: not observed at the time of writing.
+
+**Dependencies not available to remote agents**
+- Mac viewing and frame-time measurement; MPFB2 2.0.18 for any rebuild; `~/ForensicWard_Character_Code_Starter_v1` and `~/ForensicWard_Character_Builds` (Evelyn Voss and Leila Rahman prototypes) are local only and not on GitHub. No generated assets for Voss, Rahman, Hale, Elias Ward or Mara Ellis exist in the repository.
+
+**Next steps**
+1. Owner runs the commands in `NAOMI_INGAME_REVIEW.md` on the Mac and decides on model direction (procedural builder, artist, or licensed asset) and Bennett's facing.
+2. Model fixes in `tools/blender/characters/build_naomi.py` (hair cards, trousers, hems, face scale) produce v03; add `"v03"` to `CharacterVisualPreview.CANDIDATES` and the default map.
+3. Idle pose and acting clips, then LOD and Mac frame-time measurement, then make Naomi Bennett's default `visual_scene`.
+
+**Notes for the other agent**
+- Do not set Naomi as Bennett's default visual until the owner approves the appearance. Do not commit the GLB `.import` sidecars or extracted textures that the editor import creates.
+- `audio/voice_profiles.json:10` still describes Dr Rahman as "Clinical pharmacist"; the owner-approved role is Consultant Psychiatrist (D1). Not changed here.
 
 ### 2026-10-18 01:35 UTC · Claude Code · Foundation F3 anomaly model
 

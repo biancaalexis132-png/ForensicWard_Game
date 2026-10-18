@@ -1,5 +1,16 @@
 # AI progress tracker
 
+## Naomi in-game review preview — Claude Code, 2026-10-18
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| View Naomi in the Chapter 1 nursing station without approving her | Done, draft PR #46 | v02 GLB (merged in #45); slot from #42 | `scripts/world/CharacterVisualPreview.gd`, `scripts/world/Character.gd`, `scripts/tests/test_character_preview.gd` | TestRunner 131/0, full QA exit 0 on `6b6893d`; Mac not run | Owner views on Mac |
+| Naomi hair, trousers, hems, face (v03) | Not started | Owner decision on model direction | `tools/blender/characters/**` | v02 fails QA items 1, 4, 6, 7, 8 | Owner decides |
+| Naomi idle pose and acting clips | Not started | Approved model | GLB animations; `scripts/acting/**` | none | After v03 |
+| Naomi LOD and Mac frame time | Not started | Approved model and idle | | No measurement exists | After animation |
+| Bennett facing at the nursing station | Blocked on owner | | `data/world_chapter1.json` / zone scene marker | Captures show her back from the counter | Owner decides |
+| PR #44 conflicts with `main` | Done at `1a1fb10`; #44 merged at `fec5933` | | four continuity docs | QA exit 0, TestRunner 142/0 | none |
+
 ## F3 anomaly evidence model — Claude Code, 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |
