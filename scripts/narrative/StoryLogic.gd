@@ -18,7 +18,7 @@ extends RefCounted
 ##   {"chapter_flag": {"chapter", "flag"}}       a flag set in another chapter
 ##   {"zone": zone_id}                           the player is in that zone
 ##   {"world_state": {"group", "state"}}         WorldStateManager state
-##   {"all": [conditions]}, {"any": [conditions]}
+##   {"all": [conditions]}, {"any": [conditions]}, {"not": condition}
 ## An action is an object with exactly one key:
 ##   {"audio_event": event_id}       EventBus.narrative_event_fired
 ##   {"notify": text}
@@ -31,7 +31,7 @@ extends RefCounted
 
 const CONDITIONS: Array[String] = ["talked_to", "observations_recorded", "note_saved", "action_committed",
 		"clue_acquired", "hypothesis_supported", "shift", "day", "flag", "trust_at_least", "chapter_completed",
-		"chapter_flag", "zone", "world_state", "all", "any"]
+		"chapter_flag", "zone", "world_state", "all", "any", "not"]
 const ACTIONS: Array[String] = ["audio_event", "notify", "flag", "chart_entry", "world_state", "start_chapter"]
 ## The flag ChapterDirector sets when a chapter ends.
 const CHAPTER_COMPLETE_FLAG: String = "chapter_complete"
@@ -97,6 +97,8 @@ static func check_condition(condition: Variant, path: String, refs: Dictionary, 
 			else:
 				for i: int in value.size():
 					check_condition(value[i], "%s[%d]" % [at, i], refs, errors)
+		"not":
+			check_condition(value, at, refs, errors)
 		_:
 			errors.append("%s: unknown condition '%s'. Use one of: %s." % [path, kind, ", ".join(CONDITIONS)])
 
@@ -167,6 +169,8 @@ static func evaluate(condition: Dictionary, story: Dictionary) -> bool:
 			return value.all(func(c: Dictionary) -> bool: return evaluate(c, story))
 		"any":
 			return value.any(func(c: Dictionary) -> bool: return evaluate(c, story))
+		"not":
+			return not evaluate(value, story)
 	return false
 
 

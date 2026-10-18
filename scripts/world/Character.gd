@@ -16,6 +16,10 @@ enum Kind { STAFF, PATIENT }
 @export var seated: bool = false
 ## Optional imported visual scene. The placeholder remains available as a fallback.
 @export var visual_scene: PackedScene
+## Optional StoryLogic condition: the character is only in the scene (visible,
+## solid and interactable) while it holds. Re-checked whenever the objective
+## changes, which includes every load.
+var present_when: Dictionary = {}
 
 @onready var _interactable: Interactable = $Interactable
 @onready var _name_label: Label3D = $NameLabel
@@ -36,6 +40,10 @@ func _ready() -> void:
 		_name_label.position.y = 1.55
 	_interactable.interactable_id = "character:" + character_id
 	_interactable.interacted.connect(_on_interacted)
+	if not present_when.is_empty():
+		EventBus.objective_changed.connect(_update_presence.unbind(2))
+		tree_entered.connect(_update_presence)
+		_update_presence()
 	var display_name: String = _display_name()
 	_name_label.text = display_name
 	_interactable.prompt = ("Talk to " if kind == Kind.STAFF else "Approach ") + display_name
@@ -102,6 +110,21 @@ func _remove_attached_visual() -> void:
 			_visual_root.remove_child(_attached_visual)
 		_attached_visual.queue_free()
 	_attached_visual = null
+
+
+func is_present() -> bool:
+	return visible
+
+
+func _update_presence() -> void:
+	if not is_inside_tree():
+		return  # Re-checked on tree_entered (unloaded zones keep their characters).
+	var director: Node = get_tree().get_first_node_in_group(ChapterDirector.GROUP)
+	var present: bool = director == null or StoryLogic.evaluate(present_when, director.get_story_context())
+	visible = present
+	_interactable.enabled = present
+	_interactable.collision_layer = (1 << (Interactable.INTERACTABLE_LAYER - 1)) if present else 0
+	($Body/Collision as CollisionShape3D).disabled = seated or not present
 
 
 func _display_name() -> String:

@@ -4,7 +4,7 @@
 	"title": "Chapter 2: The Missing Hours",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented.",
+	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry.",
 	"objectives": [
 		{
 			"id": "obj_ch2_handoff",
@@ -116,6 +116,30 @@
 						"flag": "ch2_voss_followup_independent_review"
 					}
 				]
+			}
+		},
+		{
+			"id": "obj_ch2_mara_interview",
+			"text": "Interview Mara Ellis in Interview Room A: her records concern, sleep, mood history, alternatives, safety and collateral.",
+			"complete_when": {
+				"observations_recorded": {
+					"patient_id": "pt_mara_ellis",
+					"min": 6
+				}
+			}
+		},
+		{
+			"id": "obj_ch2_mara_note",
+			"text": "Document Mara's assessment in the EHR. Keep the records question out of the clinical formulation.",
+			"complete_when": {
+				"note_saved": "pt_mara_ellis"
+			}
+		},
+		{
+			"id": "obj_ch2_mara_referral",
+			"text": "Send Mara's date question to Records from the office workstation, separately from her clinical record.",
+			"complete_when": {
+				"flag": "ch2_mara_records_referred"
 			}
 		}
 	],
@@ -523,6 +547,38 @@
 					}
 				]
 			}
+		},
+		{
+			"id": "interaction_ch2_mara_referral",
+			"interactable_id": "OF_Document_TransferSummary",
+			"title": "Records referral: Mara Ellis's question",
+			"body": "[b]Request[/b]\nMara Ellis asks for two copies of her aunt Lillian Ellis's 1988 record to be checked: a paper record dated October 12 and a later archive copy dated October 14.\n\n[b]Separation[/b]\nThis is an administrative records question. It is not part of the hospital's W0-B inquiry, and Mara's clinical assessment stays in the EHR.\n\nHow should it be sent?",
+			"when": {
+				"note_saved": "pt_mara_ellis"
+			},
+			"options": [
+				{
+					"id": "attach_assessment",
+					"label": "Attach your clinical assessment to support her request",
+					"response": "Records does not need her clinical details to compare two copies. Send only what the question requires; her assessment stays confidential in the EHR."
+				},
+				{
+					"id": "add_to_inquiry",
+					"label": "Add the date conflict to the W0-B records inquiry",
+					"response": "Mara is a patient with her own question, not a source for the hospital's inquiry. Nothing links her aunt's record to W0-B. Refer it on its own."
+				},
+				{
+					"id": "refer_question",
+					"label": "Refer the date question to Records on its own",
+					"flag": "ch2_mara_records_referred",
+					"response": "Referral sent to the authorized Records office: two copies, two dates, origin of each copy to be checked. No finding about the records is made, and nothing in Mara's clinical assessment changes. Her follow-up (sleep and function support, safety follow-up, legal-role clarification, medication reconciliation) stays with the clinical team."
+				}
+			],
+			"unavailable_body": "Document Mara's assessment in the EHR first. Her records question is referred separately.",
+			"expires_when": {
+				"flag": "ch2_mara_records_referred"
+			},
+			"completed_body": "Mara's date question is with Records, separate from her clinical record. No finding about the copies has been made."
 		}
 	],
 	"sign_out": {

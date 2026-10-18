@@ -1,7 +1,7 @@
 {
 	"schema_version": "0.1",
 	"world_id": "world_chapter2",
-	"notes": "Chapter 2 opening reuses the staffed clinical wing and existing prop markers. No Ward Zero access or new patient findings. Existing EHR remains available.",
+	"notes": "Chapter 2 opening reuses the staffed clinical wing and existing prop markers. No Ward Zero access or new patient findings. Existing EHR remains available. Interview Room A seats Mara Ellis for her Scene 03 interview (Elias is back on the unit meanwhile); Elias returns once her records question is referred.",
 	"start_zone": "zone_clinical_wing",
 	"spawn_marker": "MARK_PlayerSpawn",
 	"doors": {
@@ -80,7 +80,53 @@
 			"marker": "MARK_Seat_Patient",
 			"kind": "patient",
 			"character_id": "pt_elias_ward",
-			"seated": true
+			"seated": true,
+			"present_when": {
+				"not": {
+					"all": [
+						{
+							"any": [
+								{
+									"flag": "ch2_voss_followup_written_process"
+								},
+								{
+									"flag": "ch2_voss_followup_independent_review"
+								}
+							]
+						},
+						{
+							"not": {
+								"flag": "ch2_mara_records_referred"
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"marker": "MARK_Seat_Patient",
+			"kind": "patient",
+			"character_id": "pt_mara_ellis",
+			"seated": true,
+			"present_when": {
+				"all": [
+					{
+						"any": [
+							{
+								"flag": "ch2_voss_followup_written_process"
+							},
+							{
+								"flag": "ch2_voss_followup_independent_review"
+							}
+						]
+					},
+					{
+						"not": {
+							"flag": "ch2_mara_records_referred"
+						}
+					}
+				]
+			}
 		}
 	],
 	"flicker_lights": []

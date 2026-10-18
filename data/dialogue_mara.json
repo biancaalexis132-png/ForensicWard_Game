@@ -1,0 +1,185 @@
+{
+	"schema_version": "0.1",
+	"patient_id": "pt_mara_ellis",
+	"states": [
+		{
+			"id": "opening",
+			"choices": [
+				{
+					"id": "role_clarity",
+					"label": "I'm here to assess your health and hear your account. The records question can be documented separately.",
+					"intents": [
+						"role",
+						"why_here",
+						"introduce"
+					],
+					"response": "Are you here to examine me or tell me I'm wrong? ... Then please actually look at what I brought.\n\n(She places two copies on the table.) October twelfth. October fourteenth. Same person. My aunt, Lillian. Different dates.",
+					"next": "records"
+				},
+				{
+					"id": "acknowledge_frustration",
+					"label": "It sounds as though you've had to repeat yourself. Where would you like to begin?",
+					"intents": [
+						"frustration",
+						"repeat_yourself",
+						"where_to_begin"
+					],
+					"response": "With the pages people keep dismissing.\n\n(She places two copies on the table.) October twelfth. October fourteenth. Same person. My aunt, Lillian. Different dates.",
+					"next": "records"
+				},
+				{
+					"id": "explain_limits",
+					"label": "My role is clinical care. I won't promise an administrative finding, but I can document your concerns accurately.",
+					"intents": [
+						"limits",
+						"clinical_role",
+						"administrative_finding"
+					],
+					"response": "That's more than most people have told me.\n\n(She places two copies on the table.) October twelfth. October fourteenth. Same person. My aunt, Lillian. Different dates.",
+					"next": "records"
+				}
+			]
+		},
+		{
+			"id": "records",
+			"choices": [
+				{
+					"id": "ask_origin",
+					"label": "Where did each copy originate?",
+					"intents": [
+						"origin",
+						"copies",
+						"where_from"
+					],
+					"response": "One was a paper record, the other a later archive copy. I worked in records. I know mistakes happen. I also know a question is different from an accusation.",
+					"next": "records_explain",
+					"records_observations": [
+						"obs_mara_organized_account"
+					]
+				}
+			]
+		},
+		{
+			"id": "records_explain",
+			"choices": [
+				{
+					"id": "ask_explanation",
+					"label": "What do you think could explain it?",
+					"intents": [
+						"explanation",
+						"what_explains",
+						"cause"
+					],
+					"response": "I don't know. It might be an error. I want somebody to check instead of deciding what kind of person I am for asking.",
+					"next": "modules"
+				}
+			]
+		},
+		{
+			"id": "modules",
+			"choices": [
+				{
+					"id": "ask_sleep",
+					"label": "How much sleep are you getting? How do you feel the next day?",
+					"intents": [
+						"sleep",
+						"sleep_hours",
+						"tired_next_day"
+					],
+					"response": "Four or five hours. I'm exhausted. I try to stop checking the documents, then I think of something else I missed.",
+					"next": "modules",
+					"records_observations": [
+						"obs_mara_reduced_sleep"
+					]
+				},
+				{
+					"id": "ask_mood_history",
+					"label": "An earlier note mentions a mood disorder. Can we discuss what was happening during that period?",
+					"intents": [
+						"mood_history",
+						"earlier_diagnosis",
+						"past_episodes"
+					],
+					"response": "I've had difficult periods. I'm not saying I'm never unwell. I'm saying the pages still say what they say.",
+					"next": "modules",
+					"records_observations": [
+						"obs_mara_mood_history_unverified"
+					]
+				},
+				{
+					"id": "ask_alternatives",
+					"label": "What other explanations have you considered for the date conflict?",
+					"intents": [
+						"other_explanations",
+						"alternatives",
+						"date_conflict_explanation"
+					],
+					"response": "Copying mistakes. Bad indexing. Someone might have entered something later. I don't know which.",
+					"next": "modules",
+					"records_observations": [
+						"obs_mara_alternatives_considered"
+					]
+				},
+				{
+					"id": "ask_safety",
+					"label": "When the stress feels overwhelming, have you thought about suicide, hurting yourself or somebody else?",
+					"intents": [
+						"suicide",
+						"self_harm",
+						"safety",
+						"hurting_others"
+					],
+					"response": "I've felt hopeless in the past. I'm not thinking about hurting myself now.",
+					"next": "modules",
+					"records_observations": [
+						"obs_mara_safety_by_report"
+					]
+				},
+				{
+					"id": "ask_collateral",
+					"label": "Who might know how your sleep and daily routine have changed? We can discuss what information might be requested and shared.",
+					"intents": [
+						"collateral",
+						"family",
+						"sister",
+						"who_knows_you"
+					],
+					"response": "My sister, Dana. I don't want her to think I'm being accused of anything.\n\n(You explain that the purpose and applicable consent will be clarified before anyone contacts her.)",
+					"next": "modules",
+					"records_observations": [
+						"obs_mara_collateral_consent"
+					]
+				},
+				{
+					"id": "close_interview",
+					"label": "If the dates differ, it would establish something about the records. Your assessment still depends on your history, examination and reliable information.",
+					"intents": [
+						"finish",
+						"wrap_up",
+						"end_interview"
+					],
+					"response": "I can live with that. Please keep those separate.",
+					"next": "closing"
+				}
+			]
+		},
+		{
+			"id": "closing",
+			"choices": [
+				{
+					"id": "return_to_questions",
+					"label": "Before you go, there are a few more things I'd like to ask.",
+					"intents": [
+						"more_questions",
+						"go_back",
+						"continue"
+					],
+					"response": "All right. Go ahead.",
+					"next": "modules"
+				}
+			]
+		}
+	],
+	"fallback_response": "Mara waits. Try one of the listed topics, or ask about her sleep, mood history, the records, safety or who knows her well.",
+	"clinical_review_status": "APPROVED"
+}

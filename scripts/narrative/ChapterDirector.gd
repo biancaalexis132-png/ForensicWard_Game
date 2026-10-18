@@ -215,7 +215,7 @@ func _hand_over(config: Dictionary) -> String:
 
 func _shift_summary() -> String:
 	var lines: PackedStringArray = []
-	for patient_id: String in ContentRegistry.get_patient_ids():
+	for patient_id: String in ContentRegistry.get_patient_ids().filter(PatientManager.is_admitted):
 		var state: Dictionary = PatientManager.get_state(patient_id)
 		var actions: int = state["audit"].filter(func(e: Dictionary) -> bool: return e["type"] == "clinical_action").size()
 		lines.append("%s: %d finding(s) witnessed, %d note(s), %d clinical action(s)." % [

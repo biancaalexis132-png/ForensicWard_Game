@@ -152,7 +152,7 @@ func _run_review(choice: String, flag: String, other_flag: String) -> void:
 		check(_director().has_flag(step[4]), "step recorded: " + step[4])
 		_check_boundaries(before, step[4])
 	check(not _director().has_flag(other_flag), "only the chosen follow-up is recorded")
-	check(_objective().is_empty(), "authored Chapter 2 objectives so far are complete")
+	check_eq(_objective(), "obj_ch2_mara_interview", "Voss review hands on to Mara's interview")
 	# Post-choice save/load restores the decision exactly.
 	var saved: String = _canonical(SaveManager.capture_state())
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "save after the follow-up choice")
