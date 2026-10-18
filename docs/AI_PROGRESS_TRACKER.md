@@ -2,7 +2,7 @@
 
 Task-level view of the foundation work, required by the session continuity protocol in `CLAUDE.md`. Per-system status and evidence live in `docs/PROJECT_STATUS.md`; per-session detail lives in `docs/AI_HANDOFF.md` (shared with Codex) and `docs/AI_SESSION_HANDOFF.md`. Update this table when a task changes state.
 
-**Last updated:** 2026-10-17 21:20 UTC by Claude Code, on `claude/f3-anomaly-model` (based on `main` at `9558c77`).
+**Last updated:** 2026-10-18 01:40 UTC by Claude Code, on `claude/f3-anomaly-model` (based on `main` at `9558c77`).
 
 ## Completed
 
@@ -16,13 +16,13 @@ Task-level view of the foundation work, required by the session continuity proto
 
 | Task | Branch | Depends on | Validation | Next action |
 |---|---|---|---|---|
-| F3 anomaly evidence model and clinical/supernatural separation, flag off | `claude/f3-anomaly-model` | F1, F2 (merged); owner's Psychosomatic Bleed answer before merge | Not yet run | Build `data/anomalies.json`, `AnomalyLedger`, validator rules, `test_anomaly.gd` |
+| F3 anomaly evidence model and clinical/supernatural separation, flag off | `claude/f3-anomaly-model` (draft PR) | F1, F2 (merged); Bleed answered: presentation only | 127 tests pass; QA green; CI pending | Owner review; fix CI if red |
 
 ## Blocked
 
 | Task | Blocked on | Who |
 |---|---|---|
-| F3 merge | Psychosomatic Bleed decision (F0 C6); F3 is built on "presentation only" | Owner |
+| F3 merge | Owner review of the draft PR | Owner |
 | Pharmacology clue gates in gameplay | F0 C7: remove or move to story | Owner |
 | Chapter 2–5 content, Mara Ellis | Narrative and clinical approval | Owner |
 | Concordance thread, chapter titles, player title, staff roles | F0 C2, C3, C4 | Owner |

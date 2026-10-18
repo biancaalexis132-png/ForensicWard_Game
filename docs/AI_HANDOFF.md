@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Foundation F2 zones | `claude/f2-zones` (draft PR to `main`) | Claude | `fb9fc52` (see entry) | `data/zones.json`, `data/world_chapter1.json`, `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/world/{ZoneDirector,AuthoredWorld,AudioZoneTracker,ImportedDoor,ImportedInteractable}.gd`, `scripts/autoload/{SaveManager,ContentRegistry,EventBus,Settings}.gd` (EventBus: one signal; Settings: one key), `scripts/content/*`, `scripts/tests/test_zones.gd`, `scripts/tests/fixtures/saves/**`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT}.md` | Awaiting owner review. F3 waits on the Psychosomatic Bleed decision |
+| Foundation F3 anomaly model | `claude/f3-anomaly-model` (draft PR to `main`) | Claude | `5283735` (see entry) | `data/anomalies.json`, `data/clues.json` (source_class, claim_state), `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/narrative/{AnomalyLedger,ChapterDirector,StoryLogic}.gd`, `scripts/autoload/{ContentRegistry,EventBus}.gd` (EventBus: two signals), `scripts/content/*`, `project.godot` (one setting), `scripts/tests/test_anomaly.gd`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER}.md` | Awaiting owner review |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -55,6 +55,46 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 01:35 UTC · Claude Code · Foundation F3 anomaly model
+
+- **Branch:** `claude/f3-anomaly-model` (based on `main` at `9558c77`)
+- **Latest verified commit:** `528373577ff8044dc1ec617bdebc935dba79c3d1` "F3: anomaly separation, flag and save tests; status, id registry and F0 notes"
+- **Confirmed on GitHub:** `git ls-remote origin claude/f3-anomaly-model` printed `5283735…` at 01:30 UTC
+- **Pull request:** draft to `main` (opened after this entry; see `docs/AI_SESSION_HANDOFF.md`)
+- **State:** finished
+
+**Accomplished**
+- `data/anomalies.json`: three Chapter 1 episodes (after-hours intercom, inactive credential, W0-B unease) that mirror existing story beats, Chapter 1 capped at `reported`.
+- `scripts/narrative/AnomalyLedger.gd`: node in `Main`, provider `anomaly`, records episodes and computes the evidence ladder. Off unless `forensic_ward/narrative/anomaly_enabled` (ships `false`).
+- Validator separation rules in `scripts/content/ContentValidator.gd`: allowed condition kinds, no clinical ids, no testimony as a cause, closed manifestations, readings need `source_class`, clinical files never name `anom_*` or reading clues, Chapter 1 cap, C7 known exceptions reported at boot.
+- Clues gained `source_class` and `claim_state`; StoryLogic gained `zone` and `world_state` conditions; EventBus gained `anomaly_episode_observed`, `anomaly_threshold_changed`.
+- Psychosomatic Bleed is presentation only (owner decision): the ledger never hears objectivity or bleed signals, and a test proves it.
+
+**Files modified**
+- See the claimed files in the workstream row; `scripts/tests/test_anomaly.gd` is new (15 tests).
+
+**Unfinished**
+- none
+
+**Known errors**
+- none
+
+**Tests** (on `5283735`)
+- `godot --headless --path . res://scripts/tests/TestRunner.tscn`: 127 passed, 0 failed.
+- `GODOT=<godot> python3 tests/qa/run.py`: "All executed checks passed".
+- CI: not observed yet.
+
+**Dependencies not available to remote agents**
+- none for F3.
+
+**Next steps**
+1. Owner reviews the F3 draft PR. Do not merge from an agent session.
+2. After merge: remove this row; the next foundation work follows `docs/F0_FOUNDATION_AUDIT.md` §8 "Later".
+
+**Notes for the other agent**
+- The anomaly flag stays off; do not enable it or add Chapter 2–5 episodes without owner approval.
+- Pharmacology `clue_gates` on PT-001 and PT-002 are known exceptions pending F0 C7; never make a gated clue an anomaly reading.
 
 ### 2026-10-17 21:45 UTC · Claude Code · Foundation F2 zones
 
