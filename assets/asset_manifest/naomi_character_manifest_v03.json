@@ -1,0 +1,42 @@
+{
+  "asset_id": "CHR_NaomiBennett_v03",
+  "character_id": "staff_bennett",
+  "version": "v03",
+  "production_status": "VISUAL_DEVELOPMENT_PENDING_OWNER_REVIEW",
+  "approved": false,
+  "builder": "tools/blender/characters/build_naomi_v03.py",
+  "config": "tools/blender/characters/naomi_v03.json",
+  "blender_version": "5.2.2 LTS",
+  "inputs": [
+    {
+      "path": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+      "sha256": "194b8aac6ade7383a15eb08feb0e4212d8100f2e4ea2e269d472812770e435d8",
+      "used": "MPFB2 2.0.18 body mesh, UVs, skin weights and game_engine rig only; provenance in assets/asset_manifest/naomi_character_manifest_v02.json"
+    }
+  ],
+  "external_assets": [],
+  "generated": [
+    "skin, eye, fabric, hair and badge textures (procedural, this script)",
+    "scrub top, trousers, shoes, badge, eyes, twists and bun geometry"
+  ],
+  "rig_alignment_offset_z_m": 0.8155,
+  "triangle_count": 44692,
+  "outputs": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v03.blend",
+    "glb": "assets/exports/characters/Naomi_Bennett_v03.glb",
+    "renders": [
+      "assets/renders/characters/Naomi_Bennett_v03_front.png",
+      "assets/renders/characters/Naomi_Bennett_v03_three_quarter.png",
+      "assets/renders/characters/Naomi_Bennett_v03_right.png",
+      "assets/renders/characters/Naomi_Bennett_v03_back.png",
+      "assets/renders/characters/Naomi_Bennett_v03_face.png"
+    ]
+  },
+  "known_limitations": [
+    "No animation clips, facial blend shapes or LODs.",
+    "Skin texture is baked from procedural colour; no pore-level or photographic detail.",
+    "Twists are tube geometry, not groomed hair; no flyaways or edge detail.",
+    "Clothing is an offset shell of the body, not a simulated garment; no seams or pockets.",
+    "Not measured on the target Mac."
+  ]
+}

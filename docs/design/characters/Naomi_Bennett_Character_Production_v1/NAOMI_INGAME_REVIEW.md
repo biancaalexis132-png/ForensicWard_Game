@@ -9,7 +9,8 @@
 | Argument | Result |
 |---|---|
 | (none) | Every character keeps its placeholder. This is how CI, tests and normal play run. |
-| `--character-preview=staff_bennett` | Bennett uses `assets/exports/characters/Naomi_Bennett_Base_v02.glb` |
+| `--character-preview=staff_bennett` | Bennett uses the newest candidate, `assets/exports/characters/Naomi_Bennett_v03.glb` (see `NAOMI_V03_NOTES.md`) |
+| `--character-preview=staff_bennett:v02` | Bennett uses v02 (`Naomi_Bennett_Base_v02.glb`) for comparison |
 | `--character-preview=staff_bennett:v01` | Bennett uses the older v01 base for comparison |
 
 The model goes through the existing `WardCharacter.set_visual_scene` slot from PR #42, so the capsule comes back if the GLB is missing or invalid. Interaction id, collision, name label, dialogue, Naomi's acting cues, story, clinical data and save files do not change; `scripts/tests/test_character_preview.gd` checks each of these, including that a full Chapter 1 save state is identical with and without the preview.
@@ -22,12 +23,12 @@ Use the internal-drive clone, never Git on the SSK drive (see `AGENTS.md`). In T
 cd ~/ForensicWard_Campaign_Publish            # or any clean internal clone
 git fetch origin
 git status                                     # commit or stash your own changes first
-git switch claude/naomi-review-preview
+git switch claude/naomi-v03                    # or main once it is merged
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --editor --import
 /Applications/Godot.app/Contents/MacOS/Godot --path . -- --character-preview=staff_bennett
 ```
 
-The import step creates the GLB's `.import` file and extracted textures; they are generated, so do not commit them. The Output log prints `Review preview: staff_bennett uses unapproved candidate v02`. Walk from the spawn to the nursing station. In the preview Naomi stands on the office side of the desk and faces the corridor counter, so you see her face through the counter window. Swap the last argument for `staff_bennett:v01` to compare.
+The import step creates the GLB's `.import` file and extracted textures; they are generated, so do not commit them. The Output log prints `Review preview: staff_bennett uses unapproved candidate v03`. Walk from the spawn to the nursing station. In the preview Naomi stands on the office side of the desk and faces the corridor counter, so you see her face through the counter window. Swap the last argument for `staff_bennett:v02` or `staff_bennett:v01` to compare.
 
 From the editor instead: Project > Project Settings > Editor > Run > Main Run Args = `-- --character-preview=staff_bennett`, then press Play. That setting is written to `project.godot`; clear it before committing.
 
