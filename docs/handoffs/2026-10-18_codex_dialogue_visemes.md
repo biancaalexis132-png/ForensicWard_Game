@@ -1,5 +1,9 @@
 # Dialogue viseme integration
 
+Draft PR: https://github.com/biancaalexis132-png/ForensicWard_Game/pull/67.
+Recovery checkpoint `34cbfa323201189da981e364a3a0b52f79e30a0a` pushed and
+verified by git ls-remote; this link-only documentation checkpoint follows.
+
 Branch `codex/dialogue-viseme-integration`, based on main `8a86d53` (source
 validation PR #65 merged). Preview PR #66 is independent; these tests attach
 the existing GLB through WardCharacter without requiring that PR.
@@ -59,8 +63,6 @@ An eight-second take is followed by bounded audio teardown. Optional engine
 Linux Compatibility/llvmpipe
 footage is not Mac Forward+/Metal appearance/performance evidence and does not
 establish technical readiness. No new default character or cutscene was set.
-
-## Remaining gates / next task
 
 ## Executed final validation / recovery
 
