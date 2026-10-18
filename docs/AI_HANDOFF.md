@@ -8,11 +8,51 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
-**GitHub state correction (verified 2026-10-18 01:16 UTC):** `origin/main` is `96ef65ed40ced591f576326e21fcd60f9da9d3a7`, beyond the older `47a68f4` checkpoint recorded below; `git log 47a68f4..origin/main` confirms merges of PRs #38, #40 and #41. PRs #35–#41 are merged. The current open PR is #42, a draft CIG implementation PR at last-checked head `d5d19f5`; GitHub reports `MERGEABLE` and hosted `validate` is pending (run 39085902026). This handoff update will advance the PR head, so check the new docs-only head afterward. Historical rows below are preserved as history, not current PR state. Naomi's model-builder/refinement remains a separate workstream; its base asset still needs owner visual review and has no animation clips.
+**GitHub state correction (verified 2026-10-18 12:54 UTC):** `origin/main` is `de5cbfcb6a269ffa48822030a06b74bb0b7d63d3`; PR #42 is merged there. PRs #43 and #44 are open against main. Older CIG snapshots and the 96ef65e current-state note below are preserved as history, not live state. Naomi v01 remains unapproved and not integrated; this feature branch now owns the procedural refinement workstream.
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| CIG-1 optional character visual slot | `biancaalexis132-png-cig-1-character-integration` (draft PR #42) | Copilot / current session | `d5d19f5ff329220bdbedfc006f632715923e8f87` (verified remote; code tests run on `387ceba`) | `scripts/world/Character.gd`, `scenes/props/Character.tscn`, `scripts/tests/test_character_visual.gd`, and CIG continuity/status docs | PR #42 open/draft and mergeable; hosted `validate` pending on `d5d19f5`. Naomi asset integration remains gated on owner visual review and authored animations. |
+| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `de5cbfcb6a269ffa48822030a06b74bb0b7d63d3` (main base; feature checkpoint to be pushed) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Active audit/refinement; v01 fails visual review, v02 not generated. |
+
+### 2026-10-18 12:55 UTC · Copilot · Naomi procedural visual refinement audit
+
+- **Branch:** `biancaalexis132-png-naomi-model-refinement` (based on `main` at `de5cbfc`)
+- **Latest verified commit:** `de5cbfcb6a269ffa48822030a06b74bb0b7d63d3` "Merge pull request #42 from biancaalexis132-png/biancaalexis132-png-cig-1-character-integration"
+- **Confirmed on GitHub:** `origin/main` and local HEAD both point to `de5cbfcb6a269ffa48822030a06b74bb0b7d63d3`; new feature branch has not yet been pushed.
+- **Pull request:** none for this branch. Open PRs at audit: #43 and #44.
+- **State:** unfinished but coherent; audit checkpoint only, no model/code changes yet.
+
+**Accomplished**
+- Reconciled the older continuity snapshot with fetched GitHub state: PR #42 is merged in `de5cbfc`; PRs #43/#44 are open. The earlier notes calling #42 pending are historical and stale.
+- Inspected the approved Naomi production spec and v01 Blender/GLB/render/provenance outputs. Generated renders show face/eyes obscured by broad hair strips, black/clipped/angular clothing regions and a skirt-like lower silhouette; v01 is unsuitable for runtime integration.
+- Confirmed Blender 5.2.2 and an initialized MPFB extension are available at `/Applications/Blender.app/Contents/MacOS/blender`. Version-specific build validation remains to be run by the builder.
+
+**Files modified**
+- `docs/AI_HANDOFF.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/PROJECT_STATUS.md`: this audit checkpoint and corrected active-workstream snapshot.
+
+**Unfinished**
+- `tools/blender/characters/build_naomi.py`: inspect and correct procedural face/hair/garment construction and preview staging; add versioned v02 outputs while preserving v01.
+- `tools/blender/characters/validate_naomi.py`, configuration and Naomi asset manifests: support deterministic versioned output and explicit owner-review status.
+- v02 review renders, Blender source and GLB have not yet been generated.
+
+**Known errors**
+- v01 preview visibly fails owner-review criteria as described above; no v02 build attempted yet. No software test failure is asserted at this audit checkpoint.
+
+**Tests**
+- No starting-commit tests rerun yet; changes in this checkpoint only record the audit. Historical checks for merged main are recorded below. New builder/refinement work must be validated on this branch.
+- CI: not observed for this feature branch; no PR exists.
+
+**Dependencies not available to remote agents**
+- MPFB2 is an installed Blender extension, not vendored; the build must verify its loaded version and documented APIs. Owner appearance approval, Mac in-game performance review, animation and LOD remain pending.
+
+**Next steps**
+1. Push this audit checkpoint and confirm its exact remote SHA.
+2. Inspect the complete builder, MPFB2 2.0.18 API/source references, validator and manifests; fix procedural occlusion, fit and silhouette without manual sculpting or unapproved canon.
+3. Generate and validate versioned v02 `.blend`, `.glb`, manifest and review images, retaining v01.
+4. Import the GLB in Godot 4.7, complete project QA, update handoffs with exact results, and open a draft PR without runtime integration.
+
+**Notes for the other agent**
+- Keep `staff_bennett` unmodified; do not attach the v01 or v02 asset to the runtime slot. No clinical, save, story or gameplay systems are in scope. Renders are for owner review, not proof of photorealism or Mac performance.
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 

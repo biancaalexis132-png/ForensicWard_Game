@@ -1,5 +1,19 @@
 # AI session handoff
 
+## Naomi procedural visual refinement — Copilot, 2026-10-18 12:55 UTC
+
+- **Current objective:** refine Naomi's procedural model for owner visual review using Blender 5.2.2 and the installed MPFB2 extension. Preserve approved canon, retain v01 for comparison, generate a versioned v02 source/GLB/renders, and do not integrate the model into gameplay.
+- **Branch / base / checkpoint:** `biancaalexis132-png-naomi-model-refinement`, based on `main` `de5cbfcb6a269ffa48822030a06b74bb0b7d63d3`. Audit checkpoint docs are being pushed before builder edits. No PR exists yet.
+- **GitHub reconciliation:** fetched `origin/main` and confirmed it equals local base `de5cbfc`. PR #42 (CIG optional visual slot/fallback) merged in that commit; currently open PRs are #43 and #44. Older CIG notes calling #42 pending are historical.
+- **Audit findings:** inspected v01 renders: broad hanging hair strips obscure most of the face/eyes; clothing regions clip into jagged black areas; the lower garment reads like a dress/apron rather than distinct scrub pants. Do not integrate v01. Blender 5.2.2 is installed at `/Applications/Blender.app/Contents/MacOS/blender`; MPFB extension initializes in background. Exact version/API confirmation is required from the builder before production.
+- **Completed at this checkpoint:** reviewed `AGENTS.md`, `CLAUDE.md`, current handoffs, project status, Naomi production spec, builder/config/validator, and asset provenance. No model, runtime or gameplay files changed.
+- **Current files:** only the four continuity/status documents have audit checkpoint edits. Builder, v01 `.blend`, v01 GLB and renders remain unchanged.
+- **Validation:** no tests rerun on the base commit yet; the audit docs record findings from existing committed renders. Historical main/PR #42 test results remain in `docs/AI_HANDOFF.md`; they are not evidence of v02 quality.
+- **Known failures/blockers:** v01 fails the visual criteria above. Owner appearance decision is pending. v02 has not been built or validated. No photorealism, animation, integration or Mac performance claim is made.
+- **Dependencies:** MPFB2 is local-only and not vendored. No other external assets are approved or needed. Godot 4.7 and Blender availability/version must be verified for final output.
+- **Next exact steps:** (1) verify and inspect the complete builder and documented MPFB API/source; (2) correct hair/face clearance, garment topology/fit and render settings procedurally; (3) make configuration, validator and manifests version-aware, generate v02 while preserving v01; (4) review output structure/renders, run Blender validator, Godot 4.7 import and QA, then update handoffs and open a draft PR.
+- **Creative and clinical constraints:** only pulled-back natural twists are newly approved as fine-grained visual canon; don't infer definitive face/jewelry/proportions from the board. Keep `staff_bennett`, dialogue, clinical review, story, save and gameplay unchanged. No animation/LOD broadening; they remain pending.
+
 ## CIG-1 optional character visual slot — Copilot, 2026-10-18 01:13 UTC
 
 - **Current objective:** prove an optional 3D visual can sit behind the existing WardCharacter interface without changing interaction, story, clinical or save behavior. Do not integrate the automated Naomi base before owner visual approval.

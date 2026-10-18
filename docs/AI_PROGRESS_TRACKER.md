@@ -1,5 +1,13 @@
 # AI progress tracker
 
+## Naomi procedural visual refinement — Copilot, 2026-10-18
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Improve Naomi's automated base for owner visual review without runtime integration | Audit checkpoint at `de5cbfc`; refinement not started | Blender 5.2.2 and installed MPFB2; owner visual review still pending | `tools/blender/characters/**`, Naomi v02 exports/renders and asset manifests, continuity docs | v01 renders inspected and fail visual review: hair obscures face; clothing clips and reads as a skirt/dress. Blender/MPFB initialized; no v02 build run. | Inspect documented MPFB APIs, correct builder and versioned outputs; preserve v01; validate Blender and Godot imports; mark v02 owner review pending. |
+
+Scope excludes `staff_bennett`, animation, gameplay, clinical content and save systems. The optional WardCharacter visual slot merged in PR #42, but Naomi is not attached. The generated v02 is still a review candidate, not an approved or photorealistic character.
+
 ## CIG-1 optional character visual slot — Copilot, 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |
