@@ -1,5 +1,7 @@
 # Project status
 
+**PR #68 integration correction:** main `d262d92` (owner-merged viseme PR #67) is integrated on `codex/chapter1-zone-continuity` at `49d68bdfbcbf43c47352dd7cb8c0507cad453377`. Both documentation histories preserved; GitHub reports mergeable. Combined full QA passes: game189/0, GLB161/0, audio336/0, boot and Chapter1 sequence. Prior 179/0 is the historical pre-integration count. PR #68 remains draft and unmerged.
+
 **Chapter 1 continuity (2026-10-18, draft PR #68):** location story conditions now follow actual zone transitions and existing zone save state. Full QA passed on `e13fb0cec0b501d566fec090b8c14aac55766254`: game179/0, GLB161/0, audio336/0, boot and Chapter1 sequence passed. Two new regressions reproduced the missing-location bug before fixing it. No campaign text, clinical facts, access gates or Naomi assets changed. Not merged; see `docs/handoffs/2026-10-18_codex_chapter1_zone_continuity.md`.
 
 **Owner animation decision (2026-10-18):** "continue i approve of the animations so far".

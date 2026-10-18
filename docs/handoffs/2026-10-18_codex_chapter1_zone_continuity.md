@@ -47,3 +47,15 @@ that screenplay explicitly remains narrative-approval pending. Do not add Mara
 findings, inaccessible record access or Ward Zero entry. Retain Chapter 1 saves,
 new-shift objective continuity and idempotent handoff. Mac Naomi checks may
 proceed separately; this QA increment does not certify Naomi technically ready.
+
+## Conflict-resolution continuation
+
+Owner requested conflict resolution after PR #67 merged to main `d262d92`.
+Merge checkpoint `49d68bdfbcbf43c47352dd7cb8c0507cad453377` was pushed and remotely verified.
+Only the two shared status/handoff documents conflicted; retained both entries
+and all owner decisions. No runtime conflict or extra implementation change.
+GitHub reports PR #68 MERGEABLE. Full QA on the combined merge exited0:
+Python6+4+5+3, pharmacology0 failures, QA19/0/0, GLB161/0, game189/0,
+audio336/0, bootOK and CH1_SEQUENCE_DONE. Hosted validation last observed in
+progress; Mac not run. No PR merge performed. Next implementation task above
+remains the Chapter2 Scene01 slice.
