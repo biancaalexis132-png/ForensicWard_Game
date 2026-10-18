@@ -1691,3 +1691,197 @@ STAGE5_HISTORIC_PROP_BUILDERS = [
     prop_chair_wood_historic, prop_cabinet_card_index, prop_shelf_medication_historic, prop_panel_fuse_historic,
     prop_light_bulkhead_historic, prop_door_vault, prop_stair_service, prop_radiator_cast,
 ]
+
+
+# --------------------------------------------------------------------------
+# Stage 6: Ward Zero (historic service and observation zone)
+# (origin: floor centre unless noted; front faces -Y). Pieces that a scene may
+# swap between states are separate child meshes with stable name suffixes, so
+# the environment script can tag them with state_group extras.
+# --------------------------------------------------------------------------
+
+def clock_hands(name, coll, parent, hours, minutes, y=-0.048, size=1.0):
+    """Hour and minute hands for a wall clock whose face looks toward -Y."""
+    mb = MeshBuilder()
+    for length, width, a in ((0.09 * size, 0.008, (hours % 12 + minutes / 60) * math.pi / 6),
+                             (0.13 * size, 0.005, minutes * math.pi / 30)):
+        mb.box((width, 0.004, length), (length / 2 * math.sin(a), y, length / 2 * math.cos(a)), "M_Plastic_Black",
+               rot=(0, a, 0))
+    mb.cyl(0.008, 0.008, (0, y - 0.002, 0), "M_Steel_Brushed", axis="Y", segs=10)
+    return mb.build(name, coll, parent)
+
+
+def prop_clock_historic(coll, aid="PROP_Clock_Wall_Historic", loc=(0, 0, 0), rot=(0, 0, 0), time=(3, 40)):
+    """Mid-century slave clock in a steel rim; origin at the wall surface, face toward -Y.
+    The hands are the `_Hands` child, so a scene can add an offset set."""
+    root = _root(coll, aid, "fixture", loc, rot, "Historic electric slave clock")
+    mb = MeshBuilder()
+    mb.cyl(0.19, 0.05, (0, -0.025, 0), "M_Iron_Cast_Painted", axis="Y", segs=32)
+    mb.cyl(0.17, 0.004, (0, -0.052, 0), "M_Enamel_White_Aged", axis="Y", segs=32)
+    for i in range(12):
+        a = i * math.pi / 6
+        mb.box((0.006, 0.003, 0.022 if i % 3 else 0.036), (0.145 * math.sin(a), -0.055, 0.145 * math.cos(a)),
+               "M_Plastic_Black", rot=(0, a, 0))
+    mb.cyl(0.012, 0.25, (0, -0.02, 0.31), "M_Metal_Rust", segs=8)                          # Conduit to the master.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    clock_hands(aid + "_Hands", coll, root, *time)
+    glass = MeshBuilder()
+    glass.cyl(0.175, 0.01, (0, -0.064, 0), "M_Glass_Grimy", axis="Y", segs=32)
+    glass.build(aid + "_Glass", coll, root)
+    return root
+
+
+def prop_recorder_chart(coll, aid="PROP_Recorder_Chart_Strip", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Two-pen strip-chart recorder in a wooden case on a steel stand. The paper
+    trace exists twice: `_Trace_Flat` and `_Trace_Repeated` (see Stage 6)."""
+    root = _root(coll, aid, "equipment", loc, rot, "Two-pen strip-chart recorder on stand")
+    mb = MeshBuilder()
+    for x in (-0.3, 0.3):
+        for y in (-0.18, 0.18):
+            mb.box((0.03, 0.03, 0.8), (x, y, 0.4), "M_Steel_Painted_Grey")
+    mb.box((0.7, 0.45, 0.03), (0, 0, 0.8), "M_Steel_Painted_Grey")
+    mb.box((0.62, 0.4, 0.42), (0, 0.02, 1.02), "M_Wood_Aged")                               # Case.
+    mb.box((0.5, 0.01, 0.3), (0, -0.185, 1.04), "M_Paper_Chart")                            # Paper window.
+    for z in (0.92, 1.16):
+        mb.cyl(0.015, 0.52, (0, -0.19, z), "M_Steel_Brushed", axis="X", segs=10)            # Rollers.
+    mb.box((0.5, 0.012, 0.32), (0, -0.2, 1.04), "M_Glass_Grimy")
+    mb.box((0.14, 0.02, 0.06), (0.22, -0.2, 1.26), "M_Bakelite_Brown")                      # Range knobs.
+    mb.box((0.18, 0.004, 0.04), (-0.18, -0.181, 1.27), "M_Enamel_Plate_Blue")               # Maker's plate.
+    mb.cyl(0.012, 0.6, (0.25, 0.2, 1.5), "M_Metal_Rust", segs=8)                            # Signal cable up.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    for suffix, waves in (("_Trace_Flat", 0), ("_Trace_Repeated", 3)):
+        tr = MeshBuilder()
+        n = 24
+        for pen, base in enumerate((1.0, 1.1)):
+            for i in range(n):
+                x = -0.23 + i * 0.46 / n
+                z = base
+                if waves and pen == 0:
+                    t = (i % 8) / 8.0
+                    z += 0.035 * math.sin(t * 2 * math.pi)                                  # Same motif, three times.
+                tr.box((0.46 / n + 0.002, 0.002, 0.004), (x + 0.23 / n, -0.192, z), "M_Ink_Trace")
+        tr.build(aid + suffix, coll, root)
+    L.collision_box(aid + "_COL", coll, root, (0.7, 0.45, 1.25), (0, 0, 0.625))
+    return root
+
+
+def prop_teleprinter(coll, aid="PROP_Teleprinter_Historic", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Teleprinter on its pedestal with a paper roll. The paper exists twice:
+    `_Sheet_Idle` (a torn-off stub) and `_Sheet_Printed` (a printed length)."""
+    root = _root(coll, aid, "equipment", loc, rot, "Teleprinter on pedestal")
+    mb = MeshBuilder()
+    mb.box((0.6, 0.5, 0.72), (0, 0.02, 0.36), "M_Iron_Cast_Painted")                       # Pedestal.
+    mb.box((0.62, 0.52, 0.22), (0, 0, 0.83), "M_Iron_Cast_Painted")                        # Machine body.
+    mb.box((0.5, 0.2, 0.04), (0, -0.2, 0.75), "M_Bakelite_Brown", rot=(0.25, 0, 0))         # Keyboard.
+    for i in range(30):
+        mb.box((0.03, 0.03, 0.012), (-0.21 + (i % 10) * 0.047, -0.27 + (i // 10) * 0.05, 0.775 + (i // 10) * 0.012),
+               "M_Enamel_White_Aged")
+    mb.cyl(0.06, 0.4, (0, 0.15, 1.0), "M_Paper_Chart", axis="X", segs=16)                   # Paper roll.
+    mb.box((0.46, 0.18, 0.1), (0, 0.15, 0.98), "M_Glass_Grimy")
+    mb.box((0.2, 0.004, 0.05), (0.15, -0.261, 0.86), "M_Enamel_Plate_Blue")
+    mb.box((0.04, 0.04, 0.04), (-0.25, -0.24, 0.92), "M_Emissive_Indicator_Amber")          # Line lamp.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    idle = MeshBuilder()
+    idle.box((0.38, 0.002, 0.06), (0, 0.06, 1.08), "M_Paper_Chart", rot=(-0.4, 0, 0))
+    idle.build(aid + "_Sheet_Idle", coll, root)
+    printed = MeshBuilder()
+    printed.box((0.38, 0.002, 0.34), (0, 0.04, 1.2), "M_Paper_Chart", rot=(-0.25, 0, 0))
+    printed.box((0.38, 0.5, 0.002), (0, -0.12, 1.051), "M_Paper_Chart")                    # Run over the top.
+    for i in range(7):                                                                      # Printed lines.
+        dz = -0.12 + i * 0.035
+        printed.box((0.3 - 0.03 * (i % 3), 0.002, 0.008),
+                    (-0.02, 0.04 - 0.003 + dz * math.sin(0.25), 1.2 + dz * math.cos(0.25)), "M_Ink_Trace",
+                    rot=(-0.25, 0, 0))
+    printed.build(aid + "_Sheet_Printed", coll, root)
+    L.collision_box(aid + "_COL", coll, root, (0.62, 0.52, 0.95), (0, 0, 0.475))
+    return root
+
+
+def prop_cabinet_relay(coll, aid="PROP_Cabinet_Relay_Historic", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Tall steel relay and indicator cabinet: dials, a lamp row and a door-contact mimic panel."""
+    root = _root(coll, aid, "equipment", loc, rot, "Relay and indicator cabinet")
+    mb = MeshBuilder()
+    w, d, h = 1.0, 0.45, 2.0
+    mb.box((w, d, h), (0, 0, h / 2), "M_Iron_Cast_Painted")
+    mb.box((w - 0.08, 0.01, h - 0.3), (0, -d / 2 - 0.005, h / 2 + 0.05), "M_Steel_Painted_Grey")
+    for i, x in enumerate((-0.3, 0.0, 0.3)):                                                # Dials.
+        mb.cyl(0.09, 0.03, (x, -d / 2 - 0.02, 1.6), "M_Bakelite_Brown", axis="Y", segs=20)
+        mb.cyl(0.075, 0.004, (x, -d / 2 - 0.036, 1.6), "M_Enamel_White_Aged", axis="Y", segs=20)
+        mb.box((0.004, 0.003, 0.06), (x + 0.02, -d / 2 - 0.04, 1.62), "M_Plastic_Black", rot=(0, 0.6 - 0.5 * i, 0))
+    for i in range(8):                                                                      # Indicator lamps.
+        mb.cyl(0.018, 0.02, (-0.35 + i * 0.1, -d / 2 - 0.015, 1.3), "M_Glass_Grimy", axis="Y", segs=10)
+    mb.box((0.6, 0.004, 0.4), (0, -d / 2 - 0.012, 0.85), "M_Enamel_Plate_Blue")             # Door mimic panel.
+    for i in range(5):
+        mb.box((0.06, 0.004, 0.03), (-0.2 + i * 0.1, -d / 2 - 0.016, 0.85), "M_Paint_Historic_Cream")
+    mb.box((0.02, 0.03, 0.2), (0.42, -d / 2 - 0.02, 1.0), "M_Steel_Brushed")                # Handle.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.003)
+    lamp = MeshBuilder()
+    lamp.cyl(0.016, 0.022, (0.15, -d / 2 - 0.016, 1.3), "M_Emissive_Indicator_Amber", axis="Y", segs=10)
+    lamp.build(aid + "_Lamp_Lit", coll, root)
+    L.collision_box(aid + "_COL", coll, root, (w, d, h), (0, 0, h / 2))
+    return root
+
+
+def prop_motor_generator(coll, aid="PROP_MotorGenerator_Set", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Motor-generator set on a concrete plinth with a mesh guard; long axis along X."""
+    root = _root(coll, aid, "equipment", loc, rot, "Motor-generator set on plinth")
+    mb = MeshBuilder()
+    mb.box((2.2, 0.9, 0.25), (0, 0, 0.125), "M_Concrete_Stained")
+    for x, r, l in ((-0.5, 0.32, 0.9), (0.5, 0.28, 0.8)):
+        mb.cyl(r, l, (x, 0, 0.25 + r + 0.05), "M_Iron_Cast_Painted", axis="X", segs=24)
+        for k in range(6):
+            mb.cyl(r + 0.015, 0.03, (x - l / 2 + 0.1 + k * (l - 0.2) / 5, 0, 0.25 + r + 0.05), "M_Iron_Cast_Painted",
+                   axis="X", segs=24)                                                       # Cooling ribs.
+        mb.box((l * 0.7, 0.5, 0.06), (x, 0, 0.28), "M_Iron_Cast_Painted")
+    mb.cyl(0.06, 0.25, (0.0, 0, 0.62), "M_Steel_Brushed", axis="X", segs=12)                # Coupling.
+    mb.box((0.3, 0.25, 0.2), (-0.5, 0, 1.05), "M_Iron_Cast_Painted")                        # Terminal box.
+    mb.cyl(0.03, 1.8, (-0.5, 0, 2.0), "M_Metal_Rust", segs=8)                               # Conduit up.
+    mb.box((0.2, 0.004, 0.08), (0.5, -0.3, 0.75), "M_Enamel_Plate_Blue")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.004)
+    L.collision_box(aid + "_COL", coll, root, (2.2, 0.9, 1.2), (0, 0, 0.6))
+    root["godot_hint"] = "Low mechanical hum source: attach the Ward Zero ambience emitter here."
+    return root
+
+
+def prop_sensor_tripod(coll, aid="PROP_Sensor_Tripod_Modern", loc=(0, 0, 0), rot=(0, 0, 0)):
+    """Modern environmental sensor and data logger on a tripod, with a ground cable.
+    Brought in for a supervised observation; nothing about it is historic."""
+    root = _root(coll, aid, "equipment", loc, rot, "Sensor and data logger on tripod")
+    mb = MeshBuilder()
+    for i in range(3):
+        a = i * 2 * math.pi / 3
+        mb.box((0.02, 0.02, 1.25), (0.22 * math.sin(a), 0.22 * math.cos(a), 0.6), "M_Metal_Dark",
+               rot=(0.18 * math.cos(a), -0.18 * math.sin(a), 0))
+    mb.cyl(0.02, 0.2, (0, 0, 1.25), "M_Metal_Dark", segs=8)
+    mb.box((0.16, 0.1, 0.12), (0, 0, 1.41), "M_Plastic_OffWhite")
+    mb.cyl(0.025, 0.04, (0, -0.07, 1.42), "M_Plastic_Black", axis="Y", segs=12)            # Sensor head.
+    mb.box((0.02, 0.004, 0.02), (0.05, -0.052, 1.45), "M_Emissive_LED_Green")
+    mb.box((0.012, 1.2, 0.012), (0.1, 0.6, 0.006), "M_Plastic_Black")                       # Cable to logger.
+    mb.box((0.2, 0.14, 0.08), (0.1, 1.25, 0.04), "M_Plastic_OffWhite")
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    return root
+
+
+def prop_light_fluorescent_batten(coll, aid="PROP_Light_Fluorescent_Batten", loc=(0, 0, 0), rot=(0, 0, 0), lit=True):
+    """Bare 1.2 m fluorescent batten on drop rods; origin on the ceiling, long axis X.
+    `lit=False` builds a dead tube (grey glass, no emission)."""
+    root = _root(coll, aid, "fixture", loc, rot, "Fluorescent batten, single tube")
+    mb = MeshBuilder()
+    mb.box((1.26, 0.09, 0.05), (0, 0, -0.16), "M_Steel_Painted_White")
+    for x in (-0.45, 0.45):
+        mb.cyl(0.006, 0.14, (x, 0, -0.07), "M_Metal_Rust", segs=6)                         # Drop rods.
+    for x in (-0.62, 0.62):
+        mb.box((0.03, 0.06, 0.05), (x, 0, -0.205), "M_Plastic_Black")                      # Lamp holders.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    tube = MeshBuilder()
+    tube.cyl(0.016, 1.2, (0, 0, -0.205), "M_Emissive_Tube_Cold" if lit else "M_Glass_Grimy", axis="X", segs=10)
+    tb = tube.build(aid + "_Tube", coll, root)
+    if lit:
+        tb["godot_hint"] = "Pair with a LIGHTMARK_*; flicker where flagged."
+    return root
+
+
+STAGE6_WARD_ZERO_PROP_BUILDERS = [
+    prop_clock_historic, prop_recorder_chart, prop_teleprinter, prop_cabinet_relay, prop_motor_generator,
+    prop_sensor_tripod, prop_light_fluorescent_batten,
+]

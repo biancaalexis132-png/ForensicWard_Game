@@ -5,6 +5,10 @@ This reproducible base-model build is pinned to Blender 5.2.2 LTS and MPFB2
 running it; the builder checks both versions and stops rather than using an
 untested API. It does not download assets or embed MPFB code.
 
+The current configuration builds `v02`; each generated version uses distinct
+`.blend`, `.glb`, render and manifest paths. Increment `character.asset_version`
+before a new milestone. Do not overwrite the retained v01 outputs.
+
 From the repository root on macOS:
 
 ```sh
@@ -22,9 +26,20 @@ provenance with:
 MPFB2's bundled character assets used here are CC0-1.0; the MPFB2 code itself
 is GPL-3.0-or-later and is only a local build tool. Exact input files, target
 weights, output files, and review limitations are recorded in
-`assets/asset_manifest/naomi_character_manifest.json`.
+`assets/asset_manifest/naomi_character_manifest_v02.json`. The generated
+`assets/asset_manifest/asset_manifest.json` includes a separate v02 entry and
+retains the v01 record.
 
-The result is an automated, rigged base for review—not a finished realistic
-Naomi. Facial likeness, pulled-back twist silhouette, scrub seams and
-deformation need manual visual review. It has no performance clips or Chapter 1
-scene integration.
+The face-and-shoulders preview is intended to show facial features; front,
+right and back views show the full silhouette. Use
+`NAOMI_VISUAL_QA.md` to record visual review. v02 remains an automated candidate
+pending owner appearance review—not an approved or finished realistic Naomi.
+It has no animation clips, LOD, Chapter 1 scene integration, or measured
+in-game performance.
+
+The builder creates sphere details from fixed procedural vertices and strips
+volatile Date/RenderTime PNG metadata. Repeated builds with the same Blender,
+MPFB2 and configuration produce byte-identical GLB and render outputs; the
+native `.blend` file may differ in internal serialization bytes. Current
+automated renders still fail the separate trouser-silhouette and garment-artifact
+visual checks, so v02 is not ready for runtime integration.

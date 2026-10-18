@@ -2101,6 +2101,340 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 3948
     },
+    "ENV_W0_InstrumentRoom": {
+      "asset_id": "ENV_W0_InstrumentRoom",
+      "asset_name": "Ward Zero instrument room",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        5.224,
+        3.12
+      ],
+      "export_file": "assets/exports/wardzero/env/ENV_W0_InstrumentRoom.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; the sealed corridor ends at y 10; the W0-B stair head is at x 0.6, y -0.6). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); state_group extras with story_tag ward_zero_anomaly are provisional anomaly states (owner review).",
+      "intended_location": "Ward Zero: instrument room",
+      "markers": [
+        "CAM_IR_Establishing",
+        "LIGHTMARK_IR_Batten"
+      ],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
+        "M_Concrete_Stained",
+        "M_Emissive_Indicator_Amber",
+        "M_Emissive_Tube_Cold",
+        "M_Enamel_Plate_Blue",
+        "M_Enamel_White_Aged",
+        "M_Glass_Grimy",
+        "M_Ink_Trace",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Cream",
+        "M_Paint_W0_PaleGreen",
+        "M_Paper",
+        "M_Paper_Chart",
+        "M_Plastic_Black",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Tile_Floor_Terrazzo",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/wardzero/FW_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2976
+    },
+    "ENV_W0_IsolationCell": {
+      "asset_id": "ENV_W0_IsolationCell",
+      "asset_name": "Ward Zero isolation cell",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        4.112,
+        3.12
+      ],
+      "export_file": "assets/exports/wardzero/env/ENV_W0_IsolationCell.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; the sealed corridor ends at y 10; the W0-B stair head is at x 0.6, y -0.6). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); state_group extras with story_tag ward_zero_anomaly are provisional anomaly states (owner review).",
+      "intended_location": "Ward Zero: isolation cell",
+      "markers": [
+        "CAM_IC_Establishing",
+        "LIGHTMARK_IC_Batten"
+      ],
+      "materials": [
+        "M_Canvas_Aged",
+        "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
+        "M_Concrete_Stained",
+        "M_Emissive_LED_Green",
+        "M_Emissive_Tube_Cold",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Dark",
+        "M_Metal_Rust",
+        "M_Paint_W0_PaleGreen",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Painted_White",
+        "M_Water_Puddle",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/wardzero/FW_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 1192
+    },
+    "ENV_W0_ObservationRoom": {
+      "asset_id": "ENV_W0_ObservationRoom",
+      "asset_name": "Ward Zero observation room",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        7.252,
+        3.12
+      ],
+      "export_file": "assets/exports/wardzero/env/ENV_W0_ObservationRoom.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; the sealed corridor ends at y 10; the W0-B stair head is at x 0.6, y -0.6). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); state_group extras with story_tag ward_zero_anomaly are provisional anomaly states (owner review).",
+      "intended_location": "Ward Zero: observation room",
+      "markers": [
+        "CAM_OM_Establishing",
+        "LIGHTMARK_OM_Batten"
+      ],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
+        "M_Concrete_Stained",
+        "M_Emissive_Tube_Cold",
+        "M_Enamel_Plate_Blue",
+        "M_Enamel_White_Aged",
+        "M_Folder_Manila",
+        "M_Glass_Grimy",
+        "M_Ink_Trace",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_W0_PaleGreen",
+        "M_Paper",
+        "M_Paper_Chart",
+        "M_Plastic_Black",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Tile_Floor_Terrazzo",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/wardzero/FW_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2984
+    },
+    "ENV_W0_PlantRoom": {
+      "asset_id": "ENV_W0_PlantRoom",
+      "asset_name": "Ward Zero plant room",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        5.512,
+        11.112,
+        3.15
+      ],
+      "export_file": "assets/exports/wardzero/env/ENV_W0_PlantRoom.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; the sealed corridor ends at y 10; the W0-B stair head is at x 0.6, y -0.6). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); state_group extras with story_tag ward_zero_anomaly are provisional anomaly states (owner review).",
+      "intended_location": "Ward Zero: plant room",
+      "markers": [
+        "CAM_PR_Establishing",
+        "LIGHTMARK_PR_Lamp_0",
+        "LIGHTMARK_PR_Lamp_1",
+        "MARK_Audio_W0Hum"
+      ],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Enamel_Plate_Blue",
+        "M_Enamel_White_Aged",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Dark",
+        "M_Metal_Rust",
+        "M_Paint_Historic_Cream",
+        "M_Paint_Historic_Green",
+        "M_Paint_W0_PaleGreen",
+        "M_Plastic_Black",
+        "M_Safety_Red",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Water_Puddle",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/wardzero/FW_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 5228
+    },
+    "ENV_W0_ServiceCorridor_16m": {
+      "asset_id": "ENV_W0_ServiceCorridor_16m",
+      "asset_name": "Ward Zero service corridor, 16 m, with the W0-B stair",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.26,
+        16.112,
+        4.207
+      ],
+      "export_file": "assets/exports/wardzero/env/ENV_W0_ServiceCorridor_16m.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; the sealed corridor ends at y 10; the W0-B stair head is at x 0.6, y -0.6). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); state_group extras with story_tag ward_zero_anomaly are provisional anomaly states (owner review).",
+      "intended_location": "Ward Zero: service corridor and the W0-B service stair",
+      "markers": [
+        "CAM_W0C_Corridor",
+        "CAM_W0C_FromSouth",
+        "CAM_W0C_Stair",
+        "LIGHTMARK_W0C_Batten_0",
+        "LIGHTMARK_W0C_Batten_2",
+        "LIGHTMARK_W0C_Batten_3",
+        "MARK_Link_W0B"
+      ],
+      "materials": [
+        "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
+        "M_Concrete_Stained",
+        "M_Emissive_LED_Green",
+        "M_Emissive_Tube_Cold",
+        "M_Enamel_White_Aged",
+        "M_Glass_Grimy",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Dark",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Cream",
+        "M_Paint_Historic_Green",
+        "M_Paint_W0_PaleGreen",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Rubber_Dark",
+        "M_Safety_Yellow_Aged",
+        "M_Signage_Blue",
+        "M_Signage_Panel",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Stencil_Black",
+        "M_Upholstery_Charcoal",
+        "M_Water_Puddle"
+      ],
+      "source_file": "assets/blender/wardzero/FW_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 6500
+    },
+    "ENV_W0_ServiceStore": {
+      "asset_id": "ENV_W0_ServiceStore",
+      "asset_name": "Ward Zero service store",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        4.612,
+        5.112,
+        3.12
+      ],
+      "export_file": "assets/exports/wardzero/env/ENV_W0_ServiceStore.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; the sealed corridor ends at y 10; the W0-B stair head is at x 0.6, y -0.6). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); state_group extras with story_tag ward_zero_anomaly are provisional anomaly states (owner review).",
+      "intended_location": "Ward Zero: service store",
+      "markers": [
+        "CAM_SS_Establishing",
+        "LIGHTMARK_SS_Batten"
+      ],
+      "materials": [
+        "M_Binder_Grey",
+        "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
+        "M_Concrete_Stained",
+        "M_Emissive_Tube_Cold",
+        "M_Folder_Manila",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_W0_PaleGreen",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_Sharps_Yellow",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/wardzero/FW_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2536
+    },
+    "ENV_W0_Threshold": {
+      "asset_id": "ENV_W0_Threshold",
+      "asset_name": "Ward Zero threshold (behind the bricked-up opening)",
+      "category": "environment",
+      "collision": "Floor + wall + furniture box colliders; door leaves carry their own",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        3.224,
+        4.13,
+        3.12
+      ],
+      "export_file": "assets/exports/wardzero/env/ENV_W0_Threshold.glb",
+      "implementation_notes": "Sublevel: place at the level origin (same x/y as Chapter 1; the sealed corridor ends at y 10; the W0-B stair head is at x 0.6, y -0.6). CAM_* framing references; MARK_* forward = Godot -Z; LIGHTMARK_* positions (flicker flags); state_group extras with story_tag ward_zero_anomaly are provisional anomaly states (owner review).",
+      "intended_location": "Ward Zero: threshold behind the sealed corridor",
+      "markers": [
+        "CAM_W0T_Threshold",
+        "LIGHTMARK_W0T_Lamp"
+      ],
+      "materials": [
+        "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
+        "M_Concrete_Stained",
+        "M_Emissive_Bulb_Tungsten",
+        "M_Emissive_LED_Green",
+        "M_Enamel_Plate_Blue",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Dark",
+        "M_Metal_Rust",
+        "M_Paint_Flaking",
+        "M_Paint_Historic_Cream",
+        "M_Paint_Historic_Green",
+        "M_Paint_W0_PaleGreen",
+        "M_Paper",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite",
+        "M_Rubber_Dark",
+        "M_Skirting_Coved",
+        "M_Stain_Damp",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Stencil_Black",
+        "M_Upholstery_Charcoal",
+        "M_Water_Puddle",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/wardzero/FW_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 2568
+    },
     "MOD_Ceiling_2x2_LightPanel": {
       "asset_id": "MOD_Ceiling_2x2_LightPanel",
       "asset_name": "Ceiling 2 x 2 m with LED panel",
@@ -2971,6 +3305,37 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 60
     },
+    "PROP_Cabinet_Relay_Historic": {
+      "asset_id": "PROP_Cabinet_Relay_Historic",
+      "asset_name": "Relay and indicator cabinet",
+      "category": "equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.0,
+        0.491,
+        2.0
+      ],
+      "export_file": "assets/exports/wardzero/props/PROP_Cabinet_Relay_Historic.glb",
+      "implementation_notes": "Ward Zero (historic service zone; the tripod is modern). Origin: floor centre. Swappable children keep stable name suffixes for state_group tagging.",
+      "intended_location": "W0 instrument room",
+      "markers": [],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Emissive_Indicator_Amber",
+        "M_Enamel_Plate_Blue",
+        "M_Enamel_White_Aged",
+        "M_Glass_Grimy",
+        "M_Iron_Cast_Painted",
+        "M_Paint_Historic_Cream",
+        "M_Plastic_Black",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey"
+      ],
+      "source_file": "assets/blender/wardzero/FW_Props_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 924
+    },
     "PROP_Camera_Dome": {
       "asset_id": "PROP_Camera_Dome",
       "asset_name": "Ceiling dome CCTV camera",
@@ -3214,6 +3579,33 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 416
+    },
+    "PROP_Clock_Wall_Historic": {
+      "asset_id": "PROP_Clock_Wall_Historic",
+      "asset_name": "Historic electric slave clock",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.38,
+        0.069,
+        0.625
+      ],
+      "export_file": "assets/exports/wardzero/props/PROP_Clock_Wall_Historic.glb",
+      "implementation_notes": "Ward Zero (historic service zone; the tripod is modern). Origin: wall surface. Swappable children keep stable name suffixes for state_group tagging.",
+      "intended_location": "W0 service corridor, instrument room",
+      "markers": [],
+      "materials": [
+        "M_Enamel_White_Aged",
+        "M_Glass_Grimy",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Plastic_Black",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/wardzero/FW_Props_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 604
     },
     "PROP_Console_SecurityDesk": {
       "asset_id": "PROP_Console_SecurityDesk",
@@ -3682,6 +4074,31 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 316
     },
+    "PROP_Light_Fluorescent_Batten": {
+      "asset_id": "PROP_Light_Fluorescent_Batten",
+      "asset_name": "Fluorescent batten, single tube",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.27,
+        0.09,
+        0.23
+      ],
+      "export_file": "assets/exports/wardzero/props/PROP_Light_Fluorescent_Batten.glb",
+      "implementation_notes": "Ward Zero (historic service zone; the tripod is modern). Origin: ceiling. Swappable children keep stable name suffixes for state_group tagging.",
+      "intended_location": "Ward Zero corridor and rooms",
+      "markers": [],
+      "materials": [
+        "M_Emissive_Tube_Cold",
+        "M_Metal_Rust",
+        "M_Plastic_Black",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/wardzero/FW_Props_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 112
+    },
     "PROP_Light_VandalResistant": {
       "asset_id": "PROP_Light_VandalResistant",
       "asset_name": "Tamper-resistant flush luminaire",
@@ -3760,6 +4177,32 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical_Stage3.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 564
+    },
+    "PROP_MotorGenerator_Set": {
+      "asset_id": "PROP_MotorGenerator_Set",
+      "asset_name": "Motor-generator set on plinth",
+      "category": "equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        2.2,
+        0.9,
+        2.9
+      ],
+      "export_file": "assets/exports/wardzero/props/PROP_MotorGenerator_Set.glb",
+      "implementation_notes": "Ward Zero (historic service zone; the tripod is modern). Origin: floor centre. Swappable children keep stable name suffixes for state_group tagging.",
+      "intended_location": "W0 plant room",
+      "markers": [],
+      "materials": [
+        "M_Concrete_Stained",
+        "M_Enamel_Plate_Blue",
+        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
+        "M_Steel_Brushed"
+      ],
+      "source_file": "assets/blender/wardzero/FW_Props_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 1420
     },
     "PROP_NoticeBoard": {
       "asset_id": "PROP_NoticeBoard",
@@ -3983,6 +4426,36 @@
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 48
     },
+    "PROP_Recorder_Chart_Strip": {
+      "asset_id": "PROP_Recorder_Chart_Strip",
+      "asset_name": "Two-pen strip-chart recorder on stand",
+      "category": "equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.7,
+        0.45,
+        1.8
+      ],
+      "export_file": "assets/exports/wardzero/props/PROP_Recorder_Chart_Strip.glb",
+      "implementation_notes": "Ward Zero (historic service zone; the tripod is modern). Origin: floor centre. Swappable children keep stable name suffixes for state_group tagging.",
+      "intended_location": "W0 observation room",
+      "markers": [],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Enamel_Plate_Blue",
+        "M_Glass_Grimy",
+        "M_Ink_Trace",
+        "M_Metal_Rust",
+        "M_Paper_Chart",
+        "M_Steel_Brushed",
+        "M_Steel_Painted_Grey",
+        "M_Wood_Aged"
+      ],
+      "source_file": "assets/blender/wardzero/FW_Props_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 1372
+    },
     "PROP_Seating_Waiting_3": {
       "asset_id": "PROP_Seating_Waiting_3",
       "asset_name": "Floor-fixed beam seating, 3 seats",
@@ -4006,6 +4479,31 @@
       "source_file": "assets/blender/security/FW_Props_Security.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 180
+    },
+    "PROP_Sensor_Tripod_Modern": {
+      "asset_id": "PROP_Sensor_Tripod_Modern",
+      "asset_name": "Sensor and data logger on tripod",
+      "category": "equipment",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.594,
+        1.496,
+        1.487
+      ],
+      "export_file": "assets/exports/wardzero/props/PROP_Sensor_Tripod_Modern.glb",
+      "implementation_notes": "Ward Zero (historic service zone; the tripod is modern). Origin: floor centre. Swappable children keep stable name suffixes for state_group tagging.",
+      "intended_location": "Ward Zero (state w0_instrument_kit: installed)",
+      "markers": [],
+      "materials": [
+        "M_Emissive_LED_Green",
+        "M_Metal_Dark",
+        "M_Plastic_Black",
+        "M_Plastic_OffWhite"
+      ],
+      "source_file": "assets/blender/wardzero/FW_Props_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 156
     },
     "PROP_Shelf_Medication_Historic": {
       "asset_id": "PROP_Shelf_Medication_Historic",
@@ -4176,6 +4674,35 @@
       "source_file": "assets/blender/clinical/FW_Props_Clinical.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 160
+    },
+    "PROP_Teleprinter_Historic": {
+      "asset_id": "PROP_Teleprinter_Historic",
+      "asset_name": "Teleprinter on pedestal",
+      "category": "equipment",
+      "collision": "Box collider (-colonly)",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.62,
+        0.64,
+        1.365
+      ],
+      "export_file": "assets/exports/wardzero/props/PROP_Teleprinter_Historic.glb",
+      "implementation_notes": "Ward Zero (historic service zone; the tripod is modern). Origin: floor centre. Swappable children keep stable name suffixes for state_group tagging.",
+      "intended_location": "W0 instrument room",
+      "markers": [],
+      "materials": [
+        "M_Bakelite_Brown",
+        "M_Emissive_Indicator_Amber",
+        "M_Enamel_Plate_Blue",
+        "M_Enamel_White_Aged",
+        "M_Glass_Grimy",
+        "M_Ink_Trace",
+        "M_Iron_Cast_Painted",
+        "M_Paper_Chart"
+      ],
+      "source_file": "assets/blender/wardzero/FW_Props_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 612
     },
     "PROP_Terminal_EHR": {
       "asset_id": "PROP_Terminal_EHR",
@@ -4408,6 +4935,39 @@
       "source_file": "assets/blender/characters/Naomi_Bennett_Base_v01.blend",
       "status": "Automated base; manual likeness, garment, hair, and deformation review required",
       "triangles_base": 42583
+    },
+    "Naomi_Bennett_Base_v02": {
+      "asset_id": "Naomi_Bennett_Base_v02",
+      "asset_name": "Naomi Bennett character base v02",
+      "category": "character",
+      "collision": "Not generated; WardCharacter retains runtime contact and interaction behavior",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.0199,
+        0.4395,
+        1.7011
+      ],
+      "export_file": "assets/exports/characters/Naomi_Bennett_Base_v02.glb",
+      "implementation_notes": "Skinned 53-joint automated refinement candidate; not a finished realistic character. Exact CC0 MPFB inputs are recorded in assets/asset_manifest/naomi_character_manifest_v02.json. Not integrated into a gameplay scene.",
+      "intended_location": "Chapter 1: Charge Nurse Naomi Bennett",
+      "markers": [],
+      "materials": [
+        "Naomi_Badge_Clip",
+        "Naomi_Skin",
+        "Naomi_Eye_Sclera",
+        "Naomi_Brow",
+        "Naomi_Hair",
+        "Naomi_ID_Badge",
+        "Naomi_Eye_Iris",
+        "Naomi_Hair_Bun",
+        "Naomi_Shoes",
+        "Naomi_Eye_Pupil",
+        "Naomi_Scrubs_Navy",
+        "Naomi_Hair_Highlight"
+      ],
+      "source_file": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+      "status": "Automated v02 refinement candidate; owner visual appearance review pending; not integrated into gameplay",
+      "triangles_base": 32281
     }
   },
   "schema_version": "1.0"

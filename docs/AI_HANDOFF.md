@@ -8,13 +8,108 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
-**GitHub state correction (verified 2026-10-18 01:16 UTC):** `origin/main` is `96ef65ed40ced591f576326e21fcd60f9da9d3a7`, beyond the older `47a68f4` checkpoint recorded below; `git log 47a68f4..origin/main` confirms merges of PRs #38, #40 and #41. PRs #35–#41 are merged. The current open PR is #42, a draft CIG implementation PR at last-checked head `d5d19f5`; GitHub reports `MERGEABLE` and hosted `validate` is pending (run 39085902026). This handoff update will advance the PR head, so check the new docs-only head afterward. Historical rows below are preserved as history, not current PR state. Naomi's model-builder/refinement remains a separate workstream; its base asset still needs owner visual review and has no animation clips.
+**GitHub state correction (verified 2026-10-18 13:32 UTC):** `origin/main` is `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`; PR #43 (Stage 6) and PR #42 (CIG slot/fallback) are merged, PR #44 and Naomi draft PR #45 are open. The Naomi code-validation checkpoint is `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc`; the branch also contains docs-only handoff checkpoint `bb56860e0906182c3300f57b80b5e64e88421c02`. PR #45's hosted `validate` check on the handoff head is in progress. Naomi v01 and v02 remain unapproved and not integrated.
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
 | Foundation F3 anomaly model | `claude/f3-anomaly-model` (draft PR to `main`) | Claude | `5283735` (see entry) | `data/anomalies.json`, `data/clues.json` (source_class, claim_state), `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/narrative/{AnomalyLedger,ChapterDirector,StoryLogic}.gd`, `scripts/autoload/{ContentRegistry,EventBus}.gd` (EventBus: two signals), `scripts/content/*`, `project.godot` (one setting), `scripts/tests/test_anomaly.gd`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER}.md` | Awaiting owner review |
-| CIG-1 optional character visual slot | `biancaalexis132-png-cig-1-character-integration` (draft PR #42) | Copilot / current session | `d5d19f5ff329220bdbedfc006f632715923e8f87` (verified remote; code tests run on `387ceba`) | `scripts/world/Character.gd`, `scenes/props/Character.tscn`, `scripts/tests/test_character_visual.gd`, and CIG continuity/status docs | PR #42 open/draft and mergeable; hosted `validate` pending on `d5d19f5`. Naomi asset integration remains gated on owner visual review and authored animations. |
+| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` (code/test checkpoint; docs-only follow-up is pushed) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Active; v02 is structurally valid but fails visual criteria and is not for runtime integration. Hosted validation is in progress. |
 
+### 2026-10-18 13:32 UTC · Copilot · Naomi handoff follow-up
+
+- **Branch:** `biancaalexis132-png-naomi-model-refinement`, based on `main` `7e5bd2a`.
+- **Latest verified code commit:** `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc`; a docs-only continuity commit `bb56860e0906182c3300f57b80b5e64e88421c02` follows it on the remote branch.
+- **GitHub:** draft PR #45 is open against `main`; hosted `validate` is in progress on the docs-updated PR head as checked at 13:32 UTC. No merge or runtime integration.
+- **Completed since the prior entry:** the final regenerated v02 GLB was reimported in Godot 4.7; the import validator passed 154/154 with zero failures. Generated Godot `.import` sidecars and extracted textures were removed from the worktree.
+- **State / next step:** v02 still fails the documented silhouette and garment-boundary review; preserve it as an owner-review candidate only. Keep PR #45 draft and unmerged; record hosted check completion in a follow-up handoff.
+
+### 2026-10-18 13:31 UTC · Copilot · Naomi procedural visual refinement
+
+- **Branch:** `biancaalexis132-png-naomi-model-refinement` (based on `main` `7e5bd2a`, merged into the feature branch)
+- **Latest verified commit:** `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` "Record Naomi v02 refinement handoff"; implementation/assets are in `b740f8ab83733fd797be344e6e9b4eefa5a5769a`.
+- **Confirmed on GitHub:** the remote feature branch points to `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc`. Draft PR #45 is open against `main`; hosted `validate` is in progress as of 2026-10-18 13:31 UTC.
+- **State:** unfinished but coherent. The generated v02 candidate passes structural and import checks but visibly fails outfit-silhouette and garment-artifact criteria; do not integrate.
+
+**Accomplished**
+- Refined `tools/blender/characters/build_naomi.py` and `naomi_appearance.json` for versioned v02 output, the documented female MPFB endpoint and exact `.target.gz` provenance. Procedural eye anchors use the head vertex group; hair is kept behind the face; the scrub top/trousers have separate navy materials and the poorly rendered, unapproved badge is removed.
+- Replaced operator-generated sphere details with fixed procedural vertices and stripped volatile Date/RenderTime metadata from generated PNG renders. Repeated same-config builds produce byte-identical GLB and review PNGs; Blender `.blend` container bytes vary due to internal serialization.
+- Generated and retained v01 alongside `assets/blender/characters/Naomi_Bennett_Base_v02.blend`, `assets/exports/characters/Naomi_Bennett_Base_v02.glb`, four v02 review renders and v02/shared manifests. MPFB assets remain CC0-1.0; MPFB2 code remains GPL-3.0-or-later as a local build tool only. No external assets were added.
+- Updated `tools/blender/characters/NAOMI_VISUAL_QA.md` with explicit findings and a pending-owner-review gate. The close view exposes the facial features, but the full-body render still reads as a continuous lower garment and has angular garment/skin boundaries; v02 does not meet visual acceptance and is not a proxy for a finished character.
+- Merged `origin/main` `7e5bd2a` after PR #43 merged. Preserved the Ward Zero manifest/assets and corrected the active handoff state; PR #44 remains open.
+
+**Files modified**
+- `tools/blender/characters/{build_naomi.py,naomi_appearance.json,validate_naomi.py,README.md,NAOMI_VISUAL_QA.md}`: version-aware deterministic generation, validator and review limits.
+- `assets/blender/characters/Naomi_Bennett_Base_v02.blend`, `assets/exports/characters/Naomi_Bennett_Base_v02*.{glb,png}`, `assets/asset_manifest/naomi_character_manifest_v02.json`, `assets/asset_manifest/asset_manifest.json`: generated v02 candidate and provenance; v01 outputs unchanged.
+- `docs/AI_HANDOFF.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/PROJECT_STATUS.md`: final handoff/current status; merge reconciliation preserves upstream Stage 6 records.
+
+**Unfinished**
+- `tools/blender/characters/build_naomi.py` garment selection/shell construction still produces a dress-like lower silhouette and angular cloth/skin boundaries in the generated front/right/back views. Further automated garment construction is needed before the visual checklist can pass.
+- Owner appearance review, scene integration, animation, LOD and target-device performance are pending. Do not attach v02 to `staff_bennett`.
+
+**Known errors**
+- Full QA runner exits 1 in the unrelated music-preview suite because local FFmpeg reports `Unknown encoder 'libvorbis'` for `test_generate_verify_and_approve` and `test_reference_audio_uses_approved_main_theme`.
+- Visual checklist failures are recorded above and in `tools/blender/characters/NAOMI_VISUAL_QA.md`; this is a known quality blocker, not a software validation pass.
+
+**Tests**
+- Blender 5.2.2 build command `/Applications/Blender.app/Contents/MacOS/Blender --background --python-exit-code 1 --python tools/blender/characters/build_naomi.py`: rerun after merging latest main; passed and regenerated v02 at 32,281 triangles. The manifest records the current project-wide import result of 154 assets.
+- Blender validator command `/Applications/Blender.app/Contents/MacOS/Blender --background --python-exit-code 1 --python tools/blender/characters/validate_naomi.py`: passed after the latest regeneration, 14 required scene objects, 53 joints, 32,281 triangles, 3 embedded textures, 4 renders.
+- `python3 docs/design/characters/ForensicWard_Character_Integration_Gate_v1/tools/check_character_glb.py assets/exports/characters/Naomi_Bennett_Base_v02.glb`: passed on `9a36b37`; 15 meshes, 69 nodes, 1 skin, 0 animations, 11 materials, 3 textures.
+- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . --editor --import`: exit 0 after final regeneration. `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . -s res://tools/godot/validate_glb_imports.gd`: 154 assets checked, 0 failures.
+- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . res://scripts/tests/TestRunner.tscn`: 127 passed / 0 failed on `9a36b37`.
+- `python3 tests/qa/run.py --godot /tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot`: exit 1; JSON 6/6 and audio-manifest 3/3 passed; music-preview 1 passed / 2 failed as above; runner stopped before Godot suites, which were then run directly.
+- Repeated Blender builds with unchanged inputs: GLB, procedural textures and all four normalized render PNGs were byte-identical. `.blend` file bytes differed due to Blender serialization; scene validation still passes. `git diff --check`, Python compilation and JSON syntax checks passed.
+- CI: not observed on this branch.
+
+**Dependencies not available to remote agents**
+- MPFB2 2.0.18 is locally installed under Blender's user extensions; it is not vendored. Owner appearance review and Mac in-game frame-time/performance review remain unavailable.
+
+**Next steps**
+1. Keep draft PR #45 unmerged and draft; confirm its hosted `validate` result after the in-progress run completes.
+2. Keep v02 out of `staff_bennett`; obtain owner/artist direction on the visibly failing garment and face-surface artifacts, then continue only with documented procedural methods and approved canon.
+3. Re-run the visual QA checklist after any next build. Do not proceed to animation, LOD or runtime integration until owner appearance approval.
+
+**Notes for the other agent**
+- Do not edit gameplay, clinical rules/content, saves, story, `staff_bennett`, or the merged optional visual slot. Headless renders and imports do not establish realism, Mac appearance or performance.
+
+### 2026-10-18 12:55 UTC · Copilot · Naomi procedural visual refinement audit
+
+- **Branch:** `biancaalexis132-png-naomi-model-refinement` (based on `main` at `de5cbfc`)
+- **Latest verified commit:** `de5cbfcb6a269ffa48822030a06b74bb0b7d63d3` "Merge pull request #42 from biancaalexis132-png/biancaalexis132-png-cig-1-character-integration"
+- **Confirmed on GitHub:** `origin/main` and local HEAD both point to `de5cbfcb6a269ffa48822030a06b74bb0b7d63d3`; new feature branch has not yet been pushed.
+- **Pull request:** none for this branch. Open PRs at audit: #43 and #44.
+- **State:** unfinished but coherent; audit checkpoint only, no model/code changes yet.
+
+**Accomplished**
+- Reconciled the older continuity snapshot with fetched GitHub state: PR #42 is merged in `de5cbfc`; PRs #43/#44 are open. The earlier notes calling #42 pending are historical and stale.
+- Inspected the approved Naomi production spec and v01 Blender/GLB/render/provenance outputs. Generated renders show face/eyes obscured by broad hair strips, black/clipped/angular clothing regions and a skirt-like lower silhouette; v01 is unsuitable for runtime integration.
+- Confirmed Blender 5.2.2 and an initialized MPFB extension are available at `/Applications/Blender.app/Contents/MacOS/blender`. Version-specific build validation remains to be run by the builder.
+
+**Files modified**
+- `docs/AI_HANDOFF.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/PROJECT_STATUS.md`: this audit checkpoint and corrected active-workstream snapshot.
+
+**Unfinished**
+- `tools/blender/characters/build_naomi.py`: inspect and correct procedural face/hair/garment construction and preview staging; add versioned v02 outputs while preserving v01.
+- `tools/blender/characters/validate_naomi.py`, configuration and Naomi asset manifests: support deterministic versioned output and explicit owner-review status.
+- v02 review renders, Blender source and GLB have not yet been generated.
+
+**Known errors**
+- v01 preview visibly fails owner-review criteria as described above; no v02 build attempted yet. No software test failure is asserted at this audit checkpoint.
+
+**Tests**
+- No starting-commit tests rerun yet; changes in this checkpoint only record the audit. Historical checks for merged main are recorded below. New builder/refinement work must be validated on this branch.
+- CI: not observed for this feature branch; no PR exists.
+
+**Dependencies not available to remote agents**
+- MPFB2 is an installed Blender extension, not vendored; the build must verify its loaded version and documented APIs. Owner appearance approval, Mac in-game performance review, animation and LOD remain pending.
+
+**Next steps**
+1. Push this audit checkpoint and confirm its exact remote SHA.
+2. Inspect the complete builder, MPFB2 2.0.18 API/source references, validator and manifests; fix procedural occlusion, fit and silhouette without manual sculpting or unapproved canon.
+3. Generate and validate versioned v02 `.blend`, `.glb`, manifest and review images, retaining v01.
+4. Import the GLB in Godot 4.7, complete project QA, update handoffs with exact results, and open a draft PR without runtime integration.
+
+**Notes for the other agent**
+- Keep `staff_bennett` unmodified; do not attach the v01 or v02 asset to the runtime slot. No clinical, save, story or gameplay systems are in scope. Renders are for owner review, not proof of photorealism or Mac performance.
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
 ## Entry template
@@ -98,6 +193,42 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 **Notes for the other agent**
 - The anomaly flag stays off; do not enable it or add Chapter 2–5 episodes without owner approval.
 - Pharmacology `clue_gates` on PT-001 and PT-002 are known exceptions pending F0 C7; never make a gated clue an anomaly reading.
+
+### 2026-10-18 01:45 UTC · Claude Code · Environment Stage 6 Ward Zero
+
+- **Branch:** `claude/environment-stage-6` (from `main` at `33b2e8c`, after F0 merged), then `main` at `de5cbfc` merged in
+- **Latest verified commit:** `30d2fee` "Restyle Ward Zero from the owner's reference boards; add echo and displaced-sign states" (on `6e2b1f0`), plus merge `7351c42` of `main`
+- **Confirmed on GitHub:** see `git ls-remote origin claude/environment-stage-6`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; imports and passes every suite. Layout and every anomaly state await owner review
+
+**Accomplished**
+- 7 props (`assets/exports/wardzero/props/`): historic slave clock (hands as a separate child), two-pen chart recorder, teleprinter, relay cabinet with a door mimic panel, motor-generator set, modern sensor tripod, fluorescent batten.
+- 7 rooms (`assets/exports/wardzero/env/`) on the Stage 5 sublevel south of the sealed corridor: threshold (behind the `sealed_corridor_end` brick), a 16 m service corridor, observation room with a wire-mesh window into the isolation cell, service store, instrument room and plant room (`MARK_Audio_W0Hum`). A service stair tops out at (0.6, -0.6), just beyond the Chapter 1 W0-B door, under a floor hatch (asserted). Every room root has `audio_location: ward_zero`.
+- Styled from the owner's Ward Zero boards (`assets/creative_references/Visual_References/Ward_Zero/`): cinderblock over a pale green dado, fluorescent battens, overhead pipes, puddle zones only. Following the visual-review thread's proposal, no "Ward Zero" signage, names, dates, notes, red stains or restraint chairs from the boards are used; signage says "SERVICE B" and "LOWER LEVEL B".
+- Seven anomaly `state_group`s (`w0_clock_offset`, `w0_recorder_trace`, `w0_teleprinter_log`, `w0_door_mimic`, `w0_cell_chair`, `w0_echo_wheelchair`, `w0_displaced_sign`) plus `w0_instrument_kit` for a supervised observation. Every default state has an ordinary reading; none reacts to a patient. State nodes carry `story_tag: ward_zero_anomaly`, `manifestation`, `approval_status: provisional_owner_review` and `earliest_chapter` (echo and displaced sign are `ch3`), and have no collision (asserted).
+
+**Files modified**
+- New: `tools/blender/build_stage6_ward_zero.py`, `assets/blender/wardzero/*.blend`, exports and `.import` files, `assets/renders/stage6/*.png`.
+- `tools/blender/fw_assets.py`, `tools/blender/fw_lib.py` (Stage 6 sections), `assets/asset_manifest/asset_manifest.{json,md}`, `docs/ENVIRONMENT_STAGES.md`, `docs/ENVIRONMENT_PIPELINE.md`, `docs/PROJECT_STATUS.md`, this file.
+
+**Unfinished**
+- Not wired into gameplay: no zone in `data/zones.json`, no stair climb, no transition at `MARK_Link_W0B`; the ground-floor stair head beyond `Door_W0B` is not modelled.
+- Repeating corridors and reflection mismatches from the boards need Godot work (F3 or later).
+- The reference boards also show a nurses' station, records archive and treatment room; those exist as Stage 5 rooms and were not restyled.
+
+**Known errors**
+- None found. Puddles are flat low-roughness colour; Godot reflections are untested on the Mac.
+
+**Tests** (on the merged tree, before this doc commit)
+- `python3 tests/qa/run.py` with Godot 4.7 (4.7.stable.official.5b4e0cb0f): exit 0. TestQA 19 / 0 / 0, `.glb` validation 153/153, TestRunner 127 / 0, TestAudio 336 / 0, "All executed checks passed". Generated `.import` files for creative references and character exports were left uncommitted.
+- `build_stage6_ward_zero.py` with Blender 5.0.1 (`bpy`): "STAGE6 WARD ZERO OK: 7 props, 7 environments exported".
+
+**Next steps**
+1. Owner reviews the layout, the look and each anomaly state, and approves or cuts them.
+2. F2/F3: a `zone_ward_zero` entry, the W0-B and sealed-corridor transitions, and F3 manifestations driving these state groups.
+3. Stage 7 exterior and apartment.
+
 ### 2026-10-18 01:16 UTC · Copilot · CIG-1 optional character visual slot
 
 - **Branch:** `biancaalexis132-png-cig-1-character-integration` (based on `main` at `96ef65e`)
