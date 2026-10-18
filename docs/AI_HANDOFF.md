@@ -8,18 +8,17 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
-**GitHub state correction (verified 2026-10-18 13:23 UTC):** `origin/main` is `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`; PR #43 (Stage 6) and PR #42 (CIG slot/fallback) are merged, and PR #44 is open. This feature branch merged the latest main tip in `9a36b3779bc9582e329364a86c76f94c1192529e`. Naomi v01 and v02 remain unapproved and not integrated.
+**GitHub state correction (verified 2026-10-18 13:31 UTC):** `origin/main` is `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`; PR #43 (Stage 6) and PR #42 (CIG slot/fallback) are merged, PR #44 and Naomi draft PR #45 are open. The Naomi branch is pushed at `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc`; PR #45's hosted `validate` check is in progress. Naomi v01 and v02 remain unapproved and not integrated.
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `9a36b3779bc9582e329364a86c76f94c1192529e` (v02 commit plus merge of latest main) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Active; v02 is structurally valid but fails visual criteria and is not for runtime integration. Local commits still need pushing. |
+| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` (pushed; PR #45 draft) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Active; v02 is structurally valid but fails visual criteria and is not for runtime integration. Hosted validation is in progress. |
 
-### 2026-10-18 13:23 UTC · Copilot · Naomi procedural visual refinement
+### 2026-10-18 13:31 UTC · Copilot · Naomi procedural visual refinement
 
 - **Branch:** `biancaalexis132-png-naomi-model-refinement` (based on `main` `7e5bd2a`, merged into the feature branch)
-- **Latest verified commit:** `9a36b3779bc9582e329364a86c76f94c1192529e` "Merge origin/main and reconcile Naomi handoff"; Naomi implementation/assets are in `b740f8ab83733fd797be344e6e9b4eefa5a5769a`.
-- **Confirmed on GitHub:** the remote feature branch still points to audit checkpoint `4a855641efc06a1582a89bedaa1f4dde82cb5051`; v02 and merge commits are local and not yet pushed.
-- **Pull request:** none yet; open a draft PR after pushing the verified checkpoint.
+- **Latest verified commit:** `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` "Record Naomi v02 refinement handoff"; implementation/assets are in `b740f8ab83733fd797be344e6e9b4eefa5a5769a`.
+- **Confirmed on GitHub:** the remote feature branch points to `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc`. Draft PR #45 is open against `main`; hosted `validate` is in progress as of 2026-10-18 13:31 UTC.
 - **State:** unfinished but coherent. The generated v02 candidate passes structural and import checks but visibly fails outfit-silhouette and garment-artifact criteria; do not integrate.
 
 **Accomplished**
@@ -43,10 +42,10 @@ One row per branch that someone is working on. Claim the folders or files you wi
 - Visual checklist failures are recorded above and in `tools/blender/characters/NAOMI_VISUAL_QA.md`; this is a known quality blocker, not a software validation pass.
 
 **Tests**
-- Blender 5.2.2 build command `/Applications/Blender.app/Contents/MacOS/Blender --background --python-exit-code 1 --python tools/blender/characters/build_naomi.py`: rerun after merging latest main; passed and regenerated v02 at 32,281 triangles. The manifest now records the current project-wide import result of 154 assets.
+- Blender 5.2.2 build command `/Applications/Blender.app/Contents/MacOS/Blender --background --python-exit-code 1 --python tools/blender/characters/build_naomi.py`: rerun after merging latest main; passed and regenerated v02 at 32,281 triangles. The manifest records the current project-wide import result of 154 assets.
 - Blender validator command `/Applications/Blender.app/Contents/MacOS/Blender --background --python-exit-code 1 --python tools/blender/characters/validate_naomi.py`: passed after the latest regeneration, 14 required scene objects, 53 joints, 32,281 triangles, 3 embedded textures, 4 renders.
 - `python3 docs/design/characters/ForensicWard_Character_Integration_Gate_v1/tools/check_character_glb.py assets/exports/characters/Naomi_Bennett_Base_v02.glb`: passed on `9a36b37`; 15 meshes, 69 nodes, 1 skin, 0 animations, 11 materials, 3 textures.
-- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . --editor --import`: exit 0 on `9a36b37`. `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . -s res://tools/godot/validate_glb_imports.gd`: 154 assets checked, 0 failures.
+- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . --editor --import`: exit 0 after final regeneration. `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . -s res://tools/godot/validate_glb_imports.gd`: 154 assets checked, 0 failures.
 - `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . res://scripts/tests/TestRunner.tscn`: 127 passed / 0 failed on `9a36b37`.
 - `python3 tests/qa/run.py --godot /tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot`: exit 1; JSON 6/6 and audio-manifest 3/3 passed; music-preview 1 passed / 2 failed as above; runner stopped before Godot suites, which were then run directly.
 - Repeated Blender builds with unchanged inputs: GLB, procedural textures and all four normalized render PNGs were byte-identical. `.blend` file bytes differed due to Blender serialization; scene validation still passes. `git diff --check`, Python compilation and JSON syntax checks passed.
@@ -56,7 +55,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 - MPFB2 2.0.18 is locally installed under Blender's user extensions; it is not vendored. Owner appearance review and Mac in-game frame-time/performance review remain unavailable.
 
 **Next steps**
-1. Push this branch and confirm the exact SHA with `git ls-remote`; open a draft PR to `main` without marking it ready or merging.
+1. Keep draft PR #45 unmerged and draft; confirm its hosted `validate` result after the in-progress run completes.
 2. Keep v02 out of `staff_bennett`; obtain owner/artist direction on the visibly failing garment and face-surface artifacts, then continue only with documented procedural methods and approved canon.
 3. Re-run the visual QA checklist after any next build. Do not proceed to animation, LOD or runtime integration until owner appearance approval.
 
