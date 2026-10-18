@@ -47,9 +47,9 @@
 | Preview faces the counter | Done, merged in PR #47 | | `scripts/world/CharacterVisualPreview.gd` | TestRunner, captures | none |
 | Rahman voice profile role | Done, merged in PR #48 | | `audio/voice_profiles.json` | QA | none |
 | Naomi hair, trousers, top, shoes, face (v03) | Done, draft PR; not approved | v02 MPFB body | `tools/blender/characters/build_naomi_v03.py`, v03 assets | Blender build OK, 44,692 tris; Godot import; captures | Owner review |
-| Hybrid realism pass (CC0 skin/brows/lashes/hair, cloth sim) | Not started | Owner decision; Mac Blender with MPFB | | | Owner decides |
-| Naomi idle pose clip and facial shape keys | Not started | Approved model | | | After approval |
-| Naomi LOD and Mac frame time | Not started | Approved model | | No measurement exists | After animation |
+| Hybrid realism pass (CC0 skin/brows/lashes/hair, cloth sim) | Packs installed on Mac (system assets, eyebrows01, eyelashes01); not applied | Owner decision | `~/MPFB_Packs/` on the Mac | | Owner decides |
+| Naomi idle pose clip and facial shape keys | Done in v04 (clips, hand-built morphs) and v05_mpfb (MPFB faceunits plus visemes); not approved | | `tools/character_animation/**` | TestRunner 158/0; full QA on Mac | Owner picks face-shape source |
+| Naomi LOD and Mac frame time | Frame time measured; LOD not started | | `tools/godot/measure_character_frame_time.gd` | M1 MBA: v04 13.7/17.7 ms, v05_mpfb 14.3/17.9 ms mean/p95; 533k primitives and 828 draw calls flagged | Investigate the draw calls; LOD after approval |
 
 ## Naomi in-game review preview — Claude Code, 2026-10-18
 

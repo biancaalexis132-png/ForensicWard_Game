@@ -1,9 +1,18 @@
 # AI session handoff
 
+## Naomi Mac validation and v05_mpfb — Claude Code (owner's Mac), 2026-10-18 18:40 UTC
+
+- **Objective:** validate cloud v04 on the owner's Mac, measure frame time and bake MPFB face shapes; review only.
+- **Branches / PRs:** #52 (ffmpeg fallback), #54 (v04 Mac review take) and #57 (v05_mpfb) are merged. This doc update is `claude/local-mac-handoff`.
+- **Completed:** the oggenc fallback; 5 CC0 MPFB packs on the Mac; v04 Mac rebuild and take; the `bake_mpfb_face_shapes.py` bake step; v05_mpfb; the frame-time probe; full QA passing on the Mac.
+- **Exact stopping point:** all merged; waiting on the owner's face-shape decision.
+- **Next steps:** investigate v04's 533k primitives and 828 draw calls (cloud v05 thread). Re-measure on the Mac after each Naomi version.
+- **Constraints:** never run git in the SSK copy; the clean clone is `~/ForensicWard_Campaign_Publish`.
+
 ## Graphic-novel cutscenes — Claude Code (cloud), 2026-10-18 18:35 UTC
 
 - **Objective:** reusable review-only CutsceneDirector and a seven-panel Chapter 1 pilot in the painted graphic-novel style; later chapters in order after approval.
-- **Branch / PR:** `claude/cutscene-director`, draft PR #59 to `main`. Code commit `0ecf743`; `main` merged in up to `e9262b4`.
+- **Branch / PR:** `claude/cutscene-director`, draft PR #59 to `main`. Code commit `0ecf743`; `main` merged in up to `ac89efd` (PR #60).
 - **Completed:** director, registry, review scene, pilot data, painted plates and their generator, review stills, `docs/CUTSCENES.md` reconciliation with both SSK packages.
 - **Tests:** full `tests/qa/run.py` exit 0 (TestRunner 174/0); hosted CI green on `19969f7`.
 - **Exact stopping point:** pushed, conflicts with `main` resolved; waiting on owner review of the pilot on the Mac.
