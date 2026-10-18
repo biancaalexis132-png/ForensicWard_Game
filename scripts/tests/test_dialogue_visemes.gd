@@ -127,6 +127,52 @@ func test_scene_pause_freezes_viseme_time_and_resumes() -> void:
 	check(_face._line_seconds > before, "resume continues from the paused position")
 
 
+func test_unvoiced_reading_timeout_does_not_finish_during_pause() -> void:
+	await runner.get_tree().process_frame
+	var actor: WardCharacter = _spawn("v06_mpfb")
+	var original: Dictionary = AudioDirector._lines[FIRST].duplicate(true)
+	# Synthetic two-second, subtitle-only fixture; no authored file is changed.
+	AudioDirector._lines[FIRST]["chapter"] = "viseme_missing_voice_fixture"
+	AudioDirector._lines[FIRST]["text"] = "a"
+	AudioDirector.play_line(FIRST, actor)
+	_face.set_process(true)
+	await runner.get_tree().create_timer(0.05).timeout
+	var before: float = _face._line_seconds
+	runner.get_tree().paused = true
+	await runner.get_tree().create_timer(2.1, true).timeout
+	check_eq(_face._line_id, FIRST, "unvoiced dialogue stays active past its reading duration while paused")
+	check_eq(_face._line_seconds, before, "unvoiced mouth clock remains frozen")
+	runner.get_tree().paused = false
+	AudioDirector.stop_dialogue()
+	AudioDirector._lines[FIRST] = original
+
+
+func test_pause_between_scene_lines_delays_the_next_line() -> void:
+	await runner.get_tree().process_frame
+	var actor: WardCharacter = _spawn("v06_mpfb")
+	var originals: Dictionary = {}
+	for id: String in [FIRST, NEXT]:
+		originals[id] = AudioDirector._lines[id].duplicate(true)
+		AudioDirector._lines[id]["chapter"] = "viseme_missing_voice_fixture"
+		AudioDirector._lines[id]["text"] = "a"
+	var scene_id: String = "viseme_pause_test_scene"
+	AudioDirector._scenes[scene_id] = [FIRST, NEXT]
+	AudioDirector.play_scene(scene_id, {"staff_bennett": actor})
+	var completed: Array = await EventBus.dialogue_line_finished
+	check_eq(str(completed[0]), FIRST, "fixture first line completed")
+	runner.get_tree().paused = true
+	await runner.get_tree().create_timer(0.45, true).timeout
+	check(not AudioDirector.is_dialogue_playing(), "paused between-line gap does not start the next line")
+	check_eq(_face._line_id, "", "face stays quiet in the paused gap")
+	runner.get_tree().paused = false
+	await runner.get_tree().create_timer(0.45).timeout
+	check_eq(_face._line_id, NEXT, "next line begins after the gap resumes")
+	AudioDirector.stop_dialogue()
+	for id: String in originals:
+		AudioDirector._lines[id] = originals[id]
+	AudioDirector._scenes.erase(scene_id)
+
+
 func _spawn(version: String, character_id: String = "staff_bennett") -> WardCharacter:
 	var actor: WardCharacter = CHARACTER.instantiate() as WardCharacter
 	actor.character_id = character_id

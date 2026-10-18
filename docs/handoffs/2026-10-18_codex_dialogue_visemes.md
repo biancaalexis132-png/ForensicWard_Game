@@ -3,6 +3,8 @@
 Branch `codex/dialogue-viseme-integration`, based on main `8a86d53` (source
 validation PR #65 merged). Preview PR #66 is independent; these tests attach
 the existing GLB through WardCharacter without requiring that PR.
+PR #66 subsequently merged at `996fd9a`; it is integrated by merge checkpoint
+`d56c1c319855ceaeea19c9fb3c3f3539659136e0`, pushed and verified.
 
 ## Owner decision
 
@@ -30,11 +32,15 @@ mouth_open; supported visemes do not stack with jaw opening. Expressions,
 blinking, gaze, body/gesture playback and static shadow proxies stay separate.
 Zero-valued visemes are not rewritten every frame.
 
-Eight new real-model regressions cover deterministic schedules, actual audio
+Ten new real-model regressions cover deterministic schedules, actual audio
 events, fallback, different shapes, expression/proxy preservation, stale
-completion, skip/load, duration/punctuation, actor filtering and scene pause.
-The original 176 tests passed at the branch baseline; development TestRunner
-passes 184/0. The initial pause failure was traced to a queued old test actor's
+completion, skip/load, duration/punctuation, actor filtering, voiced/unvoiced
+pause and scene gaps. Two existing AudioDirector timers (subtitle-only reading
+duration and between-line gap) now pause with the scene. A regression first
+failed on the original unvoiced timer, proving the real lifecycle edge case.
+The original 176 tests passed at the branch baseline; the integrated preview
+plus original eight viseme tests passed 185/0 before the two added pause checks.
+An earlier pause-fixture failure was traced to a queued old test actor's
 exit hook stopping newly started audio. The pause fixture now flushes queued
 scene cleanup before starting audio; no production pause behavior was weakened.
 
