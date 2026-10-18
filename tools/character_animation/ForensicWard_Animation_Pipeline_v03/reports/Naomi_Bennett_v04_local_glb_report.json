@@ -1,0 +1,43 @@
+{
+  "meshes": 9,
+  "skins": 1,
+  "joints": [
+    53
+  ],
+  "animations": [
+    {
+      "name": "idle_breathing",
+      "channels": 2,
+      "target_paths": [
+        "rotation"
+      ],
+      "target_nodes": [
+        "neck_01",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "idle_neutral",
+      "channels": 2,
+      "target_paths": [
+        "rotation"
+      ],
+      "target_nodes": [
+        "head",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "listen_neutral",
+      "channels": 2,
+      "target_paths": [
+        "rotation"
+      ],
+      "target_nodes": [
+        "head",
+        "neck_01"
+      ]
+    }
+  ],
+  "morph_targets": []
+}

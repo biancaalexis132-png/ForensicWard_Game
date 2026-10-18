@@ -1,0 +1,47 @@
+{
+  "asset_id": "CHR_NaomiBennett_v04_local",
+  "character_id": "staff_bennett",
+  "version": "v04_local",
+  "production_status": "PIPELINE_VALIDATION_NOT_FOR_REVIEW_AS_FINAL",
+  "approved": false,
+  "purpose": "Proves the merged animation toolkit (tools/character_animation/ForensicWard_Animation_Pipeline_v03) runs on the owner's Mac with Blender 5.2.2 and that its clips export to GLB and play in Godot 4.7.2. The cloud thread's v04 build (claude/naomi-animation-v04) is the animation candidate; this file does not compete with it.",
+  "built_on": "Owner's Mac (Apple Silicon), Blender 5.2.2 LTS, MPFB2 extension present (build 20261010) but not used: no MPFB asset packs are installed locally and the v03 game_engine rig has no face bones for MPFB expressions",
+  "inputs": [
+    {
+      "path": "assets/blender/characters/Naomi_Bennett_v03.blend",
+      "sha256": "202896d3317f99345438354f6d3670dc262090a4a6d6b028bc605ef94546872c",
+      "used": "Unchanged mesh, materials, skin weights and 53-bone rig; provenance in naomi_character_manifest_v03.json"
+    }
+  ],
+  "tools": [
+    "tools/character_animation/ForensicWard_Animation_Pipeline_v03/tools/inspect_blender_rig.py",
+    "tools/character_animation/ForensicWard_Animation_Pipeline_v03/tools/create_animation_actions.py",
+    "tools/character_animation/ForensicWard_Animation_Pipeline_v03/tools/export_animated_glb.py",
+    "tools/character_animation/ForensicWard_Animation_Pipeline_v03/tools/inspect_glb.py"
+  ],
+  "config": "tools/character_animation/ForensicWard_Animation_Pipeline_v03/configs/staff_bennett_v03_mapping.json",
+  "external_assets": [],
+  "clips": [
+    {"name": "idle_neutral", "seconds": 5.0, "bones": ["spine_03", "head"], "peak_degrees": "chest 1.0 pitch, head 0.8 roll"},
+    {"name": "idle_breathing", "seconds": 4.0, "bones": ["spine_03", "neck_01"], "peak_degrees": "chest 2.0 pitch, neck -0.8 pitch"},
+    {"name": "listen_neutral", "seconds": 3.0, "bones": ["neck_01", "head"], "peak_degrees": "neck 2.0 pitch, head 1.5 pitch 2.5 roll"}
+  ],
+  "morph_targets": [],
+  "triangle_count": 44692,
+  "outputs": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v04_local.blend",
+    "blend_sha256": "5c18a71eeb6a4c64cd710a6fe998bb7640c315f4d1e5ff31fbd7caf1050817d0",
+    "glb": "assets/exports/characters/Naomi_Bennett_v04_local.glb",
+    "glb_sha256": "97dedbdc466dac4e1ab54ecf4e5a4ee1ab1009fbf1a3d730c1127b2094b26584",
+    "glb_report": "tools/character_animation/ForensicWard_Animation_Pipeline_v03/reports/Naomi_Bennett_v04_local_glb_report.json",
+    "ingame_captures": "docs/design/characters/Naomi_Bennett_Character_Production_v1/ingame_review_v04_local/"
+  },
+  "known_limitations": [
+    "Validation-strength motion only: one to three degrees on two bones per clip. Not final acting.",
+    "No blink, expressions or mouth shapes: v03 has no shape keys.",
+    "Not added to CharacterVisualPreview; captures used a temporary local edit that was reverted.",
+    "Blender warns that some vertices have more than 4 joint influences; glTF keeps the 4 strongest (same as v03).",
+    "Godot imports clips without loop mode; the acting adapter must set looping.",
+    "No Mac frame-time measurement."
+  ]
+}
