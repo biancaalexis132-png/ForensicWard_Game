@@ -22,6 +22,7 @@ const MANIFEST: Dictionary = {
 	"intent_lexicon": ["intent_lexicon.json", ContentSchemas.INTENT_LEXICON_FILE],
 	"campaign": ["campaign.json", ContentSchemas.CAMPAIGN_FILE],
 	"zones": ["zones.json", ContentSchemas.ZONES_FILE],
+	"anomalies": ["anomalies.json", ContentSchemas.ANOMALIES_FILE],
 }
 ## Document keys for files the campaign names: "dialogue:<file>",
 ## "story:<chapter id>", "world:<chapter id>".
@@ -35,6 +36,9 @@ var is_valid: bool = false
 var log_problems: bool = true
 var errors: Array[String] = []
 var warnings: Array[String] = []
+## Known exceptions to the clinical/supernatural separation rule (F0 C7),
+## reported on boot rather than silently allowed.
+var known_exceptions: Array[String] = []
 
 var _patients: Dictionary = {}       ## id -> patient
 var _dialogues: Dictionary = {}      ## patient_id -> dialogue document
@@ -51,10 +55,13 @@ var _worlds: Dictionary = {}         ## chapter id -> world wiring
 var _stories: Dictionary = {}        ## chapter id -> story
 var _zones: Dictionary = {}          ## zone id -> zone
 var _connections: Dictionary = {}    ## connection id -> connection
+var _anomalies: Dictionary = {}      ## anomalies.json (episodes, chapter caps)
 
 
 func _ready() -> void:
 	load_all(DATA_DIR)
+	for message: String in known_exceptions:
+		print("Content: " + message)
 
 
 ## Loads every content file from `directory`. Returns true if valid.
@@ -67,6 +74,14 @@ func load_all(directory: String) -> bool:
 		var report: Dictionary = ContentValidator.validate_documents(documents)
 		errors.assign(report["errors"])
 		warnings.assign(report["warnings"])
+	known_exceptions.clear()
+	if errors.is_empty():
+		var readings: Array = []
+		for episode: Dictionary in documents["anomalies"]["data"]["episodes"]:
+			readings.append_array(episode["readings"])
+		var exceptions: Dictionary = ContentValidator.separation_exceptions(directory, readings)
+		errors.append_array(exceptions["errors"])
+		known_exceptions.assign(exceptions["notices"])
 
 	is_valid = errors.is_empty()
 	if is_valid:
@@ -214,6 +229,20 @@ func get_connections_of(zone_id: String) -> Array[Dictionary]:
 	return result
 
 
+## Anomaly episodes of one chapter (default: every chapter), in file order.
+func get_anomaly_episodes(chapter_id: String = "") -> Array[Dictionary]:
+	var episodes: Array[Dictionary] = []
+	for episode: Dictionary in _anomalies.get("episodes", []):
+		if chapter_id.is_empty() or episode["chapter"] == chapter_id:
+			episodes.append(episode)
+	return episodes
+
+
+## Highest evidence-ladder level a chapter may reach ("none" when not listed).
+func get_anomaly_cap(chapter_id: String) -> String:
+	return str(_anomalies.get("chapter_caps", {}).get(chapter_id, "none"))
+
+
 func get_campaign() -> Dictionary:
 	return _campaign
 
@@ -280,6 +309,7 @@ func _build_indexes(documents: Dictionary) -> void:
 	_chapters = _index(_campaign["chapters"])
 	_zones = _index(documents["zones"]["data"]["zones"])
 	_connections = _index(documents["zones"]["data"]["connections"])
+	_anomalies = _freeze(documents["anomalies"]["data"])
 	_dialogues = {}
 	_stories = {}
 	_worlds = {}

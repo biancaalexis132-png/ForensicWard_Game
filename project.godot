@@ -43,6 +43,7 @@ window/stretch/aspect="expand"
 [forensic_ward]
 
 clinical/build_mode="prototype"
+narrative/anomaly_enabled=false
 
 [input]
 

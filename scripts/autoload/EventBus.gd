@@ -185,6 +185,17 @@ signal environment_state_changed(group: String, state: String)
 @warning_ignore("unused_signal")
 signal zone_changed(zone_id: String, previous_zone_id: String)
 
+# --- Anomaly (AnomalyLedger, flag forensic_ward/narrative/anomaly_enabled) ---------------
+
+## An anomaly episode (data/anomalies.json) was observed for the first time.
+## Anomaly events never change clinical state, and clinical events never
+## cause, reveal or count toward them.
+@warning_ignore("unused_signal")
+signal anomaly_episode_observed(episode_id: String)
+## The evidence ladder moved (ContentSchemas.ANOMALY_LEVELS), capped by chapter.
+@warning_ignore("unused_signal")
+signal anomaly_threshold_changed(level: String, previous_level: String)
+
 # --- Save and settings -------------------------------------------------------------------
 
 @warning_ignore("unused_signal")
