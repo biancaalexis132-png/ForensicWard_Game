@@ -4,15 +4,15 @@
 
 | Task | State | Dependencies | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Improve Naomi's automated base for owner visual review without runtime integration | Audit checkpoint at `de5cbfc`; refinement not started | Blender 5.2.2 and installed MPFB2; owner visual review still pending | `tools/blender/characters/**`, Naomi v02 exports/renders and asset manifests, continuity docs | v01 renders inspected and fail visual review: hair obscures face; clothing clips and reads as a skirt/dress. Blender/MPFB initialized; no v02 build run. | Inspect documented MPFB APIs, correct builder and versioned outputs; preserve v01; validate Blender and Godot imports; mark v02 owner review pending. |
+| Improve Naomi's automated base for owner visual review without runtime integration | v02 generated on `biancaalexis132-png-naomi-model-refinement`; code/assets `b740f8a`, latest-main merge `9a36b37`; local commits not pushed | Blender 5.2.2, MPFB2 2.0.18; owner appearance review pending | `tools/blender/characters/**`, v02 source/GLB/renders and asset manifests, continuity docs | Blender validator: 53 joints, 32,281 triangles, 3 textures, 4 renders; GLB import validator 154/154; TestRunner 127/0. Renders still fail: pants read continuous/dress-like and garment boundaries are angular. Full QA runner blocked by missing FFmpeg `libvorbis`. | Push checkpoint/create draft PR; continue procedural garment diagnosis. Keep v02 out of runtime until visual checklist passes and owner approves. |
 
-Scope excludes `staff_bennett`, animation, gameplay, clinical content and save systems. The optional WardCharacter visual slot merged in PR #42, but Naomi is not attached. The generated v02 is still a review candidate, not an approved or photorealistic character.
+Scope excludes `staff_bennett`, animation, gameplay, clinical content and save systems. The optional WardCharacter visual slot merged in PR #42, but Naomi is not attached. The generated v02 is an automated candidate with known visual failures, not an approved or photorealistic character.
 
 ## CIG-1 optional character visual slot — Copilot, 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Add an optional imported 3D visual with a safe placeholder fallback without changing gameplay/save/clinical contracts | Implementation `387ceba`; continuity checkpoint `d5d19f5` pushed; draft PR #42 open and mergeable with hosted `validate` pending on that head | Naomi base exists but its manifest marks visual review pending; authored animations do not exist | `scripts/world/Character.gd`, `scenes/props/Character.tscn`, `scripts/tests/test_character_visual.gd` | Godot 4.7 import; TestRunner 127/0; TestQA 19/0/0; GLB import 139/139; fallback, dialogue, save/load and zone rebuild covered. Full runner still stops on missing FFmpeg `libvorbis`. | Check hosted validation on the new docs-only PR head; do not wire the Naomi GLB until owner visual approval and animations are available. |
+| Add an optional imported 3D visual with a safe placeholder fallback without changing gameplay/save/clinical contracts | Merged to `main` in PR #42 at `de5cbfc` | Naomi base remains under owner visual review; authored animations do not exist | `scripts/world/Character.gd`, `scenes/props/Character.tscn`, `scripts/tests/test_character_visual.gd` | Historical Godot 4.7 import and TestRunner 127/0; fallback, dialogue, save/load and zone rebuild covered. The current merged feature branch import validator checks 154 assets with 0 failures. | No CIG runtime work remains; do not wire Naomi until visual approval and animations are available. |
 
 This is runtime slot/fallback groundwork, not CIG-1 model acceptance. Naomi GLB structural preflight found one skin and zero animation clips; the imported base was not attached. See the newest `docs/AI_HANDOFF.md` and `docs/AI_SESSION_HANDOFF.md` entries for the exact commands, limitations and next steps.
 
@@ -24,7 +24,7 @@ This is runtime slot/fallback groundwork, not CIG-1 model acceptance. Naomi GLB 
 
 Review findings: Chapter 1 still labels Jordan provisional/not canon; v1 package is absent from fetched repository history; historical diagnosis source and all clinical screenplay details remain pending; safety/legal/collateral scope and provenance need review; current runtime has no CP loader/lifecycle and SaveManager remains v3. See `REVIEW.md` for source citations, severity, dispositions and implementation gates. No source files, patient data, clinical rules, runtime, or save schema changed.
 
-Coordination (updated against current `origin/main` `96ef65e`): PRs #35, #37 and #39 are merged, as are this review PR #38 and documentation PRs #40/#41. Naomi base visual review/refinement and animations remain separate; CP Naomi lines remain proposals. This review changed no clinical approval or runtime behavior.
+Coordination (updated against current `origin/main` `7e5bd2a`): PRs #35, #37, #39, #42 and #43 are merged, as are review PR #38 and documentation PRs #40/#41. PR #44 remains open. Naomi base visual refinement and animations remain separate; CP Naomi lines remain proposals. This review changed no clinical approval or runtime behavior.
 
 ## Naomi 3D character base — Copilot, 2026-10-18 (base merged in PR #37; refinement remains)
 

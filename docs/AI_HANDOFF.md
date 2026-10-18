@@ -8,11 +8,60 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
-**GitHub state correction (verified 2026-10-18 13:23 UTC):** `origin/main` is `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`; PR #43 (Stage 6) and PR #42 (CIG slot/fallback) are merged, and PR #44 is open. The Naomi refinement branch still needs to merge the new main tip. Naomi v01 and v02 remain unapproved and not integrated.
+**GitHub state correction (verified 2026-10-18 13:23 UTC):** `origin/main` is `7e5bd2a1aad3b6189996c4b706ef6e42d4715ae7`; PR #43 (Stage 6) and PR #42 (CIG slot/fallback) are merged, and PR #44 is open. This feature branch merged the latest main tip in `9a36b3779bc9582e329364a86c76f94c1192529e`. Naomi v01 and v02 remain unapproved and not integrated.
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `b740f8ab83733fd797be344e6e9b4eefa5a5769a` (v02 candidate commit; merge from latest main in progress) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Active; generated v02 passes structural checks but fails owner visual criteria and is not for runtime integration. |
+| Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `9a36b3779bc9582e329364a86c76f94c1192529e` (v02 commit plus merge of latest main) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Active; v02 is structurally valid but fails visual criteria and is not for runtime integration. Local commits still need pushing. |
+
+### 2026-10-18 13:23 UTC · Copilot · Naomi procedural visual refinement
+
+- **Branch:** `biancaalexis132-png-naomi-model-refinement` (based on `main` `7e5bd2a`, merged into the feature branch)
+- **Latest verified commit:** `9a36b3779bc9582e329364a86c76f94c1192529e` "Merge origin/main and reconcile Naomi handoff"; Naomi implementation/assets are in `b740f8ab83733fd797be344e6e9b4eefa5a5769a`.
+- **Confirmed on GitHub:** the remote feature branch still points to audit checkpoint `4a855641efc06a1582a89bedaa1f4dde82cb5051`; v02 and merge commits are local and not yet pushed.
+- **Pull request:** none yet; open a draft PR after pushing the verified checkpoint.
+- **State:** unfinished but coherent. The generated v02 candidate passes structural and import checks but visibly fails outfit-silhouette and garment-artifact criteria; do not integrate.
+
+**Accomplished**
+- Refined `tools/blender/characters/build_naomi.py` and `naomi_appearance.json` for versioned v02 output, the documented female MPFB endpoint and exact `.target.gz` provenance. Procedural eye anchors use the head vertex group; hair is kept behind the face; the scrub top/trousers have separate navy materials and the poorly rendered, unapproved badge is removed.
+- Replaced operator-generated sphere details with fixed procedural vertices and stripped volatile Date/RenderTime metadata from generated PNG renders. Repeated same-config builds produce byte-identical GLB and review PNGs; Blender `.blend` container bytes vary due to internal serialization.
+- Generated and retained v01 alongside `assets/blender/characters/Naomi_Bennett_Base_v02.blend`, `assets/exports/characters/Naomi_Bennett_Base_v02.glb`, four v02 review renders and v02/shared manifests. MPFB assets remain CC0-1.0; MPFB2 code remains GPL-3.0-or-later as a local build tool only. No external assets were added.
+- Updated `tools/blender/characters/NAOMI_VISUAL_QA.md` with explicit findings and a pending-owner-review gate. The close view exposes the facial features, but the full-body render still reads as a continuous lower garment and has angular garment/skin boundaries; v02 does not meet visual acceptance and is not a proxy for a finished character.
+- Merged `origin/main` `7e5bd2a` after PR #43 merged. Preserved the Ward Zero manifest/assets and corrected the active handoff state; PR #44 remains open.
+
+**Files modified**
+- `tools/blender/characters/{build_naomi.py,naomi_appearance.json,validate_naomi.py,README.md,NAOMI_VISUAL_QA.md}`: version-aware deterministic generation, validator and review limits.
+- `assets/blender/characters/Naomi_Bennett_Base_v02.blend`, `assets/exports/characters/Naomi_Bennett_Base_v02*.{glb,png}`, `assets/asset_manifest/naomi_character_manifest_v02.json`, `assets/asset_manifest/asset_manifest.json`: generated v02 candidate and provenance; v01 outputs unchanged.
+- `docs/AI_HANDOFF.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/PROJECT_STATUS.md`: final handoff/current status; merge reconciliation preserves upstream Stage 6 records.
+
+**Unfinished**
+- `tools/blender/characters/build_naomi.py` garment selection/shell construction still produces a dress-like lower silhouette and angular cloth/skin boundaries in the generated front/right/back views. Further automated garment construction is needed before the visual checklist can pass.
+- Owner appearance review, scene integration, animation, LOD and target-device performance are pending. Do not attach v02 to `staff_bennett`.
+
+**Known errors**
+- Full QA runner exits 1 in the unrelated music-preview suite because local FFmpeg reports `Unknown encoder 'libvorbis'` for `test_generate_verify_and_approve` and `test_reference_audio_uses_approved_main_theme`.
+- Visual checklist failures are recorded above and in `tools/blender/characters/NAOMI_VISUAL_QA.md`; this is a known quality blocker, not a software validation pass.
+
+**Tests**
+- Blender 5.2.2 build command `/Applications/Blender.app/Contents/MacOS/Blender --background --python-exit-code 1 --python tools/blender/characters/build_naomi.py`: rerun after merging latest main; passed and regenerated v02 at 32,281 triangles. The manifest now records the current project-wide import result of 154 assets.
+- Blender validator command `/Applications/Blender.app/Contents/MacOS/Blender --background --python-exit-code 1 --python tools/blender/characters/validate_naomi.py`: passed after the latest regeneration, 14 required scene objects, 53 joints, 32,281 triangles, 3 embedded textures, 4 renders.
+- `python3 docs/design/characters/ForensicWard_Character_Integration_Gate_v1/tools/check_character_glb.py assets/exports/characters/Naomi_Bennett_Base_v02.glb`: passed on `9a36b37`; 15 meshes, 69 nodes, 1 skin, 0 animations, 11 materials, 3 textures.
+- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . --editor --import`: exit 0 on `9a36b37`. `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . -s res://tools/godot/validate_glb_imports.gd`: 154 assets checked, 0 failures.
+- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . res://scripts/tests/TestRunner.tscn`: 127 passed / 0 failed on `9a36b37`.
+- `python3 tests/qa/run.py --godot /tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot`: exit 1; JSON 6/6 and audio-manifest 3/3 passed; music-preview 1 passed / 2 failed as above; runner stopped before Godot suites, which were then run directly.
+- Repeated Blender builds with unchanged inputs: GLB, procedural textures and all four normalized render PNGs were byte-identical. `.blend` file bytes differed due to Blender serialization; scene validation still passes. `git diff --check`, Python compilation and JSON syntax checks passed.
+- CI: not observed on this branch.
+
+**Dependencies not available to remote agents**
+- MPFB2 2.0.18 is locally installed under Blender's user extensions; it is not vendored. Owner appearance review and Mac in-game frame-time/performance review remain unavailable.
+
+**Next steps**
+1. Push this branch and confirm the exact SHA with `git ls-remote`; open a draft PR to `main` without marking it ready or merging.
+2. Keep v02 out of `staff_bennett`; obtain owner/artist direction on the visibly failing garment and face-surface artifacts, then continue only with documented procedural methods and approved canon.
+3. Re-run the visual QA checklist after any next build. Do not proceed to animation, LOD or runtime integration until owner appearance approval.
+
+**Notes for the other agent**
+- Do not edit gameplay, clinical rules/content, saves, story, `staff_bennett`, or the merged optional visual slot. Headless renders and imports do not establish realism, Mac appearance or performance.
 
 ### 2026-10-18 12:55 UTC · Copilot · Naomi procedural visual refinement audit
 

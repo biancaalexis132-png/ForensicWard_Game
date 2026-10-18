@@ -278,7 +278,7 @@ def write_asset_provenance(target_stack: list, triangle_count: int,
         output["size_bytes"] = output_path.stat().st_size
     manifest["review"]["visual_review"] = "PENDING_OWNER_APPEARANCE_REVIEW"
     manifest["review"]["engine_import"] = (
-        "Godot 4.7 GLB import passed; project-wide validator checked 140 "
+        "Godot 4.7 GLB import passed; project-wide validator checked 154 "
         "assets with 0 failures during v02 validation on 2026-10-18."
     )
     manifest["review"]["hardware_performance"] = (
