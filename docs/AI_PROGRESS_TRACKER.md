@@ -1,5 +1,16 @@
 # AI progress tracker
 
+## Chapter 2 vertical slices — Claude Code (cloud), 2026-10-18
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Scenes 01–02 opening and records review | Done, PR #69 merged; PR #70 draft (Codex) | | `data/story_chapter2.json` | Full QA on `122304d` | Owner review of PR #70 |
+| Scene 03 Mara introduction | Blocked on clinical approval | Owner/psychiatrist approval of clinical content | | | Request approval |
+| Scene 04 Voss institutional review | Done, draft PR (stacked on #70) | PR #70 | `data/story_chapter2.json`, `scripts/tests/test_chapter2_voss.gd` | Full QA on `4796ca10fc6e070b1f119e1d2416af7104204780`: game 207/0 | Owner review |
+| Scene 05 analyst working explanation | Next | Scene 04 follow-up flags | `data/story_chapter2.json` | | Implement |
+| Scenes 06–10 | Planned | Scene 05; Scene 08 lobby-only rule | | | In order |
+| Mac visual/performance | Not run | Owner's Mac | | | Owner / local thread |
+
 ## Dialogue visemes — Codex, 2026-10-18
 
 Owner approved animations shown so far. `codex/dialogue-viseme-integration`

@@ -1,5 +1,15 @@
 # AI session handoff
 
+## Claude Code Chapter 2 Voss review — 2026-10-18 23:50 UTC
+
+- **Objective:** take over from Codex and implement CH02 Scene 04 (Voss institutional review) as a playable slice.
+- **Branch / PR:** `claude/chapter2-voss-review` from verified Codex `4605568` (PR #70 untouched); runtime `4796ca10fc6e070b1f119e1d2416af7104204780` pushed and verified; draft PR targets `codex/chapter2-records-review`.
+- **Completed:** three Voss steps (scope, permissions, follow-up) with feedback-only unsupported choices; four real-Main tests for both branches, interruption and post-choice save/load.
+- **Tests:** full QA exit 0 on `4796ca10fc6e070b1f119e1d2416af7104204780` (game 207/0, GLB 161/0, audio 336/0, QA 19/0/0, Python 6+4+5+3, pharmacology 0, boot, CH1 sequence). Mac not run.
+- **Pending approvals:** narrative review of the proposed Voss dialogue; Mara clinical content; Naomi Mac/geometry gates.
+- **Next steps:** CH02 Scene 05 analyst working explanation (see dedicated handoff `docs/handoffs/2026-10-18_claude_chapter2_voss_review.md`).
+- **Constraints:** no invented clinical facts or source receipts; no Ward Zero entry before Chapter 3; clinical care separate from records work.
+
 ## Codex dialogue visemes — 2026-10-18
 
 - Owner: "continue i approve of the animations so far"; scoped approval recorded, no broader likeness/performance approval inferred.
