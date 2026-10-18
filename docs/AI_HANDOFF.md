@@ -14,7 +14,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Soundtrack owner approval documentation | `codex/soundtrack-owner-approval` | Codex | `97687726d935cb62598a21bf8f77012b89d42178` | `audio/manifest.json`, generated `docs/AUDIO_MANIFEST.md`, `docs/AUDIO.md`; additive soundtrack-only continuity entries | Owner APPROVED all 11 tracks for private/personal/noncommercial use; no audio or runtime changes. Draft PR creation blocked by GitHub API Forbidden. |
+| Soundtrack owner approval documentation | `claude/codex-soundtrack-owner-approval` (draft PR; Codex's `codex/soundtrack-owner-approval` rebased onto `main` `f9dba61`) | Codex, recovered by Claude Code (cloud) | see Log | `audio/manifest.json`, generated `docs/AUDIO_MANIFEST.md`, `docs/AUDIO.md`; additive soundtrack-only continuity entries | Owner APPROVED all 11 tracks for private/personal/noncommercial use; no audio or runtime changes. Waiting on owner review of the draft PR. |
 | Naomi v03 visual development | `claude/naomi-v03` (draft PR, see Log) | Claude Code | see Log | `tools/blender/characters/{build_naomi_v03.py,naomi_v03.json}`, `assets/**/Naomi_Bennett_v03*`, `assets/renders/characters/`, `assets/asset_manifest/naomi_character_manifest_v03.json`, `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, Naomi production docs | Merged in PR #49 (row kept for history; the owner removes it). v03 is the development baseline, not production |
 | Naomi v04 animation and cast animation standard | `claude/naomi-animation-v04` (draft PR, see Log) | Claude Code (cloud) | see Log | `tools/character_animation/**`, `assets/**/Naomi_Bennett_v04*`, `scripts/world/{CharacterAnimationRig,CharacterFaceRig,CharacterVisualPreview,Character}.gd`, `scripts/acting/CharacterActingAdapter.gd`, `scripts/tests/test_character_{animation,preview}.gd`, `scripts/tests/test_naomi_acting.gd`, the four continuity docs | Waiting on owner review of v04 in game and Mac validation by the local thread; supersedes PR #51 |
 | Naomi in-game review preview | `claude/naomi-review-preview` (draft PR #46) | Claude Code | `6b6893d` | `scripts/world/{Character,CharacterVisualPreview}.gd`, `scripts/tests/test_character_preview.gd`, `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md` and `ingame_review_v02/` | Waiting on owner review of the model in game; preview is off by default |
@@ -159,6 +159,14 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 · Claude Code (cloud) · Soundtrack owner approval recovered into a draft PR
+
+- **Branch:** `claude/codex-soundtrack-owner-approval`. Codex's two commits (`9768772`, `ad9dccc`) rebased from `b5c9d3a` onto current `main` `f9dba61` with no conflicts; content unchanged. The `codex/` branch is left as it was.
+- **Checked:** only the 11 `music` entries changed in `audio/manifest.json`, and only approval/scope/licence fields; no `sha256`, duration, ID, cue or audio file changed. `docs/AUDIO_MANIFEST.md` equals `build_manifest.table()` of the committed manifest, and the manifest is in the generator's canonical form.
+- **Added test:** `test_owner_soundtrack_approval_is_scoped_to_music` in `tests/qa/test_audio_manifest.py`: all 11 music tracks carry the approval, date, scope and licence-verification fields; no other asset is approved or carries them.
+- **Tests (Linux container, Godot 4.7-stable, SHA-512 verified):** `python3 tests/qa/test_audio_manifest.py` 4 passed; full `python3 tests/qa/run.py` exit 0 (JSON 6/6, audio manifest 4/4, music AI mock 3/3, TestQA 19/0/0, GLB 157/157, TestRunner 155/0, TestAudio 336/0).
+- **Pending:** owner review and merge. Commercial licensing stays NOT VERIFIED; review rights again before any public release.
 
 ### 2026-10-18 · Codex · Owner soundtrack approval
 
