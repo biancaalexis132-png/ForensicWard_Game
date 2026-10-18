@@ -3,7 +3,7 @@
 ## Owner soundtrack approval update — Codex, October 18, 2026
 
 - **Current task:** record the owner's soundtrack decision; no animation or cutscene implementation in this scoped update. Broader takeover work remains for a separate continuation.
-- **Branch / base:** `codex/soundtrack-owner-approval`, from verified `origin/main` `b5c9d3a7387af36859d9783151c8f6d9d11028dd` (PR #53 merged; see the exact base SHA in `docs/AI_HANDOFF.md` if this summary differs).
+- **Branch / base:** `codex/soundtrack-owner-approval`, from verified `origin/main` `b5c9d3a7387af36859d9783151c8f6d9d11028dd` (PR #53 merged).
 - **Decision:** owner listening approval **APPROVED** for all 11 existing soundtrack tracks, including Suno songs. Project scope **PRIVATE / PERSONAL / NONCOMMERCIAL**. Commercial licensing verification **NOT VERIFIED / NOT REQUIRED FOR CURRENT SCOPE**. Source: owner's October 18, 2026 Codex chat; authoritative audio details in `docs/AUDIO.md`.
 - **Preservation:** retain every approved audio file, cue ID, timing and integration. Ask before removing, replacing or regenerating tracks. Do not call the songs legally copyright-free without independent verification or claim commercial-distribution clearance.
 - **Cutscene direction:** reuse approved music wherever appropriate; propose additions only for a meaningful narrative/cinematic gap. Review licensing and distribution rights again before any public release.
