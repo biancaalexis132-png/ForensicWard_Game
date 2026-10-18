@@ -102,6 +102,7 @@ var _slots: Dictionary = {"ambience": 0, "detail": 0, "music": 0} ## Active slot
 var _randomizers: Dictionary = {} ## cue_id -> AudioStreamRandomizer for multi-take cues.
 var _tweens: Dictionary = {} ## Object -> Tween, so a new fade replaces the old one.
 var _current_line_id: String = ""
+var _current_line_token: int = 0
 var _current_voice: Node = null
 ## Bumped whenever dialogue is started or stopped, so a scene notices interruptions.
 var _dialogue_token: int = 0
@@ -544,6 +545,7 @@ func play_line(line_id: String, emitter: Node3D = null) -> bool:
 		return false
 	stop_dialogue()
 	_current_line_id = line_id
+	_current_line_token = _dialogue_token
 	_set_dialogue_duck(true)
 	var stream: AudioStream = get_voice_stream(line_id)
 	var duration: float
@@ -553,14 +555,15 @@ func play_line(line_id: String, emitter: Node3D = null) -> bool:
 		player.set("stream", stream)
 		player.set("bus", "Voice")
 		(emitter if emitter != null else self).add_child(player)
-		player.connect("finished", _on_voice_finished.bind(player, line_id))
+		player.connect("finished", _on_voice_finished.bind(player, line_id, _current_line_token))
 		player.call("play")
 		_current_voice = player
 		duration = stream.get_length()
 	else:
 		push_warning("AudioDirector: no voice clip for '%s'; showing subtitle only" % line_id)
 		duration = clampf(line["text"].split(" ").size() * 0.4, 2.0, 12.0)
-		get_tree().create_timer(duration).timeout.connect(_on_unvoiced_timeout.bind(line_id))
+		get_tree().create_timer(duration).timeout.connect(
+				_on_unvoiced_timeout.bind(line_id, _current_line_token))
 	EventBus.subtitle_shown.emit(line_id, line["speaker_name"], line["text"], duration)
 	var completed: bool = false
 	while true:
@@ -568,7 +571,6 @@ func play_line(line_id: String, emitter: Node3D = null) -> bool:
 		if result[0] == line_id:
 			completed = result[1]
 			break
-	EventBus.subtitle_cleared.emit(line_id)
 	_release_duck_if_quiet()
 	return completed
 
@@ -619,32 +621,34 @@ func is_dialogue_playing() -> bool:
 
 ## Stops the current line (e.g. the player skipped it). Its subtitle clears.
 func stop_dialogue() -> void:
+	var line_token: int = _current_line_token
 	_dialogue_token += 1
 	if _current_line_id.is_empty():
 		return
 	var line_id: String = _current_line_id
-	_current_line_id = ""
 	if is_instance_valid(_current_voice):
 		_current_voice.queue_free()
-	_current_voice = null
-	_line_done.emit(line_id, false)
+	_finish_line(line_id, false, line_token)
 
 
-func _on_voice_finished(player: Node, line_id: String) -> void:
+func _on_voice_finished(player: Node, line_id: String, line_token: int) -> void:
 	player.queue_free()
-	_finish_line(line_id)
+	_finish_line(line_id, true, line_token)
 
 
-func _on_unvoiced_timeout(line_id: String) -> void:
-	_finish_line(line_id)
+func _on_unvoiced_timeout(line_id: String, line_token: int) -> void:
+	_finish_line(line_id, true, line_token)
 
 
-func _finish_line(line_id: String) -> void:
-	if _current_line_id != line_id:
+func _finish_line(line_id: String, completed: bool, line_token: int) -> void:
+	if _current_line_id != line_id or _current_line_token != line_token:
 		return # Already stopped or replaced.
 	_current_line_id = ""
+	_current_line_token = 0
 	_current_voice = null
-	_line_done.emit(line_id, true)
+	EventBus.subtitle_cleared.emit(line_id)
+	EventBus.dialogue_line_finished.emit(line_id, completed)
+	_line_done.emit(line_id, completed)
 
 
 # ===========================================================================
