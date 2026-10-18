@@ -19,7 +19,32 @@ def load(path):
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
 
+SOUNDTRACK_APPROVAL = {
+    "owner_listening_approval": "APPROVED",
+    "owner_approval_date": "2026-10-18",
+    "distribution_scope": "PRIVATE / PERSONAL / NONCOMMERCIAL",
+    "commercial_licensing_verification": "NOT VERIFIED / NOT REQUIRED FOR CURRENT SCOPE",
+}
+
+
 class AudioManifestTests(unittest.TestCase):
+    def test_owner_soundtrack_approval_is_scoped_to_music(self):
+        # The 2026-10-18 owner decision approves the 11 existing soundtrack tracks only.
+        assets = load("audio/manifest.json")["assets"]
+        music = [a for a in assets if a["category"] == "music"]
+        self.assertEqual(len(music), 11)
+        for asset in assets:
+            with self.subTest(file=asset["file"]):
+                if asset["category"] == "music":
+                    self.assertEqual(asset["review_status"], "approved_listening_review")
+                    for field, value in SOUNDTRACK_APPROVAL.items():
+                        self.assertEqual(asset.get(field), value, field)
+                    self.assertIn("not independent rights verification", asset["license"])
+                else:
+                    self.assertNotEqual(asset["review_status"], "approved_listening_review")
+                    for field in SOUNDTRACK_APPROVAL:
+                        self.assertNotIn(field, asset)
+
     def test_manifest_matches_files(self):
         assets = load("audio/manifest.json")["assets"]
         listed = {asset["file"] for asset in assets}

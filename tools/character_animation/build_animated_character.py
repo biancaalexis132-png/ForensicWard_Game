@@ -48,6 +48,9 @@ from mathutils.bvhtree import BVHTree
 ROOT = Path.cwd()
 if not (ROOT / "project.godot").exists():
     raise SystemExit("Run from the repository root (project.godot not found).")
+sys.path.insert(0, str(ROOT / "tools/character_animation"))
+from provenance import provenance_path
+
 LIBRARY_PATH = ROOT / "tools/character_animation/clip_library.json"
 
 GESTURE_ROLES_KEY = "body_roles_reserved_for_gestures"
@@ -1294,7 +1297,8 @@ def main() -> None:
         tris += sum(len(p.vertices) - 2 for p in o.data.polygons)
     report.update({
         "blender_version": bpy.app.version_string,
-        "profile": str(profile_path.relative_to(ROOT)),
+        "profile": provenance_path(profile_path, ROOT),
+        "profile_sha256": sha256(profile_path),
         "face_details": details,
         "morph_targets": shape_names,
         "clips": clips,
@@ -1310,7 +1314,8 @@ def main() -> None:
         "production_status": profile["production_status"],
         "approved": False,
         "builder": "tools/character_animation/build_animated_character.py",
-        "profile": str(profile_path.relative_to(ROOT)),
+        "profile": provenance_path(profile_path, ROOT),
+        "profile_sha256": sha256(profile_path),
         "clip_library": str(LIBRARY_PATH.relative_to(ROOT)),
         "blender_version": bpy.app.version_string,
         "inputs": [{"path": profile["source_blend"], "sha256": source_digest,
@@ -1323,7 +1328,7 @@ def main() -> None:
         "morph_targets": shape_names,
         "outputs": {"blend": profile["outputs"]["blend"], "glb": profile["outputs"]["glb"],
                     "report": profile["outputs"]["report"],
-                    "renders": [str(p.relative_to(ROOT)) for p in renders]},
+                    "renders": [provenance_path(p, ROOT) for p in renders]},
         "known_limitations": [
             "Procedural keyframed clips, not motion capture; reviewed only in the Linux container.",
             "Face morphs are authored from measured landmarks, not sculpted; no lip sync.",
@@ -1331,6 +1336,7 @@ def main() -> None:
             "Not measured on the target Mac.",
         ],
     }
+    outputs["manifest"].parent.mkdir(parents=True, exist_ok=True)
     outputs["manifest"].write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(f"ANIMATED {profile['character_id']} {profile['version']} OK: {len(clips)} clips, "
           f"{len(shape_names)} morph targets, {tris} triangles, {len(renders)} review sheets")
