@@ -5058,6 +5058,37 @@
       "status": "Pipeline validation build; not approved, not production-ready, not the default visual; superseded by the cloud v04 build when that lands",
       "triangles_base": 44692
     },
+    "Naomi_Bennett_v05_mpfb": {
+      "asset_id": "Naomi_Bennett_v05_mpfb",
+      "asset_name": "Naomi Bennett character v05_mpfb (MPFB face shapes, Mac build)",
+      "category": "character",
+      "collision": "Not generated; WardCharacter retains runtime contact and interaction behavior",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.5027,
+        0.347,
+        1.6899
+      ],
+      "export_file": "assets/exports/characters/Naomi_Bennett_v05_mpfb.glb",
+      "implementation_notes": "v04 rebuilt on the owner's Mac by build_animated_character.py, then tools/character_animation/bake_mpfb_face_shapes.py replaced the ten stable face morphs with MPFB2 CC0 faceunit blends (tools/character_animation/mpfb_face_mapping.json) and added 22 MPFB2 CC0 visemes as viseme_<name>. Provenance in assets/asset_manifest/naomi_character_manifest_v05_mpfb.json. Shown only with --character-preview=staff_bennett:v05_mpfb.",
+      "intended_location": "Chapter 1: Charge Nurse Naomi Bennett",
+      "markers": [],
+      "materials": [
+        "Naomi_Eye",
+        "Naomi_Hair.001",
+        "Naomi_Hair_Cap",
+        "Naomi_ID_Badge",
+        "Naomi_Scrubs_Top",
+        "Naomi_Scrubs_Trousers",
+        "Naomi_Shoes.001",
+        "Naomi_Skin.001",
+        "Naomi_Lash",
+        "Brow"
+      ],
+      "source_file": "assets/blender/characters/Naomi_Bennett_v05_mpfb.blend",
+      "status": "Visual-development candidate; owner review pending; not approved, not production-ready, not the default visual",
+      "triangles_base": 44812
+    },
     "Naomi_Bennett_v05": {
       "asset_id": "Naomi_Bennett_v05",
       "asset_name": "Naomi Bennett character v05 (refinement)",
