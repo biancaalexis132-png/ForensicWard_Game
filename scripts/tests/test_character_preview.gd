@@ -26,12 +26,12 @@ func test_arguments_select_only_known_candidates() -> void:
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--fullscreen"])), {},
 			"unrelated arguments are ignored")
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_bennett"])),
-			{"staff_bennett": "v05"}, "Bennett defaults to the newest candidate")
+			{"staff_bennett": "v05"}, "Bennett's default review candidate remains v05")
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_bennett:v01"])),
 			{"staff_bennett": "v01"}, "an older candidate can be chosen")
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_voss,staff_bennett:v99"])),
 			{}, "unknown characters and versions are refused")
-	for version: String in ["v01", "v02", "v03", "v04", "v04_local", "v05", "v05_mpfb"]:
+	for version: String in ["v01", "v02", "v03", "v04", "v04_local", "v05", "v05_mpfb", "v06", "v06_mpfb"]:
 		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path("staff_bennett", version)),
 				"Naomi %s GLB is imported" % version)
 
@@ -46,6 +46,37 @@ func test_preview_is_off_by_default() -> void:
 	var bennett: WardCharacter = _spawn_character("staff_bennett")
 	check((bennett.get_node("Body/Mesh") as MeshInstance3D).visible, "placeholder stays visible")
 	check_eq(bennett.get_node("VisualRoot").get_child_count(), 0, "no model is attached")
+
+
+func test_v06_candidates_keep_distinct_face_inventory_and_existing_rigs() -> void:
+	for version: String in ["v06", "v06_mpfb"]:
+		var requests: Dictionary = CharacterVisualPreview.parse_args(
+				PackedStringArray(["--character-preview=staff_bennett:" + version]))
+		check_eq(requests, {"staff_bennett": version}, "explicit %s selection is accepted" % version)
+		CharacterVisualPreview.set_requests(requests)
+		var bennett: WardCharacter = _spawn_character("staff_bennett")
+		var visual_root: Node3D = bennett.get_node("VisualRoot")
+		check_eq(visual_root.get_child_count(), 1, "%s attaches a real model" % version)
+		if visual_root.get_child_count() != 1:
+			continue
+		var model: Node3D = visual_root.get_child(0)
+		check_eq(model.transform, CharacterVisualPreview.placement_for("staff_bennett"),
+				"existing placement applies to %s" % version)
+		check(model.find_child("CharacterFaceRig", true, false) != null, "existing face rig is used")
+		check(model.find_child("CharacterGazeRig", true, false) != null, "existing gaze rig is used")
+		check(model.find_child("GestureAnimationPlayer", true, false) != null, "existing gesture player is used")
+		var face: MeshInstance3D = null
+		for node: Node in model.find_children("*", "MeshInstance3D", true, false):
+			var mesh: MeshInstance3D = node as MeshInstance3D
+			if mesh.cast_shadow != GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY \
+					and mesh.find_blend_shape_by_name(&"mouth_open") >= 0:
+				face = mesh
+		check(face != null, "%s exposes its face mesh" % version)
+		if face != null:
+			check_eq(face.mesh.get_blend_shape_count(), 32 if version == "v06_mpfb" else 10,
+					"the selected file preserves its actual morph inventory")
+			check_eq(face.find_blend_shape_by_name(&"viseme_aa_02") >= 0, version == "v06_mpfb",
+					"only the MPFB candidate has the aa viseme")
 
 
 func test_requested_candidate_attaches_without_changing_interaction() -> void:
@@ -77,7 +108,7 @@ func test_preview_changes_no_saved_state_and_survives_zone_rebuild() -> void:
 	var plain_state: Dictionary = await _main_state()
 	SaveManager.reset_all()
 
-	CharacterVisualPreview.set_requests({"staff_bennett": "v05"})
+	CharacterVisualPreview.set_requests({"staff_bennett": "v06_mpfb"})
 	var main: Node3D = load(MAIN_SCENE).instantiate() as Node3D
 	runner.add_child(main)
 	_roots.append(main)
