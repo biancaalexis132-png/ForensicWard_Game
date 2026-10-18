@@ -10,7 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Naomi 3D character base | `biancaalexis132-png-naomi-character-pipeline` | Copilot / current session | `2a6ffda5e580c551b0f2f235861960e0d7662657` (verified remote checkpoint) | `tools/blender/characters/**`, Naomi-specific files in `assets/blender/characters/` and `assets/exports/characters/`, both Naomi asset-manifest records | Automated base and builder pushed; artist review/refinement and game integration remain |
+| Naomi 3D character base | `biancaalexis132-png-naomi-character-pipeline` (draft PR #37) | Copilot / current session | `ff1b4059f5d728d37c24fe47762ecb7bff8948fd` (verified remote checkpoint; docs-only commit atop tested base) | `tools/blender/characters/**`, Naomi-specific files in `assets/blender/characters/` and `assets/exports/characters/`, both Naomi asset-manifest records | Draft PR open; owner visual review/refinement and game integration remain |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -56,6 +56,42 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 00:43 UTC · Copilot · Naomi 3D PR checkpoint
+
+- **Branch:** `biancaalexis132-png-naomi-character-pipeline` (based on `origin/main` at `21205c3c71d4543a2fa4abe0d54e172ce725db01`)
+- **Latest verified commit:** `ff1b4059f5d728d37c24fe47762ecb7bff8948fd` "Document Naomi builder checkpoint"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-naomi-character-pipeline` printed `ff1b4059f5d728d37c24fe47762ecb7bff8948fd` at 2026-10-18 00:43 UTC.
+- **Pull request:** draft PR #37 to `main`; at creation GitHub reported OPEN/DRAFT at head `ff1b4059f5d728d37c24fe47762ecb7bff8948fd`. This handoff commit will advance the PR head; verify both refs after pushing.
+- **State:** unfinished but coherent, submitted for review; no merge.
+
+**Accomplished**
+- Created a draft review PR for the pinned Blender builder, editable base, GLB, renders and complete asset provenance. This status-only commit updates the PR handoff after creation.
+- The tested code checkpoint is `2a6ffda5e580c551b0f2f235861960e0d7662657`; this documentation commit contains no code or asset changes, so the validation recorded in the immediately preceding Naomi base entry still applies.
+
+**Files modified**
+- `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md`: current draft-PR state and checkpoint.
+
+**Unfinished**
+- Owner visual review and the remaining character refinement/integration work listed in the preceding Naomi base entry.
+
+**Known errors**
+- The local `libvorbis` music-preview blocker is unchanged; see the preceding entry for the exact error and all executed Godot results.
+
+**Tests** (code at `2a6ffda`; this checkpoint is documentation-only)
+- `git diff --check`: passed.
+- Godot/Blender: not rerun because only handoff/status documentation changed; see the preceding Naomi base entry for exact commands and results.
+- CI: not observed.
+
+**Dependencies not available to remote agents**
+- MPFB2 v2.0.18 must be installed/enabled locally in Blender 5.2.2 to reproduce the build; local Godot 4.7 binary and FFmpeg limitation are recorded in the preceding entry.
+
+**Next steps**
+1. Owner reviews draft PR #37 and the four renders; do not merge automatically.
+2. Continue the model in small reviewable milestones only after feedback; preserve existing dialogue, clinical and save behavior.
+
+**Notes for the other agent**
+- PR #35 is merged in main at `21205c3`; its adapter is model-independent and no CP-001 screenplay content is linked to Naomi.
 
 ### 2026-10-18 00:41 UTC · Copilot · Naomi 3D character base
 

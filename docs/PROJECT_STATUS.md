@@ -2,7 +2,7 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
-**Last verified:** 2026-10-18 by Copilot against `origin/main` `21205c3c71d4543a2fa4abe0d54e172ce725db01` (PR #35 merged), using fetched Git history and `gh`. `gh pr list --state open` returned no open PRs immediately after that merge; hosted CI was not observed. Full local Godot 4.7 checks on the merged model branch passed except the full runner's two music-preview cases, blocked by local FFmpeg missing `libvorbis`. See [REPOSITORY_RECONCILIATION.md](REPOSITORY_RECONCILIATION.md).
+**Last verified:** 2026-10-18 by Copilot against `origin/main` `21205c3c71d4543a2fa4abe0d54e172ce725db01` (PR #35 merged), using fetched Git history and `gh`. Draft model PR #37 is open against `main`; hosted CI was not observed. Full local Godot 4.7 checks on the merged model branch passed except the full runner's two music-preview cases, blocked by local FFmpeg missing `libvorbis`. See [REPOSITORY_RECONCILIATION.md](REPOSITORY_RECONCILIATION.md).
 
 Status meanings:
 
@@ -19,6 +19,7 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 
 | PR | Branch | State |
 |---|---|---|
+| #37 | `biancaalexis132-png-naomi-character-pipeline` | Draft; automated Naomi base for review |
 | #35 | `biancaalexis132-png-naomi-chapter1-acting` | Merged at `21205c3` (Naomi acting cues) |
 | #28 | `claude/visual-direction-review` | Merged at `fb07887`; review recommendations still need approval |
 | #26 | `claude/f2-zones` | Merged at `9558c77` (zones and transitions) |
@@ -66,7 +67,7 @@ Remote branches may remain after merge. Branch existence alone does not prove ac
 | Hospital name in game data | Completed | `main` (PR #21) | `data/campaign.json` `institution.name` | Not shown on any screen yet; signage textures come with Stage 8 |
 | Zones and transitions (F2): `data/zones.json`, `ZoneDirector`, save version 3 with v2 migration | Completed | `main` (PR #26) | `test_zones.gd` (15 tests: seamless ward entry, 10 lift round trips with flat memory, door state across unload/save/load, arrivals on a floor, real v2 save from `main`) | Worker-thread streaming is off in headless runs (Godot's dummy renderer is not thread-safe), so it is untested until run on the Mac; arrival points are placeholders; security and research use the corridor ambience |
 | Naomi Chapter 1 acting-cue presentation | Completed (PR #35 merged at `21205c3`) | `scripts/acting/NaomiActingController.gd`, `CharacterActingAdapter.gd`; wired only to `staff_bennett` | Main; cue validator 5/5, TestRunner 122/0, TestAudio 336/0 | Owner/Mac review of real-model animation, face and gesture feel remains |
-| Naomi 3D character base and builder | Active (pushed on `biancaalexis132-png-naomi-character-pipeline`; not merged) | `tools/blender/characters/`, `assets/blender/characters/Naomi_Bennett_Base_v01.blend`, `assets/exports/characters/Naomi_Bennett_Base_v01.glb`, both Naomi asset manifests | `2a6ffda`; Blender validator: 53 joints / 42,583 triangles / 4 renders; Godot 4.7 GLB validator: 139/139 | Automated base only; face/hair/clothing review, animations, LOD, Chapter 1 integration and target-device performance remain |
+| Naomi 3D character base and builder | Active (draft PR #37; not merged) | `tools/blender/characters/`, `assets/blender/characters/Naomi_Bennett_Base_v01.blend`, `assets/exports/characters/Naomi_Bennett_Base_v01.glb`, both Naomi asset manifests | Tested code at `2a6ffda`; Blender validator: 53 joints / 42,583 triangles / 4 renders; Godot 4.7 GLB validator: 139/139 | Automated base only; face/hair/clothing review, animations, LOD, Chapter 1 integration and target-device performance remain |
 | Anomaly evidence model and clinical/supernatural separation (F3) | Planned | | F0 §7, §8 | Waits on the owner's Psychosomatic Bleed decision |
 | Mara Ellis, Chapters 2–5 content, title screen | Planned | | v1.1 handoff | Clinical and narrative approval needed first |
 | Ward Zero (Stage 6), exterior (Stage 7), textures (Stage 8) | Planned | | `docs/ENVIRONMENT_STAGES.md` | |
@@ -102,7 +103,7 @@ Headless checks do not cover these. They stay here until the owner confirms them
 
 ## Naomi 3D character base (active branch; base milestone only)
 
-- Branch `biancaalexis132-png-naomi-character-pipeline` is pushed through verified code checkpoint `2a6ffda5e580c551b0f2f235861960e0d7662657`; it includes current main `21205c3` and is not yet merged. A draft model PR is the next repository action after the handoff commit.
+- Branch `biancaalexis132-png-naomi-character-pipeline` is pushed through verified documentation checkpoint `ff1b4059f5d728d37c24fe47762ecb7bff8948fd`, atop tested code `2a6ffda5e580c551b0f2f235861960e0d7662657`; it includes current main `21205c3`. Draft PR #37 is open; do not merge automatically.
 - Builder, configuration, validator and exact Mac commands live in `tools/blender/characters/`. Generated outputs are `assets/blender/characters/Naomi_Bennett_Base_v01.blend`, `assets/exports/characters/Naomi_Bennett_Base_v01.glb`, and four review renders. The model is an automated base, not a finished realistic Naomi; its face, pulled-back twists, clothing fit/deformation and rendered likeness still require owner/artist review.
 - Exact MPFB2 v2.0.18 inputs, CC0-1.0 license evidence, GPL tool-code notice, macro weights, output sizes and limitations are in `assets/asset_manifest/naomi_character_manifest.json`; the common GLB manifest records imported dimensions and materials. No Mixamo or non-MPFB assets were used; this workstream made no gameplay, dialogue, clinical, or save changes.
 - Blender 5.2.2 build/validator passed; GLB is 53 joints / 42,583 triangles with two embedded textures. Godot 4.7 import and 139/139 GLB asset checks passed; QA 19/0/0, TestRunner 122/0, TestAudio 336/0, pharmacology 0 failures, boot and Chapter 1 audio sequence passed. The full runner's only failures are two music-preview tests blocked by local FFmpeg `Unknown encoder 'libvorbis'`.

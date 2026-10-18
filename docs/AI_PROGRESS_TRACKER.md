@@ -4,7 +4,7 @@
 
 | Task | State | Dependencies | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Build a reproducible, licensed Naomi model base and Godot GLB | Base milestone pushed on `biancaalexis132-png-naomi-character-pipeline` at `2a6ffda`; no model PR yet | Blender 5.2.2 LTS, MPFB2 2.0.18; current main `21205c3` includes merged acting adapter | `tools/blender/characters/**`, Naomi-specific Blender/GLB/renders and asset manifests | Blender validator: 53 joints, 42,583 triangles, 2 embedded textures, 4 renders; Godot GLB 139/139; full runner blocked only at two `libvorbis` music previews | Owner review of renders; refine likeness/hair/clothing, then stage animations/integration separately |
+| Build a reproducible, licensed Naomi model base and Godot GLB | Draft PR #37 open; tested base checkpoint `2a6ffda` | Blender 5.2.2 LTS, MPFB2 2.0.18; current main `21205c3` includes merged acting adapter | `tools/blender/characters/**`, Naomi-specific Blender/GLB/renders and asset manifests | Blender validator: 53 joints, 42,583 triangles, 2 embedded textures, 4 renders; Godot GLB 139/139; full runner blocked only at two `libvorbis` music previews | Owner review of renders; refine likeness/hair/clothing, then stage animations/integration separately |
 
 ## Naomi Chapter 1 acting cues — Copilot, 2026-10-18 (merged in PR #35)
 
