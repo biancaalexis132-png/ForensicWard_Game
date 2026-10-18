@@ -1,0 +1,3 @@
+# Official Blender Python module; Python 3.13 required by its published wheels.
+# Keep isolated from the game's dependency-free Python QA environment.
+bpy==5.2.2
