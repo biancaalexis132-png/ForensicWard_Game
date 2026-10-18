@@ -217,3 +217,7 @@ signal game_loaded(slot: int)
 signal save_failed(slot: int, reason: String)
 @warning_ignore("unused_signal")
 signal settings_changed(key: String, value: Variant)
+
+## A displayed authored story option was selected (not a clinical action).
+@warning_ignore("unused_signal")
+signal story_option_selected(interaction_id: String, option_id: String)

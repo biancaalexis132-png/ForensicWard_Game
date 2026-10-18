@@ -1,0 +1,87 @@
+{
+	"schema_version": "0.1",
+	"world_id": "world_chapter2",
+	"notes": "Chapter 2 opening reuses the staffed clinical wing and existing prop markers. No Ward Zero access or new patient findings. Existing EHR remains available.",
+	"start_zone": "zone_clinical_wing",
+	"spawn_marker": "MARK_PlayerSpawn",
+	"doors": {
+		"door_office": {
+			"display_name": "Office door"
+		},
+		"door_nurse_station": {
+			"display_name": "Nursing station door"
+		},
+		"door_archive": {
+			"display_name": "Records archive door",
+			"locked_message": "Records Archive: badge access required. Ask the charge nurse."
+		},
+		"door_patient_01": {
+			"display_name": "Room 01 door",
+			"open_angle_degrees": -100,
+			"locked_message": "Room 01: a patient's bedroom. Locked."
+		},
+		"door_patient_02": {
+			"display_name": "Room 02 door",
+			"open_angle_degrees": -100,
+			"locked_message": "Room 02: a patient's bedroom. Locked."
+		},
+		"door_interview": {
+			"display_name": "Interview room door",
+			"open_angle_degrees": -100
+		},
+		"door_ward_entry": {
+			"display_name": "Ward entry doors",
+			"locked_message": "Ward entry: controlled access. Not your route today."
+		},
+		"door_w0b": {
+			"display_name": "W0-B door",
+			"locked_message": "W0-B: sealed. Your badge is not recognised."
+		}
+	},
+	"interactables": [
+		{
+			"node": "OF_Terminal_EHR",
+			"type": "ehr_terminal",
+			"title": "EHR Workstation (Office)"
+		},
+		{
+			"node": "NS_Terminal_EHR",
+			"type": "ehr_terminal",
+			"title": "EHR Workstation (Nursing Station)"
+		},
+		{
+			"node": "OF_Document_TransferSummary",
+			"type": "story_terminal",
+			"title": "Records request workstation"
+		},
+		{
+			"node": "AR_Document_WardRoster1968",
+			"type": "story_terminal",
+			"title": "Maintenance export comparison"
+		},
+		{
+			"node": "NS_NoticeBoard",
+			"type": "story_terminal",
+			"title": "Clinical worklist and handoff"
+		}
+	],
+	"characters": [
+		{
+			"marker": "MARK_Character_DrVoss",
+			"kind": "staff",
+			"character_id": "staff_voss"
+		},
+		{
+			"marker": "MARK_Character_NurseBennett",
+			"kind": "staff",
+			"character_id": "staff_bennett"
+		},
+		{
+			"marker": "MARK_Seat_Patient",
+			"kind": "patient",
+			"character_id": "pt_elias_ward",
+			"seated": true
+		}
+	],
+	"flicker_lights": []
+}

@@ -236,6 +236,7 @@ const CHAPTER_ID_PATTERN: String = "^ch[0-9]+$"
 ## Stable id prefixes per content kind, checked across every file so ids
 ## stay unique and readable through all five chapters.
 const ID_PREFIXES: Dictionary = {
+	"interaction": "interaction_",
 	"patient": "pt_", "staff": "staff_", "clue": "clue_", "hypothesis": "hyp_",
 	"objective": "obj_", "beat": "beat_", "zone": "zone_", "connection": "conn_", "anomaly": "anom_",
 }
@@ -265,7 +266,7 @@ const CAMPAIGN_FILE: Dictionary = {
 ## Authored world wiring: which imported environment nodes become doors,
 ## terminals, documents and characters (see data/world_chapter1.json).
 const WORLD_INTERACTABLE_TYPES: Array[String] = ["ehr_terminal", "clue_terminal", "clue_pickup", "system_status",
-		"shift_signout"]
+		"shift_signout", "story_terminal"]
 
 ## Story conditions and actions are checked in depth by StoryLogic
 ## (vocabulary and references); here they only need to be objects.
@@ -274,6 +275,17 @@ const _TRUST_CHANGE: Dictionary = {
 	"type": "object",
 	"required": {"staff_id": _ID, "axis": {"type": "enum", "values": ["respect", "trust", "suspicion"]},
 			"delta": {"type": "number"}},
+}
+
+const _STORY_INTERACTION: Dictionary = {
+	"type": "object",
+	"required": {
+		"id": _ID, "interactable_id": _STRING, "title": _STRING, "body": _STRING, "unavailable_body": _STRING,
+		"when": _CONDITION,
+		"options": {"type": "array", "min_items": 1, "items": {
+			"type": "object", "required": {"id": _ID, "label": _STRING, "flag": _ID, "response": _STRING},
+		}},
+	},
 }
 
 const STORY_FILE: Dictionary = {
@@ -317,7 +329,8 @@ const STORY_FILE: Dictionary = {
 			},
 		},
 	},
-	"optional": {"provisional": {"type": "bool"}, "notes": _STRING},
+	"optional": {"provisional": {"type": "bool"}, "notes": _STRING,
+		"next_chapter": _ID, "interactions": {"type": "array", "items": _STORY_INTERACTION}},
 }
 
 const WORLD_FILE: Dictionary = {

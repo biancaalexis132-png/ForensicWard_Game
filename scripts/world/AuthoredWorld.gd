@@ -25,6 +25,7 @@ const ZONE_ROOT_PREFIX: String = "Zone_"
 
 var unresolved: Array[String] = []
 var start_zone_id: String = ""
+var chapter_id: String = ""
 
 var _config: Dictionary = {}
 var _zone_roots: Dictionary[String, Node3D] = {}
@@ -38,10 +39,7 @@ var _lights: Array[Light3D] = []
 func _ready() -> void:
 	if not ContentRegistry.is_valid:
 		return
-	_config = ContentRegistry.get_world()
-	start_zone_id = _config["start_zone"]
-	build_zone(start_zone_id, load_zone_scenes(start_zone_id))
-	_build_spawn(start_zone_id, _config["spawn_marker"])
+	configure_chapter(ContentRegistry.get_start_chapter_id())
 	EventBus.environment_state_changed.connect(func(_g: String, _s: String) -> void: _apply_states())
 	EventBus.game_loaded.connect(func(_slot: int) -> void: _apply_states())
 
@@ -267,3 +265,24 @@ func _apply_states() -> void:
 		var extras: Dictionary = node.get_meta("extras", {})
 		node.visible = WorldStateManager.is_node_visible(str(extras["state_group"]), str(extras.get("state", "")),
 				bool(extras.get("default_visible", true)))
+
+
+## Reuses the authored ward assets with the selected chapter's interaction wiring.
+## The world provider calls this before zones restore their saved door state.
+func configure_chapter(next_chapter: String) -> bool:
+	var config: Dictionary = ContentRegistry.get_world(next_chapter)
+	if config.is_empty() or chapter_id == next_chapter:
+		return false
+	for zone_id: String in get_zone_ids():
+		unload_zone(zone_id)
+	var spawn: Node = get_node_or_null("PlayerSpawn")
+	if spawn != null:
+		remove_child(spawn)
+		spawn.queue_free()
+	unresolved.clear()
+	chapter_id = next_chapter
+	_config = config
+	start_zone_id = _config["start_zone"]
+	build_zone(start_zone_id, load_zone_scenes(start_zone_id))
+	_build_spawn(start_zone_id, _config["spawn_marker"])
+	return true

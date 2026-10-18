@@ -59,6 +59,8 @@ func _on_interacted(_interactor: Node) -> void:
 			_refresh()
 		"system_status":
 			WorldActions.show_system_status(title)
+		"story_terminal":
+			pass  # ChapterDirector handles the subsequent EventBus.interacted event.
 		"shift_signout":
 			EventBus.shift_signout_requested.emit()
 

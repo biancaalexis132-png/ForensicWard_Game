@@ -1,17 +1,47 @@
 {
 	"schema_version": "0.1",
-	"notes": "Campaign index (F1). The institution name is owner-approved (2026-10-17). Chapter titles are the v1.1 handoff's draft titles and stay provisional until the owner settles F0 conflict C2. Planned chapters have no story or world file yet; their content is authored only after approval, so no later-chapter text ships early.",
+	"notes": "Chapter 2 currently contains only the first provisional playable opening, not the complete chapter. Its nonclinical workflow is implemented under the owner request to build Chapter 2; proposed dialogue remains pending narrative review. Chapters 3\u20135 remain planned.",
 	"institution": {
 		"name": "Ashcroft State Forensic Hospital",
 		"short_name": "Ashcroft"
 	},
 	"start_chapter": "ch1",
-	"dialogue_files": ["dialogue.json"],
+	"dialogue_files": [
+		"dialogue.json"
+	],
 	"chapters": [
-		{"id": "ch1", "title": "Chapter 1: The Admission", "status": "playable", "story": "story_chapter1.json", "world": "world_chapter1.json"},
-		{"id": "ch2", "title": "Chapter 2: The Missing Hours", "status": "planned", "provisional": true},
-		{"id": "ch3", "title": "Chapter 3: Beneath the Hospital", "status": "planned", "provisional": true},
-		{"id": "ch4", "title": "Chapter 4: The Official Record", "status": "planned", "provisional": true},
-		{"id": "ch5", "title": "Chapter 5: Beyond the Lines", "status": "planned", "provisional": true}
+		{
+			"id": "ch1",
+			"title": "Chapter 1: The Admission",
+			"status": "playable",
+			"story": "story_chapter1.json",
+			"world": "world_chapter1.json"
+		},
+		{
+			"id": "ch2",
+			"title": "Chapter 2: The Missing Hours",
+			"status": "playable",
+			"provisional": true,
+			"story": "story_chapter2.json",
+			"world": "world_chapter2.json"
+		},
+		{
+			"id": "ch3",
+			"title": "Chapter 3: Beneath the Hospital",
+			"status": "planned",
+			"provisional": true
+		},
+		{
+			"id": "ch4",
+			"title": "Chapter 4: The Official Record",
+			"status": "planned",
+			"provisional": true
+		},
+		{
+			"id": "ch5",
+			"title": "Chapter 5: Beyond the Lines",
+			"status": "planned",
+			"provisional": true
+		}
 	]
 }
