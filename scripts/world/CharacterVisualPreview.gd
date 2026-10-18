@@ -19,6 +19,8 @@ const CANDIDATES: Dictionary = {
 		"v02": "res://assets/exports/characters/Naomi_Bennett_Base_v02.glb",
 		"v03": "res://assets/exports/characters/Naomi_Bennett_v03.glb",
 		"v04": "res://assets/exports/characters/Naomi_Bennett_v04.glb",
+		# Mac pipeline validation build from PR #51 (three small clips, no face morphs).
+		"v04_local": "res://assets/exports/characters/Naomi_Bennett_v04_local.glb",
 	},
 }
 const DEFAULT_VERSION: Dictionary = {
