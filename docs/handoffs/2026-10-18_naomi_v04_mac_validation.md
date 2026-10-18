@@ -4,9 +4,9 @@ The four AI handoff docs belong to the cloud thread's `claude/naomi-animation-v0
 
 ### 2026-10-18 16:50 UTC · Claude Code (owner's Mac, Remote Control) · Naomi v04 Mac validation
 
-- **Branch:** `claude/naomi-v04-mac-review` (based on `claude/naomi-animation-v04` at `afdc3d0`)
+- **Branch:** `claude/naomi-v04-mac-review` (based on `main` at `b5c9d3a`, after PR #53 merged)
 - **Latest verified commit:** the commit that adds this file
-- **Pull request:** draft, against `claude/naomi-animation-v04`
+- **Pull request:** draft, against `main`
 - **State:** finished; v04 stays **not approved**
 
 **Accomplished**
@@ -34,3 +34,8 @@ The four AI handoff docs belong to the cloud thread's `claude/naomi-animation-v0
 **Next steps**
 1. Owner reviews `naomi_v04_mac_performance.mp4`.
 2. v05 (local thread): bake MPFB faceunits and visemes as shape keys on the v02 base before vertex deletion, then rerun the v03 steps and the v04 builder. Map them to the stable morph names.
+
+**Unfinished (usage limit reached)**
+- Mac frame-time measurement: the probe script hung on the capsule case and was not rerun. The target hardware is confirmed: this Mac is the M1 MacBook Air with 8 GB (MacBookAir10,1).
+- Close-up checks for the reported brow, blink-gap and mouth-visibility issues were not done.
+- v05 MPFB faceunit and viseme bake: not started. The packs are installed under `~/Library/Application Support/Blender/5.2/extensions/.user/blender_org/mpfb/data/targets/`.
