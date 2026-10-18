@@ -117,6 +117,29 @@ func test_adapter_uses_a_clip_only_when_present() -> void:
 	root.queue_free()
 
 
+func test_adapter_falls_back_to_idle_neutral_for_a_missing_clip() -> void:
+	var root: Node3D = Node3D.new()
+	var animation_player: AnimationPlayer = AnimationPlayer.new()
+	root.add_child(animation_player)
+	var library: AnimationLibrary = AnimationLibrary.new()
+	library.add_animation("idle_neutral", Animation.new())
+	animation_player.add_animation_library("", library)
+	runner.add_child(root)
+	var adapter: CharacterActingAdapter = CharacterActingAdapter.new()
+	adapter.configure(root)
+	root.add_child(adapter)
+	# Before the fix the adapter found the idle player but asked it to play the
+	# missing clip, which errors and leaves the rig frozen.
+	adapter.apply_cue("on_enter", {"body": "turn_from_workstation"}, false)
+	check_eq(animation_player.current_animation, &"idle_neutral",
+			"a rig without the requested clip plays idle_neutral instead")
+	adapter.apply_cue("during_speech", {"body": "stand_conversational"}, true)
+	check_eq(animation_player.current_animation, &"idle_neutral", "idle keeps playing across missing clips")
+	adapter.apply_cue("fallback", {"body": "none"}, false)
+	check_eq(animation_player.current_animation, &"", "body 'none' stops the fallback idle it started")
+	root.queue_free()
+
+
 func _spawn_bennett() -> WardCharacter:
 	var character: WardCharacter = CHARACTER_SCENE.instantiate() as WardCharacter
 	character.kind = WardCharacter.Kind.STAFF

@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0",
+  "fps": 30,
+  "notes": "Cast-wide clip standard. Rotations are degrees in the character's own frame, so no rig axis convention is assumed: flex = top of the bone moves forward, turn = toward the character's left, tilt = top leans to the character's left, raise = outer end of a clavicle lifts, swing = bone end moves forward. Waves are amp * sin(2*pi*(t/period) + phase_deg). Body clips never animate neck or arms below the clavicle, so gesture clips (neck, arms) can play on top without fighting them.",
+  "body_roles_reserved_for_gestures": ["neck", "upperarm_l", "upperarm_r", "lowerarm_l", "lowerarm_r", "hand_l", "hand_r"],
+  "clips": [
+    {
+      "name": "idle_neutral", "player": "body", "loop": true, "seconds": 8.0,
+      "description": "Relaxed professional standing: breathing, slight weight shift, slow head drift.",
+      "waves": [
+        {"role": "chest", "rot": "flex", "amp": -0.7, "period": 4.0, "phase": 0},
+        {"role": "spine_mid", "rot": "flex", "amp": -0.35, "period": 4.0, "phase": 0},
+        {"role": "clavicle_l", "rot": "raise", "amp": 0.9, "period": 4.0, "phase": -20},
+        {"role": "clavicle_r", "rot": "raise", "amp": 0.9, "period": 4.0, "phase": -20},
+        {"role": "head", "rot": "flex", "amp": 0.5, "period": 4.0, "phase": 0},
+        {"role": "pelvis", "rot": "tilt", "amp": 0.6, "period": 8.0, "phase": 0},
+        {"role": "spine_lower", "rot": "tilt", "amp": -0.5, "period": 8.0, "phase": 0},
+        {"role": "head", "rot": "turn", "amp": 1.6, "period": 8.0, "phase": 60},
+        {"role": "head", "rot": "tilt", "amp": 0.7, "period": 8.0, "phase": 150}
+      ]
+    },
+    {
+      "name": "idle_breathing", "player": "body", "loop": true, "seconds": 4.0,
+      "description": "Breathing only: chest and shoulders rise and settle, head stays level.",
+      "waves": [
+        {"role": "chest", "rot": "flex", "amp": -1.0, "period": 4.0, "phase": 0},
+        {"role": "spine_mid", "rot": "flex", "amp": -0.5, "period": 4.0, "phase": 0},
+        {"role": "clavicle_l", "rot": "raise", "amp": 1.3, "period": 4.0, "phase": -20},
+        {"role": "clavicle_r", "rot": "raise", "amp": 1.3, "period": 4.0, "phase": -20},
+        {"role": "head", "rot": "flex", "amp": 0.9, "period": 4.0, "phase": 0}
+      ]
+    },
+    {
+      "name": "listen_neutral", "player": "body", "loop": true, "seconds": 6.0,
+      "description": "Attentive listening: slight lean in, small head tilt, breathing.",
+      "static": [
+        {"role": "chest", "rot": "flex", "deg": 1.2},
+        {"role": "head", "rot": "tilt", "deg": 2.5},
+        {"role": "head", "rot": "flex", "deg": 1.5}
+      ],
+      "waves": [
+        {"role": "chest", "rot": "flex", "amp": -0.6, "period": 3.0, "phase": 0},
+        {"role": "clavicle_l", "rot": "raise", "amp": 0.8, "period": 3.0, "phase": -20},
+        {"role": "clavicle_r", "rot": "raise", "amp": 0.8, "period": 3.0, "phase": -20},
+        {"role": "head", "rot": "tilt", "amp": 0.8, "period": 6.0, "phase": 0},
+        {"role": "head", "rot": "turn", "amp": 1.0, "period": 6.0, "phase": 90}
+      ]
+    },
+    {
+      "name": "stand_conversational", "player": "body", "loop": true, "seconds": 6.0,
+      "description": "Speaking: small emphatic head movements and a slight torso turn, breathing.",
+      "waves": [
+        {"role": "chest", "rot": "flex", "amp": -0.6, "period": 3.0, "phase": 0},
+        {"role": "clavicle_l", "rot": "raise", "amp": 0.8, "period": 3.0, "phase": -20},
+        {"role": "clavicle_r", "rot": "raise", "amp": 0.8, "period": 3.0, "phase": -20},
+        {"role": "head", "rot": "flex", "amp": 1.4, "period": 1.5, "phase": 0},
+        {"role": "head", "rot": "turn", "amp": 2.0, "period": 3.0, "phase": 40},
+        {"role": "head", "rot": "tilt", "amp": 0.8, "period": 6.0, "phase": 0},
+        {"role": "spine_mid", "rot": "turn", "amp": 0.9, "period": 6.0, "phase": 0}
+      ]
+    },
+    {
+      "name": "turn_from_workstation", "player": "body", "loop": false, "seconds": 1.2,
+      "description": "Turns from the workstation (her right, looking down) to face the player.",
+      "keys": [
+        {"role": "spine_mid", "rot": "turn", "points": [[0.0, -6.0], [1.2, 0.0]]},
+        {"role": "chest", "rot": "turn", "points": [[0.0, -6.0], [1.2, 0.0]]},
+        {"role": "head", "rot": "turn", "points": [[0.0, -12.0], [0.9, 0.0]]},
+        {"role": "head", "rot": "flex", "points": [[0.0, 9.0], [0.8, 0.0]]}
+      ]
+    },
+    {
+      "name": "return_to_workstation", "player": "body", "loop": false, "seconds": 1.2,
+      "description": "Turns back to the workstation and holds there.",
+      "keys": [
+        {"role": "spine_mid", "rot": "turn", "points": [[0.0, 0.0], [1.2, -6.0]]},
+        {"role": "chest", "rot": "turn", "points": [[0.0, 0.0], [1.2, -6.0]]},
+        {"role": "head", "rot": "turn", "points": [[0.2, 0.0], [1.2, -12.0]]},
+        {"role": "head", "rot": "flex", "points": [[0.3, 0.0], [1.2, 9.0]]}
+      ]
+    },
+    {
+      "name": "small_greeting_nod", "player": "gesture", "loop": false, "seconds": 1.2,
+      "description": "One small nod with a slight tilt.",
+      "keys": [
+        {"role": "neck", "rot": "flex", "points": [[0.0, 0.0], [0.35, 7.0], [0.75, -1.0], [1.2, 0.0]]},
+        {"role": "neck", "rot": "tilt", "points": [[0.0, 0.0], [0.4, 2.0], [1.2, 0.0]]}
+      ]
+    },
+    {
+      "name": "small_acknowledgement_nod", "player": "gesture", "loop": false, "seconds": 0.9,
+      "description": "Brief acknowledging nod.",
+      "keys": [
+        {"role": "neck", "rot": "flex", "points": [[0.0, 0.0], [0.25, 5.0], [0.55, -0.5], [0.9, 0.0]]}
+      ]
+    },
+    {
+      "name": "restrained_chart_indication", "player": "gesture", "loop": false, "seconds": 2.0,
+      "description": "Right forearm lifts slightly toward the desk, then settles; head follows.",
+      "keys": [
+        {"role": "lowerarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.6, 22.0], [1.4, 22.0], [2.0, 0.0]]},
+        {"role": "upperarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.6, 6.0], [1.4, 6.0], [2.0, 0.0]]},
+        {"role": "neck", "rot": "flex", "points": [[0.0, 0.0], [0.6, 5.0], [1.4, 5.0], [2.0, 0.0]]},
+        {"role": "neck", "rot": "turn", "points": [[0.0, 0.0], [0.6, -6.0], [1.4, -6.0], [2.0, 0.0]]}
+      ]
+    },
+    {
+      "name": "subtle_workstation_indication", "player": "gesture", "loop": false, "seconds": 1.6,
+      "description": "Small glance and open-hand indication toward the workstation.",
+      "keys": [
+        {"role": "neck", "rot": "turn", "points": [[0.0, 0.0], [0.4, -10.0], [1.1, -10.0], [1.6, 0.0]]},
+        {"role": "neck", "rot": "flex", "points": [[0.0, 0.0], [0.4, 6.0], [1.1, 6.0], [1.6, 0.0]]},
+        {"role": "lowerarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.5, 12.0], [1.1, 12.0], [1.6, 0.0]]}
+      ]
+    }
+  ],
+  "face_shapes": {
+    "notes": "Morph targets on the face mesh. Expression shapes are authored at the intensity used in game (the acting adapter sets them to 1.0). Lid values are degrees of eyelid rotation over the eyeball (positive closes); other values are millimetres in the character frame.",
+    "blink": {"close_fraction": 0.92, "lower_lid_share": 0.12},
+    "expressions": {
+      "attentive":              {"brow_raise": 1.4, "lid": -3.0},
+      "warm_subtle":            {"mouth_corner_up": 2.2, "mouth_corner_back": 1.0, "cheek_up": 1.1, "lower_lid": 3.0},
+      "concerned_restrained":   {"inner_brow_raise": 1.3, "brow_knit": 0.8, "mouth_corner_up": -0.6},
+      "professionally_serious": {"brow_raise": -0.8, "brow_knit": 0.4, "lid": 2.0, "mouth_press": 0.4},
+      "focused":                {"brow_raise": -0.6, "brow_knit": 0.9, "lid": 3.5},
+      "calm_professional":      {"lid": 2.0, "mouth_corner_up": 0.5}
+    },
+    "speech": {"mouth_open_deg": 4.0}
+  }
+}

@@ -1,5 +1,7 @@
 # Local Mac run: Naomi v04_local (2026-10-18)
 
+> Superseded for new builds by `tools/character_animation/build_animated_character.py` (see `CHARACTER_ANIMATION_STANDARD.md`). `create_animation_actions.py` has since been removed; check out `0ebb3d6` to rerun the commands below exactly.
+
 First run of this toolkit on the owner's Mac. It produced `Naomi_Bennett_v04_local`, a pipeline validation build. The cloud thread's `Naomi_Bennett_v04` on `claude/naomi-animation-v04` is the animation candidate; this run only proves the toolkit, Blender 5.2.2 and Godot 4.7.2 work together on the Mac.
 
 ## Tools found (nothing installed or reinstalled)

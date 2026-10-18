@@ -74,6 +74,7 @@ func set_visual_scene(scene: PackedScene) -> bool:
 	_remove_attached_visual()
 	_attached_visual = visual_root
 	_visual_root.add_child(_attached_visual)
+	CharacterAnimationRig.setup(_attached_visual)
 	visual_scene = scene
 	_placeholder_mesh.visible = false
 	return true

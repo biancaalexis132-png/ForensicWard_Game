@@ -13,4 +13,11 @@ class TestBennettMapping(unittest.TestCase):
  def test_clip_names_are_unique(self):
   cfg=json.loads((HERE/'configs'/'staff_bennett_v03_mapping.json').read_text())
   names=[c['name'] for c in cfg['clips']];self.assertEqual(len(names),len(set(names)))
+ def test_builder_profile_agrees_with_mac_mapping(self):
+  cfg=json.loads((HERE/'configs'/'staff_bennett_v03_mapping.json').read_text())
+  profile=json.loads((HERE.parent/'profiles'/'staff_bennett.json').read_text())
+  inv=json.loads((HERE/'reports'/'Naomi_Bennett_v03_rig_inventory.json').read_text())
+  self.assertEqual(profile['objects']['rig'],cfg['rig_name'])
+  for role,bone in cfg['bones'].items():self.assertEqual(profile['bones'][role],bone,role)
+  for role,bone in profile['bones'].items():self.assertIn(bone,inv['bone_names'],role)
 if __name__=='__main__':unittest.main()
