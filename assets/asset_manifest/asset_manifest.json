@@ -4968,6 +4968,35 @@
       "source_file": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
       "status": "Automated v02 refinement candidate; owner visual appearance review pending; not integrated into gameplay",
       "triangles_base": 32281
+    },
+    "Naomi_Bennett_v03": {
+      "asset_id": "Naomi_Bennett_v03",
+      "asset_name": "Naomi Bennett character v03 (visual development)",
+      "category": "character",
+      "collision": "Not generated; WardCharacter retains runtime contact and interaction behavior",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.5027,
+        0.347,
+        1.6899
+      ],
+      "export_file": "assets/exports/characters/Naomi_Bennett_v03.glb",
+      "implementation_notes": "Skinned 53-joint candidate rebuilt from the v02 MPFB body by tools/blender/characters/build_naomi_v03.py in a relaxed rest pose; separate scrub top, trousers, shoes, blank ID card, eyes and twists. Provenance in assets/asset_manifest/naomi_character_manifest_v03.json. Shown only with --character-preview.",
+      "intended_location": "Chapter 1: Charge Nurse Naomi Bennett",
+      "markers": [],
+      "materials": [
+        "Naomi_Eye",
+        "Naomi_Hair.001",
+        "Naomi_Hair_Cap",
+        "Naomi_ID_Badge",
+        "Naomi_Scrubs_Top",
+        "Naomi_Scrubs_Trousers",
+        "Naomi_Shoes.001",
+        "Naomi_Skin.001"
+      ],
+      "source_file": "assets/blender/characters/Naomi_Bennett_v03.blend",
+      "status": "Visual-development candidate; owner appearance review pending; not approved, not production-ready, not the default visual",
+      "triangles_base": 44692
     }
   },
   "schema_version": "1.0"

@@ -1,0 +1,75 @@
+{
+  "character": {
+    "name": "Naomi Bennett",
+    "character_id": "staff_bennett",
+    "role": "Charge Nurse",
+    "asset_version": "v03",
+    "production_status": "VISUAL_DEVELOPMENT_PENDING_OWNER_REVIEW"
+  },
+  "source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "body": "Naomi_Bennett_Body",
+    "rig": "Naomi_Bennett_Rig"
+  },
+  "pose": {
+    "upperarm_down_degrees": 64.0,
+    "upperarm_forward_degrees": 6.0,
+    "elbow_bend_degrees": 14.0
+  },
+  "skin": {
+    "base_srgb_hex": "#7A4E38",
+    "shadow_srgb_hex": "#5E3A29",
+    "warm_srgb_hex": "#8A5440",
+    "lip_srgb_hex": "#5A3029",
+    "brow_srgb_hex": "#1E1410",
+    "nail_srgb_hex": "#B08A78",
+    "texture_size": 2048,
+    "roughness": 0.52
+  },
+  "scrubs": {
+    "top_srgb_hex": "#1B2E4B",
+    "trousers_srgb_hex": "#1A2C48",
+    "texture_size": 1024,
+    "roughness": 0.86,
+    "top_offset": 0.011,
+    "trouser_offset": 0.012,
+    "trouser_hem_radius": 0.074
+  },
+  "shoes": {
+    "srgb_hex": "#1C1C1E",
+    "roughness": 0.42
+  },
+  "hair": {
+    "srgb_hex": "#1A1210",
+    "twist_count": 28,
+    "twist_strand_radius": 0.0042,
+    "twist_pitch": 0.016,
+    "bun_center": [
+      0.0,
+      0.095,
+      1.52
+    ],
+    "bun_radius": 0.042
+  },
+  "eyes": {
+    "sclera_srgb_hex": "#E2D6C8",
+    "iris_srgb_hex": "#3A2418",
+    "limbal_srgb_hex": "#1A100B",
+    "helper_radius_scale": 0.93
+  },
+  "badge": {
+    "card_srgb_hex": "#E9ECEE",
+    "stripe_srgb_hex": "#2F6F80"
+  },
+  "mesh": {
+    "triangle_budget": 60000,
+    "body_ratio": 0.6,
+    "clothing_ratio": 0.55,
+    "shoe_ratio": 0.25
+  },
+  "render": {
+    "width": 900,
+    "height": 1200,
+    "samples": 48
+  }
+}

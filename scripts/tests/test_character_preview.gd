@@ -26,12 +26,12 @@ func test_arguments_select_only_known_candidates() -> void:
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--fullscreen"])), {},
 			"unrelated arguments are ignored")
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_bennett"])),
-			{"staff_bennett": "v02"}, "Bennett defaults to the newest candidate")
+			{"staff_bennett": "v03"}, "Bennett defaults to the newest candidate")
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_bennett:v01"])),
 			{"staff_bennett": "v01"}, "an older candidate can be chosen")
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_voss,staff_bennett:v99"])),
 			{}, "unknown characters and versions are refused")
-	for version: String in ["v01", "v02"]:
+	for version: String in ["v01", "v02", "v03"]:
 		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path("staff_bennett", version)),
 				"Naomi %s GLB is imported" % version)
 
@@ -49,7 +49,7 @@ func test_preview_is_off_by_default() -> void:
 
 
 func test_requested_candidate_attaches_without_changing_interaction() -> void:
-	CharacterVisualPreview.set_requests({"staff_bennett": "v02"})
+	CharacterVisualPreview.set_requests({"staff_bennett": "v03"})
 	var bennett: WardCharacter = _spawn_character("staff_bennett")
 	var voss: WardCharacter = _spawn_character("staff_voss")
 	var visual_root: Node3D = bennett.get_node("VisualRoot")
@@ -77,7 +77,7 @@ func test_preview_changes_no_saved_state_and_survives_zone_rebuild() -> void:
 	var plain_state: Dictionary = await _main_state()
 	SaveManager.reset_all()
 
-	CharacterVisualPreview.set_requests({"staff_bennett": "v02"})
+	CharacterVisualPreview.set_requests({"staff_bennett": "v03"})
 	var main: Node3D = load(MAIN_SCENE).instantiate() as Node3D
 	runner.add_child(main)
 	_roots.append(main)
@@ -98,7 +98,7 @@ func test_preview_changes_no_saved_state_and_survives_zone_rebuild() -> void:
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "save with the preview on")
 	var save_data: Variant = JSON.parse_string(
 			FileAccess.get_file_as_string(SaveManager.get_slot_path(TEST_SAVE_SLOT)))
-	check(not str(save_data).contains("Naomi_Bennett_Base"), "no model path reaches the save file")
+	check(not str(save_data).contains("Naomi_Bennett"), "no model path reaches the save file")
 	check_eq(SaveManager.load_game(TEST_SAVE_SLOT), OK, "load with the preview on")
 
 	world.unload_zone(CLINICAL_ZONE)

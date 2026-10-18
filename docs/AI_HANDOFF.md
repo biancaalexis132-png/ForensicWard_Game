@@ -14,6 +14,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Naomi v03 visual development | `claude/naomi-v03` (draft PR, see Log) | Claude Code | see Log | `tools/blender/characters/{build_naomi_v03.py,naomi_v03.json}`, `assets/**/Naomi_Bennett_v03*`, `assets/renders/characters/`, `assets/asset_manifest/naomi_character_manifest_v03.json`, `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, Naomi production docs | Waiting on owner appearance review; not approved |
 | Naomi in-game review preview | `claude/naomi-review-preview` (draft PR #46) | Claude Code | `6b6893d` | `scripts/world/{Character,CharacterVisualPreview}.gd`, `scripts/tests/test_character_preview.gd`, `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md` and `ingame_review_v02/` | Waiting on owner review of the model in game; preview is off by default |
 | Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` (code/test checkpoint; docs-only follow-up is pushed) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Merged in PR #45 at `a202caf` (row kept for history; the owner removes it). v02 still fails visual criteria. |
 | Foundation F3 anomaly model | `claude/f3-anomaly-model` (draft PR to `main`) | Claude | `5283735` (see entry) | `data/anomalies.json`, `data/clues.json` (source_class, claim_state), `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/narrative/{AnomalyLedger,ChapterDirector,StoryLogic}.gd`, `scripts/autoload/{ContentRegistry,EventBus}.gd` (EventBus: two signals), `scripts/content/*`, `project.godot` (one setting), `scripts/tests/test_anomaly.gd`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER}.md` | Merged in PR #44 at `fec5933` (row kept for history; the owner removes it). |
@@ -156,6 +157,28 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 15:40 UTC · Claude Code · Naomi v03 visual development
+
+- **Branch:** `claude/naomi-v03` (based on `main` at `0fd2bc1`, after PR #47 counter facing and PR #48 Rahman voice profile merged)
+- **Latest verified commit:** the commit that adds this entry; code and assets are in the same commit
+- **Pull request:** draft, assigned to the owner (see `docs/PROJECT_STATUS.md`)
+- **State:** v03 candidate built and previewable; **not approved, not production-ready**
+
+**Accomplished**
+- Diagnosed v02: unmasked MPFB helper geometry (skirt, foot block, oversized eyes), body-painted scrubs, flat strip hair, flat skin, and a rig 0.815 m below the mesh. The MPFB body itself and Godot lighting were not the cause. Details in `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_V03_NOTES.md`.
+- `tools/blender/characters/build_naomi_v03.py` + `naomi_v03.json`: rebuilds from the v02 MPFB body (v01/v02 files untouched). Removes helpers, fits eyeballs to MPFB eye helpers, realigns the rig, applies a relaxed pose as rest, bakes a 2K skin texture, builds separate scrub top, two-leg trousers, shoes, blank ID card, tapered two-strand twists and low bun. 44,692 triangles, 9 meshes, 1 skin, 0 animations.
+- Outputs: `assets/blender/characters/Naomi_Bennett_v03.blend`, `assets/exports/characters/Naomi_Bennett_v03.glb`, `assets/renders/characters/Naomi_Bennett_v03_*.png`, `assets/asset_manifest/naomi_character_manifest_v03.json` (`approved: false`).
+- `CharacterVisualPreview`: v03 added and made the default for `--character-preview=staff_bennett`; v02/v01 still selectable. Normal play unchanged (capsule). Tests updated.
+- In-game captures and v02/v03 comparisons in `ingame_review_v03/` (`.gdignore`).
+
+**Tests** (Linux container, Godot 4.7 stable, software OpenGL for captures)
+- `GODOT=<godot> python3 tests/qa/run.py`: exit 0. QA 19/0/0, GLB 155/155 (v03 added to `asset_manifest.json`), TestRunner 147/0, audio 336/0.
+- No Mac run and no frame-time measurement.
+
+**Next steps**
+1. Owner reviews v03 renders and in-game captures; decides whether to continue procedurally or take the hybrid route in `NAOMI_V03_NOTES.md` (MPFB CC0 skin/brow/lash/hair packs on the Mac Blender, cloth sim, facial shape keys, idle clip).
+2. Do not make Naomi Bennett's default `visual_scene` until approved. Do not commit editor-import `.import` sidecars or extracted textures (`Naomi_Bennett_v03_*_Normal.png`).
 
 ### 2026-10-18 14:15 UTC · Claude Code · Naomi in-game review preview
 

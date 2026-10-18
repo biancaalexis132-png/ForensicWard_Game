@@ -1,5 +1,16 @@
 # AI progress tracker
 
+## Naomi v03 visual development — Claude Code, 2026-10-18
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Preview faces the counter | Done, merged in PR #47 | | `scripts/world/CharacterVisualPreview.gd` | TestRunner, captures | none |
+| Rahman voice profile role | Done, merged in PR #48 | | `audio/voice_profiles.json` | QA | none |
+| Naomi hair, trousers, top, shoes, face (v03) | Done, draft PR; not approved | v02 MPFB body | `tools/blender/characters/build_naomi_v03.py`, v03 assets | Blender build OK, 44,692 tris; Godot import; captures | Owner review |
+| Hybrid realism pass (CC0 skin/brows/lashes/hair, cloth sim) | Not started | Owner decision; Mac Blender with MPFB | | | Owner decides |
+| Naomi idle pose clip and facial shape keys | Not started | Approved model | | | After approval |
+| Naomi LOD and Mac frame time | Not started | Approved model | | No measurement exists | After animation |
+
 ## Naomi in-game review preview — Claude Code, 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |

@@ -1,5 +1,15 @@
 # AI session handoff
 
+## Naomi v03 visual development — Claude Code, 2026-10-18 15:40 UTC
+
+- **Objective:** make Naomi substantially more realistic in the review preview without approving her or touching v01/v02, clinical, narrative or save data.
+- **Branch / PR:** `claude/naomi-v03` from `main` `0fd2bc1`; draft PR to `main`. PR #47 (counter facing) and #48 (Rahman → Consultant Psychiatrist voice direction) are merged.
+- **Completed:** v03 builder, .blend, GLB, 5 renders, manifest; preview default v03; in-game captures and comparisons; `NAOMI_V03_NOTES.md` (diagnosis, remaining gaps, hybrid recommendation).
+- **Exact stopping point:** committed and pushed; waiting on owner appearance review and hosted CI.
+- **Pending approvals:** Naomi appearance; procedural vs hybrid route.
+- **Next steps:** see the 2026-10-18 15:40 UTC entry in `docs/AI_HANDOFF.md`.
+- **Constraints:** not approved, not default; never Git on the SSK drive; no performance claims without Mac measurements.
+
 ## Naomi in-game review preview — Claude Code, 2026-10-18 14:15 UTC
 
 - **Objective:** let the owner see Naomi in the real Chapter 1 nursing station without approving or defaulting the model; record what is still missing.
