@@ -313,18 +313,27 @@ func _on_interacted(interactable_id: String) -> void:
 		if entry["node"] == interactable_id and entry["type"] == "shift_signout":
 			return
 	_active_interaction = ""
+	var fallback: Dictionary = {}
+	var opened: bool = false
 	for interaction: Dictionary in _story().get("interactions", []):
 		if interaction["interactable_id"] != interactable_id:
 			continue
+		if interaction.has("expires_when") and StoryLogic.evaluate(interaction["expires_when"], _story_state()):
+			if interaction.has("completed_body"):
+				fallback = {"title": interaction["title"], "body": interaction["completed_body"]}
+			continue
 		if not StoryLogic.evaluate(interaction["when"], _story_state()):
-			if not interactable_id.begins_with("character:"):
-				EventBus.ui_panel_requested.emit("info", {"title": interaction["title"], "body": interaction["unavailable_body"]})
+			if fallback.is_empty():
+				fallback = {"title": interaction["title"], "body": interaction["unavailable_body"]}
 			continue
 		_active_interaction = interaction["id"]
 		var panel: Dictionary = interaction.duplicate(true)
 		panel["interaction_id"] = _active_interaction
 		EventBus.ui_panel_requested.emit("info", panel)
+		opened = true
 		break
+	if not opened and not fallback.is_empty() and not interactable_id.begins_with("character:"):
+		EventBus.ui_panel_requested.emit("info", fallback)
 	if not interactable_id.begins_with("character:"):
 		return
 	var character_id: String = interactable_id.trim_prefix("character:")
@@ -389,10 +398,13 @@ func _on_story_option_selected(interaction_id: String, option_id: String) -> voi
 	for interaction: Dictionary in _story().get("interactions", []):
 		if interaction["id"] != interaction_id or not StoryLogic.evaluate(interaction["when"], _story_state()):
 			continue
+		if interaction.has("expires_when") and StoryLogic.evaluate(interaction["expires_when"], _story_state()):
+			continue
 		for option: Dictionary in interaction["options"]:
 			if option["id"] != option_id:
 				continue
 			_active_interaction = ""
-			set_flag(option["flag"])
+			if option.has("flag"):
+				set_flag(option["flag"])
 			EventBus.ui_panel_requested.emit("info", {"title": interaction["title"], "body": option["response"]})
 			return

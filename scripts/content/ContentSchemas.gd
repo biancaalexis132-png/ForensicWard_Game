@@ -283,9 +283,11 @@ const _STORY_INTERACTION: Dictionary = {
 		"id": _ID, "interactable_id": _STRING, "title": _STRING, "body": _STRING, "unavailable_body": _STRING,
 		"when": _CONDITION,
 		"options": {"type": "array", "min_items": 1, "items": {
-			"type": "object", "required": {"id": _ID, "label": _STRING, "flag": _ID, "response": _STRING},
+			"type": "object", "required": {"id": _ID, "label": _STRING, "response": _STRING},
+			"optional": {"flag": _ID},
 		}},
 	},
+	"optional": {"expires_when": _CONDITION, "completed_body": _STRING},
 }
 
 const STORY_FILE: Dictionary = {

@@ -9,3 +9,5 @@ Every clinical rule or model that affects gameplay needs a recorded review by th
 | (pending) | Elias Ward dialogue | `data/dialogue.json` | Pending | | `clinical_review_status: PENDING`. A placeholder `assessment` state was added; see `docs/SPRINT_01.md`. |
 
 | 2026-10-18 | Chapter 2 opening handoff/worklist | `data/story_chapter2.json` | **Pending; no clinical approval granted** | | Implemented under the owner's request for small Chapter 2 playable slices. Nonclinical work ownership and unresolved records request only. No new findings, diagnosis, medication logic or Mara content. Proposed dialogue remains pending narrative review; `clinical_review_status: PENDING` retained. Animation approval does not approve clinical content. |
+
+| 2026-10-18 | Chapter 2 source-review continuation | `data/story_chapter2.json` | **Pending narrative review; no clinical approval granted** | | Source-clock/order/dependency/custody questions and unresolved follow-up only. No received record, new clinical finding, Mara history or supernatural conclusion. Clinical state remains separate and tested. |
