@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "notes": "Builds the cast's stable face morph names from MPFB2 CC0 faceunits (ARKit style, subject's left/right) and adds the MPFB2 CC0 visemes as viseme_<name>. Weights are the in-game intensity: the acting adapter sets expressions to 1.0 and CharacterFaceRig drives blink and mouth_open. Packs: faceunits01 and visemes01 from static.makehumancommunity.org, licence CC0 in each pack's packs/*.json.",
+  "max_transfer_distance_m": 0.012,
+  "neighbours": 4,
+  "stable_shapes": {
+    "blink_L": {"eyeBlinkLeft": 1.0},
+    "blink_R": {"eyeBlinkRight": 1.0},
+    "blink": {"eyeBlinkLeft": 1.0, "eyeBlinkRight": 1.0},
+    "mouth_open": {"jawOpen": 0.45, "mouthLowerDownLeft": 0.15, "mouthLowerDownRight": 0.15},
+    "attentive": {"browInnerUp": 0.25, "browOuterUpLeft": 0.3, "browOuterUpRight": 0.3, "eyeWideLeft": 0.25, "eyeWideRight": 0.25},
+    "warm_subtle": {"mouthSmileLeft": 0.35, "mouthSmileRight": 0.35, "cheekSquintLeft": 0.25, "cheekSquintRight": 0.25, "eyeSquintLeft": 0.15, "eyeSquintRight": 0.15},
+    "concerned_restrained": {"browInnerUp": 0.45, "browDownLeft": 0.15, "browDownRight": 0.15, "mouthFrownLeft": 0.15, "mouthFrownRight": 0.15, "mouthPressLeft": 0.1, "mouthPressRight": 0.1},
+    "professionally_serious": {"browDownLeft": 0.25, "browDownRight": 0.25, "mouthPressLeft": 0.25, "mouthPressRight": 0.25, "eyeSquintLeft": 0.1, "eyeSquintRight": 0.1},
+    "focused": {"browDownLeft": 0.35, "browDownRight": 0.35, "eyeSquintLeft": 0.3, "eyeSquintRight": 0.3},
+    "calm_professional": {"mouthSmileLeft": 0.12, "mouthSmileRight": 0.12, "eyeSquintLeft": 0.1, "eyeSquintRight": 0.1}
+  },
+  "visemes": ["sil_00", "aa_ah_ax_01", "aa_02", "ao_03", "ey_eh_uh_04", "er_05", "y_iy_ih_ix_06", "w_uw_07", "ow_08", "aw_09", "oy_10", "ay_11", "h_12", "r_13", "l_14", "s_z_15", "sh_ch_jh_zh_16", "th_dh_17", "f_v_18", "d_t_n_19", "k_g_ng_20", "p_b_m_21"]
+}

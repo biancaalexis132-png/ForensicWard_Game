@@ -31,7 +31,7 @@ func test_arguments_select_only_known_candidates() -> void:
 			{"staff_bennett": "v01"}, "an older candidate can be chosen")
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_voss,staff_bennett:v99"])),
 			{}, "unknown characters and versions are refused")
-	for version: String in ["v01", "v02", "v03", "v04"]:
+	for version: String in ["v01", "v02", "v03", "v04", "v04_local", "v05_mpfb"]:
 		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path("staff_bennett", version)),
 				"Naomi %s GLB is imported" % version)
 
