@@ -64,6 +64,7 @@ Remote branches may remain after merge. Branch existence alone does not prove ac
 | Adaptive audio engine, Chapter 1 audio, original soundtrack | Completed | `main` (PR #3, #5, #18) | TestAudio 271 passed | Listening review on the Mac pending; music contexts not fired yet (no title screen or credits) |
 | Hospital name in game data | Completed | `main` (PR #21) | `data/campaign.json` `institution.name` | Not shown on any screen yet; signage textures come with Stage 8 |
 | Zones and transitions (F2): `data/zones.json`, `ZoneDirector`, save version 3 with v2 migration | Completed | `main` (PR #26) | `test_zones.gd` (15 tests: seamless ward entry, 10 lift round trips with flat memory, door state across unload/save/load, arrivals on a floor, real v2 save from `main`) | Worker-thread streaming is off in headless runs (Godot's dummy renderer is not thread-safe), so it is untested until run on the Mac; arrival points are placeholders; security and research use the corridor ambience |
+| Naomi Chapter 1 acting-cue presentation | Active (separate feature branch; not on `main`) | `scripts/acting/NaomiActingController.gd`, `CharacterActingAdapter.gd`; wired only to `staff_bennett` | Branch `biancaalexis132-png-naomi-chapter1-acting` at `9d27aa1`; cue validator 5/5, TestRunner 122/0, TestAudio 336/0 | Draft PR pending; no MPFB bones required; real-model animation/face/gesture feel remains untested on Mac |
 | Anomaly evidence model and clinical/supernatural separation (F3) | Planned | | F0 §7, §8 | Waits on the owner's Psychosomatic Bleed decision |
 | Mara Ellis, Chapters 2–5 content, title screen | Planned | | v1.1 handoff | Clinical and narrative approval needed first |
 | Ward Zero (Stage 6), exterior (Stage 7), textures (Stage 8) | Planned | | `docs/ENVIRONMENT_STAGES.md` | |
@@ -88,6 +89,13 @@ Headless checks do not cover these. They stay here until the owner confirms them
 - Audio mix, spatial audio, listening review of every asset
 - Accessibility toggles in play (reduce motion, flicker off)
 - Clinical correctness of anything marked pending
+
+## Naomi Chapter 1 acting-cue workstream (not merged)
+
+- The additive, model-independent presentation controller uses the source cue package at `docs/design/characters/Naomi_Acting_Cues_v1/`; it does not alter dialogue wording, IDs, story progression, clinical review status, gameplay, or save schema.
+- Implementation is pushed on `biancaalexis132-png-naomi-chapter1-acting` at verified `9d27aa1dd1566d3b6c4adaaffed821b189383562`, based on `origin/main` `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`. Draft PR creation is pending the continuity checkpoint.
+- Focused validation: cue validator 5 IDs/voice mappings; TestRunner 122/0; TestAudio 336/0. The repository runner stopped in music generation because local FFmpeg 9.0.2 has no `libvorbis` encoder (music pipeline 1 passed/2 failed); later runner suites were not reached. CI is not observed.
+- The adapter is capability-driven and the current placeholder requires no clips, facial blend shapes, or named bones. Realistic-model playback/visual review remains for the owner on Mac. Do not modify the active Naomi model-builder branch from this workstream.
 
 ## Codex continuation: protagonist specification and save QA
 

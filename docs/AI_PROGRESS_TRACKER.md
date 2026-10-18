@@ -1,5 +1,11 @@
 # AI progress tracker
 
+## Naomi Chapter 1 acting cues — Copilot, 2026-10-18
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Add model-independent acting cue controller for the five authored Chapter 1 dialogue IDs | Complete on feature branch; not merged | Canonical cue package on `main` `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`; no dependency on unfinished 3D model | `scripts/acting/**`, Bennett-only integration, AudioDirector lifecycle signal, focused tests | Cue validator 5 IDs/voices; TestRunner 122/0; TestAudio 336/0; full runner blocked at music pipeline: 1 pass/2 failures because local FFmpeg lacks `libvorbis` | Push docs checkpoint, open draft PR to `main`, then request owner/Mac performance review |
+
 ## Merge reconciliation — Codex, 2026-10-17
 
 The owner requested resolution of conflicts in the pending GitHub push. Git inspection identified PR #27's `claude/ashcroft-soundtrack` at `412a429a6e717ea00c96d2a9b8ad1987b82c7a58` conflicting with `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125`. This continuation (`codex/ashcroft-soundtrack-conflicts-cont-1`) merges main without rewriting history. The initial merge required two add/add continuity resolutions; a subsequent merge of `origin/main` `dd247bed93fca9bb95cbf2864eae964975358c23` (PR #29) required reconciling the active-workstream table as well; both workstreams' records are retained below. Runtime/audio/data content is unchanged by the conflict resolution. Validation exposed a pre-existing timing-sensitive audio test; its cleanup assertion now waits for the actual players with a bounded deadline instead of a fixed 3.6-second timer.

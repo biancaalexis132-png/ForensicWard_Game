@@ -10,6 +10,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Naomi Chapter 1 acting cues | `biancaalexis132-png-naomi-chapter1-acting` | Copilot / current session | `9d27aa1dd1566d3b6c4adaaffed821b189383562` (verified remote checkpoint) | `scripts/acting/**`, `scripts/world/Character.gd`, `scripts/autoload/EventBus.gd`, `systems/audio/AudioDirector.gd`, `tests/audio/TestAudio.gd`, `scripts/tests/test_naomi_acting.gd`, `docs/AUDIO.md` | Implementation pushed; preparing draft PR |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -55,6 +56,57 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 00:16 UTC · Copilot · Naomi Chapter 1 acting cues
+
+- **Branch:** `biancaalexis132-png-naomi-chapter1-acting` (based on `origin/main` at `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`)
+- **Latest verified commit:** `9d27aa1dd1566d3b6c4adaaffed821b189383562` "Add Naomi acting cue system"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-naomi-chapter1-acting` printed `9d27aa1dd1566d3b6c4adaaffed821b189383562` at 2026-10-18 00:16 UTC. This documentation checkpoint will sit on top; query the branch ref for its final SHA.
+- **Pull request:** none yet; create a draft PR to `main` after this checkpoint is pushed.
+- **State:** implementation pushed, finished for review; not merged.
+
+**Accomplished**
+- Added an additive `NaomiActingController` driven by the canonical `docs/design/characters/Naomi_Acting_Cues_v1/naomi_acting_cues.json`; cues use the existing five IDs in `ch1_b2_bennett_handover`, with no dialogue text, story, clinical content, or review-status changes.
+- Added `CharacterActingAdapter`, which checks for optional semantic body animations, blend shapes and adapter groups rather than requiring named MPFB bones. Missing capabilities and clips remain safe no-ops; voice/subtitle timing drives speaking state.
+- Added a presentation-only dialogue-finished event for natural completion versus interruption, with per-line tokens to ignore stale voice callbacks/timeouts. Save/load and transition fallbacks add no save provider or schema fields.
+- Wired only `staff_bennett`; the placeholder remains valid without animation/face nodes. The separate model-builder branch and all character assets/provenance/render files were left untouched.
+
+**Files modified**
+- `scripts/acting/NaomiActingController.gd` and `.uid`: loads canonical cues, filters lines, follows subtitles, completion/interruption and game-load events.
+- `scripts/acting/CharacterActingAdapter.gd` and `.uid`: capability checks, optional clip/face/gaze/gesture dispatch, safe fallback transitions.
+- `scripts/world/Character.gd`: Bennett-only controller attachment and conversation start.
+- `systems/audio/AudioDirector.gd`, `scripts/autoload/EventBus.gd`: line lifecycle signal and stale-callback protection.
+- `scripts/tests/test_naomi_acting.gd` and `.uid`, `tests/audio/TestAudio.gd`: focused acting and dialogue lifecycle coverage.
+- `docs/AUDIO.md`: lifecycle and rig adapter contract.
+- `docs/AI_HANDOFF.md`, `docs/PROJECT_STATUS.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`: continuity and status checkpoint.
+
+**Unfinished**
+- No implementation items. Draft PR creation remains; no merge is authorized.
+- Owner/Mac review of real-model expression, gesture, transition, rendering and audio feel remains untested here.
+
+**Known errors**
+- Full QA runner stops in `tests/music_ai/test_generate_music.py`: FFmpeg reports `Unknown encoder 'libvorbis'` for two generation tests. This is a local toolchain limitation, not an acting test failure; the runner does not proceed to later suites on that attempt.
+
+**Tests** (on `9d27aa1`)
+- `python3 docs/design/characters/Naomi_Acting_Cues_v1/validate_naomi_cues.py .`: passed; five dialogue IDs and all voice mappings valid.
+- `/tmp/godot-4.7-acting/Godot.app/Contents/MacOS/Godot --headless --path . --editor --import`: exit 0, no script diagnostics.
+- `/tmp/godot-4.7-acting/Godot.app/Contents/MacOS/Godot --headless --path . res://scripts/tests/TestRunner.tscn`: **122 passed, 0 failed**.
+- `/tmp/godot-4.7-acting/Godot.app/Contents/MacOS/Godot --headless --path . res://tests/audio/TestAudio.tscn`: **336 passed, 0 failed**.
+- `python3 tests/qa/run.py --godot /tmp/godot-4.7-acting/Godot.app/Contents/MacOS/Godot`: exit 1 at music generation; JSON 6/6, audio manifest 3/3, music pipeline 1 passed / 2 failed due to the quoted missing encoder. Later runner suites were not reached. `git diff --check`: passed.
+- CI: not observed.
+
+**Dependencies not available to remote agents**
+- Local Godot 4.7 binary: `/tmp/godot-4.7-acting/Godot.app/Contents/MacOS/Godot`. The machine's FFmpeg 9.0.2 lacks the `libvorbis` encoder. Realistic Naomi model/rig remains under active work on a separate branch.
+
+**Next steps**
+1. Push this continuity checkpoint and verify the exact branch SHA with `git ls-remote origin refs/heads/biancaalexis132-png-naomi-chapter1-acting`.
+2. Create a draft PR to `main`, report its link and verified head to the coordinating session, and do not merge.
+3. Keep future model integration behind the adapter capability contract; request owner/Mac review for animation, face, gesture and transition feel.
+
+**Notes for the other agent**
+- The source performance package is on `main` at `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`. Do not copy its cue JSON into a duplicate file.
+- Do not edit `tools/blender/**`, generated Naomi assets, model-builder scripts, provenance or visual-render files.
+- Dialogue text and existing pending clinical review statuses remain unchanged.
 
 ### 2026-10-17 · Codex · Resolve owner-confirmed PR #27 conflicts
 
