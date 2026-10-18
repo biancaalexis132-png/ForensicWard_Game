@@ -8,11 +8,11 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
-**GitHub state correction (verified 2026-10-18 01:14 UTC):** `origin/main` is `96ef65ed40ced591f576326e21fcd60f9da9d3a7`, beyond the older `47a68f4` checkpoint recorded below; `git log 47a68f4..origin/main` confirms merges of PRs #38, #40 and #41. PRs #35–#41 are merged. The current open PR is #42, a draft CIG implementation PR at `54a3796`; GitHub reports `MERGEABLE` and hosted `validate` is pending (run 39085832849). Historical rows below are preserved as history, not current PR state. Naomi's model-builder/refinement remains a separate workstream; its base asset still needs owner visual review and has no animation clips.
+**GitHub state correction (verified 2026-10-18 01:16 UTC):** `origin/main` is `96ef65ed40ced591f576326e21fcd60f9da9d3a7`, beyond the older `47a68f4` checkpoint recorded below; `git log 47a68f4..origin/main` confirms merges of PRs #38, #40 and #41. PRs #35–#41 are merged. The current open PR is #42, a draft CIG implementation PR at last-checked head `d5d19f5`; GitHub reports `MERGEABLE` and hosted `validate` is pending (run 39085902026). This handoff update will advance the PR head, so check the new docs-only head afterward. Historical rows below are preserved as history, not current PR state. Naomi's model-builder/refinement remains a separate workstream; its base asset still needs owner visual review and has no animation clips.
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| CIG-1 optional character visual slot | `biancaalexis132-png-cig-1-character-integration` (draft PR #42) | Copilot / current session | `54a37960aea8ceaaae73c7348363665d57f96251` (verified remote; code tests run on `387ceba`) | `scripts/world/Character.gd`, `scenes/props/Character.tscn`, `scripts/tests/test_character_visual.gd`, and CIG continuity/status docs | PR #42 open/draft and mergeable; hosted `validate` pending on `54a3796`. Naomi asset integration remains gated on owner visual review and authored animations. |
+| CIG-1 optional character visual slot | `biancaalexis132-png-cig-1-character-integration` (draft PR #42) | Copilot / current session | `d5d19f5ff329220bdbedfc006f632715923e8f87` (verified remote; code tests run on `387ceba`) | `scripts/world/Character.gd`, `scenes/props/Character.tscn`, `scripts/tests/test_character_visual.gd`, and CIG continuity/status docs | PR #42 open/draft and mergeable; hosted `validate` pending on `d5d19f5`. Naomi asset integration remains gated on owner visual review and authored animations. |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
 
@@ -58,12 +58,12 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
-### 2026-10-18 01:13 UTC · Copilot · CIG-1 optional character visual slot
+### 2026-10-18 01:16 UTC · Copilot · CIG-1 optional character visual slot
 
 - **Branch:** `biancaalexis132-png-cig-1-character-integration` (based on `main` at `96ef65e`)
-- **Latest verified commit:** `54a37960aea8ceaaae73c7348363665d57f96251` "Record CIG-1 integration checkpoint"; runtime tests were executed on the directly preceding code commit `387ceba5fc6d5abf9c564ef876c9c475825e2493`.
-- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-cig-1-character-integration` printed `54a37960aea8ceaaae73c7348363665d57f96251`.
-- **Pull request:** #42 (draft, open, `MERGEABLE`); hosted `validate` pending on head `54a3796` (run 39085832849).
+- **Latest verified commit:** `d5d19f5ff329220bdbedfc006f632715923e8f87` "Record CIG-1 draft review state"; runtime tests were executed on code commit `387ceba5fc6d5abf9c564ef876c9c475825e2493`.
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-cig-1-character-integration` printed `d5d19f5ff329220bdbedfc006f632715923e8f87`.
+- **Pull request:** #42 (draft, open, `MERGEABLE`); hosted `validate` pending on last-checked head `d5d19f5` (run 39085902026). This handoff update advances the PR head; refresh the new docs-only run.
 - **State:** unfinished but coherent. Optional runtime slot/fallback groundwork is complete; the Naomi asset itself is not integrated.
 
 **Accomplished**
@@ -79,7 +79,7 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 **Unfinished**
 - Actual Naomi model integration, animation playback on her rig, rendered/pose review and owner Mac profiling: blocked pending owner visual approval and an authored animation deliverable. Do not claim the automated base is the approved integration target.
-- Hosted `validate` is still pending on PR #42 head `54a3796`; CI is not yet observed as passed.
+- Hosted `validate` is still pending on PR #42 head `d5d19f5`; CI is not yet observed as passed.
 
 **Known errors**
 - Full `python3 tests/qa/run.py --godot /tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot` exits 1 in `tests/music_ai/test_generate_music.py`: JSON 6/6 and audio-manifest 3/3 pass; music preview is 1 passed / 2 failed. The failures `test_generate_verify_and_approve` and `test_reference_audio_uses_approved_main_theme` report `Unknown encoder 'libvorbis'`. No FFmpeg/Vorbis replacement was installed; the runner stops before Godot suites, which were then executed directly.
