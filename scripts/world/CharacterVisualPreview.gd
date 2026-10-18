@@ -21,12 +21,13 @@ const CANDIDATES: Dictionary = {
 		"v04": "res://assets/exports/characters/Naomi_Bennett_v04.glb",
 		# Mac pipeline validation build from PR #51 (three small clips, no face morphs).
 		"v04_local": "res://assets/exports/characters/Naomi_Bennett_v04_local.glb",
+		"v05": "res://assets/exports/characters/Naomi_Bennett_v05.glb",
 		# Mac build: v04 with MPFB2 CC0 faceunit expressions and visemes (bake_mpfb_face_shapes.py).
 		"v05_mpfb": "res://assets/exports/characters/Naomi_Bennett_v05_mpfb.glb",
 	},
 }
 const DEFAULT_VERSION: Dictionary = {
-	"staff_bennett": "v04",
+	"staff_bennett": "v05",
 }
 ## Where the previewed model stands, relative to the character's marker. Only the
 ## model moves; the interaction box, collision and name label stay on the marker.

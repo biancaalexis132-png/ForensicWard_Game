@@ -1,7 +1,7 @@
 {
   "character_id": "staff_bennett",
   "display_name": "Naomi Bennett",
-  "version": "v04",
+  "version": "v05",
   "production_status": "ANIMATION_DEVELOPMENT_PENDING_OWNER_REVIEW",
   "source_blend": "assets/blender/characters/Naomi_Bennett_v03.blend",
   "objects": {
@@ -36,6 +36,10 @@
     "hand_l": "hand_l",
     "hand_r": "hand_r"
   },
+  "eye_bones": {
+    "l": "eye_l",
+    "r": "eye_r"
+  },
   "face": {
     "mouth_line_z_below_eyes_m": 0.0625,
     "mouth_corner_x_of_eye_x": 0.84,
@@ -44,6 +48,10 @@
       0.055,
       -0.045
     ],
+    "lid_corner_deg": [
+      55.0,
+      72.0
+    ],
     "lashes": {
       "material": "Naomi_Lash",
       "color_srgb_hex": "#140d0a",
@@ -51,15 +59,43 @@
       "width_m": 0.0012
     },
     "brows": {
-      "darken": 0.55
+      "mode": "painted",
+      "color_srgb_hex": "#1c130e",
+      "seed": 7,
+      "inner_m": -0.016,
+      "outer_m": 0.03,
+      "height_m": 0.0225,
+      "arch_m": 0.0028,
+      "tail_drop_m": 0.004,
+      "inner_half_m": 0.0032,
+      "tail_half_m": 0.001,
+      "fill": 0.45,
+      "hairs": 420,
+      "hair_length_m": [
+        0.0045,
+        0.0075
+      ],
+      "hair_width_m": [
+        0.00018,
+        0.00028
+      ],
+      "hair_feather_m": 0.00015
     }
   },
+  "skin": {
+    "roughness": 0.58,
+    "roughness_variation": 0.05,
+    "roughness_cell_m": 0.003,
+    "specular": 0.35,
+    "pore_size_m": 0.0009,
+    "pore_normal_strength": 0.0
+  },
   "outputs": {
-    "blend": "assets/blender/characters/Naomi_Bennett_v04.blend",
-    "glb": "assets/exports/characters/Naomi_Bennett_v04.glb",
+    "blend": "assets/blender/characters/Naomi_Bennett_v05.blend",
+    "glb": "assets/exports/characters/Naomi_Bennett_v05.glb",
     "renders": "assets/renders/characters",
-    "manifest": "assets/asset_manifest/naomi_character_manifest_v04.json",
-    "report": "tools/character_animation/reports/staff_bennett_v04_rig_report.json"
+    "manifest": "assets/asset_manifest/naomi_character_manifest_v05.json",
+    "report": "tools/character_animation/reports/staff_bennett_v05_rig_report.json"
   },
   "clothing_weight_reference": {
     "builder": "tools/blender/characters/build_naomi_v03.py",
@@ -81,5 +117,12 @@
       "pinky",
       "thumb"
     ]
+  },
+  "clothing_tidy": {
+    "shoes": "Naomi_Practical_Shoes",
+    "trousers": "Naomi_Scrub_Trousers",
+    "hem_max_height_m": 0.3,
+    "hem_band_m": 0.06,
+    "hem_shoe_overlap_m": 0.015
   }
 }

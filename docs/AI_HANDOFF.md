@@ -17,7 +17,8 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Soundtrack owner approval documentation | `claude/codex-soundtrack-owner-approval` (draft PR; Codex's `codex/soundtrack-owner-approval` rebased onto `main` `f9dba61`) | Codex, recovered by Claude Code (cloud) | see Log | `audio/manifest.json`, generated `docs/AUDIO_MANIFEST.md`, `docs/AUDIO.md`; additive soundtrack-only continuity entries | Owner APPROVED all 11 tracks for private/personal/noncommercial use; no audio or runtime changes. Waiting on owner review of the draft PR. |
 | Graphic-novel cutscenes (CutsceneDirector, Chapter 1 pilot) | `claude/cutscene-director` (draft PR, see Log) | Claude Code (cloud) | see Log | `scripts/cutscene/**`, `scenes/cutscene/**`, `data/cutscenes/**`, `assets/cutscenes/**`, `tools/cutscenes/**`, `scripts/tests/test_cutscene.gd`, `tests/qa/test_cutscenes.py`, `docs/CUTSCENES.md`, `docs/design/cutscenes/**`; small edits to `scripts/main/Main.gd`, `scenes/main/Main.tscn`, `scripts/autoload/EventBus.gd` (two signals), `tests/qa/run.py` (one line) | Waiting on owner review of the pilot's look and placement; off in the campaign |
 | Naomi v03 visual development | `claude/naomi-v03` (draft PR, see Log) | Claude Code | see Log | `tools/blender/characters/{build_naomi_v03.py,naomi_v03.json}`, `assets/**/Naomi_Bennett_v03*`, `assets/renders/characters/`, `assets/asset_manifest/naomi_character_manifest_v03.json`, `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, Naomi production docs | Merged in PR #49 (row kept for history; the owner removes it). v03 is the development baseline, not production |
-| Naomi v04 animation and cast animation standard | `claude/naomi-animation-v04` (draft PR, see Log) | Claude Code (cloud) | see Log | `tools/character_animation/**`, `assets/**/Naomi_Bennett_v04*`, `scripts/world/{CharacterAnimationRig,CharacterFaceRig,CharacterVisualPreview,Character}.gd`, `scripts/acting/CharacterActingAdapter.gd`, `scripts/tests/test_character_{animation,preview}.gd`, `scripts/tests/test_naomi_acting.gd`, the four continuity docs | Waiting on owner review of v04 in game and Mac validation by the local thread; supersedes PR #51 |
+| Naomi v05 refinement | `claude/naomi-v05-refinement` (draft PR, see Log) | Claude Code (cloud) | see Log | `tools/character_animation/{build_animated_character.py,clip_library.json,profiles/staff_bennett.json,CHARACTER_ANIMATION_STANDARD.md}`, `assets/**/Naomi_Bennett_v05.*`, `scripts/world/{CharacterAnimationRig,CharacterFaceRig,CharacterGazeRig,CharacterVisualPreview}.gd`, `scripts/tests/test_character_{animation,preview}.gd` | Waiting on owner review and a Mac frame-time check |
+| Naomi v04 animation and cast animation standard | `claude/naomi-animation-v04` (merged in PR #53) | Claude Code (cloud) | see Log | `tools/character_animation/**`, `assets/**/Naomi_Bennett_v04*`, `scripts/world/{CharacterAnimationRig,CharacterFaceRig,CharacterVisualPreview,Character}.gd`, `scripts/acting/CharacterActingAdapter.gd`, `scripts/tests/test_character_{animation,preview}.gd`, `scripts/tests/test_naomi_acting.gd`, the four continuity docs | Waiting on owner review of v04 in game and Mac validation by the local thread; supersedes PR #51 |
 | Naomi in-game review preview | `claude/naomi-review-preview` (draft PR #46) | Claude Code | `6b6893d` | `scripts/world/{Character,CharacterVisualPreview}.gd`, `scripts/tests/test_character_preview.gd`, `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md` and `ingame_review_v02/` | Waiting on owner review of the model in game; preview is off by default |
 | Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` (code/test checkpoint; docs-only follow-up is pushed) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Merged in PR #45 at `a202caf` (row kept for history; the owner removes it). v02 still fails visual criteria. |
 | Foundation F3 anomaly model | `claude/f3-anomaly-model` (draft PR to `main`) | Claude | `5283735` (see entry) | `data/anomalies.json`, `data/clues.json` (source_class, claim_state), `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/narrative/{AnomalyLedger,ChapterDirector,StoryLogic}.gd`, `scripts/autoload/{ContentRegistry,EventBus}.gd` (EventBus: two signals), `scripts/content/*`, `project.godot` (one setting), `scripts/tests/test_anomaly.gd`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER}.md` | Merged in PR #44 at `fec5933` (row kept for history; the owner removes it). |
@@ -160,6 +161,35 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 18:40 UTC · Claude Code (cloud) · Naomi v05 refinement
+
+- **Branch:** `claude/naomi-v05-refinement` (from `main` `f9dba61`; `main` merged in after PR #55, #56 and #57)
+- **Latest verified commit:** `da3ed52` "Merge main (v05_mpfb, Codex fixes) into the v05 refinement, keeping both v05 builds"; review captures and this entry sit on top
+- **Pull request:** draft, assigned to the owner (see `docs/PROJECT_STATUS.md`)
+- **State:** finished and coherent; v05 is a review-only candidate, **not approved**
+
+**Accomplished**
+- Builder (`tools/character_animation/build_animated_character.py`), new optional profile steps:
+  - `paint_skin`: bakes a UV position map, paints hair-like brows into the skin base colour (replacing the v04 alpha strips), and adds a soft roughness map (roughness 0.58, variation 0.05). Skin specular is 0.35. A pore normal map is available but off (`pore_normal_strength` 0), because it looked grainy in Godot.
+  - `add_eye_bones`: `eye_l` and `eye_r` under `head`.
+  - `tidy_shoes`: rebuilds the shoes as clogs from their convex hull.
+  - `level_hems`: gives the trousers straight, ironed hems that cover the shoe tops.
+- Blink: lid travel is compensated by azimuth and overlaps by 3°, so the eye corners close. Library `close_fraction` is now 1.0. `mouth_open_deg` is now 6.5.
+- New shape keys are saved at 0. Earlier, `--no-render` builds left them at 1.0.
+- `scripts/world/CharacterGazeRig.gd`: aims the eye bones at the cue's gaze target (player, workstation, or workstation then player), clamped to 26°/12°.
+- `CharacterAnimationRig._use_static_shadows`: skinned meshes cast no shadow, and still, shadow-only copies cast it instead. This targets the Mac's v04 draw-call jump (828 vs 48), but has not been measured on the Mac. The likely cause is that positional shadows are redrawn every frame once a caster moves. The OpenGL renderer here shows no difference, so the Forward+ effect cannot be checked in the container.
+- Preview default is now `v05`. `v05_mpfb` (PR #57) stays selectable.
+
+**Tests** (Linux container, Godot 4.7 stable, on `da3ed52`)
+- TestRunner: 160 passed, 0 failed (includes gaze, static shadow and #57's MPFB face tests).
+- Toolkit: 6 OK. Provenance: 6 OK.
+- Full QA: see the PR.
+
+**Next steps**
+1. Owner reviews `ingame_review_v05/` and the `assets/renders/characters/Naomi_Bennett_v05_*.png` sheets.
+2. Mac thread: run `tools/godot/measure_character_frame_time.gd -- --version=v05` against v04 to confirm the draw-call fix.
+3. Combine the two v05 builds: run `bake_mpfb_face_shapes.py` on the v05 output (Mac only, because it needs the MPFB packs). The painted brows, skin maps, eye bones and clothing tidy are all in the textures, bones and meshes, which the faceunit bake does not replace.
 
 ### 2026-10-18 18:40 UTC · Claude Code (owner's Mac, Remote Control) · Naomi Mac validation, v05_mpfb, frame times
 

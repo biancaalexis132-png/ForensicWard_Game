@@ -1,5 +1,15 @@
 # AI session handoff
 
+## Naomi v05 refinement — Claude Code (cloud), 2026-10-18 18:40 UTC
+
+- **Objective:** fix v04's brows, blink gap, plastic skin, shoes and hems; add gaze; investigate the Mac's v04 draw-call jump.
+- **Branch / PR:** `claude/naomi-v05-refinement`, draft PR; verified at `da3ed52`, with main merged in (PRs #55, #56, #57).
+- **Completed:** see the 18:40 UTC entry in `docs/AI_HANDOFF.md`.
+- **Tests:** TestRunner 160/0; toolkit 6 OK; provenance 6 OK.
+- **Pending approvals:** Naomi v05 appearance; which v05 face (hand-built or MPFB) to keep.
+- **Next steps:** Mac frame-time check of the static shadow copies; MPFB face bake on top of v05.
+- **Constraints:** not approved or default; v01–v04 untouched; no patient movement; no Mac performance claims.
+
 ## Naomi Mac validation and v05_mpfb — Claude Code (owner's Mac), 2026-10-18 18:40 UTC
 
 - **Objective:** validate cloud v04 on the owner's Mac, measure frame time and bake MPFB face shapes; review only.
@@ -19,7 +29,6 @@
 - **Pending approvals:** pilot visuals and placement; staff-entry stand-in plate; music cue (`mus_waiting_room` vs `mus_main_theme_alt`); Day 1 morning vs afternoon canon; Naomi likeness.
 - **Next steps:** see the 2026-10-18 18:35 UTC entry in `docs/AI_HANDOFF.md`.
 - **Constraints:** cinematics off in the campaign; no invented dialogue or captions; no clinical, story or save writes; reveal boundaries (Ch3 Ward Zero entry, Ch4 S09 loop, three Ch5 endings); never Git on the SSK drive.
-
 ## Character canon reconciliation and Rahman base model — Claude Code (cloud), 2026-10-18 18:30 UTC
 
 - **Objective:** fold the owner's 2026-10-18 18:05 UTC decisions (Rahman Consultant Psychiatrist; Hale Security Director, no tactical armour; Naomi, Voss, Elias, Mara traits; Mara from Chapter 2) into the docs, then build the next unfinished character in the visual lane: Dr Leila Rahman's base model, as a review candidate.

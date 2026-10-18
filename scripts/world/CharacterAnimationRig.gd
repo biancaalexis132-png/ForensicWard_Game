@@ -7,7 +7,9 @@ extends RefCounted
 ## for gesture clips on a player named GestureAnimationPlayer, so gesture clips
 ## move there; body clips stay and loop. Gesture clips only animate the neck and
 ## arms and body clips never do, so both players run at once without fighting.
-## Models without these clips or morph targets are left exactly as imported.
+## Animated models cast their shadow from a static proxy (see
+## _use_static_shadows). Models with eye bones get a CharacterGazeRig. Models without these clips,
+## morph targets or bones are left exactly as imported.
 
 const BODY_LOOP_CLIPS: PackedStringArray = [
 	"idle_neutral", "idle_breathing", "listen_neutral", "stand_conversational",
@@ -19,6 +21,7 @@ const GESTURE_CLIPS: PackedStringArray = [
 ]
 const IDLE_CLIP: StringName = &"idle_neutral"
 const BLINK_SHAPE: StringName = &"blink"
+const SHADOW_PROXY_SUFFIX: String = "_ShadowProxy"
 
 
 ## Returns the body AnimationPlayer it prepared, or null if the model has no clips.
@@ -26,11 +29,18 @@ static func setup(model: Node3D) -> AnimationPlayer:
 	var body_player: AnimationPlayer = _find_body_player(model)
 	if body_player != null:
 		_prepare_players(body_player)
+		_use_static_shadows(model)
 	if _has_blend_shape(model, BLINK_SHAPE):
 		var face: CharacterFaceRig = CharacterFaceRig.new()
 		face.name = "CharacterFaceRig"
 		face.configure(model)
 		model.add_child(face)
+	var gaze: CharacterGazeRig = CharacterGazeRig.new()
+	if gaze.configure(model):
+		gaze.name = "CharacterGazeRig"
+		model.add_child(gaze)
+	else:
+		gaze.free()
 	return body_player
 
 
@@ -71,6 +81,24 @@ static func _without_held_tracks(animation: Animation) -> Animation:
 		if trimmed.track_get_key_count(track) <= 1:
 			trimmed.remove_track(track)
 	return trimmed
+
+
+## Positional light shadows are cached until a shadow caster inside them moves, so
+## an animated character makes every shadowed light around her redraw its shadow
+## map every frame. Her skinned meshes therefore cast no shadow; a static,
+## shadow-only copy of each one in the rest pose casts it instead.
+static func _use_static_shadows(model: Node3D) -> void:
+	for node: Node in model.find_children("*", "MeshInstance3D", true, false):
+		var mesh: MeshInstance3D = node as MeshInstance3D
+		if mesh.skin == null or mesh.cast_shadow == GeometryInstance3D.SHADOW_CASTING_SETTING_OFF:
+			continue
+		var proxy: MeshInstance3D = MeshInstance3D.new()
+		proxy.name = String(mesh.name) + SHADOW_PROXY_SUFFIX
+		proxy.mesh = mesh.mesh
+		proxy.transform = mesh.transform
+		proxy.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+		mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		mesh.get_parent().add_child(proxy)
 
 
 static func _find_body_player(model: Node3D) -> AnimationPlayer:

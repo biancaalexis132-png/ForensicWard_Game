@@ -1,0 +1,125 @@
+{
+  "asset_id": "CHR_NaomiBennett_v05",
+  "character_id": "staff_bennett",
+  "version": "v05",
+  "production_status": "ANIMATION_DEVELOPMENT_PENDING_OWNER_REVIEW",
+  "approved": false,
+  "builder": "tools/character_animation/build_animated_character.py",
+  "profile": "tools/character_animation/profiles/staff_bennett.json",
+  "profile_sha256": "5e0d076556fc1a6c52e5c5dfd08b54a3a68130c6852556dbd28465dd7fbec985",
+  "clip_library": "tools/character_animation/clip_library.json",
+  "blender_version": "5.2.2 LTS",
+  "inputs": [
+    {
+      "path": "assets/blender/characters/Naomi_Bennett_v03.blend",
+      "sha256": "202896d3317f99345438354f6d3670dc262090a4a6d6b028bc605ef94546872c",
+      "used": "rigged character, unchanged rest pose"
+    }
+  ],
+  "external_assets": [],
+  "generated": [
+    "animation actions (clip_library.json)",
+    "face morph targets",
+    "eyelash and brow-stroke geometry, brow stroke texture"
+  ],
+  "triangle_count": 49034,
+  "clips": [
+    {
+      "name": "idle_neutral",
+      "player": "body",
+      "loop": true,
+      "seconds": 8.0,
+      "glb_channels": 7
+    },
+    {
+      "name": "idle_breathing",
+      "player": "body",
+      "loop": true,
+      "seconds": 4.0,
+      "glb_channels": 5
+    },
+    {
+      "name": "listen_neutral",
+      "player": "body",
+      "loop": true,
+      "seconds": 6.0,
+      "glb_channels": 4
+    },
+    {
+      "name": "stand_conversational",
+      "player": "body",
+      "loop": true,
+      "seconds": 6.0,
+      "glb_channels": 5
+    },
+    {
+      "name": "turn_from_workstation",
+      "player": "body",
+      "loop": false,
+      "seconds": 1.2,
+      "glb_channels": 3
+    },
+    {
+      "name": "return_to_workstation",
+      "player": "body",
+      "loop": false,
+      "seconds": 1.2,
+      "glb_channels": 3
+    },
+    {
+      "name": "small_greeting_nod",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 1.2,
+      "glb_channels": 1
+    },
+    {
+      "name": "small_acknowledgement_nod",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 0.9,
+      "glb_channels": 1
+    },
+    {
+      "name": "restrained_chart_indication",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 2.0,
+      "glb_channels": 3
+    },
+    {
+      "name": "subtle_workstation_indication",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 1.6,
+      "glb_channels": 2
+    }
+  ],
+  "morph_targets": [
+    "blink_L",
+    "blink_R",
+    "blink",
+    "attentive",
+    "warm_subtle",
+    "concerned_restrained",
+    "professionally_serious",
+    "focused",
+    "calm_professional",
+    "mouth_open"
+  ],
+  "outputs": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v05.blend",
+    "glb": "assets/exports/characters/Naomi_Bennett_v05.glb",
+    "report": "tools/character_animation/reports/staff_bennett_v05_rig_report.json",
+    "renders": [
+      "assets/renders/characters/Naomi_Bennett_v05_face_controls.png",
+      "assets/renders/characters/Naomi_Bennett_v05_body_clips.png"
+    ]
+  },
+  "known_limitations": [
+    "Procedural keyframed clips, not motion capture; reviewed only in the Linux container.",
+    "Face morphs are authored from measured landmarks, not sculpted; no lip sync.",
+    "Clothing follows the body skin weights; no cloth simulation or corrective shapes.",
+    "Not measured on the target Mac."
+  ]
+}

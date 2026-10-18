@@ -1,5 +1,16 @@
 # AI progress tracker
 
+## Naomi v05 refinement — Claude Code (cloud), 2026-10-18
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Painted brows, matte skin maps | Done, draft PR; not approved | v03 skin texture | builder `paint_skin` | Cycles close-ups, in-game captures | Owner review |
+| Blink closes fully | Done | | builder `Face.lid_weights` | Cycles close-up | none |
+| Clean shoes and hems | Done | | builder `tidy_shoes`, `level_hems` | Cycles close-ups | Owner review |
+| Gaze (eye bones + CharacterGazeRig) | Done | v05 eye bones | `scripts/world/CharacterGazeRig.gd` | TestRunner gaze test | Owner review in game |
+| v04 draw-call jump on the Mac | Fix in place, unmeasured | Mac Forward+ | `CharacterAnimationRig._use_static_shadows` | Not reproducible on OpenGL | Mac thread measures |
+| Merge MPFB faceunits into v05 | Not started | Mac MPFB packs | `bake_mpfb_face_shapes.py` | | Mac thread |
+
 ## Graphic-novel cutscenes — Claude Code (cloud), 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |
