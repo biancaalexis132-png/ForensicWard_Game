@@ -38,6 +38,8 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 ### 2026-10-18 · Codex · Chapter 2 source-review continuation
 
+- **Publication:** draft PR #70, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/70. Recovery checkpoint `5f60dfbfacb3def003dce3ebfa2ee71cd39fa813` pushed and remotely verified; link-only checkpoint follows. No merge or auto-merge.
+
 - **Branch / verified runtime:** `codex/chapter2-records-review`, `122304d460126f6645c9ce6afd63395e8e52ec32`, pushed and git ls-remote verified. Continued opening `6e04daf`; owner merged PR #69 while working, so main `3b6e9b8` integrated without conflict. No active competing session found; owner previously confirmed other sessions stopped. No automatic PR merge or rewritten history.
 - **Delivered:** six playable review steps after the opening: clock authority, export ordering, source independence, preservation/custody status, two defensible memo emphases, separate Naomi handoff. Unsupported inferences show feedback without progress. All source questions remain outstanding under either emphasis. No received raw record/checksum, new clinical finding, Mara content, restricted entry or supernatural conclusion invented; narrative/clinical review labels remain pending. Full Chapter2 is not complete.
 - **Files:** `data/story_chapter2.json`; small `ChapterDirector`/`ContentSchemas`/`ContentValidator` changes for expiring interactions, read-only completed status and feedback-only choices; new `scripts/tests/test_chapter2_records.gd` + UID. Opening test now expects the next source-review objective rather than no objective, retaining opening-complete assertions. No Main/EventBus/scene/project/CI/QA-runner/face/audio/asset/import dependency changes.

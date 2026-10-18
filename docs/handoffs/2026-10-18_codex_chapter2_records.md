@@ -1,6 +1,9 @@
 # Chapter 2 records-review continuation
 
-Branch: `codex/chapter2-records-review`. Started from verified opening
+Branch: `codex/chapter2-records-review`. Draft PR #70:
+https://github.com/biancaalexis132-png/ForensicWard_Game/pull/70.
+Recovery `5f60dfbfacb3def003dce3ebfa2ee71cd39fa813` pushed/verified; this
+link-only checkpoint follows. Started from verified opening
 `6e04daf`; owner merged PR #69 during work, so main `3b6e9b8` is integrated.
 No other active session found; the owner's confirmation that other AI sessions
 stopped remains in force. Changes avoid face/audio controllers and source assets.
