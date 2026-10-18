@@ -28,7 +28,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 - **Branch:** `codex/naomi-v06-validation`, from fetched `origin/main` `0c104b264a985522643c60d1c059c37c24c7d881`.
 - **Latest verified implementation:** `3621ae1e679577c50009dc1f1837d2b5600b9e6e`, confirmed by `git ls-remote origin refs/heads/codex/naomi-v06-validation`. A docs-only recovery commit follows.
-- **Pull request:** draft creation follows this entry; resolve with `gh pr list --head codex/naomi-v06-validation`. No merge or auto-merge.
+- **Pull request:** draft #64, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/64. Recovery docs checkpoint `c417f2c4f7c8d118ab577564cedf5097eb210fe7` pushed and verified; this PR-link-only checkpoint follows. No merge or auto-merge.
 - **State:** coherent independent audit complete; Naomi technical acceptance **blocked**, not owner-approved.
 
 **Accomplished / files**

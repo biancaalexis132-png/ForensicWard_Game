@@ -5,6 +5,11 @@ Branch: `codex/naomi-v06-validation`, based on fetched main
 merged (head `c67a40934c4f6d2f425c9142640a823446ee021d`), no comments or
 reviews; open PR list was empty. PR #62's merge is in main's ancestry.
 No other agent's branch or existing runtime/controller/asset was changed.
+Draft PR: https://github.com/biancaalexis132-png/ForensicWard_Game/pull/64.
+Implementation `3621ae1e679577c50009dc1f1837d2b5600b9e6e` and recovery docs
+`c417f2c4f7c8d118ab577564cedf5097eb210fe7` were pushed and verified via
+`git ls-remote`. A PR-link-only documentation checkpoint follows; resolve the
+final tip with `git ls-remote origin refs/heads/codex/naomi-v06-validation`.
 Existing face/animation/preview claims in AI_HANDOFF remain reservations;
 local processes and unpushed work on the owner's Mac are not observable here.
 
