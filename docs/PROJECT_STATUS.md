@@ -1,5 +1,7 @@
 # Project status
 
+**Chapter 2 Scene 05 analyst (Claude Code, 2026-10-18; PR #72, not merged):** runtime `0d298cfa7a557eeab11a0b265e203116012fe0ad`. Untested candidate explanations and one next check; discrepancy stays open. Full QA passed: game216/0. Mac not run.
+
 **Chapter 2 Scene 03 Mara Ellis (Claude Code, 2026-10-18; not merged, PR #71):** owner-approved ("i approve scene 3"). Runtime `09e4a8cb45981dd0959c7dc6058b62bc870e0d58`: Mara interview through the existing dialogue system, EHR note, separate Records referral; Elias steps out of Interview Room A meanwhile. Dialogue APPROVED; patient record pending review. No diagnosis, medication, treatment or evidence. Full QA passed: game212/0, GLB161/0, audio336/0, QA19/0/0. Mac not run.
 
 **Chapter 2 Scene 04 Voss review (Claude Code, 2026-10-18; not merged):** `claude/chapter2-voss-review` runtime `4796ca10fc6e070b1f119e1d2416af7104204780`, stacked on PR #70. Voss conversation records factual scope, missing permissions and an authorized follow-up through the existing staff actor; unsupported claims give feedback only. Source request, credential audit and W0-B restriction stay pending; no clinical finding, access, Mara content, Ward Zero entry or supernatural reveal. Full QA passed: game207/0, GLB161/0, audio336/0, QA19/0/0, Python6+4+5+3, pharmacology0 failures, boot and Chapter1 sequence. Narrative review and Chapter 2 Scenes 03, 05–10 remain. See `docs/handoffs/2026-10-18_claude_chapter2_voss_review.md`; Mac not run.

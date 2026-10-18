@@ -140,14 +140,27 @@ QA 19/0/0, Python 6+4+5+3, pharmacology 0 failures, boot, CH1_SEQUENCE_DONE.
 First runs failed 208/3 (null tree in presence update for characters outside
 the tree, fixed with a guard; two stale test expectations updated). Mac not run.
 
+## Addendum: Scene 05 analyst working explanation
+
+Runtime `0d298cfa7a557eeab11a0b265e203116012fe0ad` on `claude/chapter2-mara-intro` (PR #72). After Mara's referral,
+the Records worksheet shows the analyst's four candidate explanations (clock
+skew, migrated location codes, export sorting, identifier collision; the last
+is grounded in Elias's existing `transfer_identifier_collision` discrepancy).
+Log them as untested, then choose one next check: source extraction, identifier
+crosswalk or neutral second review. Accepting skew as the whole answer, calling
+the remainder altered time, or closing it as a migration artefact gives
+feedback only. Everything stays open; no source packet is received. New
+`test_chapter2_analyst.gd` covers all three branches with post-choice save/load
+and a mid-scene interrupted load. Full runner exit 0: game 216/0, GLB 161/0,
+audio 336/0, QA 19/0/0, Python 6+4+5+3, pharmacology 0, boot, CH1 sequence.
+
 ## Next exact task
 
-After Scene 03 (done above): Chapter 2 Scene 05 "A Working Explanation": an analyst tests clock skew,
-migrated location codes, export sorting and identifier collision; each may
-explain part of the discrepancy and at least one item stays open. Implement
-it with the existing authored interactions on an existing Records prop or
-actor, gated on `ch2_mara_records_referred`, with choices for source
-extraction, identifier crosswalk and a neutral second review. Do not invent a
-received source packet or a resolved interval. Add partial and post-choice
-save/load tests. Naomi Mac 33 ms, lid/hem geometry, gesture shadows and the
-final in-game visual review remain pending independently.
+Chapter 2 Scene 06 "Hale's Door": Hale is not placed in the world. Place him
+with the existing staff actor system (he has a `MARK_Character_MarcusHale`
+marker only in the unreachable security zone, so use a reachable clinical-wing
+marker with `present_when`, or ask the owner), then implement the three choices
+(clinical risk check, permitted report summary, archived facilities plans) with
+no solo-entry access. Scenes 07–10 follow; Scene 08 reaches the historic-access
+lobby only. Naomi Mac 33 ms, lid/hem geometry, gesture shadows and final in-game
+review remain pending independently.

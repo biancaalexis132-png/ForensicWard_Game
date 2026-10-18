@@ -167,7 +167,7 @@ func test_full_scene_records_patient_report_note_and_separate_referral() -> void
 	check_eq(_director().get_chapter_flags("ch2"), flags, "unsupported referrals set nothing")
 	_commit(OFFICE, "Refer the date question to Records on its own")
 	check(_director().has_flag("ch2_mara_records_referred"), "separate referral recorded")
-	check(_objective().is_empty(), "authored Chapter 2 objectives so far complete")
+	check_eq(_objective(), "obj_ch2_analyst_candidates", "Mara's scene hands on to the analyst")
 	check(not _director().has_completed("ch2"), "Chapter 2 not falsely completed")
 	check_eq(_canonical(EvidenceManager.to_save_data()), evidence, "Mara's question adds no clue or evidence")
 	check_eq(_canonical(PatientManager.get_state("pt_elias_ward")), elias, "Elias's record untouched")
