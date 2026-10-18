@@ -4,7 +4,7 @@
 	"title": "Chapter 2: The Missing Hours",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "First playable nonclinical opening only, based on revised Chapter 2 Scenes 01\u201302. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. Records discrepancy remains reported and unresolved.",
+	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored.",
 	"objectives": [
 		{
 			"id": "obj_ch2_handoff",
@@ -39,6 +39,55 @@
 			"text": "Return to Naomi and acknowledge outstanding work.",
 			"complete_when": {
 				"flag": "ch2_opening_complete"
+			}
+		},
+		{
+			"id": "obj_ch2_clock_review",
+			"text": "Review the source-clock questions at the Records worksheet.",
+			"complete_when": {
+				"flag": "ch2_clock_reviewed"
+			}
+		},
+		{
+			"id": "obj_ch2_order_review",
+			"text": "Review the repeated minute and export ordering in Records.",
+			"complete_when": {
+				"flag": "ch2_order_reviewed"
+			}
+		},
+		{
+			"id": "obj_ch2_dependency_review",
+			"text": "Check source independence at the office records-request workstation.",
+			"complete_when": {
+				"flag": "ch2_dependencies_reviewed"
+			}
+		},
+		{
+			"id": "obj_ch2_preservation_review",
+			"text": "Track preservation and custody confirmation at the office workstation.",
+			"complete_when": {
+				"flag": "ch2_preservation_followup"
+			}
+		},
+		{
+			"id": "obj_ch2_review_memo",
+			"text": "Scope the unresolved follow-up memo at the Records worksheet.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch2_followup_clock_authority"
+					},
+					{
+						"flag": "ch2_followup_source_lineage"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch2_review_return",
+			"text": "Return to Naomi and acknowledge the separate records and clinical follow-ups.",
+			"complete_when": {
+				"flag": "ch2_records_review_complete"
 			}
 		}
 	],
@@ -87,7 +136,11 @@
 					"response": "Comparison recorded as unresolved. Request the authorized source-system export and preservation of the originals before drawing conclusions."
 				}
 			],
-			"unavailable_body": "Confirm who owns the outstanding clinical review at the handover board before pursuing the audit."
+			"unavailable_body": "Confirm who owns the outstanding clinical review at the handover board before pursuing the audit.",
+			"expires_when": {
+				"flag": "ch2_opening_complete"
+			},
+			"completed_body": "The initial mismatch is recorded as unresolved. Continue the source-clock review at this worksheet."
 		},
 		{
 			"id": "interaction_ch2_source_request",
@@ -105,7 +158,11 @@
 					"response": "Request submitted for authorized Records review. Source access and reconciliation remain pending. The originals must be retained; no independent corroboration or loss of time is established."
 				}
 			],
-			"unavailable_body": "Record the comparison as unresolved in Records before requesting source material."
+			"unavailable_body": "Record the comparison as unresolved in Records before requesting source material.",
+			"expires_when": {
+				"flag": "ch2_opening_complete"
+			},
+			"completed_body": "The preservation and export request is submitted. Receipt, custody and source independence still need verification."
 		},
 		{
 			"id": "interaction_ch2_return_handoff",
@@ -123,7 +180,192 @@
 					"response": "Handoff acknowledged. Clinical review remains assigned to you, and the source-export request remains with Records. Continue routine care while the source material is reconciled."
 				}
 			],
-			"unavailable_body": "The source request is not yet recorded. Clinical review remains separate from the audit."
+			"unavailable_body": "The source request is not yet recorded. Clinical review remains separate from the audit.",
+			"expires_when": {
+				"flag": "ch2_opening_complete"
+			},
+			"completed_body": "Clinical review remains assigned separately from the unresolved records inquiry."
+		},
+		{
+			"id": "interaction_ch2_clock_review",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "Records worksheet: source clocks",
+			"body": "[b]Reported comparison[/b]\nTwo representations display a four-minute difference; an export repeats a minute.\n\n[b]Available clock metadata[/b]\nRaw time-zone offset: unverified.\nSource clock and synchronization authority: unverified.\nNo authorized raw export has been received in this review.\n\nWhat correction can this comparison support?",
+			"when": {
+				"flag": "ch2_opening_complete"
+			},
+			"options": [
+				{
+					"id": "apply_offset",
+					"label": "Apply a four-minute correction to reconcile the records",
+					"response": "A displayed difference alone does not establish a clock correction. The source offsets and clock authority are still unverified. Retain the original representations and review the missing metadata."
+				},
+				{
+					"id": "retain_unknown",
+					"label": "Keep the correction unknown and request clock authority",
+					"response": "Clock review recorded: no correction can be justified yet. Raw offsets, clock authority and synchronization history remain requested. The displayed mismatch remains unresolved.",
+					"flag": "ch2_clock_reviewed"
+				}
+			],
+			"unavailable_body": "Complete the current records-review objective first. Clinical review remains a separate responsibility.",
+			"expires_when": {
+				"flag": "ch2_clock_reviewed"
+			},
+			"completed_body": "Clock authority and raw offsets remain unverified. Continue with the export-order review at this worksheet."
+		},
+		{
+			"id": "interaction_ch2_order_review",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "Records worksheet: export order",
+			"body": "[b]Reported export[/b]\nA minute appears more than once.\n\n[b]Missing information[/b]\nRaw event sequence, export sort key and transformation history have not been verified. A display row is not proof of an elapsed interval.\n\nHow should the repeated minute be recorded?",
+			"when": {
+				"flag": "ch2_clock_reviewed"
+			},
+			"options": [
+				{
+					"id": "declare_missing",
+					"label": "Classify the repeated minute as proven missing time",
+					"response": "That conclusion exceeds the available source material. Repeated display values can only be recorded as a discrepancy while ordering and transformation history remain unverified."
+				},
+				{
+					"id": "request_order",
+					"label": "Retain the repeated row and request raw ordering metadata",
+					"response": "Export-order review recorded. Preserve the original representation and request its sort key, raw event sequence and transformation history. Do not reorder or overwrite the original.",
+					"flag": "ch2_order_reviewed"
+				}
+			],
+			"unavailable_body": "Complete the current records-review objective first. Clinical review remains a separate responsibility.",
+			"expires_when": {
+				"flag": "ch2_order_reviewed"
+			},
+			"completed_body": "Clock and export-order gaps are recorded. Review source dependencies at the office records-request workstation."
+		},
+		{
+			"id": "interaction_ch2_dependency_review",
+			"interactable_id": "OF_Document_TransferSummary",
+			"title": "Source review: independence",
+			"body": "[b]Current material[/b]\nThe two displayed representations have not been traced to independently acquired originals. Source extraction, clock dependencies and transformation lineage remain unverified.\n\nWould receiving another copy establish independent corroboration?",
+			"when": {
+				"flag": "ch2_order_reviewed"
+			},
+			"options": [
+				{
+					"id": "count_copy",
+					"label": "Count another copy as independent corroboration",
+					"response": "A copy can preserve or reproduce a source; it does not by itself establish independence. Shared originals, clocks and export pipelines still need to be checked. No evidence status has been promoted."
+				},
+				{
+					"id": "record_dependency",
+					"label": "Leave independence unestablished and request the source lineage",
+					"response": "Dependency review recorded: source independence remains unestablished. Request original capture, clock authority, extraction history and shared dependencies before counting corroboration.",
+					"flag": "ch2_dependencies_reviewed"
+				}
+			],
+			"unavailable_body": "Complete the current records-review objective first. Clinical review remains a separate responsibility.",
+			"expires_when": {
+				"flag": "ch2_dependencies_reviewed"
+			},
+			"completed_body": "Source independence remains unestablished. Check the preservation request at this workstation."
+		},
+		{
+			"id": "interaction_ch2_custody_review",
+			"interactable_id": "OF_Document_TransferSummary",
+			"title": "Source review: preservation and custody",
+			"body": "[b]Request status[/b]\nPreservation and an authorized source-system export have been requested.\n\n[b]Outstanding confirmation[/b]\nNo original receipt, immutable checksum or custody acknowledgment is supplied by the current comparison. A request is not confirmation that preservation occurred.\n\nHow should the request be tracked?",
+			"when": {
+				"flag": "ch2_dependencies_reviewed"
+			},
+			"options": [
+				{
+					"id": "confirm_preserved",
+					"label": "Mark the originals as preserved because the request was sent",
+					"response": "Sending the request does not confirm custody or preservation. Keep confirmation outstanding and retain the request without claiming receipt of an original."
+				},
+				{
+					"id": "retain_request",
+					"label": "Keep preservation confirmation and source receipt outstanding",
+					"response": "Preservation follow-up recorded. Request confirmation of original receipt, unchanged source bytes/checksum and custody history from authorized Records staff. Receipt and preservation remain unconfirmed.",
+					"flag": "ch2_preservation_followup"
+				}
+			],
+			"unavailable_body": "Complete the current records-review objective first. Clinical review remains a separate responsibility.",
+			"expires_when": {
+				"flag": "ch2_preservation_followup"
+			},
+			"completed_body": "Preservation confirmation, raw export receipt and custody remain outstanding. Return to the Records worksheet to scope the follow-up memo."
+		},
+		{
+			"id": "interaction_ch2_review_memo",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "Unresolved records memo",
+			"body": "[b]Reported[/b]\nFour-minute displayed mismatch; repeated minute in an export.\n\n[b]Still unknown[/b]\nClock authority and offsets; raw event ordering; extraction lineage and shared dependencies; original receipt, checksum and custody confirmation.\n\n[b]Standing[/b]\nDiscrepancy unresolved. No proven loss of time, independent corroboration or patient finding. Preserve the original representations and keep clinical documentation separate.\n\nChoose the emphasis for the next authorized follow-up. Both requests retain all outstanding source questions.",
+			"when": {
+				"all": [
+					{
+						"flag": "ch2_clock_reviewed"
+					},
+					{
+						"flag": "ch2_order_reviewed"
+					},
+					{
+						"flag": "ch2_dependencies_reviewed"
+					},
+					{
+						"flag": "ch2_preservation_followup"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "prioritize_clocks",
+					"label": "Prioritize clock authority and raw offsets in the follow-up",
+					"response": "Unresolved memo recorded with clock-authority/offset verification prioritized. Records must also address ordering, lineage, custody and preservation. Source receipt and any reconciliation remain pending. Return to Naomi to acknowledge the outstanding work.",
+					"flag": "ch2_followup_clock_authority"
+				},
+				{
+					"id": "prioritize_lineage",
+					"label": "Prioritize source lineage and custody in the follow-up",
+					"response": "Unresolved memo recorded with source-lineage/custody verification prioritized. Records must also address clock authority, offsets, ordering and preservation. Source receipt and any reconciliation remain pending. Return to Naomi to acknowledge the outstanding work.",
+					"flag": "ch2_followup_source_lineage"
+				}
+			],
+			"unavailable_body": "Complete the current records-review objective first. Clinical review remains a separate responsibility.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch2_followup_clock_authority"
+					},
+					{
+						"flag": "ch2_followup_source_lineage"
+					}
+				]
+			},
+			"completed_body": "The unresolved memo retains the reported mismatch and all missing source questions. An authorized technical follow-up is requested; original receipt, preservation and reconciliation remain pending. No independent corroboration or missing-time conclusion is recorded."
+		},
+		{
+			"id": "interaction_ch2_review_return",
+			"interactable_id": "character:staff_bennett",
+			"title": "Records follow-up handoff",
+			"body": "Bennett: Keep the records questions with the authorized review. The clinical work still needs its own follow-up.\n\nThe comparison remains unresolved. Source receipt, clock verification and preservation confirmation remain outstanding. Your clinical responsibilities have not been marked completed by this inquiry.",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_followup_clock_authority"
+					},
+					{
+						"flag": "ch2_followup_source_lineage"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "acknowledge_review",
+					"label": "Acknowledge the records follow-up and separate clinical responsibility",
+					"response": "Records-review handoff acknowledged. The unresolved memo and authorized follow-up remain recorded. Continue clinical work separately; source material and technical reconciliation are still outstanding.",
+					"flag": "ch2_records_review_complete"
+				}
+			],
+			"unavailable_body": "Complete the current records-review objective first. Clinical review remains a separate responsibility."
 		}
 	],
 	"sign_out": {

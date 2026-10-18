@@ -111,7 +111,7 @@ func test_opening_is_playable_in_order_without_invented_findings() -> void:
 	_talk()
 	_choose("Acknowledge")
 	check(_director().has_flag("ch2_opening_complete"), "actual slice can finish")
-	check(_director().get_current_objective().is_empty(), "opening objectives finished")
+	check_eq(_director().get_current_objective().get("id", ""), "obj_ch2_clock_review", "opening advances to source review")
 	check(not _director().has_completed("ch2"), "opening is not the whole chapter")
 	check_eq(JSON.stringify(PatientManager.to_save_data()), patient, "clinical state unchanged by audit")
 	check_eq(JSON.stringify(EvidenceManager.to_save_data()), evidence, "request is not authenticated evidence")
@@ -120,7 +120,7 @@ func test_opening_is_playable_in_order_without_invented_findings() -> void:
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "save completed opening")
 	check_eq(SaveManager.load_game(TEST_SAVE_SLOT), OK, "reload completed opening")
 	check(_director().has_flag("ch2_opening_complete"), "completion persists")
-	check(_director().get_current_objective().is_empty(), "completed objectives do not replay")
+	check_eq(_director().get_current_objective().get("id", ""), "obj_ch2_clock_review", "opening stays complete and source review remains pending")
 
 
 func test_partial_opening_save_rebuilds_correct_world_and_objective() -> void:

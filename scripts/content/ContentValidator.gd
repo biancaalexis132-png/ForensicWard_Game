@@ -246,6 +246,8 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			_require_known(interaction["interactable_id"], interactable_ids, "interactable", file,
 					"interactions[%d].interactable_id" % i, errors)
 			StoryLogic.check_condition(interaction["when"], path + ".when", refs, errors)
+			if interaction.has("expires_when"):
+				StoryLogic.check_condition(interaction["expires_when"], path + ".expires_when", refs, errors)
 			_collect_ids(interaction["options"], file, "interactions[%d].options" % i, errors)
 		var sign_out: Dictionary = story["sign_out"]
 		for j: int in sign_out["handover_patients"].size():
