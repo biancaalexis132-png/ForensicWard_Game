@@ -10,6 +10,25 @@
 - **Next steps:** Mac frame-time check of the static shadow copies; MPFB face bake on top of v05.
 - **Constraints:** not approved or default; v01–v04 untouched; no patient movement; no Mac performance claims.
 
+## Naomi Mac validation and v05_mpfb — Claude Code (owner's Mac), 2026-10-18 18:40 UTC
+
+- **Objective:** validate cloud v04 on the owner's Mac, measure frame time and bake MPFB face shapes; review only.
+- **Branches / PRs:** #52 (ffmpeg fallback), #54 (v04 Mac review take) and #57 (v05_mpfb) are merged. This doc update is `claude/local-mac-handoff`.
+- **Completed:** the oggenc fallback; 5 CC0 MPFB packs on the Mac; v04 Mac rebuild and take; the `bake_mpfb_face_shapes.py` bake step; v05_mpfb; the frame-time probe; full QA passing on the Mac.
+- **Exact stopping point:** all merged; waiting on the owner's face-shape decision.
+- **Next steps:** investigate v04's 533k primitives and 828 draw calls (cloud v05 thread). Re-measure on the Mac after each Naomi version.
+- **Constraints:** never run git in the SSK copy; the clean clone is `~/ForensicWard_Campaign_Publish`.
+
+## Character canon reconciliation and Rahman base model — Claude Code (cloud), 2026-10-18 18:30 UTC
+
+- **Objective:** fold the owner's 2026-10-18 18:05 UTC decisions (Rahman Consultant Psychiatrist; Hale Security Director, no tactical armour; Naomi, Voss, Elias, Mara traits; Mara from Chapter 2) into the docs, then build the next unfinished character in the visual lane: Dr Leila Rahman's base model, as a review candidate.
+- **Branches / PRs:** `claude/character-canon-reconciliation` (docs PR, from `main` `e9e9171`); `claude/rahman-base-v01` (model PR, next).
+- **Completed:** `docs/design/CHARACTER_VISUAL_CANON.md` (decided vs provisional); D1–D3 status in `VISUAL_PRODUCTION_REVIEW.md`; GDD amendment row; "do not model" READMEs on the concept and ensemble boards (D8 as recommended; nothing deleted).
+- **Exact stopping point:** docs PR being opened; Rahman build not started. Container has `bpy` 5.2.2 and an MPFB2 v2.0.18 clone in the session scratchpad (not committed).
+- **Pending approvals:** D4–D7, D9; every face, skin and casting detail not in the canon page's Decided table.
+- **Next steps:** build Rahman with a new builder under `tools/blender/characters/rahman/` and a new profile `tools/character_animation/profiles/staff_rahman.json`; do **not** edit `build_animated_character.py` (Naomi v05 thread owns it) or Naomi's builders.
+- **Constraints:** review candidate only; no `data/staff.json` entry; no runtime binding; no performance claims without Mac measurements.
+
 ## Owner soundtrack approval update — Codex, October 18, 2026
 
 - **Current task:** record the owner's soundtrack decision; no animation or cutscene implementation in this scoped update. Broader takeover work remains for a separate continuation.

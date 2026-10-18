@@ -11,6 +11,15 @@
 | v04 draw-call jump on the Mac | Fix in place, unmeasured | Mac Forward+ | `CharacterAnimationRig._use_static_shadows` | Not reproducible on OpenGL | Mac thread measures |
 | Merge MPFB faceunits into v05 | Not started | Mac MPFB packs | `bake_mpfb_face_shapes.py` | | Mac thread |
 
+## Character canon reconciliation and Rahman base — Claude Code (cloud), 2026-10-18
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Record owner decisions D1–D3 and Mara's chapter | Done, docs PR | Owner message 2026-10-18 18:05 UTC | `docs/design/CHARACTER_VISUAL_CANON.md`, `VISUAL_PRODUCTION_REVIEW.md`, `GDD_AMENDMENTS.md` | Docs only | Owner review |
+| Mark concept and ensemble boards "do not model" (D8) | Done, docs PR | Recommended in review | `assets/creative_references/Visual_References/**/README*.md` | Docs only | Owner can reverse |
+| Rahman base model review candidate | In progress | Canon page; Rahman spec; bpy 5.2.2 + MPFB2 2.0.18 | `tools/blender/characters/rahman/`, `tools/character_animation/profiles/staff_rahman.json` | not run yet | Build and open PR |
+| Voss production spec and model | Not started | Rahman pipeline proven | | | After Rahman |
+
 ## Soundtrack owner decision — Codex, October 18, 2026
 
 | Task | State | Dependencies | Paths | Validation | Next action |
