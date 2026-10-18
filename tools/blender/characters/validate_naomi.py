@@ -12,21 +12,29 @@ import struct
 import sys
 
 import bpy
+from mathutils import Vector
 
 
 ROOT = Path(__file__).resolve().parents[3]
-BLEND_PATH = ROOT / "assets/blender/characters/Naomi_Bennett_Base_v01.blend"
-GLB_PATH = ROOT / "assets/exports/characters/Naomi_Bennett_Base_v01.glb"
-PREVIEW_PATH = ROOT / "assets/exports/characters/Naomi_Bennett_Base_v01_preview.png"
-MANIFEST_PATH = ROOT / "assets/asset_manifest/naomi_character_manifest.json"
+CONFIG_PATH = Path(__file__).with_name("naomi_appearance.json")
+CONFIG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+ASSET_VERSION = str(CONFIG["character"]["asset_version"])
+ASSET_STEM = f"Naomi_Bennett_Base_{ASSET_VERSION}"
+BLEND_PATH = ROOT / f"assets/blender/characters/{ASSET_STEM}.blend"
+GLB_PATH = ROOT / f"assets/exports/characters/{ASSET_STEM}.glb"
+PREVIEW_PATH = ROOT / f"assets/exports/characters/{ASSET_STEM}_preview.png"
+MANIFEST_PATH = ROOT / f"assets/asset_manifest/naomi_character_manifest_{ASSET_VERSION}.json"
 GAME_ASSET_MANIFEST_PATH = ROOT / "assets/asset_manifest/asset_manifest.json"
 QA_VIEW_PATHS = (
-    ROOT / "assets/exports/characters/Naomi_Bennett_Base_v01_front.png",
-    ROOT / "assets/exports/characters/Naomi_Bennett_Base_v01_right.png",
-    ROOT / "assets/exports/characters/Naomi_Bennett_Base_v01_back.png",
+    ROOT / f"assets/exports/characters/{ASSET_STEM}_front.png",
+    ROOT / f"assets/exports/characters/{ASSET_STEM}_right.png",
+    ROOT / f"assets/exports/characters/{ASSET_STEM}_back.png",
 )
-CONFIG_PATH = ROOT / "tools/blender/characters/naomi_appearance.json"
-EXPECTED_IMAGES = {"Naomi_Skin_BaseColor", "Naomi_Scrubs_BaseColor"}
+EXPECTED_IMAGES = {
+    "Naomi_Skin_BaseColor",
+    "Naomi_Scrubs_BaseColor",
+    "Naomi_Scrubs_Trousers_BaseColor",
+}
 REQUIRED_OBJECTS = {
     "Naomi_Bennett_Body",
     "Naomi_Bennett_Rig",
@@ -42,12 +50,27 @@ REQUIRED_OBJECTS = {
     "Naomi_Iris_R",
     "Naomi_Pupil_L",
     "Naomi_Pupil_R",
-    "Naomi_ID_Card",
 }
+UNAPPROVED_ACCESSORY_OBJECTS = {"Naomi_ID_Card", "Naomi_Badge_Clip"}
 
 
 def fail(message: str) -> None:
     raise RuntimeError("Naomi validation failed: " + message)
+
+
+def collection_dimensions(collection: bpy.types.Collection) -> list[float]:
+    points = [
+        obj.matrix_world @ Vector(corner)
+        for obj in collection.objects if obj.type == "MESH"
+        for corner in obj.bound_box
+    ]
+    if not points:
+        fail("the Naomi collection has no mesh bounds.")
+    return [
+        round(max(point[axis] for point in points)
+              - min(point[axis] for point in points), 4)
+        for axis in range(3)
+    ]
 
 
 def read_glb_json(path: Path) -> dict:
@@ -71,17 +94,55 @@ def validate_blend() -> None:
     missing = REQUIRED_OBJECTS - set(bpy.data.objects.keys())
     if missing:
         fail("the .blend is missing objects: " + ", ".join(sorted(missing)))
+    present_unapproved = UNAPPROVED_ACCESSORY_OBJECTS & set(bpy.data.objects.keys())
+    if present_unapproved:
+        fail("the .blend contains unapproved accessories: "
+             + ", ".join(sorted(present_unapproved)))
 
     rig = bpy.data.objects["Naomi_Bennett_Rig"]
     if rig.type != "ARMATURE" or len(rig.data.bones) < 40:
         fail("the .blend rig is missing or has fewer than 40 bones.")
     if rig.get("character_id") != "staff_bennett":
         fail("the .blend rig does not preserve the staff_bennett character ID.")
-    if not json.loads(rig.get("mpfb_macro_target_stack", "[]")):
+    macro_profile = json.loads(rig.get("morph_profile", "{}"))
+    if float(macro_profile.get("gender", 1.0)) != 0.0:
+        fail("the MPFB macro profile is not set to its documented female endpoint.")
+    target_stack = json.loads(rig.get("mpfb_macro_target_stack", "[]"))
+    if not target_stack:
         fail("the .blend is missing its MPFB morph-target provenance.")
+    if not any("african-female-" in item[0] for item in target_stack):
+        fail("the rig provenance does not include female African MPFB targets.")
+    if any("african-male-" in item[0] for item in target_stack):
+        fail("the rig provenance unexpectedly includes male African MPFB targets.")
     body = bpy.data.objects["Naomi_Bennett_Body"]
     if body.type != "MESH" or len(body.data.vertices) < 10000:
         fail("the .blend body is not a generated human mesh.")
+    if not any(
+        material is not None and material.name == "Naomi_Scrubs_Navy"
+        for material in body.data.materials
+    ):
+        fail("the source body has no scrub fabric material regions.")
+    if not any(
+        material is not None and material.name == "Naomi_Scrubs_Trousers_Navy"
+        for material in body.data.materials
+    ):
+        fail("the source body has no separate scrub-trouser material region.")
+    twist_mesh = bpy.data.objects["Naomi_Pulled_Back_Twists"]
+    head_group = body.vertex_groups.get("head")
+    if head_group is None:
+        fail("the source body has no MPFB head vertex group.")
+    head_y = [
+        vertex.co.y
+        for vertex in body.data.vertices
+        if any(
+            item.group == head_group.index and item.weight > 0.05
+            for item in vertex.groups
+        )
+    ]
+    if not head_y or min(vertex.co.y for vertex in twist_mesh.data.vertices) <= (
+        min(head_y) + max(head_y)
+    ) * 0.5:
+        fail("the pulled-back twist geometry crosses the face plane.")
     for image_name in EXPECTED_IMAGES:
         image = bpy.data.images.get(image_name)
         if image is None or image.packed_file is None:
@@ -118,7 +179,7 @@ def validate_glb() -> tuple[int, int]:
         elif not (GLB_PATH.parent / image["uri"]).is_file():
             fail(f"GLB references a missing external image: {image['uri']}")
     if not EXPECTED_IMAGES.issubset(embedded_images):
-        fail("GLB does not embed both generated color textures: "
+        fail("GLB does not embed all generated color textures: "
              + ", ".join(sorted(EXPECTED_IMAGES - embedded_images)))
 
     texture_indices: set[int] = set()
@@ -136,7 +197,7 @@ def validate_glb() -> tuple[int, int]:
         and textures[index]["source"] < len(images)
     }
     if not EXPECTED_IMAGES.issubset(referenced_images):
-        fail("GLB materials do not reference both generated color textures.")
+        fail("GLB materials do not reference all generated color textures.")
 
     triangle_count = 0
     accessors = document.get("accessors", [])
@@ -151,8 +212,7 @@ def validate_glb() -> tuple[int, int]:
                 triangle_count += accessors[primitive["attributes"]["POSITION"]]["count"] // 3
     if triangle_count <= 0:
         fail("GLB contains no triangle primitives.")
-    config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-    triangle_budget = int(config["mesh"]["triangle_budget"])
+    triangle_budget = int(CONFIG["mesh"]["triangle_budget"])
     if triangle_count > triangle_budget:
         fail(f"GLB exceeds its {triangle_budget}-triangle budget ({triangle_count}).")
     return triangle_count, len(skins[0]["joints"])
@@ -160,6 +220,13 @@ def validate_glb() -> tuple[int, int]:
 
 def validate_provenance(triangle_count: int) -> None:
     manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    if manifest.get("asset_version") != ASSET_VERSION:
+        fail("the character manifest version does not match the configured asset.")
+    if manifest.get("review", {}).get("visual_review") != "PENDING_OWNER_APPEARANCE_REVIEW":
+        fail("the manifest does not keep owner appearance review pending.")
+    checklist_path = manifest.get("review", {}).get("visual_qa_checklist", "")
+    if not (ROOT / checklist_path).is_file():
+        fail("the manifest references a missing visual QA checklist.")
     mpfb_input = next(
         (item for item in manifest.get("external_inputs", [])
          if item.get("source") == "makehumancommunity/mpfb2 v2.0.18"),
@@ -183,16 +250,22 @@ def validate_provenance(triangle_count: int) -> None:
             fail(f"the manifest output record is stale: {output['path']}")
     if manifest.get("build_metrics", {}).get("glb_triangles") != triangle_count:
         fail("the manifest triangle count does not match the exported GLB.")
+    collection = bpy.data.collections.get("Naomi_Bennett")
+    if collection is None:
+        fail("the Naomi collection is missing during dimension validation.")
+    source_dimensions = collection_dimensions(collection)
+    if manifest.get("build_metrics", {}).get("dimensions_m") != source_dimensions:
+        fail("the character manifest dimensions do not match the Blender source.")
 
 
 def validate_game_asset_manifest(triangle_count: int) -> None:
     manifest = json.loads(GAME_ASSET_MANIFEST_PATH.read_text(encoding="utf-8"))
-    asset = manifest.get("assets", {}).get("Naomi_Bennett_Base_v01")
+    asset = manifest.get("assets", {}).get(ASSET_STEM)
     if asset is None:
-        fail("the shared game asset manifest has no Naomi record.")
-    if asset.get("export_file") != "assets/exports/characters/Naomi_Bennett_Base_v01.glb":
+        fail("the shared game asset manifest has no configured Naomi version.")
+    if asset.get("export_file") != f"assets/exports/characters/{ASSET_STEM}.glb":
         fail("the shared game asset manifest points to the wrong GLB.")
-    if asset.get("source_file") != "assets/blender/characters/Naomi_Bennett_Base_v01.blend":
+    if asset.get("source_file") != f"assets/blender/characters/{ASSET_STEM}.blend":
         fail("the shared game asset manifest points to the wrong Blender source.")
     dimensions = asset.get("dimensions_m", [])
     if len(dimensions) != 3 or any(float(value) <= 0.0 for value in dimensions):
