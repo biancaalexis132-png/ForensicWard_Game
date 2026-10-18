@@ -4,7 +4,7 @@
 	"title": "Chapter 2: The Missing Hours",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored.",
+	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented.",
 	"objectives": [
 		{
 			"id": "obj_ch2_handoff",
@@ -89,6 +89,34 @@
 			"complete_when": {
 				"flag": "ch2_records_review_complete"
 			}
+		},
+		{
+			"id": "obj_ch2_voss_scope",
+			"text": "Meet Dr Voss privately and state only what the records establish.",
+			"complete_when": {
+				"flag": "ch2_voss_scope_recorded"
+			}
+		},
+		{
+			"id": "obj_ch2_voss_permissions",
+			"text": "With Dr Voss, identify the permissions the follow-up still needs and who owns them.",
+			"complete_when": {
+				"flag": "ch2_voss_permissions_recorded"
+			}
+		},
+		{
+			"id": "obj_ch2_voss_followup",
+			"text": "Agree an authorized follow-up with Dr Voss.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch2_voss_followup_written_process"
+					},
+					{
+						"flag": "ch2_voss_followup_independent_review"
+					}
+				]
+			}
 		}
 	],
 	"beats": [],
@@ -99,6 +127,34 @@
 				"chapter_completed": "ch1"
 			},
 			"text": "Morning, Doctor. The W0-B access ticket is still with Information Security. The useful news is that we have patients to see. I can show you the reports, but do not take my summary as your examination. Keep the clinical work separate from the audit request."
+		},
+		{
+			"staff_id": "staff_voss",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_voss_followup_written_process"
+					},
+					{
+						"flag": "ch2_voss_followup_independent_review"
+					}
+				]
+			},
+			"text": "The follow-up is in writing. Records still has your source request, Information Security has the credential question, and the clinical work stays with you and the nursing team."
+		},
+		{
+			"staff_id": "staff_voss",
+			"when": {
+				"flag": "ch2_records_review_complete"
+			},
+			"text": "Doctor. A private word, please, before this becomes a corridor rumour."
+		},
+		{
+			"staff_id": "staff_voss",
+			"when": {
+				"chapter_completed": "ch1"
+			},
+			"text": "Morning, Doctor. Clinical work first. Once your records memo is with Naomi, come and find me."
 		}
 	],
 	"interactions": [
@@ -366,6 +422,107 @@
 				}
 			],
 			"unavailable_body": "Complete the current records-review objective first. Clinical review remains a separate responsibility."
+		},
+		{
+			"id": "interaction_ch2_voss_scope",
+			"interactable_id": "character:staff_voss",
+			"title": "Dr Voss: institutional review",
+			"body": "Voss steps aside where the corridor is quiet.\n\nVoss: An incomplete entry can become an allegation very quickly. I'm not asking you to ignore it. I'm asking you to tell me what was actually established.\n\n[b]On record[/b]\nA transfer request to W0-B was logged under a staff credential marked inactive. The requester was not identified.\nA four-minute displayed mismatch and a repeated minute in a maintenance export are recorded as unresolved. Your source request is pending with Records.\n\nWhat do you tell her?",
+			"when": {
+				"flag": "ch2_records_review_complete"
+			},
+			"options": [
+				{
+					"id": "name_requester",
+					"label": "Say someone deliberately used the inactive credential",
+					"response": "Voss: Who? The audit shows a credential, not a person. Write that someone did it on purpose and you have made an allegation the record does not support. Tell me what was established."
+				},
+				{
+					"id": "claim_missing_time",
+					"label": "Say the export proves the ward lost four minutes",
+					"response": "Voss: Records has not verified the clock source or the export order. A displayed mismatch is a discrepancy, not a missing interval. What do you actually have?"
+				},
+				{
+					"id": "state_scope",
+					"label": "State only what is established, and what is not",
+					"flag": "ch2_voss_scope_recorded",
+					"response": "Player: An inactive credential appears in an archived transfer-request audit. It doesn't identify the person who used it. The export mismatch is reported and unresolved; clock authority, ordering, lineage and preservation are unverified.\n\nVoss: Good. Document patient-safety concerns separately from information-security concerns. They have different owners.\n\nFactual scope recorded. Talk to Voss again about what the follow-up still needs."
+				}
+			],
+			"unavailable_body": "Dr Voss wants the records memo acknowledged with Naomi first. Clinical work remains a separate responsibility.",
+			"expires_when": {
+				"flag": "ch2_voss_scope_recorded"
+			}
+		},
+		{
+			"id": "interaction_ch2_voss_permissions",
+			"interactable_id": "character:staff_voss",
+			"title": "Dr Voss: missing permissions",
+			"body": "Voss: Then separate the owners. What does the follow-up still need, and who has to authorize it?\n\n[b]Factual scope[/b]\nInactive credential in a transfer-request audit; user not identified. Export discrepancy unresolved; source request pending with Records.\n\n[b]Your current authority[/b]\nAttending clinical access only. No credential-audit authority, no source-system access and no authorization for W0-B.",
+			"when": {
+				"flag": "ch2_voss_scope_recorded"
+			},
+			"options": [
+				{
+					"id": "ask_w0b",
+					"label": "Ask Voss to authorize you to inspect W0-B yourself",
+					"response": "Voss: No. W0-B is Security's door, and any inspection needs their authorization and an escort. A records question is not a reason to open a sealed ward. Your access is unchanged."
+				},
+				{
+					"id": "ask_source_access",
+					"label": "Ask for direct access to the raw source system",
+					"response": "Voss: That isn't mine to hand out, and it shouldn't be yours to take. Records holds the source export; Information Security holds the credential audit. Your request stays with them."
+				},
+				{
+					"id": "list_permissions",
+					"label": "Record the missing permissions and their owners",
+					"flag": "ch2_voss_permissions_recorded",
+					"response": "Missing permissions recorded:\nInformation Security: audit of the inactive credential and who could use it.\nRecords: the pending preservation and source-export request, with clock and ordering metadata.\nSecurity: any question about W0-B access policy. No inspection is authorized.\nClinical follow-up stays with you and the nursing team.\n\nVoss: That is a list I can send to people who can act on it. Now tell me what you want to happen next."
+				}
+			],
+			"unavailable_body": "Dr Voss wants the records memo acknowledged with Naomi first. Clinical work remains a separate responsibility.",
+			"expires_when": {
+				"flag": "ch2_voss_permissions_recorded"
+			}
+		},
+		{
+			"id": "interaction_ch2_voss_followup",
+			"interactable_id": "character:staff_voss",
+			"title": "Dr Voss: authorized follow-up",
+			"body": "Voss: What do you want to happen next? Pick something I can authorize today.\n\n[b]Still pending[/b]\nRecords source request, preservation confirmation and reconciliation. Information Security credential audit. No new clinical finding has been documented in this review.",
+			"when": {
+				"flag": "ch2_voss_permissions_recorded"
+			},
+			"options": [
+				{
+					"id": "urgent_safety",
+					"label": "Press for an urgent patient-safety escalation",
+					"response": "Voss: On what finding? Nothing in this review documents a new risk to a patient. If your clinical assessment identifies one, escalate it through clinical channels at once and I will back you. It does not ride on an audit memo. Choose a follow-up the record supports."
+				},
+				{
+					"id": "written_process",
+					"label": "Request the written escalation process",
+					"flag": "ch2_voss_followup_written_process",
+					"response": "Voss: Reasonable. I'll send you the incident-escalation procedure and copy the Records and Information Security leads. Your source request stays open with Records; nothing is closed by this.\n\nFollow-up recorded: written process requested. The records discrepancy and the credential audit remain unresolved."
+				},
+				{
+					"id": "independent_review",
+					"label": "Propose an independent records reconciliation",
+					"flag": "ch2_voss_followup_independent_review",
+					"response": "Voss: I'd rather Records finished its own work first. But a neutral second review is a fair request, and I'll put it to the quality committee in writing. It does not replace your pending request.\n\nFollow-up recorded: independent reconciliation proposed. The source request, preservation confirmation and credential audit remain pending."
+				}
+			],
+			"unavailable_body": "Dr Voss wants the records memo acknowledged with Naomi first. Clinical work remains a separate responsibility.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch2_voss_followup_written_process"
+					},
+					{
+						"flag": "ch2_voss_followup_independent_review"
+					}
+				]
+			}
 		}
 	],
 	"sign_out": {

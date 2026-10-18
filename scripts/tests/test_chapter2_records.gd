@@ -102,7 +102,7 @@ func _complete_review(choice: String, flag: String) -> void:
 	_choose("Acknowledge the records follow-up")
 	_close()
 	check(_director().has_flag("ch2_records_review_complete"), "records slice can complete")
-	check(_director().get_current_objective().is_empty(), "current authored objectives complete")
+	check_eq(_director().get_current_objective().get("id", ""), "obj_ch2_voss_scope", "records slice hands on to Voss review")
 	check(not _director().has_completed("ch2"), "does not falsely finish full Chapter 2")
 	check_eq(_canonical(PatientManager.to_save_data()), patient, "populated clinical notes/findings/audit retained exactly")
 	check_eq(_canonical(EvidenceManager.to_save_data()), evidence, "no independent evidence or authentication invented")
