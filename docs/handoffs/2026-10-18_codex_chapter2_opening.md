@@ -1,6 +1,9 @@
 # Chapter 2 first playable opening
 
-Branch: `codex/chapter2-opening`. Main now includes owner-merged PRs #67 and #68.
+Branch: `codex/chapter2-opening`. Draft PR #69:
+https://github.com/biancaalexis132-png/ForensicWard_Game/pull/69.
+Recovery checkpoint `9a54ddf6db3152fe7c1ffd7e61967ac9a97c3b71` pushed
+and remotely verified; this link-only checkpoint follows. Main now includes owner-merged PRs #67 and #68.
 Other AI sessions were confirmed stopped; historical claims and open PRs were
 checked before editing. No competing current workstream was found. Face rigs,
 DialogueManager, AudioDirector, assets and generated texture dependencies are
