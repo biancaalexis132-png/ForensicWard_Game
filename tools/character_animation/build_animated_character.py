@@ -768,7 +768,7 @@ def paint_skin(face: Face, profile: dict) -> dict:
     ok = valid.reshape(detail, 2, detail, 2).all(axis=(1, 3))
     pts = p.reshape(-1, 3)
     rough = cfg["roughness"] + cfg["roughness_variation"] * (
-        0.7 * value_noise(pts, 0.0012, 1) + 0.3 * value_noise(pts, 0.006, 2))
+        0.4 * value_noise(pts, cfg.get("roughness_cell_m", 0.003), 1) + 0.6 * value_noise(pts, 0.012, 2))
     rough = np.clip(rough, 0.3, 0.95).reshape(detail, detail)
     orm = np.ones((detail, detail, 4), dtype=np.float32)
     orm[..., 1] = np.where(ok, rough, cfg["roughness"])
@@ -798,11 +798,13 @@ def paint_skin(face: Face, profile: dict) -> dict:
     sep = nt.nodes.new("ShaderNodeSeparateColor")
     nt.links.new(orm_node.outputs["Color"], sep.inputs["Color"])
     nt.links.new(sep.outputs["Green"], bsdf.inputs["Roughness"])
-    nrm_node = nt.nodes.new("ShaderNodeTexImage")
-    nrm_node.image = data_image(f"{stem}_Normal_{profile['version']}", nrm)
-    nmap = nt.nodes.new("ShaderNodeNormalMap")
-    nt.links.new(nrm_node.outputs["Color"], nmap.inputs["Color"])
-    nt.links.new(nmap.outputs["Normal"], bsdf.inputs["Normal"])
+    # At this texture density pores read as grain in game, so the normal map is opt-in.
+    if k > 0:
+        nrm_node = nt.nodes.new("ShaderNodeTexImage")
+        nrm_node.image = data_image(f"{stem}_Normal_{profile['version']}", nrm)
+        nmap = nt.nodes.new("ShaderNodeNormalMap")
+        nt.links.new(nrm_node.outputs["Color"], nmap.inputs["Color"])
+        nt.links.new(nmap.outputs["Normal"], bsdf.inputs["Normal"])
     bsdf.inputs["Specular IOR Level"].default_value = cfg["specular"]
     report.update({"roughness": cfg["roughness"], "roughness_variation": cfg["roughness_variation"],
                    "specular": cfg["specular"], "detail_size": detail})

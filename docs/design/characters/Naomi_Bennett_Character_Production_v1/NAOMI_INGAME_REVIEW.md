@@ -51,6 +51,19 @@ Captured in the Linux container on software OpenGL (lighting approximate), with 
 
 Still visibly wrong: the new brows read as drawn outlines rather than hair; the blink leaves a visible gap at full value; the speaking mouth is barely visible at this distance; the skin is glossy and plastic-looking; the shoes and trouser hems are lumpy; the eyes do not track the player; a small white square sits by the left temple (already in v03). None of this is approved.
 
+## v05 in game
+
+Captured the same way as v04 (Linux container, software OpenGL, face frozen; the gaze rig stays live and looks at the camera). Files are in `ingame_review_v05/`.
+
+- `v04_neutral.png` and `v05_neutral.png`: v04 against v05 at rest. The brows are now painted into the skin as one soft dark arc instead of outline strips.
+- `v05_blink.png`: the `blink` morph at full value. The eye closes, including the corners.
+- `v05_speak.png`: `mouth_open` while speaking; slightly wider than v04.
+- `v05_gaze_side.png`: from the side. At this distance the eye turn is too small to judge; the gaze test in `test_character_animation.gd` checks the angles instead.
+
+`v05_comparison.png` puts the five frames side by side. The skin has less sheen than v04 and reads a little darker; the base colour is unchanged. Shoes and hems are only visible in the Blender sheet `assets/renders/characters/Naomi_Bennett_v05_body_clips.png`.
+
+Still open: the white square by the left temple (from v03), brows that look blocky in extreme close-up, a small lash spike at the outer corner during the blink, and no Mac frame-time measurement of the shadow change. None of this is approved.
+
 ## What the in-game captures show (v02)
 
 Captured in a Linux container with Godot 4.7 on the software (llvmpipe) OpenGL renderer, so lighting and shading are approximate. Files are in `ingame_review_v02/`.

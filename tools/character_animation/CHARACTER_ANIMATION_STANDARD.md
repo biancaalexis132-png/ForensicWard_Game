@@ -51,7 +51,7 @@ An animated mesh makes every shadowed light around it redraw its shadow map each
 
 These run in the builder before the face morphs:
 - `face.brows.mode: "painted"`: brows painted as individual hairs into the skin texture, so they mipmap with the skin and read as brows at counter distance. `"strips"` keeps the older alpha-strip brows.
-- `skin`: roughness level and variation, specular, and a faint pore normal map. These are baked from a position map of the skin's UVs.
+- `skin`: roughness level, variation and cell size, specular, and an optional pore normal map (`pore_normal_strength`, off by default because it reads as grain in Godot). These are baked from a position map of the skin's UVs.
 - `clothing_tidy.shoes`: replaces creased shoes with a rounded clog cut from their convex hull, and copies the skin weights back.
 - `clothing_tidy.trousers`: makes each leg's hem straight, irons out the folds above it, and stretches the hem down over the shoe tops.
 

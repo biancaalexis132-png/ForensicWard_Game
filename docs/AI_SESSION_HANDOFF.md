@@ -1,5 +1,15 @@
 # AI session handoff
 
+## Naomi v05 refinement — Claude Code (cloud), 2026-10-18 18:40 UTC
+
+- **Objective:** fix v04's brows, blink gap, plastic skin, shoes and hems; add gaze; investigate the Mac's v04 draw-call jump.
+- **Branch / PR:** `claude/naomi-v05-refinement`, draft PR; verified at `da3ed52`, with main merged in (PRs #55, #56, #57).
+- **Completed:** see the 18:40 UTC entry in `docs/AI_HANDOFF.md`.
+- **Tests:** TestRunner 160/0; toolkit 6 OK; provenance 6 OK.
+- **Pending approvals:** Naomi v05 appearance; which v05 face (hand-built or MPFB) to keep.
+- **Next steps:** Mac frame-time check of the static shadow copies; MPFB face bake on top of v05.
+- **Constraints:** not approved or default; v01–v04 untouched; no patient movement; no Mac performance claims.
+
 ## Owner soundtrack approval update — Codex, October 18, 2026
 
 - **Current task:** record the owner's soundtrack decision; no animation or cutscene implementation in this scoped update. Broader takeover work remains for a separate continuation.

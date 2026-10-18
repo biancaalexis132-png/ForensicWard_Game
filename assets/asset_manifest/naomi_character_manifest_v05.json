@@ -6,7 +6,7 @@
   "approved": false,
   "builder": "tools/character_animation/build_animated_character.py",
   "profile": "tools/character_animation/profiles/staff_bennett.json",
-  "profile_sha256": "6c5df8bbb6ed6d80b634ac56e26b2c98528d452a7ffb618e3d94a3bd000e4418",
+  "profile_sha256": "5e0d076556fc1a6c52e5c5dfd08b54a3a68130c6852556dbd28465dd7fbec985",
   "clip_library": "tools/character_animation/clip_library.json",
   "blender_version": "5.2.2 LTS",
   "inputs": [

@@ -320,16 +320,16 @@
   },
   "blender_version": "5.2.2 LTS",
   "profile": "tools/character_animation/profiles/staff_bennett.json",
-  "profile_sha256": "6c5df8bbb6ed6d80b634ac56e26b2c98528d452a7ffb618e3d94a3bd000e4418",
+  "profile_sha256": "5e0d076556fc1a6c52e5c5dfd08b54a3a68130c6852556dbd28465dd7fbec985",
   "face_details": {
     "lash_faces": 38,
     "brow_faces": 0,
     "skin": {
       "texture_size": 2048,
       "brow_texels": 2085,
-      "roughness": 0.62,
-      "roughness_variation": 0.08,
-      "specular": 0.3,
+      "roughness": 0.58,
+      "roughness_variation": 0.05,
+      "specular": 0.35,
       "detail_size": 1024
     },
     "eye_bones": {
