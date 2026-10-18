@@ -1,0 +1,44 @@
+{
+	"schema_version": "0.1",
+	"notes": "Anomaly episodes and the evidence ladder (F0 audit section 7). An episode is a property of a place, an instrument or a time: its condition may only use time, shift, day, zone, story flags, world state and evidence, never a patient, a clinical action, a note, a staff relationship or the physician's strain. Episodes record what the story already shows; they never perform anything and never change clinical state. Readings are clues; testimony (patient_report, staff_testimony) is shown but never counts toward the ladder. Nothing here runs while forensic_ward/narrative/anomaly_enabled is false. Chapter 1 is capped at 'reported' so it stays ambiguous; later chapters' caps follow the owner-approved ladder when their content is approved.",
+	"chapter_caps": {
+		"ch1": "reported"
+	},
+	"episodes": [
+		{
+			"id": "anom_ch1_after_hours_intercom",
+			"chapter": "ch1",
+			"zone": "zone_clinical_wing",
+			"title": "After-hours intercom call to W0-B",
+			"when": {"flag": "intercom_heard"},
+			"manifestations": [{"audio_event": "ch1_after_hours_intercom"}],
+			"readings": [],
+			"mundane_readings": ["A misrouted page from another ward.", "A prank on the night shift."],
+			"notes": "Mirrors beat_b6_intercom, which plays the call and sets the flag."
+		},
+		{
+			"id": "anom_ch1_inactive_credential",
+			"chapter": "ch1",
+			"zone": "zone_clinical_wing",
+			"title": "W0-B door activity under an inactive credential",
+			"when": {"clue_acquired": "clue_access"},
+			"manifestations": [{"device_log": "w0b_access_inactive_credential"}],
+			"readings": ["clue_access"],
+			"mundane_readings": ["A credential that was never fully revoked.", "A logging fault after a system migration."]
+		},
+		{
+			"id": "anom_ch1_w0b_unease",
+			"chapter": "ch1",
+			"zone": "zone_clinical_wing",
+			"title": "Observation shutter closes after the door log is read",
+			"when": {"clue_acquired": "clue_access"},
+			"manifestations": [
+				{"audio_event": "ch1_w0b_unease"},
+				{"world_state": {"group": "interviewA_observation_shutter", "state": "closed"}}
+			],
+			"readings": [],
+			"mundane_readings": ["A member of staff closed the shutter on a round."],
+			"notes": "Mirrors beat_b6_unease, which plays the sound and closes the shutter."
+		}
+	]
+}

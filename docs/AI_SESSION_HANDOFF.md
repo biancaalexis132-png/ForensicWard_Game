@@ -12,6 +12,17 @@
 - **Next steps:** see the 2026-10-18 14:15 UTC entry in `docs/AI_HANDOFF.md`.
 - **Constraints:** off by default; no story, dialogue, clinical, save or world-layout change; Ward Zero and anomaly work untouched.
 
+## F3 anomaly evidence model — Claude Code, 2026-10-18 01:50 UTC
+
+- **Current objective:** F3 from `docs/F0_FOUNDATION_AUDIT.md` §7–§8: the anomaly evidence model and the rule that keeps clinical and supernatural events apart, flag off so Chapter 1 plays as today. Built on the owner's answer that Psychosomatic Bleed is presentation only.
+- **Branch / PR:** `claude/f3-anomaly-model`, draft PR #44 to `main` (assigned to the owner, subscribed for CI and review events). Code verified at `5283735`; `main` at `de5cbfc` merged in afterwards (docs-only conflicts in the four continuity/status files, both sides kept).
+- **Completed:** `data/anomalies.json` (three Chapter 1 episodes, cap `reported`); `scripts/narrative/AnomalyLedger.gd` in `Main` (provider `anomaly`, flag `forensic_ward/narrative/anomaly_enabled = false`); validator separation rules; clue `source_class`/`claim_state`; StoryLogic `zone` and `world_state` conditions; two EventBus signals; `scripts/tests/test_anomaly.gd` (15 tests).
+- **Tests:** TestRunner 127/0 and `tests/qa/run.py` all passed on `5283735`; after merging `main` at `de5cbfc`, TestRunner 142/0 and `tests/qa/run.py` exit 0 again.
+- **Exact stopping point:** everything committed and pushed; waiting on hosted CI and owner review.
+- **Pending approvals:** PR #44 review; F0 C2, C3, C4, C7 (pharmacology clue gates printed at boot as known exceptions), C11, the precise supernatural mechanism.
+- **Next steps:** fix CI if red; after the owner merges, remove the F3 row from the Active workstreams table. Never merge.
+- **Constraints:** psychiatric symptoms, diagnoses, medication, rapport and the physician's strain never count as anomaly evidence; anomaly events never change clinical state; the flag stays off; no Chapter 2–5 episodes without approval.
+
 ## Naomi procedural visual refinement — Copilot, 2026-10-18 13:31 UTC
 
 - **Objective:** generate and validate a versioned automated Naomi visual-review candidate; preserve v01, approved design boundaries and all runtime/clinical/save/gameplay systems.

@@ -7,7 +7,9 @@
       "source": "EHR",
       "provenance": "digitally_signed_document",
       "verified": false,
-      "description": "Current transfer summary references an archived identifier."
+      "description": "Current transfer summary references an archived identifier.",
+      "source_class": "document",
+      "claim_state": "reported"
     },
     {
       "id": "clue_roster",
@@ -15,7 +17,9 @@
       "source": "archive",
       "provenance": "scanned_historical_document",
       "verified": false,
-      "description": "A historical identifier resembles one used in a present-day transfer."
+      "description": "A historical identifier resembles one used in a present-day transfer.",
+      "source_class": "document",
+      "claim_state": "reported"
     },
     {
       "id": "clue_access",
@@ -23,7 +27,9 @@
       "source": "security_log",
       "provenance": "access_control_system",
       "verified": false,
-      "description": "Door activity appears under an inactive credential."
+      "description": "Door activity appears under an inactive credential.",
+      "source_class": "access_log",
+      "claim_state": "reported"
     }
   ],
   "hypotheses": [

@@ -16,6 +16,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 |---|---|---|---|---|---|
 | Naomi in-game review preview | `claude/naomi-review-preview` (draft PR #46) | Claude Code | `6b6893d` | `scripts/world/{Character,CharacterVisualPreview}.gd`, `scripts/tests/test_character_preview.gd`, `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md` and `ingame_review_v02/` | Waiting on owner review of the model in game; preview is off by default |
 | Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` (code/test checkpoint; docs-only follow-up is pushed) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Merged in PR #45 at `a202caf` (row kept for history; the owner removes it). v02 still fails visual criteria. |
+| Foundation F3 anomaly model | `claude/f3-anomaly-model` (draft PR to `main`) | Claude | `5283735` (see entry) | `data/anomalies.json`, `data/clues.json` (source_class, claim_state), `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/narrative/{AnomalyLedger,ChapterDirector,StoryLogic}.gd`, `scripts/autoload/{ContentRegistry,EventBus}.gd` (EventBus: two signals), `scripts/content/*`, `project.godot` (one setting), `scripts/tests/test_anomaly.gd`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER}.md` | Merged in PR #44 at `fec5933` (row kept for history; the owner removes it). |
 
 ### 2026-10-18 13:32 UTC · Copilot · Naomi handoff follow-up
 
@@ -196,6 +197,46 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 **Notes for the other agent**
 - Do not set Naomi as Bennett's default visual until the owner approves the appearance. Do not commit the GLB `.import` sidecars or extracted textures that the editor import creates.
 - `audio/voice_profiles.json:10` still describes Dr Rahman as "Clinical pharmacist"; the owner-approved role is Consultant Psychiatrist (D1). Not changed here.
+
+### 2026-10-18 01:35 UTC · Claude Code · Foundation F3 anomaly model
+
+- **Branch:** `claude/f3-anomaly-model` (based on `main` at `9558c77`)
+- **Latest verified commit:** `528373577ff8044dc1ec617bdebc935dba79c3d1` "F3: anomaly separation, flag and save tests; status, id registry and F0 notes"
+- **Confirmed on GitHub:** `git ls-remote origin claude/f3-anomaly-model` printed `5283735…` at 01:30 UTC
+- **Pull request:** draft to `main` (opened after this entry; see `docs/AI_SESSION_HANDOFF.md`)
+- **State:** finished
+
+**Accomplished**
+- `data/anomalies.json`: three Chapter 1 episodes (after-hours intercom, inactive credential, W0-B unease) that mirror existing story beats, Chapter 1 capped at `reported`.
+- `scripts/narrative/AnomalyLedger.gd`: node in `Main`, provider `anomaly`, records episodes and computes the evidence ladder. Off unless `forensic_ward/narrative/anomaly_enabled` (ships `false`).
+- Validator separation rules in `scripts/content/ContentValidator.gd`: allowed condition kinds, no clinical ids, no testimony as a cause, closed manifestations, readings need `source_class`, clinical files never name `anom_*` or reading clues, Chapter 1 cap, C7 known exceptions reported at boot.
+- Clues gained `source_class` and `claim_state`; StoryLogic gained `zone` and `world_state` conditions; EventBus gained `anomaly_episode_observed`, `anomaly_threshold_changed`.
+- Psychosomatic Bleed is presentation only (owner decision): the ledger never hears objectivity or bleed signals, and a test proves it.
+
+**Files modified**
+- See the claimed files in the workstream row; `scripts/tests/test_anomaly.gd` is new (15 tests).
+
+**Unfinished**
+- none
+
+**Known errors**
+- none
+
+**Tests** (on `5283735`)
+- `godot --headless --path . res://scripts/tests/TestRunner.tscn`: 127 passed, 0 failed.
+- `GODOT=<godot> python3 tests/qa/run.py`: "All executed checks passed".
+- CI: not observed yet.
+
+**Dependencies not available to remote agents**
+- none for F3.
+
+**Next steps**
+1. Owner reviews the F3 draft PR. Do not merge from an agent session.
+2. After merge: remove this row; the next foundation work follows `docs/F0_FOUNDATION_AUDIT.md` §8 "Later".
+
+**Notes for the other agent**
+- The anomaly flag stays off; do not enable it or add Chapter 2–5 episodes without owner approval.
+- Pharmacology `clue_gates` on PT-001 and PT-002 are known exceptions pending F0 C7; never make a gated clue an anomaly reading.
 
 ### 2026-10-18 01:45 UTC · Claude Code · Environment Stage 6 Ward Zero
 

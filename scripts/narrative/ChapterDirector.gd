@@ -87,6 +87,12 @@ func get_current_objective() -> Dictionary:
 	return {}
 
 
+## Read-only story state for other evaluators (AnomalyLedger): flags of the
+## current chapter and every earlier one, in StoryLogic.evaluate()'s shape.
+func get_story_context() -> Dictionary:
+	return _story_state().duplicate(true)
+
+
 func has_flag(flag: String) -> bool:
 	return flag in _flags
 

@@ -319,6 +319,13 @@ Each is a draft PR from `main` (after PR #19 merges, or merging `main` in if it 
 4. With the flag on in a test, the Chapter 1 episodes fire once each, survive save/load without re-firing, and the ladder stays at `reported`.
 5. Validator: an anomaly condition naming `pt_elias_ward` or `obs_mutism` fails; a clinical rule naming an `anom_*` id fails; the PT-001/PT-002 gates are listed as known exceptions.
 
+**As built (F3 branch `claude/f3-anomaly-model`, 2026-10-18).** Built on the owner's answer that Psychosomatic Bleed is presentation only. Points that differ from the plan above:
+- `AnomalyLedger` is a node in `Main` (group `anomaly_ledger`, save provider `anomaly`) beside `ChapterDirector`, not an autoload: it reads the chapter's story context from the director, and this leaves the autoload list in `project.godot` untouched.
+- Episodes name their zone with `zone`, matching the `zone` field on world entries. StoryLogic gained two conditions, `zone` and `world_state`, both usable by story beats too.
+- Acceptance test 3 is checked by playing the same Chapter 1 run three times (ledger enabled, disabled, removed) and comparing `capture_state()` without the `anomaly` section. The enabled run matches too, so the ledger changes nothing but its own record even with the flag on.
+- The ledger listens only to story, evidence, time, zone and world-state signals; a test fails if it is ever connected to a clinical, dialogue, trust, objectivity or bleed signal.
+- The C7 known exceptions are computed by `ContentValidator.separation_exceptions()` and printed once at boot. A pharmacology gate on an anomaly reading clue is an error.
+
 ### Later (unchanged from the package order, after F1–F3)
 
 Elias provenance and polarity (`unknown` ≠ negative); Mara and two-patient sign-out; archival documents; protagonist creator and identity persistence; title screen and credits so the soundtrack contexts fire; Chapter 1 staging and polish; then Chapters 2–5 module by module.

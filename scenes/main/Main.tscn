@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/world/Chapter1Ward.tscn" id="2_world"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/narrative/ChapterDirector.gd" id="10_director"]
 [ext_resource type="Script" path="res://scripts/world/AudioZoneTracker.gd" id="11_audio_zones"]
 [ext_resource type="Script" path="res://scripts/world/ZoneDirector.gd" id="12_zones"]
+[ext_resource type="Script" path="res://scripts/narrative/AnomalyLedger.gd" id="13_anomaly"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
@@ -30,6 +31,9 @@ script = ExtResource("1_main")
 
 [node name="ChapterDirector" type="Node" parent="."]
 script = ExtResource("10_director")
+
+[node name="AnomalyLedger" type="Node" parent="."]
+script = ExtResource("13_anomaly")
 
 [node name="AudioZoneTracker" type="Node" parent="."]
 script = ExtResource("11_audio_zones")
