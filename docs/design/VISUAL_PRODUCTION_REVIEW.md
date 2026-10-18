@@ -322,14 +322,16 @@ V4 to V6 overlap with the Stage 6 work the environment thread is doing now. If i
 
 ## Open decisions for the owner
 
-| # | Decision | Recommendation |
-|---|---|---|
-| D1 | Rahman's role: Consultant Psychiatrist (v1.1) or Clinical Pharmacist (GDD) | Consultant Psychiatrist, per your note on the guide |
-| D2 | Hale's on-screen title | Security Director (matches data and audio) |
-| D3 | Approve the written casting in the guide (Bennett Black woman, Rahman South Asian woman; others open) | Approve the written guide; regenerate the images |
-| D4 | Ward Zero decommissioning date and signatory | Leave unnamed until the Chapter 3 to 4 story is approved |
-| D5 | Is 02:17 on the echo-camera stills meant to rhyme with the Chapter 2 opening time? | Yes, as a quiet link, if the story keeps 02:17 |
-| D6 | Mara's voice | Choose when her dossier is approved |
-| D7 | Does Ward Zero need its own station, or does it reuse Stage 5's abandoned station? | A smaller ward station (W3), different in layout and era |
-| D8 | Concept boards: mark superseded or remove | Mark superseded; keep for history |
-| D9 | Commit the v1.1 design bible package into `docs/design/` so agents can cite it | Yes |
+**Update 2026-10-18:** the owner answered D1–D3 in the project chat (18:05 UTC) and placed Mara's introduction in Chapter 2. Decided values are recorded in [`CHARACTER_VISUAL_CANON.md`](CHARACTER_VISUAL_CANON.md), which supersedes the proposals in §1–2 wherever they differ. The concept boards are now marked as not for modelling (D8 as recommended, READMEs only; nothing deleted). D4–D7 and D9 are still open.
+
+| # | Decision | Recommendation | Status |
+|---|---|---|---|
+| D1 | Rahman's role: Consultant Psychiatrist (v1.1) or Clinical Pharmacist (GDD) | Consultant Psychiatrist, per your note on the guide | Decided: Consultant Psychiatrist (voice direction fixed in PR #48) |
+| D2 | Hale's on-screen title | Security Director (matches data and audio) | Decided: Security Director; professional security attire, no tactical armour |
+| D3 | Approve the written casting in the guide (Bennett Black woman, Rahman South Asian woman; others open) | Approve the written guide; regenerate the images | Partly decided: Naomi Black woman, early 40s, natural twists, navy scrubs; Voss woman, early 50s. Rahman's ethnicity and other faces stay provisional |
+| D4 | Ward Zero decommissioning date and signatory | Leave unnamed until the Chapter 3 to 4 story is approved | Open |
+| D5 | Is 02:17 on the echo-camera stills meant to rhyme with the Chapter 2 opening time? | Yes, as a quiet link, if the story keeps 02:17 | Open |
+| D6 | Mara's voice | Choose when her dossier is approved | Open |
+| D7 | Does Ward Zero need its own station, or does it reuse Stage 5's abandoned station? | A smaller ward station (W3), different in layout and era | Open |
+| D8 | Concept boards: mark superseded or remove | Mark superseded; keep for history | Applied as recommended (READMEs only, boards kept); owner can reverse |
+| D9 | Commit the v1.1 design bible package into `docs/design/` so agents can cite it | Yes | Open |

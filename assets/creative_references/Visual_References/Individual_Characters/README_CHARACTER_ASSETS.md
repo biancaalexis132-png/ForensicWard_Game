@@ -1,5 +1,7 @@
 # Ashcroft State Forensic Hospital — Individual Character Reference Pack v1.0
 
+> **Status, 2026-10-18:** the owner has decided roles and key traits; see `docs/design/CHARACTER_VISUAL_CANON.md`. The six portraits and `ensemble_initial_concept_board_UNAPPROVED.png` remain provisional references, not modelling sources. The ensemble board mislabels roles and ages and must not be modelled.
+
 Six individual illustrated concept sheets. **Do not treat the generated artwork as canon.** Image-generation may produce inconsistent face/age/wardrobe details; the written names, roles and ages in each sheet override any incompatible image labels.
 
 ## Established / proposed character list
