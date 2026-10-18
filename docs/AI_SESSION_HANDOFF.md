@@ -1,5 +1,19 @@
 # AI session handoff
 
+## Naomi Chapter 1 acting-cue implementation — Copilot, 2026-10-18
+
+**Objective:** implement the approved, additive performance cues for Naomi Bennett using the canonical source package, without touching the parallel Naomi model-building branch.
+
+**Branch / checkpoint:** `biancaalexis132-png-naomi-chapter1-acting`, based on verified `origin/main` `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`. Draft PR #35 to `main` is open at https://github.com/biancaalexis132-png/ForensicWard_Game/pull/35. The implementation commit `9d27aa1dd1566d3b6c4adaaffed821b189383562` and following continuity checkpoint have been pushed and verified; inspect the live branch ref for its latest documentation-only SHA. Never merge.
+
+**Completed:** controller loads `docs/design/characters/Naomi_Acting_Cues_v1/naomi_acting_cues.json` without duplicating it; semantic cue data dispatches through `CharacterActingAdapter`, optional AnimationPlayers/blend shapes and rig adapter groups. Only `staff_bennett` is wired. Dialogue completion/interruption is surfaced by `EventBus.dialogue_line_finished`; missing voices retain subtitle behavior, stale callbacks are ignored, and loading resets transient acting state without adding a provider/schema field. Current placeholder and future rig do not depend on specific bone names. No wording, IDs, clinical statuses/content, story behavior, save format, or model-builder files changed.
+
+**Files:** implementation in `scripts/acting/{NaomiActingController,CharacterActingAdapter}.gd` and UIDs; surgical integration in `scripts/world/Character.gd`, `scripts/autoload/EventBus.gd`, `systems/audio/AudioDirector.gd`; tests in `scripts/tests/test_naomi_acting.gd` and `tests/audio/TestAudio.gd`; docs in `docs/AUDIO.md` and the current continuity/status files.
+
+**Validation:** cue validator passed all five IDs/voice mappings. Godot 4.7 import exited 0. `TestRunner.tscn`: 122 passed / 0 failed. `TestAudio.tscn`: 336 passed / 0 failed. `git diff --check` passed. Full `tests/qa/run.py` exited 1 in `tests/music_ai/test_generate_music.py`; JSON 6/6 and audio manifest 3/3 passed; music pipeline 1 passed / 2 failed with exact error `Unknown encoder 'libvorbis'`. Runner did not reach subsequent pharmacology/QA/GLB/Godot checks. Hosted CI not observed.
+
+**Stop point / next actions:** PR #35 is ready for owner review; no merge. Keep model integration capability-driven. Owner/Mac review of realistic-model expression, gestures, transitions, render and mix remains outstanding. Do not touch model-builder, Blender, character asset, provenance or visual-render files. No pending user decisions block this work.
+
 ## Merge reconciliation — Codex, 2026-10-17
 
 The owner requested resolution of conflicts in the pending GitHub push. Git inspection identified PR #27's `claude/ashcroft-soundtrack` at `412a429a6e717ea00c96d2a9b8ad1987b82c7a58` conflicting with `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125`. This continuation (`codex/ashcroft-soundtrack-conflicts-cont-1`) merges main without rewriting history. The initial merge required two add/add continuity resolutions; a subsequent merge of `origin/main` `dd247bed93fca9bb95cbf2864eae964975358c23` (PR #29) required reconciling the active-workstream table as well; both workstreams' records are retained below. Runtime/audio/data content is unchanged by the conflict resolution. Validation exposed a pre-existing timing-sensitive audio test; its cleanup assertion now waits for the actual players with a bounded deadline instead of a fixed 3.6-second timer.

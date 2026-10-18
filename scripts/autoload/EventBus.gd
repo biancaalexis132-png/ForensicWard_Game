@@ -130,6 +130,9 @@ signal subtitle_shown(line_id: String, speaker_name: String, text: String, durat
 ## The line ended or was skipped; hide its subtitle.
 @warning_ignore("unused_signal")
 signal subtitle_cleared(line_id: String)
+## Reports whether a dialogue line ended naturally or was interrupted.
+@warning_ignore("unused_signal")
+signal dialogue_line_finished(line_id: String, completed: bool)
 
 # --- Staff trust and access --------------------------------------------------------
 
