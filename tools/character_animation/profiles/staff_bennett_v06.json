@@ -1,0 +1,128 @@
+{
+  "character_id": "staff_bennett",
+  "display_name": "Naomi Bennett",
+  "version": "v06",
+  "production_status": "ANIMATION_DEVELOPMENT_PENDING_OWNER_REVIEW",
+  "source_blend": "assets/blender/characters/Naomi_Bennett_v03.blend",
+  "objects": {
+    "rig": "Naomi_Bennett_Rig",
+    "face_mesh": "Naomi_Bennett_Body",
+    "eye_l": "Naomi_Eye_L",
+    "eye_r": "Naomi_Eye_R"
+  },
+  "forward": [
+    0.0,
+    -1.0,
+    0.0
+  ],
+  "up": [
+    0.0,
+    0.0,
+    1.0
+  ],
+  "bones": {
+    "pelvis": "pelvis",
+    "spine_lower": "spine_01",
+    "spine_mid": "spine_02",
+    "chest": "spine_03",
+    "neck": "neck_01",
+    "head": "head",
+    "clavicle_l": "clavicle_l",
+    "clavicle_r": "clavicle_r",
+    "upperarm_l": "upperarm_l",
+    "upperarm_r": "upperarm_r",
+    "lowerarm_l": "lowerarm_l",
+    "lowerarm_r": "lowerarm_r",
+    "hand_l": "hand_l",
+    "hand_r": "hand_r"
+  },
+  "eye_bones": {
+    "l": "eye_l",
+    "r": "eye_r"
+  },
+  "face": {
+    "mouth_line_z_below_eyes_m": 0.0625,
+    "mouth_corner_x_of_eye_x": 0.84,
+    "jaw_pivot_offset_from_eye_mid_m": [
+      0.0,
+      0.055,
+      -0.045
+    ],
+    "lid_corner_deg": [
+      55.0,
+      72.0
+    ],
+    "lashes": {
+      "material": "Naomi_Lash",
+      "color_srgb_hex": "#140d0a",
+      "length_m": 0.0045,
+      "width_m": 0.0012
+    },
+    "brows": {
+      "mode": "painted",
+      "color_srgb_hex": "#1c130e",
+      "seed": 7,
+      "inner_m": -0.016,
+      "outer_m": 0.03,
+      "height_m": 0.0225,
+      "arch_m": 0.0028,
+      "tail_drop_m": 0.004,
+      "inner_half_m": 0.0032,
+      "tail_half_m": 0.001,
+      "fill": 0.45,
+      "hairs": 420,
+      "hair_length_m": [
+        0.0045,
+        0.0075
+      ],
+      "hair_width_m": [
+        0.00018,
+        0.00028
+      ],
+      "hair_feather_m": 0.00015
+    }
+  },
+  "skin": {
+    "roughness": 0.58,
+    "roughness_variation": 0.05,
+    "roughness_cell_m": 0.003,
+    "specular": 0.35,
+    "pore_size_m": 0.0009,
+    "pore_normal_strength": 0.0
+  },
+  "outputs": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v06.blend",
+    "glb": "assets/exports/characters/Naomi_Bennett_v06.glb",
+    "renders": "assets/renders/characters",
+    "manifest": "assets/asset_manifest/naomi_character_manifest_v06.json",
+    "report": "tools/character_animation/reports/staff_bennett_v06_rig_report.json"
+  },
+  "clothing_weight_reference": {
+    "builder": "tools/blender/characters/build_naomi_v03.py",
+    "steps": [
+      "align_rig_to_mesh",
+      "relax_pose"
+    ],
+    "meshes": [
+      "Naomi_Scrub_Top",
+      "Naomi_Scrub_Trousers",
+      "Naomi_Practical_Shoes"
+    ],
+    "exclude_bone_prefixes": [
+      "lowerarm",
+      "hand",
+      "index",
+      "middle",
+      "ring",
+      "pinky",
+      "thumb"
+    ]
+  },
+  "clothing_tidy": {
+    "shoes": "Naomi_Practical_Shoes",
+    "trousers": "Naomi_Scrub_Trousers",
+    "hem_max_height_m": 0.3,
+    "hem_band_m": 0.06,
+    "hem_shoe_overlap_m": 0.015
+  }
+}
