@@ -62,6 +62,27 @@ establish technical readiness. No new default character or cutscene was set.
 
 ## Remaining gates / next task
 
+## Executed final validation / recovery
+
+- Runtime implementation `44b2ff5418b027868ec562d8d98569ad06d909b2` pushed and
+  confirmed via git ls-remote. A recovery/tool-viewport checkpoint follows.
+- `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`:
+  exit 0, Python 6+4+5+3, pharmacology 0 failures, QA 19/0/0, GLBs 161/0,
+  TestRunner **187/0**, boot OK, audio **336/0**, `CH1_SEQUENCE_DONE`, and
+  `All executed checks passed`. Logs: scratch `work/qa-visemes-final.log`.
+- Final helper (respects project/caller viewport) with isolated writable XDG
+  directories and `timeout 25s Godot --headless --path . -s res://tools/godot/review_dialogue_visemes.gd`:
+  exit 0, `VISEME_REVIEW_DONE`, no engine errors/leak warnings. This is normal
+  real-time mode, not accelerated headless fixed-fps without movie audio.
+- Visually inspected differing mouth poses from the included 2.5-second Linux
+  Godot excerpt. H.264/AAC, 640×480, 30fps, ffprobe duration 2.500000. Source
+  project/assets unchanged. This is a diagnostic, not the final Mac review.
+- `git diff --check` passed. Hosted CI not yet observed. No failed runtime tests,
+  disabled tests, new clinical content, source asset edits or generated import
+  file cleanup. Blender validation was not repeated on unchanged assets.
+
+## Next exact task
+
 Run the diagnostic on the target Mac, check natural speaking/blinking/gaze and
 gestures, compare static shadow behavior and the 33 ms budget using existing
 bounded tools. Source lid/hem issues remain tracked. Once technical gates pass,

@@ -4,7 +4,7 @@
 
 Owner approved animations shown so far. `codex/dialogue-viseme-integration`
 adds approximate text-driven mouth shapes through CharacterFaceRig, with jaw
-fallback and pause/skip/completion/load coverage (TestRunner 184/0). True phoneme
+fallback and pause/skip/completion/load coverage (TestRunner 187/0, ten new tests). True phoneme
 timing is unavailable. Full QA and publication checkpoint are recorded in the
 dedicated `docs/handoffs/2026-10-18_codex_dialogue_visemes.md` before handoff.
 Mac visual/performance review remains required; no cosmetic additions or

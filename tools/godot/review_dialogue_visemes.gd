@@ -5,8 +5,6 @@ extends SceneTree
 ## Optional engine --write-movie captures this eight-second diagnostic.
 
 func _initialize() -> void:
-	root.size = Vector2i(640, 480)
-	root.content_scale_size = Vector2i(640, 480)
 	CharacterVisualPreview.set_requests({})
 	_run.call_deferred()
 
