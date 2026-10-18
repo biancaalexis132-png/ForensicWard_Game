@@ -166,7 +166,7 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - **Branch:** `claude/cutscene-director` (based on `main` at `f9dba61`, then `origin/main` `37a2a71` merged in cleanly)
 - **Latest verified commit:** see the PR head; code commit `0ecf743816d89078e06ae82ed90f7f05998fc659` "Add review-only CutsceneDirector and Chapter 1 graphic-novel pilot"
 - **Confirmed on GitHub:** `git ls-remote origin claude/cutscene-director` printed `0ecf743` before the merge and docs commits; the final head is recorded in the PR
-- **Pull request:** draft PR to `main` (see PR list)
+- **Pull request:** draft PR #59 to `main`; hosted `validate` passed on `19969f7`; `main` `e9262b4` (PR #58) merged in afterwards, docs-only conflicts in the session handoff and tracker resolved by keeping both sides
 - **State:** finished first milestone (framework plus pilot), review-only
 
 **Accomplished**
@@ -191,8 +191,8 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 **Tests** (on `0ecf743`, Linux container, Godot 4.7 stable SHA-512 verified)
 - `godot --headless --path . res://scripts/tests/TestRunner.tscn`: 171 passed, 0 failed (17 new in `test_cutscene.gd`).
 - `python3 tests/qa/test_cutscenes.py`: 5 OK.
-- `python3 tests/qa/run.py`: see the PR description for the full result on the final head.
-- CI: see the PR.
+- `python3 tests/qa/run.py` on `19969f7`: exit 0; TestRunner 174/0, QA 19/0/0, GLB 158/0, Pharmacology 0 failures, audio 336/0, Chapter 1 audio sequence done, cutscene contract 5 OK. Re-run after the `e9262b4` merge: see the latest PR head.
+- CI: hosted `validate` success on `19969f7` (PR #59).
 
 **Dependencies not available to remote agents**
 - Forward+ look, frame time and memory on the 8 GB M1; listening check of `mus_waiting_room` under ward ambience. The SSK packages (read through the owner's folder access).
@@ -340,7 +340,7 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - `python3 tests/qa/run.py --godot /Applications/Godot.app/Contents/MacOS/Godot`: stopped at the music test (2 failures above).
 - The same runner with only the music step removed: exit 0. test_json OK, audio manifest OK, pharmacology 0 failures, QA 19/0/0, GLB validation 156 assets / 0 failures, TestRunner 147/0, boot OK, audio 336/0, Ch1 audio sequence done.
 - Toolkit unit tests: 5/5 OK.
-- CI: see the PR.
+- CI: hosted `validate` success on `19969f7` (PR #59).
 
 **Dependencies not available to remote agents**
 - Owner's Mac Blender 5.2.2 and MPFB2 install. The build is reproducible in any Blender 5.2.2; MPFB was not used.

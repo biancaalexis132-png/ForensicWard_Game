@@ -21,7 +21,7 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 
 | PR | Branch | State |
 |---|---|---|
-| (new) | `claude/cutscene-director` | Draft, review-only CutsceneDirector and 7-panel Chapter 1 graphic-novel pilot; not approved, off in the campaign |
+| #59 | `claude/cutscene-director` | Draft, CI green, review-only CutsceneDirector and 7-panel Chapter 1 graphic-novel pilot; not approved, off in the campaign |
 | (new) | `claude/naomi-animation-v04` | Draft, Naomi v04 animation, face controls and the cast animation standard; preview default v04; supersedes #51; not approved |
 | #51 | `claude/naomi-local-build` | Draft, Mac validation build `v04_local`; folded into `claude/naomi-animation-v04` |
 | #49 | `claude/naomi-v03` | Merged (Naomi v03, development baseline only) |

@@ -3,13 +3,23 @@
 ## Graphic-novel cutscenes — Claude Code (cloud), 2026-10-18 18:35 UTC
 
 - **Objective:** reusable review-only CutsceneDirector and a seven-panel Chapter 1 pilot in the painted graphic-novel style; later chapters in order after approval.
-- **Branch / PR:** `claude/cutscene-director`, draft PR to `main`. Code commit `0ecf743`; `main` `37a2a71` merged in.
+- **Branch / PR:** `claude/cutscene-director`, draft PR #59 to `main`. Code commit `0ecf743`; `main` merged in up to `e9262b4`.
 - **Completed:** director, registry, review scene, pilot data, painted plates and their generator, review stills, `docs/CUTSCENES.md` reconciliation with both SSK packages.
-- **Tests:** TestRunner 171/0; cutscene contract 5 OK; full QA in the PR.
-- **Exact stopping point:** pushed; waiting on owner review of the pilot.
+- **Tests:** full `tests/qa/run.py` exit 0 (TestRunner 174/0); hosted CI green on `19969f7`.
+- **Exact stopping point:** pushed, conflicts with `main` resolved; waiting on owner review of the pilot on the Mac.
 - **Pending approvals:** pilot visuals and placement; staff-entry stand-in plate; music cue (`mus_waiting_room` vs `mus_main_theme_alt`); Day 1 morning vs afternoon canon; Naomi likeness.
 - **Next steps:** see the 2026-10-18 18:35 UTC entry in `docs/AI_HANDOFF.md`.
 - **Constraints:** cinematics off in the campaign; no invented dialogue or captions; no clinical, story or save writes; reveal boundaries (Ch3 Ward Zero entry, Ch4 S09 loop, three Ch5 endings); never Git on the SSK drive.
+
+## Character canon reconciliation and Rahman base model — Claude Code (cloud), 2026-10-18 18:30 UTC
+
+- **Objective:** fold the owner's 2026-10-18 18:05 UTC decisions (Rahman Consultant Psychiatrist; Hale Security Director, no tactical armour; Naomi, Voss, Elias, Mara traits; Mara from Chapter 2) into the docs, then build the next unfinished character in the visual lane: Dr Leila Rahman's base model, as a review candidate.
+- **Branches / PRs:** `claude/character-canon-reconciliation` (docs PR, from `main` `e9e9171`); `claude/rahman-base-v01` (model PR, next).
+- **Completed:** `docs/design/CHARACTER_VISUAL_CANON.md` (decided vs provisional); D1–D3 status in `VISUAL_PRODUCTION_REVIEW.md`; GDD amendment row; "do not model" READMEs on the concept and ensemble boards (D8 as recommended; nothing deleted).
+- **Exact stopping point:** docs PR being opened; Rahman build not started. Container has `bpy` 5.2.2 and an MPFB2 v2.0.18 clone in the session scratchpad (not committed).
+- **Pending approvals:** D4–D7, D9; every face, skin and casting detail not in the canon page's Decided table.
+- **Next steps:** build Rahman with a new builder under `tools/blender/characters/rahman/` and a new profile `tools/character_animation/profiles/staff_rahman.json`; do **not** edit `build_animated_character.py` (Naomi v05 thread owns it) or Naomi's builders.
+- **Constraints:** review candidate only; no `data/staff.json` entry; no runtime binding; no performance claims without Mac measurements.
 
 ## Owner soundtrack approval update — Codex, October 18, 2026
 
