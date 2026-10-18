@@ -27,6 +27,7 @@ extends Node
 signal transition_finished()
 
 const SAVE_KEY: String = "zones"
+const GROUP: String = "zone_director"
 const TIME_PAUSE_REASON: String = "zone_transition"
 const CHECK_SECONDS: float = 0.25
 ## Metres from a seamless connection's anchor at which the zone behind it starts streaming.
@@ -52,6 +53,7 @@ var _fade: ColorRect = null
 
 ## Called by Main once the world has built its start zone.
 func setup(world: AuthoredWorld, player: FirstPersonController) -> void:
+	add_to_group(GROUP)
 	_world = world
 	_player = player
 	current_zone_id = world.start_zone_id

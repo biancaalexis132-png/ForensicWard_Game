@@ -48,7 +48,7 @@ func _ready() -> void:
 		if panel_id == "info":
 			_active_interaction = "")
 	for signal_name: String in ["observation_recorded", "patient_note_saved", "clinical_action_committed",
-			"clue_acquired", "hypothesis_updated", "shift_started", "trust_changed"]:
+			"clue_acquired", "hypothesis_updated", "shift_started", "trust_changed", "zone_changed"]:
 		var argc: int = 0
 		for info: Dictionary in EventBus.get_signal_list():
 			if info["name"] == signal_name:
@@ -284,7 +284,11 @@ func _story_state() -> Dictionary:
 	for chapter_id: String in _archive:
 		chapters[chapter_id] = {"flags": _archive[chapter_id].get("flags", [])}
 	chapters[_chapter_id] = {"flags": _flags}
-	return {"talked_to": _talked_to, "flags": _flags, "chapters": chapters}
+	# Location belongs to ZoneDirector's existing save provider. Read it here
+	# instead of keeping a second copy that can drift on same-zone loads.
+	var zones: Node = get_tree().get_first_node_in_group(ZoneDirector.GROUP) if is_inside_tree() else null
+	var zone: String = zones.current_zone_id if zones != null else str(ContentRegistry.get_world().get("start_zone", ""))
+	return {"talked_to": _talked_to, "flags": _flags, "chapters": chapters, "zone": zone}
 
 
 func _current_state() -> Dictionary:

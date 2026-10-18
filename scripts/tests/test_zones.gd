@@ -42,6 +42,53 @@ func after_each() -> void:
 	super.after_each()
 
 
+# Authored-condition fixture only: no new campaign or clinical content.
+class ZoneStoryDirector extends ChapterDirector:
+	func _story() -> Dictionary:
+		return {
+			"objectives": [{"id": "fixture_arrive", "text": "Fixture arrival",
+				"complete_when": {"zone": "zone_security_admin"}}],
+			"beats": [{"id": "fixture_arrival", "when": {"zone": "zone_security_admin"},
+				"actions": [{"flag": "fixture_arrived"}]}]
+		}
+
+
+func _install_zone_story() -> ChapterDirector:
+	_main.get_node("ChapterDirector").free()
+	var director: ChapterDirector = ZoneStoryDirector.new()
+	director.name = "ChapterDirector"
+	_main.add_child(director)
+	return director
+
+
+func test_zone_conditions_follow_real_walk_and_update_objective() -> void:
+	var director: ChapterDirector = _install_zone_story()
+	await runner.get_tree().process_frame
+	check_eq(director.get_story_context().get("zone", ""), CLINICAL, "initial story location")
+	check_eq(director.get_current_objective().get("id", ""), "fixture_arrive", "arrival objective active")
+	await _walk_into_security()
+	check(director.has_flag("fixture_arrived"), "arrival beat runs from zone event without manual evaluation")
+	check(director.get_current_objective().is_empty(), "arrival completes objective")
+	check_eq(_main.get_node("HUD").objective_text, "", "HUD clears completed objective")
+	_player().place(Vector3(0.0, 0.05, -10.0), PI)
+	_zones().update_now()
+	check_eq(director.get_story_context().get("zone", ""), CLINICAL, "return updates story location")
+	check_eq(director.to_save_data()["chapters"]["ch1"]["fired"].count("fixture_arrival"), 1, "arrival remains deduplicated")
+
+
+func test_zone_story_context_survives_same_zone_load_and_new_game() -> void:
+	var director: ChapterDirector = _install_zone_story()
+	await _walk_into_security()
+	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "save away from start zone")
+	check_eq(SaveManager.load_game(TEST_SAVE_SLOT), OK, "reload without changing zone")
+	check_eq(director.get_story_context().get("zone", ""), SECURITY, "same-zone reload restores location")
+	check(director.has_flag("fixture_arrived"), "saved arrival retained")
+	SaveManager.reset_all()
+	await runner.get_tree().process_frame
+	check_eq(director.get_story_context().get("zone", ""), CLINICAL, "new game uses start location")
+	check(not director.has_flag("fixture_arrived"), "new game does not replay old arrival")
+
+
 # --- Chapter 1 is unchanged --------------------------------------------------------------
 
 func test_chapter1_loads_only_the_clinical_wing() -> void:
