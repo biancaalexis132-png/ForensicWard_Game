@@ -4,7 +4,7 @@
 
 | Task | State | Dependencies | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Review the nine-file Jordan Vale v2 package without changing its source or activating runtime content | Review/handoff pushed through `ef22d09`; draft PR #38 open to `main`; merged `origin/main` `47a68f4` is being integrated without history rewrite | Owner’s limited narrative direction; qualified psychiatrist review still required | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; continuity docs | JSON syntax PASS; `git show --check` and `git diff --check` PASS before merge; hosted `validate` passed on `b79ea11` (3m50s); no check reported on `ef22d09`; no CP schema validator; full local Godot QA not run | Resolve and verify the main merge; owner resolves identity/source questions; psychiatrist reviews exact case material before schema/runtime implementation |
+| Review the nine-file Jordan Vale v2 package without changing its source or activating runtime content | Merge from current main `47a68f4` resolved and pushed at `0279db8`; PR #38 remains draft and GitHub reports mergeable; hosted `validate` pending | Owner’s limited narrative direction; qualified psychiatrist review still required | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; continuity docs | JSON syntax PASS; `git show --check` and `git diff --check` PASS; source package unchanged; hosted `validate` pending on `0279db8`; no CP schema validator; full local Godot QA not run | Check hosted validation; owner resolves identity/source questions; psychiatrist reviews exact case material before schema/runtime implementation |
 
 Review findings: Chapter 1 still labels Jordan provisional/not canon; v1 package is absent from fetched repository history; historical diagnosis source and all clinical screenplay details remain pending; safety/legal/collateral scope and provenance need review; current runtime has no CP loader/lifecycle and SaveManager remains v3. See `REVIEW.md` for source citations, severity, dispositions and implementation gates. No source files, patient data, clinical rules, runtime, or save schema changed.
 
@@ -19,8 +19,6 @@ Coordination: Naomi acting-cue PR #35, Naomi character-base PR #37, and Elias/Ra
 ## Elias and Rahman character production specifications — merged in PR #39
 
 `docs/design/characters/Elias_Ward_Character_Production_v1/` and `docs/design/characters/Rahman_Character_Production_v1/` are design/production specifications merged to `main` at `3887b66` (included in `47a68f4`). They do not by themselves approve clinical content, canon, animation, or runtime integration; use their review gates before implementation.
-
-## Naomi Chapter 1 acting cues — Copilot, 2026-10-18
 
 ## Naomi Chapter 1 acting cues — Copilot, 2026-10-18 (merged in PR #35)
 

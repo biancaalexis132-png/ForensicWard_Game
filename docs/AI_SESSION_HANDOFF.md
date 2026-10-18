@@ -1,5 +1,17 @@
 # AI session handoff
 
+## Jordan Vale review merge reconciliation — Copilot, 2026-10-18 00:54 UTC
+
+**Objective:** Resolve the four continuity/status conflicts by merging latest `origin/main` into the Jordan documentation-review branch, preserving all upstream Naomi/production work and the Jordan review. Do not alter the nine Jordan source files, runtime, SaveManager, clinical rules, or clinical approval state; keep PR #38 draft and do not merge it.
+
+**Branch / base / checkpoint:** `biancaalexis132-png-jordan-vale-v2-review`, merged with `origin/main` `47a68f40b09423b3253091e25b4715ce82447113`. Merge commit `0279db890abb05483feb6b08463d63a738b51810` is pushed and verified by `git ls-remote`. PR #38 is open and draft; GitHub reports `MERGEABLE`, with `validate` pending on this head.
+
+**Completed:** Resolved conflicts in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, and `docs/PROJECT_STATUS.md`. Preserved Naomi character PR #37 and Elias/Rahman production package PR #39 additions from main, and corrected current status to show #35, #36, #37, and #39 merged. Naomi refinement remains independent. The Jordan `REVIEW.md` and all nine source package files are unchanged.
+
+**Validation on `0279db8`:** JSON syntax parse passed; `git show --check --oneline HEAD` passed; explicit nine-file comparison against `origin/docs/jordan-vale-v2` passed. Hosted PR #38 `validate` is pending (run 39084497112); GitHub currently reports mergeable despite check state `UNSTABLE`. Full local Godot QA was not run because this is a docs-only Jordan review/merge and no Jordan runtime or schema changed.
+
+**Next exact steps:** 1) Push the continuity checkpoint and recheck the newest PR #38 validation/mergeability state. 2) Keep the PR draft and do not merge. 3) Owner resolves the canon/source/authority questions and a qualified psychiatrist reviews case-specific content before any schema/runtime proposal. No clinical content has been approved or activated.
+
 ## Jordan Vale CP-001 v2 clinical-content and implementation review — Copilot, 2026-10-18 00:37 UTC
 
 **Objective:** Review the nine-file Jordan Vale CP-001 v2 case package as documentation only. Identify content/provenance gaps and implementation blockers; do not change the source package, activate content/rules, modify the runtime or SaveManager, or merge.
