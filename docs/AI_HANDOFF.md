@@ -12,7 +12,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Jordan Vale CP-001 v2 review | `biancaalexis132-png-jordan-vale-v2-review` (draft PR #38) | Copilot / current session | `16d55f64af6e2139e509b4ed9810fa462150e423` (verified remote checkpoint) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; review handoff updates in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md` | Draft review PR open; awaiting owner and psychiatrist decisions |
+| Jordan Vale CP-001 v2 review | `biancaalexis132-png-jordan-vale-v2-review` (draft PR #38) | Copilot / current session | `b79ea11d675f40aeee3420676890e4a3ba8bcd7f` (verified remote checkpoint; hosted CI passed) | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; review handoff updates in `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md` | Draft review PR open; awaiting owner and psychiatrist decisions |
 | Naomi Chapter 1 acting cues | `biancaalexis132-png-naomi-chapter1-acting` (PR #35) | Copilot / current session | `3e4dfea90830222c46e0bb7cbe92ad515e7ccef3` (verified remote checkpoint) | `scripts/acting/**`, `scripts/world/Character.gd`, `scripts/autoload/EventBus.gd`, `systems/audio/AudioDirector.gd`, `tests/audio/TestAudio.gd`, `scripts/tests/test_naomi_acting.gd`, `docs/AUDIO.md` | Draft PR open; awaiting owner review |
 | Ashcroft soundtrack | `claude/ashcroft-soundtrack` (PR #27) | Claude / Codex conflict resolution authorized by owner | `f59da089582ef27a6e58fc5eecc21a48d381a876` (verified remote checkpoint) | Audio workstream files unchanged; continuity merge and `tests/audio/TestAudio.gd` bounded cleanup assertion | Conflicts resolved against PR #29 main; 116 gameplay / 334 audio passed; owner review and listening remain |
 
@@ -59,6 +59,17 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 00:50 UTC · Copilot · CP-001 review CI checkpoint
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review` (based on `origin/main` `03f1585a62bd33db7dcfe8116b50db71f8ee171b`)
+- **Latest verified review checkpoint:** `b79ea11d675f40aeee3420676890e4a3ba8bcd7f` "Record CP-001 review PR state"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned `b79ea11d675f40aeee3420676890e4a3ba8bcd7f`.
+- **Pull request:** draft PR #38 to `main`, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/38.
+- **CI:** hosted `validate` check passed on this checkpoint in 3m50s: https://github.com/biancaalexis132-png/ForensicWard_Game/actions/runs/39083958547/job/117546508688. This is not clinical validation.
+- **State:** documentation-only review is complete and pushed; no clinical-content or runtime changes.
+
+The findings and approval gates in the preceding review entry remain current. Owner and qualified psychiatrist decisions are pending. The final PR-state checkpoint below this entry is documentation-only; refresh the live PR/check state after any further push.
 
 ### 2026-10-18 00:37 UTC · Copilot · Jordan Vale CP-001 v2 review
 

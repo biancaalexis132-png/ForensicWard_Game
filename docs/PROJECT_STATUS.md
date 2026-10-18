@@ -2,7 +2,7 @@
 
 What each game system's state is, and where the evidence lives. Agents update this file whenever a system changes state (see `AGENTS.md` §7). Commit SHAs are what was on GitHub when the row was last checked. Anything not on GitHub is not listed as done.
 
-**Last GitHub state verified:** 2026-10-18 against `origin/main` `03f1585a62bd33db7dcfe8116b50db71f8ee171b` after PR #36. Fetched refs and `git ls-remote` confirmed the main and reviewed source branch tips. The pre-review open-PR query was empty; draft review PR #38 has since been opened. This review did not rerun the full Godot suite or observe hosted CI; prior local baseline results remain documented below and in the handoffs.
+**Last GitHub state verified:** 2026-10-18 against `origin/main` `03f1585a62bd33db7dcfe8116b50db71f8ee171b` after PR #36. Fetched refs and `git ls-remote` confirmed the main and reviewed source branch tips. Draft review PR #38 is open. Its hosted `validate` check passed in 3m50s on `b79ea11`; this docs-only review did not run the full local Godot suite, and CI does not constitute clinical validation. Prior local baseline results remain documented below and in the handoffs.
 
 Status meanings:
 
