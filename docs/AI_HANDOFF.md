@@ -14,6 +14,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Soundtrack owner approval documentation | `codex/soundtrack-owner-approval` | Codex | `97687726d935cb62598a21bf8f77012b89d42178` | `audio/manifest.json`, generated `docs/AUDIO_MANIFEST.md`, `docs/AUDIO.md`; additive soundtrack-only continuity entries | Owner APPROVED all 11 tracks for private/personal/noncommercial use; no audio or runtime changes. Draft PR creation blocked by GitHub API Forbidden. |
 | Naomi v03 visual development | `claude/naomi-v03` (draft PR, see Log) | Claude Code | see Log | `tools/blender/characters/{build_naomi_v03.py,naomi_v03.json}`, `assets/**/Naomi_Bennett_v03*`, `assets/renders/characters/`, `assets/asset_manifest/naomi_character_manifest_v03.json`, `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, Naomi production docs | Merged in PR #49 (row kept for history; the owner removes it). v03 is the development baseline, not production |
 | Naomi v04 animation and cast animation standard | `claude/naomi-animation-v04` (draft PR, see Log) | Claude Code (cloud) | see Log | `tools/character_animation/**`, `assets/**/Naomi_Bennett_v04*`, `scripts/world/{CharacterAnimationRig,CharacterFaceRig,CharacterVisualPreview,Character}.gd`, `scripts/acting/CharacterActingAdapter.gd`, `scripts/tests/test_character_{animation,preview}.gd`, `scripts/tests/test_naomi_acting.gd`, the four continuity docs | Waiting on owner review of v04 in game and Mac validation by the local thread; supersedes PR #51 |
 | Naomi in-game review preview | `claude/naomi-review-preview` (draft PR #46) | Claude Code | `6b6893d` | `scripts/world/{Character,CharacterVisualPreview}.gd`, `scripts/tests/test_character_preview.gd`, `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md` and `ingame_review_v02/` | Waiting on owner review of the model in game; preview is off by default |
@@ -158,6 +159,42 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 · Codex · Owner soundtrack approval
+
+- **Branch:** `codex/soundtrack-owner-approval`, based on verified `origin/main` `b5c9d3a7387af36859d9783151c8f6d9d11028dd` (merge of PR #53).
+- **Latest verified checkpoint:** `97687726d935cb62598a21bf8f77012b89d42178` "Record owner approval for the existing private soundtrack". `git ls-remote origin refs/heads/codex/soundtrack-owner-approval` returned this exact SHA after push. This handoff commit follows it.
+- **Pull request:** none created; `gh pr list` and `gh pr create --draft --base main --head codex/soundtrack-owner-approval` return `Post "https://api.github.com/graphql": Forbidden`. Git fetch/push work. No merge performed.
+- **State:** requested approval documentation complete; no animation, gameplay or cutscene implementation included.
+
+**Owner decision and supersession**
+- Source: explicit owner soundtrack approval in Codex chat, October 18, 2026. Listening approval **APPROVED** for all 11 existing tracks, including Suno-generated songs.
+- Project scope **PRIVATE / PERSONAL / NONCOMMERCIAL**, with no current plans to sell or publicly distribute. Commercial licensing verification **NOT VERIFIED / NOT REQUIRED FOR CURRENT SCOPE**. This is not independent rights verification or a legally copyright-free/commercial-distribution claim.
+- Preserve files, cue identifiers, timing and integration. Ask before removal, replacement or regeneration. Reuse the soundtrack for suitable graphic-novel cutscenes; propose additions only for an identified meaningful narrative/cinematic gap. Review licensing and distribution rights again before any public release.
+- This direct owner instruction supersedes historical pending-listening statements for these tracks and the takeover note's current-scope licensing blocker. It is a scoped override of `AGENTS.md` §5's commercial-use prerequisite for the 11 existing tracks, not a general relaxation for other assets. No additional approval is needed to record this decision.
+- Conflict avoidance: Naomi PR #53 is merged in the fetched base. Its older active-workstream row and continuity entries are historical; this change adds soundtrack-only entries and preserves Naomi content and outstanding visual approvals.
+
+**Files modified**
+- `audio/manifest.json`: only the 11 soundtrack entries' approval/scope/licensing metadata; source provenance and measured fields retained.
+- `docs/AUDIO_MANIFEST.md`: regenerated using `tools/audio/build_manifest.py`, not edited by hand.
+- `docs/AUDIO.md`: current owner decision, reuse/preservation rules and superseded pending-listening wording.
+- `docs/AI_SESSION_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/PROJECT_STATUS.md`, `docs/AI_HANDOFF.md`: scoped current decision and continuation status; historical log entries preserved.
+
+**Tests**
+- `/workspace/tools/audio-docs-venv/bin/python tools/audio/build_manifest.py --check`: passed; generated manifest/table consistent.
+- `python3 tests/qa/test_audio_manifest.py`: 3 passed.
+- Independent comparison against base manifest: exactly 11 entries changed, and only review/scope/licensing fields; all 11 actual audio SHA-256 hashes still match. IDs, durations, integration, source/notes, `audio/cues.json`, AudioDirector and audio files unchanged.
+- `python3 tests/qa/run.py --godot /workspace/tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`: exit 0 on the base gameplay with the documentation/manifest checkpoint above. JSON 6/6, audio manifest 3/3, music AI mock tests 3/3; pharmacology 0 failures; TestQA 19 passed / 0 failed / 0 skipped; GLB import 157/157; TestRunner 155 passed / 0 failed; boot passed; TestAudio 336 passed / 0 failed; Chapter 1 audio sequence completed. This Linux run does not resolve the separately reported Mac libvorbis issue. Godot-generated untracked texture/import outputs were removed; tracked assets unchanged.
+- Hosted CI and Mac execution: not observed/not run. Owner listening approval is recorded as an owner decision, not inferred from headless tests.
+
+**Dependencies / remaining work**
+- Installed a documentation-tool venv outside the checkout (`/workspace/tools/audio-docs-venv`, numpy/scipy/soundfile) to run the existing manifest generator; no audio generation or FFmpeg replacement.
+- GitHub API access blocks draft PR creation and open-PR conversation inspection; secure credential values were not requested or printed.
+- No further soundtrack listening approval is pending. Future public-release rights review remains required. Other audio, Naomi appearance and broader takeover tasks retain their separate gates.
+
+**Next steps**
+1. Open a draft PR from `codex/soundtrack-owner-approval` to `main` once GitHub API access is available; owner controls merging.
+2. For the separate cinematic continuation, audit existing cues against candidate narrative transitions and reuse approved tracks before proposing additions. Do not alter approved audio to satisfy older pending-review instructions.
 
 ### 2026-10-18 16:45 UTC · Claude Code (cloud) · Naomi v04 animation and cast animation standard
 
