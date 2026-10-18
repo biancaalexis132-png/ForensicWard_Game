@@ -1,0 +1,115 @@
+{
+  "_note": "Plate list for the review-only Chapter 1 pilot (cs_ch01_first_shift_pilot). Sources are this repository's own Blender renders and Naomi v04 in-game captures; crops are in source pixels [x, y, w, h]. Regenerate with tools/cutscenes/paint_panels.py.",
+  "output_dir": "assets/cutscenes/ch01_pilot",
+  "size": [
+    1600,
+    900
+  ],
+  "seed": 1101,
+  "plates": [
+    {
+      "id": "p01_staff_entry",
+      "source": "assets/renders/stage4/visitor_screening.png",
+      "crop": null,
+      "depicts": "Arrival at the screened staff entry (stand-in for the screenplay's staff entry; no exterior asset exists)",
+      "brush_radius": 5,
+      "brush_angle": 24,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    },
+    {
+      "id": "p02_badge_door",
+      "source": "assets/renders/stage4/security_corridor.png",
+      "crop": [
+        0,
+        110,
+        1010,
+        568
+      ],
+      "depicts": "Badge reader and secure door: sign-in taken seriously",
+      "brush_radius": 5,
+      "brush_angle": 32,
+      "warmth": 0.8,
+      "ink": 0.75,
+      "vignette": 0.4
+    },
+    {
+      "id": "p03_office_desk",
+      "source": "assets/renders/stage2/psychiatrist_office.png",
+      "crop": [
+        230,
+        250,
+        800,
+        450
+      ],
+      "depicts": "The psychiatrist's desk: monitor, closed chart, phone",
+      "brush_radius": 4,
+      "brush_angle": 20,
+      "warmth": 0.9,
+      "ink": 0.65,
+      "vignette": 0.35
+    },
+    {
+      "id": "p04_corridor",
+      "source": "assets/renders/stage2/corridor_20m.png",
+      "crop": null,
+      "depicts": "The working clinical corridor",
+      "brush_radius": 5,
+      "brush_angle": 28,
+      "warmth": 0.85,
+      "ink": 0.7,
+      "vignette": 0.35
+    },
+    {
+      "id": "p05_naomi_station",
+      "source": "docs/design/characters/Naomi_Bennett_Character_Production_v1/ingame_review_v04/v04_listen.png",
+      "crop": [
+        260,
+        140,
+        1440,
+        810
+      ],
+      "depicts": "Naomi Bennett (v04, unapproved likeness) at the nursing station",
+      "likeness_review": "REQUIRED: Naomi v04 is not an approved likeness",
+      "brush_radius": 3,
+      "brush_angle": 18,
+      "warmth": 1.0,
+      "ink": 0.3,
+      "vignette": 0.4,
+      "preserve": 0.6
+    },
+    {
+      "id": "p06_records_shelf",
+      "source": "assets/renders/stage2/records_archive.png",
+      "crop": [
+        420,
+        40,
+        860,
+        484
+      ],
+      "depicts": "Records archive shelving and sealed boxes, unlabelled (no Ward Zero reference)",
+      "brush_radius": 5,
+      "brush_angle": 30,
+      "warmth": 1.0,
+      "ink": 0.7,
+      "vignette": 0.45
+    },
+    {
+      "id": "p07_corridor_return",
+      "source": "assets/renders/stage2/corridor_20m.png",
+      "crop": [
+        240,
+        135,
+        800,
+        450
+      ],
+      "depicts": "First-person push down the corridor, dissolving into gameplay",
+      "brush_radius": 4,
+      "brush_angle": 28,
+      "warmth": 0.85,
+      "ink": 0.6,
+      "vignette": 0.3
+    }
+  ]
+}

@@ -19,6 +19,16 @@
 - **Next steps:** investigate v04's 533k primitives and 828 draw calls (cloud v05 thread). Re-measure on the Mac after each Naomi version.
 - **Constraints:** never run git in the SSK copy; the clean clone is `~/ForensicWard_Campaign_Publish`.
 
+## Graphic-novel cutscenes — Claude Code (cloud), 2026-10-18 18:35 UTC
+
+- **Objective:** reusable review-only CutsceneDirector and a seven-panel Chapter 1 pilot in the painted graphic-novel style; later chapters in order after approval.
+- **Branch / PR:** `claude/cutscene-director`, draft PR #59 to `main`. Code commit `0ecf743`; `main` merged in up to `ac89efd` (PR #60).
+- **Completed:** director, registry, review scene, pilot data, painted plates and their generator, review stills, `docs/CUTSCENES.md` reconciliation with both SSK packages.
+- **Tests:** full `tests/qa/run.py` exit 0 (TestRunner 174/0); hosted CI green on `19969f7`.
+- **Exact stopping point:** pushed, conflicts with `main` resolved; waiting on owner review of the pilot on the Mac.
+- **Pending approvals:** pilot visuals and placement; staff-entry stand-in plate; music cue (`mus_waiting_room` vs `mus_main_theme_alt`); Day 1 morning vs afternoon canon; Naomi likeness.
+- **Next steps:** see the 2026-10-18 18:35 UTC entry in `docs/AI_HANDOFF.md`.
+- **Constraints:** cinematics off in the campaign; no invented dialogue or captions; no clinical, story or save writes; reveal boundaries (Ch3 Ward Zero entry, Ch4 S09 loop, three Ch5 endings); never Git on the SSK drive.
 ## Character canon reconciliation and Rahman base model — Claude Code (cloud), 2026-10-18 18:30 UTC
 
 - **Objective:** fold the owner's 2026-10-18 18:05 UTC decisions (Rahman Consultant Psychiatrist; Hale Security Director, no tactical armour; Naomi, Voss, Elias, Mara traits; Mara from Chapter 2) into the docs, then build the next unfinished character in the visual lane: Dr Leila Rahman's base model, as a review candidate.

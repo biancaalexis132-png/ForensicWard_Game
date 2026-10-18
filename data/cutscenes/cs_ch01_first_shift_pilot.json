@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "cutscene_id": "cs_ch01_first_shift_pilot",
+  "chapter_id": "ch1",
+  "source_scene_id": "CH01_S01",
+  "source": "docs/design/screenplays/ForensicWard_Complete_Campaign_Package_v1/chapters/CH01_THE_ADMISSION_EXPANDED_SCREENPLAY.md, Scene 01 'New Badge' (staff entry / clinical corridor). Panel order follows the Five-Chapter Cinematic Master v1 pilot proposal, reconciled in docs/CUTSCENES.md.",
+  "mode": "review_only",
+  "approved": false,
+  "trigger": {
+    "kind": "manual_preview"
+  },
+  "fallback_action": "restore_world",
+  "music": {
+    "cue": "mus_waiting_room",
+    "ambience": "duck",
+    "ambience_db": -8.0,
+    "fade": 2.0
+  },
+  "panels": [
+    {
+      "id": "p01_staff_entry",
+      "duration_seconds": 8.0,
+      "transition": "fade_black",
+      "transition_seconds": 1.2,
+      "layers": [
+        {"texture": "res://assets/cutscenes/ch01_pilot/p01_staff_entry.png", "parallax": 1.0},
+        {"texture": "res://assets/cutscenes/ch01_pilot/glaze.png", "parallax": 1.8}
+      ],
+      "motion": {"zoom_from": 1.06, "zoom_to": 1.02, "pan_from": [0.015, 0.0], "pan_to": [-0.01, 0.0]},
+      "caption_ref": "institution.name",
+      "line_id": null
+    },
+    {
+      "id": "p02_badge_door",
+      "duration_seconds": 6.0,
+      "transition": "dissolve",
+      "transition_seconds": 0.6,
+      "layers": [
+        {"texture": "res://assets/cutscenes/ch01_pilot/p02_badge_door.png", "parallax": 1.0},
+        {"texture": "res://assets/cutscenes/ch01_pilot/glaze.png", "parallax": 1.8}
+      ],
+      "motion": {"zoom_from": 1.02, "zoom_to": 1.05, "pan_from": [-0.01, 0.005], "pan_to": [0.01, 0.0]},
+      "caption_ref": "chapter.ch1.title",
+      "line_id": null
+    },
+    {
+      "id": "p03_office_desk",
+      "duration_seconds": 6.0,
+      "transition": "dissolve",
+      "transition_seconds": 0.5,
+      "layers": [
+        {"texture": "res://assets/cutscenes/ch01_pilot/p03_office_desk.png", "parallax": 1.0},
+        {"texture": "res://assets/cutscenes/ch01_pilot/glaze.png", "parallax": 1.8}
+      ],
+      "motion": {"zoom_from": 1.03, "zoom_to": 1.03, "pan_from": [0.012, -0.008], "pan_to": [-0.012, 0.004]},
+      "caption_ref": null,
+      "line_id": null
+    },
+    {
+      "id": "p04_corridor",
+      "duration_seconds": 9.0,
+      "transition": "dissolve",
+      "transition_seconds": 0.7,
+      "layers": [
+        {"texture": "res://assets/cutscenes/ch01_pilot/p04_corridor.png", "parallax": 1.0},
+        {"texture": "res://assets/cutscenes/ch01_pilot/glaze.png", "parallax": 1.8}
+      ],
+      "motion": {"zoom_from": 1.0, "zoom_to": 1.04, "pan_from": [0.0, 0.0], "pan_to": [0.0, 0.0]},
+      "caption_ref": null,
+      "line_id": null
+    },
+    {
+      "id": "p05_naomi_station",
+      "duration_seconds": 10.0,
+      "transition": "dissolve",
+      "transition_seconds": 0.7,
+      "layers": [
+        {"texture": "res://assets/cutscenes/ch01_pilot/p05_naomi_station.png", "parallax": 1.0},
+        {"texture": "res://assets/cutscenes/ch01_pilot/glaze.png", "parallax": 1.8}
+      ],
+      "motion": {"zoom_from": 1.02, "zoom_to": 1.05, "pan_from": [-0.008, 0.0], "pan_to": [0.004, -0.006]},
+      "caption_ref": null,
+      "line_id": null,
+      "notes": "No dialogue: ch1_b2_bennett_001 is Naomi's first line in the playable Scene 03 handover and would be heard twice. Naomi v04 is not an approved likeness."
+    },
+    {
+      "id": "p06_records_shelf",
+      "duration_seconds": 6.0,
+      "transition": "dissolve",
+      "transition_seconds": 0.6,
+      "layers": [
+        {"texture": "res://assets/cutscenes/ch01_pilot/p06_records_shelf.png", "parallax": 1.0},
+        {"texture": "res://assets/cutscenes/ch01_pilot/glaze.png", "parallax": 1.8}
+      ],
+      "motion": {"zoom_from": 1.05, "zoom_to": 1.02, "pan_from": [0.01, 0.0], "pan_to": [-0.008, 0.0]},
+      "caption_ref": null,
+      "line_id": null,
+      "notes": "Sealed administrative records, unlabelled. No Ward Zero name, signage or imagery (reveal boundary: Chapter 3)."
+    },
+    {
+      "id": "p07_corridor_return",
+      "duration_seconds": 7.0,
+      "frame": "full_bleed",
+      "transition": "cut",
+      "transition_seconds": 0.0,
+      "layers": [
+        {"texture": "res://assets/cutscenes/ch01_pilot/p07_corridor_return.png", "parallax": 1.0},
+        {"texture": "res://assets/cutscenes/ch01_pilot/glaze.png", "parallax": 1.8}
+      ],
+      "motion": {"zoom_from": 1.0, "zoom_to": 1.08, "pan_from": [0.0, 0.0], "pan_to": [0.0, 0.0]},
+      "caption_ref": null,
+      "line_id": null,
+      "notes": "Full-bleed first-person push; the director's exit fade dissolves it into gameplay."
+    }
+  ]
+}

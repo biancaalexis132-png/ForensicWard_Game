@@ -22,6 +22,7 @@ Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (appr
 | PR | Branch | State |
 |---|---|---|
 | (new) | `claude/naomi-v05-refinement` | Draft, Naomi v05 brows, skin, blink, gaze, shoes and hems; preview default v05; not approved |
+| #59 | `claude/cutscene-director` | Merged at `092ab64` (review-only CutsceneDirector and 7-panel Chapter 1 graphic-novel pilot; not approved, off in the campaign) |
 | #53 | `claude/naomi-animation-v04` | Draft, Naomi v04 animation, face controls and the cast animation standard; preview default v04; supersedes #51; not approved |
 | #51 | `claude/naomi-local-build` | Draft, Mac validation build `v04_local`; folded into `claude/naomi-animation-v04` |
 | #49 | `claude/naomi-v03` | Merged (Naomi v03, development baseline only) |
@@ -97,6 +98,7 @@ Remote branches may remain after merge. Branch existence alone does not prove ac
 | Anomaly evidence model and clinical/supernatural separation (F3): `data/anomalies.json`, `AnomalyLedger`, validator separation rules, clue `source_class` and `claim_state` | Done, not merged | `claude/f3-anomaly-model` | `test_anomaly.gd` (15 tests: flag off changes nothing, ledger on/off/removed give identical game state, Chapter 1 capped at reported, save/load without re-firing, no clinical signal connected, objectivity never reveals the anomaly, testimony never counts, validator rules) | Flag `forensic_ward/narrative/anomaly_enabled` ships off; Psychosomatic Bleed is presentation only (owner, 2026-10-17); pharmacology clue gates on PT-001 and PT-002 are reported at boot as known exceptions until F0 C7 is decided |
 | Mara Ellis, Chapters 2–5 content, title screen | Planned | | v1.1 handoff | Clinical and narrative approval needed first |
 | Environment Stage 6 Ward Zero (7 props, 7 rooms, swappable anomaly states) | Completed on `main` in PR #43 at `7e5bd2a` | `tools/blender/build_stage6_ward_zero.py`, `assets/exports/wardzero/**` | Godot 4.7 import validator now checks 154 assets with 0 failures on the Naomi refinement merge | Not wired into gameplay; anomaly states provisional pending owner review |
+| Graphic-novel cutscenes: CutsceneDirector, registry, Chapter 1 pilot (7 panels, 52 s) | Done, not merged (draft PR); review-only, not approved | `scripts/cutscene/`, `data/cutscenes/`, `assets/cutscenes/`, `docs/CUTSCENES.md` | `test_cutscene.gd` (17), `tests/qa/test_cutscenes.py` | Mac Forward+ look, M1 frame time/memory and music mix not checked; no campaign trigger |
 | Exterior (Stage 7), textures (Stage 8) | Planned | | `docs/ENVIRONMENT_STAGES.md` | |
 
 ## Blocked

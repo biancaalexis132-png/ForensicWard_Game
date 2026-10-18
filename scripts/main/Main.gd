@@ -12,6 +12,8 @@ extends Node3D
 ##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
 ##   "ehr"        EHRScreen (also opened with J)
 ##   "evidence"   EvidenceBoard (also opened with Tab)
+##   "cutscene"   CutsceneDirector (graphic-novel cutscene; review-only until the
+##                owner approves one: `-- --cutscene-preview=<cutscene_id>`)
 ## ChapterDirector (story), AnomalyLedger (anomaly evidence, flag off by
 ## default), AudioZoneTracker (ambience per room) and ZoneDirector (which
 ## zones are loaded, transitions) are children of Main, so they exist exactly
@@ -32,8 +34,9 @@ const TIME_PAUSE_REASON: String = "ui"
 @onready var _evidence: EvidenceBoard = $EvidenceBoard
 @onready var _pause_menu: PauseMenu = $PauseMenu
 @onready var _zones: ZoneDirector = $ZoneDirector
+@onready var _cutscene: CutsceneDirector = $CutsceneDirector
 ## Topmost first: Esc closes the first open one.
-@onready var _panels: Array[CanvasLayer] = [_info_panel, _interview, _ehr, _evidence]
+@onready var _panels: Array[CanvasLayer] = [_cutscene, _info_panel, _interview, _ehr, _evidence]
 
 
 func _ready() -> void:
@@ -139,6 +142,8 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 			_ehr.open(data)
 		EvidenceBoard.PANEL_ID:
 			_evidence.open(data)
+		CutsceneDirector.PANEL_ID:
+			_cutscene.open(data)
 		InterviewScreen.PANEL_ID:
 			var with_world: Dictionary = data.duplicate()
 			with_world["world"] = _world
