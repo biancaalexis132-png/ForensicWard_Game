@@ -12,6 +12,8 @@ Writes 48 kHz OGG Vorbis files into audio/ (encoded with ffmpeg/libvorbis).
 """
 import argparse
 from pathlib import Path
+import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -114,15 +116,23 @@ def fade(data, fade_in=0.0, fade_out=0.0):
 
 
 def write_ogg(data, relative_path, quality=6):
-    """Encode float audio to OGG Vorbis via ffmpeg (libvorbis)."""
+    """Encode float audio to OGG Vorbis via ffmpeg (libvorbis), or Xiph's oggenc when
+    ffmpeg lacks libvorbis (Homebrew's ffmpeg 9 does)."""
     target = ROOT / relative_path
     target.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as directory:
         wav = Path(directory) / "master.wav"
         sf.write(wav, np.clip(data, -1.0, 1.0), SR, subtype="FLOAT")
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav),
-                        "-c:a", "libvorbis", "-q:a", str(quality),
-                        "-map_metadata", "-1", "-fflags", "+bitexact", str(target)], check=True)
+        encoders = subprocess.run(["ffmpeg", "-hide_banner", "-encoders"], capture_output=True, text=True).stdout
+        if re.search(r"\blibvorbis\b", encoders):
+            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav),
+                            "-c:a", "libvorbis", "-q:a", str(quality),
+                            "-map_metadata", "-1", "-fflags", "+bitexact", str(target)], check=True)
+        elif shutil.which("oggenc"):
+            subprocess.run(["oggenc", "-Q", "--discard-comments", "-q", str(quality),
+                            "-o", str(target), str(wav)], check=True)
+        else:
+            sys.exit("No Vorbis encoder: ffmpeg lacks libvorbis. Install it with: brew install vorbis-tools")
     print(f"wrote {relative_path} ({len(data) / SR:.2f} s)")
 
 
