@@ -1862,7 +1862,26 @@ def prop_sensor_tripod(coll, aid="PROP_Sensor_Tripod_Modern", loc=(0, 0, 0), rot
     return root
 
 
+def prop_light_fluorescent_batten(coll, aid="PROP_Light_Fluorescent_Batten", loc=(0, 0, 0), rot=(0, 0, 0), lit=True):
+    """Bare 1.2 m fluorescent batten on drop rods; origin on the ceiling, long axis X.
+    `lit=False` builds a dead tube (grey glass, no emission)."""
+    root = _root(coll, aid, "fixture", loc, rot, "Fluorescent batten, single tube")
+    mb = MeshBuilder()
+    mb.box((1.26, 0.09, 0.05), (0, 0, -0.16), "M_Steel_Painted_White")
+    for x in (-0.45, 0.45):
+        mb.cyl(0.006, 0.14, (x, 0, -0.07), "M_Metal_Rust", segs=6)                         # Drop rods.
+    for x in (-0.62, 0.62):
+        mb.box((0.03, 0.06, 0.05), (x, 0, -0.205), "M_Plastic_Black")                      # Lamp holders.
+    mb.build(aid + "_Mesh", coll, root, bevel=0.002)
+    tube = MeshBuilder()
+    tube.cyl(0.016, 1.2, (0, 0, -0.205), "M_Emissive_Tube_Cold" if lit else "M_Glass_Grimy", axis="X", segs=10)
+    tb = tube.build(aid + "_Tube", coll, root)
+    if lit:
+        tb["godot_hint"] = "Pair with a LIGHTMARK_*; flicker where flagged."
+    return root
+
+
 STAGE6_WARD_ZERO_PROP_BUILDERS = [
     prop_clock_historic, prop_recorder_chart, prop_teleprinter, prop_cabinet_relay, prop_motor_generator,
-    prop_sensor_tripod,
+    prop_sensor_tripod, prop_light_fluorescent_batten,
 ]

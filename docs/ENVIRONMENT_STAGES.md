@@ -9,7 +9,7 @@ Pipeline, conventions and validation: see [`ENVIRONMENT_PIPELINE.md`](ENVIRONMEN
 | 3 Clinical and cinematic props | EHR terminal, clinical furniture, fixtures, interview camera markers, medication, ward-bed, linen and emergency equipment | **Done (v1, untextured).** 36 props and interview cameras. The nursing station now carries the medication cart (with sharps bin), resuscitation trolley, AED cabinet and hand-gel dispenser; the other Stage 3 props are library-only until the rooms that need them exist. |
 | 4 Security, admin and research wings | Security corridor, visitor screening, credentialing, records, medical director's office, conference room, secure interview suite, security control, surveillance, maintenance access, restricted lift lobby; research reception, research and restricted corridors, physician offices, data analysis, records archive, protocol office, assessment and observation rooms, lab support, sample storage | **Done (v1, untextured).** 4a: 13 props, 11 rooms. 4b: 8 props, 12 rooms on the research level the restricted lift serves. |
 | 5 Historic substructure | Stairwell, abandoned nursing station, former patient rooms, treatment room, medication storage, paper records archive, mechanical corridor, closed observation rooms, admin office, records vault, sealed connecting corridor | **Done (v1, untextured).** 13 props, 13 spaces on the sublevel under the maintenance hatch. |
-| 6 Ward Zero layout and anomaly states | Threshold, service corridor with the W0-B service stair, observation room, isolation cell, service store, instrument room, plant room; swappable anomaly states | **Done (v1, untextured).** 6 props, 7 rooms on the sublevel beyond the sealed corridor. Anomaly states are provisional pending owner review. |
+| 6 Ward Zero layout and anomaly states | Threshold, service corridor with the W0-B service stair, observation room, isolation cell, service store, instrument room, plant room; swappable anomaly states | **Done (v1, untextured).** 7 props, 7 rooms on the sublevel beyond the sealed corridor, styled from the owner's Ward Zero reference boards. Anomaly states are provisional pending owner review. |
 | 7 Apartment, parking, exterior | | Not started |
 | 8 Polish | Textures/UVs, LODs, lightmap UV2, trim sheets | Not started |
 
@@ -115,7 +115,7 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 | Deliverable | Location |
 |---|---|
 | Prop source | `assets/blender/wardzero/FW_Props_WardZero.blend` |
-| Prop exports (6) | `assets/exports/wardzero/props/*.glb` |
+| Prop exports (7) | `assets/exports/wardzero/props/*.glb` |
 | Level source | `assets/blender/wardzero/FW_WardZero.blend` |
 | Room exports (7) | `assets/exports/wardzero/env/*.glb` |
 | Renders | `assets/renders/stage6/` (props sheet, eight room shots, three variant-state shots, plan) |
@@ -123,16 +123,18 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 
 - **Where it is.** On the Stage 5 sublevel, south of the sealed connecting corridor (x -6 to 6, y -10 to 10). The threshold room sits behind the bricked-up opening at y 10, so opening `sealed_corridor_end` leads straight in. A steep service stair in the W0 corridor tops out at (0.6, -0.6), just beyond the Chapter 1 W0-B door at (0, 0), under a floor hatch (asserted). The ground-floor stair head beyond `Door_W0B` is not modelled; `MARK_Link_W0B` marks the transition.
 - **Layout.** Threshold (inner door with an enamel crest plate), a 16 m service corridor, and side rooms. West: observation room (window into the cell), isolation cell, service store. East: instrument room (relay cabinet, teleprinter) and plant room (two motor-generator sets, `MARK_Audio_W0Hum`). Every room root carries `audio_location: ward_zero`.
-- **Look.** Grey-green paint, dark checker and terrazzo floors, concrete in the store and plant room, caged tungsten lamps with several dead or flickering. Decay is as restrained as Stage 5.
-- **Anomaly states.** The owner approved a genuine phenomenon in Ward Zero, but not its mechanism. This stage authors only physical states that F3's `world_state` and `device_log` manifestations can switch, using the existing `state_group` mechanism. Each default state has an ordinary reading, and nothing is tied to a patient or a clinical event. State nodes carry `story_tag: ward_zero_anomaly`, `manifestation` and `approval_status: provisional_owner_review`; hints describe only what the player sees.
+- **Look.** Follows the owner's reference boards in `assets/creative_references/Visual_References/Ward_Zero/`: older, colder and more industrial than Stage 5. Dirty-white cinderblock over a pale green dado, exposed overhead pipes and conduit, bare fluorescent battens (some dead or flickering) with caged tungsten lamps in the threshold and plant room, concrete floors with standing water in a few puddle zones only (reflections are costly on an 8 GB Mac), black stencilled level codes and room numbers, a wire-mesh guard on the observation window. Names, dates, notes, 'Ward Zero' signage, red stains and restraint equipment on the boards are not used: they are inspiration rather than approved canon, and W0-B is an administrative code, so signage uses neutral codes such as 'SERVICE B' and 'LOWER LEVEL B'.
+- **Anomaly states.** The owner approved a genuine phenomenon in Ward Zero, but not its mechanism. This stage authors only physical states that F3's `world_state` and `device_log` manifestations can switch, using the existing `state_group` mechanism. Each default state has an ordinary reading, and nothing is tied to a patient or a clinical event. Each state also carries `earliest_chapter`: the small Chapter 1–2 cues (a few minutes' clock offset, a moved chair, device output) are `ch1`; the echo object and the displaced plate are `ch3`. State nodes carry `story_tag: ward_zero_anomaly`, `manifestation` and `approval_status: provisional_owner_review`; hints describe only what the player sees.
 
 | Group | Default | Variant | Where |
 |---|---|---|---|
-| `w0_clock_offset` | `synced` (both slave clocks stopped at 3:40) | `offset` (clock B at 3:52) | Corridor |
+| `w0_clock_offset` | `synced` (both slave clocks stopped at 3:40) | `offset` (clock B at 3:44) | Corridor |
 | `w0_recorder_trace` | `flat` | `repeated` (the same short pattern three times) | Observation room |
 | `w0_teleprinter_log` | `idle` (torn-off stub) | `printed` (one line of figures, repeated) | Instrument room |
 | `w0_door_mimic` | none (lamp hidden) | `door_open_indicated` (inner-door lamp lit while the door is shut) | Instrument room |
 | `w0_cell_chair` | `by_window` | `moved` (in the middle, angled to the door) | Isolation cell |
+| `w0_echo_wheelchair` | none | `echo` (a second wheelchair, identical to the one at the corridor's far end, in the threshold; `earliest_chapter: ch3`) | Threshold |
+| `w0_displaced_sign` | `in_place` | `displaced` (the cell's room plate 60 cm along the wall, no old screw holes; `earliest_chapter: ch3`) | Corridor |
 | `w0_instrument_kit` | none | `installed` (three modern sensor tripods; `story_tag: ward_zero_investigation`) | Threshold, corridor, cell |
 
 ## Design assumptions (labelled, pending creative review)
@@ -154,7 +156,7 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 - **Stage 3 props placed so far:** only the nursing station. The hospital bed, linen skip, oxygen trolley, observations monitor and wheelchair wait for the medical bay and clinic room (later stages).
 - **One-way glass in Cycles previews looks mirrored from both sides**, because Cycles renders back faces. Godot culls back faces by default, so the observer side should see through. This has not been checked in Godot yet (assessment room window and Interview Room A).
 - **The Stage 5 service stair is about 60 degrees**, too steep for the character controller, so it should be a climb interaction. Its collider only blocks walking through it.
-- **Ward Zero state nodes have no collision** (the moved chair included), because Godot keeps colliding with hidden nodes. The W0 service stair needs the same climb interaction as Stage 5.
+- **Ward Zero state nodes have no collision** (the chairs and the echo wheelchair included), because Godot keeps colliding with hidden nodes. Puddles are a low-roughness flat colour; real reflections, the repeating-corridor and reflection-mismatch cues from the reference boards need Godot work (F3 or later). The W0 service stair needs the same climb interaction as Stage 5.
 - **Door leaves get static collision only.** Gameplay animates the leaf node, and the collider follows.
 - **Exterior windows show a preview backdrop in renders only.** Godot needs an exterior or skybox solution (Stage 7).
 - **Preview renders use Cycles on CPU with denoising.** Lighting in Godot comes from the `LIGHTMARK_*` markers and is tuned separately.

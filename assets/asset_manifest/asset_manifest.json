@@ -2117,14 +2117,15 @@
       "intended_location": "Ward Zero: instrument room",
       "markers": [
         "CAM_IR_Establishing",
-        "LIGHTMARK_IR_Lamp"
+        "LIGHTMARK_IR_Batten"
       ],
       "materials": [
         "M_Bakelite_Brown",
         "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
         "M_Concrete_Stained",
-        "M_Emissive_Bulb_Tungsten",
         "M_Emissive_Indicator_Amber",
+        "M_Emissive_Tube_Cold",
         "M_Enamel_Plate_Blue",
         "M_Enamel_White_Aged",
         "M_Glass_Grimy",
@@ -2133,7 +2134,7 @@
         "M_Metal_Rust",
         "M_Paint_Flaking",
         "M_Paint_Historic_Cream",
-        "M_Paint_W0_GreyGreen",
+        "M_Paint_W0_PaleGreen",
         "M_Paper",
         "M_Paper_Chart",
         "M_Plastic_Black",
@@ -2141,12 +2142,13 @@
         "M_Stain_Damp",
         "M_Steel_Brushed",
         "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
         "M_Tile_Floor_Terrazzo",
         "M_Wood_Aged"
       ],
       "source_file": "assets/blender/wardzero/FW_WardZero.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
-      "triangles_base": 3036
+      "triangles_base": 2976
     },
     "ENV_W0_IsolationCell": {
       "asset_id": "ENV_W0_IsolationCell",
@@ -2164,29 +2166,30 @@
       "intended_location": "Ward Zero: isolation cell",
       "markers": [
         "CAM_IC_Establishing",
-        "LIGHTMARK_IC_Lamp"
+        "LIGHTMARK_IC_Batten"
       ],
       "materials": [
         "M_Canvas_Aged",
         "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
         "M_Concrete_Stained",
-        "M_Emissive_Bulb_Tungsten",
         "M_Emissive_LED_Green",
+        "M_Emissive_Tube_Cold",
         "M_Iron_Cast_Painted",
         "M_Metal_Dark",
         "M_Metal_Rust",
-        "M_Paint_Historic_Beige_Aged",
-        "M_Paint_W0_GreyGreen",
+        "M_Paint_W0_PaleGreen",
         "M_Plastic_Black",
         "M_Plastic_OffWhite",
         "M_Skirting_Coved",
         "M_Stain_Damp",
-        "M_Tile_Floor_Terrazzo",
+        "M_Steel_Painted_White",
+        "M_Water_Puddle",
         "M_Wood_Aged"
       ],
       "source_file": "assets/blender/wardzero/FW_WardZero.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
-      "triangles_base": 1312
+      "triangles_base": 1192
     },
     "ENV_W0_ObservationRoom": {
       "asset_id": "ENV_W0_ObservationRoom",
@@ -2204,13 +2207,14 @@
       "intended_location": "Ward Zero: observation room",
       "markers": [
         "CAM_OM_Establishing",
-        "LIGHTMARK_OM_Lamp"
+        "LIGHTMARK_OM_Batten"
       ],
       "materials": [
         "M_Bakelite_Brown",
         "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
         "M_Concrete_Stained",
-        "M_Emissive_Bulb_Tungsten",
+        "M_Emissive_Tube_Cold",
         "M_Enamel_Plate_Blue",
         "M_Enamel_White_Aged",
         "M_Folder_Manila",
@@ -2219,10 +2223,10 @@
         "M_Iron_Cast_Painted",
         "M_Metal_Rust",
         "M_Paint_Flaking",
-        "M_Paint_Historic_Beige_Aged",
-        "M_Paint_W0_GreyGreen",
+        "M_Paint_W0_PaleGreen",
         "M_Paper",
         "M_Paper_Chart",
+        "M_Plastic_Black",
         "M_Skirting_Coved",
         "M_Stain_Damp",
         "M_Steel_Brushed",
@@ -2233,7 +2237,7 @@
       ],
       "source_file": "assets/blender/wardzero/FW_WardZero.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
-      "triangles_base": 2708
+      "triangles_base": 2984
     },
     "ENV_W0_PlantRoom": {
       "asset_id": "ENV_W0_PlantRoom",
@@ -2258,6 +2262,7 @@
       "materials": [
         "M_Bakelite_Brown",
         "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
         "M_Concrete_Stained",
         "M_Emissive_Bulb_Tungsten",
         "M_Enamel_Plate_Blue",
@@ -2267,17 +2272,19 @@
         "M_Metal_Rust",
         "M_Paint_Historic_Cream",
         "M_Paint_Historic_Green",
-        "M_Paint_W0_GreyGreen",
+        "M_Paint_W0_PaleGreen",
         "M_Plastic_Black",
+        "M_Safety_Red",
         "M_Skirting_Coved",
         "M_Stain_Damp",
         "M_Steel_Brushed",
         "M_Steel_Painted_Grey",
+        "M_Water_Puddle",
         "M_Wood_Aged"
       ],
       "source_file": "assets/blender/wardzero/FW_WardZero.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
-      "triangles_base": 4744
+      "triangles_base": 5228
     },
     "ENV_W0_ServiceCorridor_16m": {
       "asset_id": "ENV_W0_ServiceCorridor_16m",
@@ -2297,16 +2304,17 @@
         "CAM_W0C_Corridor",
         "CAM_W0C_FromSouth",
         "CAM_W0C_Stair",
-        "LIGHTMARK_W0C_Lamp_0",
-        "LIGHTMARK_W0C_Lamp_2",
-        "LIGHTMARK_W0C_Lamp_3",
+        "LIGHTMARK_W0C_Batten_0",
+        "LIGHTMARK_W0C_Batten_2",
+        "LIGHTMARK_W0C_Batten_3",
         "MARK_Link_W0B"
       ],
       "materials": [
         "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
         "M_Concrete_Stained",
-        "M_Emissive_Bulb_Tungsten",
         "M_Emissive_LED_Green",
+        "M_Emissive_Tube_Cold",
         "M_Enamel_White_Aged",
         "M_Glass_Grimy",
         "M_Iron_Cast_Painted",
@@ -2315,21 +2323,26 @@
         "M_Paint_Flaking",
         "M_Paint_Historic_Cream",
         "M_Paint_Historic_Green",
-        "M_Paint_W0_GreyGreen",
+        "M_Paint_W0_PaleGreen",
         "M_Paper",
         "M_Plastic_Black",
         "M_Plastic_OffWhite",
+        "M_Rubber_Dark",
+        "M_Safety_Yellow_Aged",
         "M_Signage_Blue",
         "M_Signage_Panel",
         "M_Skirting_Coved",
         "M_Stain_Damp",
         "M_Steel_Brushed",
         "M_Steel_Painted_Grey",
-        "M_Tile_Floor_Checker_Dark"
+        "M_Steel_Painted_White",
+        "M_Stencil_Black",
+        "M_Upholstery_Charcoal",
+        "M_Water_Puddle"
       ],
       "source_file": "assets/blender/wardzero/FW_WardZero.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
-      "triangles_base": 6136
+      "triangles_base": 6500
     },
     "ENV_W0_ServiceStore": {
       "asset_id": "ENV_W0_ServiceStore",
@@ -2347,17 +2360,18 @@
       "intended_location": "Ward Zero: service store",
       "markers": [
         "CAM_SS_Establishing",
-        "LIGHTMARK_SS_Lamp"
+        "LIGHTMARK_SS_Batten"
       ],
       "materials": [
         "M_Binder_Grey",
         "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
         "M_Concrete_Stained",
-        "M_Emissive_Bulb_Tungsten",
+        "M_Emissive_Tube_Cold",
         "M_Folder_Manila",
-        "M_Iron_Cast_Painted",
+        "M_Metal_Rust",
         "M_Paint_Flaking",
-        "M_Paint_W0_GreyGreen",
+        "M_Paint_W0_PaleGreen",
         "M_Paper",
         "M_Plastic_Black",
         "M_Plastic_Sharps_Yellow",
@@ -2365,11 +2379,12 @@
         "M_Stain_Damp",
         "M_Steel_Brushed",
         "M_Steel_Painted_Grey",
+        "M_Steel_Painted_White",
         "M_Wood_Aged"
       ],
       "source_file": "assets/blender/wardzero/FW_WardZero.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
-      "triangles_base": 2680
+      "triangles_base": 2536
     },
     "ENV_W0_Threshold": {
       "asset_id": "ENV_W0_Threshold",
@@ -2391,6 +2406,7 @@
       ],
       "materials": [
         "M_Ceiling_Tile",
+        "M_Cinderblock_DirtyWhite",
         "M_Concrete_Stained",
         "M_Emissive_Bulb_Tungsten",
         "M_Emissive_LED_Green",
@@ -2401,19 +2417,23 @@
         "M_Paint_Flaking",
         "M_Paint_Historic_Cream",
         "M_Paint_Historic_Green",
-        "M_Paint_W0_GreyGreen",
+        "M_Paint_W0_PaleGreen",
         "M_Paper",
         "M_Plastic_Black",
         "M_Plastic_OffWhite",
+        "M_Rubber_Dark",
         "M_Skirting_Coved",
         "M_Stain_Damp",
         "M_Steel_Brushed",
-        "M_Tile_Floor_Checker_Dark",
+        "M_Steel_Painted_Grey",
+        "M_Stencil_Black",
+        "M_Upholstery_Charcoal",
+        "M_Water_Puddle",
         "M_Wood_Aged"
       ],
       "source_file": "assets/blender/wardzero/FW_WardZero.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
-      "triangles_base": 1608
+      "triangles_base": 2568
     },
     "MOD_Ceiling_2x2_LightPanel": {
       "asset_id": "MOD_Ceiling_2x2_LightPanel",
@@ -4053,6 +4073,31 @@
       "source_file": "assets/blender/historic/FW_Props_Historic.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 316
+    },
+    "PROP_Light_Fluorescent_Batten": {
+      "asset_id": "PROP_Light_Fluorescent_Batten",
+      "asset_name": "Fluorescent batten, single tube",
+      "category": "fixture",
+      "collision": "Decorative: no collision",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        1.27,
+        0.09,
+        0.23
+      ],
+      "export_file": "assets/exports/wardzero/props/PROP_Light_Fluorescent_Batten.glb",
+      "implementation_notes": "Ward Zero (historic service zone; the tripod is modern). Origin: ceiling. Swappable children keep stable name suffixes for state_group tagging.",
+      "intended_location": "Ward Zero corridor and rooms",
+      "markers": [],
+      "materials": [
+        "M_Emissive_Tube_Cold",
+        "M_Metal_Rust",
+        "M_Plastic_Black",
+        "M_Steel_Painted_White"
+      ],
+      "source_file": "assets/blender/wardzero/FW_Props_WardZero.blend",
+      "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
+      "triangles_base": 112
     },
     "PROP_Light_VandalResistant": {
       "asset_id": "PROP_Light_VandalResistant",

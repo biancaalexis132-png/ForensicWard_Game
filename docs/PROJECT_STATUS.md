@@ -61,7 +61,7 @@ The branches of merged and closed PRs still exist on `origin`; nobody works on t
 | Zone streaming and transitions (F2) | Planned | | F0 §6, §8 | Starts after F1 is reviewed |
 | Anomaly evidence model and clinical/supernatural separation (F3) | Planned | | F0 §7, §8 | Waits on the owner's Psychosomatic Bleed decision |
 | Mara Ellis, Chapters 2–5 content, protagonist creator, title screen | Planned | | v1.1 handoff | Clinical and narrative approval needed first |
-| Environment Stage 6 Ward Zero (6 props, 7 rooms, swappable anomaly states) | Done, not merged | `claude/environment-stage-6` (PR) | 151/151 `.glb` import in Godot 4.7 | Not wired into gameplay; anomaly states provisional pending owner review |
+| Environment Stage 6 Ward Zero (7 props, 7 rooms, swappable anomaly states) | Done, not merged | `claude/environment-stage-6` (PR) | 151/151 `.glb` import in Godot 4.7 | Not wired into gameplay; anomaly states provisional pending owner review |
 | Exterior (Stage 7), textures (Stage 8) | Planned | | `docs/ENVIRONMENT_STAGES.md` | |
 
 ## Blocked

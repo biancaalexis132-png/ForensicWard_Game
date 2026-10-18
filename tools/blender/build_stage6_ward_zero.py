@@ -30,8 +30,19 @@ state node carries `story_tag: ward_zero_anomaly` and
     w0_teleprinter_log   idle (default)   | printed     instrument-room teleprinter
     w0_door_mimic        (none)           | door_open_indicated   relay-cabinet lamp
     w0_cell_chair        by_window (default) | moved    isolation-cell chair
+    w0_echo_wheelchair   (none)           | echo        a second, identical wheelchair in the threshold
+    w0_displaced_sign    in_place (default) | displaced  the cell's room plate, 60 cm along the wall
     w0_instrument_kit    (none)           | installed   modern sensor tripods (supervised observation;
                                                        story_tag ward_zero_investigation, not an anomaly)
+
+Look (from the owner's Ward Zero reference boards in
+assets/creative_references/Visual_References/Ward_Zero/): older, colder and more
+industrial than the Stage 5 rooms. Dirty-white cinderblock over a pale green
+dado, exposed overhead pipes and conduit, bare fluorescent battens (some dead
+or flickering) with a few caged tungsten lamps, concrete floors with
+standing water in a few puddle zones, black stencilled level codes and room numbers.
+Specific names, dates, notes and "Ward Zero" signage on the boards are not used:
+they are inspiration, not approved canon (W0-B is an administrative code).
 
 Wall ownership: the threshold owns its sides and the south wall with the inner
 door; the corridor owns its side walls and the south end wall; each side room
@@ -73,7 +84,11 @@ FAST = "--fast" in sys.argv
 D90 = math.pi / 2
 FRAME = ("Sublevel frame: same x/y as the Chapter 1 shared frame, floor at z = 0; load as its own level "
          "(the Stage 5 sealed corridor and the W0-B service stair connect it)")
-W0, LOWER = "M_Paint_W0_GreyGreen", "M_Paint_W0_Lower"
+W0, DADO = "M_Cinderblock_DirtyWhite", "M_Paint_W0_PaleGreen"        # Two-tone walls (owner references).
+WET = "M_Concrete_Stained"          # Dry floor; standing water only in puddle zones (8 GB Mac budget).
+DADO_H = 1.4
+FACE = 0.103                          # Inner wall face offset from the centreline.
+FLUORO = "#DCE7F2"
 BEIGE, CHECKER, TERRAZZO = S5.BEIGE, S5.CHECKER, S5.TERRAZZO
 SOIL = S5.SOIL
 W0B_DOOR = (0.0, 0.0)                 # Chapter 1 Door_W0B, ground floor.
@@ -85,6 +100,7 @@ wall_with_collision = S2.wall_with_collision
 shell, lamp, decay, debris = S5.shell, S5.lamp, S5.decay, S5.debris
 
 PROP_WALL_MOUNTED = {"PROP_Clock_Wall_Historic"}
+PROP_CEILING = {"PROP_Light_Fluorescent_Batten"}
 PROP_LOCATIONS = {
     "PROP_Clock_Wall_Historic": "W0 service corridor, instrument room",
     "PROP_Recorder_Chart_Strip": "W0 observation room",
@@ -92,6 +108,7 @@ PROP_LOCATIONS = {
     "PROP_Cabinet_Relay_Historic": "W0 instrument room",
     "PROP_MotorGenerator_Set": "W0 plant room",
     "PROP_Sensor_Tripod_Modern": "Ward Zero (state w0_instrument_kit: installed)",
+    "PROP_Light_Fluorescent_Batten": "Ward Zero corridor and rooms",
 }
 
 
@@ -107,11 +124,12 @@ def tag(ob, hint, **extra):
     return set_props(ob, dict({"godot_hint": hint, "story_tag": "ward_zero"}, **extra))
 
 
-def state(ob, group, value, default_visible, hint, manifestation="world_state"):
-    """A swappable anomaly state. Inert set dressing until F3 drives it."""
+def state(ob, group, value, default_visible, hint, manifestation="world_state", earliest_chapter="ch1"):
+    """A swappable anomaly state. Inert set dressing until F3 drives it. Ch1-2 states are small and have
+    an ordinary reading; stronger cues carry a later `earliest_chapter`."""
     return set_props(ob, {"state_group": group, "state": value, "default_visible": default_visible,
                           "godot_hint": hint, "story_tag": "ward_zero_anomaly", "manifestation": manifestation,
-                          "approval_status": APPROVAL})
+                          "approval_status": APPROVAL, "earliest_chapter": earliest_chapter})
 
 
 def kit(ob, hint):
@@ -146,7 +164,8 @@ def build_props():
     for i, builder in enumerate(A.STAGE6_WARD_ZERO_PROP_BUILDERS):
         root = builder(coll, loc=((i % 3) * 3.2, (i // 3) * 3.4, 0))
         has_col = any(o.name.endswith("-colonly") for o in L.descendants(root))
-        origin = "wall surface" if root.name in PROP_WALL_MOUNTED else "floor centre"
+        origin = ("wall surface" if root.name in PROP_WALL_MOUNTED else "ceiling" if root.name in PROP_CEILING
+                  else "floor centre")
         records.append((root, PROP_LOCATIONS[root.name],
                         "Box collider (-colonly)" if has_col else "Decorative: no collision",
                         "Ward Zero (historic service zone; the tripod is modern). Origin: %s. Swappable "
@@ -166,6 +185,8 @@ def build_props():
         for root, *_ in records:
             if root.name in PROP_WALL_MOUNTED:
                 root.location.z += 1.5
+            elif root.name in PROP_CEILING:
+                root.location.z += 1.2
         L.setup_render(scene, 1600, 900, samples=24)
         sun = bpy.data.lights.new("PreviewSun", "SUN")
         sun.energy = 3.0
@@ -181,39 +202,123 @@ def build_props():
 
 
 # --------------------------------------------------------------------------
+# Shared dressing: two-tone walls, lighting, wet floors, overhead services
+# --------------------------------------------------------------------------
+
+def dado(coll, root, x0, x1, y0, y1, gaps=None, height=DADO_H):
+    """Pale green dado on the room's inner wall faces, broken at openings.
+    gaps: {side: [(centre along the wall, width)]}; centres are world x for
+    north/south faces and world y for east/west faces."""
+    gaps = gaps or {}
+    mb = MeshBuilder()
+    faces = {"south": ("x", y0 + FACE, x0 + FACE, x1 - FACE), "north": ("x", y1 - FACE, x0 + FACE, x1 - FACE),
+             "west": ("y", x0 + FACE, y0 + FACE, y1 - FACE), "east": ("y", x1 - FACE, y0 + FACE, y1 - FACE)}
+    for side, (axis, at, a0, a1) in faces.items():
+        cuts = sorted((c - w / 2 - 0.1, c + w / 2 + 0.1) for c, w in gaps.get(side, ()))
+        start = a0
+        for lo, hi in cuts + [(a1, a1)]:
+            if lo - start > 0.05:
+                mid, length = (start + lo) / 2, lo - start
+                if axis == "x":
+                    mb.box((length, 0.006, height), (mid, at, height / 2), DADO)
+                else:
+                    mb.box((0.006, length, height), (at, mid, height / 2), DADO)
+            start = max(start, hi)
+    mb.build(root.name + "_Dado", coll, root)
+
+
+def batten(coll, root, name, x, y, watts=30.0, flicker=False, dead=False, along_y=False):
+    """Fluorescent batten plus its cold light marker; dead battens get no light."""
+    ob = place(lambda c, loc, rot: A.prop_light_fluorescent_batten(c, loc=loc, rot=rot, lit=not dead), coll, root,
+               name, (x, y, WALL_H), 90 if along_y else 0)
+    if dead:
+        set_props(ob, {"lamp_state": "dead"})
+        return ob
+    mark = S2.lightmark(coll, root, "LIGHTMARK_%s" % name, (x, y, WALL_H - 0.3), range_m=6.0, watts=watts,
+                        size=(0.15, 1.2) if along_y else (1.2, 0.15), color=FLUORO)
+    if flicker:
+        set_props(mark, {"flicker": True})
+        set_props(ob, {"lamp_state": "flicker"})
+    return ob
+
+
+def puddles(coll, root, name, spots):
+    """Standing water: low-roughness patches that read as wet black reflections."""
+    mb = MeshBuilder()
+    for i, (x, y, sx, sy) in enumerate(spots):
+        mb.box((sx, sy, 0.002), (x, y, 0.002), "M_Water_Puddle", rot=(0, 0, 0.3 * i))
+        mb.box((sx * 0.6, sy * 1.2, 0.002), (x + sx * 0.25, y - sy * 0.2, 0.0025), "M_Water_Puddle",
+               rot=(0, 0, 0.3 * i + 0.5))
+    return mb.build(root.name + "_" + name, coll, root)
+
+
+def overhead_pipes(coll, root, name, x_list, y0, y1, z=2.8):
+    """Exposed pipe and conduit runs along a ceiling, with hangers every 2 m."""
+    mb = MeshBuilder()
+    length = y1 - y0
+    for i, x in enumerate(x_list):
+        r = (0.06, 0.035, 0.025, 0.045)[i % 4]
+        mb.cyl(r, length, (x, (y0 + y1) / 2, z - 0.02 * (i % 2)), "M_Metal_Rust" if i % 2 else "M_Iron_Cast_Painted",
+               axis="Y", segs=10)
+    k = y0 + 1.0
+    while k < y1:
+        mb.box((abs(x_list[-1] - x_list[0]) + 0.15, 0.03, 0.02), ((x_list[0] + x_list[-1]) / 2, k, z + 0.08),
+               "M_Steel_Painted_Grey")
+        k += 2.0
+    return mb.build(root.name + "_" + name, coll, root)
+
+
+def stencil(coll, root, name, centre, size, hint, mat="M_Stencil_Black"):
+    mb = MeshBuilder()
+    mb.box(size, centre, mat)
+    return tag(mb.build(name, coll, root), hint)
+
+
+# --------------------------------------------------------------------------
 # Threshold and corridor
 # --------------------------------------------------------------------------
 
 def build_threshold(coll):
     root = env_root(coll, "ENV_W0_Threshold", "Ward Zero threshold (behind the bricked-up opening)")
-    shell(coll, root, -1.5, 1.5, 6.0, 10.0, W0, CHECKER,
+    shell(coll, root, -1.5, 1.5, 6.0, 10.0, W0, WET,
           {"west": dict(back_mat=SOIL), "east": dict(back_mat=SOIL),
            "south": dict(back_mat=W0, openings=[A.door_opening(1.5, 1.2)])},
           posts=((-1.5, 6.0), (1.5, 6.0)), floor_extend=(-1.6, 1.6, 6.0, 9.9))
+    dado(coll, root, -1.5, 1.5, 6.0, 10.0, {"south": [(0.0, 1.2)], "north": [(0.0, 1.6)]})
     door(coll, root, "Door_W0_Inner", "service_historic", (0.0, 6.0, 0), math.pi, "door_w0_inner", "",
          "Original inner door of Ward Zero; reached only once the sealed corridor is opened.")
     plate = MeshBuilder()
     plate.box((0.6, 0.006, 0.22), (0.0, 6.109, 2.55), "M_Enamel_Plate_Blue")
     plate.box((0.16, 0.004, 0.08), (0.0, 6.113, 2.58), "M_Paint_Historic_Cream")
     tag(plate.build("W0T_EnamelPlate", coll, root),
-        "Enamel plate with the hospital crest and 'W0' beneath it; the rest is painted over.")
-    sten = MeshBuilder()
-    sten.box((0.42, 0.004, 0.2), (-1.05, 6.108, 1.6), "M_Paint_Historic_Cream")
-    tag(sten.build("W0T_Stencil_W0B", coll, root), "Stencilled 'W0-B' with an arrow pointing south.")
+        "Enamel plate with the hospital crest and 'SERVICE B' beneath it; the rest is painted over.")
+    stencil(coll, root, "W0T_Stencil_LevelB", (-1.393, 8.0, 2.05), (0.004, 0.9, 0.5),
+            "Large stencilled 'LOWER LEVEL B' and an arrow pointing south, in black on the cinderblock.")
+    sign = MeshBuilder()                                                                    # Directional board.
+    sign.box((0.004, 0.8, 0.5), (1.393, 7.6, 1.95), "M_Paint_Historic_Cream")
+    for i in range(3):
+        sign.box((0.004, 0.55, 0.05), (1.391, 7.55, 2.08 - i * 0.12), "M_Stencil_Black")
+    tag(sign.build("W0T_DirectionBoard", coll, root),
+        "Painted board: OBSERVATION, INSTRUMENTS, PLANT, each with an arrow pointing south.")
     bench = MeshBuilder()
     bench.box((0.4, 1.6, 0.04), (-1.18, 8.0, 0.45), "M_Wood_Aged")
     for y in (7.35, 8.65):
         bench.box((0.36, 0.04, 0.45), (-1.18, y, 0.225), "M_Iron_Cast_Painted")
     bench.build("W0T_Bench", coll, root)
     L.collision_box("W0T_Bench_COL", coll, root, (0.4, 1.6, 0.47), (-1.18, 8.0, 0.235))
-    place(A.prop_radiator_cast, coll, root, "W0T_Radiator", (1.29, 8.2, 0), -90)
+    place(A.prop_radiator_cast, coll, root, "W0T_Radiator", (1.29, 8.6, 0), -90)
+    overhead_pipes(coll, root, "Pipes", (-1.2, -1.05, 1.05, 1.2), 6.1, 9.9)
+    echo = strip_collision(place(A.prop_wheelchair, coll, root, "W0T_Wheelchair_Echo", (0.55, 8.9, 0), 160))
+    state(echo, "w0_echo_wheelchair", "echo", False,
+          "A wheelchair identical to the one at the far end of the corridor, at the same angle, dust and all.",
+          earliest_chapter="ch3")
     tripod = place(A.prop_sensor_tripod, coll, root, "W0T_SensorTripod", (0.75, 6.9, 0), 0)
     kit(tripod, "Sensor tripod aimed at the inner door, cabled to a logger on the floor.")
-    lamp(coll, root, "W0T_Lamp", 0.0, 7.6, 16, flicker=True)
-    decay(coll, root, "Decay", (("stain", (1.393, 7.0, 1.5), (0.004, 1.4, 1.2)),
-                               ("flake", (-1.392, 9.0, 2.0), (0.004, 0.6, 0.5)),
-                               ("stain", (0.0, 9.3, 0.003), (2.2, 1.0, 0.004))))
-    debris(coll, root, "Debris", ((0.4, 9.4), (-0.3, 8.7), (0.6, 7.4), (-0.6, 6.6)))
+    lamp(coll, root, "W0T_Lamp", 0.0, 7.6, 18, flicker=True)
+    decay(coll, root, "Decay", (("stain", (1.393, 7.0, 1.6), (0.004, 1.0, 0.9)),
+                               ("flake", (-1.392, 9.2, 2.2), (0.004, 0.5, 0.4))))
+    puddles(coll, root, "Water", ((0.3, 7.4, 0.9, 0.5), (-0.6, 9.1, 0.6, 0.4)))
+    debris(coll, root, "Debris", ((0.4, 9.4), (-0.3, 8.7), (-0.6, 6.6)))
     L.camera_marker("CAM_W0T_Threshold", coll, root, (0.4, 9.6, 1.6), (0.0, 6.0, 1.3), 26)
     return root
 
@@ -226,16 +331,29 @@ def build_corridor(coll):
     root = env_root(coll, "ENV_W0_ServiceCorridor_16m", "Ward Zero service corridor, 16 m, with the W0-B stair")
     west = [A.door_opening(y + 10.0, w) for _, y, w in W0_WEST_DOORS]
     east = [A.door_opening(6.0 - y, w) for _, y, w in W0_EAST_DOORS]
-    shell(coll, root, -1.5, 1.5, -10.0, 6.0, W0, CHECKER,
+    shell(coll, root, -1.5, 1.5, -10.0, 6.0, W0, WET,
           {"west": dict(openings=west, back_mat=W0), "east": dict(openings=east, back_mat=W0),
            "south": dict(back_mat=SOIL)},
           posts=((-1.5, -10.0), (1.5, -10.0)), floor_extend=(-1.6, 1.6, -10.1, 6.0))
+    dado(coll, root, -1.5, 1.5, -10.0, 6.0, {"west": [(y, w) for _, y, w in W0_WEST_DOORS],
+                                              "east": [(y, w) for _, y, w in W0_EAST_DOORS],
+                                              "north": [(0.0, 1.2)]})
     for name, y, _ in W0_WEST_DOORS:
         door(coll, root, "Door_W0_" + name, "service_historic", (-1.5, y, 0), D90, "door_w0_" + name.lower(), "")
-        corridor_sign(coll, root, "Sign_W0_" + name, (-1.394, y + 0.85, 1.7), 90)
+        if name != "Cell":
+            corridor_sign(coll, root, "Sign_W0_" + name, (-1.394, y + 0.85, 1.7), 90)
     for name, y, _ in W0_EAST_DOORS:
         door(coll, root, "Door_W0_" + name, "service_historic", (1.5, y, 0), -D90, "door_w0_" + name.lower(), "")
         corridor_sign(coll, root, "Sign_W0_" + name, (1.394, y - 0.85, 1.7), -90)
+    sign = strip_collision(corridor_sign(coll, root, "Sign_W0_Cell", (-1.394, -3.0 + 0.85, 1.7), 90))
+    state(sign, "w0_displaced_sign", "in_place", True, "The cell's room plate, beside its door.")
+    moved = strip_collision(corridor_sign(coll, root, "Sign_W0_Cell_Displaced", (-1.394, -3.0 + 1.45, 1.7), 90))
+    state(moved, "w0_displaced_sign", "displaced", False,
+          "The same room plate, 60 cm further from the door. There are no old screw holes where it was.",
+          earliest_chapter="ch3")
+    for i, y in enumerate((-3.0, -7.5)):
+        stencil(coll, root, "W0C_Stencil_Room_%d" % i, (-1.393, y, 2.45), (0.004, 0.36, 0.26),
+                "Stencilled room number above the door, in black.")
 
     # The W0-B service stair: tops out just beyond the Chapter 1 W0-B door.
     rise = WALL_H + 0.2
@@ -244,9 +362,10 @@ def build_corridor(coll):
     hatch = MeshBuilder()
     hatch.box((1.0, 1.0, 0.02), (STAIR_TOP[0], STAIR_TOP[1] + 0.05, WALL_H - 0.005), "M_Iron_Cast_Painted")
     hatch.box((0.9, 0.9, 0.01), (STAIR_TOP[0], STAIR_TOP[1] + 0.05, WALL_H - 0.02), "M_Steel_Brushed")
+    hatch.box((1.0, 0.006, 0.12), (STAIR_TOP[0], STAIR_TOP[1] - 0.46, WALL_H - 0.08), "M_Safety_Yellow_Aged")
     tag(hatch.build("W0C_HatchUnderside", coll, root),
-        "Underside of a floor hatch: the far side of the W0-B door on the ground floor.",
-        required_access="access_ward_zero")
+        "Underside of a floor hatch: the far side of the W0-B door on the ground floor. "
+        "A yellow board on its edge reads CAUTION LOW HEADROOM.", required_access="access_ward_zero")
     L.empty("MARK_Link_W0B", coll, root, (STAIR_TOP[0], STAIR_TOP[1], WALL_H + 0.2), (0, 0, 0),
             display="SINGLE_ARROW", size=0.5,
             props={"marker_type": "level_link", "target": "ENV_ClinicalCorridor_20m/Door_W0B",
@@ -259,27 +378,28 @@ def build_corridor(coll):
     synced.name = "W0C_ClockB_Hands_Synced"
     state(synced, "w0_clock_offset", "synced", True,
           "Clock B has stopped at the same time as clock A.")
-    offset = A.clock_hands("W0C_ClockB_Hands_Offset", coll, clock_b, 3, 52, y=-0.0485)
+    offset = A.clock_hands("W0C_ClockB_Hands_Offset", coll, clock_b, 3, 44, y=-0.0485)
     state(offset, "w0_clock_offset", "offset", False,
-          "Clock B shows twelve minutes later than clock A. Both are stopped.")
-    services = MeshBuilder()
-    services.box((0.3, 15.6, 0.25), (1.2, -2.0, 2.75), "M_Steel_Painted_Grey")             # Cable tray (east).
-    for y in (-8.0, -4.0, 0.0, 4.0):
-        services.box((0.32, 0.04, 0.3), (1.2, y, 2.75), "M_Metal_Rust")
-    services.cyl(0.05, 15.6, (-1.3, -2.0, 2.8), "M_Metal_Rust", axis="Y", segs=10)         # Pipe (west).
-    services.build(root.name + "_Services", coll, root)
+          "Clock B shows four minutes later than clock A. Both are stopped.")
+    overhead_pipes(coll, root, "Pipes", (-1.25, -1.1, -0.95, 1.25), -9.9, 5.9)
+    tray = MeshBuilder()                                                                    # Cable tray (east),
+    for y0, y1 in ((-9.9, -2.8), (0.1, 5.9)):                                              # broken over the stair.
+        tray.box((0.3, y1 - y0, 0.06), (1.05, (y0 + y1) / 2, 2.62), "M_Steel_Painted_Grey")
+    tray.build(root.name + "_CableTray", coll, root)
     for i, y in enumerate((2.0, -5.5)):
         place(A.prop_radiator_cast, coll, root, "W0C_Radiator_%d" % i, (-1.29, y, 0), 90)
+    place(A.prop_wheelchair, coll, root, "W0C_Wheelchair", (0.55, -9.1, 0), 160)
     tripod = place(A.prop_sensor_tripod, coll, root, "W0C_SensorTripod", (-0.9, 1.4, 0), 0)
     kit(tripod, "Sensor tripod between the two clocks, cabled to a logger by the wall.")
-    for i, (y, w, fl) in enumerate(((4.0, 14, False), (0.0, 0, False), (-4.0, 18, False), (-8.0, 10, True))):
-        lamp(coll, root, "W0C_Lamp_%d" % i, 0.0 if y != 0.0 else -0.6, y, w, flicker=fl, dead=(w == 0))
-    decay(coll, root, "Decay", (("stain", (-1.393, -1.0, 1.2), (0.004, 2.2, 1.4)),
-                               ("flake", (1.392, 1.5, 1.9), (0.004, 0.7, 0.5)),
-                               ("stain", (1.393, -9.0, 0.8), (0.004, 1.4, 1.2)),
-                               ("stain", (-0.2, -6.5, 0.003), (2.0, 1.8, 0.004))))
+    for i, (y, w, fl, dead) in enumerate(((4.4, 34, False, False), (1.2, 0, False, True), (-3.6, 30, False, False),
+                                          (-6.6, 22, True, False), (-9.0, 0, False, True))):
+        batten(coll, root, "W0C_Batten_%d" % i, -0.2, y, w, flicker=fl, dead=dead, along_y=True)
+    decay(coll, root, "Decay", (("stain", (-1.389, -1.0, 0.9), (0.004, 2.2, 0.8)),
+                               ("flake", (1.392, 1.5, 2.1), (0.004, 0.7, 0.5)),
+                               ("stain", (1.393, -9.0, 2.2), (0.004, 1.4, 0.9))))
+    puddles(coll, root, "Water", ((-0.4, 3.0, 1.0, 0.5), (0.2, -4.8, 1.2, 0.6), (-0.6, -7.8, 0.7, 0.5)))
     debris(coll, root, "Debris", ((-0.5, 5.0), (0.4, 2.4), (-0.7, -4.6), (0.3, -8.8)))
-    L.camera_marker("CAM_W0C_Corridor", coll, root, (0.3, 5.6, 1.65), (0.0, -10.0, 1.2), 24)
+    L.camera_marker("CAM_W0C_Corridor", coll, root, (-0.3, 5.6, 1.65), (0.0, -10.0, 1.2), 24)
     L.camera_marker("CAM_W0C_FromSouth", coll, root, (-0.6, -9.6, 1.6), (0.4, 4.0, 1.5), 26)
     L.camera_marker("CAM_W0C_Stair", coll, root, (-1.1, -4.6, 1.5), (0.6, -0.6, 2.6), 22)
     return root
@@ -289,23 +409,32 @@ def build_corridor(coll):
 # West rooms
 # --------------------------------------------------------------------------
 
-def west_shell(coll, asset_id, name, y0, y1, paint=W0, floor=TERRAZZO, owns_north=False, south_kwargs=None):
+def west_shell(coll, asset_id, name, y0, y1, floor=WET, owns_north=False, south_kwargs=None, gaps=None):
     root = env_root(coll, asset_id, name)
     walls = {"south": dict({"back_mat": W0}, **(south_kwargs or {})), "west": dict(back_mat=SOIL)}
     if owns_north:
         walls["north"] = dict(back_mat=SOIL)
     posts = [(-6.0, y0)] + ([(-6.0, y1)] if owns_north else [])
-    shell(coll, root, -6.0, -1.5, y0, y1, paint, floor, walls, posts=posts,
+    shell(coll, root, -6.0, -1.5, y0, y1, W0, floor, walls, posts=posts,
           floor_extend=(-6.1, -1.6, y0, y1 + (0.1 if owns_north else 0.0)))
+    dado(coll, root, -6.0, -1.5, y0, y1, gaps)
     return root
 
 
 def build_observation(coll):
     window = A.window_opening(-1.5 - (-3.75), 1.4, 1.0, 1.8, glass="M_Glass_Grimy")
-    root = west_shell(coll, "ENV_W0_ObservationRoom", "Ward Zero observation room", -1.0, 6.0, owns_north=True,
-                      south_kwargs=dict(openings=[window], back_mat=BEIGE))
-    place(A.prop_desk_steel, coll, root, "OM_Desk", (-3.75, -0.5, 0), 180)
-    place(A.prop_chair_wood_historic, coll, root, "OM_Chair", (-3.75, 0.25, 0), 0)
+    root = west_shell(coll, "ENV_W0_ObservationRoom", "Ward Zero observation room", -1.0, 6.0, floor=TERRAZZO,
+                      owns_north=True, south_kwargs=dict(openings=[window]),
+                      gaps={"east": [(4.0, 1.0)], "south": [(-3.75, 1.4)]})
+    mesh = MeshBuilder()                                                                    # Wire-mesh guard.
+    for i in range(15):
+        mesh.box((0.006, 0.012, 0.8), (-4.45 + i * 0.1, -0.88, 1.4), "M_Steel_Painted_Grey")
+    for i in range(9):
+        mesh.box((1.4, 0.012, 0.006), (-3.75, -0.88, 1.0 + i * 0.1), "M_Steel_Painted_Grey")
+    mesh.box((1.5, 0.03, 0.04), (-3.75, -0.88, 1.82), "M_Iron_Cast_Painted")
+    mesh.build("OM_WindowMesh", coll, root)
+    place(A.prop_desk_steel, coll, root, "OM_Desk", (-3.75, -0.45, 0), 180)
+    place(A.prop_chair_wood_historic, coll, root, "OM_Chair", (-3.75, 0.3, 0), 0)
     rec = place(A.prop_recorder_chart, coll, root, "OM_ChartRecorder", (-5.6, 2.2, 0), 90)
     tag(rec, "Two-pen chart recorder, its cable running up into the ceiling towards the corridor.")
     flat, rep = child(rec, "_Trace_Flat"), child(rec, "_Trace_Repeated")
@@ -317,16 +446,18 @@ def build_observation(coll):
     log = place(A.prop_folder_chart, coll, root, "OM_Document_ObservationLog", (-3.4, -0.4, 0.76), 15)
     tag(log, "Observation log; the columns are for times and instrument readings, not patients.",
         clinical_review_status="PENDING")
-    lamp(coll, root, "OM_Lamp", -3.75, 2.5, 16)
-    decay(coll, root, "Decay", (("stain", (-5.893, 4.6, 2.3), (0.004, 1.2, 0.9)),
-                               ("flake", (-4.6, 5.893, 1.1), (0.5, 0.004, 0.4))))
+    overhead_pipes(coll, root, "Pipes", (-5.75, -5.6), -0.9, 5.9)
+    batten(coll, root, "OM_Batten", -3.75, 2.4, 26)
+    decay(coll, root, "Decay", (("stain", (-5.893, 4.6, 2.3), (0.004, 1.2, 0.6)),
+                               ("flake", (-4.6, 5.893, 2.0), (0.5, 0.004, 0.4))))
     debris(coll, root, "Debris", ((-4.8, 3.6), (-2.6, 1.6)))
     L.camera_marker("CAM_OM_Establishing", coll, root, (-1.95, 5.6, 2.3), (-4.6, -0.6, 0.9), 18)
     return root
 
 
 def build_cell(coll):
-    root = west_shell(coll, "ENV_W0_IsolationCell", "Ward Zero isolation cell", -5.0, -1.0, paint=BEIGE)
+    root = west_shell(coll, "ENV_W0_IsolationCell", "Ward Zero isolation cell", -5.0, -1.0,
+                      gaps={"east": [(-3.0, 1.0)], "north": [(-3.75, 1.4)]})
     place(A.prop_bed_iron, coll, root, "IC_Bed", (-5.4, -3.2, 0), 0)
     by_window = strip_collision(place(A.prop_chair_wood_historic, coll, root, "IC_Chair_ByWindow",
                                       (-3.2, -1.5, 0), 180))
@@ -339,23 +470,23 @@ def build_cell(coll):
     drain.build("IC_Drain", coll, root)
     tripod = place(A.prop_sensor_tripod, coll, root, "IC_SensorTripod", (-4.4, -4.3, 0), 0)
     kit(tripod, "Sensor tripod aimed at the chair.")
-    lamp(coll, root, "IC_Lamp", -3.75, -3.0, 10)
-    decay(coll, root, "Decay", (("stain", (-5.893, -4.0, 0.7), (0.004, 1.3, 1.0)),
-                               ("stain", (-3.0, -4.2, 0.003), (1.6, 1.0, 0.004))))
+    batten(coll, root, "IC_Batten", -3.75, -3.0, 18, flicker=True)
+    decay(coll, root, "Decay", (("stain", (-5.893, -4.2, 2.2), (0.004, 1.0, 0.7)),))
+    puddles(coll, root, "Water", ((-3.3, -2.8, 0.5, 0.35),))
     L.camera_marker("CAM_IC_Establishing", coll, root, (-1.95, -1.4, 2.3), (-5.0, -4.4, 0.6), 18)
     return root
 
 
 def build_store(coll):
-    root = west_shell(coll, "ENV_W0_ServiceStore", "Ward Zero service store", -10.0, -5.0, floor=SOIL,
-                      south_kwargs=dict(back_mat=SOIL))
+    root = west_shell(coll, "ENV_W0_ServiceStore", "Ward Zero service store", -10.0, -5.0,
+                      south_kwargs=dict(back_mat=SOIL), gaps={"east": [(-7.5, 1.0)]})
     place(A.prop_shelving_archive, coll, root, "SS_Shelving_0", (-5.67, -7.5, 0), 90)
     place(A.prop_shelving_archive, coll, root, "SS_Shelving_1", (-3.7, -9.67, 0), 180)
     place(A.prop_cabinet_card_index, coll, root, "SS_CardIndex", (-2.5, -5.45, 0), 0)
     reg = place(A.prop_folder_chart, coll, root, "SS_Document_EquipmentRegister", (-2.6, -5.5, 1.2), -20)
     tag(reg, "Equipment register: the chart recorder and both slave clocks are signed out to 'W0 obs.'")
-    lamp(coll, root, "SS_Lamp", -3.75, -7.5, 12)
-    decay(coll, root, "Decay", (("stain", (-4.5, -9.893, 1.0), (1.4, 0.004, 1.2)),))
+    batten(coll, root, "SS_Batten", -3.75, -7.5, 22)
+    decay(coll, root, "Decay", (("stain", (-4.5, -9.893, 2.0), (1.4, 0.004, 0.8)),))
     debris(coll, root, "Debris", ((-3.2, -6.6), (-4.4, -8.4)))
     L.camera_marker("CAM_SS_Establishing", coll, root, (-1.95, -5.4, 2.3), (-5.0, -9.0, 0.8), 18)
     return root
@@ -365,19 +496,21 @@ def build_store(coll):
 # East rooms
 # --------------------------------------------------------------------------
 
-def east_shell(coll, asset_id, name, y0, y1, paint=W0, floor=TERRAZZO, owns_north=False, south_kwargs=None):
+def east_shell(coll, asset_id, name, y0, y1, floor=WET, owns_north=False, south_kwargs=None, gaps=None):
     root = env_root(coll, asset_id, name)
     walls = {"south": dict({"back_mat": W0}, **(south_kwargs or {})), "east": dict(back_mat=SOIL)}
     if owns_north:
         walls["north"] = dict(back_mat=SOIL)
     posts = [(6.0, y0)] + ([(6.0, y1)] if owns_north else [])
-    shell(coll, root, 1.5, 6.0, y0, y1, paint, floor, walls, posts=posts,
+    shell(coll, root, 1.5, 6.0, y0, y1, W0, floor, walls, posts=posts,
           floor_extend=(1.6, 6.1, y0, y1 + (0.1 if owns_north else 0.0)))
+    dado(coll, root, 1.5, 6.0, y0, y1, gaps)
     return root
 
 
 def build_instrument_room(coll):
-    root = east_shell(coll, "ENV_W0_InstrumentRoom", "Ward Zero instrument room", 1.0, 6.0, owns_north=True)
+    root = east_shell(coll, "ENV_W0_InstrumentRoom", "Ward Zero instrument room", 1.0, 6.0, floor=TERRAZZO,
+                      owns_north=True, gaps={"west": [(3.5, 1.0)]})
     cab = place(A.prop_cabinet_relay, coll, root, "IR_RelayCabinet", (5.67, 3.8, 0), -90)
     tag(cab, "Relay cabinet with a door mimic panel; the inner-door lamp is wired to a contact on that door.")
     mimic = child(cab, "_Lamp_Lit")
@@ -393,17 +526,17 @@ def build_instrument_room(coll):
     place(A.prop_desk_steel, coll, root, "IR_Desk", (4.4, 1.48, 0), 180)
     place(A.prop_chair_wood_historic, coll, root, "IR_Chair", (4.4, 2.2, 0), 0)
     place(A.prop_clock_historic, coll, root, "IR_Clock", (1.606, 2.4, 2.3), 90)
-    lamp(coll, root, "IR_Lamp", 3.75, 3.5, 18)
-    decay(coll, root, "Decay", (("stain", (5.893, 1.8, 2.2), (0.004, 1.2, 0.9)),
-                               ("stain", (3.0, 4.0, 0.003), (1.4, 1.2, 0.004))))
+    overhead_pipes(coll, root, "Conduit", (5.7, 5.8), 1.1, 5.9)
+    batten(coll, root, "IR_Batten", 3.75, 3.5, 24)
+    decay(coll, root, "Decay", (("stain", (5.893, 1.8, 2.2), (0.004, 1.2, 0.7)),))
     debris(coll, root, "Debris", ((2.6, 4.6), (4.9, 2.6)))
     L.camera_marker("CAM_IR_Establishing", coll, root, (1.95, 1.4, 2.3), (5.0, 5.0, 1.0), 18)
     return root
 
 
 def build_plant_room(coll):
-    root = east_shell(coll, "ENV_W0_PlantRoom", "Ward Zero plant room", -10.0, 1.0, floor=SOIL,
-                      south_kwargs=dict(back_mat=SOIL))
+    root = east_shell(coll, "ENV_W0_PlantRoom", "Ward Zero plant room", -10.0, 1.0,
+                      south_kwargs=dict(back_mat=SOIL), gaps={"west": [(-6.0, 1.2)]})
     for i, y in enumerate((-3.4, -7.6)):
         place(A.prop_motor_generator, coll, root, "PR_MotorGenerator_%d" % i, (4.4, y, 0), 90)
     L.empty("MARK_Audio_W0Hum", coll, root, (4.4, -3.4, 1.0), (0, 0, 0), display="SPHERE", size=0.3,
@@ -412,10 +545,16 @@ def build_plant_room(coll):
     place(A.prop_panel_fuse_historic, coll, root, "PR_FuseBoard", (5.894, -0.4, 1.45), -90)
     for i, x in enumerate((2.6, 4.6)):
         place(A.prop_pipes_wall, coll, root, "PR_Pipes_%d" % i, (x, -9.894, 2.5), 180)
-    for i, (y, w, fl) in enumerate(((-1.6, 20, False), (-5.5, 14, True), (-9.0, 0, False))):
+    overhead_pipes(coll, root, "Pipes", (2.0, 2.15, 5.6, 5.75), -9.9, 0.9)
+    valves = MeshBuilder()
+    for y in (-1.8, -5.6):
+        valves.cyl(0.14, 0.04, (5.82, y, 1.3), "M_Safety_Red", axis="X", segs=14)
+        valves.cyl(0.04, 0.2, (5.86, y, 1.3), "M_Metal_Rust", axis="X", segs=8)
+    valves.build("PR_Valves", coll, root)
+    for i, (y, w, fl) in enumerate(((-1.6, 22, False), (-5.5, 16, True), (-9.0, 0, False))):
         lamp(coll, root, "PR_Lamp_%d" % i, 3.2, y, w, flicker=fl, dead=(w == 0))
-    decay(coll, root, "Decay", (("stain", (5.893, -6.0, 0.6), (0.004, 2.4, 1.0)),
-                               ("stain", (3.4, -5.4, 0.003), (1.6, 2.6, 0.004))))
+    decay(coll, root, "Decay", (("stain", (5.893, -6.0, 2.1), (0.004, 2.4, 0.8)),))
+    puddles(coll, root, "Water", ((3.0, -5.6, 1.0, 0.7), (2.6, -8.9, 0.8, 0.6), (3.2, -0.6, 0.6, 0.4)))
     place(A.prop_bin, coll, root, "PR_Bucket", (5.5, -9.5, 0), 0)
     L.camera_marker("CAM_PR_Establishing", coll, root, (1.95, 0.6, 2.3), (4.6, -8.0, 0.6), 18)
     return root
@@ -476,7 +615,7 @@ def build_level():
             groups.setdefault(ob["state_group"], []).append(ob)
             assert ob["approval_status"] == APPROVAL, ob.name
             assert not any("-colonly" in o.name for o in L.descendants(ob)), ob.name + " state has collision"
-    assert len(groups) == 5, sorted(groups)
+    assert len(groups) == 7, sorted(groups)
 
     L.save_blend(ZONE_BLEND)
     records = []
