@@ -1,5 +1,11 @@
 # AI session handoff
 
+## Codex explicit v06 preview — 2026-10-18
+
+- Branch `codex/naomi-v06-review-preview`, implementation `ca8b689166e69fcb4cf97aab2d621789be04ac54` pushed and verified. Independent source validation is draft PR #65; initial audit PR #64 merged.
+- Owner confirmed other sessions stopped. Added explicit v06/v06_mpfb choices in existing preview; default v05 and normal capsule preserved. No controller or asset changes.
+- Dedicated handoff `docs/handoffs/2026-10-18_codex_naomi_v06_preview.md` has commands, final test outcomes and next exact tasks. Runtime dialogue visemes, significant source lid/hem corrections, Mac review and approval remain outstanding. Existing entries below preserved.
+
 ## Naomi v05 refinement — Claude Code (cloud), 2026-10-18 18:40 UTC
 
 - **Objective:** fix v04's brows, blink gap, plastic skin, shoes and hems; add gaze; investigate the Mac's v04 draw-call jump.
