@@ -69,13 +69,15 @@ func _check_asset(path: String, manifest: Dictionary) -> void:
 		_fail(asset_id, "environment has no CAM_* camera markers")
 	if not record.is_empty():
 		var expected: Array = record.get("dimensions_m", [])
-		var size: Vector3 = _visual_size(scene)
-		# Blender (x, y, z) -> Godot (x, z, y) for an axis-aligned size.
-		var got: Array = [size.x, size.z, size.y]
-		for i: int in 3:
-			if absf(float(expected[i]) - got[i]) > TOLERANCE_M:
-				_fail(asset_id, "size %s differs from manifest %s" % [str(got), str(expected)])
-				break
+		if expected.size() == 3:
+			var size: Vector3 = _visual_size(scene)
+			# Blender (x, y, z) -> Godot (x, z, y) for an axis-aligned size.
+			var got: Array = [size.x, size.z, size.y]
+			for i: int in 3:
+				if absf(float(expected[i]) - got[i]) > TOLERANCE_M:
+					_fail(asset_id, "size %s differs from manifest %s" % [str(got), str(expected)])
+					break
+		# skip size check if dimensions_m not specified (e.g. characters)
 	else:
 		_fail(asset_id, "missing from asset_manifest.json")
 	print("  %-44s meshes %3d  colliders %3d  cams %d  marks %d  lights %d" % [
