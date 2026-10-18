@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 2 Scene 05 — 2026-10-19
+
+- Analyst working explanation added on `claude/chapter2-mara-intro` (PR #72 to main) at `0d298cfa7a557eeab11a0b265e203116012fe0ad`, pushed and verified. Full QA exit 0, game 216/0. Next: Scene 06 Hale's Door.
+
 ## Claude Code Chapter 2 Mara introduction — 2026-10-19 00:10 UTC
 
 - Owner approved Scene 03 ("i approve scene 3"). Implemented on the same branch/PR #71 at `09e4a8cb45981dd0959c7dc6058b62bc870e0d58` (pushed, verified). Full QA exit 0, game 212/0. Dialogue approved; patient record pending review. Next: Scene 05. See dedicated handoff addendum.
