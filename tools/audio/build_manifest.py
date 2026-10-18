@@ -24,8 +24,9 @@ MANIFEST_PATH = ROOT / "audio/manifest.json"
 TABLE_PATH = ROOT / "docs/AUDIO_MANIFEST.md"
 CUES_PATH = ROOT / "audio/cues.json"
 AUDIO_EXTENSIONS = {".ogg", ".wav", ".mp3"}
-# audio/ holds generated assets; assets/audio/ holds recordings the owner supplies (e.g. the soundtrack).
-AUDIO_ROOTS = ("audio", "assets/audio")
+# audio/ holds generated assets; assets/audio/ holds recordings the owner supplies (e.g. the soundtrack);
+# Ready_For_Godot holds the owner's Ashcroft score, referenced in place (its .m4a sources are not importable).
+AUDIO_ROOTS = ("audio", "assets/audio", "assets/creative_references/Music/Ready_For_Godot")
 
 VOICE_LICENSE = ("Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); "
                  "phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not "

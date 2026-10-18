@@ -49,7 +49,8 @@ API (all data-driven from `audio/cues.json`):
 - `play_sfx(cue)` / `play_sfx_3d(cue, position)`: plays a one-shot that frees itself when finished. 3D sounds use distance attenuation and filtering. Cues with a `streams` list, such as footsteps and key presses, play through an `AudioStreamRandomizer`, which picks a random take (never the same one twice in a row) with slight pitch and volume variation. For footsteps, call `play_sfx_3d("sfx_footstep_<vinyl|tile|concrete>", foot_position)`.
 - `play_music(cue)`, `set_music_state(state)`, `set_music_intensity(0..1)`: a music state has calm/tense variants (`min_intensity`). Changing the intensity crossfades between variants over 4 s and opens the Music low-pass filter.
 - `play_stinger(cue)`: one-shot transition. `duck_ambience_db` creates a controlled silence under it.
-- `play_line(line_id[, emitter])` / `play_scene(scene_id)`: plays dialogue from `data/narrative`. `EventBus.subtitle_shown` fires when the voice starts, with the clip's exact duration, and `subtitle_cleared` fires when it ends or is skipped. Music ducks by 9 dB and ambience by 4 dB while anyone speaks, and both are restored 1.2 s after the last line. Unvoiced lines still show their subtitles.
+- `play_line(line_id[, emitter])` / `play_scene(scene_id)`: plays dialogue from `data/narrative`. `EventBus.subtitle_shown` fires when the voice starts, with the clip's exact duration, and `subtitle_cleared` fires when it ends or is skipped. `dialogue_line_finished(line_id, completed)` distinguishes natural completion from interruption for presentation-only listeners. Music ducks by 9 dB and ambience by 4 dB while anyone speaks, and both are restored 1.2 s after the last line. Unvoiced lines still show their subtitles.
+- Naomi's Chapter 1 cue controller listens to those existing line IDs and lifecycle events. It never gates dialogue or story state. Optional `AnimationPlayer` clips use the cue's semantic body name; gestures can use a separate `GestureAnimationPlayer`. Rig-specific adapters may join `character_acting_adapter`, `character_face_adapter`, `character_gaze_adapter` or `character_gesture_adapter` and implement the corresponding methods in `scripts/acting/CharacterActingAdapter.gd`. Missing nodes and clips are no-ops with safe transitions. Speaking state follows the actual voice/subtitle window; no phoneme timing is fabricated.
 - `start_music_context(id)` / `end_music_context(id)`: see [Soundtrack](#soundtrack).
 - `trigger_event(id)`: also connected to `EventBus.narrative_event_fired`. It runs timed actions (`sfx`, `stinger`, `music`, `music_state`, `music_context`, `end_music_context`, `line`, `scene`, `intensity`). Events without audio are ignored.
 
@@ -73,17 +74,36 @@ Five original tracks live in `assets/audio/music/`. They are referenced in place
 | `music_main_theme.ogg` | `mus_main_theme` | music context `main_menu` (event `music_main_menu`) | loops, 4 s tail-to-head crossfade | stopped |
 | `music_main_theme_alt.ogg` | `mus_main_theme_alt` | music context `cinematic` (event `music_cinematic`) | plays once, then hands music back | ducked 12 dB |
 | `music_emotional.ogg` | `mus_emotional` | music context `emotional` (events `music_emotional_begin` / `music_emotional_end`) | loops, 5 s crossfade | ducked 6 dB |
-| `music_narrative.ogg` | `mus_narrative` | music state `exploration`: corridor and nursing station by day | last 8 s fade, 45 s of silence, plays again | kept; the bed sits 6 dB below the other tracks |
+| `music_narrative.ogg` | `mus_narrative` | music state `exploration`: records archive by day (the bible's Chapter 1 table: "records archive: music_narrative, softly"; handover and assessment rooms have no foreground music) | last 8 s fade, 45 s of silence, plays again | kept; the bed sits 6 dB below the other tracks |
 | `music_ending_credits.ogg` | `mus_ending_credits` | music context `ending_credits` (event `music_credits`) | plays once | stopped |
 
 How playback works:
 
 - **Contexts take over the music and hand it back.** Contexts stack: the newest plays, and ending it returns to the one below or, when none is left, to the location's music state and ambience. A context whose track plays once ends by itself. While a context is active, room changes keep its music, and a context that stops ambience keeps the world silent behind it.
-- **Exploration follows the room.** Ward Zero, the historical wing and every location at night have no music state, so entering them fades the exploration theme out and leaves the ambience and its controlled silence. Music started explicitly (`play_music`, an event's `music_state`) is not stopped by room changes.
+- **Exploration follows the room.** Only the records archive carries the exploration state, by day. `records_archive` exists in `audio/cues.json` but no zone in `data/zones.json` has an archive `audio_zones` rectangle yet; the world owner adds one with the archive. The corridor, nursing station, Ward Zero, the historical wing and every location at night have no music state, so entering them fades the exploration theme out and leaves the ambience and its controlled silence. Music started explicitly (`play_music`, an event's `music_state`) is not stopped by room changes.
 - **Repeats.** None of the tracks is a seamless loop: each has a composed fade-in and ending, and `music_narrative.ogg` ends at full level. So the imports keep `loop=false`, and AudioDirector repeats them itself: `loop_crossfade` crossfades the tail into a fresh start, `tail_fade` with `repeat_after` fades the ending out and rests in silence first. Pausing the game pauses the rest as well.
 - **Dialogue.** Every track is on the Music bus, so dialogue ducks it by 9 dB. A context's ambience duck adds to the dialogue duck instead of replacing it.
 - **Triggers.** Story data fires the events above through `EventBus.narrative_event_fired`, or code calls `AudioDirector.start_music_context(id)`. No scene fires the main-menu, cinematic, emotional or credits events yet, because the game has no title screen, cinematics or credits scene, and no story beat is marked emotional. Those scenes should fire the events when they are built.
 - `music_main_theme.m4a` (an Opus copy of the main theme) is ignored: Godot cannot import `.m4a`.
+
+### Ashcroft score
+
+Six more tracks from the owner's Ashcroft upload are referenced in place from `assets/creative_references/Music/Ready_For_Godot/`, unmodified, levelled the same way. Scene assignments follow the master design bible (`ForensicWard_Final_Package/05_AUDIO_VISUAL_AND_ACCESSIBILITY.md` and the chapter notes in the master bible).
+
+| Track | Cue | Context | Repeats | Ambience |
+|---|---|---|---|---|
+| `music_waiting_room.ogg` | `mus_waiting_room` | music state `hospital_ordinary`: `reception` by day (the bible's Chapter 2 "repeated hospital ordinary beds") | last 4 s fade, 40 s of silence, plays again | kept; the bed sits 6 dB below the other tracks |
+| `music_compassion.ogg` | `mus_compassion` | music context `patient_follow_up` (events `music_patient_follow_up_begin` / `_end`): Chapter 5 patient continuity and reflective care moments, never during an interview | loops, 5 s crossfade | ducked 6 dB |
+| `music_procedure.ogg` | `mus_procedure` | music context `oversight` (events `music_oversight_begin` / `_end`): Chapter 4 audit and committee scenes ("subdued procedural pulse as oversight progresses") | loops, 5 s crossfade | ducked 4 dB |
+| `music_temporal_fracture.ogg` | `mus_temporal_fracture` | music context `ward_zero_anomaly` (events `w0_temporal_echo_begin` / `_end`): the bounded temporal echo, Chapter 3 onward | plays once | kept, so the environmental hum stays the source |
+| `music_final_revelation.ogg` | `mus_final_revelation` | music context `final_revelation` (event `music_final_revelation`): Chapter 5 final assessment | plays once | ducked 9 dB |
+| `music_main_theme_variant2.ogg` | `mus_main_theme_variant2` | music context `finale_motif` (event `music_finale_motif`): the Chapter 5 four-note recapitulation before the credits | plays once | ducked 12 dB |
+
+- **Ward Zero stays event-only.** No location, music state, bleed stage or Objectivity value starts `mus_temporal_fracture`; only the explicit `w0_temporal_echo_begin` event does, and Ward Zero itself still has no location music. The bible places no verified anomaly in Chapter 1, so no Chapter 1 beat should fire it. Tests check all of this.
+- **Reception needs a zone.** `reception` exists in `audio/cues.json`, but no zone in `data/zones.json` has a reception `audio_zones` rectangle yet. The world owner adds one when the reception area is built.
+- `music_procedure.ogg` has a +0.5 dBFS true peak in the file itself; the -7.7 dB cue gain keeps playback clear of clipping.
+- `Suno_Originals/*.m4a` are the Opus sources of the same six recordings (same Suno ids). Godot cannot import them and they are not referenced; `.gdignore` keeps Godot out of that folder and out of `Visual_References/`, so the concept boards and character guide are not imported as game textures.
+- **Licence.** All six files, and four of the five tracks above, carry "made with suno" metadata. Whether they may ship depends on the owner's Suno plan when each was generated; the manifest records that as still to be confirmed.
 
 ## Regenerating assets
 
@@ -157,7 +177,8 @@ The project-wide status board and handoff log are proposed in PR #4 (`docs/PROJE
 | AudioDirector, Chapter 1 sequence | Merged to `main` (PR #3) |
 | Environment set: footsteps ×3 surfaces, badge accept/deny, EHR UI, elevator, distant staff, nursing station, historic static, electrical flicker/surge, Ward Zero bed + knocks + pressure swell | On `claude/quirky-ptolemy-6j16b7` (PR #5), tests green; not reviewed by ear |
 | ACE-Step 1.5 Mac kit with reference-audio support | On PR #5; **AI music milestone open**: no ACE-Step audio exists yet |
-| Original soundtrack (5 tracks) | `claude/audio-production`: contexts, exploration state, repeats, pause-menu volumes; tests green; not reviewed by ear on the Mac |
+| Original soundtrack (5 tracks) | Merged to `main` (PR #18): contexts, exploration state, repeats, pause-menu volumes; not reviewed by ear on the Mac |
+| Ashcroft score (6 tracks) | `claude/ashcroft-soundtrack`: bible scene assignments, event-only Ward Zero echo, reception bed; tests green; not reviewed by ear; Suno licence to confirm |
 | Gameplay hooks | Not wired: the player controller (PR #1) should call footsteps per surface, doors and badge readers should fire the `ch1_badge_*` events, and the EHR should fire `ch1_ehr_*` |
 
 Next steps, in order:

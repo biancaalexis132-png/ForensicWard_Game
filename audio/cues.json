@@ -1,6 +1,6 @@
 {
 	"schema_version": "0.1",
-	"_note": "Audio cue sheet read by systems/audio/AudioDirector.gd. Cues name streams; locations pick ambience and room acoustics per shift; events map explicit narrative event IDs to timed audio actions. Anomaly audio is only ever started by an event listed here, never by the player's Objectivity or bleed stage. Cues with 'streams' list several takes; AudioDirector plays a random one with slight pitch and volume variation. A location shift may add a 'detail' ambience layered over its base bed. Music contexts (main menu, cinematic, emotional scenes, credits) take over the music while active and stack, newest first; ending one returns to the context below it or to the location's music state. A context can stop or duck the ambience bed. Music cues that are not native loops repeat by 'loop_crossfade' (tail crossfades into a fresh start) or by 'tail_fade' plus 'repeat_after' (fade out, rest in silence, play again); otherwise they play once. Soundtrack volume_db values bring each track to about -20 LUFS integrated (the narrative bed sits 6 dB lower under ambience) without altering the recordings in assets/audio/music.",
+	"_note": "Audio cue sheet read by systems/audio/AudioDirector.gd. Cues name streams; locations pick ambience and room acoustics per shift; events map explicit narrative event IDs to timed audio actions. Anomaly audio is only ever started by an event listed here, never by the player's Objectivity or bleed stage. Cues with 'streams' list several takes; AudioDirector plays a random one with slight pitch and volume variation. A location shift may add a 'detail' ambience layered over its base bed. Music contexts (main menu, cinematic, emotional scenes, patient follow-up, oversight, the Ward Zero temporal echo, the final revelation, the finale motif, credits) take over the music while active and stack, newest first; ending one returns to the context below it or to the location's music state. A context can stop or duck the ambience bed. Music cues that are not native loops repeat by 'loop_crossfade' (tail crossfades into a fresh start) or by 'tail_fade' plus 'repeat_after' (fade out, rest in silence, play again); otherwise they play once. Soundtrack volume_db values bring each track to about -20 LUFS integrated (the narrative bed sits 6 dB lower under ambience) without altering the recordings in assets/audio/music or assets/creative_references/Music/Ready_For_Godot (the waiting-room bed also sits about 6 dB lower). The Ward Zero temporal echo (mus_temporal_fracture) is only ever started by the explicit w0_temporal_echo_begin event, never by a location.",
 	"cues": {
 		"amb_corridor_day": {
 			"stream": "res://audio/ambience/amb_corridor_day_loop.ogg",
@@ -165,12 +165,52 @@
 			"stream": "res://assets/audio/music/music_ending_credits.ogg",
 			"bus": "Music",
 			"volume_db": -5.9
+		},
+		"mus_waiting_room": {
+			"stream": "res://assets/creative_references/Music/Ready_For_Godot/music_waiting_room.ogg",
+			"bus": "Music",
+			"volume_db": -11.8,
+			"tail_fade": 4.0,
+			"repeat_after": 40.0
+		},
+		"mus_compassion": {
+			"stream": "res://assets/creative_references/Music/Ready_For_Godot/music_compassion.ogg",
+			"bus": "Music",
+			"volume_db": -4.9,
+			"loop_crossfade": 5.0
+		},
+		"mus_procedure": {
+			"stream": "res://assets/creative_references/Music/Ready_For_Godot/music_procedure.ogg",
+			"bus": "Music",
+			"volume_db": -7.7,
+			"loop_crossfade": 5.0
+		},
+		"mus_temporal_fracture": {
+			"stream": "res://assets/creative_references/Music/Ready_For_Godot/music_temporal_fracture.ogg",
+			"bus": "Music",
+			"volume_db": -6.5
+		},
+		"mus_final_revelation": {
+			"stream": "res://assets/creative_references/Music/Ready_For_Godot/music_final_revelation.ogg",
+			"bus": "Music",
+			"volume_db": -6.2
+		},
+		"mus_main_theme_variant2": {
+			"stream": "res://assets/creative_references/Music/Ready_For_Godot/music_main_theme_variant2.ogg",
+			"bus": "Music",
+			"volume_db": -5.7
 		}
 	},
 	"music_states": {
 		"exploration": [
 			{
 				"cue": "mus_narrative",
+				"min_intensity": 0.0
+			}
+		],
+		"hospital_ordinary": [
+			{
+				"cue": "mus_waiting_room",
 				"min_intensity": 0.0
 			}
 		]
@@ -197,6 +237,35 @@
 			"cue": "mus_ending_credits",
 			"ambience": "stop",
 			"fade": 3.0
+		},
+		"patient_follow_up": {
+			"cue": "mus_compassion",
+			"ambience": "duck",
+			"ambience_db": -6.0,
+			"fade": 4.0
+		},
+		"oversight": {
+			"cue": "mus_procedure",
+			"ambience": "duck",
+			"ambience_db": -4.0,
+			"fade": 4.0
+		},
+		"ward_zero_anomaly": {
+			"cue": "mus_temporal_fracture",
+			"ambience": "keep",
+			"fade": 5.0
+		},
+		"final_revelation": {
+			"cue": "mus_final_revelation",
+			"ambience": "duck",
+			"ambience_db": -9.0,
+			"fade": 4.0
+		},
+		"finale_motif": {
+			"cue": "mus_main_theme_variant2",
+			"ambience": "duck",
+			"ambience_db": -12.0,
+			"fade": 3.0
 		}
 	},
 	"locations": {
@@ -206,8 +275,7 @@
 				"volume_db": 0.0,
 				"lowpass_hz": 20000.0,
 				"detail": "amb_distant_staff",
-				"detail_volume_db": -14.0,
-				"music_state": "exploration"
+				"detail_volume_db": -14.0
 			},
 			"night": {
 				"ambience": "amb_corridor_day",
@@ -226,8 +294,7 @@
 				"volume_db": -7.0,
 				"lowpass_hz": 6000.0,
 				"detail": "amb_nursing_station",
-				"detail_volume_db": 0.0,
-				"music_state": "exploration"
+				"detail_volume_db": 0.0
 			},
 			"night": {
 				"ambience": "amb_corridor_day",
@@ -282,6 +349,44 @@
 				"room_size": 0.85,
 				"damping": 0.4,
 				"wet": 0.3
+			}
+		},
+		"reception": {
+			"day": {
+				"ambience": "amb_corridor_day",
+				"volume_db": -4.0,
+				"lowpass_hz": 12000.0,
+				"detail": "amb_distant_staff",
+				"detail_volume_db": -10.0,
+				"music_state": "hospital_ordinary"
+			},
+			"night": {
+				"ambience": "amb_corridor_day",
+				"volume_db": -9.0,
+				"lowpass_hz": 2500.0
+			},
+			"reverb": {
+				"room_size": 0.7,
+				"damping": 0.5,
+				"wet": 0.16
+			}
+		},
+		"records_archive": {
+			"day": {
+				"ambience": "amb_corridor_day",
+				"volume_db": -12.0,
+				"lowpass_hz": 4000.0,
+				"music_state": "exploration"
+			},
+			"night": {
+				"ambience": "amb_corridor_day",
+				"volume_db": -14.0,
+				"lowpass_hz": 2000.0
+			},
+			"reverb": {
+				"room_size": 0.5,
+				"damping": 0.75,
+				"wet": 0.12
 			}
 		}
 	},
@@ -402,6 +507,54 @@
 			{
 				"at": 0.0,
 				"music_context": "ending_credits"
+			}
+		],
+		"music_patient_follow_up_begin": [
+			{
+				"at": 0.0,
+				"music_context": "patient_follow_up"
+			}
+		],
+		"music_patient_follow_up_end": [
+			{
+				"at": 0.0,
+				"end_music_context": "patient_follow_up"
+			}
+		],
+		"music_oversight_begin": [
+			{
+				"at": 0.0,
+				"music_context": "oversight"
+			}
+		],
+		"music_oversight_end": [
+			{
+				"at": 0.0,
+				"end_music_context": "oversight"
+			}
+		],
+		"w0_temporal_echo_begin": [
+			{
+				"at": 0.0,
+				"music_context": "ward_zero_anomaly"
+			}
+		],
+		"w0_temporal_echo_end": [
+			{
+				"at": 0.0,
+				"end_music_context": "ward_zero_anomaly"
+			}
+		],
+		"music_final_revelation": [
+			{
+				"at": 0.0,
+				"music_context": "final_revelation"
+			}
+		],
+		"music_finale_motif": [
+			{
+				"at": 0.0,
+				"music_context": "finale_motif"
 			}
 		]
 	}

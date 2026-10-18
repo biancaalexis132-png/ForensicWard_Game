@@ -1,0 +1,3 @@
+# Copilot handoff — Naomi Chapter 1 performance
+
+Read `NAOMI_DIALOGUE_PERFORMANCE.md`; check `data/narrative/chapter1.json`, `audio/voice/voice_lines.json`, `audio/voice_profiles.json`, `scripts/world/Character.gd`, `scenes/props/Character.tscn` and current scene/interaction implementations. Preserve content IDs and pending clinical status. Coordinate with ongoing Naomi Blender builder branch: no overlapping model-production changes. Propose additive acting-cue JSON format keyed to `ch1_b2_bennett_001`, `002`, `003` and listening states around player lines, test lookups, playback start/stop, interrupts, load, and missing assets. Do not modify screenplay or regenerate clinical lines. Provide draft PR, tests, and verified progress handoff after every milestone.
