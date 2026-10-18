@@ -1,5 +1,19 @@
 # AI progress tracker
 
+## Naomi v04 animation and cast animation standard — Claude Code (cloud), 2026-10-18
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Idle, breathing, listening, speaking, turns and four gestures on the v03 rig | Done, draft PR; not approved | v03 (PR #49) | `tools/character_animation/{build_animated_character.py,clip_library.json}`, v04 GLB | GLB channel check; TestRunner 155/0; captures | Owner review |
+| Blink, mouth and six restrained expression morphs; lashes; brows | Done, draft PR | v03 face | `profiles/staff_bennett.json`, `scripts/world/CharacterFaceRig.gd` | Renders; TestRunner | Owner review |
+| Clothing re-skin (v03 scrubs were weighted to the hands) | Done | v02 base blend | builder `transfer_weights` | Chart gesture no longer drags the hem | none |
+| Adapter idle fallback, expression lookup, gesture held tracks | Done with regression tests | | `scripts/acting/CharacterActingAdapter.gd`, `scripts/world/CharacterAnimationRig.gd` | `test_character_animation.gd`, `test_naomi_acting.gd` | none |
+| Fold PR #51 into one workflow | Done; #51 can close once this is reviewed | PR #51 | toolkit folder | toolkit tests 6 OK | Owner closes #51 |
+| Skin plastic look; shoe and hem lumps | Not started | Mac MPFB CC0 skin (local thread) | | | Next pass |
+| MPFB faceunits / visemes as morphs | Not started | v02 base (v03 lost the basemesh vertex order) | | | Local thread on the Mac |
+| Gaze and lip sync | Not started | | `character_gaze_adapter` | | After review |
+| Mac validation and frame time | Not started | Local thread | | No measurement | Local thread |
+
 ## Naomi v03 visual development — Claude Code, 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |

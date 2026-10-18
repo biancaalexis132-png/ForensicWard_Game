@@ -1,5 +1,17 @@
 # AI session handoff
 
+## Naomi v04 animation and cast animation standard — Claude Code (cloud), 2026-10-18 16:45 UTC
+
+- **Objective:** give Naomi real animation and face controls on the v03 rig through one reusable pipeline for the whole cast, merged with the Mac-tested work from PR #51; review only.
+- **Branch / PR:** `claude/naomi-animation-v04`, draft PR to `main` (supersedes PR #51; do not close #51 without the owner). Code verified at `afdc3d0`.
+- **Completed:** builder, clip library, profile and standard in `tools/character_animation/`; v04 .blend/GLB/renders/manifest; `CharacterAnimationRig` and `CharacterFaceRig`; adapter fixes (idle fallback, expression lookup); gesture held-track fix; PR #51 folded in; in-game captures in `ingame_review_v04/`.
+- **Clip names:** body `idle_neutral`, `idle_breathing`, `listen_neutral`, `stand_conversational`, `turn_from_workstation`, `return_to_workstation`; gesture `small_greeting_nod`, `small_acknowledgement_nod`, `restrained_chart_indication`, `subtle_workstation_indication`; morphs `blink`, `blink_L/R`, `mouth_open` and six restrained expressions.
+- **Tests:** TestRunner 155/0 on `afdc3d0`; toolkit 6 OK; full QA recorded in the PR.
+- **Exact stopping point:** pushed; waiting on owner visual review and Mac validation by the local thread.
+- **Pending approvals:** Naomi v04 appearance and motion; closing PR #51.
+- **Next steps:** see the 2026-10-18 16:45 UTC entry in `docs/AI_HANDOFF.md` (skin, shoe/hem, MPFB faceunits on the v02 base, gaze).
+- **Constraints:** not approved or default; v01–v03 untouched; no patient symptom movement; never Git on the SSK drive; no performance claims without Mac measurements.
+
 ## Naomi v03 visual development — Claude Code, 2026-10-18 15:40 UTC
 
 - **Objective:** make Naomi substantially more realistic in the review preview without approving her or touching v01/v02, clinical, narrative or save data.

@@ -1,6 +1,6 @@
 # Naomi in game: review preview and remaining work
 
-**State (2026-10-18, Claude Code):** Naomi v02 can be viewed in the real Chapter 1 nursing station through a review-only switch. It is **not approved** and is **not** attached by default. Without the switch the game is unchanged: Bennett is the grey capsule.
+**State (2026-10-18 16:45 UTC, Claude Code):** the preview now defaults to v04, which adds animation and face controls to v03; see "v04 in game" below. Earlier state: Naomi v02 can be viewed in the real Chapter 1 nursing station through a review-only switch. It is **not approved** and is **not** attached by default. Without the switch the game is unchanged: Bennett is the grey capsule.
 
 ## What the switch does
 
@@ -9,7 +9,9 @@
 | Argument | Result |
 |---|---|
 | (none) | Every character keeps its placeholder. This is how CI, tests and normal play run. |
-| `--character-preview=staff_bennett` | Bennett uses the newest candidate, `assets/exports/characters/Naomi_Bennett_v03.glb` (see `NAOMI_V03_NOTES.md`) |
+| `--character-preview=staff_bennett` | Bennett uses the newest candidate, `assets/exports/characters/Naomi_Bennett_v04.glb` (v03 with clips and face morphs) |
+| `--character-preview=staff_bennett:v04_local` | The Mac validation build from PR #51 |
+| `--character-preview=staff_bennett:v03` | v03 without animation (see `NAOMI_V03_NOTES.md`) |
 | `--character-preview=staff_bennett:v02` | Bennett uses v02 (`Naomi_Bennett_Base_v02.glb`) for comparison |
 | `--character-preview=staff_bennett:v01` | Bennett uses the older v01 base for comparison |
 
@@ -23,18 +25,31 @@ Use the internal-drive clone, never Git on the SSK drive (see `AGENTS.md`). In T
 cd ~/ForensicWard_Campaign_Publish            # or any clean internal clone
 git fetch origin
 git status                                     # commit or stash your own changes first
-git switch claude/naomi-v03                    # or main once it is merged
+git switch claude/naomi-animation-v04          # or main once it is merged
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --editor --import
 /Applications/Godot.app/Contents/MacOS/Godot --path . -- --character-preview=staff_bennett
 ```
 
-The import step creates the GLB's `.import` file and extracted textures; they are generated, so do not commit them. The Output log prints `Review preview: staff_bennett uses unapproved candidate v03`. Walk from the spawn to the nursing station. In the preview Naomi stands on the office side of the desk and faces the corridor counter, so you see her face through the counter window. Swap the last argument for `staff_bennett:v02` or `staff_bennett:v01` to compare.
+The import step creates the GLB's `.import` file and extracted textures; they are generated, so do not commit them. The Output log prints `Review preview: staff_bennett uses unapproved candidate v04`. Walk from the spawn to the nursing station. In the preview Naomi stands on the office side of the desk and faces the corridor counter, so you see her face through the counter window. Swap the last argument for `staff_bennett:v02` or `staff_bennett:v01` to compare.
 
 From the editor instead: Project > Project Settings > Editor > Run > Main Run Args = `-- --character-preview=staff_bennett`, then press Play. That setting is written to `project.godot`; clear it before committing.
 
 Note any frame-rate observations as owner measurements. Nothing here measures Mac performance.
 
-## What the in-game captures show
+## v04 in game
+
+Captured in the Linux container on software OpenGL (lighting approximate), with clip and face states frozen so each image shows one control. Files are in `ingame_review_v04/`.
+
+- `v03_face.png` and `v04_neutral.png`: v03 against v04 at rest. v04 adds lashes and darker stroke brows.
+- `v04_blink.png`: the `blink` morph closed. In play `CharacterFaceRig` blinks every 2.2 to 5.5 s, sometimes twice.
+- `v04_listen.png`: `listen_neutral` with `attentive`: slight lean and head tilt.
+- `v04_speak.png`: `stand_conversational` with `warm_subtle` and `mouth_open`. In play the mouth follows a syllable rhythm while her line plays; there is no lip sync.
+- `v04_concerned.png`: `concerned_restrained`.
+- `v04_counter_idle.png` and `v04_counter_chart.png`: from the counter, idle and mid `restrained_chart_indication`. The scrub hem no longer follows the hand.
+
+Still visibly wrong: glossy, plastic-looking skin; lumpy shoes and trouser hems; eyes do not track the player. None of this is approved.
+
+## What the in-game captures show (v02)
 
 Captured in a Linux container with Godot 4.7 on the software (llvmpipe) OpenGL renderer, so lighting and shading are approximate. Files are in `ingame_review_v02/`.
 

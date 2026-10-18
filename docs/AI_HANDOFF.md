@@ -14,7 +14,8 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Naomi v03 visual development | `claude/naomi-v03` (draft PR, see Log) | Claude Code | see Log | `tools/blender/characters/{build_naomi_v03.py,naomi_v03.json}`, `assets/**/Naomi_Bennett_v03*`, `assets/renders/characters/`, `assets/asset_manifest/naomi_character_manifest_v03.json`, `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, Naomi production docs | Waiting on owner appearance review; not approved |
+| Naomi v03 visual development | `claude/naomi-v03` (draft PR, see Log) | Claude Code | see Log | `tools/blender/characters/{build_naomi_v03.py,naomi_v03.json}`, `assets/**/Naomi_Bennett_v03*`, `assets/renders/characters/`, `assets/asset_manifest/naomi_character_manifest_v03.json`, `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, Naomi production docs | Merged in PR #49 (row kept for history; the owner removes it). v03 is the development baseline, not production |
+| Naomi v04 animation and cast animation standard | `claude/naomi-animation-v04` (draft PR, see Log) | Claude Code (cloud) | see Log | `tools/character_animation/**`, `assets/**/Naomi_Bennett_v04*`, `scripts/world/{CharacterAnimationRig,CharacterFaceRig,CharacterVisualPreview,Character}.gd`, `scripts/acting/CharacterActingAdapter.gd`, `scripts/tests/test_character_{animation,preview}.gd`, `scripts/tests/test_naomi_acting.gd`, the four continuity docs | Waiting on owner review of v04 in game and Mac validation by the local thread; supersedes PR #51 |
 | Naomi in-game review preview | `claude/naomi-review-preview` (draft PR #46) | Claude Code | `6b6893d` | `scripts/world/{Character,CharacterVisualPreview}.gd`, `scripts/tests/test_character_preview.gd`, `docs/design/characters/Naomi_Bennett_Character_Production_v1/NAOMI_INGAME_REVIEW.md` and `ingame_review_v02/` | Waiting on owner review of the model in game; preview is off by default |
 | Naomi procedural visual refinement | `biancaalexis132-png-naomi-model-refinement` | Copilot / current session | `1eb7e948de53fcf5efa0a240a918b7b4b14ed5cc` (code/test checkpoint; docs-only follow-up is pushed) | `tools/blender/characters/**`, Naomi-specific `.blend`/GLB/renders and asset manifests, Naomi continuity/status docs | Merged in PR #45 at `a202caf` (row kept for history; the owner removes it). v02 still fails visual criteria. |
 | Foundation F3 anomaly model | `claude/f3-anomaly-model` (draft PR to `main`) | Claude | `5283735` (see entry) | `data/anomalies.json`, `data/clues.json` (source_class, claim_state), `scenes/main/Main.tscn`, `scripts/main/Main.gd`, `scripts/narrative/{AnomalyLedger,ChapterDirector,StoryLogic}.gd`, `scripts/autoload/{ContentRegistry,EventBus}.gd` (EventBus: two signals), `scripts/content/*`, `project.godot` (one setting), `scripts/tests/test_anomaly.gd`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT,AI_SESSION_HANDOFF,AI_PROGRESS_TRACKER}.md` | Merged in PR #44 at `fec5933` (row kept for history; the owner removes it). |
@@ -157,6 +158,109 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 16:45 UTC · Claude Code (cloud) · Naomi v04 animation and cast animation standard
+
+- **Branch:** `claude/naomi-animation-v04` (based on `main` after PR #49 and #50; PR #51's branch `claude/naomi-local-build` merged in at `44e6def`)
+- **Latest verified commit:** `afdc3d0` "Fix expression lookup in the acting adapter and keep gestures off the body bones"; this entry and the review captures sit on top
+- **Pull request:** draft, assigned to the owner (see `docs/PROJECT_STATUS.md`); supersedes draft PR #51, which the owner can close once this is reviewed
+- **State:** finished and coherent; Naomi v04 is a review-only candidate, **not approved, not production-ready**
+
+**Selected architecture (one shared workflow)**
+- Blender: `tools/character_animation/build_animated_character.py --profile tools/character_animation/profiles/<character>.json`. It reads `clip_library.json` (the standard clips and face shapes), checks the rig (every mapped bone sits inside the vertices it deforms; every skinned mesh is bound), writes clips in the character's own frame (flex, turn, tilt, raise, swing, so no bone-axis assumption), builds lashes, brow strokes and 10 face morphs, optionally re-skins clothing from a clean full body, exports the GLB, checks every channel and morph in the GLB, and renders review sheets. It refuses to overwrite its source.
+- Kept from PR #51: `ForensicWard_Animation_Pipeline_v03/tools/export_animated_glb.py` (re-export utility), `configs/staff_bennett_v03_mapping.json` (MPFB bone mapping; `tests/test_bennett_mapping.py` now checks the builder profile agrees with it), the rig inventory, `LOCAL_MAC_RUN.md` (marked superseded for builds). Removed: `create_animation_actions.py` (duplicate of the builder's clip authoring). Both `asset_manifest.json` entries (`Naomi_Bennett_v04`, `Naomi_Bennett_v04_local`) and both provenance manifests are kept.
+- Godot: `scripts/world/CharacterAnimationRig.gd` (called by `Character.set_visual_scene`) loops body clips, moves gesture clips onto a `GestureAnimationPlayer`, autoplays `idle_neutral`, and adds `scripts/world/CharacterFaceRig.gd` when the model has a `blink` morph. The face rig blinks irregularly and moves `mouth_open` while the adapter reports speech. `CharacterActingAdapter` sets expression morphs by cue name.
+- Standard: `tools/character_animation/CHARACTER_ANIMATION_STANDARD.md`. For Voss, Rahman, Elias, Hale and Mara, copy `profiles/staff_bennett.json` and remap bones. Patient clips use the neutral names only; symptom-like movement needs clinical review and is never added by the pipeline.
+
+**Clip and morph names**
+- Body (loop): `idle_neutral` 8 s, `idle_breathing` 4 s, `listen_neutral` 6 s, `stand_conversational` 6 s. Body (one shot): `turn_from_workstation`, `return_to_workstation` 1.2 s.
+- Gesture: `small_greeting_nod`, `small_acknowledgement_nod`, `restrained_chart_indication`, `subtle_workstation_indication`.
+- Morphs: `blink`, `blink_L`, `blink_R`, `mouth_open`, `attentive`, `warm_subtle`, `concerned_restrained`, `professionally_serious`, `focused`, `calm_professional`.
+
+**Findings and fixes**
+- v03's scrubs, trousers and shoes were weighted partly to hand, finger and forearm bones (the v03 builder copied weights after deleting covered skin), so any arm gesture dragged the hem. v04 re-skins them from a regenerated full body, excluding hand and forearm faces. v03 files are untouched.
+- `CharacterActingAdapter._blend_shape_index` called `MeshInstance3D.get_blend_shape_name`, which does not exist, so no cue expression ever applied. Now uses `find_blend_shape_by_name`.
+- Godot's glTF import gives every clip one-key rest tracks for bones other clips animate, so a gesture froze the breathing spine. `CharacterAnimationRig` strips one-key tracks from gesture clips.
+- `_apply_body` fallback: a missing clip now plays and records `idle_neutral` rather than the missing name.
+
+**Files modified**
+- New: `tools/character_animation/{build_animated_character.py,clip_library.json,CHARACTER_ANIMATION_STANDARD.md,profiles/staff_bennett.json,reports/staff_bennett_v04_rig_report.json}`, `scripts/world/{CharacterAnimationRig,CharacterFaceRig}.gd`, `scripts/tests/test_character_animation.gd`, `assets/blender/characters/Naomi_Bennett_v04.blend`, `assets/exports/characters/Naomi_Bennett_v04.glb`, `assets/renders/characters/Naomi_Bennett_v04_{face_controls,body_clips}.png`, `assets/asset_manifest/naomi_character_manifest_v04.json`, `docs/design/characters/Naomi_Bennett_Character_Production_v1/ingame_review_v04/`
+- Changed: `scripts/acting/CharacterActingAdapter.gd`, `scripts/world/{Character,CharacterVisualPreview}.gd` (default preview v04; v04_local selectable), `scripts/tests/{test_character_preview,test_naomi_acting}.gd`, `assets/asset_manifest/asset_manifest.json`, toolkit README/LOCAL_MAC_RUN/test, `NAOMI_INGAME_REVIEW.md`
+
+**Unfinished**
+- Skin still reads glossy and plastic; shoe and trouser-hem lumps remain; no gaze; no lip sync (mouth moves on a syllable rhythm only).
+- MPFB faceunits and visemes (installed on the Mac by the local thread) cannot go onto v03/v04 directly: v03's body has 5,194 verts against the basemesh's 19,158. They must be loaded on the v02 base body before the v03 build deletes vertices.
+
+**Known errors**
+- none in this branch. The Mac's `libvorbis` music-test failure is owned by the local thread (draft PR #52).
+
+**Tests** (Linux container, Godot 4.7 stable)
+- `Godot --headless --path . res://scripts/tests/TestRunner.tscn` on `afdc3d0`: 155 passed, 0 failed.
+- `GODOT=<godot> python3 tests/qa/run.py`: see the PR and `docs/PROJECT_STATUS.md` for the result on the final head.
+- Toolkit: `python3 -m unittest discover tools/character_animation/ForensicWard_Animation_Pipeline_v03/tests`: 6 OK.
+- Blender 5.2.2 (bpy module) build: 10 clips, 10 morphs, 44,812 triangles; GLB channel check passed.
+- In-game captures on software OpenGL in `ingame_review_v04/`. Not run on the Mac; no frame-time measurement.
+
+**Dependencies not available to remote agents**
+- The Mac's MPFB2 with the CC0 packs; Mac rendering and frame-time measurement.
+
+**Next steps**
+1. Owner reviews `ingame_review_v04/` and, on the Mac, `Godot --path . -- --character-preview=staff_bennett`.
+2. Local thread: pull this branch, rebuild with the commands in `CHARACTER_ANIMATION_STANDARD.md`, confirm the build matches, and measure frame time.
+3. Skin: replace the baked skin with an MPFB CC0 skin (Mac), raise roughness, add subsurface tint. Shoes and hems: rebuild the hem and shoe meshes with more rings and a pre-baked cloth rest shape.
+4. Optional: bake MPFB faceunits/visemes on the v02 base (see Unfinished) under the standard morph names, then add gaze through `character_gaze_adapter`.
+
+**Notes for the other agent**
+- Do not make v04 Naomi's default `visual_scene`; it shows only with `--character-preview`. Do not commit `.import` sidecars or extracted textures.
+- `v04` belongs to the cloud build; `v04_local` is the Mac validation build from PR #51.
+
+### 2026-10-18 16:05 UTC · Claude Code (owner's Mac, Remote Control) · Naomi local animation build
+
+- **Branch:** `claude/naomi-local-build` (based on `main` at `46888dd`, after PR #50 merged the animation toolkit)
+- **Latest verified commit:** `0ebb3d6` "Validate the animation toolkit on the Mac with Naomi v04_local" (folded into this log from `docs/handoffs/2026-10-18_naomi_local_build.md` by the cloud thread, which owned this file)
+- **Pull request:** draft, assigned to the owner
+- **State:** finished; pipeline validation build, **not approved, not production-ready**
+
+**Accomplished**
+- Found Blender 5.2.2, MPFB2 (build 20261010, no asset packs installed) and Godot 4.7.2 on the Mac. Nothing installed.
+- Ran the merged toolkit on `Naomi_Bennett_v03.blend`: rig inventory, bone mapping, action authoring. Added the missing GLB export step and per-clip lengths.
+- Exported `assets/exports/characters/Naomi_Bennett_v04_local.glb` (v03 mesh plus `idle_neutral` 5 s, `idle_breathing` 4 s, `listen_neutral` 3 s). v01, v02 and v03 untouched.
+- Clips import and play in Godot 4.7.2; captured at the nursing station using a temporary, reverted entry in `CharacterVisualPreview.gd`.
+
+**Files modified**
+- `tools/character_animation/ForensicWard_Animation_Pipeline_v03/tools/create_animation_actions.py`: optional per-clip `frames` (default 25 unchanged)
+- `tools/character_animation/ForensicWard_Animation_Pipeline_v03/tools/export_animated_glb.py`: new, exports actions to a new GLB
+- `tools/character_animation/ForensicWard_Animation_Pipeline_v03/configs/staff_bennett_v03_mapping.json`: new, verified bone mapping
+- `tools/character_animation/ForensicWard_Animation_Pipeline_v03/reports/`: rig inventory and GLB report
+- `tools/character_animation/ForensicWard_Animation_Pipeline_v03/tests/test_bennett_mapping.py`: new
+- `tools/character_animation/ForensicWard_Animation_Pipeline_v03/LOCAL_MAC_RUN.md`: commands and results
+- `assets/blender/characters/Naomi_Bennett_v04_local.blend`, `assets/exports/characters/Naomi_Bennett_v04_local.glb`: new
+- `assets/asset_manifest/naomi_character_manifest_v04_local.json`: new provenance (`approved: false`)
+- `assets/asset_manifest/asset_manifest.json`: one added entry `Naomi_Bennett_v04_local` (required by the GLB validator). The cloud v04 branch also adds one entry here; expect a trivial merge conflict.
+- `docs/design/characters/Naomi_Bennett_Character_Production_v1/ingame_review_v04_local/`: four captures (`.gdignore`)
+
+**Unfinished**
+- Not added to `CharacterVisualPreview` (the cloud thread owns that file).
+
+**Known errors**
+- `tests/music_ai/test_generate_music.py` fails 2 tests on this Mac only: Homebrew ffmpeg 9.0.2 has no `libvorbis` encoder (`Unknown encoder 'libvorbis'`). Unrelated to this branch; CI's ffmpeg has it.
+
+**Tests** (on `46888dd` plus this branch's changes, macOS, Godot 4.7.2)
+- `python3 tests/qa/run.py --godot /Applications/Godot.app/Contents/MacOS/Godot`: stopped at the music test (2 failures above).
+- The same runner with only the music step removed: exit 0. test_json OK, audio manifest OK, pharmacology 0 failures, QA 19/0/0, GLB validation 156 assets / 0 failures, TestRunner 147/0, boot OK, audio 336/0, Ch1 audio sequence done.
+- Toolkit unit tests: 5/5 OK.
+- CI: see the PR.
+
+**Dependencies not available to remote agents**
+- Owner's Mac Blender 5.2.2 and MPFB2 install. The build is reproducible in any Blender 5.2.2; MPFB was not used.
+
+**Next steps**
+1. Cloud thread: reuse `export_animated_glb.py` and the mapping, or fold their fixes into `build_animated_character.py`; then this v04_local can be dropped from preview plans.
+2. To make MPFB useful locally, install its CC0 skin, eyebrow, eyelash and hair packs on the Mac, and use a rig with face bones if MPFB expressions are wanted.
+
+**Notes for the other agent**
+- `v04` belongs to the cloud thread; this build is named `v04_local` to avoid collisions.
+- Do not commit editor `.import` sidecars or Godot-extracted textures (`Naomi_Bennett_v04_local_*_BaseColor.png`).
 
 ### 2026-10-18 15:40 UTC · Claude Code · Naomi v03 visual development
 
