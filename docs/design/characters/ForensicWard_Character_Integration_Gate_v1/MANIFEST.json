@@ -1,0 +1,30 @@
+{
+  "README.md": {
+    "sha256": "ab842fe404e021667b43a04d5dc464a4524550a59c45611a5936bc3a466889d3",
+    "bytes": 1800
+  },
+  "CHARACTER_INTEGRATION_CONTRACT.md": {
+    "sha256": "bb260ad0b9ca8cea4dd74cdc2256dc648d854a4d6eb8d9a39449897a711bd0c8",
+    "bytes": 3457
+  },
+  "GODOT_VALIDATION_AND_MAC_QA.md": {
+    "sha256": "ba825fbccf4cfe2eb4abf3f45a0d85d798504c7e1b52f3b55b5f823f1e45be4a",
+    "bytes": 2510
+  },
+  "AGENT_HANDOFF.md": {
+    "sha256": "8e88fa4452ca194ebb4b26ecd6fcb74f0c570bbb64b0e2247b80fe7c2ec73793",
+    "bytes": 1529
+  },
+  "tools/check_character_glb.py": {
+    "sha256": "7c42a5f673ca1a25f7a554927c6b61e9cf0b8c204b2ca2ba0b32e626d7171cb1",
+    "bytes": 3695
+  },
+  "tools/test_check_character_glb.py": {
+    "sha256": "cc1b59d3f94c0482682e5456dac261b20c5573628d6ebb002fc098a98dc5176c",
+    "bytes": 1220
+  },
+  "tools/__pycache__/test_check_character_glb.cpython-313.pyc": {
+    "sha256": "f37ffdbcb388257bbee302f87f6531911e3ca09b98e64cc30265cbcd60562adc",
+    "bytes": 3254
+  }
+}
