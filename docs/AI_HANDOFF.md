@@ -58,6 +58,8 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 ### 2026-10-18 · Codex · Explicit Naomi v06 review preview
 
+- **Publication:** draft PR #66, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/66. Recovery checkpoint `f148012b5a51d1de081b58bb6f2e0e0dbfa3e9b5` pushed and confirmed by git ls-remote; this link-only docs commit follows. No merge or auto-merge.
+
 - **Branch:** `codex/naomi-v06-review-preview`, based on main `c09eb35b9a3c07ec9728c6a0f1b49b6f5551d516` (PR #64 merged).
 - **Latest verified implementation:** `ca8b689166e69fcb4cf97aab2d621789be04ac54`, pushed and confirmed by git ls-remote. A documentation-only checkpoint follows. Separate source-validation draft PR #65 is on `codex/naomi-v06-validation-cont-1` at `9677de0a9d9e265480fa62ed979ffb39e1686c73`.
 - **Owner coordination:** the owner explicitly confirmed other sessions stopped before editing the two previously claimed preview/test files. No agent branch, facial controller or asset modified.

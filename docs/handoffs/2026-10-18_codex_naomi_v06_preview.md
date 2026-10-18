@@ -1,6 +1,9 @@
 # Explicit Naomi v06 review selection
 
 Branch: `codex/naomi-v06-review-preview`, from main `c09eb35` (merged audit PR #64).
+Draft PR: https://github.com/biancaalexis132-png/ForensicWard_Game/pull/66.
+Recovery checkpoint `f148012b5a51d1de081b58bb6f2e0e0dbfa3e9b5` pushed and verified;
+this PR-link-only documentation commit follows it.
 Implementation: `ca8b689` (resolve full tip with `git ls-remote origin refs/heads/codex/naomi-v06-review-preview`).
 The owner confirmed that the other agent sessions have stopped before these
 previously claimed preview/test files were edited. This branch is independent
