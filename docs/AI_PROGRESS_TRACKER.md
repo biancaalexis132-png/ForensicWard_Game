@@ -9,6 +9,13 @@
 | Rahman base model review candidate | In progress | Canon page; Rahman spec; bpy 5.2.2 + MPFB2 2.0.18 | `tools/blender/characters/rahman/`, `tools/character_animation/profiles/staff_rahman.json` | not run yet | Build and open PR |
 | Voss production spec and model | Not started | Rahman pipeline proven | | | After Rahman |
 
+## Soundtrack owner decision — Codex, October 18, 2026
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Record listening approval for all 11 existing tracks | Owner APPROVED; documentation updated on `codex/soundtrack-owner-approval` | Owner decision in Codex chat | `audio/manifest.json`, `docs/AUDIO.md`, generated `docs/AUDIO_MANIFEST.md`, current handoffs | See latest `docs/AI_HANDOFF.md` entry | Reuse for suitable cutscenes; ask before removal/replacement/regeneration |
+| Commercial licensing verification | NOT VERIFIED / NOT REQUIRED FOR CURRENT SCOPE | PRIVATE / PERSONAL / NONCOMMERCIAL project | `docs/AUDIO.md` | No independent rights verification claimed | Review licensing and distribution rights again before any public release |
+
 ## Naomi v04 animation and cast animation standard — Claude Code (cloud), 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |

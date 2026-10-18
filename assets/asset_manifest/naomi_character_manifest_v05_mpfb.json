@@ -1,0 +1,90 @@
+{
+  "asset_id": "CHR_NaomiBennett_v05_mpfb",
+  "character_id": "staff_bennett",
+  "version": "v05_mpfb",
+  "production_status": "VISUAL_DEVELOPMENT_PENDING_OWNER_REVIEW",
+  "approved": false,
+  "built_on": "Owner's M1 MacBook Air (8 GB), Blender 5.2.2 LTS, MPFB2 build 20261010",
+  "pipeline": [
+    "tools/character_animation/build_animated_character.py --profile tools/character_animation/profiles/staff_bennett.json (outputs redirected to a scratch stage)",
+    "tools/character_animation/bake_mpfb_face_shapes.py with tools/character_animation/mpfb_face_mapping.json"
+  ],
+  "inputs": [
+    {
+      "path": "assets/blender/characters/Naomi_Bennett_v03.blend",
+      "sha256": "202896d3317f99345438354f6d3670dc262090a4a6d6b028bc605ef94546872c",
+      "used": "builder source, as for v04"
+    },
+    {
+      "path": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+      "sha256": "194b8aac6ade7383a15eb08feb0e4212d8100f2e4ea2e269d472812770e435d8",
+      "used": "full MPFB base body the faceunit and viseme targets index into"
+    }
+  ],
+  "external_assets": [
+    {
+      "name": "MPFB2 faceunits01 (52 ARKit-style face units)",
+      "source": "https://files.makehumancommunity.org/functional/faceunits01.zip",
+      "licence": "CC0 (packs/faceunits01.json)",
+      "used": "blended into blink, blink_L, blink_R, mouth_open and six expressions"
+    },
+    {
+      "name": "MPFB2 visemes01 (22 Microsoft-style visemes)",
+      "source": "https://files.makehumancommunity.org/functional/visemes01.zip",
+      "licence": "CC0 (packs/visemes01.json)",
+      "used": "viseme_<name> morph targets"
+    }
+  ],
+  "transfer": {
+    "built_vertices": 5322,
+    "exact_base_matches": 4112
+  },
+  "morph_targets": [
+    "blink_L",
+    "blink_R",
+    "blink",
+    "mouth_open",
+    "attentive",
+    "warm_subtle",
+    "concerned_restrained",
+    "professionally_serious",
+    "focused",
+    "calm_professional",
+    "viseme_sil_00",
+    "viseme_aa_ah_ax_01",
+    "viseme_aa_02",
+    "viseme_ao_03",
+    "viseme_ey_eh_uh_04",
+    "viseme_er_05",
+    "viseme_y_iy_ih_ix_06",
+    "viseme_w_uw_07",
+    "viseme_ow_08",
+    "viseme_aw_09",
+    "viseme_oy_10",
+    "viseme_ay_11",
+    "viseme_h_12",
+    "viseme_r_13",
+    "viseme_l_14",
+    "viseme_s_z_15",
+    "viseme_sh_ch_jh_zh_16",
+    "viseme_th_dh_17",
+    "viseme_f_v_18",
+    "viseme_d_t_n_19",
+    "viseme_k_g_ng_20",
+    "viseme_p_b_m_21"
+  ],
+  "outputs": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v05_mpfb.blend",
+    "blend_sha256": "c7790af4bd00693d350e51024a55ecb967e382ec010b68279a82abaf2a6c5702",
+    "glb": "assets/exports/characters/Naomi_Bennett_v05_mpfb.glb",
+    "glb_sha256": "cb605153c0d462b7ba02a6fc9dd3eea5ad4e37ff301b4e086d98a868cfd6a43d",
+    "face_report": "tools/character_animation/reports/staff_bennett_v05_mpfb_face_report.json",
+    "review": "docs/design/characters/Naomi_Bennett_Character_Production_v1/ingame_review_v05_mpfb/"
+  },
+  "known_limitations": [
+    "Clips, mesh, brows, lashes and materials are v04's; only the face morphs changed.",
+    "Visemes are exported but nothing drives them yet: CharacterFaceRig still animates mouth_open only.",
+    "Closed lids show the lash line as a dark arc; there is no mouth interior, teeth or tongue.",
+    "Frame time on the M1 MacBook Air matches v04 (see the handoff entry)."
+  ]
+}

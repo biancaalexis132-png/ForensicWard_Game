@@ -10,6 +10,16 @@
 - **Next steps:** build Rahman with a new builder under `tools/blender/characters/rahman/` and a new profile `tools/character_animation/profiles/staff_rahman.json`; do **not** edit `build_animated_character.py` (Naomi v05 thread owns it) or Naomi's builders.
 - **Constraints:** review candidate only; no `data/staff.json` entry; no runtime binding; no performance claims without Mac measurements.
 
+## Owner soundtrack approval update — Codex, October 18, 2026
+
+- **Current task:** record the owner's soundtrack decision; no animation or cutscene implementation in this scoped update. Broader takeover work remains for a separate continuation.
+- **Branch / base:** `codex/soundtrack-owner-approval`, from verified `origin/main` `b5c9d3a7387af36859d9783151c8f6d9d11028dd` (PR #53 merged).
+- **Decision:** owner listening approval **APPROVED** for all 11 existing soundtrack tracks, including Suno songs. Project scope **PRIVATE / PERSONAL / NONCOMMERCIAL**. Commercial licensing verification **NOT VERIFIED / NOT REQUIRED FOR CURRENT SCOPE**. Source: owner's October 18, 2026 Codex chat; authoritative audio details in `docs/AUDIO.md`.
+- **Preservation:** retain every approved audio file, cue ID, timing and integration. Ask before removing, replacing or regenerating tracks. Do not call the songs legally copyright-free without independent verification or claim commercial-distribution clearance.
+- **Cutscene direction:** reuse approved music wherever appropriate; propose additions only for a meaningful narrative/cinematic gap. Review licensing and distribution rights again before any public release.
+- **Supersession:** this decision replaces earlier soundtrack listening/approval blockers and the attached takeover note's pending-licensing instruction for the current scope. It is the owner's scoped override of `AGENTS.md` §5's commercial-use prerequisite for these existing tracks; other assets and future distribution remain separate.
+- **Next step:** use the approved soundtrack when auditing cutscene coverage; no further listening approval is needed for these 11 tracks. Naomi visual approval and unrelated work remain pending. Validation, changed files, verified checkpoint and publication status are recorded in the newest `docs/AI_HANDOFF.md` entry.
+
 ## Naomi v04 animation and cast animation standard — Claude Code (cloud), 2026-10-18 16:45 UTC
 
 - **Objective:** give Naomi real animation and face controls on the v03 rig through one reusable pipeline for the whole cast, merged with the Mac-tested work from PR #51; review only.

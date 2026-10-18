@@ -67,6 +67,19 @@ Accessibility settings are stored in `user://audio_settings.cfg`:
 
 ## Soundtrack
 
+### Owner soundtrack decision — October 18, 2026
+
+The owner explicitly approved **all 11 existing soundtrack tracks**, including the Suno-generated songs, in the October 18, 2026 Codex chat. This is the current decision for the five original soundtrack entries and six Ashcroft score entries listed below and in `audio/manifest.json`.
+
+- **Owner listening approval: APPROVED** for all 11 existing tracks.
+- **Project distribution scope: PRIVATE / PERSONAL / NONCOMMERCIAL.** The owner has no current plans to sell or publicly distribute the game.
+- **Commercial licensing verification: NOT VERIFIED / NOT REQUIRED FOR CURRENT SCOPE.** Owner listening/use approval is distinct from independent verification of licensing or distribution rights. Do not describe these songs as legally copyright-free without independent verification, or claim commercial-distribution clearance.
+- Preserve the existing audio files, cue identifiers, timing and integration. Do not remove, replace or regenerate an approved track without asking the owner first.
+- New graphic-novel cinematic cutscenes should reuse this soundtrack wherever appropriate. Propose additional music or short transition cues only for a meaningful, identified narrative or cinematic gap; do not generate unnecessary replacement music.
+- If the project is prepared for **any public release**, review licensing and distribution rights again, even if the release is free/noncommercial.
+
+This owner decision supersedes earlier pending-listening instructions for these 11 tracks and the takeover note's instruction to keep soundtrack approval pending. It is a scoped owner direction overriding the commercial-use prerequisite in `AGENTS.md` §5 for these existing tracks; it does not approve other audio or waive future public-release review. Manifest provenance and technical measurements remain unchanged. Other audio retains its own review status.
+
 Five original tracks live in `assets/audio/music/`. They are referenced in place and never re-encoded, trimmed or normalized: each cue's `volume_db` brings it to about -20 LUFS integrated (the level the AI score pipeline targets), measured with ffmpeg `ebur128`.
 
 | Track | Cue | Context | Repeats | Ambience |
@@ -103,7 +116,7 @@ Six more tracks from the owner's Ashcroft upload are referenced in place from `a
 - **Reception needs a zone.** `reception` exists in `audio/cues.json`, but no zone in `data/zones.json` has a reception `audio_zones` rectangle yet. The world owner adds one when the reception area is built.
 - `music_procedure.ogg` has a +0.5 dBFS true peak in the file itself; the -7.7 dB cue gain keeps playback clear of clipping.
 - `Suno_Originals/*.m4a` are the Opus sources of the same six recordings (same Suno ids). Godot cannot import them and they are not referenced; `.gdignore` keeps Godot out of that folder and out of `Visual_References/`, so the concept boards and character guide are not imported as game textures.
-- **Licence.** All six files, and four of the five tracks above, carry "made with suno" metadata. Whether they may ship depends on the owner's Suno plan when each was generated; the manifest records that as still to be confirmed.
+- **Provenance and rights.** All six files, and four of the five tracks above, carry "made with suno" metadata. All 11 tracks have owner listening approval for the current private scope. Commercial licensing remains unverified and is not required for that scope; public-release rights must be reviewed again before distribution. See the owner decision above.
 
 ## Regenerating assets
 
@@ -159,7 +172,7 @@ These are all stock synthetic Kokoro voices. No real person's voice is cloned.
 - `tests/qa/test_audio_manifest.py`: checks, using only the standard library, that the manifest matches the files and that cues, events, lines and profiles are consistent.
 - `tests/music_ai/test_generate_music.py`: tests the ACE-Step client against a **mock** server: submit, poll, download, decode check, loudness, loop seam, import. It does not test ACE-Step itself.
 
-Headless Godot uses the Dummy audio driver, so these tests confirm playback state and timing but not how anything sounds. Listening review is manual: every asset's `review_status` stays `pending_listening_review` until a person approves it.
+Headless Godot uses the Dummy audio driver, so these tests confirm playback state and timing but not how anything sounds. Listening review is manual: the 11 soundtrack tracks are now `approved_listening_review` by the owner decision above. Other assets retain their existing review status; headless tests do not supply listening approval.
 
 ## Known limitations
 
@@ -177,13 +190,13 @@ The project-wide status board and handoff log are proposed in PR #4 (`docs/PROJE
 | AudioDirector, Chapter 1 sequence | Merged to `main` (PR #3) |
 | Environment set: footsteps ×3 surfaces, badge accept/deny, EHR UI, elevator, distant staff, nursing station, historic static, electrical flicker/surge, Ward Zero bed + knocks + pressure swell | On `claude/quirky-ptolemy-6j16b7` (PR #5), tests green; not reviewed by ear |
 | ACE-Step 1.5 Mac kit with reference-audio support | On PR #5; **AI music milestone open**: no ACE-Step audio exists yet |
-| Original soundtrack (5 tracks) | Merged to `main` (PR #18): contexts, exploration state, repeats, pause-menu volumes; not reviewed by ear on the Mac |
-| Ashcroft score (6 tracks) | `claude/ashcroft-soundtrack`: bible scene assignments, event-only Ward Zero echo, reception bed; tests green; not reviewed by ear; Suno licence to confirm |
+| Original soundtrack (5 tracks) | Merged to `main` (PR #18): contexts, exploration state, repeats, pause-menu volumes; owner listening APPROVED 2026-10-18 for PRIVATE / PERSONAL / NONCOMMERCIAL use |
+| Ashcroft score (6 tracks) | `claude/ashcroft-soundtrack`: bible scene assignments, event-only Ward Zero echo, reception bed; owner listening APPROVED 2026-10-18 for PRIVATE / PERSONAL / NONCOMMERCIAL use; commercial licensing NOT VERIFIED / NOT REQUIRED FOR CURRENT SCOPE |
 | Gameplay hooks | Not wired: the player controller (PR #1) should call footsteps per surface, doors and badge readers should fire the `ch1_badge_*` events, and the EHR should fire `ch1_ehr_*` |
 
 Next steps, in order:
 
-1. **Owner, on the Mac:** follow `docs/MUSIC_AI_MAC_GUIDE.md` §2–4 and choose one of the three main-menu directions.
-2. **Any agent:** after approval, generate the other cues with `--reference main_theme`, approve the chosen takes, and map them in `audio/music_ai/music_cues.json` (`location_music`, `events`).
+1. **Any agent:** reuse the 11 approved tracks for appropriate graphic-novel cutscene moments, preserving the existing cue contracts and narrative reveal timing.
+2. **Audio:** identify a meaningful narrative or cinematic gap before proposing additional music or short transition cues. Do not remove, replace or regenerate approved tracks without asking the owner. The AI music guide is an optional tool reference, not an instruction to replace this soundtrack.
 3. **Gameplay integration, after PR #1 lands:** call `AudioDirector.play_sfx_3d("sfx_footstep_<surface>", ...)` from the first-person controller, fire `narrative_event_fired` for doors, badges, EHR and the elevator, and call `set_location` on room transitions.
 4. **Audio:** add a reception bed, a dedicated night bed and a second protagonist voice profile, then voice further lines as the narrative team adds them to `data/narrative/`.
