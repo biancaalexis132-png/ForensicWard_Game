@@ -1,0 +1,11 @@
+{
+  "status": "DRAFT_DO_NOT_EXECUTE_UNTIL_BONE_MAPPING_VERIFIED",
+  "character_id": "staff_bennett",
+  "rig_name": "REPLACE_FROM_INSPECTOR",
+  "bones": {"chest": "REPLACE_EXACT_BONE_NAME", "head": "REPLACE_EXACT_BONE_NAME"},
+  "clips": [
+    {"name": "idle_neutral", "degrees": {"chest": [1.0, 0.0, 0.0], "head": [0.0, 0.0, 0.8]}},
+    {"name": "listening", "degrees": {"head": [1.0, 0.0, 1.5]}},
+    {"name": "speaking_calm", "degrees": {"chest": [0.5, 0.0, 0.0], "head": [0.0, 0.0, 1.0]}}
+  ]
+}
