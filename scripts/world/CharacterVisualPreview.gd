@@ -4,8 +4,9 @@ extends RefCounted
 ##
 ## Unapproved character models can be viewed in the real Chapter 1 scene without
 ## being wired into it: run the game with `-- --character-preview=staff_bennett`
-## (or `staff_bennett:v03`, `:v02`, `:v01` for an older candidate). Without the argument every
-## WardCharacter keeps its placeholder. Nothing here touches story, dialogue,
+## (or `staff_bennett:v03`, `:v02`, `:v01` for an older candidate).
+## Use `staff_bennett:v06_mpfb` for the v06 candidate with 22 visemes (`:v06` is the stage).
+## Without a preview argument every WardCharacter keeps its placeholder. Nothing here touches story, dialogue,
 ## clinical or save state; WardCharacter.set_visual_scene still validates the model
 ## and falls back to the capsule if it is missing or invalid.
 
@@ -24,6 +25,10 @@ const CANDIDATES: Dictionary = {
 		"v05": "res://assets/exports/characters/Naomi_Bennett_v05.glb",
 		# Mac build: v04 with MPFB2 CC0 faceunit expressions and visemes (bake_mpfb_face_shapes.py).
 		"v05_mpfb": "res://assets/exports/characters/Naomi_Bennett_v05_mpfb.glb",
+		# v06 stage has ten stable shapes; the MPFB candidate adds the 22 visemes.
+		# Both remain explicit, unapproved review choices; default stays v05.
+		"v06": "res://assets/exports/characters/Naomi_Bennett_v06.glb",
+		"v06_mpfb": "res://assets/exports/characters/Naomi_Bennett_v06_mpfb.glb",
 	},
 }
 const DEFAULT_VERSION: Dictionary = {
