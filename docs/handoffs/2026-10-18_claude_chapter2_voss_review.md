@@ -99,15 +99,55 @@ commands, SHAs and counts. Godot 4.7 stable standard was downloaded from the
 official release and its SHA-512 verified as CI does. Mac visual and
 performance checks were not run; hosted CI for this branch is recorded there.
 
+## Addendum: Scene 03 Mara Ellis (owner-approved)
+
+Owner, project thread 2026-10-18 23:27 UTC: "i approve scene 3". Runtime
+`09e4a8cb45981dd0959c7dc6058b62bc870e0d58` on this branch. Logged in `docs/clinical_review_log.md`.
+
+**Play:** after either Voss follow-up, Mara Ellis is seated in Interview Room A
+(Elias is back on the unit meanwhile). Approach her: the existing interview
+screen runs `data/dialogue_mara.json`, which transcribes revised CH02 Scene 03
+(three opening alternatives, the two-copies exchange, then sleep, mood history,
+alternatives, safety and collateral modules in any order, and the closing
+exchange). Each module records one patient-report observation with provenance;
+the records-origin question records one clinician observation. Then save a note
+in the EHR, and refer her date question to Records at the office workstation.
+Attaching clinical details or adding it to the W0-B inquiry gives feedback only.
+Elias returns once the referral is sent.
+
+**Order:** Scene 03 runs after Scene 04 in this build (objectives are
+sequential and Scene 04 was already built); neither scene's text depends on the
+other.
+
+**Boundaries:** dialogue `APPROVED` (owner); patient record `pt_mara_ellis`
+stays `PENDING_PSYCHIATRIST_REVIEW` because its observation wording and three
+`differential_tags` are the agent's. No diagnosis, medication, treatment effect,
+forensic opinion, clue or evidence. Dana is named only as possible collateral;
+nothing is obtained from her. The legal status is recorded as a question to
+check against the actual order.
+
+**Code:** StoryLogic gains `not`; world characters gain optional
+`present_when` (validated like story conditions; checked on objective change
+and tree entry); `PatientManager.is_admitted()` keeps later arrivals off the
+EHR census and shift summary before their `arrival_shift`. Old saves without
+Mara load with fresh state for her. `test_chapter2_mara.gd` covers census
+timing, the full scene with save/load and presence, an interrupted interview
+resumed after load, older saves and presence validation. `test_content.gd`
+patient list and the Voss test's final objective were updated to include her.
+
+**Tests on `09e4a8cb45981dd0959c7dc6058b62bc870e0d58`:** full runner exit 0: game 212/0, GLB 161/0, audio 336/0,
+QA 19/0/0, Python 6+4+5+3, pharmacology 0 failures, boot, CH1_SEQUENCE_DONE.
+First runs failed 208/3 (null tree in presence update for characters outside
+the tree, fixed with a guard; two stale test expectations updated). Mac not run.
+
 ## Next exact task
 
-Chapter 2 Scene 05 "A Working Explanation": an analyst tests clock skew,
+After Scene 03 (done above): Chapter 2 Scene 05 "A Working Explanation": an analyst tests clock skew,
 migrated location codes, export sorting and identifier collision; each may
 explain part of the discrepancy and at least one item stays open. Implement
 it with the existing authored interactions on an existing Records prop or
-actor, gated on either Voss follow-up flag, with choices for source
+actor, gated on `ch2_mara_records_referred`, with choices for source
 extraction, identifier crosswalk and a neutral second review. Do not invent a
 received source packet or a resolved interval. Add partial and post-choice
-save/load tests. Mara's Scene 03 needs its own clinical approval before
-implementation. Naomi Mac 33 ms, lid/hem geometry, gesture shadows and the
+save/load tests. Naomi Mac 33 ms, lid/hem geometry, gesture shadows and the
 final in-game visual review remain pending independently.

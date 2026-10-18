@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 2 Mara introduction — 2026-10-19 00:10 UTC
+
+- Owner approved Scene 03 ("i approve scene 3"). Implemented on the same branch/PR #71 at `09e4a8cb45981dd0959c7dc6058b62bc870e0d58` (pushed, verified). Full QA exit 0, game 212/0. Dialogue approved; patient record pending review. Next: Scene 05. See dedicated handoff addendum.
+
 ## Claude Code Chapter 2 Voss review — 2026-10-18 23:50 UTC
 
 - **Objective:** take over from Codex and implement CH02 Scene 04 (Voss institutional review) as a playable slice.
