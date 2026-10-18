@@ -1,0 +1,22 @@
+{
+  "COPILOT_HANDOFF.md": {
+    "sha256": "b02d0231fc13e82b470c93c9f11cecfcdbe00790165188d2543d99a5f9dbda0b",
+    "bytes": 878
+  },
+  "Mara_Ellis_v1/CHARACTER_BRIEF.md": {
+    "sha256": "2e8eb6b62cfa61d88a88394b4b355be76df0f774fb097195c9dd686ea4e29e4e",
+    "bytes": 2713
+  },
+  "Marcus_Hale_v1/CHARACTER_BRIEF.md": {
+    "sha256": "bc39193afe264df3c07ec9df01745bded73922e900d1f8fdd14a37595af7534f",
+    "bytes": 2408
+  },
+  "PRODUCTION_WORKFLOW.md": {
+    "sha256": "96e189c5f0aba2fb9e825ea6630d7f56c21195a6349d0c91b61d9f759e148ec9",
+    "bytes": 2183
+  },
+  "README.md": {
+    "sha256": "32ed7a97be31f0f050af5b678e95c73d3d3bd25e2f7086c29b27787955a283c1",
+    "bytes": 861
+  }
+}

@@ -8,9 +8,11 @@ A file cannot contain the SHA of the commit that adds it. So each entry records 
 
 One row per branch that someone is working on. Claim the folders or files you will edit, so two agents never change the same file in parallel without a plan. Remove your row when the branch merges or is abandoned.
 
+**GitHub state correction (verified 2026-10-18 01:16 UTC):** `origin/main` is `96ef65ed40ced591f576326e21fcd60f9da9d3a7`, beyond the older `47a68f4` checkpoint recorded below; `git log 47a68f4..origin/main` confirms merges of PRs #38, #40 and #41. PRs #35–#41 are merged. The current open PR is #42, a draft CIG implementation PR at last-checked head `d5d19f5`; GitHub reports `MERGEABLE` and hosted `validate` is pending (run 39085902026). This handoff update will advance the PR head, so check the new docs-only head afterward. Historical rows below are preserved as history, not current PR state. Naomi's model-builder/refinement remains a separate workstream; its base asset still needs owner visual review and has no animation clips.
+
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Foundation F1 campaign contract | `claude/f1-campaign-contract` (draft PR to `main`) | Claude | `fa098c944aa9f33d9810649b5689c2504a2f5ffc` | `data/campaign.json`, `scripts/autoload/{ContentRegistry,SaveManager,EventBus}.gd` (EventBus: one signal), `scripts/content/*`, `scripts/narrative/*`, `scripts/tests/test_campaign.gd`, `scripts/tests/test_content.gd`, `scripts/tests/fixtures/**`, `docs/{PROJECT_STATUS,ID_REGISTRY,F0_FOUNDATION_AUDIT}.md`, `docs/design/GDD_AMENDMENTS.md` | Awaiting owner review. F2 (zones) next, after this merges |
+| CIG-1 optional character visual slot | `biancaalexis132-png-cig-1-character-integration` (draft PR #42) | Copilot / current session | `d5d19f5ff329220bdbedfc006f632715923e8f87` (verified remote; code tests run on `387ceba`) | `scripts/world/Character.gd`, `scenes/props/Character.tscn`, `scripts/tests/test_character_visual.gd`, and CIG continuity/status docs | PR #42 open/draft and mergeable; hosted `validate` pending on `d5d19f5`. Naomi asset integration remains gated on owner visual review and authored animations. |
 | Environment art, Stage 6 Ward Zero | `claude/environment-stage-6` (draft PR to `main`) | Claude | see newest log entry | `tools/blender/build_stage6_ward_zero.py`, `tools/blender/{fw_assets,fw_lib}.py` (Stage 6 sections), `assets/{blender,exports}/wardzero/**`, `assets/renders/stage6/**`, `assets/asset_manifest/**`, `docs/ENVIRONMENT_*.md` | Awaiting owner review. Anomaly states are provisional |
 
 High-conflict files that need an agreed plan before editing: `project.godot`, `scripts/autoload/EventBus.gd`, `scenes/main/Main.*`, `tests/qa/run.py`, `.github/workflows/*`, `README.md`.
@@ -56,6 +58,434 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-10-18 01:16 UTC · Copilot · CIG-1 optional character visual slot
+
+- **Branch:** `biancaalexis132-png-cig-1-character-integration` (based on `main` at `96ef65e`)
+- **Latest verified commit:** `d5d19f5ff329220bdbedfc006f632715923e8f87` "Record CIG-1 draft review state"; runtime tests were executed on code commit `387ceba5fc6d5abf9c564ef876c9c475825e2493`.
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-cig-1-character-integration` printed `d5d19f5ff329220bdbedfc006f632715923e8f87`.
+- **Pull request:** #42 (draft, open, `MERGEABLE`); hosted `validate` pending on last-checked head `d5d19f5` (run 39085902026). This handoff update advances the PR head; refresh the new docs-only run.
+- **State:** unfinished but coherent. Optional runtime slot/fallback groundwork is complete; the Naomi asset itself is not integrated.
+
+**Accomplished**
+- Added `VisualRoot` and an optional `PackedScene` visual slot to `WardCharacter`; retained `Body/Mesh`, collision, interaction, label, character IDs, dialogue flow and save providers.
+- Seated scaling now applies only to the legacy placeholder capsule. Imported visuals keep their authored transform and are rejected (with a warning and visible fallback) when the root is not `Node3D` or no renderable mesh is present.
+- Added deterministic tests for initial fallback, seated behavior, valid/invalid/empty visuals, pre-tree configuration, Naomi dialogue with a clipless visual, save/load state invariance, and character fallback after zone unload/rebuild.
+- Confirmed the Naomi GLB is present and licensed in `assets/asset_manifest/naomi_character_manifest.json`, but its review status is pending; it is an automated base, not yet approved for integration, and has zero embedded animation clips. It was imported/validated by Godot but not attached to a game character.
+
+**Files modified**
+- `scripts/world/Character.gd`, `scenes/props/Character.tscn`: optional visual node/resource, validation and fallback.
+- `scripts/tests/test_character_visual.gd` and `.uid`: focused regression coverage.
+- `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md`: current CIG checkpoint and refreshed GitHub state.
+
+**Unfinished**
+- Actual Naomi model integration, animation playback on her rig, rendered/pose review and owner Mac profiling: blocked pending owner visual approval and an authored animation deliverable. Do not claim the automated base is the approved integration target.
+- Hosted `validate` is still pending on PR #42 head `d5d19f5`; CI is not yet observed as passed.
+
+**Known errors**
+- Full `python3 tests/qa/run.py --godot /tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot` exits 1 in `tests/music_ai/test_generate_music.py`: JSON 6/6 and audio-manifest 3/3 pass; music preview is 1 passed / 2 failed. The failures `test_generate_verify_and_approve` and `test_reference_audio_uses_approved_main_theme` report `Unknown encoder 'libvorbis'`. No FFmpeg/Vorbis replacement was installed; the runner stops before Godot suites, which were then executed directly.
+- Godot emits expected warnings for deliberately invalid/empty visual test fixtures; no script errors remain.
+
+**Tests** (on `387ceba`)
+- `python3 -m unittest discover -s docs/design/characters/ForensicWard_Character_Integration_Gate_v1/tools -p 'test_*.py'`: 3 passed.
+- `python3 docs/design/characters/ForensicWard_Character_Integration_Gate_v1/tools/check_character_glb.py assets/exports/characters/Naomi_Bennett_Base_v01.glb`: structurally valid; 17 meshes, 71 nodes, 1 skin, 0 animations, 12 materials, 2 textures.
+- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --version`: `4.7.stable.official.5b4e0cb0f`; official universal macOS release verified against its published SHA-512.
+- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . --editor --import`: exit 0, no errors. `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . -s res://tools/godot/validate_glb_imports.gd`: 139 assets checked, 0 failures.
+- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . res://scripts/tests/TestRunner.tscn`: 127 passed / 0 failed.
+- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . res://tests/TestPharmacology.tscn`: 0 failures; `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . res://tests/qa/TestQA.tscn`: 19 passed / 0 failed / 0 skipped.
+- `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . --quit-after 60`: boot OK; `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . res://tests/audio/TestAudio.tscn`: 336 passed / 0 failed; `/tmp/forensic-ward-godot-4.7/Godot.app/Contents/MacOS/Godot --headless --path . res://scenes/audio/Ch1AudioSequence.tscn -- --exit-when-done`: completed in 63.2 seconds with Naomi subtitles and `CH1_SEQUENCE_DONE`.
+- `git diff --check`: passed. CI: not observed.
+
+**Dependencies not available to remote agents**
+- Naomi Blender builder dependency MPFB2 2.0.18 is local-only for rebuilding the source; no rebuild was done. Owner's visual and target-device review is still required.
+- Full runner music tests need an FFmpeg build with the `libvorbis` encoder; none was installed during this work.
+
+**Next steps**
+1. Refresh hosted CI for PR #42 after this documentation update; retain draft status and leave merge to the owner.
+2. Have the owner review the Naomi preview and approve/refine the base before attaching `Naomi_Bennett_Base_v01.glb` to `staff_bennett`.
+3. Author/approve rig animations and validate actual animation/acting behavior before claiming CIG-1 model acceptance.
+4. Run the documented visual/performance review on the owner's Apple Silicon 8 GB Mac; no rendering-quality or performance claim is made by headless tests.
+
+**Notes for the other agent**
+- Keep `data/world_chapter1.json`, dialogue/story/clinical state, save schema and Naomi builder sources unchanged.
+- The historical latest handoff and project-status snapshot were stale at `47a68f4`; live `origin/main` advanced to `96ef65e` through #38/#40/#41 merges. No PR was open at the pre-creation check.
+
+### 2026-10-18 00:56 UTC · Copilot · Jordan review final push verification
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review`, includes merge commit from `origin/main` `47a68f40b09423b3253091e25b4715ce82447113`
+- **Latest verified commit:** `3f162e3caee3739137ec0cf9df93f226dc72023c` "Record Jordan review merge checkpoint"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned `3f162e3caee3739137ec0cf9df93f226dc72023c`.
+- **Pull request:** #38 remains open/draft; GitHub reports `MERGEABLE`. Hosted `validate` is pending on this head (run 39084612239).
+- **State:** PR #38 now includes current main; the four handoff conflicts are resolved. This review branch has not been merged.
+
+`git show --check --oneline HEAD`, JSON syntax parsing, and `git diff --check` passed. The nine Jordan source files still match `origin/docs/jordan-vale-v2`. Full local Godot QA was not run. No runtime, SaveManager, schema or clinical status changed.
+
+Next: refresh CI/mergeability after this handoff update is pushed; keep PR #38 draft and do not merge. Owner and qualified psychiatrist decisions remain pending.
+
+### 2026-10-18 00:54 UTC · Copilot · Jordan review merge reconciliation
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review`, merged with `origin/main` `47a68f40b09423b3253091e25b4715ce82447113`
+- **Latest verified commit:** `0279db890abb05483feb6b08463d63a738b51810` "Merge origin/main and reconcile Jordan review handoffs"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned `0279db890abb05483feb6b08463d63a738b51810`.
+- **Pull request:** draft PR #38 to `main`; open, GitHub reports `MERGEABLE`; `validate` is pending on this exact head.
+- **State:** conflict merge resolved without rewriting history. Naomi PR #37 and production documentation PR #39 additions were preserved; #37 and #39 are merged in current main. Jordan’s nine source files and review report are unchanged.
+
+**Accomplished**
+- Resolved conflicts in the continuity/status files and merged the fetched main commit, preserving both Jordan and upstream Naomi/production-batch records.
+- Updated PR inventory and current workstream status to show #35, #36, #37, and #39 merged, while #38 remains draft and unmerged.
+
+**Files modified**
+- `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md`: combined the conflicting status/handoff records and corrected live PR state.
+- Incoming Naomi assets/builder and Elias/Rahman production specifications from main were preserved unchanged by the merge.
+
+**Validation** (on `0279db8`)
+- `python3 -m json.tool docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/case_cp001_v2.json`: passed JSON syntax parsing.
+- `git show --check --oneline HEAD`: passed.
+- `git diff --quiet origin/docs/jordan-vale-v2 -- docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/{CHANGELOG.md,CLINICAL_REVIEW_MATRIX.md,COPILOT_HANDOFF.md,FIVE_SHIFT_SCREENPLAY.md,GAMEPLAY_CONTRACT.md,LONGITUDINAL_TIMELINE.md,PATIENT_DOSSIER.md,README.md,case_cp001_v2.json}`: passed; all nine source files remain unchanged.
+- Hosted PR #38 `validate`: pending on `0279db8` when checked; GitHub reported `MERGEABLE`, status `UNSTABLE` pending required check.
+- Full local Godot QA: not run; no Jordan runtime or schema changes were made.
+
+**Next steps**
+1. Check PR #38 hosted validation after this handoff checkpoint is pushed; retain draft status and do not merge.
+2. Owner resolves canon/source/authority questions and a qualified psychiatrist reviews the case-specific clinical material before any schema/runtime proposal.
+
+**Notes for the other agent**
+- Keep clinical content pending; do not activate case JSON/rules or change SaveManager/runtime/schema.
+- PR #37’s base milestone is merged, but Naomi refinement remains a separate workstream. PR #39 adds production specifications only; their gates do not constitute clinical or canon approval.
+
+### 2026-10-18 00:52 UTC · Copilot · Final CP-001 review checkpoint
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review`, based on `origin/main` `03f1585a62bd33db7dcfe8116b50db71f8ee171b`
+- **Latest verified content checkpoint:** `ef22d090c926f2fa50115478ed5eed95dee93b77` "Record CP-001 review validation result"; `git ls-remote` returned this exact branch SHA.
+- **Pull request:** draft PR #38 to `main`, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/38; open, no reviews/comments observed.
+- **Hosted CI:** `validate` passed on `b79ea11d675f40aeee3420676890e4a3ba8bcd7f` in 3m50s (run 39083958547). The latest docs-only checkpoint `ef22d09` has no check reported: `gh pr checks 38` returned “no checks reported on the 'biancaalexis132-png-jordan-vale-v2-review' branch”; `gh run list` shows the most recent run is still the successful `b79ea11` run.
+- **State:** review report and continuity documents are pushed; nine source files, runtime, clinical rules and save schema remain unchanged. No clinical approval is granted.
+
+JSON syntax, `git show --check`, `git diff --check`, and source-package unchanged checks passed. Full local Godot QA was not run because the diff is documentation-only. Treat the successful hosted check as evidence for its exact head SHA only, not as clinical review or validation of a later commit.
+
+Next step: owner reviews the draft report; owner resolves canon/source/authority decisions and the qualified psychiatrist completes section-specific content approval before any implementation.
+
+### 2026-10-18 00:50 UTC · Copilot · CP-001 review CI checkpoint
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review` (based on `origin/main` `03f1585a62bd33db7dcfe8116b50db71f8ee171b`)
+- **Latest verified review checkpoint:** `b79ea11d675f40aeee3420676890e4a3ba8bcd7f` "Record CP-001 review PR state"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned `b79ea11d675f40aeee3420676890e4a3ba8bcd7f`.
+- **Pull request:** draft PR #38 to `main`, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/38.
+- **CI:** hosted `validate` check passed on this checkpoint in 3m50s: https://github.com/biancaalexis132-png/ForensicWard_Game/actions/runs/39083958547/job/117546508688. This is not clinical validation.
+- **State:** documentation-only review is complete and pushed; no clinical-content or runtime changes.
+
+The findings and approval gates in the preceding review entry remain current. Owner and qualified psychiatrist decisions are pending. The final PR-state checkpoint below this entry is documentation-only; refresh the live PR/check state after any further push.
+
+### 2026-10-18 00:37 UTC · Copilot · Jordan Vale CP-001 v2 review
+
+- **Branch:** `biancaalexis132-png-jordan-vale-v2-review` (based on `origin/main` at `03f1585a62bd33db7dcfe8116b50db71f8ee171b`)
+- **Reviewed source:** `origin/docs/jordan-vale-v2` at `8131b240afd77710b277f010b8b096c1a6b684d2`; merged as PR #36. PR #35 and PR #34 are also merged. `gh pr list --state open` returned no open PRs.
+- **Latest verified commit:** `7876d53317da79b375a33ae06a2b66020928dc9b` "Review Jordan Vale CP-001 v2 package"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-jordan-vale-v2-review` returned the exact SHA above.
+- **Pull request:** draft PR #38 to `main`, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/38.
+- **State:** documentation review report pushed; no clinical approval, runtime/data adoption, SaveManager change, or source-package edits.
+
+**Accomplished**
+- Reviewed all nine files in the CP-001 v2 package and compared the claims against current main’s patient schema/content loader, PatientManager, SaveManager v3/migrations, ChapterDirector/campaign, Chapter 5 ending proposal, clinical approval register and historical references.
+- Added `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md` with eight ranked findings, evidence citations, approval dispositions and gated implementation sequence.
+- Verified the Jordan source branch/merge and PR state against fetched GitHub refs. Current main is beyond the older `fb07887` handoff baseline. Historical handoff entries are retained.
+- Confirmed no CP-001 v1 path/package in the fetched repository refs/file history; the v2 claim to retain/derive from v1 is not independently verifiable.
+- Confirmed PR #35 acting cues merged; the Naomi 3D/model pipeline is still a separate active session/branch. The review’s proposed Naomi dialogue remains unlinked and untouched; the owner of that session was notified of the boundary.
+
+**Files modified at the verified report commit**
+- `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`: design-only, clinical-content and implementation review. The nine source files are unchanged.
+
+**Findings / approvals**
+- P1: reconcile Jordan’s identity with the existing Chapter 1 “provisional, not canon” character; owner decision and author correction.
+- P1: historical diagnosis provenance and specific symptom/dialogue review; psychiatrist decision required. Mood/anxiety statements remain symptoms/proposed dialogue, not diagnoses.
+- P1: review safety, legal-authority, consent and collateral scope; do not infer risk, capacity, legal status, or treatment.
+- P1: author source/event provenance, then add a separate schema/validator and coordinated lifecycle/save contract. No case runtime or case validator exists; current SaveManager remains v3 and Chapter 5 is planned.
+- P2: define source-time versus in-game time, task ownership/acknowledgment semantics, and recover the referenced v1 baseline or correct its provenance claim.
+- All clinical content stays pending; Ward Zero remains independent from clinical state. No rules or patient content were activated.
+
+**Tests**
+- `python3 -m json.tool docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/case_cp001_v2.json`: passed JSON syntax parsing; no CP schema validation exists.
+- `git show --check --oneline 7876d53317da79b375a33ae06a2b66020928dc9b`: passed.
+- `git diff --check`: passed on the continuity-doc working tree.
+- Full Godot QA: not run; documentation-only review with no runtime or shipped content changes.
+- Hosted CI: not observed.
+
+**Next steps**
+1. Push and verify the final PR-head SHA with `git ls-remote`; confirm the PR remains draft.
+2. Owner resolves canon/source questions; psychiatrist reviews case-specific clinical material before any schema/runtime PR.
+3. Do not merge or change clinical status; any implementation must follow the gated sequence in `REVIEW.md`.
+
+**Notes for the other agent**
+- Keep the nine source package files, runtime, patient data, clinical rules and SaveManager unchanged in this review.
+- Use one shared, reviewed v3→v4 plan only after Continuing Practice, finale and protagonist state ownership are approved.
+- Naomi’s model work remains on its separate branch; no proposed CP dialogue is an approved acting cue.
+### 2026-10-18 00:43 UTC · Copilot · Naomi 3D PR checkpoint
+
+- **Branch:** `biancaalexis132-png-naomi-character-pipeline` (based on `origin/main` at `21205c3c71d4543a2fa4abe0d54e172ce725db01`)
+- **Latest verified commit:** `ff1b4059f5d728d37c24fe47762ecb7bff8948fd` "Document Naomi builder checkpoint"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-naomi-character-pipeline` printed `ff1b4059f5d728d37c24fe47762ecb7bff8948fd` at 2026-10-18 00:43 UTC.
+- **Pull request:** draft PR #37 to `main`; at creation GitHub reported OPEN/DRAFT at head `ff1b4059f5d728d37c24fe47762ecb7bff8948fd`. This handoff commit will advance the PR head; verify both refs after pushing.
+- **State:** unfinished but coherent, submitted for review; no merge.
+
+**Accomplished**
+- Created a draft review PR for the pinned Blender builder, editable base, GLB, renders and complete asset provenance. This status-only commit updates the PR handoff after creation.
+- The tested code checkpoint is `2a6ffda5e580c551b0f2f235861960e0d7662657`; this documentation commit contains no code or asset changes, so the validation recorded in the immediately preceding Naomi base entry still applies.
+
+**Files modified**
+- `docs/AI_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/PROJECT_STATUS.md`: current draft-PR state and checkpoint.
+
+**Unfinished**
+- Owner visual review and the remaining character refinement/integration work listed in the preceding Naomi base entry.
+
+**Known errors**
+- The local `libvorbis` music-preview blocker is unchanged; see the preceding entry for the exact error and all executed Godot results.
+
+**Tests** (code at `2a6ffda`; this checkpoint is documentation-only)
+- `git diff --check`: passed.
+- Godot/Blender: not rerun because only handoff/status documentation changed; see the preceding Naomi base entry for exact commands and results.
+- CI: not observed.
+
+**Dependencies not available to remote agents**
+- MPFB2 v2.0.18 must be installed/enabled locally in Blender 5.2.2 to reproduce the build; local Godot 4.7 binary and FFmpeg limitation are recorded in the preceding entry.
+
+**Next steps**
+1. Owner reviews draft PR #37 and the four renders; do not merge automatically.
+2. Continue the model in small reviewable milestones only after feedback; preserve existing dialogue, clinical and save behavior.
+
+**Notes for the other agent**
+- PR #35 is merged in main at `21205c3`; its adapter is model-independent and no CP-001 screenplay content is linked to Naomi.
+
+### 2026-10-18 00:41 UTC · Copilot · Naomi 3D character base
+
+- **Branch:** `biancaalexis132-png-naomi-character-pipeline` (started from `origin/main` at `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`, then merged current `origin/main` at `21205c3c71d4543a2fa4abe0d54e172ce725db01`)
+- **Latest verified commit:** `2a6ffda5e580c551b0f2f235861960e0d7662657` "Merge remote-tracking branch 'origin/main' into biancaalexis132-png-naomi-character-pipeline"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-naomi-character-pipeline` printed `2a6ffda5e580c551b0f2f235861960e0d7662657` at 2026-10-18 00:38 UTC. This handoff commit will sit on top; verify the final branch ref after pushing it.
+- **Pull request:** none yet; create a draft against `main` after this handoff checkpoint is pushed.
+- **State:** unfinished but coherent; the repeatable builder and generated base are pushed. The asset is not a finished realistic Naomi and is not integrated into a game scene.
+
+**Accomplished**
+- Implemented the version-pinned MPFB2 builder, appearance configuration, Blender validator, and run instructions in `tools/blender/characters/`.
+- Generated editable `Naomi_Bennett_Base_v01.blend`, self-contained Godot GLB, and preview/front/right/back renders. The GLB is 42,583 triangles, 53 joints, with two referenced embedded textures; the Blender source has 15 required scene objects.
+- Added exact input-file and macro-target-weight provenance, output sizes, license evidence, generated-status caveats, and the shared GLB asset-manifest record. MPFB2 v2.0.18 assets used are CC0-1.0; MPFB2 code is GPL-3.0-or-later and only a local build tool. No Mixamo or non-MPFB external assets are used.
+- Merged current `origin/main` after PR #35 merged at `21205c3`; the model branch does not duplicate or modify the acting controller, dialogue, clinical content, save schema, or gameplay state.
+
+**Files modified**
+- `tools/blender/characters/build_naomi.py`, `naomi_appearance.json`, `validate_naomi.py`, `README.md`: repeatable builder, approved appearance settings, output/provenance checks, and exact Mac commands.
+- `assets/blender/characters/Naomi_Bennett_Base_v01.blend`, `assets/exports/characters/Naomi_Bennett_Base_v01.glb`, and four review renders: generated base outputs.
+- `assets/asset_manifest/naomi_character_manifest.json`: exact CC0 inputs, source commit, macro targets, file sizes, metrics, and limitations.
+- `assets/asset_manifest/asset_manifest.json`: shared Godot GLB record with imported dimensions and material names.
+- Continuity/status files: this entry and the current workstream status; no runtime or save files were edited by this milestone.
+
+**Unfinished**
+- The base remains in a neutral T-pose. Facial likeness, hairline/twist silhouette, scrub seams/clipping/deformation and overall render quality need owner/artist review and manual refinement. Do not label the current base finished or photorealistic.
+- No animation clips, LOD1, expression/jaw performance, or Chapter 1 scene integration are included. The 30 FPS / p95 33.3 ms target has not been measured in the actual Chapter 1 scene on the 8 GB Mac.
+
+**Known errors**
+- `python3 tests/qa/run.py --godot /tmp/godot-4.7-naomi/Godot.app/Contents/MacOS/Godot` exits 1 in `tests/music_ai/test_generate_music.py`: two preview-generation tests fail with `Unknown encoder 'libvorbis'`; the music suite is 1 passed / 2 failed. JSON and audio-manifest suites pass. All later Godot suites were run directly and passed.
+
+**Tests**
+- `/Applications/Blender.app/Contents/MacOS/Blender --background --python-exit-code 1 --python tools/blender/characters/build_naomi.py`: exit 0; 42,583 export triangles; four renders written.
+- `/Applications/Blender.app/Contents/MacOS/Blender --background --python-exit-code 1 --python tools/blender/characters/validate_naomi.py`: passed; 15 required objects, 53 GLB joints, 42,583 triangles, two referenced embedded textures, four review renders, manifests/provenance current.
+- `python3 tests/qa/run.py --godot /tmp/godot-4.7-naomi/Godot.app/Contents/MacOS/Godot`: JSON 6/6 and audio manifest 3/3 pass; music pipeline 1/3 pass, 2 fail as above; runner stops there.
+- Godot 4.7 post-runner commands on the merged branch: editor import exit 0; `TestPharmacology.tscn` reports 0 failures; `TestQA.tscn` 19 passed / 0 failed / 0 skipped; `validate_glb_imports.gd` 139 assets / 0 failures; `scripts/tests/TestRunner.tscn` 122/0; boot OK; `tests/audio/TestAudio.tscn` 336/0; Chapter 1 audio sequence completed in 63.4 seconds.
+- Exact Godot checks used `/tmp/godot-4.7-naomi/Godot.app/Contents/MacOS/Godot --headless --path /Users/bi/.copilot/repos/copilot-worktrees/ForensicWard_Game/biancaalexis132-png-literate-potato` followed by `--editor --import`; `res://tests/TestPharmacology.tscn`; `res://tests/qa/TestQA.tscn`; `-s res://tools/godot/validate_glb_imports.gd`; `res://scripts/tests/TestRunner.tscn`; `--quit-after 60`; `res://tests/audio/TestAudio.tscn`; and `res://scenes/audio/Ch1AudioSequence.tscn -- --exit-when-done`.
+- Python AST/JSON checks and `git diff --check`: passed. CI: not observed.
+
+**Dependencies not available to remote agents**
+- Blender 5.2.2 LTS and MPFB2 2.0.18 enabled in the local Blender environment; MPFB2 is not vendored. Install the exact MPFB release before reproducing.
+- Godot 4.7 binary used for validation: `/tmp/godot-4.7-naomi/Godot.app/Contents/MacOS/Godot`. Local FFmpeg lacks the `libvorbis` encoder required by two existing music-preview QA cases.
+- The 8 GB Apple Silicon hardware performance target remains unmeasured in the in-game Chapter 1 scene.
+
+**Next steps**
+1. Owner reviews `assets/exports/characters/Naomi_Bennett_Base_v01_preview.png` and the `_front.png`, `_right.png` and `_back.png` orthographic renders, then gives targeted feedback on face, hair silhouette, scrubs and proportions.
+2. Refine the Blender source and repeat the validator/render review; add authored performance clips and expression controls only as a separate, reviewable milestone.
+3. Integrate the approved model with existing `staff_bennett` / `WardCharacter` behavior and merged `CharacterActingAdapter` without changing dialogue IDs, clinical review states, gameplay progression, or save schema.
+4. Measure frame time and memory in the Chapter 1 nursing-station scene on the target 8 GB Mac before claiming the performance budget.
+
+**Notes for the other agent**
+- Acting-cue PR #35 merged into `main` at `21205c3`; its model-independent adapter does not require specific bones. Keep the 53-joint asset optional until visual review and scene integration. Preserve `staff_bennett`, existing voice/dialogue IDs, and all pending clinical review status.
+### 2026-10-18 00:16 UTC · Copilot · Naomi Chapter 1 acting cues
+
+- **Branch:** `biancaalexis132-png-naomi-chapter1-acting` (based on `origin/main` at `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`)
+- **Latest verified commit:** `9d27aa1dd1566d3b6c4adaaffed821b189383562` "Add Naomi acting cue system"
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/biancaalexis132-png-naomi-chapter1-acting` printed `9d27aa1dd1566d3b6c4adaaffed821b189383562` at 2026-10-18 00:16 UTC. This documentation checkpoint will sit on top; query the branch ref for its final SHA.
+- **Pull request:** draft PR #35 to `main`, https://github.com/biancaalexis132-png/ForensicWard_Game/pull/35.
+- **State:** implementation and handoff checkpoint pushed, finished for review; not merged.
+
+**Accomplished**
+- Added an additive `NaomiActingController` driven by the canonical `docs/design/characters/Naomi_Acting_Cues_v1/naomi_acting_cues.json`; cues use the existing five IDs in `ch1_b2_bennett_handover`, with no dialogue text, story, clinical content, or review-status changes.
+- Added `CharacterActingAdapter`, which checks for optional semantic body animations, blend shapes and adapter groups rather than requiring named MPFB bones. Missing capabilities and clips remain safe no-ops; voice/subtitle timing drives speaking state.
+- Added a presentation-only dialogue-finished event for natural completion versus interruption, with per-line tokens to ignore stale voice callbacks/timeouts. Save/load and transition fallbacks add no save provider or schema fields.
+- Wired only `staff_bennett`; the placeholder remains valid without animation/face nodes. The separate model-builder branch and all character assets/provenance/render files were left untouched.
+
+**Files modified**
+- `scripts/acting/NaomiActingController.gd` and `.uid`: loads canonical cues, filters lines, follows subtitles, completion/interruption and game-load events.
+- `scripts/acting/CharacterActingAdapter.gd` and `.uid`: capability checks, optional clip/face/gaze/gesture dispatch, safe fallback transitions.
+- `scripts/world/Character.gd`: Bennett-only controller attachment and conversation start.
+- `systems/audio/AudioDirector.gd`, `scripts/autoload/EventBus.gd`: line lifecycle signal and stale-callback protection.
+- `scripts/tests/test_naomi_acting.gd` and `.uid`, `tests/audio/TestAudio.gd`: focused acting and dialogue lifecycle coverage.
+- `docs/AUDIO.md`: lifecycle and rig adapter contract.
+- `docs/AI_HANDOFF.md`, `docs/PROJECT_STATUS.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`: continuity and status checkpoint.
+
+**Unfinished**
+- No implementation items. Draft PR creation remains; no merge is authorized.
+- Owner/Mac review of real-model expression, gesture, transition, rendering and audio feel remains untested here.
+
+**Known errors**
+- Full QA runner stops in `tests/music_ai/test_generate_music.py`: FFmpeg reports `Unknown encoder 'libvorbis'` for two generation tests. This is a local toolchain limitation, not an acting test failure; the runner does not proceed to later suites on that attempt.
+
+**Tests** (on `9d27aa1`)
+- `python3 docs/design/characters/Naomi_Acting_Cues_v1/validate_naomi_cues.py .`: passed; five dialogue IDs and all voice mappings valid.
+- `/tmp/godot-4.7-acting/Godot.app/Contents/MacOS/Godot --headless --path . --editor --import`: exit 0, no script diagnostics.
+- `/tmp/godot-4.7-acting/Godot.app/Contents/MacOS/Godot --headless --path . res://scripts/tests/TestRunner.tscn`: **122 passed, 0 failed**.
+- `/tmp/godot-4.7-acting/Godot.app/Contents/MacOS/Godot --headless --path . res://tests/audio/TestAudio.tscn`: **336 passed, 0 failed**.
+- `python3 tests/qa/run.py --godot /tmp/godot-4.7-acting/Godot.app/Contents/MacOS/Godot`: exit 1 at music generation; JSON 6/6, audio manifest 3/3, music pipeline 1 passed / 2 failed due to the quoted missing encoder. Later runner suites were not reached. `git diff --check`: passed.
+- CI: not observed.
+
+**Dependencies not available to remote agents**
+- Local Godot 4.7 binary: `/tmp/godot-4.7-acting/Godot.app/Contents/MacOS/Godot`. The machine's FFmpeg 9.0.2 lacks the `libvorbis` encoder. Realistic Naomi model/rig remains under active work on a separate branch.
+
+**Next steps**
+1. Owner reviews draft PR #35; agent does not merge.
+2. Keep future model integration behind the adapter capability contract; request owner/Mac review for animation, face, gesture and transition feel.
+
+**Notes for the other agent**
+- The source performance package is on `main` at `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`. Do not copy its cue JSON into a duplicate file.
+- Do not edit `tools/blender/**`, generated Naomi assets, model-builder scripts, provenance or visual-render files.
+- Dialogue text and existing pending clinical review statuses remain unchanged.
+
+### 2026-10-17 · Codex · Resolve owner-confirmed PR #27 conflicts
+
+- **Branch:** `claude/ashcroft-soundtrack` (PR #27), updated from a temporary continuation `codex/ashcroft-soundtrack-conflicts-cont-1` under the owner’s explicit request identifying PR #27.
+- **Latest verified commit:** `f59da089582ef27a6e58fc5eecc21a48d381a876` “Merge latest main and reconcile active workstreams after PR 29”.
+- **Confirmed on GitHub:** ordinary non-force push `HEAD:refs/heads/claude/ashcroft-soundtrack`; `git ls-remote` returned the exact SHA above. Parent history preserved; main not pushed or merged by the agent. This documentation-only checkpoint follows it.
+- **State:** conflicts resolved against `origin/main` `dd247bed93fca9bb95cbf2864eae964975358c23`. `git merge-tree --write-tree origin/main HEAD` exited 0; no unmerged index entries. Existing PR #27 updated via its head branch; API/hosted CI status unavailable due enforced API domain restriction.
+
+**Resolution:** preserve soundtrack and visual/protagonist continuity records in both living docs; combine active-workstream table, removing already merged F2/P0 claims. Keep all append-only historical entries. Audio integration content remains unchanged.
+
+**Validation correction:** first full QA run found 333 audio assertions passed / 1 failed: the existing fixed 3.6-second cleanup wait was too short for a 3.4-second clip with Dummy audio buffering. A three-play probe measured 3.466, 3.587 and 3.804 seconds until both actual players freed themselves. `tests/audio/TestAudio.gd` now waits for those objects with a bounded clip-duration-plus-one-second deadline; the original leak assertion remains, including original child count. No runtime audio behavior changed.
+
+**Tests:** full `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64` on `7feb43e`: exit 0, Python 6+3+3, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 112/0, boot OK, audio 334/0, complete Chapter 1 playback (`CH1_SEQUENCE_DONE`). Main then advanced by PR #29 (docs and four save tests only); isolated TestRunner on the combined `f59da08` tree passed **116/0** with no script errors. Other previously checked runtime/data/audio files unchanged. `git diff --check` passed. Hosted CI and Mac listening unobserved; licence confirmation remains owner task.
+
+**Next:** owner reviews PR #27; no agent merge. Ongoing P1 validation, D1–D3 canon reconciliation and the newly approved opening-tone proposal use separate development commits/branch. Those approvals do not permit rewriting Chapter 1 or activating clinical effects. GitHub API remains blocked; use existing Git authentication, not a new token request.
+
+### 2026-10-17 · Codex · Protagonist proposal and save QA complete
+
+- **Branch:** `codex/protagonist-foundation-cont-1`, based on `origin/main` `fb078877c59273c0856ec29f29e4ae43d3fc3125`.
+- **Latest verified commit:** `01739ff70136d191704b694fbf32d6b9e28ee26d` “Guard save rejection and optional provider compatibility”.
+- **Confirmed on GitHub:** `git ls-remote origin refs/heads/codex/protagonist-foundation-cont-1` returned the exact SHA above after push. A docs-only checkpoint containing this entry follows it; resolve the final tip with the same command.
+- **Pull request:** none created; `gh pr create --draft` failed with `Post "https://api.github.com/graphql": Forbidden`. API CONNECT is denied with HTTP 403. Open PR inventory/hosted CI remain unverified.
+- **State:** complete and pushed for review; no runtime, clinical, asset or save-version changes.
+
+**Accomplished / files:** proposal and reconciliation in `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md` and `docs/REPOSITORY_RECONCILIATION.md`; approved protagonist requirements in GDD amendments; status and continuity docs reconciled. New `scripts/tests/test_save_compatibility.gd` + UID tests rejection without provider/seed/event mutation, absent-provider reset, real v1/v2 migration compatibility and added-provider round trip/reset. All prior append-only entries retained.
+
+**Tests:** standard `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`, from repo root: baseline `fb07887` exit 0 (TestRunner 112/0); development tree matching `01739ff` exit 0 (116/0). Python 6+3+3 passed, pharmacology 0 failures, QA 19/0/0, GLB 138/138, boot OK, audio 271/0, complete ordered Chapter 1 sequence. `git diff --check` passed. Expected negative-save warnings and non-fatal Python socket ResourceWarnings only. Hosted CI not observed; Mac validation not run.
+
+**Known errors / unavailable dependencies:** GitHub API blocked by network policy; additive `api.github.com` requirement saved in cloud draft, not applied/published. Git push works. Private v1.1 bible unavailable; Mac and optional generation tools not validated. D1–D9 and F0 C2/C6/C7/C11 remain open; no new medical content is approved.
+
+**Exact next steps:** apply saved environment network setting, retry PR inventory and create draft PR from this branch (avoid duplicate). Owner reviews proposal and authorizes P1 catalog/schema/pure validation scope before implementation. No full creator, v4 migration, personality meters or F3 without their review gates. Preserve audio PR #27 and Stage 6 ownership pending API verification. Full file list, PR body location and resume instructions: `docs/AI_SESSION_HANDOFF.md`. Never push main or merge.
+
+### 2026-10-17 · Codex · Protagonist specification / save QA baseline
+
+- **Branch:** `codex/protagonist-foundation-cont-1`, from `origin/main` at `fb078877c59273c0856ec29f29e4ae43d3fc3125`.
+- **Latest verified commit:** `fb078877c59273c0856ec29f29e4ae43d3fc3125` “Merge pull request #28 from biancaalexis132-png/claude/visual-direction-review”.
+- **Confirmed on GitHub:** `git ls-remote origin HEAD` returned that SHA; fetched history confirms F0 PR #20, F1 #21, F2 #26 and visual review #28 merged.
+- **Pull request:** none yet. Existing open PRs cannot be listed: both REST and GraphQL return Forbidden. Historical audio PR #27 and Stage 6 work remain reserved pending verification.
+- **State:** baseline complete; proposal written; independent regression tests in progress.
+
+**Accomplished:** reconciled objectively stale F2/visual-review merge status, recorded the owner’s explicit protagonist decisions, and wrote the phased technical proposal. Review recommendations D1–D9 are not approved by merging #28.
+
+**Files modified:** continuity/status docs, `docs/REPOSITORY_RECONCILIATION.md`, `docs/design/GDD_AMENDMENTS.md`, `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md`; new save-compatibility tests are being validated. No runtime, data, asset or audio files changed.
+
+**Tests on the base:** `python3 tests/qa/run.py --godot /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64`: exit 0; Python 6+3+3 passed, pharmacology 0 failures, QA 19/0/0, GLB 138/138, TestRunner 112/0, boot OK, audio 271/0 and Chapter 1 `CH1_SEQUENCE_DONE`. Official engine archive SHA-512 verified. Hosted CI not observed. Development test run is separate and pending.
+
+**Known errors / dependencies:** system Godot is 4.6.3 (runner rejects it); use pinned local 4.7. Python mock-server tests emit ResourceWarnings about unclosed sockets but pass. Missing private v1.1 bible. Mac rendering/performance/input/listening untested. Clinical approvals, visual D1–D9 and F0 C2/C6/C7 remain open. No unresolved decision is implemented.
+
+**Next steps:** finish the new save regression suite and full QA, checkpoint results, push feature branch and verify exact SHA; create a draft PR if existing authentication permits. Do not start creator P1 before owner review of the proposal. Never merge or push main. The living handoff tracks remaining work.
+
+### 2026-10-17 21:45 UTC · Claude Code · Foundation F2 zones
+
+- **Branch:** `claude/f2-zones` (based on `main` at `4987123`)
+- **Latest verified commit:** `fb9fc525fb8cefb0f63fd08ecda4051925ef72bc` "Add zone manifest, ZoneDirector and save version 3"
+- **Confirmed on GitHub:** see `git ls-remote origin claude/f2-zones`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; waiting on owner review
+
+**Accomplished**
+- `data/zones.json` (global, in `ContentRegistry.MANIFEST`): zones `zone_clinical_wing`, `zone_security_admin` (ground), `zone_research_level` (research), `zone_historic_sublevel` (sublevel), `zone_ward_zero` (placeholder); connections `conn_ward_entry` (seamless door), `conn_restricted_lift` and `conn_service_hatch` (fade). Each zone has its environments, floor-plan bounds and audio rooms, which moved here from `world_chapter1.json`.
+- Chapter world files now name a `start_zone`; entries may name a `zone` (default: the start zone) and are wired when that zone is built.
+- `ContentValidator`: built zones need existing environments and bounds, zones on one level must not overlap, a connection joins two zones, seamless stays on one level and names door/door zone/anchor, fade names node and arrival per end, world `start_zone` is built, `zone_`/`conn_` prefixes.
+- `AuthoredWorld`: `build_zone`, `unload_zone`, `has_zone`, `get_zone_ids`, `get_zone_root`, `get_persistent_nodes`, `find_zone_node`; builds only the start zone in `_ready`; `PlayerSpawn` lives on the world, not the zone.
+- `ZoneDirector` (child of `Main`, provider `zones`): current zone from bounds, streams the zone behind a connection door when the player may open it and is within 10 m (or the door is open), always keeps the zone that holds a connection door, fade transitions (time paused, input off, free everything, build target, place on arrival), per-zone door state across unloads, perf CSV behind the `perf_log` setting. `EventBus.zone_changed` added.
+- `ImportedDoor.before_open` hook (connection doors build the zone behind first); doors without config read "Records Office door". `ImportedInteractable` uses a method for `game_loaded` so unloaded zones disconnect cleanly; `mesh_aabb` is static.
+- `SaveManager` v3: `_migrate_from_2` moves `world.objects` to `zones.objects.zone_clinical_wing`.
+
+**Files modified**
+- See commit `fb9fc52`; new `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, `scripts/tests/fixtures/saves/save_v2_ch1_doors_open.json` (a real v2 save captured from `main` at `4987123`: office and interview doors open, player at (-0.5, 0, -12), 09:35).
+
+**Unfinished**
+- Arrival points in `zones.json` are hand-placed (`placeholder_arrival`); the environment workstream should add `MARK_Arrival_*` markers.
+- Not built: Ward Zero connection, lift stop at the historic landing (needs a floor choice), quality presets.
+- Security and research use the `corridor` ambience; `audio/cues.json` has no wing ambience for them.
+
+**Known errors**
+- none. Found while testing: Godot's dummy renderer (headless) is not thread-safe for mesh creation; threaded loading there logged "unimplemented base type encountered in renderer scene cull" and leaked meshes. `ZoneDirector.stream_on_threads` is false in headless runs, so CI loads on the main thread and the threaded path is untested until the Mac check.
+- Not caused by F2: PR #22 put `assets/creative_references/` (about 42 MB of music and concept boards) inside the Godot project with no `.gdignore`, so Godot imports it and an export would ship it. A one-line `.gdignore` there would stop that if the owner wants.
+
+**Tests** (on `fb9fc52`)
+- `GODOT=<4.7-stable linux, SHA-512 verified> python3 tests/qa/run.py`: exit 0. Python 6/6, 3/3, 3/3; TestQA 19/0/0; GLB 138/138; TestRunner 112 passed / 0 failed (97 before, 15 new in `test_zones.gd`); TestAudio 271/0.
+- Ten lift round trips: static memory +8 KB, object count unchanged.
+- CI: not observed yet for this branch
+
+**Dependencies not available to remote agents**
+- Mac: transition feel, streaming hitch, frame time and memory with `perf_log` on.
+
+**Next steps**
+1. Owner reviews the F2 PR.
+2. F3 (anomaly evidence model, flag off) after the owner decides Psychosomatic Bleed (F0 §9).
+
+**Notes for the other agent**
+- Geometry belongs to zones (`data/zones.json`); chapter world files only wire gameplay onto it. Do not add `environments` back to a world file.
+- Never build two levels at once; the validator rejects overlapping zones on one level.
+
+### 2026-10-17 21:40 UTC · Claude Code · Ashcroft soundtrack
+
+- **Branch:** `claude/ashcroft-soundtrack` (based on `main` at `65b598d`)
+- **Latest verified commit:** `0f555939fd42fa3cd3dd7ccc2b412ad837eb6670` "Move exploration music to the records archive per the bible"
+- **Confirmed on GitHub:** see `git ls-remote origin claude/ashcroft-soundtrack`; this doc commit sits on top
+- **Pull request:** draft PR to `main` (opened with this push)
+- **State:** finished; waiting on owner review
+
+**Accomplished**
+- Six Ashcroft OGGs referenced in place from `assets/creative_references/Music/Ready_For_Godot/` (no copies; the `.m4a` sources are not used). Cues `mus_waiting_room`, `mus_compassion`, `mus_procedure`, `mus_temporal_fracture`, `mus_final_revelation`, `mus_main_theme_variant2`; state `hospital_ordinary` on a new `reception` location; contexts `patient_follow_up`, `oversight`, `ward_zero_anomaly`, `final_revelation`, `finale_motif` with begin/end events. Assignments and reasons in `docs/AUDIO.md` "Ashcroft score".
+- Ward Zero temporal echo is event-only (`w0_temporal_echo_begin`); tests assert no location or intensity starts it.
+- `AudioDirector._apply_music_context`: a play-once context cut short no longer blocks its own finished hook next time.
+- Second commit: exploration music moved from the day corridor and nursing station to a new `records_archive` location, per the bible's Chapter 1 cue table. Droppable on its own.
+- `.gdignore` in `Visual_References/` and `Music/Suno_Originals/`; manifest scans `Ready_For_Godot` and records Suno provenance.
+
+**Files modified**
+- Claimed files in the Active workstreams row.
+
+**Unfinished**
+- `data/world_chapter1.json` `audio_zones`: no `reception` or `records_archive` rectangle yet (world owner, F2 zones).
+- No story data fires the new events yet.
+
+**Known errors**
+- none
+
+**Tests** (on `0f55593`)
+- `python3 tests/qa/run.py --godot <Godot 4.7>`: all suites pass; audio 334 passed, 0 failed.
+- CI: not observed yet.
+
+**Dependencies not available to remote agents**
+- Listening review on the Mac; Suno licence terms for all Suno-tagged tracks (owner).
+
+**Next steps**
+1. Owner: listen, confirm the Suno licence, decide whether to keep the Chapter 1 realignment commit.
+2. F2 zones: add `reception` and `records_archive` `audio_zones` rectangles when those areas exist.
+
+**Notes for the other agent**
+- Concept boards and notes reviewed but not used in game: board names/roles conflict with canon, board 2 cites real actors as likeness references, Ward Zero boards use occult imagery the bible rules out. Details in the PR description.
 
 ### 2026-10-17 20:50 UTC · Claude Code · Foundation F1 campaign contract
 

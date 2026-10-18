@@ -4902,6 +4902,39 @@
       "source_file": "assets/blender/research/FW_Props_Research.blend",
       "status": "v1 geometry complete; untextured PBR (Stage 8: textures/UVs)",
       "triangles_base": 168
+    },
+    "Naomi_Bennett_Base_v01": {
+      "asset_id": "Naomi_Bennett_Base_v01",
+      "asset_name": "Naomi Bennett character base v01",
+      "category": "character",
+      "collision": "Not generated; WardCharacter retains runtime contact and interaction behavior",
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "dimensions_m": [
+        0.995,
+        0.445,
+        1.701
+      ],
+      "export_file": "assets/exports/characters/Naomi_Bennett_Base_v01.glb",
+      "implementation_notes": "Skinned 53-joint automated base; not a finished realistic character. Blender source and exact CC0 MPFB inputs are recorded in assets/asset_manifest/naomi_character_manifest.json. Not yet integrated into a gameplay scene.",
+      "intended_location": "Chapter 1: Charge Nurse Naomi Bennett",
+      "markers": [],
+      "materials": [
+        "Naomi_Badge_Clip",
+        "Naomi_Skin",
+        "Naomi_Eye_Sclera",
+        "Naomi_Brow",
+        "Naomi_Hair",
+        "Naomi_ID_Badge",
+        "Naomi_Eye_Iris",
+        "Naomi_Hair_Bun",
+        "Naomi_Shoes",
+        "Naomi_Eye_Pupil",
+        "Naomi_Scrubs_Navy",
+        "Naomi_Hair_Highlight"
+      ],
+      "source_file": "assets/blender/characters/Naomi_Bennett_Base_v01.blend",
+      "status": "Automated base; manual likeness, garment, hair, and deformation review required",
+      "triangles_base": 42583
     }
   },
   "schema_version": "1.0"

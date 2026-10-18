@@ -130,6 +130,9 @@ signal subtitle_shown(line_id: String, speaker_name: String, text: String, durat
 ## The line ended or was skipped; hide its subtitle.
 @warning_ignore("unused_signal")
 signal subtitle_cleared(line_id: String)
+## Reports whether a dialogue line ended naturally or was interrupted.
+@warning_ignore("unused_signal")
+signal dialogue_line_finished(line_id: String, completed: bool)
 
 # --- Staff trust and access --------------------------------------------------------
 
@@ -180,6 +183,10 @@ signal chapter_started(chapter_id: String)
 ## only visibility changes, so it is reversible and save-safe.
 @warning_ignore("unused_signal")
 signal environment_state_changed(group: String, state: String)
+## The player is now in another zone (data/zones.json): walked through a
+## seamless connection, arrived by a fade transition, or a save was loaded.
+@warning_ignore("unused_signal")
+signal zone_changed(zone_id: String, previous_zone_id: String)
 
 # --- Save and settings -------------------------------------------------------------------
 

@@ -12,11 +12,12 @@ extends Node3D
 ##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
 ##   "ehr"        EHRScreen (also opened with J)
 ##   "evidence"   EvidenceBoard (also opened with Tab)
-## ChapterDirector (story) and AudioZoneTracker (ambience per room) are
-## children of Main, so they exist exactly while the playable world does.
+## ChapterDirector (story), AudioZoneTracker (ambience per room) and
+## ZoneDirector (which zones are loaded, transitions) are children of Main,
+## so they exist exactly while the playable world does.
 ##
-## Also registers the "world" save provider: player transform plus every
-## node in the "persistent_world" group (doors).
+## Also registers the "world" save provider: the player transform. Door
+## state is saved per zone by ZoneDirector ("zones").
 
 const WORLD_PROVIDER_KEY: String = "world"
 const TIME_PAUSE_REASON: String = "ui"
@@ -29,6 +30,7 @@ const TIME_PAUSE_REASON: String = "ui"
 @onready var _interview: InterviewScreen = $InterviewScreen
 @onready var _evidence: EvidenceBoard = $EvidenceBoard
 @onready var _pause_menu: PauseMenu = $PauseMenu
+@onready var _zones: ZoneDirector = $ZoneDirector
 ## Topmost first: Esc closes the first open one.
 @onready var _panels: Array[CanvasLayer] = [_info_panel, _interview, _ehr, _evidence]
 
@@ -39,6 +41,8 @@ func _ready() -> void:
 	_pause_menu.closed.connect(_update_input_mode)
 	SaveManager.register_provider(WORLD_PROVIDER_KEY, self)
 	_place_at_spawn()
+	_zones.setup(_world, _player)
+	_zones.transition_finished.connect(_update_input_mode)
 	($AudioZoneTracker as AudioZoneTracker).target = _player
 	get_tree().auto_accept_quit = false  # Quit via _quit_gracefully (audio first).
 
@@ -81,6 +85,8 @@ func _silence_audio() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _zones.in_transition:
+		return
 	if event.is_action_pressed("pause"):
 		var top: CanvasLayer = _top_panel()
 		if top != null:
@@ -145,7 +151,7 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 func _update_input_mode() -> void:
 	var ui_open: bool = _is_ui_open()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if ui_open else Input.MOUSE_MODE_CAPTURED
-	_player.set_input_enabled(not ui_open)
+	_player.set_input_enabled(not ui_open and not _zones.in_transition)
 	_hud.set_world_hud_visible(not ui_open)
 	if ui_open:
 		TimeManager.push_pause(TIME_PAUSE_REASON)
@@ -169,14 +175,8 @@ func _place_at_spawn() -> void:
 # --- Save provider ("world") ------------------------------------------------------
 
 func to_save_data() -> Dictionary:
-	var objects: Dictionary = {}
-	for node: Node in get_tree().get_nodes_in_group("persistent_world"):
-		objects[node.get_persist_id()] = node.to_save_data()
 	var p: Vector3 = _player.global_position
-	return {
-		"player": {"position": [p.x, p.y, p.z], "yaw": _player.rotation.y, "pitch": _player.get_look_pitch()},
-		"objects": objects,
-	}
+	return {"player": {"position": [p.x, p.y, p.z], "yaw": _player.rotation.y, "pitch": _player.get_look_pitch()}}
 
 
 func load_save_data(data: Dictionary) -> void:
@@ -185,12 +185,7 @@ func load_save_data(data: Dictionary) -> void:
 	if position_values.size() == 3:
 		_player.place(Vector3(position_values[0], position_values[1], position_values[2]),
 				float(player.get("yaw", 0.0)), float(player.get("pitch", 0.0)))
-	var objects: Dictionary = data.get("objects", {})
-	for node: Node in get_tree().get_nodes_in_group("persistent_world"):
-		node.load_save_data(objects.get(node.get_persist_id(), {}))
 
 
 func reset_state() -> void:
 	_place_at_spawn()
-	for node: Node in get_tree().get_nodes_in_group("persistent_world"):
-		node.load_save_data({})
