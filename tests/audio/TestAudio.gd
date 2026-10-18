@@ -11,6 +11,7 @@ const MANIFEST_PATH: String = "res://audio/manifest.json"
 var passed := 0
 var failed := 0
 var subtitles: Array[Dictionary] = []
+var line_completions: Array[Dictionary] = []
 
 func check(condition: bool, label: String) -> void:
 	if condition:
@@ -26,6 +27,8 @@ func _ready() -> void:
 		subtitles.append({"event": "shown", "id": id, "speaker": speaker, "text": text, "duration": duration, "at": now()}))
 	EventBus.subtitle_cleared.connect(func(id: String) -> void:
 		subtitles.append({"event": "cleared", "id": id, "at": now()}))
+	EventBus.dialogue_line_finished.connect(func(id: String, completed: bool) -> void:
+		line_completions.append({"id": id, "completed": completed}))
 	test_buses_and_volume()
 	test_assets_and_manifest()
 	await test_location_and_day_night()
@@ -164,6 +167,7 @@ func test_startle_accessibility() -> void:
 
 func test_dialogue_subtitle_sync() -> void:
 	subtitles.clear()
+	line_completions.clear()
 	var line_id: String = "ch1_b2_player_001"
 	var clip_length: float = AudioDirector.get_voice_stream(line_id).get_length()
 	var start: float = now()
@@ -176,9 +180,12 @@ func test_dialogue_subtitle_sync() -> void:
 		check(absf(subtitles[0]["duration"] - clip_length) < 0.01, "subtitle duration equals clip length")
 		check(absf(subtitles[0]["at"] - start) < 0.05, "subtitle appears when voice starts")
 	check(absf(elapsed - clip_length) < 0.35, "subtitle clears when voice ends (%.2f s vs %.2f s clip)" % [elapsed, clip_length])
+	check(line_completions.size() == 1 and line_completions[0]["id"] == line_id
+			and line_completions[0]["completed"], "dialogue completion reports natural voice end")
 
 	# Stopping mid-scene clears the subtitle and ends the scene without playing later lines.
 	subtitles.clear()
+	line_completions.clear()
 	AudioDirector.play_scene("ch1_b2_bennett_handover")
 	await wait(0.5)
 	check(AudioDirector.is_dialogue_playing(), "scene starts dialogue")
@@ -188,6 +195,8 @@ func test_dialogue_subtitle_sync() -> void:
 	await wait(1.0)
 	var shown: Array = subtitles.filter(func(entry: Dictionary) -> bool: return entry["event"] == "shown")
 	check(shown.size() == 1 and subtitles.back()["event"] == "cleared" and not AudioDirector.is_dialogue_playing(), "stopping dialogue clears subtitle and ends scene")
+	check(line_completions.size() == 1 and line_completions[0]["id"] == "ch1_b2_bennett_001"
+			and not line_completions[0]["completed"], "dialogue interruption is distinguishable from natural completion")
 
 	# 3D emitter: the voice follows the speaking character.
 	var bennett := Node3D.new()

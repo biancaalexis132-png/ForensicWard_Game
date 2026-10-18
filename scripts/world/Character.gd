@@ -16,6 +16,7 @@ enum Kind { STAFF, PATIENT }
 
 @onready var _interactable: Interactable = $Interactable
 @onready var _name_label: Label3D = $NameLabel
+var _naomi_acting: NaomiActingController
 
 
 func _ready() -> void:
@@ -31,6 +32,11 @@ func _ready() -> void:
 	var display_name: String = _display_name()
 	_name_label.text = display_name
 	_interactable.prompt = ("Talk to " if kind == Kind.STAFF else "Approach ") + display_name
+	if kind == Kind.STAFF and character_id == "staff_bennett":
+		_naomi_acting = NaomiActingController.new()
+		_naomi_acting.name = "NaomiActingController"
+		_naomi_acting.actor_root = self
+		add_child(_naomi_acting)
 
 
 func _display_name() -> String:
@@ -41,6 +47,8 @@ func _display_name() -> String:
 
 func _on_interacted(_interactor: Node) -> void:
 	if kind == Kind.STAFF:
+		if is_instance_valid(_naomi_acting):
+			_naomi_acting.begin_conversation()
 		_talk_to_staff()
 	else:
 		_approach_patient()
