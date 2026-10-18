@@ -1,0 +1,12 @@
+# Character model contract — proposal
+
+- Character ID `pt_elias_ward`; model asset key `char_elias_ward`. Do not rename world marker `MARK_Seat_Patient` or change its authored `character_id`.
+- Dedicated source area: `tools/blender/characters/elias/`. Dedicated outputs: `assets/blender/characters/elias/`, `assets/exports/characters/elias/`, and `assets/renders/characters/elias/`. Coordinate folder names with the already-established Naomi pipeline before writing shared scripts.
+- Author using Blender 5.2-compatible, independently licensed source meshes and textures; verify installed MPFB API rather than assuming it. Do not download third-party assets without explicit license checks; generate procedural elements when possible.
+- Export GLB/GLTF 2.0; apply scale and axes appropriate for Godot 4.7; ensure no problematic external image references, animation clips or unresolved paths.
+- Design skeleton and facial mappings to work with a capability-driven adapter. Prefer reusing documented rig conventions, but never require Naomi's particular model or bone names. Neutral fallback is mandatory.
+- Budget targets are PROVISIONAL, subject to 8 GB Apple Silicon in-game profiling: ≤35k rendered tris for primary LOD, ≤2k combined base-color/normal texture dimensions per major material where viable, ≤4 active materials, and one efficient armature; optimize after measured performance. These are initial caps, not validated performance results.
+- Initial poses: standing neutral A-pose for export, seated neutral for chapter scene, gentle breathing and ordinary gaze. Any clinical motor signs, mutism-linked gestures or catatonia-related behaviors remain unavailable until review.
+- Facial capabilities: neutral mouth and eyes, natural blinking and eye orientation, restrained emotion shapes; voice/lip-sync support only if approved dialogue and implementation need it. Do not convey a diagnosis through facial rig or animation defaults.
+- Import validation: Godot 4.7 headless import, no errors, physical dimensions sane, rig loads without missing bones, idle safe when animation missing, replace placeholder without moving `MARK_Seat_Patient`, save/load unchanged, FPS/memory recorded on actual target Mac.
+- Repository hygiene: independent feature branch and PR, do not touch Naomi/Voss sources, `.git` on exFAT or clinical content/state; no AppleDouble `._*` files. Keep provenance and handoff up to date.

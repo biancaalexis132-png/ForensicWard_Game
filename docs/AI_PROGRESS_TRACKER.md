@@ -4,17 +4,29 @@
 
 | Task | State | Dependencies | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Review the nine-file Jordan Vale v2 package without changing its source or activating runtime content | Review/handoff commits pushed through `ef22d090c926f2fa50115478ed5eed95dee93b77`; draft PR #38 open to `main` | Owner’s limited narrative direction; qualified psychiatrist review still required; current `main` is `03f1585a62bd33db7dcfe8116b50db71f8ee171b` | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; continuity docs | JSON syntax PASS; `git show --check` and `git diff --check` PASS; hosted `validate` passed on `b79ea11` (3m50s); no check reported on final docs-only head `ef22d09`; no CP schema validator; full local Godot QA not run | Owner resolves identity/source questions; psychiatrist reviews exact case material and approval matrix before any schema/runtime implementation |
+| Review the nine-file Jordan Vale v2 package without changing its source or activating runtime content | Review/handoff pushed through `ef22d09`; draft PR #38 open to `main`; merged `origin/main` `47a68f4` is being integrated without history rewrite | Owner’s limited narrative direction; qualified psychiatrist review still required | `docs/design/continuing_practice/CP001_Jordan_Vale_v2_Schizophrenia_Recovery/REVIEW.md`; continuity docs | JSON syntax PASS; `git show --check` and `git diff --check` PASS before merge; hosted `validate` passed on `b79ea11` (3m50s); no check reported on `ef22d09`; no CP schema validator; full local Godot QA not run | Resolve and verify the main merge; owner resolves identity/source questions; psychiatrist reviews exact case material before schema/runtime implementation |
 
 Review findings: Chapter 1 still labels Jordan provisional/not canon; v1 package is absent from fetched repository history; historical diagnosis source and all clinical screenplay details remain pending; safety/legal/collateral scope and provenance need review; current runtime has no CP loader/lifecycle and SaveManager remains v3. See `REVIEW.md` for source citations, severity, dispositions and implementation gates. No source files, patient data, clinical rules, runtime, or save schema changed.
 
-Coordination: PR #35 (Naomi acting cues) is merged. Naomi model work remains active on its separate branch; proposed CP Naomi lines are not linked to those cues. Preserve branch/file ownership. This review PR does not change clinical approval or runtime behavior.
+Coordination: Naomi acting-cue PR #35, Naomi character-base PR #37, and Elias/Rahman production-specification PR #39 are merged in current `origin/main` `47a68f4`. Naomi refinement remains a separate workstream; CP Naomi lines remain proposals. This review changes no clinical approval or runtime behavior.
 
-## Naomi Chapter 1 acting cues — Copilot, 2026-10-18
+## Naomi 3D character base — Copilot, 2026-10-18 (base merged in PR #37; refinement remains)
 
 | Task | State | Dependencies | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Add model-independent acting cue controller for the five authored Chapter 1 dialogue IDs | Complete on draft PR #35; not merged | Canonical cue package on `main` `29f1e3386ffe0f0907ef698859fa27c05da9b9d8`; no dependency on unfinished 3D model | `scripts/acting/**`, Bennett-only integration, AudioDirector lifecycle signal, focused tests | Cue validator 5 IDs/voices; TestRunner 122/0; TestAudio 336/0; full runner blocked at music pipeline: 1 pass/2 failures because local FFmpeg lacks `libvorbis` | Owner review; then request Mac performance review |
+| Build a reproducible, licensed Naomi model base and Godot GLB | Base merged in PR #37 at `47a68f4`; follow-on refinement remains separate | Blender 5.2.2 LTS, MPFB2 2.0.18; current main includes merged acting adapter and production package | `tools/blender/characters/**`, Naomi-specific Blender/GLB/renders and asset manifests | Historical base validation: Blender validator 53 joints, 42,583 triangles, 2 embedded textures, 4 renders; Godot GLB 139/139; full runner blocked by two `libvorbis` music previews | Owner review of renders; refine likeness/hair/clothing, then stage animations/integration separately |
+
+## Elias and Rahman character production specifications — merged in PR #39
+
+`docs/design/characters/Elias_Ward_Character_Production_v1/` and `docs/design/characters/Rahman_Character_Production_v1/` are design/production specifications merged to `main` at `3887b66` (included in `47a68f4`). They do not by themselves approve clinical content, canon, animation, or runtime integration; use their review gates before implementation.
+
+## Naomi Chapter 1 acting cues — Copilot, 2026-10-18
+
+## Naomi Chapter 1 acting cues — Copilot, 2026-10-18 (merged in PR #35)
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Add model-independent acting cue controller for the five authored Chapter 1 dialogue IDs | Merged to `main` in PR #35 at `21205c3`; owner/Mac review pending | Canonical cue package merged on `main`; no dependency on unfinished 3D model | `scripts/acting/**`, Bennett-only integration, AudioDirector lifecycle signal, focused tests | Cue validator 5 IDs/voices; TestRunner 122/0; TestAudio 336/0; the repository runner's two music-preview cases still fail for missing local FFmpeg `libvorbis` | Owner review; then request Mac performance review |
 
 ## Merge reconciliation — Codex, 2026-10-17
 
