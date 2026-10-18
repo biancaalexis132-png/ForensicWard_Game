@@ -8,8 +8,9 @@
 | Scene 03 Mara introduction | Done, draft PR #71; owner approved scene | Approval logged 2026-10-18 | `data/dialogue_mara.json`, `data/patients.json`, `scripts/tests/test_chapter2_mara.gd` | Full QA on `09e4a8c`: game 212/0 | Psychiatrist review of patient record wording |
 | Scene 04 Voss institutional review | Done, draft PR (stacked on #70) | PR #70 | `data/story_chapter2.json`, `scripts/tests/test_chapter2_voss.gd` | Full QA on `4796ca10fc6e070b1f119e1d2416af7104204780`: game 207/0 | Owner review |
 | Scene 05 analyst working explanation | Done, draft PR #72 | `ch2_mara_records_referred` | `data/story_chapter2.json`, `scripts/tests/test_chapter2_analyst.gd` | Full QA on `0d298cf`: game 216/0 | Owner review |
-| Scene 06 Hale's Door | Next | Hale placement in a reachable zone | `data/world_chapter2.json`, `data/story_chapter2.json` | | Implement |
-| Scenes 07–10 | Planned | Scene 05; Scene 08 lobby-only rule | | | In order |
+| Scene 06 Hale's Door | Done, draft PR | Scene 05 | `data/world_chapter2.json`, `data/story_chapter2.json`, `scripts/tests/test_chapter2_hale.gd` | Full QA on `ffd5730`: game 220/0 | Owner review |
+| Scene 07 witness | Next | Facilities worker staff entry and placement | `data/staff.json`, `data/world_chapter2.json` | | Implement |
+| Scenes 08–10 | Planned | Scene 05; Scene 08 lobby-only rule | | | In order |
 | Mac visual/performance | Not run | Owner's Mac | | | Owner / local thread |
 
 ## Dialogue visemes — Codex, 2026-10-18

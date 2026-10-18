@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 2 Scene 06 — 2026-10-19
+
+- Hale's Door added on `claude/chapter2-hale` at `ffd5730f9d6182d26f104f9d340fad566587fdb8` (PR to main; stacked after #73). Full QA exit 0, game 220/0. Next: Scene 07 witness.
+
 ## Claude Code Chapter 2 Scene 05 — 2026-10-19
 
 - Analyst working explanation added on `claude/chapter2-mara-intro` (PR #72 to main) at `0d298cfa7a557eeab11a0b265e203116012fe0ad`, pushed and verified. Full QA exit 0, game 216/0. Next: Scene 06 Hale's Door.
