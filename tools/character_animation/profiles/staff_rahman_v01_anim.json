@@ -1,0 +1,103 @@
+{
+  "character_id": "staff_rahman",
+  "display_name": "Leila Rahman",
+  "version": "v01_anim",
+  "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+  "source_blend": "build/cast/Leila_Rahman_v01.blend",
+  "objects": {
+    "rig": "Leila_Rahman_Rig",
+    "face_mesh": "Leila_Rahman_Body",
+    "eye_l": "Rahman_Eye_L",
+    "eye_r": "Rahman_Eye_R"
+  },
+  "forward": [
+    0.0,
+    -1.0,
+    0.0
+  ],
+  "up": [
+    0.0,
+    0.0,
+    1.0
+  ],
+  "bones": {
+    "pelvis": "pelvis",
+    "spine_lower": "spine_01",
+    "spine_mid": "spine_02",
+    "chest": "spine_03",
+    "neck": "neck_01",
+    "head": "head",
+    "clavicle_l": "clavicle_l",
+    "clavicle_r": "clavicle_r",
+    "upperarm_l": "upperarm_l",
+    "upperarm_r": "upperarm_r",
+    "lowerarm_l": "lowerarm_l",
+    "lowerarm_r": "lowerarm_r",
+    "hand_l": "hand_l",
+    "hand_r": "hand_r"
+  },
+  "eye_bones": {
+    "l": "eye_l",
+    "r": "eye_r"
+  },
+  "face": {
+    "mouth_line_z_below_eyes_m": 0.0641,
+    "mouth_corner_x_of_eye_x": 0.871,
+    "jaw_pivot_offset_from_eye_mid_m": [
+      0.0,
+      0.0538,
+      -0.0441
+    ],
+    "lid_corner_deg": [
+      55.0,
+      72.0
+    ],
+    "lashes": {
+      "material": "Rahman_Lash",
+      "color_srgb_hex": "#140D0A",
+      "length_m": 0.0045,
+      "width_m": 0.0012
+    },
+    "brows": {
+      "mode": "painted",
+      "color_srgb_hex": "#1E1611",
+      "seed": 7,
+      "inner_m": -0.0157,
+      "outer_m": 0.0294,
+      "height_m": 0.022,
+      "arch_m": 0.0028,
+      "tail_drop_m": 0.004,
+      "inner_half_m": 0.0032,
+      "tail_half_m": 0.001,
+      "fill": 0.5,
+      "hairs": 420,
+      "hair_length_m": [
+        0.0045,
+        0.0075
+      ],
+      "hair_width_m": [
+        0.00018,
+        0.00028
+      ],
+      "hair_feather_m": 0.00015
+    }
+  },
+  "skin": {
+    "roughness": 0.58,
+    "roughness_variation": 0.05,
+    "roughness_cell_m": 0.003,
+    "specular": 0.35,
+    "pore_size_m": 0.0009,
+    "pore_normal_strength": 0.0
+  },
+  "clothing_tidy": {
+    "shoes": "Rahman_Shoes"
+  },
+  "outputs": {
+    "blend": "build/cast/Leila_Rahman_v01_anim.blend",
+    "glb": "build/cast/Leila_Rahman_v01_anim.glb",
+    "renders": "assets/renders/characters",
+    "manifest": "build/cast/staff_rahman_character_manifest_v01_anim.json",
+    "report": "tools/character_animation/reports/staff_rahman_v01_anim_rig_report.json"
+  }
+}

@@ -20,6 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Cast draft models (Voss, Hale, Rahman, technician, Elias, Mara) | `claude/cast-models` (draft PR to main) | Claude Code (cloud) | `5316d36` (tree of merge `7a7c97e`) | `tools/blender/characters/{build_cast_member.py,cast/**}`, `tools/character_animation/{transfer_face_shapes.py,review_cast_member.py,refine_character.py}`, `profiles/{staff,pt}_*_v01_*`, `assets/**/{Evelyn_Voss,Marcus_Hale,Leila_Rahman,Facilities_Tech,Elias_Ward,Mara_Ellis}_v01*`, `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, six `asset_manifest.json` entries | Six drafts built, full QA passed; waiting on owner look and Mac check. Naomi v07 merged in PR #84 |
 | Chapter 2 Voss review and Mara introduction | `claude/chapter2-voss-review` (draft PR to `codex/chapter2-records-review`) | Claude Code (cloud) | `4796ca10fc6e070b1f119e1d2416af7104204780` | `data/story_chapter2.json` (Voss objectives/lines/interactions), new `scripts/tests/test_chapter2_voss.gd` + UID, one expected-objective assertion in `test_chapter2_records.gd`, dedicated handoff | Scenes 04 and 03 playable (latest `09e4a8c`); full QA passed. Also claims `data/patients.json`, `data/dialogue_mara.json`, `data/world_chapter2.json`, `data/campaign.json`, StoryLogic/Character/AuthoredWorld presence. Scene 05 next. Codex has stopped; PR #70 branch untouched. |
 | Dialogue viseme integration | `codex/dialogue-viseme-integration` | Codex cloud | `44b2ff5418b027868ec562d8d98569ad06d909b2` | `CharacterFaceRig.gd`, new `DialogueVisemeTrack.gd`, `test_dialogue_visemes.gd`, two pause timers in `systems/audio/AudioDirector.gd`, bounded diagnostic and dedicated evidence/handoff | Implementation pushed; owner approved animations shown so far. New viseme approximation and Mac technical gates remain separate. Other sessions confirmed stopped. |
 | Naomi Blender source validation continuation | `codex/naomi-v06-validation-cont-1` | Codex cloud | `0d6e36989019a7dea4d59484b6b514ca8caafaca` | New `audit_naomi_source.py`, pinned requirements, source regression suite, dedicated source-review evidence | Source gate resolved; significant lid/hem defects remain; no existing runtime or asset edits. |
@@ -44,6 +45,22 @@ One row per branch that someone is working on. Claim the folders or files you wi
 - **Executed:** Full QA at daca017: all executed checks passed; game tests 252 passed 0 failed; GLB 161/0. Mac checks not run. Mac not run.
 - **Next exact task:** Await owner answer on Ch4 Scene 09 corridor-loop card, then build Scenes 09-10; then Chapter 5. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
 
+### 2026-10-19 · Claude Code · Cast draft models with shared animation
+
+- **Branch / verified runtime:** `claude/cast-models`, `5316d36` (pushed; merge of `main` `7a7c97e` on top changes no files). Draft PR to main.
+- **Owner request:** "continue to finish all necessary animation and i will chec on my mac"; card answer "Naomi, then cast"; "fix conflicts" (PR #84, merged by the owner). Nothing approved.
+- **Delivered:** draft models for Voss, Hale, Rahman, the facilities technician, Elias and Mara (seated), each with Naomi's rig, the ten shared clips and her 32 face morphs; one JSON config per character and `build_cast_member.py` + `transfer_face_shapes.py` + `review_cast_member.py`. Preview candidates `v01_draft` for all six. Elias has no symptom movement.
+- **Executed:** full runner on `5316d36` exit 0: game 251/0, GLB 168/0, audio 336/0, QA 19/0/0, boot, CH1_SEQUENCE_DONE. Mac not run.
+- **Next exact task:** owner look on the Mac; then hair (cards or strands instead of a shell) and a chair at `MARK_Seat_Patient`. See `docs/handoffs/2026-10-19_claude_cast_models.md`.
+
+### 2026-10-19 · Claude Code · Naomi v07 refinement and live gesture shadows
+
+- **Branch / verified runtime:** `claude/naomi-v07-refine` from `main` `bf4cbfd`, `2707a37e3387cfcea253882f8fbead9eaf9e8773` (draft PR to main).
+- **Owner request:** "continue to finish all necessary animation and i will chec on my mac"; card answer "Naomi, then cast". Nothing approved.
+- **Delivered:** `refine_character.py` + `staff_bennett_v07.json` build v07 from v06_mpfb (painted crease rim removed, lid-margin lash line, lash tips follow roots, relaxed blink, straight trouser hems, relaxed shoes; rig/10 clips/32 morphs kept). `CharacterShadowSelector.gd`: nearest light casts the moving shadow, others the rest-pose proxy. Preview default v07. Draw-call jump not present on current main (lavapipe: v07 503, still v03 496).
+- **Executed:** full runner on `2707a37` exit 0: game 234/0, GLB 162/0, audio 336/0, QA 19/0/0, boot, CH1_SEQUENCE_DONE. Mac not run.
+- **Merged main (owner: "fix conflicts"):** conflicts were only in the continuity docs (both sides' entries kept). Full runner on the merge exit 0: game 250/0, audio 336/0, QA 19/0/0, CH1_SEQUENCE_DONE.
+- **Next exact task:** cast draft models; see `docs/handoffs/2026-10-19_claude_naomi_v07.md`.
 ### 2026-10-19 · Claude Code · Chapter 4 Scenes 01-03 and 05 official record
 
 - **Branch / verified runtime:** `claude/chapter4-record` (stacked on claude/chapter3-report / PR #82), `e17fa49fb6b9665ac8f15d43990188620ba3a048`.
