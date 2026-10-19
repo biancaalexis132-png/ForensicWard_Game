@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 4 Scenes 09-10 — 2026-10-19
+
+- `claude/chapter4-loop` at `ec4d3d4`. Full QA at ec4d3d4: all executed checks passed; game tests 255/0; GLB 161/0. Mac checks not run; Ward Zero Mac performance unmeasured. Mac not run. Next: Chapter 5: read CH05 screenplay, set ch4 next_chapter=ch5, make ch5 playable and build scenes. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
+
 ## Claude Code Chapter 4 Scenes 07-08 — 2026-10-19
 
 - `claude/chapter4-door-test` at `daca017`. Full QA at daca017: all executed checks passed; game tests 252 passed 0 failed; GLB 161/0. Mac checks not run. Mac not run. Next: Await owner answer on Ch4 Scene 09 corridor-loop card, then build Scenes 09-10; then Chapter 5. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
