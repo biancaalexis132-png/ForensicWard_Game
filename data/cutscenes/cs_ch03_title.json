@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "cutscene_id": "cs_ch03_title",
+  "chapter_id": "ch3",
+  "source_scene_id": "CH03_S01",
+  "source": "Chapter title card for review: environment plates only (tools/cutscenes/ch03_title_plates.json), no dialogue or character likeness. Placement at the chapter opening needs the owner's approval.",
+  "mode": "review_only",
+  "approved": false,
+  "trigger": {
+    "kind": "manual_preview"
+  },
+  "fallback_action": "restore_world",
+  "music": {
+    "cue": "mus_narrative",
+    "ambience": "duck",
+    "ambience_db": -8.0,
+    "fade": 2.0
+  },
+  "panels": [
+    {
+      "id": "p01_stairwell",
+      "duration_seconds": 7.0,
+      "transition": "fade_black",
+      "transition_seconds": 1.2,
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/ch03_title/p01_stairwell.png",
+          "parallax": 1.0
+        },
+        {
+          "texture": "res://assets/cutscenes/ch03_title/glaze.png",
+          "parallax": 1.8
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.06,
+        "zoom_to": 1.02,
+        "pan_from": [
+          0.015,
+          0.0
+        ],
+        "pan_to": [
+          -0.01,
+          0.0
+        ]
+      },
+      "caption_ref": "chapter.ch3.title",
+      "line_id": null
+    },
+    {
+      "id": "p02_sealed_corridor",
+      "duration_seconds": 6.0,
+      "transition": "dissolve",
+      "transition_seconds": 0.6,
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/ch03_title/p02_sealed_corridor.png",
+          "parallax": 1.0
+        },
+        {
+          "texture": "res://assets/cutscenes/ch03_title/glaze.png",
+          "parallax": 1.8
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.02,
+        "zoom_to": 1.05,
+        "pan_from": [
+          -0.01,
+          0.005
+        ],
+        "pan_to": [
+          0.01,
+          0.0
+        ]
+      },
+      "caption_ref": null,
+      "line_id": null
+    },
+    {
+      "id": "p03_historic_corridor",
+      "duration_seconds": 7.0,
+      "transition": "dissolve",
+      "transition_seconds": 0.6,
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/ch03_title/p03_historic_corridor.png",
+          "parallax": 1.0
+        },
+        {
+          "texture": "res://assets/cutscenes/ch03_title/glaze.png",
+          "parallax": 1.8
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.03,
+        "zoom_to": 1.07,
+        "pan_from": [
+          0.0,
+          0.0
+        ],
+        "pan_to": [
+          0.0,
+          -0.006
+        ]
+      },
+      "caption_ref": null,
+      "line_id": null
+    }
+  ]
+}

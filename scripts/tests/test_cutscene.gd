@@ -43,6 +43,29 @@ func test_pilot_is_valid_and_review_only() -> void:
 	check_eq(CutsceneRegistry.total_duration(pilot), 52.0, "about 52 seconds")
 
 
+func test_chapter_title_cards_are_review_only_and_play() -> void:
+	var loaded: Dictionary = CutsceneRegistry.load_all()
+	for chapter: int in [2, 3, 4, 5]:
+		var id: String = "cs_ch0%d_title" % chapter
+		var card: Dictionary = (loaded["cutscenes"] as Dictionary).get(id, {})
+		check(not card.is_empty(), "registered: " + id)
+		check_eq(card.get("approved"), false, id + " is not approved")
+		check_eq((card.get("trigger", {}) as Dictionary).get("kind"), "manual_preview", id + " starts only by preview")
+		check_eq(card.get("chapter_id"), "ch%d" % chapter, id + " belongs to its chapter")
+		check_eq(card["panels"][0]["caption_ref"], "chapter.ch%d.title" % chapter, id + " opens on its chapter title")
+		for panel: Dictionary in card["panels"]:
+			check(panel["line_id"] == null, id + " has no dialogue")
+		var director: CutsceneDirector = _director(true)
+		check(director.play(id), id + " plays in review mode")
+		var elapsed: float = 0.0
+		while director.is_open and elapsed < 30.0:
+			director.advance(STEP)
+			elapsed += STEP
+		check(not director.is_open, id + " finishes")
+		check_eq(director.runtime_errors, [], id + " textures load")
+		check_eq(AudioDirector.get_music_context(), "", id + " restores the music")
+
+
 func test_captions_come_from_campaign_data() -> void:
 	check_eq(CutsceneRegistry.resolve_caption("institution.name"), "Ashcroft State Forensic Hospital",
 			"institution caption is the approved name")

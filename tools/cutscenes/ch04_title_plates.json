@@ -1,0 +1,44 @@
+{
+  "_note": "Plate list for the review-only ch4 title cutscene. Environment renders only (no character likeness). Regenerate with tools/cutscenes/paint_panels.py.",
+  "output_dir": "assets/cutscenes/ch04_title",
+  "size": [
+    1600,
+    900
+  ],
+  "seed": 4401,
+  "plates": [
+    {
+      "id": "p01_director_office",
+      "source": "assets/renders/stage4/director_office.png",
+      "crop": null,
+      "depicts": "The director's office where the record is written",
+      "brush_radius": 5,
+      "brush_angle": 20,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    },
+    {
+      "id": "p02_threshold",
+      "source": "assets/renders/stage6/w0_threshold.png",
+      "crop": null,
+      "depicts": "The threshold room already inspected in Chapter 3",
+      "brush_radius": 5,
+      "brush_angle": 28,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    },
+    {
+      "id": "p03_office",
+      "source": "assets/renders/stage2/psychiatrist_office.png",
+      "crop": null,
+      "depicts": "The office desk: two incident files",
+      "brush_radius": 5,
+      "brush_angle": 36,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    }
+  ]
+}

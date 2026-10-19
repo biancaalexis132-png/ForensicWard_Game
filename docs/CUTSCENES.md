@@ -95,3 +95,7 @@ Other reconciliations:
 - Plates are repainted Blender/in-game renders, not hand-painted art; the brush and ink treatment is procedural (`paint_panels.py`). Naomi's plate keeps 60% of the unpainted capture so her face is not smeared, and inherits v04's known face issues.
 - Not yet seen on the Mac: Forward+ look, frame time and memory on the 8 GB M1, audio mix of `mus_waiting_room` over ward ambience.
 - Quitting with `--quit-after` while a cutscene's music is playing reports "resources still in use" (the music stream is still fading). The normal window-close path silences audio first.
+
+## Chapter 2-5 title cards (review-only)
+
+`cs_ch02_title` to `cs_ch05_title`: three panels each (20 s), opening on the chapter's title from `campaign.json`, with no dialogue and environment plates only (no character likeness). Plates come from `tools/cutscenes/ch0N_title_plates.json` via `paint_panels.py`. Chapter 3's card shows only the historic sublevel, and Chapter 4's shows the threshold room already seen in Chapter 3, so neither reveals Ward Zero or the corridor loop early. Like the pilot, they are `approved: false` and `manual_preview`, so they start only with `--cutscene-preview=cs_ch0N_title`. Placing them at chapter openings needs the owner's approval of both the visuals and the placement.
