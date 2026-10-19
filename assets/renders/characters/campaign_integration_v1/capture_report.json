@@ -1,0 +1,69 @@
+{
+	"cast": [
+		{
+			"actor_position": "Vector3(-3, 0, -5.2)",
+			"chapter": "ch1",
+			"id": "staff_voss",
+			"model": "res://assets/exports/characters/Evelyn_Voss_v01_draft.glb",
+			"model_front": "Vector3(-0.50000006, 0, 0.86602545)",
+			"review_status": "PENDING_OWNER_VISUAL_REVIEW",
+			"seated": false
+		},
+		{
+			"actor_position": "Vector3(-2.8, 0, -11.05)",
+			"chapter": "ch1",
+			"id": "staff_bennett",
+			"model": "res://assets/exports/characters/Naomi_Bennett_v07.glb",
+			"model_front": "Vector3(1, 0, -8.742278e-08)",
+			"review_status": "PENDING_OWNER_VISUAL_REVIEW",
+			"seated": false
+		},
+		{
+			"actor_position": "Vector3(4.45, 0, -12)",
+			"chapter": "ch1",
+			"id": "pt_elias_ward",
+			"model": "res://assets/exports/characters/Elias_Ward_v01_draft.glb",
+			"model_front": "Vector3(-1, 0, 8.742278e-08)",
+			"review_status": "PENDING_OWNER_VISUAL_REVIEW",
+			"seated": true
+		},
+		{
+			"actor_position": "Vector3(4.45, 0, -12)",
+			"chapter": "ch2",
+			"id": "pt_mara_ellis",
+			"model": "res://assets/exports/characters/Mara_Ellis_v01_draft.glb",
+			"model_front": "Vector3(-1, 0, 8.742278e-08)",
+			"review_status": "PENDING_OWNER_VISUAL_REVIEW",
+			"seated": true
+		},
+		{
+			"actor_position": "Vector3(-5.15, 0, -3.3)",
+			"chapter": "ch2",
+			"id": "staff_hale",
+			"model": "res://assets/exports/characters/Marcus_Hale_v01_draft.glb",
+			"model_front": "Vector3(1, 0, -8.742278e-08)",
+			"review_status": "PENDING_OWNER_VISUAL_REVIEW",
+			"seated": false
+		},
+		{
+			"actor_position": "Vector3(1.95, 0, -10.6)",
+			"chapter": "ch2",
+			"id": "staff_facilities_tech",
+			"model": "res://assets/exports/characters/Facilities_Tech_v01_draft.glb",
+			"model_front": "Vector3(0.70710665, 0, -0.7071069)",
+			"review_status": "PENDING_OWNER_VISUAL_REVIEW",
+			"seated": false
+		},
+		{
+			"actor_position": "Vector3(-5.15, 0, -3.3)",
+			"chapter": "ch4",
+			"id": "staff_rahman",
+			"model": "res://assets/exports/characters/Leila_Rahman_v01_draft.glb",
+			"model_front": "Vector3(1, 0, -8.742278e-08)",
+			"review_status": "PENDING_OWNER_VISUAL_REVIEW",
+			"seated": false
+		}
+	],
+	"note": "Actual campaign integration; hidden actors exposed only for review; shadows disabled for software batch captures. Not Mac/Metal appearance/performance evidence.",
+	"renderer": "llvmpipe (LLVM 19.1.7, 256 bits)"
+}

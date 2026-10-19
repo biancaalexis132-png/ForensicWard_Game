@@ -11,10 +11,10 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def run(command, env, expected=None):
+def run(command, env, expected=None, timeout=150):
     print("+", " ".join(map(str, command)), flush=True)
     result = subprocess.run(command, cwd=ROOT, env=env, text=True,
-                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=150)
+                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=timeout)
     print(result.stdout, end="", flush=True)
     if result.returncode or re.search(r"(?m)^(?:SCRIPT ERROR:|ERROR:|FAIL(?:ED)?:)", result.stdout):
         raise RuntimeError(f"command failed (exit {result.returncode})")
@@ -42,7 +42,10 @@ def main():
             r"QA_RESULT passed=[1-9][0-9]* failed=0 skipped=0")
         run(base + ["-s", "res://tools/godot/validate_glb_imports.gd"], env,
             r"GLB VALIDATION PASSED: [1-9][0-9]* assets checked, 0 failure\(s\)")
-        run(base + ["res://scripts/tests/TestRunner.tscn"], env, r"(?m)^PASSED: [1-9][0-9]* passed, 0 failed")
+        # Campaign fixtures now instantiate the normal skinned 3D cast. Keep
+        # every scenario/error check; allow CPU-only runners time to load it.
+        run(base + ["res://scripts/tests/TestRunner.tscn"], env,
+            r"(?m)^PASSED: [1-9][0-9]* passed, 0 failed", timeout=420)
         run(base + ["--quit-after", "60"], env, r"\[The Forensic Ward\] Boot OK")
         run(base + ["res://tests/audio/TestAudio.tscn"], env, r"AUDIO_RESULT passed=[1-9][0-9]* failed=0")
         run(base + ["res://scenes/audio/Ch1AudioSequence.tscn", "--", "--exit-when-done"], env,

@@ -242,10 +242,12 @@ func _build_characters(root: Node3D, zone_id: String, entries: Array) -> void:
 		character.seated = bool(entry.get("seated", false))
 		character.present_when = entry.get("present_when", {})
 		character.name = "Character_" + str(entry["character_id"])
+		var visual_offset: Vector3 = CampaignCastVisuals.configure(character, str(entry["marker"]))
 		root.add_child(character)
 		var xf: Transform3D = marker.global_transform
 		# Seat markers sit at seat height; characters stand on the floor plane.
-		character.global_transform = Transform3D(xf.basis.orthonormalized(), Vector3(xf.origin.x, 0.0, xf.origin.z))
+		character.global_transform = Transform3D(xf.basis.orthonormalized(), Vector3(xf.origin.x, 0.0, xf.origin.z)) \
+				* Transform3D(Basis.IDENTITY, visual_offset)
 		_characters[character.character_id] = character
 
 

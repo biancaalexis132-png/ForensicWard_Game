@@ -10,7 +10,8 @@ extends RefCounted
 ## `pt_elias_ward` and `pt_mara_ellis` (several ids can be comma-separated).
 ## The default is v07: v06_mpfb with straight trouser hems, rounder shoes and a
 ## clean closed-lid line (tools/character_animation/refine_character.py).
-## Without a preview argument every WardCharacter keeps its placeholder. Nothing here touches story, dialogue,
+## Without a preview argument campaign actors use CampaignCastVisuals; standalone
+## WardCharacter instances retain their authored visual or fallback. Nothing here touches story, dialogue,
 ## clinical or save state; WardCharacter.set_visual_scene still validates the model
 ## and falls back to the capsule if it is missing or invalid.
 

@@ -99,7 +99,7 @@ func test_invalid_visual_keeps_fallback_visible() -> void:
 			"empty scene leaves the placeholder visible")
 
 
-func test_visual_is_not_saved_and_zone_rebuild_returns_to_fallback() -> void:
+func test_visual_is_not_saved_and_zone_rebuild_returns_to_campaign_visual() -> void:
 	var main: Node3D = load(MAIN_SCENE).instantiate() as Node3D
 	runner.add_child(main)
 	_roots.append(main)
@@ -131,8 +131,11 @@ func test_visual_is_not_saved_and_zone_rebuild_returns_to_fallback() -> void:
 	if rebuilt != null:
 		check_eq((rebuilt.get_node("Interactable") as Interactable).interactable_id,
 				"character:staff_bennett", "rebuilt character retains the existing interaction ID")
-		check((rebuilt.get_node("Body/Mesh") as MeshInstance3D).visible,
-				"rebuilt zone uses the placeholder until an approved visual is configured")
+		check(not (rebuilt.get_node("Body/Mesh") as MeshInstance3D).visible,
+				"rebuilt zone restores its authored campaign model")
+		check_eq(rebuilt.visual_scene.resource_path,
+				CampaignCastVisuals.load_data()["characters"]["staff_bennett"]["scene"],
+				"temporary visual is replaced by the normal cast asset after streaming")
 
 
 func _spawn_character(id: String, is_seated: bool) -> WardCharacter:

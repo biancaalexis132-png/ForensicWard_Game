@@ -1,6 +1,6 @@
 class_name WardCharacter
 extends Node3D
-## WardCharacter: a greybox staff member or patient the player can approach.
+## WardCharacter: a staff member or patient the player can approach.
 ## Optional imported visuals attach under VisualRoot; Body/Mesh remains the fallback.
 ##
 ## Staff: shows their authored intro line and grants any authored access
@@ -16,6 +16,8 @@ enum Kind { STAFF, PATIENT }
 @export var seated: bool = false
 ## Optional imported visual scene. The placeholder remains available as a fallback.
 @export var visual_scene: PackedScene
+## Cosmetic model alignment, assigned before _ready by campaign casting.
+var visual_placement: Transform3D = Transform3D.IDENTITY
 ## Optional StoryLogic condition: the character is only in the scene (visible,
 ## solid and interactable) while it holds. Re-checked whenever the objective
 ## changes, which includes every load.
@@ -82,6 +84,7 @@ func set_visual_scene(scene: PackedScene) -> bool:
 	_remove_attached_visual()
 	_attached_visual = visual_root
 	_visual_root.add_child(_attached_visual)
+	_attached_visual.transform = visual_placement * _attached_visual.transform
 	CharacterAnimationRig.setup(_attached_visual)
 	visual_scene = scene
 	_placeholder_mesh.visible = false
@@ -122,6 +125,8 @@ func _update_presence() -> void:
 	var director: Node = get_tree().get_first_node_in_group(ChapterDirector.GROUP)
 	var present: bool = director == null or StoryLogic.evaluate(present_when, director.get_story_context())
 	visible = present
+	# Hidden alternate cast members must not keep evaluating skin/face/gaze rigs.
+	process_mode = Node.PROCESS_MODE_INHERIT if present else Node.PROCESS_MODE_DISABLED
 	_interactable.enabled = present
 	_interactable.collision_layer = (1 << (Interactable.INTERACTABLE_LAYER - 1)) if present else 0
 	($Body/Collision as CollisionShape3D).disabled = seated or not present

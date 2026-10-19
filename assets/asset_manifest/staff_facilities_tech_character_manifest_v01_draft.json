@@ -78,9 +78,15 @@
     ]
   },
   "known_limitations": [
-    "Draft model for owner review; not canon and not wired to gameplay.",
+    "Draft likeness for owner review, integrated as a campaign candidate; not final visual canon.",
     "Hair is a scalp shell with a strand texture, not groomed strands.",
     "Not measured on the target Mac.",
     "Polo collar is the shirt shell rising up the neck; no placket buttons."
-  ]
+  ],
+  "campaign_integration": {
+    "status": "INTEGRATED_PENDING_OWNER_VISUAL_REVIEW",
+    "catalogue": "data/character_visuals.json",
+    "guide": "docs/CAMPAIGN_CAST_INTEGRATION.md",
+    "authorisation": "Owner explicitly requested remaining 3D character integration for Chapters 1\u20135 after narration delivery; no visual or clinical approval inferred."
+  }
 }

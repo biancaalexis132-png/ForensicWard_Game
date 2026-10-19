@@ -84,5 +84,11 @@
     "Dialogue mouth shapes are MPFB2 visemes driven by a text-based approximation, not phoneme-timed lip sync.",
     "Clothing follows the body skin weights; no cloth simulation or corrective shapes.",
     "Reviewed only in Cycles stills and the Linux container; not measured on the target Mac."
-  ]
+  ],
+  "campaign_integration": {
+    "status": "INTEGRATED_PENDING_OWNER_VISUAL_REVIEW",
+    "catalogue": "data/character_visuals.json",
+    "guide": "docs/CAMPAIGN_CAST_INTEGRATION.md",
+    "authorisation": "Owner explicitly requested remaining 3D character integration for Chapters 1\u20135 after narration delivery; no visual or clinical approval inferred."
+  }
 }

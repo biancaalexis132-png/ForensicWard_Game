@@ -28,7 +28,7 @@ python3 tests/qa/test_json.py
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --quit-after 60
 ```
 
-Prefer the Python runner: it enforces a 120-second timeout per command, nonzero failures, completion markers, and failure on Godot script/runtime errors even if Godot exits zero. Each suite runs in a separate Godot process. Save/load tests write only to test slot 99, and the runner points Godot's user data at a temporary directory, so real saves are never touched. Godot may refresh its ignored `.godot/` resource cache. The runner requires 4.7; upgrade it and CI together when the project changes engine version.
+Prefer the Python runner: it enforces a 150-second timeout per command, with 420 seconds for the full campaign suite that instantiates the animated 3D cast, nonzero failures, completion markers, and failure on Godot script/runtime errors even if Godot exits zero. Each suite runs in a separate Godot process. Save/load tests write only to test slot 99, and the runner points Godot's user data at a temporary directory, so real saves are never touched. Godot may refresh its ignored `.godot/` resource cache. The runner requires 4.7; upgrade it and CI together when the project changes engine version.
 
 ## Executed coverage
 
