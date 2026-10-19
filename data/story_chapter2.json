@@ -4,7 +4,7 @@
 	"title": "Chapter 2: The Missing Hours",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received. Scene 06 (Hale's Door): Hale scopes the question and the player requests one permitted follow-up. No access, escort or inspection is granted; Ward Zero entry stays in Chapter 3. Scene 07 (An Incomplete Witness): a Facilities technician recalls hearing the old lift bell during a scheduled shutdown but did not see anyone use it. Recorded as witness memory only; no clue, evidence or anomaly is created.",
+	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received. Scene 06 (Hale's Door): Hale scopes the question and the player requests one permitted follow-up. No access, escort or inspection is granted; Ward Zero entry stays in Chapter 3. Scene 07 (An Incomplete Witness): a Facilities technician recalls hearing the old lift bell during a scheduled shutdown but did not see anyone use it. Recorded as witness memory only; no clue, evidence or anomaly is created. Scene 08 (The Door That Wasn't Left Open): an escorted inspection of the restricted lift lobby doors from the security corridor, lobby only. The doors are observed closed, then found ajar after the team looked elsewhere; the escort did not watch continuously. No entry, trapping, portal or anomaly. The pass is returned to Hale afterwards.",
 	"objectives": [
 		{
 			"id": "obj_ch2_handoff",
@@ -213,10 +213,62 @@
 					}
 				]
 			}
+		},
+		{
+			"id": "obj_ch2_lobby_escort",
+			"text": "Ask Marcus Hale whether the lift lobby can be inspected under escort.",
+			"complete_when": {
+				"flag": "ch2_lobby_escort_granted"
+			}
+		},
+		{
+			"id": "obj_ch2_lobby_observe",
+			"text": "Go through the ward entry doors with the escort and note the state of the lift lobby doors.",
+			"complete_when": {
+				"flag": "ch2_lobby_closed_noted"
+			}
+		},
+		{
+			"id": "obj_ch2_lobby_response",
+			"text": "Check the lobby doors again and decide how to handle what you find.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch2_lobby_state_documented"
+					},
+					{
+						"flag": "ch2_lobby_area_secured"
+					},
+					{
+						"flag": "ch2_lobby_latch_assessment"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch2_lobby_return",
+			"text": "Report back to Hale at the psychiatrist's office and return the escorted pass.",
+			"complete_when": {
+				"flag": "ch2_lobby_pass_returned"
+			}
 		}
 	],
 	"beats": [],
 	"staff_lines": [
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"flag": "ch2_lobby_pass_returned"
+			},
+			"text": "Pass is back on my board. What you saw at the lobby is in the log as you wrote it."
+		},
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"flag": "ch2_lobby_escort_granted"
+			},
+			"text": "Escort's waiting at the ward entry. Lobby doors only. Nothing past them."
+		},
 		{
 			"staff_id": "staff_facilities_tech",
 			"when": {
@@ -972,6 +1024,160 @@
 						"flag": "ch2_witness_timing"
 					}
 				]
+			}
+		},
+		{
+			"id": "interaction_ch2_lobby_escort",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: escorted inspection",
+			"body": "Hale: You want eyes on the lift lobby. I can send an escort to the lobby doors with you. Not into the lobby, not the lift, not the hatch, and nowhere near W0-B.",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_witness_work_orders"
+					},
+					{
+						"flag": "ch2_witness_as_reported"
+					},
+					{
+						"flag": "ch2_witness_timing"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "ask_w0b",
+					"label": "Ask to continue down to W0-B if the lobby looks clear",
+					"response": "Hale: No. There's no authorization, no Facilities sign-off and no clinical reason to enter. The pass covers the lobby doors and nothing past them."
+				},
+				{
+					"id": "accept_escort",
+					"label": "Accept an escorted look at the lobby doors only",
+					"flag": "ch2_lobby_escort_granted",
+					"grants_access": "access_ward_entry",
+					"response": "Hale: Escorted pass logged against this inspection. The ward entry doors will open for you. Bring the pass back to me when you're done.\n\nScope recorded: lobby doors only, with an escort. Lift, service hatch and W0-B remain locked."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch2_lobby_escort_granted"
+			}
+		},
+		{
+			"id": "interaction_ch2_lobby_observe",
+			"interactable_id": "Corridor_CCTV_5",
+			"title": "Restricted lift lobby doors",
+			"body": "The double doors to the restricted lift lobby are shut. The latch is engaged and the reader shows locked.\n\nThe escort stands beside you.",
+			"when": {
+				"flag": "ch2_lobby_escort_granted"
+			},
+			"options": [
+				{
+					"id": "try_doors",
+					"label": "Try the doors",
+					"response": "Escort: Not on this pass, Doctor. We look; we don't go in.\n\nThe doors stay shut."
+				},
+				{
+					"id": "note_closed",
+					"label": "Note the time and that the doors are closed and latched",
+					"flag": "ch2_lobby_closed_noted",
+					"response": "Noted: lobby doors closed, latch engaged, reader locked.\n\nThe escort's radio goes. Facilities wants the maintenance door checked. You both step along the corridor to look at it, and for a minute neither of you is watching the lobby."
+				}
+			],
+			"unavailable_body": "The lobby doors are behind the ward entry. You have no reason or pass to inspect them.",
+			"expires_when": {
+				"flag": "ch2_lobby_closed_noted"
+			}
+		},
+		{
+			"id": "interaction_ch2_lobby_response",
+			"interactable_id": "Corridor_CCTV_5",
+			"title": "Restricted lift lobby doors",
+			"body": "When you turn back, the right-hand lobby door stands ajar by a few centimetres. Nobody passed you in the corridor that you saw.\n\nEscort: Someone could have used the maintenance route.\n\nYou: Then let's check the approved work orders before concluding anything.\n\nThe escort did not watch the doors continuously, and neither did you.",
+			"when": {
+				"flag": "ch2_lobby_closed_noted"
+			},
+			"options": [
+				{
+					"id": "step_inside",
+					"label": "Step into the lobby to see who is there",
+					"response": "Escort: Not on this pass. If someone's in there, Security handles it.\n\nYou stay in the corridor."
+				},
+				{
+					"id": "record_intrusion",
+					"label": "Record that someone opened the doors while you were away",
+					"response": "Nobody saw the doors opened. A latch that failed, a pressure change or a person are all possible. Record what was observed, not who did it."
+				},
+				{
+					"id": "document_state",
+					"label": "Document the state: closed and latched, then ajar, with the unwatched interval",
+					"flag": "ch2_lobby_state_documented",
+					"response": "Documented: doors closed and latched at first check; ajar on return; the escort and you did not watch them continuously in between. No cause is recorded."
+				},
+				{
+					"id": "secure_area",
+					"label": "Have the escort secure the doors and report it under policy",
+					"flag": "ch2_lobby_area_secured",
+					"response": "Escort: Closing them now and calling it in.\n\nThe doors are pushed shut and the latch engages. Security has the report: found ajar during an escorted check, cause unknown."
+				},
+				{
+					"id": "latch_assessment",
+					"label": "Request a latch and ventilation assessment from Facilities",
+					"flag": "ch2_lobby_latch_assessment",
+					"response": "Request recorded: Facilities to check the lobby door latch and the corridor ventilation pressure. The doors were found ajar after an unwatched interval; no cause is assumed."
+				}
+			],
+			"unavailable_body": "Note the doors' state first.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch2_lobby_state_documented"
+					},
+					{
+						"flag": "ch2_lobby_area_secured"
+					},
+					{
+						"flag": "ch2_lobby_latch_assessment"
+					}
+				]
+			},
+			"completed_body": "Lobby doors: observation and follow-up recorded. Return the pass to Hale."
+		},
+		{
+			"id": "interaction_ch2_lobby_return",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: lobby report",
+			"body": "Hale: Well?",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_lobby_state_documented"
+					},
+					{
+						"flag": "ch2_lobby_area_secured"
+					},
+					{
+						"flag": "ch2_lobby_latch_assessment"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "keep_pass",
+					"label": "Ask to keep the pass for a follow-up visit",
+					"response": "Hale: The pass was for one inspection. Any follow-up gets its own request."
+				},
+				{
+					"id": "return_pass",
+					"label": "Report what you recorded and return the escorted pass",
+					"flag": "ch2_lobby_pass_returned",
+					"revokes_access": "access_ward_entry",
+					"response": "Hale reads your note and signs the pass back in.\n\nHale: Closed, then ajar, nobody watching in between. That's what goes in the log.\n\nThe ward entry doors are controlled access again."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch2_lobby_pass_returned"
 			}
 		}
 	],

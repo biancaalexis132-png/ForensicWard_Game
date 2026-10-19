@@ -51,6 +51,14 @@ func grant_access(access_id: String, source_id: String) -> bool:
 	return true
 
 
+## Ends a temporary pass (for example a scene-only escort). Returns false if it was not held.
+func revoke_access(access_id: String) -> bool:
+	if not _access.erase(access_id):
+		return false
+	EventBus.access_revoked.emit(access_id)
+	return true
+
+
 func has_access(access_id: String) -> bool:
 	return access_id.is_empty() or _access.has(access_id)
 

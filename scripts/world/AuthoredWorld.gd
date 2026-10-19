@@ -42,6 +42,7 @@ func _ready() -> void:
 	configure_chapter(ContentRegistry.get_start_chapter_id())
 	EventBus.environment_state_changed.connect(func(_g: String, _s: String) -> void: _apply_states())
 	EventBus.game_loaded.connect(func(_slot: int) -> void: _apply_states())
+	EventBus.access_revoked.connect(_close_doors_needing)
 
 
 ## Loads a zone's environment scenes on the calling thread. ZoneDirector
@@ -126,6 +127,13 @@ func get_persistent_nodes(zone_id: String) -> Array[Node]:
 			if root.is_ancestor_of(node):
 				nodes.append(node)
 	return nodes
+
+
+## A pass ended: doors it held open swing shut so the route is closed again.
+func _close_doors_needing(access_id: String) -> void:
+	for door: ImportedDoor in _doors.values():
+		if door.required_access == access_id and door.is_open:
+			door.set_open(false, true)
 
 
 func get_door(door_id: String) -> ImportedDoor:
