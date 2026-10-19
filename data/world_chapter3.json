@@ -89,6 +89,16 @@
 			"type": "story_terminal",
 			"title": "Junction marker and ceiling",
 			"zone": "zone_ward_zero"
+		},
+		{
+			"node": "OF_Document_TransferSummary",
+			"type": "story_terminal",
+			"title": "Office workstation"
+		},
+		{
+			"node": "AR_Document_WardRoster1968",
+			"type": "story_terminal",
+			"title": "Inspection measurement comparison"
 		}
 	],
 	"characters": [
