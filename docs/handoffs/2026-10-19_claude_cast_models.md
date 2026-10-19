@@ -1,6 +1,6 @@
 # Draft cast models with shared animation
 
-- **Branch:** `claude/cast-models`, started from `claude/naomi-v07-refine` (merged to `main` as PR #84). Draft PR to `main`.
+- **Branch:** `claude/cast-models`, started from `claude/naomi-v07-refine` (merged to `main` as PR #84). Latest verified commit `5316d36` (pushed; the merge of `main` on top, `7a7c97e`, changes no files). Draft PR to `main`.
 - **Owner request (2026-10-19):** "continue to finish all necessary animation and i will chec on my mac"; on the follow-up card the owner chose "Naomi, then cast": draft models plus the shared animations for the others, Voss and Hale first, then the technician, Elias, Mara and Rahman. **None of these models is approved**: geometry, likeness, ethnicity, clothing and Mac performance all wait on the owner.
 
 ## What exists now
@@ -40,6 +40,10 @@ Tops are cut from a cloth proxy of the body that fills hollows and rounds points
 ```
 
 Only Bennett, Voss and Elias have markers in the Chapter 1 greybox; the others attach where their chapters place them.
+
+## Tests
+
+`python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64` on `5316d36`: exit 0; game 251/0 (`test_cast_drafts_attach_with_shared_clips_and_face_morphs` loads all six, checks the face, gaze and gesture rigs, `idle_neutral`, `restrained_chart_indication` and 32 morphs), GLB 168/0, audio 336/0, QA 19/0/0, boot, `CH1_SEQUENCE_DONE`. Mac not run.
 
 ## Known limitations
 
