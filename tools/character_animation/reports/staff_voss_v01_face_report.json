@@ -4,15 +4,15 @@
   "profile_sha256": "c66d558b46477c005a0975df8d036970242cb8a708c03d05682b551e55b49ed0",
   "source": {
     "path": "build/cast/Evelyn_Voss_v01_anim.blend",
-    "sha256": "a50f3b2cfae4db609fbf1badc1accf2a3ef6990865af65caae6668dbd7362f9f"
+    "sha256": "b36066a3fb0529b8284f27002dbbffa1b5af8ccd89a200859f5af8b4402bb7da"
   },
   "face_source": {
     "path": "assets/blender/characters/Naomi_Bennett_v07.blend",
     "sha256": "e4b39c654e2ecbba1b4c33dae8ae65a3d7edc7ee72520cef7536465e4835c4a7"
   },
   "naomi_vertices_on_base": 4149,
-  "target_vertices_on_base_with_offsets": 4140,
-  "target_vertices_filled_from_neighbours": 95,
+  "target_vertices_on_base_with_offsets": 4142,
+  "target_vertices_filled_from_neighbours": 96,
   "eye_spacing_ratio": 1.047,
   "morph_targets": [
     "blink_L",

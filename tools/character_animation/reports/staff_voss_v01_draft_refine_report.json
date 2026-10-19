@@ -4,7 +4,7 @@
   "profile_sha256": "c244c43feade28fdc931f73229ba2d3f658a4a0a7104819b22b9f242ad540578",
   "source": {
     "path": "build/cast/Evelyn_Voss_v01_face.blend",
-    "sha256": "3798ea744493760904cb1c811ac6ffff9197f897ac69117e5361059296158413"
+    "sha256": "5e855f7a28b15c14c124db23d5937d408c8bc53cd9828822b1cc1b49f6bdca56"
   },
   "refinements": {
     "lids": {
@@ -28,19 +28,19 @@
       "legs": [
         {
           "side": "left",
-          "outer_radius_m": 0.0701,
-          "loop_vertices": 30
+          "outer_radius_m": 0.0697,
+          "loop_vertices": 31
         },
         {
           "side": "right",
-          "outer_radius_m": 0.0698,
-          "loop_vertices": 29
+          "outer_radius_m": 0.0694,
+          "loop_vertices": 34
         }
       ],
-      "new_faces": 118
+      "new_faces": 130
     },
     "shoes": {
-      "vertices_relaxed": 2231,
+      "vertices_relaxed": 2398,
       "iterations": 30
     }
   },
@@ -228,5 +228,5 @@
       }
     ]
   },
-  "triangles": 33132
+  "triangles": 33328
 }
