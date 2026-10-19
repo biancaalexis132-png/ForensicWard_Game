@@ -19,5 +19,9 @@ func _ready() -> void:
 		push_error("Counter screenshot failed: %s" % error_string(result))
 		get_tree().quit(1)
 		return
+	main.free()
+	main = null
+	await get_tree().process_frame
+	await get_tree().process_frame
 	print("COUNTER_CAPTURE_DONE")
 	get_tree().quit()
