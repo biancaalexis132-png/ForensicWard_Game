@@ -37,6 +37,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Chapter 5 finale
+
+- **Branch / verified runtime:** `claude/chapter5-finale` (claude/chapter4-loop), `e545408`.
+- **Delivered:** ch5 playable (ch4 next_chapter=ch5). Scenes 01-07 and 09-10 built: return inspection with team pass, two-state door preserved (opening refused), records review (single culprit refused), analyst report (supernatural mechanism refused), Bennett care escalation (waiting refused), four-source test (double counting refused), decision with three endings (delaying report refused), ending epilogue, rounds with Bennett completes ch5 and the main campaign. Scene 08 (Mara) not built: needs approved patient-state data. Dialogue provisional pending owner and clinical review.
+- **Executed:** Full QA at e545408: all executed checks passed; game tests 258/0 (3 endings each reachable with save/load at the decision); GLB 161/0. Mac checks not run. Mac not run.
+- **Next exact task:** Owner review of Chapter 5 text; decide on Scene 08 (Mara) once patient-state content is approved; Naomi Mac/geometry gates still pending. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
 ### 2026-10-19 · Claude Code · Chapter 4 Scenes 09-10
 
 - **Branch / verified runtime:** `claude/chapter4-loop` (claude/chapter4-door-test), `ec4d3d4`.
