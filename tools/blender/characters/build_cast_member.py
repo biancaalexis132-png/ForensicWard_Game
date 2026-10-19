@@ -639,12 +639,57 @@ def top_offset_fn(g: dict, under=None):
     return fn
 
 
+def cloth_proxy(body: bpy.types.Object, iterations: int = 40, round_iterations: int = 30) -> bpy.types.Object:
+    """A copy of the body with a cloth-like torso for tops to be cut from and pushed out of.
+
+    Tops are pushed out from the nearest body point, so a shell over the bare
+    body repeats the nipples, the point of the breasts and the navel. Cloth
+    tents over hollows and rounds over points instead. First each torso vertex
+    moves outward (never inward) toward its neighbours' mean, which fills the
+    hollows; then volume-preserving (Taubin) smoothing rounds the points. The
+    skin under a top is removed, so the few millimetres the rounding takes off a
+    point never show through.
+    """
+    mesh = body.data.copy()
+    proxy = bpy.data.objects.new(body.name + "_ClothProxy", mesh)
+    bpy.context.scene.collection.objects.link(proxy)
+    proxy.matrix_world = body.matrix_world
+    dom = v3.dominant_bones(body)
+    torso = {"pelvis", "spine_01", "spine_02", "spine_03", "clavicle_l", "clavicle_r"}
+    bm = bmesh.new()
+    bm.from_mesh(mesh)
+    bm.verts.ensure_lookup_table()
+    verts = [v for v in bm.verts if dom[v.index] in torso and not v.is_boundary]
+    nbrs = [[e.other_vert(v) for e in v.link_edges] for v in verts]
+    for _ in range(iterations):
+        bm.normal_update()
+        moves = []
+        for v, ns in zip(verts, nbrs):
+            avg = sum((n.co for n in ns), Vector()) / len(ns)
+            d = (avg - v.co).dot(v.normal)
+            if d > 0:
+                moves.append((v, v.normal * d * 0.5))
+        for v, m in moves:
+            v.co += m
+    for _ in range(round_iterations):
+        for factor in (0.5, -0.53):
+            avgs = [sum((n.co for n in ns), Vector()) / len(ns) for ns in nbrs]
+            for v, avg in zip(verts, avgs):
+                v.co += (avg - v.co) * factor
+    moved = max(((v.co - mesh.vertices[v.index].co).length for v in verts), default=0.0)
+    print(f"  cloth proxy: {len(verts)} torso vertices, largest change {moved * 1000:.1f} mm")
+    bm.to_mesh(mesh)
+    bm.free()
+    return proxy
+
+
 def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
     reg = BodyRegions(body, rig)
     x, y, z = reg.centres.T
     built: dict[str, tuple[bpy.types.Object, np.ndarray, object]] = {}
     covered = np.zeros(len(z), dtype=bool)
     objs = []
+    proxy = cloth_proxy(body)
     torso_bones = ["pelvis", "spine_01", "spine_02", "spine_03", "clavicle_l", "clavicle_r", "neck_01"]
     for g in CFG["garments"]:
         kind = g["kind"]
@@ -661,7 +706,7 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
                 def fn(p, inner=fn, nz=top_limit - float(collar.get("height_m", 0.035)),
                        flare=float(collar["flare"])):
                     return inner(p) + max(0.0, p.z - nz) * flare
-            obj = v3.shell_from_faces(PREFIX + g["name"], body, mask, fn, int(g.get("smooth", 40)),
+            obj = v3.shell_from_faces(PREFIX + g["name"], proxy, mask, fn, int(g.get("smooth", 40)),
                                       float(g.get("thickness_m", 0.0022)), mats[g["name"]])
             covered |= reg.interior(mask, float(g.get("skin_margin_m", 0.04)))
         elif kind == "trousers":
@@ -723,6 +768,7 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
     bm.free()
     for obj in objs:
         v3.parent_to_rig(obj, rig)
+    bpy.data.objects.remove(proxy, do_unlink=True)
     return objs, {"covered_faces": int(covered.sum())}
 
 
