@@ -118,6 +118,21 @@ func get_staff_line(staff_id: String) -> Dictionary:
 	return {}
 
 
+## True when a story interaction is open for this interactable right now, so a
+## patient's story scene shows instead of a clinical interview.
+func has_open_interaction(interactable_id: String) -> bool:
+	if not ContentRegistry.is_valid:
+		return false
+	for interaction: Dictionary in _story().get("interactions", []):
+		if interaction["interactable_id"] != interactable_id:
+			continue
+		if interaction.has("expires_when") and StoryLogic.evaluate(interaction["expires_when"], _story_state()):
+			continue
+		if StoryLogic.evaluate(interaction["when"], _story_state()):
+			return true
+	return false
+
+
 # --- Story progression -------------------------------------------------------------
 
 ## Re-checks beats and the current objective. Called on every relevant event.

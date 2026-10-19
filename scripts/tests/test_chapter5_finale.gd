@@ -1,6 +1,6 @@
 extends TestCase
 ## Chapter 5: the return inspection, the records and analyst reviews, the care
-## follow-up, the four-source test and each of the three endings.
+## follow-up, the four-source test, Mara's scene and each of the three endings.
 
 const MAIN_SCENE: String = "res://scenes/main/Main.tscn"
 const RECORDS: String = "AR_Document_WardRoster1968"
@@ -392,7 +392,7 @@ func _finish_ch4() -> void:
 	check_eq(_objective(), "obj_ch5_brief", "Chapter 5 opens on Hale's briefing")
 
 
-func _ending(choice: String, flag: String, epilogue_by: String, epilogue: String) -> void:
+func _ending(choice: String, flag: String, epilogue_by: String, epilogue: String, mara: String) -> void:
 	await _finish_ch4()
 	var patients: String = _canonical(PatientManager.to_save_data())
 	var anomalies: String = _canonical(SaveManager.capture_state().get("anomalies", {}))
@@ -441,6 +441,17 @@ func _ending(choice: String, flag: String, epilogue_by: String, epilogue: String
 	check_eq(SaveManager.load_game(TEST_SAVE_SLOT), OK, "load at the ending decision")
 	await runner.get_tree().process_frame
 	check_eq(_state(), saved, "roundtrip exact")
+	check(_present(MARA) and not _present("pt_elias_ward"), "Mara is seated in Interview Room A")
+	flags = _director().get_chapter_flags("ch5")
+	_approach(MARA)
+	check(DialogueManager.active_patient_id.is_empty(), "the story scene opens, not a clinical interview")
+	_choose("explain how she's been feeling")
+	_close()
+	check_eq(_director().get_chapter_flags("ch5"), flags, "the records review says nothing about Mara's health")
+	_approach(MARA)
+	_choose(mara)
+	_close()
+	check(not _present(MARA) and _present("pt_elias_ward"), "Mara's scene closes; the room returns to Elias")
 	_approach(epilogue_by)
 	_choose(epilogue)
 	_close()
@@ -451,15 +462,15 @@ func _ending(choice: String, flag: String, epilogue_by: String, epilogue: String
 
 
 func test_independent_review() -> void:
-	await _ending("Refer the authenticated findings", "ch5_ending_review", "staff_voss", "findings are preserved")
+	await _ending("Refer the authenticated findings", "ch5_ending_review", "staff_voss", "findings are preserved", "remains part of the authorized")
 
 
 func test_restricted_access() -> void:
-	await _ending("Maintain the restriction", "ch5_ending_restricted", "staff_hale", "And the records")
+	await _ending("Maintain the restriction", "ch5_ending_restricted", "staff_hale", "And the records", "what has bothered her most")
 
 
 func test_continuing_inquiry() -> void:
-	await _ending("Authorize a limited", "ch5_ending_inquiry", "staff_rahman", "document what remains unknown")
+	await _ending("Authorize a limited", "ch5_ending_inquiry", "staff_rahman", "document what remains unknown", "remains part of the authorized")
 
 
 func _state() -> String:
