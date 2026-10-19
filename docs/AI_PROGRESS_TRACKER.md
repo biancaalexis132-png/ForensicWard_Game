@@ -1,5 +1,14 @@
 # AI progress tracker
 
+## Character animation completion — Claude Code (cloud), 2026-10-19
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Naomi v07 (hems, shoes, lids, lash line) | Done, draft PR | v06_mpfb source | `tools/character_animation/refine_character.py`, `profiles/staff_bennett_v07.json`, `assets/**/Naomi_Bennett_v07*` | Full QA on `2707a37`: game 234/0, GLB 162/0 | Owner Mac review |
+| Live gesture shadows | Done, draft PR | Godot 4.7 `shadow_caster_mask` | `scripts/world/CharacterShadowSelector.gd`, `CharacterAnimationRig.gd` | `test_only_the_nearest_light_sees_the_moving_meshes` | Owner Mac look and frame time |
+| Draw-call jump | Resolved on current main (static proxies) | | `tools/godot/measure_character_frame_time.gd` | lavapipe counts: v07 503 vs still v03 496 | Mac frame time |
+| Cast models (Voss, Hale, technician, Elias, Mara, Rahman) | Next | Owner chose "Naomi, then cast" | | | Draft models from the MPFB bases, Voss and Hale first |
+
 ## Chapter 2 vertical slices — Claude Code (cloud), 2026-10-18
 
 | Task | State | Dependencies | Paths | Validation | Next action |

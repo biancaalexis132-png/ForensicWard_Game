@@ -1,5 +1,7 @@
 # Project status
 
+**Naomi v07 (Claude Code, 2026-10-19; not merged):** `claude/naomi-v07-refine` runtime `2707a37e3387cfcea253882f8fbead9eaf9e8773`. v06_mpfb with straight trouser hems, rounder shoes, no wavy rim on closed lids and a lash line that follows the lid; same rig, 10 clips, 32 morphs. Gestures cast a moving shadow from the nearest light. Preview default v07. Full QA passed: game 234/0, GLB 162/0. Not approved; Mac frame time and look unmeasured. See `docs/handoffs/2026-10-19_claude_naomi_v07.md`.
+
 **Chapter 2 Scene 09 wrong-day file (Claude Code, 2026-10-19; not merged):** runtime `1481c7ea32b8a5cb553d50529afd387e382f5898`. Export date conflict placed in the incident record, not Mara's note; one handling chosen; originals unchanged. Full QA passed: game 233/0. Mac not run.
 
 **Chapter 2 Scene 08 escorted lobby inspection (Claude Code, 2026-10-19; not merged):** runtime `4669c7c387107584e6429cf79cb035194fcec0b5`. Scene-only ward-entry pass; lobby doors closed then ajar after an unwatched interval; pass returned; lift, lobby, hatch and W0-B stay locked. Full QA passed: game 229/0. Mac not run.

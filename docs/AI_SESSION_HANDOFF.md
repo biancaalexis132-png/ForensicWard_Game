@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Naomi v07 refinement — 2026-10-19
+
+- Owner: "continue to finish all necessary animation and i will chec on my mac"; chose "Naomi, then cast". Naomi v07 on `claude/naomi-v07-refine` (draft PR to main), runtime `2707a37e3387cfcea253882f8fbead9eaf9e8773` pushed and verified: hems, shoes, closed-lid line fixed; live gesture shadow from the nearest light. Full QA exit 0, game 234/0. Mac not run. Next: cast draft models (Voss, Hale first). See `docs/handoffs/2026-10-19_claude_naomi_v07.md`.
+
 ## Claude Code Chapter 2 Scene 09 — 2026-10-19
 
 - Wrong-day file on `claude/chapter2-wrong-day` at `1481c7ea32b8a5cb553d50529afd387e382f5898` (PR to main, stacked after #76). Full QA exit 0, game 233/0. Mac not run. Next: Scene 10 "Missing Hours" (analyst, Bennett, optional personal message, chapter close). Naomi Mac/geometry gates still pending.
