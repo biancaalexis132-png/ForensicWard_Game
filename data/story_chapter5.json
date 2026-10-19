@@ -695,7 +695,7 @@
 					"id": "rounds",
 					"label": "\"Who are we seeing first?\"",
 					"flag": "chapter_complete",
-					"response": "Bennett: Whoever needs us.\n\nEnd of the main campaign."
+					"response": "Bennett: Whoever needs us."
 				}
 			],
 			"unavailable_body": "Bennett is busy.",
@@ -712,5 +712,63 @@
 		"documented_trust": [],
 		"undocumented_trust": [],
 		"undocumented_message": "Outstanding clinical review still requires an appropriate handoff."
+	},
+	"campaign_end": {
+		"title": "Ashcroft State Forensic Hospital: end of the main campaign",
+		"body": "What the record shows:",
+		"lines": [
+			{
+				"when": {
+					"flag": "ch5_epilogue_review"
+				},
+				"text": "The authenticated findings went to qualified external reviewers, with the originals preserved."
+			},
+			{
+				"when": {
+					"flag": "ch5_epilogue_restricted"
+				},
+				"text": "Ward Zero is sealed under documented restriction, with its evidence preserved and a periodic review."
+			},
+			{
+				"when": {
+					"flag": "ch5_epilogue_inquiry"
+				},
+				"text": "A limited, accountable inquiry continues under independent oversight and stop conditions."
+			},
+			{
+				"when": {
+					"chapter_flag": {
+						"chapter": "ch4",
+						"flag": "observed_repetition_unverified"
+					}
+				},
+				"text": "The corridor repetition stays on record as observed and unverified."
+			},
+			{
+				"when": {
+					"flag": "ch5_sources_counted"
+				},
+				"text": "After shared sources were counted once, a reproducible discrepancy remains unexplained."
+			},
+			{
+				"when": {
+					"any": [
+						{
+							"flag": "ch5_mara_answered"
+						},
+						{
+							"flag": "ch5_mara_listened"
+						}
+					]
+				},
+				"text": "Mara's questions were heard, and her care stayed her own."
+			},
+			{
+				"when": {
+					"flag": "ch5_care_escalated"
+				},
+				"text": "Patient care never waited on the investigation."
+			}
+		]
 	}
 }

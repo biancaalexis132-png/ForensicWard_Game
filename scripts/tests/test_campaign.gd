@@ -89,6 +89,14 @@ func test_planned_chapter_cannot_ship_a_story() -> void:
 	check_contains(report["errors"], "a planned chapter ships no story or world yet", "planned stays empty")
 
 
+func test_only_the_last_chapter_closes_the_campaign() -> void:
+	var problems: Array[String] = []
+	var docs: Dictionary = ContentRegistry.collect_documents(ContentRegistry.DATA_DIR, problems)
+	docs[ContentRegistry.STORY_KEY + "ch4"]["data"]["campaign_end"] = {"title": "End", "body": "Record:", "lines": []}
+	var report: Dictionary = ContentValidator.validate_documents(docs)
+	check_contains(report["errors"], "only the last chapter (no next_chapter) closes the campaign", "campaign_end needs the last chapter")
+
+
 func test_story_must_match_its_chapter() -> void:
 	var docs: Dictionary = _fixture_campaign_documents()
 	docs[ContentRegistry.STORY_KEY + "ch4"]["data"]["chapter"] = "ch3"

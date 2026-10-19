@@ -233,6 +233,12 @@ static func check_references(documents: Dictionary) -> Array[String]:
 				_require_known(line["verify_clue"], clue_ids, "clue", file, "staff_lines[%d].verify_clue" % i, errors)
 		if story.has("next_chapter"):
 			_require_known(story["next_chapter"], chapter_ids, "chapter", file, "next_chapter", errors)
+		if story.has("campaign_end"):
+			if story.has("next_chapter"):
+				errors.append("[%s] campaign_end: only the last chapter (no next_chapter) closes the campaign." % file)
+			var end_lines: Array = story["campaign_end"]["lines"]
+			for i: int in end_lines.size():
+				StoryLogic.check_condition(end_lines[i]["when"], "[%s] campaign_end.lines[%d].when" % [file, i], refs, errors)
 		var interactions: Array = story.get("interactions", [])
 		_collect_ids(interactions, file, "interactions", errors)
 		var interactable_ids: Dictionary = {}

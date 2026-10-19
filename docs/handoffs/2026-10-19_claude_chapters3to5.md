@@ -56,6 +56,12 @@ Runtime `1fdaa90` on `claude/chapter5-mara`. data/story_chapter5.json, data/worl
 
 Tests: Full QA at 1fdaa90: all executed checks passed; game tests 260/0; GLB 168/0. Mac checks not run.
 
+## Campaign finish
+
+Runtime `3f50abe` on `claude/campaign-finish`. data/story_chapter5.json, scripts/content/ContentSchemas.gd, scripts/content/ContentValidator.gd, scripts/narrative/ChapterDirector.gd, scripts/tests/test_chapter5_finale.gd, scripts/tests/test_campaign.gd, docs/PROJECT_STATUS.md
+
+Tests: Full QA at 3f50abe: all executed checks passed; game tests 261/0; GLB 168/0. Mac check NOT completed (owner deferred).
+
 ## Next exact task
 
-Mac checks on the owner's Mac (Remote Control session requested).
+Owner runs the Mac check later; then pick the next build.

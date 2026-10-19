@@ -38,6 +38,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Campaign finish
+
+- **Branch / verified runtime:** `claude/campaign-finish` (main), `3f50abe`.
+- **Delivered:** Owner chose 'Campaign finish'. New optional story key campaign_end (schema + validator: last chapter only; line conditions checked). After Chapter 5's final choice the panel shows Bennett's line then 'What the record shows' with the lines that apply (ending, Ch4 unverified repetition, source count, Mara, care). The three ending tests play Chapters 1-5 and check the summary. Owner: Mac check left non-completed; owner will run it later.
+- **Executed:** Full QA at 3f50abe: all executed checks passed; game tests 261/0; GLB 168/0. Mac check NOT completed (owner deferred). Mac not run.
+- **Next exact task:** Owner runs the Mac check later; then pick the next build. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
 ### 2026-10-19 · Claude Code · Chapter 5 Scene 08 (Mara)
 
 - **Branch / verified runtime:** `claude/chapter5-mara` (main), `1fdaa90`.
