@@ -272,7 +272,7 @@ func test_chapter_closes_on_an_honest_report() -> void:
 	check("Your phone buzzes" in _body(), "the message waits at the nursing station")
 	_choose("A message from a friend")
 	check(_director().has_flag("ch2_contact_friend"), "the chosen contact is remembered for Chapter 4")
-	check("just a hospital" in _body(), "fade-out over an ordinary hospital exterior")
+	check("The shift is over" in _body(), "text-only close; no unbuilt exterior is shown")
 	check(not _director().has_completed("ch2"), "not complete until the player heads out")
 	_choose("Head out")
 	check(_director().has_completed("ch2"), "Chapter 2 complete")
@@ -315,6 +315,35 @@ func test_interrupted_close_resumes_after_load() -> void:
 	_choose("Leave it for now")
 	_choose("Head out")
 	check(_director().has_completed("ch2"), "resumed exchange completes the chapter")
+
+
+func test_personal_message_survives_load_then_recap_plays() -> void:
+	await _reach_hours()
+	_commit(RECORDS, "Then the report should say that")
+	_approach("staff_bennett")
+	_choose("records we can't reconcile yet")
+	check("Your phone buzzes" in _body(), "message on screen")
+	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "save with the message unanswered")
+	SaveManager.reset_all()
+	check_eq(SaveManager.load_game(TEST_SAVE_SLOT), OK, "load")
+	await runner.get_tree().process_frame
+	check(not _director().has_completed("ch2"), "still open after load")
+	check_eq(_objective(), "obj_ch2_end_of_shift", "objective points at the nursing station")
+	_use("NS_NoticeBoard")
+	_choose("A message from family")
+	check(_director().has_flag("ch2_contact_family"), "contact recorded after load")
+	var cutscenes: CutsceneDirector = _main.get_node("CutsceneDirector")
+	if cutscenes.is_open:
+		cutscenes.skip()  # The chapter's opening title card, still open in a headless test.
+	_choose("Head out")
+	check(_director().has_completed("ch2"), "Chapter 2 complete")
+	check(cutscenes.is_open, "the chapter recap starts")
+	check_eq(cutscenes.cutscene_id, "cs_ch02_static_gn", "it is Chapter 2's approved recap")
+	check("End of Chapter 2" in _body(), "the end-of-chapter panel waits underneath")
+	cutscenes.skip()
+	_choose("Return for the next day shift")
+	await runner.get_tree().process_frame
+	check_eq(_director().get_chapter_id(), "ch3", "Chapter 3 follows the recap")
 
 
 func _state() -> String:

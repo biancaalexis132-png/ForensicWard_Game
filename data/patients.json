@@ -36,7 +36,7 @@
 				"medication_related_syndrome",
 				"primary_psychiatric_disorder"
 			],
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"record_discrepancies": [
 				"transfer_identifier_collision",
 				"inactive_authorizer"
