@@ -247,6 +247,8 @@ func _finish_ch2() -> void:
 	_commit(RECORDS, "Then the report should say that")
 	_approach("staff_bennett")
 	_choose("records we can't reconcile yet")
+	_choose("Leave it for now")
+	_choose("Head out")
 	check(_director().has_completed("ch2"), "Chapter 2 complete")
 	_choose("Return for the next day shift")
 	await runner.get_tree().process_frame
@@ -303,6 +305,8 @@ func test_completed_chapter2_save_continues_from_the_clock() -> void:
 	_commit(RECORDS, "Then the report should say that")
 	_approach("staff_bennett")
 	_choose("records we can't reconcile yet")
+	_choose("Leave it for now")
+	_choose("Head out")
 	_close()
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "save the completed Chapter 2")
 	SaveManager.reset_all()

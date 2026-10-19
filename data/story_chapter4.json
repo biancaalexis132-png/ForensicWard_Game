@@ -4,7 +4,7 @@
 	"title": "Chapter 4: The Official Record",
 	"provisional": false,
 	"clinical_review_status": "PENDING",
-	"notes": "Revised CH04 (The Official Record). Proposed dialogue pending narrative review. Scenes 01, 02, 03 and 05: Voss's meeting keeps the transfer audit and the spatial survey as separate incident files; the junior summary's 'confirmed mapping error' is corrected with the first version kept; Rahman states the clinical boundary; an outside reviewer finds a time-order contradiction that cannot be removed without excluding an original. Not built in this slice: Scene 04 (Mara's follow-up: clinical conversation needing approval) and Scene 06 (personal call: no personal-history system). The Scene 09 corridor-loop reveal waits for the owner's approval of its effect. Scenes 07-08 (Door-state replication attempt, Institutional disagreement): a controlled, continuously watched check of the lift lobby doors; nothing happens during the watch, and the result cannot exclude an authorized entry between the original checks, so repeatability stays open (no 'corroborated' from repeated logs). Voss, Hale and Rahman agree patient care continues and the restriction stands; the player proposes external verification, a coordinated briefing or documented dissent; safety notifications happen regardless.",
+	"notes": "Revised CH04 (The Official Record). Proposed dialogue pending narrative review. Scenes 01, 02, 03 and 05: Voss's meeting keeps the transfer audit and the spatial survey as separate incident files; the junior summary's 'confirmed mapping error' is corrected with the first version kept; Rahman states the clinical boundary; an outside reviewer finds a time-order contradiction that cannot be removed without excluding an original. Scene 04 (optional, owner asked for the content gaps to be filled 2026-10-19): Mara's follow-up in Interview Room A after Rahman's boundary and before the door check, using the screenplay lines only; her care continues and nothing goes into the incident record. New clinical wording, pending the executive producer's review. Scene 06 (optional): a personal call at the nursing station after the paper trail, from the contact chosen at the end of Chapter 2 (partner, friend, family, own reminder, or someone close for older saves); accept support, keep it short or set a boundary; no patient or inquiry detail is shared. The Scene 09 corridor-loop reveal waits for the owner's approval of its effect. Scenes 07-08 (Door-state replication attempt, Institutional disagreement): a controlled, continuously watched check of the lift lobby doors; nothing happens during the watch, and the result cannot exclude an authorized entry between the original checks, so repeatability stays open (no 'corroborated' from repeated logs). Voss, Hale and Rahman agree patient care continues and the restriction stands; the player proposes external verification, a coordinated briefing or documented dissent; safety notifications happen regardless.",
 	"objectives": [
 		{
 			"id": "obj_ch4_meeting",
@@ -136,6 +136,17 @@
 		}
 	],
 	"beats": [
+		{
+			"id": "beat_ch4_personal_call",
+			"when": {
+				"flag": "ch4_paper_trail_preserved"
+			},
+			"actions": [
+				{
+					"notify": "Your phone is buzzing. You can take the call on a break at the nursing station."
+				}
+			]
+		},
 		{
 			"id": "beat_ch4_repetition_observed",
 			"when": {
@@ -332,6 +343,32 @@
 			}
 		},
 		{
+			"id": "interaction_ch4_mara",
+			"interactable_id": "character:pt_mara_ellis",
+			"title": "Mara Ellis: follow-up",
+			"body": "Mara is in Interview Room A for her follow-up appointment.\n\nMara: Did they decide one of the dates was wrong?",
+			"when": {
+				"flag": "ch4_rahman_boundary"
+			},
+			"options": [
+				{
+					"id": "decided",
+					"label": "Tell her the review has worked out which date was wrong",
+					"response": "You stop yourself. Nothing has established that, and giving her an answer the review doesn't have would not be honest."
+				},
+				{
+					"id": "differ",
+					"label": "\"The records differ. The reason hasn't been established.\"",
+					"flag": "ch4_mara_followup",
+					"response": "Mara: I wish somebody had said that the first time.\n\nYou: I'd also like to talk about how the insomnia has been affecting you.\n\nThe rest of the appointment is about her care: sleep, anxiety, how she is managing day to day, and when you will see her again. None of it goes into the incident record."
+				}
+			],
+			"unavailable_body": "Mara is resting.",
+			"expires_when": {
+				"flag": "ch4_mara_followup"
+			}
+		},
+		{
 			"id": "interaction_ch4_paper_trail",
 			"interactable_id": "AR_Document_WardRoster1968",
 			"title": "Outside review: retained originals",
@@ -357,6 +394,320 @@
 				"flag": "ch4_paper_trail_preserved"
 			},
 			"completed_body": "Retained originals: time-order contradiction preserved with the checks performed."
+		},
+		{
+			"id": "interaction_ch4_call_partner",
+			"interactable_id": "NS_NoticeBoard",
+			"title": "Personal call",
+			"body": "You step into the nursing station on a break. Your partner is calling.\n\nPartner: I know you can't say much. I just wanted to hear how you are.",
+			"when": {
+				"all": [
+					{
+						"flag": "ch4_paper_trail_preserved"
+					},
+					{
+						"chapter_flag": {
+							"chapter": "ch2",
+							"flag": "ch2_contact_partner"
+						}
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "overshare",
+					"label": "Tell them about the corridor",
+					"response": "You don't. The inquiry is confidential, and a personal call is not where it gets worked out."
+				},
+				{
+					"id": "support",
+					"label": "Let them help: say it's been a hard week",
+					"flag": "ch4_call_support",
+					"response": "You say it's been a hard week and leave it at that. It helps more than you expected."
+				},
+				{
+					"id": "short",
+					"label": "Keep it short: say you're fine and you'll call later",
+					"flag": "ch4_call_short",
+					"response": "You keep it short. A promise to call later, and back to work."
+				},
+				{
+					"id": "boundary",
+					"label": "Set a boundary: work stays at work",
+					"flag": "ch4_call_boundary",
+					"response": "You say you'd rather not talk about work, and that you'll be home on time. They take it well."
+				}
+			],
+			"unavailable_body": "The clinical worklist.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch4_call_support"
+					},
+					{
+						"flag": "ch4_call_short"
+					},
+					{
+						"flag": "ch4_call_boundary"
+					}
+				]
+			}
+		},
+		{
+			"id": "interaction_ch4_call_friend",
+			"interactable_id": "NS_NoticeBoard",
+			"title": "Personal call",
+			"body": "You step into the nursing station on a break. A friend is calling.\n\nFriend: You've gone quiet on us. Everything all right?",
+			"when": {
+				"all": [
+					{
+						"flag": "ch4_paper_trail_preserved"
+					},
+					{
+						"chapter_flag": {
+							"chapter": "ch2",
+							"flag": "ch2_contact_friend"
+						}
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "overshare",
+					"label": "Tell them about the corridor",
+					"response": "You don't. The inquiry is confidential, and a personal call is not where it gets worked out."
+				},
+				{
+					"id": "support",
+					"label": "Let them help: say it's been a hard week",
+					"flag": "ch4_call_support",
+					"response": "You say it's been a hard week and leave it at that. It helps more than you expected."
+				},
+				{
+					"id": "short",
+					"label": "Keep it short: say you're fine and you'll call later",
+					"flag": "ch4_call_short",
+					"response": "You keep it short. A promise to call later, and back to work."
+				},
+				{
+					"id": "boundary",
+					"label": "Set a boundary: work stays at work",
+					"flag": "ch4_call_boundary",
+					"response": "You say you'd rather not talk about work, and that you'll be home on time. They take it well."
+				}
+			],
+			"unavailable_body": "The clinical worklist.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch4_call_support"
+					},
+					{
+						"flag": "ch4_call_short"
+					},
+					{
+						"flag": "ch4_call_boundary"
+					}
+				]
+			}
+		},
+		{
+			"id": "interaction_ch4_call_family",
+			"interactable_id": "NS_NoticeBoard",
+			"title": "Personal call",
+			"body": "You step into the nursing station on a break. Family is calling.\n\nFamily: We haven't heard from you in a few days. Just checking in.",
+			"when": {
+				"all": [
+					{
+						"flag": "ch4_paper_trail_preserved"
+					},
+					{
+						"chapter_flag": {
+							"chapter": "ch2",
+							"flag": "ch2_contact_family"
+						}
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "overshare",
+					"label": "Tell them about the corridor",
+					"response": "You don't. The inquiry is confidential, and a personal call is not where it gets worked out."
+				},
+				{
+					"id": "support",
+					"label": "Let them help: say it's been a hard week",
+					"flag": "ch4_call_support",
+					"response": "You say it's been a hard week and leave it at that. It helps more than you expected."
+				},
+				{
+					"id": "short",
+					"label": "Keep it short: say you're fine and you'll call later",
+					"flag": "ch4_call_short",
+					"response": "You keep it short. A promise to call later, and back to work."
+				},
+				{
+					"id": "boundary",
+					"label": "Set a boundary: work stays at work",
+					"flag": "ch4_call_boundary",
+					"response": "You say you'd rather not talk about work, and that you'll be home on time. They take it well."
+				}
+			],
+			"unavailable_body": "The clinical worklist.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch4_call_support"
+					},
+					{
+						"flag": "ch4_call_short"
+					},
+					{
+						"flag": "ch4_call_boundary"
+					}
+				]
+			}
+		},
+		{
+			"id": "interaction_ch4_call_self",
+			"interactable_id": "NS_NoticeBoard",
+			"title": "Personal call",
+			"body": "You step into the nursing station on a break. No call: the reminder you set for yourself comes up instead.\n\nReminder (set by you): Eat something. Leave on time. You can't carry all of it.",
+			"when": {
+				"all": [
+					{
+						"flag": "ch4_paper_trail_preserved"
+					},
+					{
+						"chapter_flag": {
+							"chapter": "ch2",
+							"flag": "ch2_contact_self"
+						}
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "overshare",
+					"label": "Write the corridor into your own notes app",
+					"response": "You don't. Inquiry details belong in the authorized record, not on your phone."
+				},
+				{
+					"id": "support",
+					"label": "Message someone instead: say it's been a hard week",
+					"flag": "ch4_call_support",
+					"response": "You send a short message to someone you trust. It helps more than you expected."
+				},
+				{
+					"id": "short",
+					"label": "Snooze it and get back to work",
+					"flag": "ch4_call_short",
+					"response": "You snooze the reminder. It will come back."
+				},
+				{
+					"id": "boundary",
+					"label": "Follow it: leave on time tonight",
+					"flag": "ch4_call_boundary",
+					"response": "You decide you'll leave on time tonight, whatever is still on the list."
+				}
+			],
+			"unavailable_body": "The clinical worklist.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch4_call_support"
+					},
+					{
+						"flag": "ch4_call_short"
+					},
+					{
+						"flag": "ch4_call_boundary"
+					}
+				]
+			}
+		},
+		{
+			"id": "interaction_ch4_call_other",
+			"interactable_id": "NS_NoticeBoard",
+			"title": "Personal call",
+			"body": "You step into the nursing station on a break. Someone close to you is calling.\n\nCaller: Haven't heard from you in a while. How are you holding up?",
+			"when": {
+				"all": [
+					{
+						"flag": "ch4_paper_trail_preserved"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"chapter_flag": {
+										"chapter": "ch2",
+										"flag": "ch2_contact_partner"
+									}
+								},
+								{
+									"chapter_flag": {
+										"chapter": "ch2",
+										"flag": "ch2_contact_friend"
+									}
+								},
+								{
+									"chapter_flag": {
+										"chapter": "ch2",
+										"flag": "ch2_contact_family"
+									}
+								},
+								{
+									"chapter_flag": {
+										"chapter": "ch2",
+										"flag": "ch2_contact_self"
+									}
+								}
+							]
+						}
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "overshare",
+					"label": "Tell them about the corridor",
+					"response": "You don't. The inquiry is confidential, and a personal call is not where it gets worked out."
+				},
+				{
+					"id": "support",
+					"label": "Let them help: say it's been a hard week",
+					"flag": "ch4_call_support",
+					"response": "You say it's been a hard week and leave it at that. It helps more than you expected."
+				},
+				{
+					"id": "short",
+					"label": "Keep it short: say you're fine and you'll call later",
+					"flag": "ch4_call_short",
+					"response": "You keep it short. A promise to call later, and back to work."
+				},
+				{
+					"id": "boundary",
+					"label": "Set a boundary: work stays at work",
+					"flag": "ch4_call_boundary",
+					"response": "You say you'd rather not talk about work, and that you'll be home on time. They take it well."
+				}
+			],
+			"unavailable_body": "The clinical worklist.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch4_call_support"
+					},
+					{
+						"flag": "ch4_call_short"
+					},
+					{
+						"flag": "ch4_call_boundary"
+					}
+				]
+			}
 		},
 		{
 			"id": "interaction_ch4_test_pass",

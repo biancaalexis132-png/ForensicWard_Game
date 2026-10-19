@@ -8,6 +8,11 @@ const CATATONIA_EVENT: Dictionary = {
 	"action_id": "evaluate_catatonia", "at_minutes": 522,
 	"payload": {"finding_ids": ["obs_mutism", "obs_posturing"]},
 }
+## Still pending psychiatrist review: governance tests use it.
+const MEDICAL_REVIEW_EVENT: Dictionary = {
+	"event_id": "evt_day1_medical_review", "type": "clinical_action", "patient_id": PATIENT,
+	"action_id": "request_medical_review", "at_minutes": 530, "payload": {},
+}
 
 
 func test_opening_record_twice_does_not_duplicate() -> void:
@@ -21,18 +26,32 @@ func test_clinical_action_is_deduped() -> void:
 	check(PatientManager.commit_clinical_action(CATATONIA_EVENT).is_empty(), "replay is ignored")
 
 
-func test_pending_rule_applies_only_non_medical_effects_in_prototype() -> void:
+func test_approved_rule_applies_only_non_medical_effects() -> void:
 	var result: Dictionary = PatientManager.commit_clinical_action(CATATONIA_EVENT)
 	check_eq(result["rule_ids"], ["clinical_rule_catatonia_escalation_v1"], "rule matched")
 	check_eq(PatientManager.get_state(PATIENT)["assessment"].get("started"), true, "assessment marked started")
+	check(result["review_flags"].is_empty(), "approved rule is not flagged (approved 2026-10-19)")
+
+
+func test_approved_rule_applies_in_validated_mode() -> void:
+	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
+	var result: Dictionary = PatientManager.commit_clinical_action(CATATONIA_EVENT)
+	check_eq(result["rule_ids"], ["clinical_rule_catatonia_escalation_v1"], "approved rule applies")
+	check_eq(PatientManager.get_state(PATIENT)["assessment"].get("started"), true, "assessment marked started")
+
+
+func test_pending_rule_applies_only_non_medical_effects_in_prototype() -> void:
+	var result: Dictionary = PatientManager.commit_clinical_action(MEDICAL_REVIEW_EVENT)
+	check_eq(result["rule_ids"], ["clinical_rule_medical_review_request_v1"], "rule matched")
+	check_eq(PatientManager.get_state(PATIENT)["assessment"].get("medical_review_requested"), true, "request logged")
 	check_contains(result["review_flags"], "Unreviewed rule applied in prototype mode", "flagged for review")
 
 
 func test_pending_rule_blocked_in_validated_mode() -> void:
 	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
-	var result: Dictionary = PatientManager.commit_clinical_action(CATATONIA_EVENT)
+	var result: Dictionary = PatientManager.commit_clinical_action(MEDICAL_REVIEW_EVENT)
 	check(result["effects"].is_empty(), "no effects from a pending rule")
-	check(not PatientManager.get_state(PATIENT)["assessment"].has("started"), "state untouched")
+	check(not PatientManager.get_state(PATIENT)["assessment"].has("medical_review_requested"), "state untouched")
 	check_contains(result["review_flags"], "not applied in validated build mode", "flag explains why")
 
 

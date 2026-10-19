@@ -140,25 +140,32 @@ func test_full_mvp_loop_updates_chart_deterministically() -> void:
 	var second: Dictionary = await _run_mvp_loop()
 	check_eq(first, second, "same inputs give identical patient state")
 	var state: Dictionary = first
-	check(state["assessment"].get("started", false), "pending rule applied its non-medical effect")
+	check(state["assessment"].get("started", false), "approved rule applied its non-medical effect")
 	check_eq(state["audit"].filter(func(e: Dictionary) -> bool: return e["type"] == "clinical_action").size(), 1,
 			"one clinical action audited")
 	var action_entry: Dictionary = state["audit"].filter(func(e: Dictionary) -> bool: return e["type"] == "clinical_action")[0]
 	check_eq(action_entry["rule_ids"], ["clinical_rule_catatonia_escalation_v1"], "rule id recorded")
-	check(not action_entry["review_flags"].is_empty(), "unreviewed rule use is flagged in the audit trail")
+	check(action_entry["review_flags"].is_empty(), "approved rule use needs no review flag")
 
 
 func test_validated_build_refuses_pending_rule_from_ehr() -> void:
+	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
+	_open_ehr()
+	check("switched off" in _ehr()._banner.text, "validated banner")
+	_ehr().commit_action("request_medical_review")
+	check(not PatientManager.get_state(ELIAS)["assessment"].get("medical_review_requested", false), "pending rule not applied")
+	check("Review flag" in _ehr().get_tab_text("Orders"), "refusal shown to the player")
+
+
+func test_validated_build_applies_approved_catatonia_rule() -> void:
 	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
 	_approach_elias()
 	_interview().ask_choice("ask_intake")
 	_interview().ask_choice("assess_motor")
 	_interview().close()
 	_open_ehr()
-	check("switched off" in _ehr()._banner.text, "validated banner")
 	_ehr().commit_action("evaluate_catatonia")
-	check(not PatientManager.get_state(ELIAS)["assessment"].get("started", false), "pending rule not applied")
-	check("Review flag" in _ehr().get_tab_text("Orders"), "refusal shown to the player")
+	check(PatientManager.get_state(ELIAS)["assessment"].get("started", false), "approved rule applied")
 
 
 func test_medical_review_request_is_logged_without_simulated_result() -> void:

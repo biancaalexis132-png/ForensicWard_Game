@@ -294,7 +294,9 @@ const _STORY_INTERACTION: Dictionary = {
 		"options": {"type": "array", "min_items": 1, "items": {
 			"type": "object", "required": {"id": _ID, "label": _STRING, "response": _STRING},
 			## grants_access/revokes_access: scene-scoped passes, recorded with source "story:<interaction id>".
-			"optional": {"flag": _ID, "grants_access": _IDS, "revokes_access": _IDS},
+			## next_interaction: the next scene in the same story opens straight after this
+			## response, in the same panel, when its own conditions hold.
+			"optional": {"flag": _ID, "grants_access": _IDS, "revokes_access": _IDS, "next_interaction": _ID},
 		}},
 	},
 	"optional": {"expires_when": _CONDITION, "completed_body": _STRING},
