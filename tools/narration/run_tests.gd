@@ -7,7 +7,12 @@ func _run() -> void:
 	await get_tree().process_frame
 	var host: Node = Node.new()
 	add_child(host)
-	var test: TestCase = load("res://scripts/tests/test_narration.gd").new()
+	var file_name: String = "test_narration.gd"
+	for argument: String in OS.get_cmdline_user_args():
+		if argument.begins_with("--suite="):
+			file_name = argument.trim_prefix("--suite=")
+	assert(file_name.begins_with("test_") and file_name.ends_with(".gd") and not "/" in file_name)
+	var test: TestCase = load("res://scripts/tests/" + file_name).new()
 	test.runner = host
 	var passed: int = 0
 	var failed: int = 0

@@ -62,13 +62,15 @@ After the provider/network issue is resolved, retrieve existing completed genera
 python3 tools/narration/import_recordings.py /path/to/downloads
 python3 tools/audio/build_manifest.py
 python3 tools/narration/check_delivery.py
+# After committing the validated media and source tree:
+python3 tools/narration/package_delivery.py /path/to/ForensicWard_Narrated.zip
 ```
 
 The importer encodes mono OGG 44.1 kHz with libvorbis q5 and loudness target -18 LUFS/-2 dBTP, measures actual duration, creates exact full-statement subtitle cues/SRT, and records source/output SHA-256 and settings. It does not generate replacement voices. Runtime voice is offline; no API calls or inference are needed during play. Scope remains the owner's private/personal project; commercial rights are not independently verified.
 
 ## Verification and final release gate
 
-Run existing suites unchanged except the prior recap-duration assertion now uses the director's narration-aware duration; all prior playback checks remain. Additional `test_narration.gd` checks real audio playback using a temporary test-only stimulus, ending variants, paused watchdog, skip at every panel, caption-only operation, toggle/replay, real save/load, progression/input ownership and reduced motion. The test stimulus is deleted afterward and is never shipped as narration.
+Run existing suites unchanged except the prior recap-duration assertion now uses the director's narration-aware duration; all prior playback checks remain. The all-panel visual test explicitly covers the required caption-only mode; the new suite separately exercises real audio timing. Additional `test_narration.gd` checks real audio playback using a temporary test-only stimulus, ending variants, paused watchdog, skip at every panel, caption-only operation, toggle/replay, real save/load, progression/input ownership and reduced motion. The test stimulus is deleted afterward and is never shipped as narration.
 
 The mandatory `check_delivery.py` must pass with **38/38 recordings**, measured subtitles and unchanged approved artwork before a ZIP can be called the final narrated delivery. Audible production voice/mix and Forward+/Metal appearance/performance still require Mac review. Realistic 3D cast models are still review-only; normal gameplay retains placeholders. This narration work does not claim to finish or approve those models.
 

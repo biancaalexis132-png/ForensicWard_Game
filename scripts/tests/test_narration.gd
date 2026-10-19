@@ -14,11 +14,20 @@ func before_each() -> void:
 	AudioDirector.clear_music_contexts()
 
 func after_each() -> void:
+	# Flush synthetic events before a later suite creates a new game scene.
+	for action: String in ["ui_accept", "pause"]:
+		var release: InputEventAction = InputEventAction.new()
+		release.action = action
+		release.pressed = false
+		Input.parse_input_event(release)
+	Input.flush_buffered_events()
 	AudioDirector.stop_narration()
 	AudioDirector.stop_dialogue()
 	for node: Node in _roots:
 		if is_instance_valid(node):
-			node.queue_free()
+			# TestRunner may start another suite before the next frame. Remove
+			# Main's cameras, input handlers and save providers synchronously.
+			node.free()
 	_roots.clear()
 	DirAccess.remove_absolute(FIXTURE)
 	Settings.set_value("recap_narration", true)
@@ -79,11 +88,12 @@ func test_invalid_cues_and_duplicate_gameplay_speech_are_rejected() -> void:
 func test_disabled_voice_keeps_readable_captions_even_with_subtitles_off() -> void:
 	Settings.set_value("recap_narration", false)
 	Settings.set_value("subtitles", false)
+	var previous_duck: bool = bool(AudioDirector.get("_dialogue_ducked"))
 	var d: CutsceneDirector = _director()
 	d.play("cs_ch01_static_gn")
 	check(not d.get_node("Root/Subtitle").text.is_empty(), "captions remain usable without speech")
 	check(AudioDirector.narration_finished(), "no voice started")
-	check(not bool(AudioDirector.get("_dialogue_ducked")), "no voice duck held")
+	check_eq(bool(AudioDirector.get("_dialogue_ducked")), previous_duck, "disabled narration adds no speech duck")
 	check(d.get("_panel_duration") > 6.5, "reading time extends the original short silent hold")
 	d.skip()
 
@@ -128,6 +138,9 @@ func test_stalled_audio_recovers_and_does_not_soft_lock() -> void:
 			break
 		d.advance(0.2)
 	check(not d.is_open, "caption fallback finishes the chapter recap")
+	# Real save/load tests resume in a physics-frame callback. Finish this
+	# suite from an idle timer before later suites register input handlers.
+	await runner.get_tree().create_timer(0.01).timeout
 
 func test_skip_each_panel_replay_and_toggle_do_not_change_saved_game() -> void:
 	for target: int in 7:
@@ -176,7 +189,6 @@ func test_real_save_load_preserves_completion_and_replay_uses_saved_flags() -> v
 	var chapter: ChapterDirector = main.get_node("ChapterDirector")
 	chapter.set_flag("chapter_complete")
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "completed campaign checkpoint saved")
-	EventBus.ui_panel_requested.emit("cutscene", {"cutscene_id": "cs_ch01_static_gn"})
 	var d: CutsceneDirector = main.get_node("CutsceneDirector")
 	check(d.is_open, "recap overlays gameplay")
 	check_eq(main.call("_top_panel"), d, "recap owns chapter-completion input")
@@ -205,3 +217,19 @@ func test_branch_replay_snapshots_context_and_never_changes_story() -> void:
 			d.next_panel()
 		check_eq(d.get("_track")["id"], "nar_ch05_p06_" + str(expected[ending]), "replay holds immutable ending snapshot")
 		d.skip()
+
+func test_mapped_action_input_advances_and_skips_the_overlay() -> void:
+	var d: CutsceneDirector = _director()
+	d.play("cs_ch01_static_gn")
+	var next: InputEventAction = InputEventAction.new()
+	next.action = "ui_accept"
+	next.pressed = true
+	Input.parse_input_event(next)
+	await runner.get_tree().process_frame
+	check_eq(d.panel_index, 1, "mapped action events retain Next behavior")
+	var skip_event: InputEventAction = InputEventAction.new()
+	skip_event.action = "pause"
+	skip_event.pressed = true
+	Input.parse_input_event(skip_event)
+	await runner.get_tree().process_frame
+	check(not d.is_open, "mapped pause action still skips the overlay")

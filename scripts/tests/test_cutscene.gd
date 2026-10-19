@@ -69,6 +69,10 @@ func test_chapter_title_cards_are_approved_and_play() -> void:
 
 
 func test_static_graphic_novel_chapters_recap_each_chapter() -> void:
+	# Preserve deterministic all-panel visual coverage in the required
+	# caption-only mode; test_narration exercises the actual audio clock.
+	var narration_enabled: bool = bool(Settings.get_value("recap_narration"))
+	Settings.set_value("recap_narration", false)
 	var loaded: Dictionary = CutsceneRegistry.load_all()
 	for chapter: int in [1, 2, 3, 4, 5]:
 		var id: String = "cs_ch0%d_static_gn" % chapter
@@ -94,6 +98,7 @@ func test_static_graphic_novel_chapters_recap_each_chapter() -> void:
 		check_eq(AudioDirector.get_music_context(), "", id + " restores the music")
 	for chapter: int in [2, 3, 4, 5]:
 		check_eq(CutsceneRegistry.chapter_start_cutscene("ch%d" % chapter), "cs_ch0%d_title" % chapter, "the title card still opens chapter %d" % chapter)
+	Settings.set_value("recap_narration", narration_enabled)
 
 
 func test_captions_come_from_campaign_data() -> void:

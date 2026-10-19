@@ -261,19 +261,19 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not is_open or not event is InputEventKey:
+	if not is_open or event is InputEventMouseButton or event is InputEventMouseMotion:
 		return
 	var key: InputEventKey = event as InputEventKey
-	if key.pressed and not key.echo:
+	if event.is_pressed() and not event.is_echo():
 		if event.is_action_pressed("pause") or event.is_action_pressed("ui_cancel"):
 			skip()
 		elif event.is_action_pressed("ui_accept") or event.is_action_pressed("interact"):
 			next_panel()
-		elif key.physical_keycode == KEY_P:
+		elif key != null and key.physical_keycode == KEY_P:
 			set_narration_paused(not narration_paused)
-		elif key.physical_keycode == KEY_R:
+		elif key != null and key.physical_keycode == KEY_R:
 			replay()
-		elif key.physical_keycode == KEY_V:
+		elif key != null and key.physical_keycode == KEY_V:
 			Settings.set_value("recap_narration", not bool(Settings.get_value("recap_narration")))
 	get_viewport().set_input_as_handled()
 
@@ -691,7 +691,8 @@ func _estimated_panel_duration(panel: Dictionary) -> float:
 		return float(panel["duration_seconds"])
 	var reading: float = str(track.get("text", "")).split(" ").size() * 60.0 / 130.0
 	var duration: float = float(track.get("duration_seconds", reading))
-	if not bool(Settings.get_value("recap_narration")) or not FileAccess.file_exists(str(track.get("audio_path", ""))):
+	var path: String = str(track.get("audio_path", ""))
+	if not bool(Settings.get_value("recap_narration")) or path.is_empty() or (not ResourceLoader.exists(path) and not FileAccess.file_exists(path)):
 		duration = reading
 	return maxf(float(panel["duration_seconds"]), minf(120.0, duration + 0.5))
 

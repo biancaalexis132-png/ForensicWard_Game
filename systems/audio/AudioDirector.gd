@@ -906,9 +906,12 @@ func _new_tween(target: Object) -> Tween:
 func play_narration(track: Dictionary) -> bool:
 	stop_narration()
 	var path: String = str(track.get("audio_path", ""))
-	if not path.begins_with("res://audio/narration/") or not FileAccess.file_exists(path):
+	var imported: bool = not path.is_empty() and ResourceLoader.exists(path)
+	if not path.begins_with("res://audio/narration/") or (not imported and not FileAccess.file_exists(path)):
 		return false
-	var stream: AudioStream = load(path) as AudioStream if ResourceLoader.exists(path) else AudioStreamOggVorbis.load_from_file(path)
+	# Exported resources may exist only through their import remap. Raw OGG
+	# loading also permits offline authoring and the temporary QA stimulus.
+	var stream: AudioStream = load(path) as AudioStream if imported else AudioStreamOggVorbis.load_from_file(path)
 	if stream == null or stream.get_length() <= 0.0 or stream.get_length() > 120.0:
 		return false
 	stop_dialogue()
@@ -933,6 +936,7 @@ func _on_narration_finished() -> void:
 
 ## Release the owned duck on every exit, including a failed start and pause.
 func stop_narration() -> void:
+	var was_active: bool = not _narration_id.is_empty() or is_instance_valid(_narration_voice)
 	if is_instance_valid(_narration_voice):
 		_narration_voice.stop()
 		_narration_voice.queue_free()
@@ -941,13 +945,14 @@ func stop_narration() -> void:
 	_narration_finished = true
 	_narration_paused = false
 	_narration_length = 0.0
-	_set_dialogue_duck(is_dialogue_playing())
+	if was_active:
+		_set_dialogue_duck(is_dialogue_playing())
 
 func pause_narration(paused: bool) -> void:
 	_narration_paused = paused
 	if is_instance_valid(_narration_voice):
 		_narration_voice.stream_paused = paused
-	_set_dialogue_duck(is_dialogue_playing())
+		_set_dialogue_duck(is_dialogue_playing())
 
 ## Caption clock follows audio playback (latency compensated), not frame time.
 func narration_position() -> float:
