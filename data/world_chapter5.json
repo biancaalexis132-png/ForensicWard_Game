@@ -1,7 +1,7 @@
 {
 	"schema_version": "0.1",
 	"world_id": "world_chapter5",
-	"notes": "Chapter 5 (Beyond the Lines) opens in the clinical wing with Voss, Bennett, Rahman at the office desk and Hale at Interview Room A's door. Scene 02's team pass reopens the hatch and threshold Facilities left open in Chapter 3; the observation room records point is the two-state door story point. The records worksheet carries the historian's notes and the four-source comparison; the office workstation carries the analyst's report.",
+	"notes": "Chapter 5 (Beyond the Lines) opens in the clinical wing with Voss, Bennett, Rahman at the office desk and Hale at Interview Room A's door. Scene 02's team pass reopens the hatch and threshold Facilities left open in Chapter 3; the observation room records point is the two-state door story point. The records worksheet carries the historian's notes and the four-source comparison; the office workstation carries the analyst's report. Scene 08: Mara sits in Interview Room A after the decision (Elias otherwise); approaching her opens the story scene, not a clinical interview.",
 	"start_zone": "zone_clinical_wing",
 	"spawn_marker": "MARK_PlayerSpawn",
 	"doors": {
@@ -86,7 +86,73 @@
 			"marker": "MARK_Seat_Patient",
 			"kind": "patient",
 			"character_id": "pt_elias_ward",
-			"seated": true
+			"seated": true,
+			"present_when": {
+				"not": {
+					"all": [
+						{
+							"any": [
+								{
+									"flag": "ch5_ending_review"
+								},
+								{
+									"flag": "ch5_ending_restricted"
+								},
+								{
+									"flag": "ch5_ending_inquiry"
+								}
+							]
+						},
+						{
+							"not": {
+								"any": [
+									{
+										"flag": "ch5_mara_answered"
+									},
+									{
+										"flag": "ch5_mara_listened"
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"marker": "MARK_Seat_Patient",
+			"kind": "patient",
+			"character_id": "pt_mara_ellis",
+			"seated": true,
+			"present_when": {
+				"all": [
+					{
+						"any": [
+							{
+								"flag": "ch5_ending_review"
+							},
+							{
+								"flag": "ch5_ending_restricted"
+							},
+							{
+								"flag": "ch5_ending_inquiry"
+							}
+						]
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"flag": "ch5_mara_answered"
+								},
+								{
+									"flag": "ch5_mara_listened"
+								}
+							]
+						}
+					}
+				]
+			}
 		},
 		{
 			"marker": "MARK_Seat_Psychiatrist_Desk",

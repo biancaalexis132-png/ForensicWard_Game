@@ -38,6 +38,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Chapter 5 Scene 08 (Mara)
+
+- **Branch / verified runtime:** `claude/chapter5-mara` (main), `1fdaa90`.
+- **Delivered:** Owner: 'i agree with the patiient content that is approved'. Mara replaces Elias in Interview Room A after the decision; approaching her opens the story scene (Character._approach_patient skips the interview when ChapterDirector.has_open_interaction). Suggesting the records explain her health is refused; two answers (answer first or listen first) use only screenplay lines. Epilogues now follow Mara's scene. No clinical state changes.
+- **Executed:** Full QA at 1fdaa90: all executed checks passed; game tests 260/0; GLB 168/0. Mac checks not run. Mac not run.
+- **Next exact task:** Mac checks on the owner's Mac (Remote Control session requested). See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
 ### 2026-10-19 · Claude Code · Chapter 5 finale
 
 - **Branch / verified runtime:** `claude/chapter5-finale` (claude/chapter4-loop), `e545408`.

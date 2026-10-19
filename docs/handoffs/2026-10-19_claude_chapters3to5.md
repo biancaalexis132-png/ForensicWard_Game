@@ -50,6 +50,12 @@ Runtime `e545408` on `claude/chapter5-finale`. data/campaign.json, data/story_ch
 
 Tests: Full QA at e545408: all executed checks passed; game tests 258/0 (3 endings each reachable with save/load at the decision); GLB 161/0. Mac checks not run.
 
+## Chapter 5 Scene 08 (Mara)
+
+Runtime `1fdaa90` on `claude/chapter5-mara`. data/story_chapter5.json, data/world_chapter5.json, scripts/narrative/ChapterDirector.gd, scripts/world/Character.gd, scripts/tests/test_chapter5_finale.gd
+
+Tests: Full QA at 1fdaa90: all executed checks passed; game tests 260/0; GLB 168/0. Mac checks not run.
+
 ## Next exact task
 
-Owner review of Chapter 5 text; decide on Scene 08 (Mara) once patient-state content is approved; Naomi Mac/geometry gates still pending.
+Mac checks on the owner's Mac (Remote Control session requested).

@@ -19,6 +19,8 @@
 
 **Chapter 5 finale (Claude Code, 2026-10-19; not merged):** runtime `e545408`. ch5 playable (ch4 next_chapter=ch5). Scenes 01-07 and 09-10 built: return inspection with team pass, two-state door preserved (opening refused), records review (single culprit refused), analyst report (supernatural mechanism refused), Bennett care escalation (waiting refused), four-source test (double counting refused), decision with three endings (delaying report refused), ending epilogue, rounds Mac not run.
 
+**Chapter 5 Scene 08 (Mara) (Claude Code, 2026-10-19; not merged):** runtime `1fdaa90`. Owner: 'i agree with the patiient content that is approved'. Mara replaces Elias in Interview Room A after the decision; approaching her opens the story scene (Character._approach_patient skips the interview when ChapterDirector.has_open_interaction). Suggesting the records explain her health is refused; two answers (answer first or listen first) use only screenplay lines. Epilogues now follow Mar Mac not run.
+
 **Chapter 2 Scene 10 closing beat (Claude Code, 2026-10-19; not merged):** runtime `1bb194df802b68591f9e7ab8a7939754e91bd8e3`. Chapter 2 now completes after Bennett's end-of-shift exchange; report states what the records cannot reconstruct. W0-B locked; Chapter 3 not started. Full QA passed: game 235/0. Mac not run.
 
 **Chapter 2 Scene 09 wrong-day file (Claude Code, 2026-10-19; not merged):** runtime `1481c7ea32b8a5cb553d50529afd387e382f5898`. Export date conflict placed in the incident record, not Mara's note; one handling chosen; originals unchanged. Full QA passed: game 233/0. Mac not run.

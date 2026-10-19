@@ -161,4 +161,8 @@ func _talk_to_staff() -> void:
 
 
 func _approach_patient() -> void:
+	# A story scene with this patient (ChapterDirector opens it) replaces the interview.
+	var director: Node = get_tree().get_first_node_in_group(ChapterDirector.GROUP)
+	if director != null and director.has_open_interaction("character:" + character_id):
+		return
 	EventBus.ui_panel_requested.emit("interview", {"patient_id": character_id})

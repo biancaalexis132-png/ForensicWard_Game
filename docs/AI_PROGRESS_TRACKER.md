@@ -22,6 +22,7 @@
 | Scene 08 lobby inspection | Done, draft PR | Scene 07; owner chose escorted pass | `data/story_chapter2.json`, `data/world_chapter2.json`, `TrustManager`, `AuthoredWorld`, `scripts/tests/test_chapter2_lobby.gd` | Full QA on `4669c7c`: game 229/0 | Owner review |
 | Scene 09 wrong-day file | Done, draft PR | Scene 08 | `data/story_chapter2.json`, `scripts/tests/test_chapter2_wrong_day.gd` | Full QA on `1481c7e`: game 233/0 | Owner review |
 | Scene 10 missing hours (chapter close) | Done, draft PR | Scene 09 | `data/story_chapter2.json`, `ChapterDirector.gd`, `scripts/tests/test_chapter2_missing_hours.gd` | Full QA on `1bb194d`: game 235/0 | Owner review; personal message and fade-out not built |
+| Chapter 5 Scene 08 (Mara) | Done, draft PR | previous slice | see dedicated handoff | Full QA at 1fdaa90: all executed checks passed; game tests 2 | Owner review |
 | Chapter 5 finale | Done, draft PR | previous slice | see dedicated handoff | Full QA at e545408: all executed checks passed; game tests 2 | Owner review |
 | Chapter 4 Scenes 09-10 | Done, draft PR | previous slice | see dedicated handoff | Full QA at ec4d3d4: all executed checks passed; game tests 2 | Owner review |
 | Chapter 4 Scenes 07-08 | Done, draft PR | previous slice | see dedicated handoff | Full QA at daca017: all executed checks passed; game tests 2 | Owner review |

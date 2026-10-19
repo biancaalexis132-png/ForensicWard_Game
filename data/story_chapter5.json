@@ -4,7 +4,7 @@
 	"title": "Chapter 5: Beyond the Lines",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "CH05 expanded finale v2.1 (owner review draft; dialogue proposed). Scene 01: Hale's inspection briefing and team pass. Scene 02: two recordings of the former treatment room door, preserved as unresolved; nobody opens the door. Scenes 03-04: records review and the analyst's report (a supernatural-mechanism conclusion is sent back for revision). Scene 05: Bennett's patient-care follow-up, escalated generically (no case findings). Scene 06: shared sources are not counted twice. Scene 07: three responsible endings (independent review, restricted access, continuing inquiry); delaying the report is refused. Scene 08 (Mara) is not built: it needs approved patient-state data. Scenes 09-10: ending epilogue, then rounds with Bennett. The game's supernatural truth stays out of the professional record and every clinical chart.",
+	"notes": "CH05 expanded finale v2.1 (owner review draft; dialogue proposed). Scene 01: Hale's inspection briefing and team pass. Scene 02: two recordings of the former treatment room door, preserved as unresolved; nobody opens the door. Scenes 03-04: records review and the analyst's report (a supernatural-mechanism conclusion is sent back for revision). Scene 05: Bennett's patient-care follow-up, escalated generically (no case findings). Scene 06: shared sources are not counted twice. Scene 07: three responsible endings (independent review, restricted access, continuing inquiry); delaying the report is refused. Scene 08 (owner approved the screenplay text): Mara asks about the records review; the answer stays within what is established, and suggesting the records explain her health is refused. No clinical state changes. Scenes 09-10: ending epilogue, then rounds with Bennett. The game's supernatural truth stays out of the professional record and every clinical chart.",
 	"objectives": [
 		{
 			"id": "obj_ch5_brief",
@@ -102,6 +102,20 @@
 					},
 					{
 						"flag": "ch5_ending_inquiry"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch5_mara",
+			"text": "Mara Ellis has asked to see you in Interview Room A.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch5_mara_answered"
+					},
+					{
+						"flag": "ch5_mara_listened"
 					}
 				]
 			}
@@ -505,12 +519,75 @@
 			}
 		},
 		{
+			"id": "interaction_ch5_mara",
+			"interactable_id": "character:pt_mara_ellis",
+			"title": "Mara Ellis: the people who stayed",
+			"body": "Mara: I heard the hospital is still reviewing some old records. Does that mean my aunt's record is one of them?",
+			"when": {
+				"any": [
+					{
+						"flag": "ch5_ending_review"
+					},
+					{
+						"flag": "ch5_ending_restricted"
+					},
+					{
+						"flag": "ch5_ending_inquiry"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "explain",
+					"label": "Tell her the old records explain how she's been feeling",
+					"response": "You stop yourself. Nothing in the building review says anything about Mara's health, and her assessment stands on its own."
+				},
+				{
+					"id": "answer",
+					"label": "\"The discrepancy you raised remains part of the authorized historical review.\"",
+					"flag": "ch5_mara_answered",
+					"response": "You: I can't give you an explanation we haven't established.\n\nMara: I think what bothered me most was feeling like no one wanted to listen.\n\nYou: You deserved an assessment based on the information available, and an opportunity to explain your concerns.\n\nMara: I know I'm not always easy when I'm frustrated.\n\nYou: Frustration doesn't make your questions irrelevant."
+				},
+				{
+					"id": "listen",
+					"label": "Ask her what has bothered her most",
+					"flag": "ch5_mara_listened",
+					"response": "Mara: I think what bothered me most was feeling like no one wanted to listen.\n\nYou: You deserved an assessment based on the information available, and an opportunity to explain your concerns. The discrepancy you raised remains part of the authorized historical review. I can't give you an explanation we haven't established.\n\nMara: I know I'm not always easy when I'm frustrated.\n\nYou: Frustration doesn't make your questions irrelevant."
+				}
+			],
+			"unavailable_body": "Mara is resting.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch5_mara_answered"
+					},
+					{
+						"flag": "ch5_mara_listened"
+					}
+				]
+			}
+		},
+		{
 			"id": "interaction_ch5_outcome_review",
 			"interactable_id": "character:staff_voss",
 			"title": "Independent review",
 			"body": "Voss signs the external referral. The originals stay here; the limitations are listed on the first page.\n\nVoss: This may take longer than any of us would like.",
 			"when": {
-				"flag": "ch5_ending_review"
+				"all": [
+					{
+						"flag": "ch5_ending_review"
+					},
+					{
+						"any": [
+							{
+								"flag": "ch5_mara_answered"
+							},
+							{
+								"flag": "ch5_mara_listened"
+							}
+						]
+					}
+				]
 			},
 			"options": [
 				{
@@ -531,7 +608,21 @@
 			"title": "Restricted access",
 			"body": "The old entrance is sealed under documented restrictions, with a periodic review date.\n\nHale: Nobody enters without authorization.",
 			"when": {
-				"flag": "ch5_ending_restricted"
+				"all": [
+					{
+						"flag": "ch5_ending_restricted"
+					},
+					{
+						"any": [
+							{
+								"flag": "ch5_mara_answered"
+							},
+							{
+								"flag": "ch5_mara_listened"
+							}
+						]
+					}
+				]
 			},
 			"options": [
 				{
@@ -552,7 +643,21 @@
 			"title": "Continuing inquiry",
 			"body": "An accountable review goes ahead: oversight, limited access, defined stop conditions.\n\nRahman: What happens if the next review still doesn't answer everything?",
 			"when": {
-				"flag": "ch5_ending_inquiry"
+				"all": [
+					{
+						"flag": "ch5_ending_inquiry"
+					},
+					{
+						"any": [
+							{
+								"flag": "ch5_mara_answered"
+							},
+							{
+								"flag": "ch5_mara_listened"
+							}
+						]
+					}
+				]
 			},
 			"options": [
 				{
