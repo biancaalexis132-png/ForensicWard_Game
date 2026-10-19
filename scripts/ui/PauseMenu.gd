@@ -49,6 +49,14 @@ func _ready() -> void:
 	replay_button.pressed.connect(func() -> void:
 		close()
 		EventBus.ui_panel_requested.emit("cutscene", {"replay_completed": true}))
+	# The fiction disclaimer lives here and on the title screen, not inside the EHR.
+	var disclaimer: Label = Label.new()
+	disclaimer.name = "Disclaimer"
+	disclaimer.text = TitleScreen.DISCLAIMER
+	disclaimer.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	disclaimer.add_theme_font_size_override("font_size", 13)
+	disclaimer.modulate = Color(0.75, 0.77, 0.8)
+	$Root/Panel/Margin/VBox.add_child(disclaimer)
 	$Root/Panel/Margin/VBox/Save.pressed.connect(_on_save)
 	$Root/Panel/Margin/VBox/Load.pressed.connect(_on_load)
 	# Same path as closing the window: Main stops audio first, then quits.

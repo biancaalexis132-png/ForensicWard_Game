@@ -56,12 +56,14 @@ static func configure(character: WardCharacter, marker: String) -> Vector3:
 	if entry.is_empty():
 		return Vector3.ZERO
 	var path: String = str(entry["scene"])
+	# A catalogued model that does not load is a build fault (stale import cache,
+	# outdated checkout), never a normal character: the actor shows it as one.
 	if not ResourceLoader.exists(path):
-		push_warning("CampaignCastVisuals: missing model for %s; using placeholder" % character.character_id)
+		character.mark_visual_missing("model not found: " + path)
 		return Vector3.ZERO
 	var scene: PackedScene = load(path) as PackedScene
 	if scene == null:
-		push_warning("CampaignCastVisuals: invalid scene for %s; using placeholder" % character.character_id)
+		character.mark_visual_missing("model did not import: " + path)
 		return Vector3.ZERO
 	character.visual_scene = scene
 	character.visual_placement = Transform3D(Basis(Vector3.UP, deg_to_rad(float(entry["model_yaw_degrees"]))), Vector3.ZERO)

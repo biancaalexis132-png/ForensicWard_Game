@@ -55,8 +55,7 @@ func open(data: Dictionary) -> void:
 	is_open = true
 	_previous_camera = get_viewport().get_camera_3d()
 	var patient: Dictionary = ContentRegistry.get_patient(patient_id)
-	_name_label.text = "%s, %d   ·   Interview Room A   ·   content %s" % [patient.get("name", patient_id),
-			patient.get("age", 0), ContentRegistry.get_dialogue(patient_id).get("clinical_review_status", "")]
+	_name_label.text = "%s, %d   ·   Interview Room A" % [patient.get("name", patient_id), patient.get("age", 0)]
 	_transcript.text = ""
 	for line: Dictionary in DialogueManager.get_transcript(patient_id):
 		_append_line(line["speaker"], line["text"])

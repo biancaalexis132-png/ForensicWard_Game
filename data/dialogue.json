@@ -55,7 +55,7 @@
             "go_back",
             "other_questions"
           ],
-          "response": "[Placeholder: the structured bedside assessment is authored in Sprint 2.]",
+          "response": "You note the bedside findings so far and return to general questions.",
           "next": "initial"
         }
       ]

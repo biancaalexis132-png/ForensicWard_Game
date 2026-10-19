@@ -12,6 +12,8 @@ extends CanvasLayer
 signal closed
 
 const GAME_TITLE: String = "The Forensic Ward"
+## Shown here and in the pause menu instead of on clinical screens.
+const DISCLAIMER: String = "A work of fiction. All patients, staff, records and events are invented. This game is not clinical software and gives no medical advice."
 const BACKGROUND: Color = Color(0.035, 0.04, 0.05)
 const TEXT: Color = Color(0.93, 0.91, 0.85)
 const MUTED: Color = Color(0.6, 0.62, 0.64)
@@ -103,6 +105,9 @@ func _build() -> void:
 		get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST))
 	_status = _label("", 16, MUTED)
 	column.add_child(_status)
+	var disclaimer: Label = _label(DISCLAIMER, 13, MUTED)
+	disclaimer.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	column.add_child(disclaimer)
 
 
 func _label(text: String, size: int, color: Color) -> Label:

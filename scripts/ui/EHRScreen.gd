@@ -179,16 +179,39 @@ func _refresh() -> void:
 	_audit.text = _audit_text(state)
 
 
+## Empty when everything shown for this patient is approved. Review provenance
+## stays in the audit trail and the data, not in the normal chart.
 func _banner_text() -> String:
+	if not _has_unapproved_content():
+		return ""
 	if ClinicalRules.build_mode == ClinicalRules.MODE_VALIDATED:
-		return "Validated build: clinical rules that are not approved are switched off."
-	return "Prototype build: clinical content marked pending is shown for testing and is NOT clinically validated."
+		return "Some orders here await clinical review and are switched off in this build."
+	return "Some clinical content here awaits clinical review and is shown for testing only."
+
+
+func _has_unapproved_content() -> bool:
+	if ContentRegistry.get_patient(patient_id).get("clinical_review_status", "") != "APPROVED":
+		return true
+	for action: Dictionary in ContentRegistry.get_actions(patient_id):
+		if not _is_approved(action):
+			return true
+	return false
+
+
+## An order is approved when it and every rule it triggers are approved.
+func _is_approved(action: Dictionary) -> bool:
+	if action.get("clinical_review_status", "") != "APPROVED":
+		return false
+	for rule: Dictionary in ContentRegistry.get_rules():
+		if rule["trigger_action"] == action["id"] and rule["review_status"] != "APPROVED":
+			return false
+	return true
 
 
 func _summary_text(definition: Dictionary, state: Dictionary) -> String:
 	var lines: PackedStringArray = []
 	lines.append("[b]Demographics[/b]")
-	lines.append("Name: %s    Age: %d    (fictional patient)" % [definition["name"], definition["age"]])
+	lines.append("Name: %s    Age: %d" % [definition["name"], definition["age"]])
 	lines.append("Legal status: %s" % UIStyle.humanize(definition["legal_status"]))
 	lines.append("Arrived: shift %d    Current location: %s" % [definition["arrival_shift"], UIStyle.humanize(state["location"])])
 	lines.append("")
@@ -203,9 +226,9 @@ func _summary_text(definition: Dictionary, state: Dictionary) -> String:
 	lines.append("  Findings you have recorded: %d of %d reported" % [state["observations"].size(),
 			definition["presentation"]["observations"].size()])
 	lines.append("  Notes: %d" % state["notes"].size())
-	lines.append("")
-	lines.append("[color=#%s]Clinical content status: %s[/color]" % [UIStyle.MUTED.to_html(false),
-			definition["clinical_review_status"]])
+	if definition["clinical_review_status"] != "APPROVED":
+		lines.append("")
+		lines.append("[color=#%s]This record awaits clinical review.[/color]" % UIStyle.WARNING.to_html(false))
 	return "\n".join(lines)
 
 
@@ -287,7 +310,8 @@ func _rebuild_orders(state: Dictionary) -> void:
 		_orders.add_child(UIStyle.label("No clinical actions are authored for this patient yet.", 17, UIStyle.MUTED))
 	for action: Dictionary in actions:
 		var row: VBoxContainer = VBoxContainer.new()
-		row.add_child(UIStyle.label("%s   [%s]" % [action["label"], action["clinical_review_status"]], 18))
+		var title: String = action["label"] if _is_approved(action) else "%s   (awaiting clinical review)" % action["label"]
+		row.add_child(UIStyle.label(title, 18))
 		row.add_child(UIStyle.label(action["description"], 16, UIStyle.MUTED))
 		var done: bool = PatientManager.has_processed(patient_id, PatientManager.action_event_id(patient_id, action["id"]))
 		var button: Button = UIStyle.button("Committed this shift day" if done else "Commit  (%d min)" % int(action["time_minutes"]))

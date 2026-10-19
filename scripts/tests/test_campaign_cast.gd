@@ -206,3 +206,26 @@ func test_invalid_public_talk_box_is_rejected_by_content_validation() -> void:
 		entry["interaction_box"]["size"] = size
 		var report: Dictionary = ContentValidator.validate_documents(docs)
 		check_contains(report["errors"], "interaction_box.size", "invalid shape dimensions are rejected")
+
+
+func test_missing_catalogued_model_is_a_visible_development_error() -> void:
+	var world: AuthoredWorld = await _boot()
+	var actor: WardCharacter = world.get_character("staff_bennett")
+	check_eq(actor.visual_error, "", "imported Naomi model loads without a development error")
+	check(not (actor.get_node("Body/Mesh") as MeshInstance3D).visible, "Naomi is not a grey capsule")
+	var broken: WardCharacter = load("res://scenes/props/Character.tscn").instantiate()
+	broken.character_id = "staff_voss"
+	broken.mark_visual_missing("model not found: res://assets/exports/characters/missing.glb")
+	world.add_child(broken)
+	var capsule: MeshInstance3D = broken.get_node("Body/Mesh")
+	check(capsule.visible, "the technical fallback stays solid and interactable")
+	check(capsule.material_override is StandardMaterial3D \
+			and (capsule.material_override as StandardMaterial3D).albedo_color == WardCharacter.MISSING_VISUAL_COLOR,
+			"fallback is coloured as a fault, not presented as a grey character")
+	check((broken.get_node("NameLabel") as Label3D).text.begins_with("DEV ERROR"), "name tag reports the development error")
+	check(broken.set_visual_scene(load(CampaignCastVisuals.load_data()["characters"]["staff_voss"]["scene"])),
+			"a later successful model attach clears the fault")
+	check_eq(broken.visual_error, "", "fault cleared")
+	check(not capsule.visible, "capsule hidden once the model attaches")
+	broken.free()
+
