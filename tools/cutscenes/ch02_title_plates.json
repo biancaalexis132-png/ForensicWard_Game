@@ -1,0 +1,44 @@
+{
+  "_note": "Plate list for the review-only ch2 title cutscene. Environment renders only (no character likeness). Regenerate with tools/cutscenes/paint_panels.py.",
+  "output_dir": "assets/cutscenes/ch02_title",
+  "size": [
+    1600,
+    900
+  ],
+  "seed": 2201,
+  "plates": [
+    {
+      "id": "p01_records",
+      "source": "assets/renders/stage2/records_archive.png",
+      "crop": null,
+      "depicts": "Records shelves: the files that will not reconcile",
+      "brush_radius": 5,
+      "brush_angle": 20,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    },
+    {
+      "id": "p02_lift_lobby",
+      "source": "assets/renders/stage4/lift_lobby.png",
+      "crop": null,
+      "depicts": "The restricted lift lobby doors",
+      "brush_radius": 5,
+      "brush_angle": 28,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    },
+    {
+      "id": "p03_corridor",
+      "source": "assets/renders/stage2/corridor_20m.png",
+      "crop": null,
+      "depicts": "The clinical corridor at shift change",
+      "brush_radius": 5,
+      "brush_angle": 36,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    }
+  ]
+}

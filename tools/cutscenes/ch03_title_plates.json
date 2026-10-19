@@ -1,0 +1,44 @@
+{
+  "_note": "Plate list for the review-only ch3 title cutscene. Environment renders only (no character likeness). Regenerate with tools/cutscenes/paint_panels.py.",
+  "output_dir": "assets/cutscenes/ch03_title",
+  "size": [
+    1600,
+    900
+  ],
+  "seed": 3301,
+  "plates": [
+    {
+      "id": "p01_stairwell",
+      "source": "assets/renders/stage5/historic_stairwell.png",
+      "crop": null,
+      "depicts": "The service stair down to the historic sublevel",
+      "brush_radius": 5,
+      "brush_angle": 20,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    },
+    {
+      "id": "p02_sealed_corridor",
+      "source": "assets/renders/stage5/historic_sealed_corridor.png",
+      "crop": null,
+      "depicts": "The sealed corridor's bricked end",
+      "brush_radius": 5,
+      "brush_angle": 28,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    },
+    {
+      "id": "p03_historic_corridor",
+      "source": "assets/renders/stage5/historic_corridor.png",
+      "crop": null,
+      "depicts": "The disused historic corridor",
+      "brush_radius": 5,
+      "brush_angle": 36,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    }
+  ]
+}

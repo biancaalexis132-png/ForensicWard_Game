@@ -38,6 +38,12 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Chapter 2-5 title cutscenes (review-only)
+
+- **Branch / verified runtime:** `claude/chapter-cutscenes` (main), `1b83671`.
+- **Delivered:** Owner said continue after campaign finish; next card option. Four review-only title cards (cs_ch02..05_title): 3 panels/20 s each, chapter title caption from campaign.json, no dialogue, environment plates painted by paint_panels.py (no character likeness; no early Ward Zero or loop reveal). approved false, manual_preview only; placement at chapter openings needs owner approval. Independent of PR #90.
+- **Executed:** Game tests on 1b83671: all passed (see PR). Full QA on the pre-rebase branch: 262/0, GLB 168/0. Mac check NOT completed (owner deferred). Mac not run.
+- **Next exact task:** Owner: look at the cards (--cutscene-preview=cs_ch0N_title) and decide approval/placement; Mac check later. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
 ### 2026-10-19 · Claude Code · Campaign finish
 
 - **Branch / verified runtime:** `claude/campaign-finish` (main), `3f50abe`.

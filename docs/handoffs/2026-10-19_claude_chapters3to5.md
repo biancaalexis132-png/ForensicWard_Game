@@ -56,6 +56,15 @@ Runtime `1fdaa90` on `claude/chapter5-mara`. data/story_chapter5.json, data/worl
 
 Tests: Full QA at 1fdaa90: all executed checks passed; game tests 260/0; GLB 168/0. Mac checks not run.
 
+## Chapter 2-5 title cutscenes (review-only)
+
+Runtime `1b83671` on `claude/chapter-cutscenes`. data/cutscenes/cs_ch0[2-5]_title.json, tools/cutscenes/ch0[2-5]_title_plates.json, assets/cutscenes/ch0[2-5]_title/, scripts/tests/test_cutscene.gd, docs/CUTSCENES.md
+
+Tests: Game tests on 1b83671: all passed (see PR). Full QA on the pre-rebase branch: 262/0, GLB 168/0. Mac check NOT completed (owner deferred).
+
+## Next exact task
+
+Owner: look at the cards (--cutscene-preview=cs_ch0N_title) and decide approval/placement; Mac check later.
 ## Campaign finish
 
 Runtime `3f50abe` on `claude/campaign-finish`. data/story_chapter5.json, scripts/content/ContentSchemas.gd, scripts/content/ContentValidator.gd, scripts/narrative/ChapterDirector.gd, scripts/tests/test_chapter5_finale.gd, scripts/tests/test_campaign.gd, docs/PROJECT_STATUS.md

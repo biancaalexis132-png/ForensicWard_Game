@@ -1,0 +1,44 @@
+{
+  "_note": "Plate list for the review-only ch5 title cutscene. Environment renders only (no character likeness). Regenerate with tools/cutscenes/paint_panels.py.",
+  "output_dir": "assets/cutscenes/ch05_title",
+  "size": [
+    1600,
+    900
+  ],
+  "seed": 5501,
+  "plates": [
+    {
+      "id": "p01_observation",
+      "source": "assets/renders/stage6/w0_observation.png",
+      "crop": null,
+      "depicts": "The observation room the team returns to",
+      "brush_radius": 5,
+      "brush_angle": 20,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    },
+    {
+      "id": "p02_nursing_station",
+      "source": "assets/renders/stage2/nursing_station.png",
+      "crop": null,
+      "depicts": "The nursing station where care continues",
+      "brush_radius": 5,
+      "brush_angle": 28,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    },
+    {
+      "id": "p03_corridor",
+      "source": "assets/renders/stage2/corridor_20m.png",
+      "crop": null,
+      "depicts": "The clinical corridor before rounds",
+      "brush_radius": 5,
+      "brush_angle": 36,
+      "warmth": 0.8,
+      "ink": 0.7,
+      "vignette": 0.4
+    }
+  ]
+}
