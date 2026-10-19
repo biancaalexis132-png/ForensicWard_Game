@@ -246,7 +246,7 @@ func _run(choice: String, flag: String) -> void:
 	check_eq(_director().get_chapter_flags("ch2"), flags, "originals cannot be edited")
 	_commit(RECORDS, choice)
 	check(_director().has_flag(flag), "handling recorded: " + flag)
-	check(_objective().is_empty(), "authored Chapter 2 objectives so far complete")
+	check_eq(_objective(), "obj_ch2_hours_report", "wrong-day file hands on to the closing beat")
 	check(not _director().has_completed("ch2"), "Chapter 2 not falsely completed")
 	check_eq(_canonical(PatientManager.to_save_data()), patients, "Mara's note and every clinical record unchanged")
 	check_eq(_canonical(EvidenceManager.to_save_data()), evidence, "no evidence or corroboration created")
@@ -260,7 +260,7 @@ func _run(choice: String, flag: String) -> void:
 	await runner.get_tree().process_frame
 	check_eq(_state(), saved, "post-choice roundtrip exact")
 	_use(RECORDS)
-	check("originals unchanged" in _body(), "worksheet is read-only afterwards")
+	check("clocks differ" in _body(), "worksheet moves on to the analyst's answer")
 	_close()
 
 
