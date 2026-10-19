@@ -379,7 +379,11 @@ const WORLD_FILE: Dictionary = {
 				"required": {"marker": _STRING, "kind": {"type": "enum", "values": ["staff", "patient"]},
 						"character_id": _ID},
 				## present_when: StoryLogic condition; the character is in the scene only while it holds.
-				"optional": {"seated": {"type": "bool"}, "zone": _ID, "present_when": _CONDITION},
+				"optional": {"seated": {"type": "bool"}, "zone": _ID, "present_when": _CONDITION,
+					"interaction_box": {"type": "object", "required": {
+						"center": {"type": "array", "items": {"type": "number"}, "min_items": 3},
+						"size": {"type": "array", "items": {"type": "number"}, "min_items": 3},
+					}}},
 			},
 		},
 	},
