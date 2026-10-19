@@ -26,9 +26,14 @@ def load(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-# Title cards the owner approved for chapter openings (2026-10-19). Any other
-# cutscene stays review-only until the owner approves it and it is added here.
-OWNER_APPROVED_CHAPTER_OPENINGS = {"cs_ch02_title", "cs_ch03_title", "cs_ch04_title", "cs_ch05_title"}
+# Cutscenes the owner approved for the campaign (2026-10-19), with their trigger:
+# title cards open Chapters 2-5, the static graphic-novel pages recap Chapters 1-5
+# when each is completed. Any other cutscene stays review-only until the owner
+# approves it and it is added here.
+OWNER_APPROVED_CAMPAIGN = {
+    **{f"cs_ch0{n}_title": "chapter_start" for n in (2, 3, 4, 5)},
+    **{f"cs_ch0{n}_static_gn": "chapter_complete" for n in (1, 2, 3, 4, 5)},
+}
 
 
 class CutsceneContractTests(unittest.TestCase):
@@ -54,10 +59,10 @@ class CutsceneContractTests(unittest.TestCase):
             data = load(path)
             with self.subTest(path=path.name):
                 self.assertEqual(path.stem, data["cutscene_id"])
-                if path.stem in OWNER_APPROVED_CHAPTER_OPENINGS:
+                if path.stem in OWNER_APPROVED_CAMPAIGN:
                     self.assertEqual(data["mode"], "campaign")
                     self.assertIs(data["approved"], True)
-                    self.assertEqual(data["trigger"], {"kind": "chapter_start"})
+                    self.assertEqual(data["trigger"], {"kind": OWNER_APPROVED_CAMPAIGN[path.stem]})
                     continue
                 self.assertEqual(data["mode"], "review_only")
                 self.assertIs(data["approved"], False, "only the owner approves a cutscene")
@@ -106,7 +111,7 @@ class CutsceneContractTests(unittest.TestCase):
                             self.assertTrue((ROOT / source).is_file(), source)
 
     def test_static_graphic_novel_covers_every_chapter(self):
-        # Owner-approved static art (2026-10-19): one review-only cutscene per chapter,
+        # Owner-approved static art (2026-10-19): one chapter recap per chapter,
         # every package panel in order, single unmodified layer, no dialogue.
         for number, chapter in enumerate(self.chapters, start=1):
             path = CUTSCENES / f"cs_ch{number:02d}_static_gn.json"

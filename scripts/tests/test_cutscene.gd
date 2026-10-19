@@ -68,20 +68,18 @@ func test_chapter_title_cards_are_approved_and_play() -> void:
 		check_eq(AudioDirector.get_music_context(), "", id + " restores the music")
 
 
-func test_static_graphic_novel_chapters_are_review_only_and_play() -> void:
+func test_static_graphic_novel_chapters_recap_each_chapter() -> void:
 	var loaded: Dictionary = CutsceneRegistry.load_all()
 	for chapter: int in [1, 2, 3, 4, 5]:
 		var id: String = "cs_ch0%d_static_gn" % chapter
 		var cutscene: Dictionary = (loaded["cutscenes"] as Dictionary).get(id, {})
-		if cutscene.is_empty() and not FileAccess.file_exists("res://data/cutscenes/%s.json" % id):
-			continue
 		check(not cutscene.is_empty(), "registered: " + id)
-		check_eq(cutscene.get("approved"), false, id + " placement is not approved yet")
-		check_eq((cutscene.get("trigger", {}) as Dictionary).get("kind"), "manual_preview", id + " only plays on request")
+		check_eq(cutscene.get("approved"), true, id + " art and placement are approved by the owner")
+		check_eq((cutscene.get("trigger", {}) as Dictionary).get("kind"), "chapter_complete", id + " plays when its chapter is completed")
+		check_eq(CutsceneRegistry.chapter_complete_cutscene("ch%d" % chapter), id, id + " is found for its chapter")
 		check_eq(cutscene.get("chapter_id"), "ch%d" % chapter, id + " belongs to its chapter")
-		check(not _director(false).play(id), id + " never plays outside review")
-		var director: CutsceneDirector = _director(true)
-		check(director.play(id), id + " plays in review mode")
+		var director: CutsceneDirector = _director(false)
+		check(director.play(id), id + " plays in the campaign")
 		var visited: Array[int] = [director.panel_index]
 		var elapsed: float = 0.0
 		while director.is_open and elapsed < 90.0:
@@ -331,9 +329,7 @@ func test_chapter_recap_plays_over_the_end_of_chapter_panel() -> void:
 	var recap: String = CutsceneRegistry.chapter_complete_cutscene("ch1")
 	chapter.set_flag(StoryLogic.CHAPTER_COMPLETE_FLAG)
 	EventBus.ui_panel_requested.emit(InfoPanel.PANEL_ID, {"title": "End of chapter", "body": "Summary"})
-	if recap.is_empty():
-		check(not director.is_open, "no recap plays for Chapter 1 while none is approved")
-		return
+	check_eq(recap, "cs_ch01_static_gn", "Chapter 1 has a recap")
 	check(director.is_open, "the Chapter 1 recap opens when the chapter is completed")
 	check_eq(director.cutscene_id, recap, "it is Chapter 1's recap")
 	check(info.is_open, "the end-of-chapter panel waits underneath")

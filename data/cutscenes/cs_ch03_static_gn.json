@@ -3,11 +3,11 @@
   "cutscene_id": "cs_ch03_static_gn",
   "chapter_id": "ch3",
   "source_scene_id": "CH03_FULL_CHAPTER",
-  "source": "Owner-approved Static Graphic-Novel Cutscenes Final v1 artwork (2026-10-19), panels copied unchanged into assets/cutscenes/static_gn_v1/. Static panels with transitions, music, captions from campaign.json and restrained push/pan only; no dialogue, no character animation. Review-only until the owner approves placement after testing; the chapter title cards stay as they are.",
-  "mode": "review_only",
-  "approved": false,
+  "source": "Owner-approved Static Graphic-Novel Cutscenes Final v1 artwork (2026-10-19), panels copied unchanged into assets/cutscenes/static_gn_v1/. Static panels with transitions, music, captions from campaign.json and restrained push/pan only; no dialogue, no character animation. Owner chose the placement on 2026-10-19: a recap when the chapter is completed, so every reveal has already played. The chapter title cards stay at chapter start.",
+  "mode": "campaign",
+  "approved": true,
   "trigger": {
-    "kind": "manual_preview"
+    "kind": "chapter_complete"
   },
   "fallback_action": "restore_world",
   "music": {
