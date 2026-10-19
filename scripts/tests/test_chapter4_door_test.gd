@@ -379,7 +379,7 @@ func _run(choice: String, flag: String) -> void:
 	check_eq(_director().get_chapter_flags("ch4"), flags, "notifications are not held")
 	_voss(choice)
 	check(_director().has_flag(flag), "proposal recorded: " + flag)
-	check(_objective().is_empty(), "authored Chapter 4 objectives so far complete")
+	check_eq(_objective(), "obj_ch4_loop_brief", "the controlled inspection follows the disagreement")
 	check_eq(_canonical(PatientManager.to_save_data()), patients, "no clinical change")
 	check_eq(_canonical(EvidenceManager.to_save_data()), evidence, "no evidence created")
 	check_eq(_canonical(SaveManager.capture_state().get("anomalies", {})), anomalies, "no anomaly recorded")

@@ -38,6 +38,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Chapter 4 Scenes 09-10
+
+- **Branch / verified runtime:** `claude/chapter4-loop` (claude/chapter4-door-test), `ec4d3d4`.
+- **Delivered:** Owner approved the bounded loop. Hale's controlled inspection (team pass, ops contact refused-shortcut) returns to the Ward Zero corridor; panel 17 logged on separate sheets at W0C_Radiator_0, seen again at W0C_ClockA; keep-walking refused; any of compare/stop/analyst sets observed_repetition_unverified and fires a new safe_return beat action (fades out through conn_w0_threshold only while in zone_ward_zero). Pass returned; Voss refuses overstated record; record filed unverified; closing choice completes ch4.
+- **Executed:** Full QA at ec4d3d4: all executed checks passed; game tests 255/0; GLB 161/0. Mac checks not run; Ward Zero Mac performance unmeasured. Mac not run.
+- **Next exact task:** Chapter 5: read CH05 screenplay, set ch4 next_chapter=ch5, make ch5 playable and build scenes. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
 ### 2026-10-19 · Claude Code · Chapter 4 Scenes 07-08
 
 - **Branch / verified runtime:** `claude/chapter4-door-test` (claude/chapter4-record), `daca017`.

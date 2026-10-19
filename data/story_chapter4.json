@@ -81,10 +81,100 @@
 					}
 				]
 			}
+		},
+		{
+			"id": "obj_ch4_loop_brief",
+			"text": "Hale is briefing a controlled inspection of the Ward Zero corridor. Find him at Interview Room A's door.",
+			"complete_when": {
+				"flag": "ch4_loop_protocol"
+			}
+		},
+		{
+			"id": "obj_ch4_loop_defect",
+			"text": "Go down with the team to the Ward Zero corridor and log the landmarks at the alcove.",
+			"complete_when": {
+				"flag": "ch4_defect_logged"
+			}
+		},
+		{
+			"id": "obj_ch4_loop_walk",
+			"text": "Walk the permitted corridor straight on to the junction marker with the team.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch4_loop_compared"
+					},
+					{
+						"flag": "ch4_loop_stop_declared"
+					},
+					{
+						"flag": "ch4_loop_analyst_requested"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch4_loop_return",
+			"text": "Return the team pass to Hale.",
+			"complete_when": {
+				"flag": "ch4_loop_returned"
+			}
+		},
+		{
+			"id": "obj_ch4_record",
+			"text": "Voss is writing the official record at the office desk.",
+			"complete_when": {
+				"flag": "ch4_record_filed"
+			}
+		},
+		{
+			"id": "obj_ch4_close",
+			"text": "Voss wants one last word on how the inquiry stays honest.",
+			"complete_when": {
+				"flag": "chapter_complete"
+			}
 		}
 	],
-	"beats": [],
+	"beats": [
+		{
+			"id": "beat_ch4_repetition_observed",
+			"when": {
+				"any": [
+					{
+						"flag": "ch4_loop_compared"
+					},
+					{
+						"flag": "ch4_loop_stop_declared"
+					},
+					{
+						"flag": "ch4_loop_analyst_requested"
+					}
+				]
+			},
+			"actions": [
+				{
+					"flag": "observed_repetition_unverified"
+				},
+				{
+					"notify": "Logged: observed repetition, unverified. Both survey sheets come from the same walk, not from independent instruments."
+				},
+				{
+					"safe_return": {
+						"connection": "conn_w0_threshold",
+						"from": "zone_ward_zero"
+					}
+				}
+			]
+		}
+	],
 	"staff_lines": [
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"flag": "ch4_loop_protocol"
+			},
+			"text": "Stop word is 'hold'. Anyone says it, everyone stops and we come out."
+		},
 		{
 			"staff_id": "staff_hale",
 			"when": {
@@ -389,6 +479,206 @@
 						"flag": "ch4_disagreement_dissent"
 					}
 				]
+			}
+		},
+		{
+			"id": "interaction_ch4_loop_brief",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: controlled inspection",
+			"body": "Hale: Controlled inspection, one corridor, one straight walk out and back. Stop-and-return protocol, signed escort roster, an operations contact on the radio upstairs, and a rescue fallback if we lose contact.\n\nTwo survey teams. Each keeps its own sheet and its own notes. Nobody copies from anybody.",
+			"when": {
+				"any": [
+					{
+						"flag": "ch4_disagreement_external"
+					},
+					{
+						"flag": "ch4_disagreement_briefing"
+					},
+					{
+						"flag": "ch4_disagreement_dissent"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "no_contact",
+					"label": "Suggest starting before the operations contact is on the radio",
+					"response": "Hale: No. Nobody goes below without someone upstairs who can call it off."
+				},
+				{
+					"id": "join",
+					"label": "Confirm the stop-and-return protocol and join the team",
+					"flag": "ch4_loop_protocol",
+					"grants_access": [
+						"access_ward_entry",
+						"access_maintenance",
+						"access_w0_threshold"
+					],
+					"response": "Team pass logged: ward entry, maintenance and the threshold, for this inspection only. Operations contact confirmed on the radio."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch4_loop_protocol"
+			}
+		},
+		{
+			"id": "interaction_ch4_loop_defect",
+			"interactable_id": "W0C_Radiator_0",
+			"title": "A numbered panel",
+			"body": "Beside the alcove, a damaged wall panel: a diagonal crack, and the number 17 stencilled in faded paint.\n\nEngineer: Both teams, your own sheets. Write down what you see, not what the other team says.",
+			"when": {
+				"flag": "ch4_loop_protocol"
+			},
+			"options": [
+				{
+					"id": "copy",
+					"label": "Copy one team's note onto the other sheet to save time",
+					"response": "Engineer: Separate sheets. Copying makes one observation look like two."
+				},
+				{
+					"id": "log",
+					"label": "Log the panel on each team's sheet separately",
+					"flag": "ch4_defect_logged",
+					"response": "Logged twice, independently written: panel 17, diagonal crack, beside the alcove. Time noted on both sheets."
+				}
+			],
+			"unavailable_body": "A corridor alcove. An old radiator under a damaged wall panel.",
+			"expires_when": {
+				"flag": "ch4_defect_logged"
+			}
+		},
+		{
+			"id": "interaction_ch4_loop_repeat",
+			"interactable_id": "W0C_ClockA",
+			"title": "The corridor that repeats",
+			"body": "The team walks on along the permitted corridor. Straight. No turns.\n\nAt the junction marker, a damaged wall panel: a diagonal crack, the number 17 in faded paint.\n\nEscort: That damaged panel. We already passed it.\n\nYou: Stop. Confirm our position and use the documented return procedure.\n\nHale (radio): Suspend the test. Preserve both raw observation streams. Begin safe return.",
+			"when": {
+				"flag": "ch4_defect_logged"
+			},
+			"options": [
+				{
+					"id": "keep_going",
+					"label": "Keep walking to see whether it happens again",
+					"response": "Hale (radio): No. The test is suspended. Everyone comes out now."
+				},
+				{
+					"id": "compare",
+					"label": "Compare the two teams' separately written sheets",
+					"flag": "ch4_loop_compared",
+					"response": "Both sheets list panel 17 twice, at two different points on one straight walk. Both still came from this one walk.\n\nThe team turns and walks out the way it came. The threshold is where it should be."
+				},
+				{
+					"id": "stop",
+					"label": "Declare the stop condition",
+					"flag": "ch4_loop_stop_declared",
+					"response": "You: Hold.\n\nEveryone stops. Hale logs the stop condition and the time.\n\nThe team turns and walks out the way it came. The threshold is where it should be."
+				},
+				{
+					"id": "analyst",
+					"label": "Request independent analyst review of both sheets",
+					"flag": "ch4_loop_analyst_requested",
+					"response": "Hale (radio): Request logged. Sheets sealed as they are.\n\nThe team turns and walks out the way it came. The threshold is where it should be."
+				}
+			],
+			"unavailable_body": "A wall clock, stopped. A faded junction marker on the opposite wall.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch4_loop_compared"
+					},
+					{
+						"flag": "ch4_loop_stop_declared"
+					},
+					{
+						"flag": "ch4_loop_analyst_requested"
+					}
+				]
+			},
+			"completed_body": "The junction marker. Panel 17 was logged here and at the alcove, on one straight walk. Recorded as observed repetition, unverified."
+		},
+		{
+			"id": "interaction_ch4_loop_return",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: everyone out",
+			"body": "Hale counts the team in: himself, the engineer, the escort, both survey teams, you. Everyone accounted for.\n\nHale: Test suspended. Both sheets go to the record as written.",
+			"when": {
+				"flag": "observed_repetition_unverified"
+			},
+			"options": [
+				{
+					"id": "keep_pass",
+					"label": "Ask to keep the team pass and repeat the walk",
+					"response": "Hale: No. One walk was authorized. Any repeat needs its own approval and its own instruments."
+				},
+				{
+					"id": "return",
+					"label": "Return the team pass and log everyone accounted for",
+					"flag": "ch4_loop_returned",
+					"revokes_access": [
+						"access_ward_entry",
+						"access_maintenance",
+						"access_w0_threshold"
+					],
+					"response": "Team pass returned. Ward entry, maintenance and threshold access withdrawn. Raw sheets preserved."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch4_loop_returned"
+			}
+		},
+		{
+			"id": "interaction_ch4_record",
+			"interactable_id": "character:staff_voss",
+			"title": "Dr Voss: the official record",
+			"body": "Voss has both survey sheets on the desk, unaltered.\n\nVoss: Whatever the final explanation, we won't make the discrepancy disappear by changing the wording.\n\nNone of this goes in a patient's chart.",
+			"when": {
+				"flag": "ch4_loop_returned"
+			},
+			"options": [
+				{
+					"id": "overstate",
+					"label": "Write that the corridor has been shown to loop",
+					"response": "Voss: Two sheets from one walk is an observed repetition. It isn't an independent result. The record says what we can show."
+				},
+				{
+					"id": "file",
+					"label": "Record it as observed repetition, unverified, with both raw sheets preserved",
+					"flag": "ch4_record_filed",
+					"response": "Voss: Filed. Observed repetition, unverified. Both sheets attached as written."
+				}
+			],
+			"unavailable_body": "Voss is busy.",
+			"expires_when": {
+				"flag": "ch4_record_filed"
+			}
+		},
+		{
+			"id": "interaction_ch4_close",
+			"interactable_id": "character:staff_voss",
+			"title": "Dr Voss: keeping it honest",
+			"body": "Hale: Area remains restricted. The original observations stay intact.\n\nVoss: Then the last question is how we keep oversight, inquiry and safety in the same room.",
+			"when": {
+				"flag": "ch4_record_filed"
+			},
+			"options": [
+				{
+					"id": "inquiry",
+					"label": "Ask for an independent inquiry with its own instruments",
+					"flag": "chapter_complete",
+					"response": "You: An outside inquiry, its own instruments, under Hale's restriction. And patients keep receiving their care without their histories becoming part of the building investigation.\n\nVoss: Agreed."
+				},
+				{
+					"id": "oversight",
+					"label": "Keep the restriction and the safety review as the governing control",
+					"flag": "chapter_complete",
+					"response": "You: The restriction governs until the safety review says otherwise. And patients keep receiving their care without their histories becoming part of the building investigation.\n\nVoss: Agreed."
+				}
+			],
+			"unavailable_body": "Voss is busy.",
+			"expires_when": {
+				"flag": "chapter_complete"
 			}
 		}
 	],

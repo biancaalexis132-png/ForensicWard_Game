@@ -38,6 +38,12 @@ Runtime `daca017` on `claude/chapter4-door-test`. data/story_chapter4.json, data
 
 Tests: Full QA at daca017: all executed checks passed; game tests 252 passed 0 failed; GLB 161/0. Mac checks not run.
 
+## Chapter 4 Scenes 09-10
+
+Runtime `ec4d3d4` on `claude/chapter4-loop`. data/story_chapter4.json, data/world_chapter4.json, scripts/narrative/ChapterDirector.gd, scripts/narrative/StoryLogic.gd, scripts/tests/test_chapter4_loop.gd, scripts/tests/test_chapter4_door_test.gd
+
+Tests: Full QA at ec4d3d4: all executed checks passed; game tests 255/0; GLB 161/0. Mac checks not run; Ward Zero Mac performance unmeasured.
+
 ## Next exact task
 
-Await owner answer on Ch4 Scene 09 corridor-loop card, then build Scenes 09-10; then Chapter 5.
+Chapter 5: read CH05 screenplay, set ch4 next_chapter=ch5, make ch5 playable and build scenes.
