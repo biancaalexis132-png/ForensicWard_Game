@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Static graphic-novel chapter recaps — 2026-10-19
+
+- `claude/static-graphic-novel-cutscenes` at `bac05fe` (draft PR to main). Owner-approved static art for Ch1-5 plays as chapter-close recaps (owner's choice); art byte-identical; title cards/pilot kept as rollback. Game tests 266/0, full QA steps passed (run by hand; runner import cap timed out on a cold cache). Previews in project files `static_gn_preview/`. Mac not run. Next: Bi reviews and merges; Mac check. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates. See `docs/handoffs/2026-10-19_claude_static_graphic_novel.md`.
+
 ## Claude Code Title cards play at chapter openings — 2026-10-19
 
 - `claude/chapter-cutscenes` at `#91`. Game tests 263 passed 0 failed; full QA runner: all executed checks passed. Mac check not completed (deferred by Bi). Mac not run. Next: Bi merges #91. Mac check stays with Bi. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.

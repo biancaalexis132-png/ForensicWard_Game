@@ -13,8 +13,9 @@ extends Node3D
 ##   "ehr"        EHRScreen (also opened with J)
 ##   "evidence"   EvidenceBoard (also opened with Tab)
 ##   "cutscene"   CutsceneDirector (graphic-novel cutscene: approved chapter title
-##                cards play when a chapter opens; others only with
-##                `-- --cutscene-preview=<cutscene_id>`)
+##                cards play when a chapter opens, approved chapter recaps when
+##                a chapter is completed (drawn over its end-of-chapter panel);
+##                others only with `-- --cutscene-preview=<cutscene_id>`)
 ## ChapterDirector (story), AnomalyLedger (anomaly evidence, flag off by
 ## default), AudioZoneTracker (ambience per room) and ZoneDirector (which
 ## zones are loaded, transitions) are children of Main, so they exist exactly
@@ -44,6 +45,7 @@ const TIME_PAUSE_REASON: String = "ui"
 func _ready() -> void:
 	EventBus.ui_panel_requested.connect(_on_ui_panel_requested)
 	EventBus.chapter_started.connect(_on_chapter_started)
+	EventBus.chapter_completed.connect(_on_chapter_completed)
 	EventBus.ui_panel_closed.connect(func(_panel_id: String) -> void: _update_input_mode())
 	_pause_menu.closed.connect(_update_input_mode)
 	_title.closed.connect(_update_input_mode)
@@ -225,3 +227,10 @@ func _on_chapter_started(chapter_id: String) -> void:
 	var opening: String = CutsceneRegistry.chapter_start_cutscene(chapter_id)
 	if not opening.is_empty():
 		EventBus.ui_panel_requested.emit(CutsceneDirector.PANEL_ID, {"cutscene_id": opening})
+
+
+## An approved recap opens over the end-of-chapter panel, which is still there when it ends.
+func _on_chapter_completed(chapter_id: String) -> void:
+	var recap: String = CutsceneRegistry.chapter_complete_cutscene(chapter_id)
+	if not recap.is_empty():
+		EventBus.ui_panel_requested.emit(CutsceneDirector.PANEL_ID, {"cutscene_id": recap})

@@ -99,3 +99,35 @@ Other reconciliations:
 ## Chapter 2-5 title cards (review-only)
 
 `cs_ch02_title` to `cs_ch05_title`: three panels each (20 s), opening on the chapter's title from `campaign.json`, with no dialogue and environment plates only (no character likeness). Plates come from `tools/cutscenes/ch0N_title_plates.json` via `paint_panels.py`. Chapter 3's card shows only the historic sublevel, and Chapter 4's shows the threshold room already seen in Chapter 3, so neither reveals Ward Zero or the corridor loop early. The owner approved the visuals and their placement on 2026-10-19, so they are `approved: true`, `mode` `campaign` and `trigger.kind` `chapter_start`: each plays when its chapter opens, and Esc skips it. The Chapter 1 pilot stays review-only.
+
+## Static graphic-novel chapter recaps (owner-approved art and placement)
+
+Bi approved the **Static Graphic-Novel Cutscenes Final v1** artwork for Chapters 1-5 on 2026-10-19 (project thread "Graphic-novel cutscenes"). The art is used as **static illustrated panels**: no character animation, no regeneration, repainting or restyling. Each chapter is one cutscene, `cs_ch0N_static_gn`, that shows the package's panels in the package's order. Bi chose the placement the same day: each one plays **when its chapter is completed** (`mode` `campaign`, `trigger.kind` `chapter_complete`, `approved: true`), drawn over the end-of-chapter panel, which is still there to continue from when the recap ends or is skipped. A recap only shows what the chapter has already played, so no reveal comes early. This is on the feature branch only; `main` gets it when the owner merges.
+
+| Cutscene | Panels | Length | Music | Captions |
+|---|---|---|---|---|
+| `cs_ch01_static_gn` | 7 | 40.5 s | `mus_waiting_room` | panel 2: `institution.name` |
+| `cs_ch02_static_gn` | 7 | 40.5 s | `mus_transition_unease` | none |
+| `cs_ch03_static_gn` | 7 | 40.5 s | `mus_narrative` | none |
+| `cs_ch04_static_gn` | 8 | 46.0 s | `mus_procedure` | none |
+| `cs_ch05_static_gn` | 7 | 40.5 s | `mus_compassion` | none |
+
+How to watch on its own (Mac): `/Applications/Godot.app/Contents/MacOS/Godot --path . -- --cutscene-preview=cs_ch01_static_gn` (in the game) or `... res://scenes/cutscene/CutscenePreview.tscn -- --cutscene=cs_ch01_static_gn` (review scene). Esc skips, Enter advances, R replays; Reduce Motion holds every panel still.
+
+How it is built:
+
+- `tools/cutscenes/import_static_graphic_novel.py <zip> --chapter N` copies the panels byte-identical from the owner's zip into `assets/cutscenes/static_gn_v1/ch0N/` and writes `manifest.json` with each file's SHA-256. `tests/qa/test_cutscenes.py` fails if a copy stops matching its hash. The package's full pages and the seven alternate Chapter 1 illustrations are **not** committed; they stay in the owner's zip.
+- One layer per panel and no glaze overlay, so nothing is painted over the art. Motion is restrained: zoom 1.00-1.03 with at most 0.6 % drift, alternating push in and pull out. First panel fades from black, the rest dissolve.
+- No `line_id`: dialogue stays in gameplay exactly as written, so no line is heard twice and no line from a later chapter can play. The soundtrack is unchanged; each cutscene uses an existing music context and ends it on exit. The reserved reveal cues are never used.
+- Captions come only from `data/campaign.json`. Every package panel 1 already has the chapter title painted in, so no title caption is added on top.
+
+Code: `CutsceneRegistry` accepts `chapter_complete` only on an approved campaign cutscene and finds it with `chapter_complete_cutscene()`; `Main._on_chapter_completed` opens it on `EventBus.chapter_completed`.
+
+Rollback: the existing cutscenes are untouched. `cs_ch02..05_title` still open Chapters 2-5 in the campaign, and the Chapter 1 pilot and every plate under `assets/cutscenes/ch0*` stay in place. To turn the recaps off without deleting anything, set a file back to `mode` `review_only`, `approved: false`, `trigger.kind` `manual_preview` (and drop it from `OWNER_APPROVED_CAMPAIGN` in `tests/qa/test_cutscenes.py`); reverting the branch's last code commit does this for all five. Deleting the five `cs_ch0N_static_gn.json` files and `assets/cutscenes/static_gn_v1/` removes the new work completely.
+
+Findings for the owner (the art itself is not changed):
+
+- **Reveal timing (why the recap placement).** Chapter 3's page opens on the Ward Zero sign, and its painted title reads "Chapter 3 — Ward Zero" while `campaign.json` says "Chapter 3: Beneath the Hospital". Chapter 4 panels 5 and 8 show the repeating clock corridor from Scene 09. Chapter 5 panel 6 shows three folders that stand for the three endings, and panel 7 a shared epilogue; there is no ending-specific art. Played at chapter start these would come before their scenes; as chapter-close recaps they come after.
+- Paperwork, names, dates and record numbers in the art (for example Mara's record cards in Chapter 2) are illustrative only and are not clinical or story data.
+- The art shows one fixed protagonist appearance and staff looks that differ from the 3D draft models.
+- Not seen on the Mac yet: Forward+ look, texture memory and frame time on the 8 GB M1 (only the current and next 1600x900 texture are held), audio mix.
