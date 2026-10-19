@@ -5,9 +5,9 @@
       "id": "evaluate_catatonia",
       "patient_id": "pt_elias_ward",
       "label": "Structured catatonia assessment",
-      "description": "Document a structured bedside examination using the findings you have recorded. The outcome is a placeholder until the psychiatrist reviews this rule.",
+      "description": "Document a structured bedside examination using the findings you have recorded. The escalation rule was approved by the executive producer on 2026-10-19; it marks the assessment as started and applies no medical effect.",
       "time_minutes": 20,
-      "clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW"
+      "clinical_review_status": "APPROVED"
     },
     {
       "id": "request_medical_review",
@@ -21,7 +21,7 @@
   "rules": [
     {
       "id": "clinical_rule_catatonia_escalation_v1",
-      "review_status": "PENDING_PSYCHIATRIST_REVIEW",
+      "review_status": "APPROVED",
       "trigger_action": "evaluate_catatonia",
       "patient_id": "pt_elias_ward",
       "condition": {

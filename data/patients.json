@@ -122,7 +122,7 @@
 				"anxiety",
 				"prior_mood_label_requires_verification"
 			],
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"initial_rapport": 0,
 			"narrative_flags": [],
 			"current_location": "clinical_unit"

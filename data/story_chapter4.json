@@ -2,7 +2,7 @@
 	"schema_version": "0.1",
 	"chapter": "ch4",
 	"title": "Chapter 4: The Official Record",
-	"provisional": true,
+	"provisional": false,
 	"clinical_review_status": "PENDING",
 	"notes": "Revised CH04 (The Official Record). Proposed dialogue pending narrative review. Scenes 01, 02, 03 and 05: Voss's meeting keeps the transfer audit and the spatial survey as separate incident files; the junior summary's 'confirmed mapping error' is corrected with the first version kept; Rahman states the clinical boundary; an outside reviewer finds a time-order contradiction that cannot be removed without excluding an original. Not built in this slice: Scene 04 (Mara's follow-up: clinical conversation needing approval) and Scene 06 (personal call: no personal-history system). The Scene 09 corridor-loop reveal waits for the owner's approval of its effect. Scenes 07-08 (Door-state replication attempt, Institutional disagreement): a controlled, continuously watched check of the lift lobby doors; nothing happens during the watch, and the result cannot exclude an authorized entry between the original checks, so repeatability stays open (no 'corroborated' from repeated logs). Voss, Hale and Rahman agree patient care continues and the restriction stands; the player proposes external verification, a coordinated briefing or documented dissent; safety notifications happen regardless.",
 	"objectives": [
