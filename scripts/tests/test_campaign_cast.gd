@@ -115,3 +115,30 @@ func test_preview_override_and_invalid_catalogue_recovery() -> void:
 	check_eq(CampaignCastVisuals.configure(unknown, "MARK_Missing"), Vector3.ZERO, "unknown cosmetics keep original marker")
 	check(unknown.visual_scene == null, "unknown cosmetic entry retains existing capsule fallback")
 	unknown.free()
+
+func test_player_can_focus_and_talk_to_naomi_inside_the_station() -> void:
+	var world: AuthoredWorld = await _boot()
+	var nurse: WardCharacter = world.get_character("staff_bennett")
+	var player: FirstPersonController = _main.get_node("Player")
+	# Accessible via the existing unlocked station door. The corridor's
+	# authored wall collision blocks rays through its glazed counter.
+	player.place(Vector3(-3.9, 0.05, nurse.global_position.z), -PI / 2.0, -0.07)
+	await wait_physics_frames(5)
+	var ray: RayCast3D = player.get_node("Head/Camera3D/InteractionRay")
+	ray.force_raycast_update()
+	if ray.get_collider() != nurse.get_node("Interactable"):
+		print("CAST_RAY_BLOCKED ", (ray.get_collider() as Node).get_path() if ray.get_collider() is Node else "no hit", " at ", ray.get_collision_point(), " camera ", (player.get_node("Head/Camera3D") as Camera3D).global_position)
+	check(ray.get_collider() == nurse.get_node("Interactable"), "real player ray reaches the relocated nurse from the station workspace")
+	var event: InputEventAction = InputEventAction.new()
+	event.action = "interact"
+	event.pressed = true
+	Input.parse_input_event(event)
+	Input.flush_buffered_events()
+	await runner.get_tree().process_frame
+	check(TrustManager.has_access("access_records_archive"), "normal interaction still grants authored access and allows Chapter 1 progression")
+	event = InputEventAction.new()
+	event.action = "interact"
+	event.pressed = false
+	Input.parse_input_event(event)
+	Input.flush_buffered_events()
+	await runner.get_tree().create_timer(0.01).timeout
