@@ -1,5 +1,6 @@
 # The Forensic Ward — narration approval package
 
+> Historical approval checkpoint. The owner has since approved narration. Current implementation, scripts, controls and media blockers are documented in `docs/NARRATED_CUTSCENES.md`.
 Review checkpoint, 19 October 2026. This is NOT the completed narrated game or a final release ZIP.
 
 ## Verified baseline and handoff corrections
