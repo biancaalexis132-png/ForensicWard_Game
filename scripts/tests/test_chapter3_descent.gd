@@ -320,7 +320,7 @@ func test_descent_and_first_entry() -> void:
 	for choice: String in ["Compare the current map", "Check the authorized signage", "Document the entrance", "Verify the return route"]:
 		_commit("W0T_EnamelPlate", choice)
 	check(_director().has_flag("ch3_entry_route_verified"), "entry actions recorded")
-	check(_objective() != "obj_ch3_entry", "entry objective complete")
+	check_eq(_objective(), "obj_ch3_alcove", "entry hands on to the alcove")
 	_unlocked_beyond_scope()
 	for group: String in ["w0_clock_offset", "w0_recorder_trace", "w0_teleprinter_log", "w0_door_mimic", "w0_cell_chair",
 			"w0_echo_wheelchair", "w0_displaced_sign"]:

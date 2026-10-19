@@ -1,7 +1,7 @@
 {
 	"schema_version": "0.1",
 	"world_id": "world_chapter3",
-	"notes": "Chapter 3 (Beneath the Hospital) opens in the staffed clinical wing. Scenes 01-02: Bennett hands over the inspection notice; Hale gives the security briefing at the psychiatrist's office desk. No Ward Zero entry yet in this slice; W0-B stays locked until the descent scene. Scenes 03-04: Hale's team pass (ward entry and maintenance access) opens the route through the security wing and the service hatch to the historic sublevel; Facilities clearance opens the sealed corridor's brick end (world state sealed_corridor_end) and the threshold connection into Ward Zero. Hale and the engineer accompany in the panels' text; there are no actor markers below ground.",
+	"notes": "Chapter 3 (Beneath the Hospital) opens in the staffed clinical wing. Scenes 01-02: Bennett hands over the inspection notice; Hale gives the security briefing at the psychiatrist's office desk. No Ward Zero entry yet in this slice; W0-B stays locked until the descent scene. Scenes 03-04: Hale's team pass (ward entry and maintenance access) opens the route through the security wing and the service hatch to the historic sublevel; Facilities clearance opens the sealed corridor's brick end (world state sealed_corridor_end) and the threshold connection into Ward Zero. Hale and the engineer accompany in the panels' text; there are no actor markers below ground. Scenes 05-08: the alcove and the route check are story points in the Ward Zero service corridor; the team pass is returned to Hale in the clinical wing.",
 	"start_zone": "zone_clinical_wing",
 	"spawn_marker": "MARK_PlayerSpawn",
 	"doors": {
@@ -77,6 +77,28 @@
 			"type": "story_terminal",
 			"title": "Observation room records",
 			"zone": "zone_ward_zero"
+		},
+		{
+			"node": "W0C_Radiator_0",
+			"type": "story_terminal",
+			"title": "Corridor alcove",
+			"zone": "zone_ward_zero"
+		},
+		{
+			"node": "W0C_ClockA",
+			"type": "story_terminal",
+			"title": "Junction marker and ceiling",
+			"zone": "zone_ward_zero"
+		},
+		{
+			"node": "OF_Document_TransferSummary",
+			"type": "story_terminal",
+			"title": "Office workstation"
+		},
+		{
+			"node": "AR_Document_WardRoster1968",
+			"type": "story_terminal",
+			"title": "Inspection measurement comparison"
 		}
 	],
 	"characters": [

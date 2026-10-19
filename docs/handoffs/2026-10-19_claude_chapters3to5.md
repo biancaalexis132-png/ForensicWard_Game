@@ -14,6 +14,24 @@ Runtime `2151b58662236e548d507a853eb1c400d42fd5fc` on `claude/chapter3-descent`.
 
 Tests: Full runner exit 0: game 241/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run; Ward Zero frame time on the 8 GB Mac is unmeasured.
 
+## Chapter 3 Scenes 05-08 alcove, route check and safe return
+
+Runtime `aee2b95bd353bf60b649e3485be5eadd497880f4` on `claude/chapter3-return`. The alcove's one-bay difference is recorded three possible ways without a cause. A familiar marker pauses the inspection; a loop is never claimed; the team holds together while control confirms one continuous route. Back in the office Hale counts the team in and takes back every scene pass.
+
+Tests: Full runner exit 0: game 244/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence.
+
+## Chapter 3 Scenes 09-14 debrief to closing photograph
+
+Runtime `095fef19331e8b72891d0027f2b7346274712b3c` on `claude/chapter3-report`. Debrief keeps statements separate and refuses the loop; Bennett returns the player to clinical work; the survey is requested without a repeat entry; two measurements stay unresolved with a protocol and the restriction; Voss keeps the originals; the photograph is logged with camera, lens and plan revision unverified (optional reflection line). Chapter 3 completes.
+
+Tests: Full runner exit 0: game 246/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence.
+
+## Chapter 4 Scenes 01-03 and 05 official record
+
+Runtime `e17fa49fb6b9665ac8f15d43990188620ba3a048` on `claude/chapter4-record`. Voss keeps two incident files; the draft summary's unproven 'confirmed mapping error' is corrected (geometry claims refused too) with the first version kept; Rahman's clinical boundary; both retained originals preserved with the checks performed. Rahman is placed with the generic character body until her model exists.
+
+Tests: Full runner exit 0: game 249/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence.
+
 ## Next exact task
 
-Chapter 3 Scenes 05-08: the alcove, route concern (no loop), account for the team, safe return (return the team pass in the clinical wing).
+Chapter 4 Scenes 07, 08 and 10 (door-state replication attempt, institutional disagreement, official record); Scene 09 per the owner's decision on the loop effect.

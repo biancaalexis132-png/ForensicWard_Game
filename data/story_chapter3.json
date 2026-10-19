@@ -4,7 +4,7 @@
 	"title": "Chapter 3: Beneath the Hospital",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Revised CH03 (Authorized Inspection and Verification). Owner-approved first-entry premise; new dialogue proposed and pending narrative review. Scenes 01-02: inspection notice and security briefing. Clinical coverage, audit summary and clinical scope are each completed before departure; no entry without coverage, approval and a life-safety assessment. The major corridor-loop reveal belongs to Chapter 4 Scene 09 and is not preempted. Scenes 03-04 (Descent, First actual entry into Ward Zero): the team goes down through the security wing's service hatch (the restricted lift's historic landing has no floor choice yet, so the screenplay's 'service elevator' is staged as the Facilities hatch and stair). Facilities clears the isolated circuit and opens the sealed corridor's end; inside the threshold the player compares maps, checks signage, documents the entrance and verifies the return route. Restricted patient records are not searched. Anomaly states stay at their ordinary defaults.",
+	"notes": "Revised CH03 (Authorized Inspection and Verification). Owner-approved first-entry premise; new dialogue proposed and pending narrative review. Scenes 01-02: inspection notice and security briefing. Clinical coverage, audit summary and clinical scope are each completed before departure; no entry without coverage, approval and a life-safety assessment. The major corridor-loop reveal belongs to Chapter 4 Scene 09 and is not preempted. Scenes 03-04 (Descent, First actual entry into Ward Zero): the team goes down through the security wing's service hatch (the restricted lift's historic landing has no floor choice yet, so the screenplay's 'service elevator' is staged as the Facilities hatch and stair). Facilities clears the isolated circuit and opens the sealed corridor's end; inside the threshold the player compares maps, checks signage, documents the entrance and verifies the return route. Restricted patient records are not searched. Anomaly states stay at their ordinary defaults. Scenes 05-08 (The alcove, Route concern, Account for the team, Safe return): an alcove sits one bay off one plan edition (renovation or drawing error, unresolved); a junction marker resembles one logged inbound, the team holds at the authorized point (inspection_paused_for_route_check) and confirms one physically continuous route; identical labels on two plan areas may explain the notes. No loop, no changed geometry, no teleportation. All three scene passes are returned to Hale; further access is suspended until Facilities signs off. The authored route check always succeeds, so no safe-abort branch is needed in this slice. Scenes 09-14 (Formal debrief, Back to patient care, Survey request, Inconsistent preliminary measurements, Inspection report, The unannotated photograph): observations keep separate provenance; 'physical loop' is refused; Bennett's handoff returns the player to clinical work (the optional Mara follow-up is not built: it would be new clinical content needing approval); Facilities' nonintrusive survey request with no repeat entry; two measurements differ under non-identical conditions and are marked unresolved; Voss's report keeps the original measurements; the closing notice preserves raw images, and a photograph's disagreement with one plan is logged with camera position, lens and plan revision unverified. Chapter 3 completes; Chapter 4 is not yet playable from this slice.",
 	"objectives": [
 		{
 			"id": "obj_ch3_notice",
@@ -70,6 +70,96 @@
 					}
 				]
 			}
+		},
+		{
+			"id": "obj_ch3_alcove",
+			"text": "The engineer has stopped at an alcove in the service corridor.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch3_alcove_plans_compared"
+					},
+					{
+						"flag": "ch3_alcove_survey_requested"
+					},
+					{
+						"flag": "ch3_alcove_discrepancy_preserved"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch3_route",
+			"text": "Heading back, something on the route looks familiar. Check it with the team.",
+			"complete_when": {
+				"flag": "ch3_route_paused"
+			}
+		},
+		{
+			"id": "obj_ch3_team",
+			"text": "Hold at the authorized point while Hale confirms the route with control.",
+			"complete_when": {
+				"flag": "ch3_ambiguity_recorded"
+			}
+		},
+		{
+			"id": "obj_ch3_return",
+			"text": "Return with the team the way you came, and report back to Hale at the psychiatrist's office.",
+			"complete_when": {
+				"flag": "ch3_returned"
+			}
+		},
+		{
+			"id": "obj_ch3_debrief",
+			"text": "Formal debrief with Hale: state what you saw.",
+			"complete_when": {
+				"flag": "ch3_debrief_done"
+			}
+		},
+		{
+			"id": "obj_ch3_care",
+			"text": "Back to the ward. Check in with Naomi at the nursing station.",
+			"complete_when": {
+				"flag": "ch3_back_to_care"
+			}
+		},
+		{
+			"id": "obj_ch3_survey",
+			"text": "Facilities has sent a survey proposal to the office workstation.",
+			"complete_when": {
+				"flag": "ch3_survey_requested"
+			}
+		},
+		{
+			"id": "obj_ch3_measurements",
+			"text": "The engineer's preliminary measurements are on the comparison worksheet in Records.",
+			"complete_when": {
+				"all": [
+					{
+						"flag": "ch3_measurement_unresolved"
+					},
+					{
+						"flag": "ch3_protocol_requested"
+					},
+					{
+						"flag": "ch3_restriction_maintained"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch3_report",
+			"text": "Take the inspection report to Dr Voss.",
+			"complete_when": {
+				"flag": "ch3_report_submitted"
+			}
+		},
+		{
+			"id": "obj_ch3_close",
+			"text": "A notice from Facilities is waiting at the office workstation.",
+			"complete_when": {
+				"flag": "chapter_complete"
+			}
 		}
 	],
 	"beats": [
@@ -89,6 +179,27 @@
 		}
 	],
 	"staff_lines": [
+		{
+			"staff_id": "staff_voss",
+			"when": {
+				"flag": "ch3_report_submitted"
+			},
+			"text": "The report says what it can. That's the point of it."
+		},
+		{
+			"staff_id": "staff_bennett",
+			"when": {
+				"flag": "ch3_back_to_care"
+			},
+			"text": "Your notifications are in the EHR. The survey can wait for a safe handoff."
+		},
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"flag": "ch3_returned"
+			},
+			"text": "Further access is suspended until Facilities signs off. That includes you, Doctor."
+		},
 		{
 			"staff_id": "staff_hale",
 			"when": {
@@ -410,6 +521,364 @@
 				}
 			],
 			"unavailable_body": "An old observation log."
+		},
+		{
+			"id": "interaction_ch3_alcove",
+			"interactable_id": "W0C_Radiator_0",
+			"title": "The alcove",
+			"body": "A shallow wall alcove beside a radiator. The engineer holds the historic plan against it.\n\nEngineer: This alcove should be one bay earlier, according to this drawing.\n\nYou: Could there have been a renovation?\n\nEngineer: Yes. Or the drawing is inaccurate. Let's annotate the reference points.",
+			"when": {
+				"all": [
+					{
+						"flag": "ch3_entry_maps_compared"
+					},
+					{
+						"flag": "ch3_entry_signage_checked"
+					},
+					{
+						"flag": "ch3_entry_condition_documented"
+					},
+					{
+						"flag": "ch3_entry_route_verified"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "moved",
+					"label": "Record that the alcove has moved",
+					"response": "Engineer: We don't know it moved. We know one drawing puts it a bay earlier. Pick a way to record that."
+				},
+				{
+					"id": "compare",
+					"label": "Compare it against the other plan editions",
+					"flag": "ch3_alcove_plans_compared",
+					"response": "Two later editions agree with what is built; the oldest puts it one bay earlier. Annotated with the reference points. Cause unknown."
+				},
+				{
+					"id": "survey",
+					"label": "Request a proper survey of this bay",
+					"flag": "ch3_alcove_survey_requested",
+					"response": "Engineer: I'll add it to the survey request with measured reference points. Until then it's a drawing discrepancy."
+				},
+				{
+					"id": "preserve",
+					"label": "Preserve the discrepancy without concluding a cause",
+					"flag": "ch3_alcove_discrepancy_preserved",
+					"response": "Logged as found: built position and one plan edition differ by one bay. Renovation and drawing error both remain possible."
+				}
+			],
+			"unavailable_body": "A shallow alcove beside a radiator.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch3_alcove_plans_compared"
+					},
+					{
+						"flag": "ch3_alcove_survey_requested"
+					},
+					{
+						"flag": "ch3_alcove_discrepancy_preserved"
+					}
+				]
+			},
+			"completed_body": "Alcove: one plan edition differs by one bay; recorded without a cause."
+		},
+		{
+			"id": "interaction_ch3_route",
+			"interactable_id": "W0C_ClockA",
+			"title": "A familiar marker",
+			"body": "Heading back, a faded junction marker looks like one you logged on the way in. The corridor is straight. The written route note is ambiguous.\n\nEngineer: I thought we'd already passed that damaged ceiling tile.",
+			"when": {
+				"any": [
+					{
+						"flag": "ch3_alcove_plans_compared"
+					},
+					{
+						"flag": "ch3_alcove_survey_requested"
+					},
+					{
+						"flag": "ch3_alcove_discrepancy_preserved"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "loop",
+					"label": "\"We've come round in a loop.\"",
+					"response": "Hale: Nobody's saying that. The corridor is straight. We stop and confirm the route before anyone draws a conclusion."
+				},
+				{
+					"id": "same_tile",
+					"label": "\"Is it the same tile, or another one with similar damage?\"",
+					"flag": "ch3_route_paused",
+					"response": "Hale: We're not moving until we confirm the route. Stay together.\n\nThe team holds at the authorized point. Inspection paused for a route check."
+				}
+			],
+			"unavailable_body": "A wall clock, stopped. A faded marker on the opposite wall.",
+			"expires_when": {
+				"flag": "ch3_route_paused"
+			}
+		},
+		{
+			"id": "interaction_ch3_team",
+			"interactable_id": "W0C_ClockA",
+			"title": "Holding point",
+			"body": "Hale: Dispatch, confirm the last authorized door event and our safe return route.\n\nDispatch: Receiving. Stand by while Facilities checks the access plan.\n\nEngineer: Two areas on these plans use identical labels. That could explain our notes.",
+			"when": {
+				"flag": "ch3_route_paused"
+			},
+			"options": [
+				{
+					"id": "split",
+					"label": "Suggest splitting up to check both labels faster",
+					"response": "Hale: We stay together. That's not negotiable down here."
+				},
+				{
+					"id": "record",
+					"label": "\"Then we should record the ambiguity exactly as it occurred.\"",
+					"flag": "ch3_ambiguity_recorded",
+					"response": "Recorded as it occurred: one marker resembles an inbound marker; two plan areas share a label; the route note is ambiguous.\n\nDispatch: Route confirmed. Last authorized door event is your threshold entry. Return the way you came.\n\nOne approved, physically continuous route back."
+				}
+			],
+			"unavailable_body": "A wall clock, stopped.",
+			"expires_when": {
+				"flag": "ch3_ambiguity_recorded"
+			},
+			"completed_body": "Route check: ambiguity recorded as it occurred; one continuous return route confirmed with control."
+		},
+		{
+			"id": "interaction_ch3_return",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: back in the office",
+			"body": "Hale counts the team in: himself, the engineer, the escort, you. Everyone accounted for.\n\nHale: Initial inspection is over. Further access is suspended until Facilities signs off.\n\nEngineer: I want the original notes and photographs preserved. There's a discrepancy we should survey properly.",
+			"when": {
+				"flag": "ch3_ambiguity_recorded"
+			},
+			"options": [
+				{
+					"id": "keep_pass",
+					"label": "Ask to keep the team pass for a quick second look",
+					"response": "Hale: No. Access is suspended. Any further entry gets its own approval."
+				},
+				{
+					"id": "return",
+					"label": "Return the team pass and log the team accounted for",
+					"flag": "ch3_returned",
+					"revokes_access": [
+						"access_ward_entry",
+						"access_maintenance",
+						"access_w0_threshold"
+					],
+					"response": "Team pass returned. Ward entry, maintenance and threshold access withdrawn. Original notes and photographs to be preserved for the debrief."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch3_returned"
+			}
+		},
+		{
+			"id": "interaction_ch3_debrief",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: formal debrief",
+			"body": "Hale, Facilities and you document separately. Memory, map editions, photographs and access records each keep their own provenance.\n\nHale: State what you saw, not what you think it means.\n\nEngineer: Similar landmarks, uncertain plan revision and one location note that doesn't reconcile yet.",
+			"when": {
+				"flag": "ch3_returned"
+			},
+			"options": [
+				{
+					"id": "loop",
+					"label": "Record that the corridor repeated",
+					"response": "Hale: Did you see it repeat, or did you see a marker that looked like another one? Write what you saw."
+				},
+				{
+					"id": "merge",
+					"label": "Merge everyone's notes into one account",
+					"response": "Hale: Separate statements. If they agree, that matters only because they were taken separately."
+				},
+				{
+					"id": "no_loop",
+					"label": "\"We shouldn't call that a physical loop.\"",
+					"flag": "ch3_debrief_done",
+					"response": "Hale: Correct.\n\nDebrief recorded: similar landmarks, an uncertain plan revision, one unreconciled location note, two plan areas with the same label. Each statement under its own name."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch3_debrief_done"
+			}
+		},
+		{
+			"id": "interaction_ch3_care",
+			"interactable_id": "character:staff_bennett",
+			"title": "Naomi Bennett: back on the ward",
+			"body": "Bennett is in the middle of clinical documentation.\n\nBennett: Well, you came back. Your EHR notifications didn't miss you.",
+			"when": {
+				"flag": "ch3_debrief_done"
+			},
+			"options": [
+				{
+					"id": "tell_all",
+					"label": "Tell her everything about the corridor",
+					"response": "Bennett: Later. Your patients first; the corridor isn't going anywhere."
+				},
+				{
+					"id": "questions",
+					"label": "\"The survey raised more questions.\"",
+					"flag": "ch3_back_to_care",
+					"response": "Bennett: Those can wait long enough for a safe handoff.\n\nClinical work resumes. The inspection stays with Security and Facilities."
+				}
+			],
+			"unavailable_body": "Bennett is busy.",
+			"expires_when": {
+				"flag": "ch3_back_to_care"
+			}
+		},
+		{
+			"id": "interaction_ch3_survey",
+			"interactable_id": "OF_Document_TransferSummary",
+			"title": "Facilities survey proposal",
+			"body": "Facilities proposes a controlled, nonintrusive comparison of room identifiers, floor plans, reference points and instruments, contingent on safety authorization.\n\nEngineer (note): We need independent measurements, not another set of assumptions.\n\nHale (note): No repeat entry until the inspection route is cleared.",
+			"when": {
+				"flag": "ch3_back_to_care"
+			},
+			"options": [
+				{
+					"id": "repeat",
+					"label": "Ask to join a repeat entry this week",
+					"response": "Hale's reply: No repeat entry until the route is cleared. The survey comes first."
+				},
+				{
+					"id": "criteria",
+					"label": "Reply: \"What would count as a reliable contradiction?\"",
+					"flag": "ch3_survey_requested",
+					"response": "Engineer: Two properly logged observations that cannot be reconciled by reference points, clocks or instruments. We're not there.\n\nSurvey request supported; repeat entry remains suspended."
+				}
+			],
+			"unavailable_body": "The records workstation.",
+			"expires_when": {
+				"flag": "ch3_survey_requested"
+			},
+			"completed_body": "Survey request: nonintrusive comparison pending safety authorization. Repeat entry suspended."
+		},
+		{
+			"id": "interaction_ch3_measurements",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "Preliminary measurements",
+			"body": "Two preliminary measurements of the same corridor section differ. They were taken with different instruments, from different reference points, at different times. Neither their reference-frame equivalence nor their independence is established.\n\nEngineer: These measurements don't match, but they weren't taken under identical conditions.\n\nYou: So we have a reason for a more controlled review, not a conclusion.\n\nEngineer: Exactly.",
+			"when": {
+				"flag": "ch3_survey_requested"
+			},
+			"options": [
+				{
+					"id": "longer",
+					"label": "Record that the corridor is longer than it was built",
+					"response": "No physically impossible dimension is confirmed. Two measurements under different conditions disagree; that is all."
+				},
+				{
+					"id": "unresolved",
+					"label": "Mark the difference as an unresolved measurement",
+					"flag": "ch3_measurement_unresolved",
+					"response": "Marked unresolved_measurement: values, instruments, reference points and times kept as taken."
+				},
+				{
+					"id": "protocol",
+					"label": "Request a controlled measurement protocol",
+					"flag": "ch3_protocol_requested",
+					"response": "Protocol requested: same reference points, calibrated instruments, logged clocks, two independent teams."
+				},
+				{
+					"id": "restricted",
+					"label": "Confirm the area stays restricted meanwhile",
+					"flag": "ch3_restriction_maintained",
+					"response": "Restricted status maintained. No entry until the protocol and safety authorization are in place."
+				}
+			],
+			"unavailable_body": "The comparison worksheet.",
+			"expires_when": {
+				"all": [
+					{
+						"flag": "ch3_measurement_unresolved"
+					},
+					{
+						"flag": "ch3_protocol_requested"
+					},
+					{
+						"flag": "ch3_restriction_maintained"
+					}
+				]
+			},
+			"completed_body": "Measurements: unresolved; protocol requested; area restricted."
+		},
+		{
+			"id": "interaction_ch3_report",
+			"interactable_id": "character:staff_voss",
+			"title": "Dr Voss: inspection report",
+			"body": "Voss reads the source notes before the summary.\n\nVoss: Do not change the original measurements to make the summary read cleanly. Also don't present an unexplained difference as a discovered physical law.\n\nHale: Until we establish safety, access remains restricted.",
+			"when": {
+				"all": [
+					{
+						"flag": "ch3_measurement_unresolved"
+					},
+					{
+						"flag": "ch3_protocol_requested"
+					},
+					{
+						"flag": "ch3_restriction_maintained"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "tidy",
+					"label": "Average the two measurements for the summary",
+					"response": "Voss: No. The originals stand as taken. An average of two incomparable numbers is a third number nobody measured."
+				},
+				{
+					"id": "submit",
+					"label": "Submit the report with the original measurements and the difference unexplained",
+					"flag": "ch3_report_submitted",
+					"response": "Voss: Good. I'll authorize an independent engineering assessment if it can be done safely.\n\nReport submitted. Access remains restricted."
+				}
+			],
+			"unavailable_body": "Voss is busy.",
+			"expires_when": {
+				"flag": "ch3_report_submitted"
+			}
+		},
+		{
+			"id": "interaction_ch3_close",
+			"interactable_id": "OF_Document_TransferSummary",
+			"title": "Notice from Facilities",
+			"body": "End of shift. A notice: Facilities has preserved the raw inspection images for authorized review.\n\nOne corridor photograph seems to disagree with one edition of the plan. Its camera position, lens and the plan revision are unverified.",
+			"when": {
+				"flag": "ch3_report_submitted"
+			},
+			"options": [
+				{
+					"id": "evidence",
+					"label": "Forward the photograph as proof the plan is wrong",
+					"response": "Camera position, lens and plan revision are unverified. It goes to the authorized review as it is, not as proof."
+				},
+				{
+					"id": "log",
+					"label": "Log the photograph for authorized review, with its unknowns",
+					"flag": "chapter_complete",
+					"response": "Logged for authorized review: camera position, lens and plan revision unverified.\n\n[b]End of Chapter 3: Beneath the Hospital[/b]\nOn record: plan-edition differences, an alcove one bay off one drawing, an ambiguous route note, unresolved measurements and an unannotated photograph. No loop, no changed geometry. Access restricted pending survey."
+				},
+				{
+					"id": "reflect",
+					"label": "Look at the photograph again before logging it",
+					"flag": "chapter_complete",
+					"response": "You: We knew the drawings might be wrong. That didn't explain why I kept wanting to look again.\n\nLogged for authorized review: camera position, lens and plan revision unverified.\n\n[b]End of Chapter 3: Beneath the Hospital[/b]\nOn record: plan-edition differences, an alcove one bay off one drawing, an ambiguous route note, unresolved measurements and an unannotated photograph. No loop, no changed geometry. Access restricted pending survey."
+				}
+			],
+			"unavailable_body": "The records workstation.",
+			"expires_when": {
+				"flag": "chapter_complete"
+			},
+			"completed_body": "Photograph logged for authorized review with its unknowns."
 		}
 	],
 	"sign_out": {
@@ -420,5 +889,6 @@
 		"documented_trust": [],
 		"undocumented_trust": [],
 		"undocumented_message": "Outstanding clinical review still requires an appropriate handoff."
-	}
+	},
+	"next_chapter": "ch4"
 }

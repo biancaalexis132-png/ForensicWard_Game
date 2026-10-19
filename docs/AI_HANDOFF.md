@@ -37,6 +37,27 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Chapter 4 Scenes 01-03 and 05 official record
+
+- **Branch / verified runtime:** `claude/chapter4-record` (stacked on claude/chapter3-report / PR #82), `e17fa49fb6b9665ac8f15d43990188620ba3a048`.
+- **Delivered:** Chapter 4 marked playable; story_chapter3 next_chapter ch4. New staff_rahman (Dr Leila Rahman, Consultant Psychiatrist, owner-confirmed role 2026-10-18) at the office desk; Hale at Interview Room A's door. Voss meeting (combined case refused; transparent / restrictions / outside expertise), summary correction at the office workstation (mapping error and anomalous geometry refused; contradiction with cause unresolved, first version kept), Rahman boundary (linking distress to the building refused), outside review at Records (excluding an original refused). Not built: Scene 04 Mara follow-up (clinical conversation needs approval), Scene 06 personal call (no system). Scene 09 waits on the owner's decision card. test_campaign expects ch4 playable (ch5 planned; fixture moved to ch5). New test_chapter4_record.gd.
+- **Executed:** Full runner exit 0: game 249/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run.
+- **Next exact task:** Chapter 4 Scenes 07, 08 and 10 (door-state replication attempt, institutional disagreement, official record); Scene 09 per the owner's decision on the loop effect. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
+### 2026-10-19 · Claude Code · Chapter 3 Scenes 09-14 debrief to closing photograph
+
+- **Branch / verified runtime:** `claude/chapter3-report` (stacked on claude/chapter3-return / PR #81), `095fef19331e8b72891d0027f2b7346274712b3c`.
+- **Delivered:** Data only. Hale debrief (repeat-corridor and merged-account refused; 'We shouldn't call that a physical loop.'), Bennett back-to-care, Facilities survey proposal at the office workstation (repeat entry refused), measurements at the Records worksheet (unresolved, protocol, restriction all required; 'longer than built' refused), Voss report (averaging refused), closing notice (photograph as proof refused; log, or the optional reflection line, completes Chapter 3). Chapter 4 not playable yet, so no continuation. Not built: optional Mara follow-up in Scene 10 (new clinical content needs approval). New test_chapter3_report.gd.
+- **Executed:** Full runner exit 0: game 246/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run.
+- **Next exact task:** Chapter 4 (The Official Record): read CH04_OFFICIAL_RECORD_v2.md; Scene 09 major corridor-loop reveal needs explicit owner approval of the effect and F2 safety tests before it is built. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
+### 2026-10-19 · Claude Code · Chapter 3 Scenes 05-08 alcove, route check and safe return
+
+- **Branch / verified runtime:** `claude/chapter3-return` (stacked on claude/chapter3-descent / PR #80), `aee2b95bd353bf60b649e3485be5eadd497880f4`.
+- **Delivered:** Data only. Alcove at W0C_Radiator_0 (compare plans / request survey / preserve discrepancy; 'the alcove has moved' feedback-only). Route concern and holding point at W0C_ClockA ('we've come round in a loop' and splitting up refused; flags ch3_route_paused = inspection_paused_for_route_check, ch3_ambiguity_recorded). Safe return through the threshold, stair and ward entry; Hale's 'return the team pass' revokes ward entry, maintenance and threshold access in the clinical wing. No safe-abort branch: the authored route check always succeeds. New test_chapter3_return.gd; descent test final objective updated.
+- **Executed:** Full runner exit 0: game 244/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run.
+- **Next exact task:** Chapter 3 Scenes 09-14: debrief, back to patient care, survey request, inconsistent measurements, inspection report, closing photograph; Chapter 3 completes. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
 ### 2026-10-19 · Claude Code · Chapter 3 Scenes 03-04 descent and first Ward Zero entry
 
 - **Branch / verified runtime:** `claude/chapter3-descent` (stacked on claude/chapter3-briefing / PR #79), `2151b58662236e548d507a853eb1c400d42fd5fc`.
