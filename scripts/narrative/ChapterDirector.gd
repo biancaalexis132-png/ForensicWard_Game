@@ -265,6 +265,16 @@ func _run_action(action: Dictionary, beat_id: String) -> void:
 		"start_chapter":
 			# Deferred: the current chapter finishes this evaluation first.
 			start_chapter.call_deferred(value)
+		"safe_return":
+			_safe_return.call_deferred(value["connection"], value["from"])
+
+
+## Moves the player out through a connection, but only from the named zone, so
+## a replayed beat can never send anyone the other way.
+func _safe_return(connection_id: String, from_zone: String) -> void:
+	var zones: ZoneDirector = get_tree().get_first_node_in_group(ZoneDirector.GROUP) if is_inside_tree() else null
+	if zones != null and zones.current_zone_id == from_zone:
+		zones.use_connection(connection_id, from_zone)
 
 
 func _update_objective() -> void:
