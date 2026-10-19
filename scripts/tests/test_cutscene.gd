@@ -39,24 +39,26 @@ func test_pilot_is_valid_and_review_only() -> void:
 	check_eq(pilot.get("approved"), false, "the pilot is not approved")
 	check_eq(pilot.get("mode"), "review_only", "the pilot is review-only")
 	check_eq((pilot.get("trigger", {}) as Dictionary).get("kind"), "manual_preview", "only a manual preview starts it")
+	check_eq(CutsceneRegistry.chapter_start_cutscene("ch1"), "", "nothing plays when Chapter 1 opens")
 	check_eq((pilot.get("panels", []) as Array).size(), 7, "seven panels")
 	check_eq(CutsceneRegistry.total_duration(pilot), 52.0, "about 52 seconds")
 
 
-func test_chapter_title_cards_are_review_only_and_play() -> void:
+func test_chapter_title_cards_are_approved_and_play() -> void:
 	var loaded: Dictionary = CutsceneRegistry.load_all()
 	for chapter: int in [2, 3, 4, 5]:
 		var id: String = "cs_ch0%d_title" % chapter
 		var card: Dictionary = (loaded["cutscenes"] as Dictionary).get(id, {})
 		check(not card.is_empty(), "registered: " + id)
-		check_eq(card.get("approved"), false, id + " is not approved")
-		check_eq((card.get("trigger", {}) as Dictionary).get("kind"), "manual_preview", id + " starts only by preview")
+		check_eq(card.get("approved"), true, id + " is approved by the owner")
+		check_eq((card.get("trigger", {}) as Dictionary).get("kind"), "chapter_start", id + " opens its chapter")
+		check_eq(CutsceneRegistry.chapter_start_cutscene("ch%d" % chapter), id, id + " is found for its chapter")
 		check_eq(card.get("chapter_id"), "ch%d" % chapter, id + " belongs to its chapter")
 		check_eq(card["panels"][0]["caption_ref"], "chapter.ch%d.title" % chapter, id + " opens on its chapter title")
 		for panel: Dictionary in card["panels"]:
 			check(panel["line_id"] == null, id + " has no dialogue")
-		var director: CutsceneDirector = _director(true)
-		check(director.play(id), id + " plays in review mode")
+		var director: CutsceneDirector = _director(false)
+		check(director.play(id), id + " plays outside review mode")
 		var elapsed: float = 0.0
 		while director.is_open and elapsed < 30.0:
 			director.advance(STEP)
@@ -85,7 +87,11 @@ func test_validation_rejects_invented_or_unsafe_content() -> void:
 		"caption_ref 'ward_zero.name' does not name approved campaign text": func(d: Dictionary) -> void: d["panels"][0]["caption_ref"] = "ward_zero.name",
 		"missing texture res://assets/cutscenes/ch01_pilot/nope.png": func(d: Dictionary) -> void: d["panels"][0]["layers"][0]["texture"] = "res://assets/cutscenes/ch01_pilot/nope.png",
 		"trigger.kind must be one of": func(d: Dictionary) -> void: d["trigger"] = {"kind": "story_beat", "beat_id": "ch1_start"},
-		"mode must be one of": func(d: Dictionary) -> void: d["mode"] = "campaign",
+		"mode must be one of": func(d: Dictionary) -> void: d["mode"] = "cinematic",
+		"mode campaign goes with trigger chapter_start": func(d: Dictionary) -> void: d["mode"] = "campaign",
+		"a campaign cutscene must be approved by the owner": func(d: Dictionary) -> void:
+			d["mode"] = "campaign"
+			d["trigger"] = {"kind": "chapter_start"},
 		"duration_seconds must be positive": func(d: Dictionary) -> void: d["panels"][1]["duration_seconds"] = 0,
 		"motion.pan_to must stay within": func(d: Dictionary) -> void: d["panels"][2]["motion"]["pan_to"] = [0.3, 0.0],
 		"layers must hold 1 to 3 entries": func(d: Dictionary) -> void: d["panels"][3]["layers"] = [],
@@ -270,6 +276,21 @@ func test_cutscene_writes_no_game_state() -> void:
 	check(player.input_enabled, "player input is restored")
 	check(not TimeManager.is_paused(), "the clock runs again")
 	check_eq(SaveManager.capture_state(), before, "story, clinical and save state are unchanged")
+
+
+func test_title_card_plays_when_a_chapter_opens() -> void:
+	var main: Node = await _main()
+	var director: CutsceneDirector = main.get_node("CutsceneDirector")
+	var chapter: ChapterDirector = main.get_node("ChapterDirector")
+	check(not director.is_open, "no card while Chapter 1 runs")
+	check(chapter.start_chapter("ch2"), "Chapter 2 starts")
+	check(director.is_open, "the Chapter 2 title card opens")
+	check_eq(director.cutscene_id, "cs_ch02_title", "it is Chapter 2's card")
+	var player: FirstPersonController = main.get_node("Player")
+	check(not player.input_enabled, "the player waits for the card")
+	director.skip()
+	check(not director.is_open, "skipping ends the card")
+	check(player.input_enabled, "player input is restored after the card")
 
 
 # --- Helpers --------------------------------------------------------------------------------
