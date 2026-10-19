@@ -357,7 +357,7 @@ func _close_chapter(choice: String) -> void:
 	_unchanged(flags, "photograph is not proof")
 	_commit(OFFICE, choice)
 	check(_director().has_completed("ch3"), "Chapter 3 complete")
-	check_eq(_director().get_chapter_id(), "ch3", "Chapter 4 is not started yet")
+	check_eq(_director().get_chapter_id(), "ch3", "Chapter 4 waits for the player's continue")
 	check_eq(_canonical(PatientManager.to_save_data()), patients, "no clinical change")
 	check_eq(_canonical(EvidenceManager.to_save_data()), evidence, "no evidence created")
 	check_eq(_canonical(SaveManager.capture_state().get("anomalies", {})), anomalies, "no anomaly recorded")
