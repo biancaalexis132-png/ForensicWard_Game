@@ -1,0 +1,171 @@
+{
+  "character": {
+    "name": "Mara Ellis",
+    "character_id": "pt_mara_ellis",
+    "file_stem": "Mara_Ellis",
+    "prefix": "Mara_",
+    "role": "Patient",
+    "asset_version": "v01",
+    "height_m": 1.62,
+    "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+    "canon_basis": "docs/design/CHARACTER_VISUAL_CANON.md: woman, around 37, introduced in Chapter 2 (decided); simple top, cardigan, soft trousers, slip-ons, low ponytail (provisional proposal); dossier still needs reconciling",
+    "draft_choices": [
+      "Ethnicity, skin tone, face and height are draft choices; canon leaves them open.",
+      "Seated rest pose for the interview chair; only the shared neutral clips."
+    ]
+  },
+  "source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "body": "Naomi_Bennett_Body",
+    "rig": "Naomi_Bennett_Rig"
+  },
+  "macro": {
+    "age_years": 37,
+    "ethnicity": {
+      "caucasian": 0.8,
+      "asian": 0.2
+    },
+    "min_muscle": 0.12,
+    "max_weight": 0.03
+  },
+  "pose": {
+    "upperarm_down_degrees": 64.0,
+    "upperarm_forward_degrees": 6.0,
+    "elbow_bend_degrees": 14.0
+  },
+  "seated": {
+    "thigh_drop_deg": 6.0,
+    "knee_spread": 0.05,
+    "shin_back_deg": 4.0
+  },
+  "skin": {
+    "base_srgb_hex": "#C3927A",
+    "shadow_srgb_hex": "#9E705A",
+    "warm_srgb_hex": "#C98A76",
+    "lip_srgb_hex": "#A0645C",
+    "brow_srgb_hex": "#4A3528",
+    "nail_srgb_hex": "#D8B6A6",
+    "texture_size": 2048,
+    "roughness": 0.56,
+    "lid_shadow": 0.22,
+    "cheek_warmth": 0.22,
+    "brow_strength": 0.8,
+    "lip_strength": 0.5
+  },
+  "eyes": {
+    "sclera_srgb_hex": "#E3DACE",
+    "iris_srgb_hex": "#5A4A30",
+    "limbal_srgb_hex": "#1E1610",
+    "helper_radius_scale": 0.93
+  },
+  "face": {
+    "lash_srgb_hex": "#2A1E16",
+    "brow_srgb_hex": "#4A3528",
+    "brows": {
+      "fill": 0.42
+    }
+  },
+  "hair": {
+    "style": "ponytail",
+    "srgb_hex": "#5A4030",
+    "grey_fraction": 0.0,
+    "front_z_m": 0.04,
+    "temple_deg": 22,
+    "drop_deg": 125,
+    "nape_z_m": -0.068,
+    "ear_top_z_m": 0.005,
+    "volume_top_m": 0.006,
+    "volume_side_m": 0.003,
+    "hairline_taper_m": 0.025,
+    "tie_direction": [
+      0.0,
+      1.0,
+      -0.5
+    ],
+    "tail_length_m": 0.17,
+    "tail_radius_m": [
+      0.018,
+      0.008
+    ]
+  },
+  "garments": [
+    {
+      "kind": "top",
+      "name": "Top",
+      "srgb_hex": "#D9D4CB",
+      "sleeves": "none",
+      "neckline": {
+        "type": "crew",
+        "depth_m": 0.035,
+        "half_width_m": 0.07
+      },
+      "hem_z_m": 0.9,
+      "offset_m": 0.01,
+      "drape": {
+        "from_z_m": 1.12,
+        "per_m": 0.02
+      },
+      "texture": {
+        "period": 170,
+        "roughness": 0.8
+      }
+    },
+    {
+      "kind": "top",
+      "name": "Cardigan",
+      "over": "Top",
+      "srgb_hex": "#B9A98C",
+      "sleeves": "long",
+      "neckline": {
+        "type": "open_front",
+        "button_z_m": 1.15,
+        "slope": 0.3,
+        "gap_m": 0.012
+      },
+      "hem_z_m": 0.82,
+      "offset_m": 0.014,
+      "layer_gap_m": 0.006,
+      "thickness_m": 0.003,
+      "drape": {
+        "from_z_m": 1.1,
+        "per_m": 0.045
+      },
+      "texture": {
+        "period": 90,
+        "roughness": 0.93,
+        "rib": 0.7,
+        "specular": 0.2
+      }
+    },
+    {
+      "kind": "trousers",
+      "name": "Soft_Trousers",
+      "srgb_hex": "#3C4048",
+      "offset_m": 0.013,
+      "texture": {
+        "period": 110,
+        "roughness": 0.9,
+        "rib": 0.3
+      }
+    },
+    {
+      "kind": "shoes",
+      "name": "Slip_Ons",
+      "srgb_hex": "#5A4A3E",
+      "roughness": 0.7
+    }
+  ],
+  "mesh": {
+    "triangle_budget": 60000,
+    "body_ratio": 0.6,
+    "clothing_ratio": 0.55,
+    "shoe_ratio": 0.25
+  },
+  "known_limitations": [
+    "Draft model for owner review; not canon and not wired to gameplay.",
+    "Hair is a scalp shell with a strand texture, not groomed strands.",
+    "Not measured on the target Mac.",
+    "Seated rest pose bent by skinning only: hips and knees have no corrective shapes.",
+    "Cardigan is an offset shell open at the front; no buttons or pockets."
+  ]
+}

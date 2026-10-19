@@ -1,0 +1,86 @@
+{
+  "asset_id": "CHR_FacilitiesTechnician_v01_draft",
+  "character_id": "staff_facilities_tech",
+  "version": "v01_draft",
+  "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+  "approved": false,
+  "builder": "tools/character_animation/refine_character.py",
+  "profile": "tools/character_animation/profiles/staff_facilities_tech_v01_draft.json",
+  "profile_sha256": "ad86ffa088f099102cad7b659f8f2dc343e25f52e1c86218187d5e46afcc268e",
+  "blender_version": "5.2.2 LTS",
+  "inputs": [
+    {
+      "path": "build/cast/Facilities_Tech_v01_face.blend",
+      "sha256": "69d23af838b9e43ba8bc0b230d59d118c8c2165939fbfa081daa971afac9f049",
+      "used": "finished character: rig, clips and face morphs kept; see refinements"
+    }
+  ],
+  "external_assets": [],
+  "licence": "Inherits the source character's provenance and licence (original work plus MPFB2 CC0 face targets).",
+  "generated": [
+    "lids",
+    "shoes",
+    "trousers"
+  ],
+  "triangle_count": 28563,
+  "clips": [
+    "idle_breathing",
+    "idle_neutral",
+    "listen_neutral",
+    "restrained_chart_indication",
+    "return_to_workstation",
+    "small_acknowledgement_nod",
+    "small_greeting_nod",
+    "stand_conversational",
+    "subtle_workstation_indication",
+    "turn_from_workstation"
+  ],
+  "morph_targets": [
+    "attentive",
+    "blink",
+    "blink_L",
+    "blink_R",
+    "calm_professional",
+    "concerned_restrained",
+    "focused",
+    "mouth_open",
+    "professionally_serious",
+    "viseme_aa_02",
+    "viseme_aa_ah_ax_01",
+    "viseme_ao_03",
+    "viseme_aw_09",
+    "viseme_ay_11",
+    "viseme_d_t_n_19",
+    "viseme_er_05",
+    "viseme_ey_eh_uh_04",
+    "viseme_f_v_18",
+    "viseme_h_12",
+    "viseme_k_g_ng_20",
+    "viseme_l_14",
+    "viseme_ow_08",
+    "viseme_oy_10",
+    "viseme_p_b_m_21",
+    "viseme_r_13",
+    "viseme_s_z_15",
+    "viseme_sh_ch_jh_zh_16",
+    "viseme_sil_00",
+    "viseme_th_dh_17",
+    "viseme_w_uw_07",
+    "viseme_y_iy_ih_ix_06",
+    "warm_subtle"
+  ],
+  "outputs": {
+    "blend": "assets/blender/characters/Facilities_Tech_v01_draft.blend",
+    "glb": "assets/exports/characters/Facilities_Tech_v01_draft.glb",
+    "report": "tools/character_animation/reports/staff_facilities_tech_v01_draft_refine_report.json",
+    "renders": [
+      "assets/renders/characters/Facilities_Technician_v01_draft_refine_sheet.png"
+    ]
+  },
+  "known_limitations": [
+    "Draft model for owner review; not canon and not wired to gameplay.",
+    "Hair is a scalp shell with a strand texture, not groomed strands.",
+    "Not measured on the target Mac.",
+    "Polo collar is the shirt shell rising up the neck; no placket buttons."
+  ]
+}

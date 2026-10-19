@@ -26,14 +26,46 @@ func test_arguments_select_only_known_candidates() -> void:
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--fullscreen"])), {},
 			"unrelated arguments are ignored")
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_bennett"])),
-			{"staff_bennett": "v05"}, "Bennett's default review candidate remains v05")
+			{"staff_bennett": "v07"}, "Bennett's default review candidate is v07")
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_bennett:v01"])),
 			{"staff_bennett": "v01"}, "an older candidate can be chosen")
-	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_voss,staff_bennett:v99"])),
+	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=pt_nobody,staff_bennett:v99"])),
 			{}, "unknown characters and versions are refused")
-	for version: String in ["v01", "v02", "v03", "v04", "v04_local", "v05", "v05_mpfb", "v06", "v06_mpfb"]:
+	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_voss,staff_hale"])),
+			{"staff_voss": "v01_draft", "staff_hale": "v01_draft"}, "draft cast models can be previewed together")
+	for version: String in ["v01", "v02", "v03", "v04", "v04_local", "v05", "v05_mpfb", "v06", "v06_mpfb", "v07"]:
 		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path("staff_bennett", version)),
 				"Naomi %s GLB is imported" % version)
+
+
+func test_cast_drafts_attach_with_shared_clips_and_face_morphs() -> void:
+	for id: String in ["staff_voss", "staff_hale", "staff_rahman", "staff_facilities_tech", "pt_elias_ward",
+			"pt_mara_ellis"]:
+		var version: String = str(CharacterVisualPreview.DEFAULT_VERSION[id])
+		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path(id, version)), "%s draft GLB is imported" % id)
+		CharacterVisualPreview.set_requests({id: version})
+		var character: WardCharacter = _spawn_character(id)
+		var visual_root: Node3D = character.get_node("VisualRoot")
+		check_eq(visual_root.get_child_count(), 1, "%s attaches its draft model" % id)
+		if visual_root.get_child_count() != 1:
+			continue
+		var model: Node3D = visual_root.get_child(0)
+		check(not (character.get_node("Body/Mesh") as MeshInstance3D).visible, "%s placeholder is hidden" % id)
+		for rig: String in ["CharacterFaceRig", "CharacterGazeRig", "GestureAnimationPlayer"]:
+			check(model.find_child(rig, true, false) != null, "%s gets the shared %s" % [id, rig])
+		var body: AnimationPlayer = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		var gestures: AnimationPlayer = model.find_child("GestureAnimationPlayer", true, false) as AnimationPlayer
+		check(body != null and body.has_animation(&"idle_neutral"), "%s has the shared body clips" % id)
+		check(gestures != null and gestures.has_animation(&"restrained_chart_indication"),
+				"%s has the shared gesture clips" % id)
+		var face: MeshInstance3D = null
+		for node: Node in model.find_children("*", "MeshInstance3D", true, false):
+			var mesh: MeshInstance3D = node as MeshInstance3D
+			if mesh.cast_shadow != GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY \
+					and mesh.find_blend_shape_by_name(&"viseme_aa_02") >= 0:
+				face = mesh
+		check(face != null and face.mesh.get_blend_shape_count() == 32, "%s face has Naomi's 32 morphs" % id)
+		CharacterVisualPreview.reset()
 
 
 func test_placement_is_identity_without_an_entry() -> void:
@@ -49,7 +81,7 @@ func test_preview_is_off_by_default() -> void:
 
 
 func test_v06_candidates_keep_distinct_face_inventory_and_existing_rigs() -> void:
-	for version: String in ["v06", "v06_mpfb"]:
+	for version: String in ["v06", "v06_mpfb", "v07"]:
 		var requests: Dictionary = CharacterVisualPreview.parse_args(
 				PackedStringArray(["--character-preview=staff_bennett:" + version]))
 		check_eq(requests, {"staff_bennett": version}, "explicit %s selection is accepted" % version)
@@ -73,10 +105,10 @@ func test_v06_candidates_keep_distinct_face_inventory_and_existing_rigs() -> voi
 				face = mesh
 		check(face != null, "%s exposes its face mesh" % version)
 		if face != null:
-			check_eq(face.mesh.get_blend_shape_count(), 32 if version == "v06_mpfb" else 10,
+			check_eq(face.mesh.get_blend_shape_count(), 10 if version == "v06" else 32,
 					"the selected file preserves its actual morph inventory")
-			check_eq(face.find_blend_shape_by_name(&"viseme_aa_02") >= 0, version == "v06_mpfb",
-					"only the MPFB candidate has the aa viseme")
+			check_eq(face.find_blend_shape_by_name(&"viseme_aa_02") >= 0, version != "v06",
+					"only the MPFB candidates have the aa viseme")
 
 
 func test_requested_candidate_attaches_without_changing_interaction() -> void:

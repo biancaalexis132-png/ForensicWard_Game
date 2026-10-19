@@ -1,0 +1,29 @@
+{
+  "character_id": "staff_voss",
+  "display_name": "Evelyn Voss",
+  "version": "v01_face",
+  "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+  "source_blend": "build/cast/Evelyn_Voss_v01_anim.blend",
+  "objects": {
+    "rig": "Evelyn_Voss_Rig",
+    "face_mesh": "Evelyn_Voss_Body",
+    "eye_l": "Voss_Eye_L",
+    "eye_r": "Voss_Eye_R"
+  },
+  "face_source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v07.blend",
+    "body": "Naomi_Bennett_Body",
+    "base_blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "base_body": "Naomi_Bennett_Body"
+  },
+  "target_base": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "body": "Naomi_Bennett_Body",
+    "cast_config": "tools/blender/characters/cast/staff_voss.json"
+  },
+  "outputs": {
+    "blend": "build/cast/Evelyn_Voss_v01_face.blend",
+    "glb": "build/cast/Evelyn_Voss_v01_face.glb",
+    "report": "tools/character_animation/reports/staff_voss_v01_face_report.json"
+  }
+}

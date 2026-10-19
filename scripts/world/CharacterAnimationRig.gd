@@ -7,8 +7,8 @@ extends RefCounted
 ## for gesture clips on a player named GestureAnimationPlayer, so gesture clips
 ## move there; body clips stay and loop. Gesture clips only animate the neck and
 ## arms and body clips never do, so both players run at once without fighting.
-## Animated models cast their shadow from a static proxy (see
-## _use_static_shadows). Models with eye bones get a CharacterGazeRig. Models without these clips,
+## Animated models cast a moving shadow from the nearest light and a static proxy
+## shadow from the rest (see _use_static_shadows and CharacterShadowSelector). Models with eye bones get a CharacterGazeRig. Models without these clips,
 ## morph targets or bones are left exactly as imported.
 
 const BODY_LOOP_CLIPS: PackedStringArray = [
@@ -85,9 +85,11 @@ static func _without_held_tracks(animation: Animation) -> Animation:
 
 ## Positional light shadows are cached until a shadow caster inside them moves, so
 ## an animated character makes every shadowed light around her redraw its shadow
-## map every frame. Her skinned meshes therefore cast no shadow; a static,
-## shadow-only copy of each one in the rest pose casts it instead.
+## map every frame. Each skinned mesh therefore gets a static, shadow-only copy in
+## the rest pose, and CharacterShadowSelector lets only the nearest light see the
+## moving meshes; every other light sees the copies instead.
 static func _use_static_shadows(model: Node3D) -> void:
+	var found: bool = false
 	for node: Node in model.find_children("*", "MeshInstance3D", true, false):
 		var mesh: MeshInstance3D = node as MeshInstance3D
 		if mesh.skin == null or mesh.cast_shadow == GeometryInstance3D.SHADOW_CASTING_SETTING_OFF:
@@ -97,8 +99,15 @@ static func _use_static_shadows(model: Node3D) -> void:
 		proxy.mesh = mesh.mesh
 		proxy.transform = mesh.transform
 		proxy.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
-		mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		proxy.layers = CharacterShadowSelector.PROXY_LAYER
+		mesh.layers = CharacterShadowSelector.LIVE_LAYER
 		mesh.get_parent().add_child(proxy)
+		found = true
+	if found:
+		var selector: CharacterShadowSelector = CharacterShadowSelector.new()
+		selector.name = "CharacterShadowSelector"
+		selector.configure(model)
+		model.add_child(selector)
 
 
 static func _find_body_player(model: Node3D) -> AnimationPlayer:
