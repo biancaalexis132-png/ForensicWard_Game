@@ -1,5 +1,7 @@
 # Project status
 
+**Chapter 2 Scene 09 wrong-day file (Claude Code, 2026-10-19; not merged):** runtime `1481c7ea32b8a5cb553d50529afd387e382f5898`. Export date conflict placed in the incident record, not Mara's note; one handling chosen; originals unchanged. Full QA passed: game 233/0. Mac not run.
+
 **Chapter 2 Scene 08 escorted lobby inspection (Claude Code, 2026-10-19; not merged):** runtime `4669c7c387107584e6429cf79cb035194fcec0b5`. Scene-only ward-entry pass; lobby doors closed then ajar after an unwatched interval; pass returned; lift, lobby, hatch and W0-B stay locked. Full QA passed: game 229/0. Mac not run.
 
 **Chapter 2 Scene 07 witness (Claude Code, 2026-10-19; not merged):** runtime `3a919c972c4cbac795dd72844567516dae68a04f`. Technician's recollection recorded as reported; no evidence or anomaly. Full QA passed: game224/0. Mac not run.

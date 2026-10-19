@@ -201,9 +201,23 @@ shut. No trapping, portal, anomaly, evidence or patient change (tested).
 **Follow-up:** a dedicated MARK/story prop at the lobby doors would read better
 than the ceiling camera dome; needs an asset change.
 
+## Addendum: Scene 09 A File for the Wrong Day
+
+Runtime `1481c7ea32b8a5cb553d50529afd387e382f5898` on `claude/chapter2-wrong-day` (stacked on the lobby branch / PR #76).
+After the pass is returned, the export comparison worksheet shows two archived
+export representations disagreeing about the access-event date, with time-zone
+provenance unreconciled (revised CH02 Scene 09). Adding it to Mara's note or
+treating it as a symptom gives feedback only; the player's screenplay line puts
+it in the authorized incident record and the Records technician answers with
+theirs. Then one handling: formal audit escalation, preserve separate source
+versions, or independent technical review. "Correct one version" is refused.
+Mara's note, evidence, anomalies and access are unchanged (tested).
+
 ## Next exact task
 
-Chapter 2 Scene 09 "A File for the Wrong Day" (screenplay CH02 expanded Scene
-09). Check its text and existing records props before building; invent no
-record content beyond the screenplay. Then Scene 10 "Missing Hours". Naomi
-Mac/geometry gates remain pending.
+Chapter 2 Scene 10 "Missing Hours" closing beat (revised CH02 Scene 10): the
+analyst accounts for part of the mismatch but not the whole interval; Bennett
+at shift end; optional personal-contact message with no patient information;
+then Chapter 2 completes. Check how Chapter 1 completes (sign_out /
+next_chapter) before building, and keep W0-B locked: Chapter 3 owns first entry.
+Naomi Mac/geometry gates remain pending.
