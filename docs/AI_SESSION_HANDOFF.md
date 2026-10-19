@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 2 Scene 10 — 2026-10-19
+
+- Closing beat on `claude/chapter2-missing-hours` at `1bb194df802b68591f9e7ab8a7939754e91bd8e3` (PR to main, stacked after #77). Chapter 2 is now completable end to end. Full QA exit 0, game 235/0. Mac not run. Not built: optional personal-contact message, exterior fade-out. Pending: owner narrative review of Scenes 04–10 (story file stays provisional/PENDING); Naomi Mac/geometry gates.
+
 ## Claude Code Chapter 2 Scene 09 — 2026-10-19
 
 - Wrong-day file on `claude/chapter2-wrong-day` at `1481c7ea32b8a5cb553d50529afd387e382f5898` (PR to main, stacked after #76). Full QA exit 0, game 233/0. Mac not run. Next: Scene 10 "Missing Hours" (analyst, Bennett, optional personal message, chapter close). Naomi Mac/geometry gates still pending.

@@ -143,6 +143,8 @@ func set_flag(flag: String) -> void:
 	if not flag in _flags:
 		_flags.append(flag)
 		_flags.sort()
+		if flag == StoryLogic.CHAPTER_COMPLETE_FLAG:
+			EventBus.chapter_completed.emit(_chapter_id)
 		evaluate()
 
 
@@ -181,7 +183,6 @@ func sign_out() -> String:
 		set_flag(StoryLogic.CHAPTER_COMPLETE_FLAG)
 		body = "[b]End of %s[/b] (playable slice)\n\n%s\n\n%s" % [story["title"],
 				_shift_summary(), _relationship_summary()]
-		EventBus.chapter_completed.emit(_chapter_id)
 	var panel: Dictionary = {"title": config["title"], "body": body}
 	var next_chapter: String = str(story.get("next_chapter", ""))
 	if has_completed(_chapter_id) and ContentRegistry.is_chapter_playable(next_chapter):
