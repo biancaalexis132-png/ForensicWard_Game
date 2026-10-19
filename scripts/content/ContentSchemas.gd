@@ -271,6 +271,15 @@ const WORLD_INTERACTABLE_TYPES: Array[String] = ["ehr_terminal", "clue_terminal"
 ## Story conditions and actions are checked in depth by StoryLogic
 ## (vocabulary and references); here they only need to be objects.
 const _CONDITION: Dictionary = {"type": "any"}
+## The last chapter's closing summary: shown after its chapter_complete choice,
+## with every line whose condition holds (decisions from any chapter).
+const _CAMPAIGN_END: Dictionary = {
+	"type": "object",
+	"required": {
+		"title": _STRING, "body": _STRING,
+		"lines": {"type": "array", "items": {"type": "object", "required": {"when": _CONDITION, "text": _STRING}}},
+	},
+}
 const _TRUST_CHANGE: Dictionary = {
 	"type": "object",
 	"required": {"staff_id": _ID, "axis": {"type": "enum", "values": ["respect", "trust", "suspicion"]},
@@ -333,7 +342,8 @@ const STORY_FILE: Dictionary = {
 		},
 	},
 	"optional": {"provisional": {"type": "bool"}, "notes": _STRING,
-		"next_chapter": _ID, "interactions": {"type": "array", "items": _STORY_INTERACTION}},
+		"next_chapter": _ID, "interactions": {"type": "array", "items": _STORY_INTERACTION},
+		"campaign_end": _CAMPAIGN_END},
 }
 
 const WORLD_FILE: Dictionary = {
