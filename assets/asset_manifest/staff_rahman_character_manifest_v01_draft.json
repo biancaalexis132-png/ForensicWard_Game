@@ -1,0 +1,85 @@
+{
+  "asset_id": "CHR_LeilaRahman_v01_draft",
+  "character_id": "staff_rahman",
+  "version": "v01_draft",
+  "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+  "approved": false,
+  "builder": "tools/character_animation/refine_character.py",
+  "profile": "tools/character_animation/profiles/staff_rahman_v01_draft.json",
+  "profile_sha256": "2783d6347b3575e4386f10534d8cf04a3e357798803c3f2313ff04087e13b581",
+  "blender_version": "5.2.2 LTS",
+  "inputs": [
+    {
+      "path": "build/cast/Leila_Rahman_v01_face.blend",
+      "sha256": "07a02a1ee9d6f762be84453f53120ed61194fcf5be57a18777a420ee944ee263",
+      "used": "finished character: rig, clips and face morphs kept; see refinements"
+    }
+  ],
+  "external_assets": [],
+  "licence": "Inherits the source character's provenance and licence (original work plus MPFB2 CC0 face targets).",
+  "generated": [
+    "lids",
+    "shoes",
+    "trousers"
+  ],
+  "triangle_count": 29018,
+  "clips": [
+    "idle_breathing",
+    "idle_neutral",
+    "listen_neutral",
+    "restrained_chart_indication",
+    "return_to_workstation",
+    "small_acknowledgement_nod",
+    "small_greeting_nod",
+    "stand_conversational",
+    "subtle_workstation_indication",
+    "turn_from_workstation"
+  ],
+  "morph_targets": [
+    "attentive",
+    "blink",
+    "blink_L",
+    "blink_R",
+    "calm_professional",
+    "concerned_restrained",
+    "focused",
+    "mouth_open",
+    "professionally_serious",
+    "viseme_aa_02",
+    "viseme_aa_ah_ax_01",
+    "viseme_ao_03",
+    "viseme_aw_09",
+    "viseme_ay_11",
+    "viseme_d_t_n_19",
+    "viseme_er_05",
+    "viseme_ey_eh_uh_04",
+    "viseme_f_v_18",
+    "viseme_h_12",
+    "viseme_k_g_ng_20",
+    "viseme_l_14",
+    "viseme_ow_08",
+    "viseme_oy_10",
+    "viseme_p_b_m_21",
+    "viseme_r_13",
+    "viseme_s_z_15",
+    "viseme_sh_ch_jh_zh_16",
+    "viseme_sil_00",
+    "viseme_th_dh_17",
+    "viseme_w_uw_07",
+    "viseme_y_iy_ih_ix_06",
+    "warm_subtle"
+  ],
+  "outputs": {
+    "blend": "assets/blender/characters/Leila_Rahman_v01_draft.blend",
+    "glb": "assets/exports/characters/Leila_Rahman_v01_draft.glb",
+    "report": "tools/character_animation/reports/staff_rahman_v01_draft_refine_report.json",
+    "renders": [
+      "assets/renders/characters/Leila_Rahman_v01_draft_refine_sheet.png"
+    ]
+  },
+  "known_limitations": [
+    "Draft model for owner review; not canon and not wired to gameplay.",
+    "Hair is a scalp shell with a strand texture, not groomed strands.",
+    "Not measured on the target Mac."
+  ]
+}

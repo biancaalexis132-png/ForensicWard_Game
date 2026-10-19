@@ -399,6 +399,7 @@ def render_review(profile: dict, body: bpy.types.Object, out_dir: Path) -> list[
     el, er = (Vector(eye_centre(profile["objects"][k])) for k in ("eye_l", "eye_r"))
     mid = (el + er) / 2
     version = profile["version"]
+    stem = profile["display_name"].replace(" ", "_")
     out_dir.mkdir(parents=True, exist_ok=True)
     frames = []
 
@@ -407,7 +408,7 @@ def render_review(profile: dict, body: bpy.types.Object, out_dir: Path) -> list[
         cam.rotation_euler = (target - loc).to_track_quat("-Z", "Y").to_euler()
         cam.data.type, cam.data.lens = "PERSP", lens
         scene.render.resolution_x, scene.render.resolution_y = w, h
-        path = (out_dir / f"Naomi_Bennett_{version}_{name}.png").resolve()
+        path = (out_dir / f"{stem}_{version}_{name}.png").resolve()
         scene.render.filepath = str(path)
         bpy.ops.render.render(write_still=True)
         frames.append(path)
@@ -423,7 +424,7 @@ def render_review(profile: dict, body: bpy.types.Object, out_dir: Path) -> list[
     shot("hems_front", Vector((0, -1.2, 0.14)), Vector((0, 0, 0.14)), 50, 640, 360)
     shot("hems_side", Vector((1.2, -0.4, 0.14)), Vector((0, 0, 0.14)), 50, 640, 360)
     shot("hems_back", Vector((-0.4, 1.2, 0.14)), Vector((0, 0, 0.14)), 50, 640, 360)
-    sheet = out_dir / f"Naomi_Bennett_{version}_refine_sheet.png"
+    sheet = out_dir / f"{stem}_{version}_refine_sheet.png"
     builder.contact_sheet(frames, sheet)
     for p in frames:
         p.unlink()

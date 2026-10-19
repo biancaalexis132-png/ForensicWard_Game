@@ -1,0 +1,188 @@
+{
+  "character": {
+    "name": "Evelyn Voss",
+    "character_id": "staff_voss",
+    "file_stem": "Evelyn_Voss",
+    "prefix": "Voss_",
+    "role": "Medical Director",
+    "asset_version": "v01",
+    "height_m": 1.68,
+    "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+    "canon_basis": "docs/design/CHARACTER_VISUAL_CANON.md: woman, early 50s (decided); navy or charcoal tailored suit, ivory blouse, reading glasses, neat low chignon with grey, director's badge (provisional proposal)",
+    "draft_choices": [
+      "Ethnicity, skin tone, eye colour, face and height are draft choices; canon leaves them open.",
+      "Navy suit and burgundy badge stripe chosen from the provisional proposal."
+    ]
+  },
+  "source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "body": "Naomi_Bennett_Body",
+    "rig": "Naomi_Bennett_Rig"
+  },
+  "macro": {
+    "age_years": 52,
+    "ethnicity": {
+      "caucasian": 0.85,
+      "african": 0.05,
+      "asian": 0.1
+    },
+    "min_muscle": 0.15,
+    "max_weight": 0.05
+  },
+  "pose": {
+    "upperarm_down_degrees": 64.0,
+    "upperarm_forward_degrees": 6.0,
+    "elbow_bend_degrees": 14.0
+  },
+  "skin": {
+    "base_srgb_hex": "#B9866B",
+    "shadow_srgb_hex": "#94664F",
+    "warm_srgb_hex": "#C08070",
+    "lip_srgb_hex": "#A2625A",
+    "brow_srgb_hex": "#6A5B50",
+    "nail_srgb_hex": "#D8B8A8",
+    "texture_size": 2048,
+    "roughness": 0.55,
+    "lid_shadow": 0.22,
+    "cheek_warmth": 0.25,
+    "brow_strength": 0.7,
+    "lip_strength": 0.6
+  },
+  "eyes": {
+    "sclera_srgb_hex": "#E4DDD3",
+    "iris_srgb_hex": "#566673",
+    "limbal_srgb_hex": "#262A2E",
+    "helper_radius_scale": 0.93
+  },
+  "face": {
+    "lash_srgb_hex": "#3A2E26",
+    "brow_srgb_hex": "#5E5047",
+    "brows": {
+      "fill": 0.4
+    }
+  },
+  "hair": {
+    "style": "chignon",
+    "srgb_hex": "#2E241E",
+    "grey_srgb_hex": "#B7B0A8",
+    "grey_fraction": 0.18,
+    "front_z_m": 0.038,
+    "nape_z_m": -0.068,
+    "volume_top_m": 0.0055,
+    "volume_side_m": 0.003,
+    "tie_direction": [
+      0.0,
+      1.0,
+      -0.55
+    ],
+    "bun_radii_m": [
+      0.042,
+      0.03,
+      0.03
+    ],
+    "ear_top_z_m": 0.005,
+    "hairline_taper_m": 0.025,
+    "temple_deg": 22,
+    "drop_deg": 125
+  },
+  "garments": [
+    {
+      "kind": "top",
+      "name": "Blouse",
+      "srgb_hex": "#ECE5D6",
+      "sleeves": "none",
+      "neckline": {
+        "type": "crew",
+        "depth_m": 0.03,
+        "half_width_m": 0.065
+      },
+      "hem_z_m": 0.92,
+      "offset_m": 0.01,
+      "drape": {
+        "from_z_m": 1.12,
+        "per_m": 0.02
+      },
+      "texture": {
+        "period": 160,
+        "roughness": 0.7,
+        "specular": 0.35
+      }
+    },
+    {
+      "kind": "top",
+      "name": "Blazer",
+      "over": "Blouse",
+      "srgb_hex": "#232A3C",
+      "sleeves": "long",
+      "neckline": {
+        "type": "open_front",
+        "button_z_m": 1.1,
+        "slope": 0.32
+      },
+      "hem_z_m": 0.8,
+      "offset_m": 0.016,
+      "layer_gap_m": 0.006,
+      "thickness_m": 0.003,
+      "drape": {
+        "from_z_m": 1.1,
+        "per_m": 0.05
+      },
+      "texture": {
+        "period": 140,
+        "roughness": 0.78
+      }
+    },
+    {
+      "kind": "trousers",
+      "name": "Trousers",
+      "srgb_hex": "#20263A",
+      "offset_m": 0.012,
+      "hem_radius_m": 0.07,
+      "texture": {
+        "period": 140,
+        "roughness": 0.78
+      }
+    },
+    {
+      "kind": "shoes",
+      "name": "Shoes",
+      "srgb_hex": "#1A1717",
+      "roughness": 0.35
+    }
+  ],
+  "accessories": [
+    {
+      "name": "Glasses_Frame",
+      "srgb_hex": "#2B1E18",
+      "roughness": 0.3,
+      "specular": 0.6
+    }
+  ],
+  "glasses": {
+    "material": "Glasses_Frame",
+    "lens_half_m": [
+      0.024,
+      0.0155
+    ],
+    "forward_m": 0.02,
+    "lift_m": -0.003
+  },
+  "badge": {
+    "on": "Blazer",
+    "card_srgb_hex": "#ECEDEE",
+    "stripe_srgb_hex": "#7A2E3A"
+  },
+  "mesh": {
+    "triangle_budget": 60000,
+    "body_ratio": 0.6,
+    "clothing_ratio": 0.55,
+    "shoe_ratio": 0.25
+  },
+  "known_limitations": [
+    "Draft model for owner review; not canon and not wired to gameplay.",
+    "Blazer is an offset shell with an open front; no lapels, buttons or pockets.",
+    "Hair is a scalp shell with a strand texture and a modelled chignon, not groomed strands.",
+    "Glasses are frames only (no lens geometry).",
+    "Not measured on the target Mac."
+  ]
+}

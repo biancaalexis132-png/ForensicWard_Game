@@ -6,6 +6,8 @@ extends RefCounted
 ## being wired into it: run the game with `-- --character-preview=staff_bennett`
 ## (or `staff_bennett:v03`, `:v02`, `:v01` for an older candidate).
 ## Use `staff_bennett:v06_mpfb` for the v06 candidate with 22 visemes (`:v06` is the stage).
+## Draft cast models: `staff_voss`, `staff_hale`, `staff_rahman`, `staff_facilities_tech`,
+## `pt_elias_ward` and `pt_mara_ellis` (several ids can be comma-separated).
 ## The default is v07: v06_mpfb with straight trouser hems, rounder shoes and a
 ## clean closed-lid line (tools/character_animation/refine_character.py).
 ## Without a preview argument every WardCharacter keeps its placeholder. Nothing here touches story, dialogue,
@@ -34,9 +36,36 @@ const CANDIDATES: Dictionary = {
 		# v06_mpfb refined: hems, shoes and closed lids fixed; same rig, clips and 32 morphs.
 		"v07": "res://assets/exports/characters/Naomi_Bennett_v07.glb",
 	},
+	# Draft cast models from tools/blender/characters/build_cast_member.py: Naomi's
+	# base mesh and rig, the shared clips and Naomi's 32 face morphs. Not canon.
+	"staff_voss": {
+		"v01_draft": "res://assets/exports/characters/Evelyn_Voss_v01_draft.glb",
+	},
+	"staff_hale": {
+		"v01_draft": "res://assets/exports/characters/Marcus_Hale_v01_draft.glb",
+	},
+	"staff_rahman": {
+		"v01_draft": "res://assets/exports/characters/Leila_Rahman_v01_draft.glb",
+	},
+	"staff_facilities_tech": {
+		"v01_draft": "res://assets/exports/characters/Facilities_Tech_v01_draft.glb",
+	},
+	# Patients are built seated (feet on the floor) for MARK_Seat_Patient.
+	"pt_elias_ward": {
+		"v01_draft": "res://assets/exports/characters/Elias_Ward_v01_draft.glb",
+	},
+	"pt_mara_ellis": {
+		"v01_draft": "res://assets/exports/characters/Mara_Ellis_v01_draft.glb",
+	},
 }
 const DEFAULT_VERSION: Dictionary = {
 	"staff_bennett": "v07",
+	"staff_voss": "v01_draft",
+	"staff_hale": "v01_draft",
+	"staff_rahman": "v01_draft",
+	"staff_facilities_tech": "v01_draft",
+	"pt_elias_ward": "v01_draft",
+	"pt_mara_ellis": "v01_draft",
 }
 ## Where the previewed model stands, relative to the character's marker. Only the
 ## model moves; the interaction box, collision and name label stay on the marker.

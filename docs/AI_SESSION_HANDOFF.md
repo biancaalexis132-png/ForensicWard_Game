@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code cast draft models — 2026-10-19
+
+- `claude/cast-models` at `5316d36` (draft PR to main). Six draft characters (Voss, Hale, Rahman, facilities technician, Elias and Mara seated) with Naomi's rig, ten shared clips and 32 face morphs; preview-only `v01_draft`. Full runner exit 0: game 251/0, GLB 168/0, audio 336/0, QA 19/0/0, CH1 sequence. Mac not run. Pending: owner look, likeness and Mac frame time; Elias clinical review (no symptom movement built). Next: hair beyond the painted shell, a chair at MARK_Seat_Patient. See `docs/handoffs/2026-10-19_claude_cast_models.md`.
+
 ## Claude Code Naomi v07 refinement — 2026-10-19
 
 - Owner: "continue to finish all necessary animation and i will chec on my mac"; chose "Naomi, then cast". Naomi v07 on `claude/naomi-v07-refine` (draft PR to main), runtime `2707a37e3387cfcea253882f8fbead9eaf9e8773` pushed and verified: hems, shoes, closed-lid line fixed; live gesture shadow from the nearest light. Full QA exit 0, game 234/0. Mac not run. Next: cast draft models (Voss, Hale first). See `docs/handoffs/2026-10-19_claude_naomi_v07.md`.

@@ -5149,6 +5149,72 @@
         "mpfb",
         "visemes"
       ]
+    },
+    "Evelyn_Voss_v01_draft": {
+      "path": "res://assets/exports/characters/Evelyn_Voss_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "voss",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Marcus_Hale_v01_draft": {
+      "path": "res://assets/exports/characters/Marcus_Hale_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "hale",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Facilities_Tech_v01_draft": {
+      "path": "res://assets/exports/characters/Facilities_Tech_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "facilities_tech",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Leila_Rahman_v01_draft": {
+      "path": "res://assets/exports/characters/Leila_Rahman_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "rahman",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Elias_Ward_v01_draft": {
+      "path": "res://assets/exports/characters/Elias_Ward_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "elias",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Mara_Ellis_v01_draft": {
+      "path": "res://assets/exports/characters/Mara_Ellis_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "mara",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
     }
   },
   "schema_version": "1.0"

@@ -29,11 +29,43 @@ func test_arguments_select_only_known_candidates() -> void:
 			{"staff_bennett": "v07"}, "Bennett's default review candidate is v07")
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_bennett:v01"])),
 			{"staff_bennett": "v01"}, "an older candidate can be chosen")
-	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_voss,staff_bennett:v99"])),
+	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=pt_nobody,staff_bennett:v99"])),
 			{}, "unknown characters and versions are refused")
+	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_voss,staff_hale"])),
+			{"staff_voss": "v01_draft", "staff_hale": "v01_draft"}, "draft cast models can be previewed together")
 	for version: String in ["v01", "v02", "v03", "v04", "v04_local", "v05", "v05_mpfb", "v06", "v06_mpfb", "v07"]:
 		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path("staff_bennett", version)),
 				"Naomi %s GLB is imported" % version)
+
+
+func test_cast_drafts_attach_with_shared_clips_and_face_morphs() -> void:
+	for id: String in ["staff_voss", "staff_hale", "staff_rahman", "staff_facilities_tech", "pt_elias_ward",
+			"pt_mara_ellis"]:
+		var version: String = str(CharacterVisualPreview.DEFAULT_VERSION[id])
+		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path(id, version)), "%s draft GLB is imported" % id)
+		CharacterVisualPreview.set_requests({id: version})
+		var character: WardCharacter = _spawn_character(id)
+		var visual_root: Node3D = character.get_node("VisualRoot")
+		check_eq(visual_root.get_child_count(), 1, "%s attaches its draft model" % id)
+		if visual_root.get_child_count() != 1:
+			continue
+		var model: Node3D = visual_root.get_child(0)
+		check(not (character.get_node("Body/Mesh") as MeshInstance3D).visible, "%s placeholder is hidden" % id)
+		for rig: String in ["CharacterFaceRig", "CharacterGazeRig", "GestureAnimationPlayer"]:
+			check(model.find_child(rig, true, false) != null, "%s gets the shared %s" % [id, rig])
+		var body: AnimationPlayer = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		var gestures: AnimationPlayer = model.find_child("GestureAnimationPlayer", true, false) as AnimationPlayer
+		check(body != null and body.has_animation(&"idle_neutral"), "%s has the shared body clips" % id)
+		check(gestures != null and gestures.has_animation(&"restrained_chart_indication"),
+				"%s has the shared gesture clips" % id)
+		var face: MeshInstance3D = null
+		for node: Node in model.find_children("*", "MeshInstance3D", true, false):
+			var mesh: MeshInstance3D = node as MeshInstance3D
+			if mesh.cast_shadow != GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY \
+					and mesh.find_blend_shape_by_name(&"viseme_aa_02") >= 0:
+				face = mesh
+		check(face != null and face.mesh.get_blend_shape_count() == 32, "%s face has Naomi's 32 morphs" % id)
+		CharacterVisualPreview.reset()
 
 
 func test_placement_is_identity_without_an_entry() -> void:
