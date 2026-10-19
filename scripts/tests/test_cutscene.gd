@@ -68,6 +68,36 @@ func test_chapter_title_cards_are_approved_and_play() -> void:
 		check_eq(AudioDirector.get_music_context(), "", id + " restores the music")
 
 
+func test_static_graphic_novel_chapters_are_review_only_and_play() -> void:
+	var loaded: Dictionary = CutsceneRegistry.load_all()
+	for chapter: int in [1, 2, 3, 4, 5]:
+		var id: String = "cs_ch0%d_static_gn" % chapter
+		var cutscene: Dictionary = (loaded["cutscenes"] as Dictionary).get(id, {})
+		if cutscene.is_empty() and not FileAccess.file_exists("res://data/cutscenes/%s.json" % id):
+			continue
+		check(not cutscene.is_empty(), "registered: " + id)
+		check_eq(cutscene.get("approved"), false, id + " placement is not approved yet")
+		check_eq((cutscene.get("trigger", {}) as Dictionary).get("kind"), "manual_preview", id + " only plays on request")
+		check_eq(cutscene.get("chapter_id"), "ch%d" % chapter, id + " belongs to its chapter")
+		check(not _director(false).play(id), id + " never plays outside review")
+		var director: CutsceneDirector = _director(true)
+		check(director.play(id), id + " plays in review mode")
+		var visited: Array[int] = [director.panel_index]
+		var elapsed: float = 0.0
+		while director.is_open and elapsed < 90.0:
+			director.advance(STEP)
+			elapsed += STEP
+			if director.is_open and director.panel_index != visited.back():
+				visited.append(director.panel_index)
+		check_eq(visited.size(), (cutscene["panels"] as Array).size(), id + " shows every panel once")
+		check(absf(elapsed - CutsceneRegistry.total_duration(cutscene)) < 0.2, id + " runs its authored length")
+		check(not director.is_open, id + " finishes")
+		check_eq(director.runtime_errors, [], id + " textures load")
+		check_eq(AudioDirector.get_music_context(), "", id + " restores the music")
+	for chapter: int in [2, 3, 4, 5]:
+		check_eq(CutsceneRegistry.chapter_start_cutscene("ch%d" % chapter), "cs_ch0%d_title" % chapter, "the title card still opens chapter %d" % chapter)
+
+
 func test_captions_come_from_campaign_data() -> void:
 	check_eq(CutsceneRegistry.resolve_caption("institution.name"), "Ashcroft State Forensic Hospital",
 			"institution caption is the approved name")
@@ -291,6 +321,39 @@ func test_title_card_plays_when_a_chapter_opens() -> void:
 	director.skip()
 	check(not director.is_open, "skipping ends the card")
 	check(player.input_enabled, "player input is restored after the card")
+
+
+func test_chapter_recap_plays_over_the_end_of_chapter_panel() -> void:
+	var main: Node = await _main()
+	var director: CutsceneDirector = main.get_node("CutsceneDirector")
+	var chapter: ChapterDirector = main.get_node("ChapterDirector")
+	var info: InfoPanel = main.get_node("InfoPanel")
+	var recap: String = CutsceneRegistry.chapter_complete_cutscene("ch1")
+	chapter.set_flag(StoryLogic.CHAPTER_COMPLETE_FLAG)
+	EventBus.ui_panel_requested.emit(InfoPanel.PANEL_ID, {"title": "End of chapter", "body": "Summary"})
+	if recap.is_empty():
+		check(not director.is_open, "no recap plays for Chapter 1 while none is approved")
+		return
+	check(director.is_open, "the Chapter 1 recap opens when the chapter is completed")
+	check_eq(director.cutscene_id, recap, "it is Chapter 1's recap")
+	check(info.is_open, "the end-of-chapter panel waits underneath")
+	director.skip()
+	check(not director.is_open, "skipping ends the recap")
+	check(info.is_open, "the end-of-chapter panel is still there to continue from")
+
+
+func test_chapter_complete_trigger_needs_owner_approval() -> void:
+	var context: Dictionary = CutsceneRegistry.reference_context()
+	var data: Dictionary = _pilot()
+	data["mode"] = "campaign"
+	data["trigger"] = {"kind": "chapter_complete"}
+	check_contains(CutsceneRegistry.validate(data, context), "a campaign cutscene must be approved by the owner",
+			"an unapproved recap is refused")
+	data["approved"] = true
+	check_eq(CutsceneRegistry.validate(data, context), [], "an approved recap validates")
+	data["mode"] = "review_only"
+	check_contains(CutsceneRegistry.validate(data, context), "mode campaign goes with trigger",
+			"a review-only cutscene cannot use a campaign trigger")
 
 
 # --- Helpers --------------------------------------------------------------------------------

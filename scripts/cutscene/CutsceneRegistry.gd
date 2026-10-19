@@ -11,7 +11,9 @@ extends RefCounted
 ## Nothing here writes story, clinical or save state. A "review_only" cutscene
 ## uses the "manual_preview" trigger (the --cutscene-preview command-line argument
 ## or the review scene). Only a cutscene the owner approved, with mode "campaign",
-## may use the "chapter_start" trigger, which plays it when its chapter opens.
+## may use a campaign trigger: "chapter_start" plays it when its chapter opens,
+## "chapter_complete" when its chapter is completed (a recap, so it can show
+## reveals the chapter has already played).
 
 const DIRECTORY: String = "res://data/cutscenes"
 const CAMPAIGN_PATH: String = "res://data/campaign.json"
@@ -20,7 +22,8 @@ const NARRATIVE_DIR: String = "res://data/narrative"
 
 const SCHEMA_VERSION: int = 1
 const MODES: Array[String] = ["review_only", "campaign"]
-const TRIGGER_KINDS: Array[String] = ["manual_preview", "chapter_start"]
+const TRIGGER_KINDS: Array[String] = ["manual_preview", "chapter_start", "chapter_complete"]
+const CAMPAIGN_TRIGGERS: Array[String] = ["chapter_start", "chapter_complete"]
 const TRANSITIONS: Array[String] = ["cut", "dissolve", "fade_black"]
 const FRAMES: Array[String] = ["inset", "full_bleed"]
 const AMBIENCE_MODES: Array[String] = ["keep", "duck", "stop"]
@@ -63,10 +66,19 @@ static func load_all() -> Dictionary:
 
 ## The approved cutscene that opens `chapter_id`, or "" if there is none.
 static func chapter_start_cutscene(chapter_id: String) -> String:
+	return _campaign_cutscene(chapter_id, "chapter_start")
+
+
+## The approved recap that plays when `chapter_id` is completed, or "" if there is none.
+static func chapter_complete_cutscene(chapter_id: String) -> String:
+	return _campaign_cutscene(chapter_id, "chapter_complete")
+
+
+static func _campaign_cutscene(chapter_id: String, kind: String) -> String:
 	var cutscenes: Dictionary = load_all()["cutscenes"]
 	for id: String in cutscenes:
 		var data: Dictionary = cutscenes[id]
-		if data.get("chapter_id") == chapter_id and str((data.get("trigger", {}) as Dictionary).get("kind", "")) == "chapter_start":
+		if data.get("chapter_id") == chapter_id and str((data.get("trigger", {}) as Dictionary).get("kind", "")) == kind:
 			return id
 	return ""
 
@@ -144,8 +156,8 @@ static func validate(data: Dictionary, context: Dictionary) -> Array[String]:
 		errors.append("trigger.kind must be one of %s" % str(TRIGGER_KINDS))
 	else:
 		var campaign: bool = data.get("mode") == "campaign"
-		if campaign != (str(trigger.get("kind")) == "chapter_start"):
-			errors.append("mode campaign goes with trigger chapter_start, and review_only with manual_preview")
+		if campaign != (str(trigger.get("kind")) in CAMPAIGN_TRIGGERS):
+			errors.append("mode campaign goes with trigger chapter_start or chapter_complete, and review_only with manual_preview")
 		if campaign and data.get("approved") != true:
 			errors.append("a campaign cutscene must be approved by the owner")
 	if data.get("fallback_action") != "restore_world":

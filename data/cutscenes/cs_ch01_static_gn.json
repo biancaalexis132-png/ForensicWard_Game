@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "cutscene_id": "cs_ch01_static_gn",
+  "chapter_id": "ch1",
+  "source_scene_id": "CH01_FULL_CHAPTER",
+  "source": "Owner-approved Static Graphic-Novel Cutscenes Final v1 artwork (2026-10-19), panels copied unchanged into assets/cutscenes/static_gn_v1/. Static panels with transitions, music, captions from campaign.json and restrained push/pan only; no dialogue, no character animation. Review-only until the owner approves placement after testing; the chapter title cards stay as they are.",
+  "mode": "review_only",
+  "approved": false,
+  "trigger": {
+    "kind": "manual_preview"
+  },
+  "fallback_action": "restore_world",
+  "music": {
+    "cue": "mus_waiting_room",
+    "ambience": "duck",
+    "ambience_db": -8.0,
+    "fade": 2.0
+  },
+  "panels": [
+    {
+      "id": "p01",
+      "duration_seconds": 6.5,
+      "transition": "fade_black",
+      "transition_seconds": 1.2,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_01.png",
+          "parallax": 1.0
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.0,
+        "zoom_to": 1.03,
+        "pan_from": [
+          0.0,
+          0.0
+        ],
+        "pan_to": [
+          -0.006,
+          0.0
+        ]
+      },
+      "caption_ref": null,
+      "line_id": null
+    },
+    {
+      "id": "p02",
+      "duration_seconds": 5.5,
+      "transition": "dissolve",
+      "transition_seconds": 0.8,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_02.png",
+          "parallax": 1.0
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.03,
+        "zoom_to": 1.0,
+        "pan_from": [
+          0.006,
+          0.0
+        ],
+        "pan_to": [
+          0.0,
+          0.0
+        ]
+      },
+      "caption_ref": "institution.name",
+      "line_id": null
+    },
+    {
+      "id": "p03",
+      "duration_seconds": 5.5,
+      "transition": "dissolve",
+      "transition_seconds": 0.8,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_03.png",
+          "parallax": 1.0
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.0,
+        "zoom_to": 1.03,
+        "pan_from": [
+          0.0,
+          0.004
+        ],
+        "pan_to": [
+          0.0,
+          -0.004
+        ]
+      },
+      "caption_ref": null,
+      "line_id": null
+    },
+    {
+      "id": "p04",
+      "duration_seconds": 5.5,
+      "transition": "dissolve",
+      "transition_seconds": 0.8,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_04.png",
+          "parallax": 1.0
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.0,
+        "zoom_to": 1.03,
+        "pan_from": [
+          0.0,
+          0.0
+        ],
+        "pan_to": [
+          -0.006,
+          0.0
+        ]
+      },
+      "caption_ref": null,
+      "line_id": null
+    },
+    {
+      "id": "p05",
+      "duration_seconds": 5.5,
+      "transition": "dissolve",
+      "transition_seconds": 0.8,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_05.png",
+          "parallax": 1.0
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.03,
+        "zoom_to": 1.0,
+        "pan_from": [
+          0.006,
+          0.0
+        ],
+        "pan_to": [
+          0.0,
+          0.0
+        ]
+      },
+      "caption_ref": null,
+      "line_id": null
+    },
+    {
+      "id": "p06",
+      "duration_seconds": 5.5,
+      "transition": "dissolve",
+      "transition_seconds": 0.8,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_06.png",
+          "parallax": 1.0
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.0,
+        "zoom_to": 1.03,
+        "pan_from": [
+          0.0,
+          0.004
+        ],
+        "pan_to": [
+          0.0,
+          -0.004
+        ]
+      },
+      "caption_ref": null,
+      "line_id": null
+    },
+    {
+      "id": "p07",
+      "duration_seconds": 6.5,
+      "transition": "dissolve",
+      "transition_seconds": 0.8,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_07.png",
+          "parallax": 1.0
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.0,
+        "zoom_to": 1.03,
+        "pan_from": [
+          0.0,
+          0.0
+        ],
+        "pan_to": [
+          -0.006,
+          0.0
+        ]
+      },
+      "caption_ref": null,
+      "line_id": null
+    }
+  ]
+}

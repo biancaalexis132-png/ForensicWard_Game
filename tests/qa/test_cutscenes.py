@@ -5,12 +5,15 @@ cutscene is caught before Godot starts, and adds repository-level checks:
 every panel texture has a provenance entry, and no cutscene is enabled in the
 campaign before the owner approves it.
 """
+import hashlib
 import json
 from pathlib import Path
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 CUTSCENES = ROOT / "data/cutscenes"
+OWNER_SUPPLIED = "owner_supplied:"
+REVIEW_STATUSES = {"UNAPPROVED_REVIEW_ONLY", "OWNER_APPROVED_ART_REVIEW_ONLY_PLACEMENT"}
 RESERVED_CUES = {"mus_temporal_fracture", "mus_final_revelation", "mus_ending_credits"}
 
 
@@ -93,10 +96,32 @@ class CutsceneContractTests(unittest.TestCase):
                     rel = texture.relative_to(ROOT).as_posix()
                     with self.subTest(texture=rel):
                         self.assertIn(rel, entries)
-                        self.assertEqual(manifest["review_status"], "UNAPPROVED_REVIEW_ONLY")
+                        self.assertIn(manifest["review_status"], REVIEW_STATUSES)
                         source = entries[rel]["source"]
-                        if source != "procedural":
+                        if source.startswith(OWNER_SUPPLIED):
+                            # Owner art kept outside the repo: the copy must stay byte-identical.
+                            digest = hashlib.sha256(texture.read_bytes()).hexdigest()
+                            self.assertEqual(entries[rel]["sha256"], digest, "owner art was modified")
+                        elif source != "procedural":
                             self.assertTrue((ROOT / source).is_file(), source)
+
+    def test_static_graphic_novel_covers_every_chapter(self):
+        # Owner-approved static art (2026-10-19): one review-only cutscene per chapter,
+        # every package panel in order, single unmodified layer, no dialogue.
+        for number, chapter in enumerate(self.chapters, start=1):
+            path = CUTSCENES / f"cs_ch{number:02d}_static_gn.json"
+            if not path.is_file():
+                continue
+            data = load(path)
+            manifest = load(ROOT / f"assets/cutscenes/static_gn_v1/ch{number:02d}/manifest.json")
+            with self.subTest(cutscene=path.stem):
+                self.assertEqual(data["chapter_id"], chapter)
+                self.assertEqual(manifest["review_status"], "OWNER_APPROVED_ART_REVIEW_ONLY_PLACEMENT")
+                expected = [f"res://{a['path']}" for a in manifest["assets"]]
+                self.assertEqual([p["layers"][0]["texture"] for p in data["panels"]], expected)
+                for panel in data["panels"]:
+                    self.assertEqual(len(panel["layers"]), 1, "no overlay painted on owner art")
+                    self.assertIsNone(panel["line_id"])
 
     def test_pilot_shape(self):
         data = load(CUTSCENES / "cs_ch01_first_shift_pilot.json")
