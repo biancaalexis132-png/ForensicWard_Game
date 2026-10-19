@@ -113,6 +113,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Subtitles and transcripts"
 
+[node name="RecapNarration" type="CheckBox" parent="Root/Panel/Margin/VBox/Accessibility"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Narrate chapter recaps"
+
 [node name="InvertY" type="CheckBox" parent="Root/Panel/Margin/VBox/Accessibility"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20

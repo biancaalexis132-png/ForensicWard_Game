@@ -1,0 +1,3 @@
+1
+00:00:00,000 --> 00:00:08,200
+The team has returned for debriefing. The first authorized inspection leaves discrepancies to document and questions for further review.

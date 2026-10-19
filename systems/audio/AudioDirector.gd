@@ -106,6 +106,12 @@ var _current_line_token: int = 0
 var _current_voice: Node = null
 ## Bumped whenever dialogue is started or stopped, so a scene notices interruptions.
 var _dialogue_token: int = 0
+## Recap narration shares speech ducking but never enters gameplay dialogue.
+var _narration_voice: AudioStreamPlayer
+var _narration_id: String = ""
+var _narration_paused: bool = false
+var _narration_finished: bool = true
+var _narration_length: float = 0.0
 
 var _ambience_lowpass: AudioEffectLowPassFilter
 var _music_lowpass: AudioEffectLowPassFilter
@@ -594,6 +600,7 @@ func play_scene(scene_id: String, emitters: Dictionary = {}) -> void:
 
 ## Ducks (true) or restores (false) music and ambience around speech.
 func _set_dialogue_duck(active: bool) -> void:
+	active = active or (not _narration_id.is_empty() and not _narration_paused)
 	_dialogue_ducked = active
 	var seconds: float = DIALOGUE_DUCK_ATTACK if active else DIALOGUE_DUCK_RELEASE
 	_tween(_music_duck, "volume_db", DIALOGUE_DUCK_MUSIC_DB if active else 0.0, seconds)
@@ -888,3 +895,78 @@ func _new_tween(target: Object) -> Tween:
 	var tween: Tween = create_tween()
 	_tweens[target] = tween
 	return tween
+
+
+# ===========================================================================
+# Offline chapter recap narration (owned by CutsceneDirector)
+# ===========================================================================
+
+## Starts one validated authored narration clip. No gameplay dialogue event is
+## emitted: actors must not lip-sync the third-person narrator.
+func play_narration(track: Dictionary) -> bool:
+	stop_narration()
+	var path: String = str(track.get("audio_path", ""))
+	var imported: bool = not path.is_empty() and ResourceLoader.exists(path)
+	if not path.begins_with("res://audio/narration/") or (not imported and not FileAccess.file_exists(path)):
+		return false
+	# Exported resources may exist only through their import remap. Raw OGG
+	# loading also permits offline authoring and the temporary QA stimulus.
+	var stream: AudioStream = load(path) as AudioStream if imported else AudioStreamOggVorbis.load_from_file(path)
+	if stream == null or stream.get_length() <= 0.0 or stream.get_length() > 120.0:
+		return false
+	stop_dialogue()
+	_narration_id = str(track.get("id", ""))
+	_narration_length = stream.get_length()
+	_narration_finished = false
+	_narration_paused = false
+	_narration_voice = _new_player("Voice", "RecapNarration")
+	_narration_voice.stream = stream
+	_narration_voice.finished.connect(_on_narration_finished)
+	_narration_voice.play()
+	_set_dialogue_duck(true)
+	return true
+
+func _on_narration_finished() -> void:
+	_narration_finished = true
+	if is_instance_valid(_narration_voice):
+		_narration_voice.queue_free()
+	_narration_voice = null
+	_narration_id = ""
+	_set_dialogue_duck(is_dialogue_playing())
+
+## Release the owned duck on every exit, including a failed start and pause.
+func stop_narration() -> void:
+	var was_active: bool = not _narration_id.is_empty() or is_instance_valid(_narration_voice)
+	if is_instance_valid(_narration_voice):
+		_narration_voice.stop()
+		_narration_voice.queue_free()
+	_narration_voice = null
+	_narration_id = ""
+	_narration_finished = true
+	_narration_paused = false
+	_narration_length = 0.0
+	if was_active:
+		_set_dialogue_duck(is_dialogue_playing())
+
+func pause_narration(paused: bool) -> void:
+	_narration_paused = paused
+	if is_instance_valid(_narration_voice):
+		_narration_voice.stream_paused = paused
+		_set_dialogue_duck(is_dialogue_playing())
+
+## Caption clock follows audio playback (latency compensated), not frame time.
+func narration_position() -> float:
+	if _narration_finished:
+		return _narration_length
+	if not is_instance_valid(_narration_voice):
+		return 0.0
+	var position: float = _narration_voice.get_playback_position()
+	if not _narration_paused:
+		position += AudioServer.get_time_since_last_mix() - AudioServer.get_output_latency()
+	return clampf(position, 0.0, _narration_length)
+
+func narration_finished() -> bool:
+	return _narration_finished
+
+func narration_length() -> float:
+	return _narration_length

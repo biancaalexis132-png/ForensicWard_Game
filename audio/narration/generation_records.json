@@ -1,0 +1,208 @@
+{
+  "flow_id": "yQMcIpjsr8E8Q7HI00l7",
+  "voice_id": "d8XDgkC47nxEyrCyckjI",
+  "model_id": "eleven_multilingual_v2",
+  "approval": "Owner approved narration and instructed continuation on 2026-10-19",
+  "recordings": [
+    {
+      "track": "nar_ch01_p01",
+      "node_id": "LwGiRo2q5Jz6OSGUO8Sq",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch01_p02",
+      "node_id": "nvbZqMhUM97wNUkRFKwF",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch01_p03",
+      "node_id": "yTdVd2SsPYGKdk73IuFN",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch01_p04",
+      "node_id": "OcouXmEUZzht3lgTju7S",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch01_p05",
+      "node_id": "admdnKrSvKbPxHjHyIGb",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch01_p06",
+      "node_id": "XidAR317zvmnQtEibYTl",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch01_p07",
+      "node_id": "RD9SPwUMTRFeekTD9PSq",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch02_p01",
+      "node_id": "rJ8ZTlk3wvKluTUEoJqz",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch02_p02",
+      "node_id": "M6knjs38agrttyJk2nyn",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch02_p03",
+      "node_id": "nCS9OsY1Og4eAp31zaKO",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch02_p04",
+      "node_id": "PwRW4woctzWLJlI9j2YH",
+      "status": "generated_not_downloaded",
+      "session_id": "6JzG4QhnEdslGLvfAWm5",
+      "generation_ids": [
+        "uqvmiHtJM7fBjQYYjviy"
+      ]
+    },
+    {
+      "track": "nar_ch02_p05",
+      "node_id": "65gV1M9DJLTjuHJ9oTcc",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch02_p06",
+      "node_id": "WfyUZFi6QTJLESHhP0WZ",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch02_p07",
+      "node_id": "QQHmC2u5n7mV4aHc5nZq",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch03_p01",
+      "node_id": "ucskuCEo3aC6YzlzUu8p",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch03_p02",
+      "node_id": "QFvaMZu0jy6eFpiykIl6",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch03_p03",
+      "node_id": "oBCXN1iKceQopRQnAn7E",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch03_p04",
+      "node_id": "MoOgnTfYO0UhWLWmiDs4",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch03_p05",
+      "node_id": "KZjRTLozfYgreMLmGsef",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch03_p06",
+      "node_id": "xKGYtgEGIBL7DcnIbnkg",
+      "status": "not_started_rate_limit"
+    },
+    {
+      "track": "nar_ch03_p07",
+      "node_id": "bpnDXZvstcp0fpvdmaC7",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch04_p01",
+      "node_id": "vszEwLppz3nylvz5nQEs",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch04_p02",
+      "node_id": "R58EkEZTOW8be8iIGQ1O",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch04_p03",
+      "node_id": "GzJMMt5SxcpTLSVyPicx",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch04_p04",
+      "node_id": "ejsrKZhDDgTbR0QTUJTZ",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch04_p05",
+      "node_id": "ZlpGQXMChhHJZfjOOCxM",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch04_p06",
+      "node_id": "nf3XQnsH2teACfEwyubC",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch04_p07",
+      "node_id": "YNwNjgP55iTDy0BUqBe9",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch04_p08",
+      "node_id": "sulmfRxp7GFzpkmqArAj",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch05_p01",
+      "node_id": "dVpVb6O4fZnpDWAAGUON",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch05_p02",
+      "node_id": "cPNF4vqXLL2FfR7G2lv2",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch05_p03",
+      "node_id": "ik9hfvqR0xZnLNW1ysPE",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch05_p04",
+      "node_id": "91Ki1aik5iefKJsQPDYB",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch05_p05",
+      "node_id": "EddqMOHhti9CHHGS3tQo",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch05_p07",
+      "node_id": "OsfoOAndg8FzCb1oAtX9",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch05_p06_a",
+      "node_id": "fLIckqyyT2I29A22s8iE",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch05_p06_b",
+      "node_id": "1QRNxrwmNYNLndH171uN",
+      "status": "prepared_not_started"
+    },
+    {
+      "track": "nar_ch05_p06_c",
+      "node_id": "28chrq5N2kh2m2Z7HSpm",
+      "status": "prepared_not_started"
+    }
+  ],
+  "blockers": [
+    "Provider HTTP 429 prevented 37 initial recording starts; no completed recording was regenerated.",
+    "Live runtime network still allows only api.github.com. Downloads from storage.googleapis.com receive proxy HTTP 403."
+  ],
+  "status": "historical_superseded",
+  "superseded_by": "Owner-approved local Piper LJ Speech replacement; shipped recording provenance is audio/narration/provenance.json. No ElevenLabs asset is used in production."
+}

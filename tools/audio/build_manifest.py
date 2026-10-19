@@ -73,6 +73,12 @@ def references():
                 by_line.setdefault(action["line"], []).append(event_id)
             for line_id in scene_lines.get(action.get("scene"), []):
                 by_line.setdefault(line_id, []).append(event_id)
+    narration_path = ROOT / "data/narration/recaps.json"
+    if narration_path.exists():
+        for track_id, track in load_json(narration_path).get("tracks", {}).items():
+            path = track.get("audio_path", "").removeprefix("res://")
+            if path:
+                by_path.setdefault(path, []).append(track_id)
     return by_path, by_line
 
 
@@ -89,6 +95,8 @@ def build():
             for line in scene.get("lines", []):
                 scene_locations[line["id"]] = scene.get("location", "")
     by_path, by_line = references()
+    narration_path = ROOT / "audio/narration/provenance.json"
+    narration = {a["file"]: a for a in load_json(narration_path).get("assets", {}).values()} if narration_path.exists() else {}
     problems = []
     assets = []
     found = (p for root in AUDIO_ROOTS for p in (ROOT / root).rglob("*"))
@@ -119,6 +127,11 @@ def build():
             })
             integrated = True
         else:
+            if relative in narration:
+                record = narration[relative]
+                entry.update({"category": "narration", "source": record["voice"]["provider"] + " " + record["voice"]["name"] + " / " + record["voice"]["model_id"] + "; " + record["conversion"],
+                              "license": record["license"], "review_status": record["review_status"],
+                              "location": "chapter recap", "track_id": record["track_id"]})
             entry["ids"] = by_path.get(relative, entry.get("ids", []))
             integrated = relative in by_path
         entry["integration_status"] = "integrated" if integrated else "not_integrated"

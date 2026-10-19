@@ -1,0 +1,984 @@
+{
+  "schema_version": 1,
+  "voice": {
+    "provider": "Piper via Sherpa-ONNX (local CPU)",
+    "voice_id": "en_US-ljspeech-high",
+    "name": "LJ Speech US English female",
+    "model_id": "vits-piper-en_US-ljspeech-high",
+    "approval": "Owner approved the 18-second Chapter 1 replacement voice/pacing sample with yes on 2026-10-19; replaces ElevenLabs Shawn for every chapter.",
+    "settings": {
+      "speed": 0.92,
+      "sid": 0,
+      "num_threads": 2,
+      "noise_scale": 0.667,
+      "noise_scale_w": 0.8,
+      "length_scale": 1.0,
+      "source_sample_rate": 22050,
+      "source_format": "PCM_16 WAV"
+    },
+    "model_sha256": "fea8faae21240174e972568a004f1d7afb01a93dbc7b3a58c36ecdc1bae82e33",
+    "source_url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-ljspeech-high.tar.bz2",
+    "license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed."
+  },
+  "tracks": {
+    "nar_ch01_p01": {
+      "id": "nar_ch01_p01",
+      "chapter_id": "ch1",
+      "panel_id": "p01",
+      "text": "At Ashcroft, a shift begins with ordinary things: identification, open doors, and an expectation that people will be looked after.",
+      "audio_path": "res://audio/narration/ch01/nar_ch01_p01.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.4,
+          "text": "At Ashcroft, a shift begins with ordinary things: identification, open doors, and an expectation that people will be looked after."
+        }
+      ],
+      "estimated_seconds": 8.4,
+      "duration_seconds": 8.4
+    },
+    "nar_ch01_p02": {
+      "id": "nar_ch01_p02",
+      "chapter_id": "ch1",
+      "panel_id": "p02",
+      "text": "Behind the secured doors, the ward continues its daily rhythm. Every task belongs to someone, and every handoff matters.",
+      "audio_path": "res://audio/narration/ch01/nar_ch01_p02.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.2,
+          "text": "Behind the secured doors, the ward continues its daily rhythm. Every task belongs to someone, and every handoff matters."
+        }
+      ],
+      "estimated_seconds": 8.2,
+      "duration_seconds": 8.2
+    },
+    "nar_ch01_p03": {
+      "id": "nar_ch01_p03",
+      "chapter_id": "ch1",
+      "panel_id": "p03",
+      "text": "Nurse Bennett knows that a unit is held together as much by small acts of attention as by written procedure.",
+      "audio_path": "res://audio/narration/ch01/nar_ch01_p03.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 6.7,
+          "text": "Nurse Bennett knows that a unit is held together as much by small acts of attention as by written procedure."
+        }
+      ],
+      "estimated_seconds": 6.7,
+      "duration_seconds": 6.7
+    },
+    "nar_ch01_p04": {
+      "id": "nar_ch01_p04",
+      "chapter_id": "ch1",
+      "panel_id": "p04",
+      "text": "A transfer summary offers a starting point, but not an answer. The record must be read alongside the patient.",
+      "audio_path": "res://audio/narration/ch01/nar_ch01_p04.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 6.7,
+          "text": "A transfer summary offers a starting point, but not an answer. The record must be read alongside the patient."
+        }
+      ],
+      "estimated_seconds": 6.7,
+      "duration_seconds": 6.7
+    },
+    "nar_ch01_p05": {
+      "id": "nar_ch01_p05",
+      "chapter_id": "ch1",
+      "panel_id": "p05",
+      "text": "An interview asks for attention before interpretation. What remains uncertain must stay uncertain in the record.",
+      "audio_path": "res://audio/narration/ch01/nar_ch01_p05.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 7.2,
+          "text": "An interview asks for attention before interpretation. What remains uncertain must stay uncertain in the record."
+        }
+      ],
+      "estimated_seconds": 7.2,
+      "duration_seconds": 7.2
+    },
+    "nar_ch01_p06": {
+      "id": "nar_ch01_p06",
+      "chapter_id": "ch1",
+      "panel_id": "p06",
+      "text": "Elsewhere, an access designation raises a separate question. For now, the threshold stays closed.",
+      "audio_path": "res://audio/narration/ch01/nar_ch01_p06.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 6.8,
+          "text": "Elsewhere, an access designation raises a separate question. For now, the threshold stays closed."
+        }
+      ],
+      "estimated_seconds": 6.8,
+      "duration_seconds": 6.8
+    },
+    "nar_ch01_p07": {
+      "id": "nar_ch01_p07",
+      "chapter_id": "ch1",
+      "panel_id": "p07",
+      "text": "The first shift leaves questions for proper review. The written record offers a starting point, and a responsibility to check what it can support.",
+      "audio_path": "res://audio/narration/ch01/nar_ch01_p07.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.3,
+          "text": "The first shift leaves questions for proper review. The written record offers a starting point, and a responsibility to check what it can support."
+        }
+      ],
+      "estimated_seconds": 8.3,
+      "duration_seconds": 8.3
+    },
+    "nar_ch02_p01": {
+      "id": "nar_ch02_p01",
+      "chapter_id": "ch2",
+      "panel_id": "p01",
+      "text": "The next shift begins where the last ended: with people who need treatment, attention, and continuity.",
+      "audio_path": "res://audio/narration/ch02/nar_ch02_p01.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 6.7,
+          "text": "The next shift begins where the last ended: with people who need treatment, attention, and continuity."
+        }
+      ],
+      "estimated_seconds": 6.7,
+      "duration_seconds": 6.7
+    },
+    "nar_ch02_p02": {
+      "id": "nar_ch02_p02",
+      "chapter_id": "ch2",
+      "panel_id": "p02",
+      "text": "Mara Ellis has her own reasons to be here. Her care is not a puzzle to solve for the hospital.",
+      "audio_path": "res://audio/narration/ch02/nar_ch02_p02.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 5.9,
+          "text": "Mara Ellis has her own reasons to be here. Her care is not a puzzle to solve for the hospital."
+        }
+      ],
+      "estimated_seconds": 5.9,
+      "duration_seconds": 5.9
+    },
+    "nar_ch02_p03": {
+      "id": "nar_ch02_p03",
+      "chapter_id": "ch2",
+      "panel_id": "p03",
+      "text": "There are gaps between the records, and gaps between what a document says and what can be verified.",
+      "audio_path": "res://audio/narration/ch02/nar_ch02_p03.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 5.9,
+          "text": "There are gaps between the records, and gaps between what a document says and what can be verified."
+        }
+      ],
+      "estimated_seconds": 5.9,
+      "duration_seconds": 5.9
+    },
+    "nar_ch02_p04": {
+      "id": "nar_ch02_p04",
+      "chapter_id": "ch2",
+      "panel_id": "p04",
+      "text": "The staff compare what they actually know. A discrepancy becomes a question, not yet an accusation.",
+      "audio_path": "res://audio/narration/ch02/nar_ch02_p04.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 6.4,
+          "text": "The staff compare what they actually know. A discrepancy becomes a question, not yet an accusation."
+        }
+      ],
+      "estimated_seconds": 6.4,
+      "duration_seconds": 6.4
+    },
+    "nar_ch02_p05": {
+      "id": "nar_ch02_p05",
+      "chapter_id": "ch2",
+      "panel_id": "p05",
+      "text": "A timestamp alone cannot testify. It must be tested against the original source and its chain of custody.",
+      "audio_path": "res://audio/narration/ch02/nar_ch02_p05.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 7.5,
+          "text": "A timestamp alone cannot testify. It must be tested against the original source and its chain of custody."
+        }
+      ],
+      "estimated_seconds": 7.5,
+      "duration_seconds": 7.5
+    },
+    "nar_ch02_p06": {
+      "id": "nar_ch02_p06",
+      "chapter_id": "ch2",
+      "panel_id": "p06",
+      "text": "In the archive, patient records and incident reports remain distinct sources. Permission to consult them does not remove the need to examine their origins.",
+      "audio_path": "res://audio/narration/ch02/nar_ch02_p06.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 10.3,
+          "text": "In the archive, patient records and incident reports remain distinct sources. Permission to consult them does not remove the need to examine their origins."
+        }
+      ],
+      "estimated_seconds": 10.3,
+      "duration_seconds": 10.3
+    },
+    "nar_ch02_p07": {
+      "id": "nar_ch02_p07",
+      "chapter_id": "ch2",
+      "panel_id": "p07",
+      "text": "By the end of the shift, the official chronology is less certain. The clinical work, however, does not stop.",
+      "audio_path": "res://audio/narration/ch02/nar_ch02_p07.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 6.2,
+          "text": "By the end of the shift, the official chronology is less certain. The clinical work, however, does not stop."
+        }
+      ],
+      "estimated_seconds": 6.2,
+      "duration_seconds": 6.2
+    },
+    "nar_ch03_p01": {
+      "id": "nar_ch03_p01",
+      "chapter_id": "ch3",
+      "panel_id": "p01",
+      "text": "Entry into the sublevel is agreed upon in writing, with escorts, communication checks, and a return plan.",
+      "audio_path": "res://audio/narration/ch03/nar_ch03_p01.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 6.8,
+          "text": "Entry into the sublevel is agreed upon in writing, with escorts, communication checks, and a return plan."
+        }
+      ],
+      "estimated_seconds": 6.8,
+      "duration_seconds": 6.8
+    },
+    "nar_ch03_p02": {
+      "id": "nar_ch03_p02",
+      "chapter_id": "ch3",
+      "panel_id": "p02",
+      "text": "The team proceeds for a defined purpose. What lies below is unfamiliar, but unfamiliar is not the same as inexplicable.",
+      "audio_path": "res://audio/narration/ch03/nar_ch03_p02.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.1,
+          "text": "The team proceeds for a defined purpose. What lies below is unfamiliar, but unfamiliar is not the same as inexplicable."
+        }
+      ],
+      "estimated_seconds": 8.1,
+      "duration_seconds": 8.1
+    },
+    "nar_ch03_p03": {
+      "id": "nar_ch03_p03",
+      "chapter_id": "ch3",
+      "panel_id": "p03",
+      "text": "Beyond the secured door, the physical spaces suggest a history the current ward does not fully describe.",
+      "audio_path": "res://audio/narration/ch03/nar_ch03_p03.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 6.5,
+          "text": "Beyond the secured door, the physical spaces suggest a history the current ward does not fully describe."
+        }
+      ],
+      "estimated_seconds": 6.5,
+      "duration_seconds": 6.5
+    },
+    "nar_ch03_p04": {
+      "id": "nar_ch03_p04",
+      "chapter_id": "ch3",
+      "panel_id": "p04",
+      "text": "A smaller station and old equipment remain. Their presence is evidence of a place, not proof of what happened there.",
+      "audio_path": "res://audio/narration/ch03/nar_ch03_p04.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 6.9,
+          "text": "A smaller station and old equipment remain. Their presence is evidence of a place, not proof of what happened there."
+        }
+      ],
+      "estimated_seconds": 6.9,
+      "duration_seconds": 6.9
+    },
+    "nar_ch03_p05": {
+      "id": "nar_ch03_p05",
+      "chapter_id": "ch3",
+      "panel_id": "p05",
+      "text": "Stored records raise questions about their origins. Their presence alone cannot establish what happened in this place.",
+      "audio_path": "res://audio/narration/ch03/nar_ch03_p05.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.1,
+          "text": "Stored records raise questions about their origins. Their presence alone cannot establish what happened in this place."
+        }
+      ],
+      "estimated_seconds": 8.1,
+      "duration_seconds": 8.1
+    },
+    "nar_ch03_p06": {
+      "id": "nar_ch03_p06",
+      "chapter_id": "ch3",
+      "panel_id": "p06",
+      "text": "When measurements and accounts fail to align, the team records the difference and follows its safety plan.",
+      "audio_path": "res://audio/narration/ch03/nar_ch03_p06.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 5.9,
+          "text": "When measurements and accounts fail to align, the team records the difference and follows its safety plan."
+        }
+      ],
+      "estimated_seconds": 5.9,
+      "duration_seconds": 5.9
+    },
+    "nar_ch03_p07": {
+      "id": "nar_ch03_p07",
+      "chapter_id": "ch3",
+      "panel_id": "p07",
+      "text": "The team has returned for debriefing. The first authorized inspection leaves discrepancies to document and questions for further review.",
+      "audio_path": "res://audio/narration/ch03/nar_ch03_p07.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.2,
+          "text": "The team has returned for debriefing. The first authorized inspection leaves discrepancies to document and questions for further review."
+        }
+      ],
+      "estimated_seconds": 8.2,
+      "duration_seconds": 8.2
+    },
+    "nar_ch04_p01": {
+      "id": "nar_ch04_p01",
+      "chapter_id": "ch4",
+      "panel_id": "p01",
+      "text": "Plans and records are brought together for review. Their differences must remain visible, with each source identified.",
+      "audio_path": "res://audio/narration/ch04/nar_ch04_p01.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 7.3,
+          "text": "Plans and records are brought together for review. Their differences must remain visible, with each source identified."
+        }
+      ],
+      "estimated_seconds": 7.3,
+      "duration_seconds": 7.3
+    },
+    "nar_ch04_p02": {
+      "id": "nar_ch04_p02",
+      "chapter_id": "ch4",
+      "panel_id": "p02",
+      "text": "The controlled inspection has a defined route and authorized witnesses. Access remains limited by the purpose of the visit.",
+      "audio_path": "res://audio/narration/ch04/nar_ch04_p02.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 7.4,
+          "text": "The controlled inspection has a defined route and authorized witnesses. Access remains limited by the purpose of the visit."
+        }
+      ],
+      "estimated_seconds": 7.4,
+      "duration_seconds": 7.4
+    },
+    "nar_ch04_p03": {
+      "id": "nar_ch04_p03",
+      "chapter_id": "ch4",
+      "panel_id": "p03",
+      "text": "Within the corridor, the team records what it observes. A familiar appearance cannot settle whether two accounts describe the same place.",
+      "audio_path": "res://audio/narration/ch04/nar_ch04_p03.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.6,
+          "text": "Within the corridor, the team records what it observes. A familiar appearance cannot settle whether two accounts describe the same place."
+        }
+      ],
+      "estimated_seconds": 8.6,
+      "duration_seconds": 8.6
+    },
+    "nar_ch04_p04": {
+      "id": "nar_ch04_p04",
+      "chapter_id": "ch4",
+      "panel_id": "p04",
+      "text": "The working ward remains the reference point. Patient care continues while the separate inspection follows its agreed limits.",
+      "audio_path": "res://audio/narration/ch04/nar_ch04_p04.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 7.9,
+          "text": "The working ward remains the reference point. Patient care continues while the separate inspection follows its agreed limits."
+        }
+      ],
+      "estimated_seconds": 7.9,
+      "duration_seconds": 7.9
+    },
+    "nar_ch04_p05": {
+      "id": "nar_ch04_p05",
+      "chapter_id": "ch4",
+      "panel_id": "p05",
+      "text": "Clock faces and corridor markers invite comparison. The record must distinguish what a witness noticed from what has been independently established.",
+      "audio_path": "res://audio/narration/ch04/nar_ch04_p05.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.9,
+          "text": "Clock faces and corridor markers invite comparison. The record must distinguish what a witness noticed from what has been independently established."
+        }
+      ],
+      "estimated_seconds": 8.9,
+      "duration_seconds": 8.9
+    },
+    "nar_ch04_p06": {
+      "id": "nar_ch04_p06",
+      "chapter_id": "ch4",
+      "panel_id": "p06",
+      "text": "A repeated corridor marker has been recorded on separate sheets. The observation remains unverified; it does not establish a cause.",
+      "audio_path": "res://audio/narration/ch04/nar_ch04_p06.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 9.1,
+          "text": "A repeated corridor marker has been recorded on separate sheets. The observation remains unverified; it does not establish a cause."
+        }
+      ],
+      "estimated_seconds": 9.1,
+      "duration_seconds": 9.1
+    },
+    "nar_ch04_p07": {
+      "id": "nar_ch04_p07",
+      "chapter_id": "ch4",
+      "panel_id": "p07",
+      "text": "The observations are compared with the plan. The disagreement is retained rather than resolved through an unsupported explanation.",
+      "audio_path": "res://audio/narration/ch04/nar_ch04_p07.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 7.8,
+          "text": "The observations are compared with the plan. The disagreement is retained rather than resolved through an unsupported explanation."
+        }
+      ],
+      "estimated_seconds": 7.8,
+      "duration_seconds": 7.8
+    },
+    "nar_ch04_p08": {
+      "id": "nar_ch04_p08",
+      "chapter_id": "ch4",
+      "panel_id": "p08",
+      "text": "The official record preserves the reported repetition and its limits. Further review must begin with those limits intact.",
+      "audio_path": "res://audio/narration/ch04/nar_ch04_p08.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 7.2,
+          "text": "The official record preserves the reported repetition and its limits. Further review must begin with those limits intact."
+        }
+      ],
+      "estimated_seconds": 7.2,
+      "duration_seconds": 7.2
+    },
+    "nar_ch05_p01": {
+      "id": "nar_ch05_p01",
+      "chapter_id": "ch5",
+      "panel_id": "p01",
+      "text": "Witness accounts and records have been brought together. Their sources, limits, and implications must be considered before the next decision.",
+      "audio_path": "res://audio/narration/ch05/nar_ch05_p01.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.4,
+          "text": "Witness accounts and records have been brought together. Their sources, limits, and implications must be considered before the next decision."
+        }
+      ],
+      "estimated_seconds": 8.4,
+      "duration_seconds": 8.4
+    },
+    "nar_ch05_p02": {
+      "id": "nar_ch05_p02",
+      "chapter_id": "ch5",
+      "panel_id": "p02",
+      "text": "At the secured archive, access remains controlled. An unanswered question is not permission to cross another boundary.",
+      "audio_path": "res://audio/narration/ch05/nar_ch05_p02.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 7.4,
+          "text": "At the secured archive, access remains controlled. An unanswered question is not permission to cross another boundary."
+        }
+      ],
+      "estimated_seconds": 7.4,
+      "duration_seconds": 7.4
+    },
+    "nar_ch05_p03": {
+      "id": "nar_ch05_p03",
+      "chapter_id": "ch5",
+      "panel_id": "p03",
+      "text": "The accumulated documents preserve a history with unresolved gaps. Their arrangement cannot make every question answer itself.",
+      "audio_path": "res://audio/narration/ch05/nar_ch05_p03.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.5,
+          "text": "The accumulated documents preserve a history with unresolved gaps. Their arrangement cannot make every question answer itself."
+        }
+      ],
+      "estimated_seconds": 8.5,
+      "duration_seconds": 8.5
+    },
+    "nar_ch05_p04": {
+      "id": "nar_ch05_p04",
+      "chapter_id": "ch5",
+      "panel_id": "p04",
+      "text": "The review asks which accounts stand independently, and which share a source. Copies cannot become separate witnesses by being counted twice.",
+      "audio_path": "res://audio/narration/ch05/nar_ch05_p04.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 9.5,
+          "text": "The review asks which accounts stand independently, and which share a source. Copies cannot become separate witnesses by being counted twice."
+        }
+      ],
+      "estimated_seconds": 9.5,
+      "duration_seconds": 9.5
+    },
+    "nar_ch05_p05": {
+      "id": "nar_ch05_p05",
+      "chapter_id": "ch5",
+      "panel_id": "p05",
+      "text": "Back on the working ward, ordinary responsibilities continue. The inquiry cannot take the place of attention to the people receiving care.",
+      "audio_path": "res://audio/narration/ch05/nar_ch05_p05.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.4,
+          "text": "Back on the working ward, ordinary responsibilities continue. The inquiry cannot take the place of attention to the people receiving care."
+        }
+      ],
+      "estimated_seconds": 8.4,
+      "duration_seconds": 8.4
+    },
+    "nar_ch05_p06": {
+      "id": "nar_ch05_p06",
+      "chapter_id": "ch5",
+      "panel_id": "p06",
+      "text": "The record preserves a decision and the questions that remain. Its next review must respect access controls, oversight, and continuing care.",
+      "audio_path": "res://audio/narration/ch05/nar_ch05_p06.ogg",
+      "cues": [],
+      "estimated_seconds": 9.69
+    },
+    "nar_ch05_p07": {
+      "id": "nar_ch05_p07",
+      "chapter_id": "ch5",
+      "panel_id": "p07",
+      "text": "By morning, the ward is still a ward. People still need care. The next shift begins with the same ordinary responsibility.",
+      "audio_path": "res://audio/narration/ch05/nar_ch05_p07.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 8.7,
+          "text": "By morning, the ward is still a ward. People still need care. The next shift begins with the same ordinary responsibility."
+        }
+      ],
+      "estimated_seconds": 8.7,
+      "duration_seconds": 8.7
+    },
+    "nar_ch05_p06_a": {
+      "id": "nar_ch05_p06_a",
+      "chapter_id": "ch5",
+      "panel_id": "p06",
+      "text": "An external referral has been sent, with the originals retained. The questions remain open for independent examination, and the limitations remain part of the record.",
+      "audio_path": "res://audio/narration/ch05/nar_ch05_p06_a.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 10.2,
+          "text": "An external referral has been sent, with the originals retained. The questions remain open for independent examination, and the limitations remain part of the record."
+        }
+      ],
+      "estimated_seconds": 10.2,
+      "duration_seconds": 10.2
+    },
+    "nar_ch05_p06_b": {
+      "id": "nar_ch05_p06_b",
+      "chapter_id": "ch5",
+      "panel_id": "p06",
+      "text": "The old entrance remains sealed under documented restrictions. The evidence is preserved, with a periodic review date and no authority for another inspection.",
+      "audio_path": "res://audio/narration/ch05/nar_ch05_p06_b.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "text": "The old entrance remains sealed under documented restrictions. The evidence is preserved, with a periodic review date and no authority for another inspection."
+        }
+      ],
+      "estimated_seconds": 10.0,
+      "duration_seconds": 10.0
+    },
+    "nar_ch05_p06_c": {
+      "id": "nar_ch05_p06_c",
+      "chapter_id": "ch5",
+      "panel_id": "p06",
+      "text": "An accountable inquiry continues with oversight, limited access, and defined stop conditions. Further work remains bounded by those responsibilities.",
+      "audio_path": "res://audio/narration/ch05/nar_ch05_p06_c.ogg",
+      "cues": [
+        {
+          "start": 0.0,
+          "end": 10.3,
+          "text": "An accountable inquiry continues with oversight, limited access, and defined stop conditions. Further work remains bounded by those responsibilities."
+        }
+      ],
+      "estimated_seconds": 10.3,
+      "duration_seconds": 10.3
+    }
+  },
+  "bindings": {
+    "ch1:p01": {
+      "default": "nar_ch01_p01"
+    },
+    "ch1:p02": {
+      "default": "nar_ch01_p02"
+    },
+    "ch1:p03": {
+      "default": "nar_ch01_p03"
+    },
+    "ch1:p04": {
+      "default": "nar_ch01_p04"
+    },
+    "ch1:p05": {
+      "default": "nar_ch01_p05"
+    },
+    "ch1:p06": {
+      "default": "nar_ch01_p06"
+    },
+    "ch1:p07": {
+      "default": "nar_ch01_p07"
+    },
+    "ch2:p01": {
+      "default": "nar_ch02_p01"
+    },
+    "ch2:p02": {
+      "default": "nar_ch02_p02"
+    },
+    "ch2:p03": {
+      "default": "nar_ch02_p03"
+    },
+    "ch2:p04": {
+      "default": "nar_ch02_p04"
+    },
+    "ch2:p05": {
+      "default": "nar_ch02_p05"
+    },
+    "ch2:p06": {
+      "default": "nar_ch02_p06"
+    },
+    "ch2:p07": {
+      "default": "nar_ch02_p07"
+    },
+    "ch3:p01": {
+      "default": "nar_ch03_p01"
+    },
+    "ch3:p02": {
+      "default": "nar_ch03_p02"
+    },
+    "ch3:p03": {
+      "default": "nar_ch03_p03"
+    },
+    "ch3:p04": {
+      "default": "nar_ch03_p04"
+    },
+    "ch3:p05": {
+      "default": "nar_ch03_p05"
+    },
+    "ch3:p06": {
+      "default": "nar_ch03_p06"
+    },
+    "ch3:p07": {
+      "default": "nar_ch03_p07"
+    },
+    "ch4:p01": {
+      "default": "nar_ch04_p01"
+    },
+    "ch4:p02": {
+      "default": "nar_ch04_p02"
+    },
+    "ch4:p03": {
+      "default": "nar_ch04_p03"
+    },
+    "ch4:p04": {
+      "default": "nar_ch04_p04"
+    },
+    "ch4:p05": {
+      "default": "nar_ch04_p05"
+    },
+    "ch4:p06": {
+      "default": "nar_ch04_p06"
+    },
+    "ch4:p07": {
+      "default": "nar_ch04_p07"
+    },
+    "ch4:p08": {
+      "default": "nar_ch04_p08"
+    },
+    "ch5:p01": {
+      "default": "nar_ch05_p01"
+    },
+    "ch5:p02": {
+      "default": "nar_ch05_p02"
+    },
+    "ch5:p03": {
+      "default": "nar_ch05_p03"
+    },
+    "ch5:p04": {
+      "default": "nar_ch05_p04"
+    },
+    "ch5:p05": {
+      "default": "nar_ch05_p05"
+    },
+    "ch5:p06": {
+      "default": "nar_ch05_p06",
+      "variants": [
+        {
+          "flags": [
+            "ch5_ending_review",
+            "ch5_epilogue_review"
+          ],
+          "track": "nar_ch05_p06_a"
+        },
+        {
+          "flags": [
+            "ch5_ending_restricted",
+            "ch5_epilogue_restricted"
+          ],
+          "track": "nar_ch05_p06_b"
+        },
+        {
+          "flags": [
+            "ch5_ending_inquiry",
+            "ch5_epilogue_inquiry"
+          ],
+          "track": "nar_ch05_p06_c"
+        }
+      ]
+    },
+    "ch5:p07": {
+      "default": "nar_ch05_p07"
+    }
+  },
+  "sources": {
+    "nar_ch01_p01": {
+      "runtime_source": "data/story_chapter1.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH01_THE_ADMISSION_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_01.png"
+    },
+    "nar_ch01_p02": {
+      "runtime_source": "data/story_chapter1.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH01_THE_ADMISSION_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_02.png"
+    },
+    "nar_ch01_p03": {
+      "runtime_source": "data/story_chapter1.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH01_THE_ADMISSION_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_03.png"
+    },
+    "nar_ch01_p04": {
+      "runtime_source": "data/story_chapter1.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH01_THE_ADMISSION_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_04.png"
+    },
+    "nar_ch01_p05": {
+      "runtime_source": "data/story_chapter1.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH01_THE_ADMISSION_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_05.png"
+    },
+    "nar_ch01_p06": {
+      "runtime_source": "data/story_chapter1.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH01_THE_ADMISSION_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_06.png"
+    },
+    "nar_ch01_p07": {
+      "runtime_source": "data/story_chapter1.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH01_THE_ADMISSION_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_07.png"
+    },
+    "nar_ch02_p01": {
+      "runtime_source": "data/story_chapter2.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH02_THE_MISSING_HOURS_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_01.png"
+    },
+    "nar_ch02_p02": {
+      "runtime_source": "data/story_chapter2.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH02_THE_MISSING_HOURS_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_02.png"
+    },
+    "nar_ch02_p03": {
+      "runtime_source": "data/story_chapter2.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH02_THE_MISSING_HOURS_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_03.png"
+    },
+    "nar_ch02_p04": {
+      "runtime_source": "data/story_chapter2.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH02_THE_MISSING_HOURS_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_04.png"
+    },
+    "nar_ch02_p05": {
+      "runtime_source": "data/story_chapter2.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH02_THE_MISSING_HOURS_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_05.png"
+    },
+    "nar_ch02_p06": {
+      "runtime_source": "data/story_chapter2.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH02_THE_MISSING_HOURS_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_06.png"
+    },
+    "nar_ch02_p07": {
+      "runtime_source": "data/story_chapter2.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH02_THE_MISSING_HOURS_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_07.png"
+    },
+    "nar_ch03_p01": {
+      "runtime_source": "data/story_chapter3.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH03_BENEATH_THE_HOSPITAL_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_01.png"
+    },
+    "nar_ch03_p02": {
+      "runtime_source": "data/story_chapter3.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH03_BENEATH_THE_HOSPITAL_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_02.png"
+    },
+    "nar_ch03_p03": {
+      "runtime_source": "data/story_chapter3.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH03_BENEATH_THE_HOSPITAL_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_03.png"
+    },
+    "nar_ch03_p04": {
+      "runtime_source": "data/story_chapter3.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH03_BENEATH_THE_HOSPITAL_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_04.png"
+    },
+    "nar_ch03_p05": {
+      "runtime_source": "data/story_chapter3.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH03_BENEATH_THE_HOSPITAL_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_05.png"
+    },
+    "nar_ch03_p06": {
+      "runtime_source": "data/story_chapter3.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH03_BENEATH_THE_HOSPITAL_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_06.png"
+    },
+    "nar_ch03_p07": {
+      "runtime_source": "data/story_chapter3.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH03_BENEATH_THE_HOSPITAL_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_07.png"
+    },
+    "nar_ch04_p01": {
+      "runtime_source": "data/story_chapter4.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Revised_Screenplays_v2/chapters/CH04_OFFICIAL_RECORD_v2.md",
+      "art": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_01.png"
+    },
+    "nar_ch04_p02": {
+      "runtime_source": "data/story_chapter4.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Revised_Screenplays_v2/chapters/CH04_OFFICIAL_RECORD_v2.md",
+      "art": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_02.png"
+    },
+    "nar_ch04_p03": {
+      "runtime_source": "data/story_chapter4.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Revised_Screenplays_v2/chapters/CH04_OFFICIAL_RECORD_v2.md",
+      "art": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_03.png"
+    },
+    "nar_ch04_p04": {
+      "runtime_source": "data/story_chapter4.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Revised_Screenplays_v2/chapters/CH04_OFFICIAL_RECORD_v2.md",
+      "art": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_04.png"
+    },
+    "nar_ch04_p05": {
+      "runtime_source": "data/story_chapter4.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Revised_Screenplays_v2/chapters/CH04_OFFICIAL_RECORD_v2.md",
+      "art": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_05.png"
+    },
+    "nar_ch04_p06": {
+      "runtime_source": "data/story_chapter4.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Revised_Screenplays_v2/chapters/CH04_OFFICIAL_RECORD_v2.md",
+      "art": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_06.png"
+    },
+    "nar_ch04_p07": {
+      "runtime_source": "data/story_chapter4.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Revised_Screenplays_v2/chapters/CH04_OFFICIAL_RECORD_v2.md",
+      "art": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_07.png"
+    },
+    "nar_ch04_p08": {
+      "runtime_source": "data/story_chapter4.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Revised_Screenplays_v2/chapters/CH04_OFFICIAL_RECORD_v2.md",
+      "art": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_08.png"
+    },
+    "nar_ch05_p01": {
+      "runtime_source": "data/story_chapter5.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH05_BEYOND_THE_LINES_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_01.png"
+    },
+    "nar_ch05_p02": {
+      "runtime_source": "data/story_chapter5.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH05_BEYOND_THE_LINES_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_02.png"
+    },
+    "nar_ch05_p03": {
+      "runtime_source": "data/story_chapter5.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH05_BEYOND_THE_LINES_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_03.png"
+    },
+    "nar_ch05_p04": {
+      "runtime_source": "data/story_chapter5.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH05_BEYOND_THE_LINES_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_04.png"
+    },
+    "nar_ch05_p05": {
+      "runtime_source": "data/story_chapter5.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH05_BEYOND_THE_LINES_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_05.png"
+    },
+    "nar_ch05_p06": {
+      "runtime_source": "data/story_chapter5.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH05_BEYOND_THE_LINES_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_06.png"
+    },
+    "nar_ch05_p07": {
+      "runtime_source": "data/story_chapter5.json",
+      "screenplay_source": "docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH05_BEYOND_THE_LINES_FULL_SCREENPLAY_DRAFT.md",
+      "art": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_07.png"
+    },
+    "nar_ch05_p06_a": {
+      "runtime_source": "data/story_chapter5.json",
+      "interaction_id": "interaction_ch5_outcome_review",
+      "required_flags": [
+        "ch5_ending_review",
+        "ch5_epilogue_review"
+      ],
+      "art": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_06.png"
+    },
+    "nar_ch05_p06_b": {
+      "runtime_source": "data/story_chapter5.json",
+      "interaction_id": "interaction_ch5_outcome_restricted",
+      "required_flags": [
+        "ch5_ending_restricted",
+        "ch5_epilogue_restricted"
+      ],
+      "art": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_06.png"
+    },
+    "nar_ch05_p06_c": {
+      "runtime_source": "data/story_chapter5.json",
+      "interaction_id": "interaction_ch5_outcome_inquiry",
+      "required_flags": [
+        "ch5_ending_inquiry",
+        "ch5_epilogue_inquiry"
+      ],
+      "art": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_06.png"
+    }
+  }
+}

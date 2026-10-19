@@ -1,0 +1,3 @@
+1
+00:00:00,000 --> 00:00:09,500
+The review asks which accounts stand independently, and which share a source. Copies cannot become separate witnesses by being counted twice.

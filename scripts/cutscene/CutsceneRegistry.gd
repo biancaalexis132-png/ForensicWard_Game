@@ -126,6 +126,7 @@ static func reference_context() -> Dictionary:
 			for line: Dictionary in scene.get("lines", []):
 				lines[str(line.get("id", ""))] = str(narrative.get("chapter", ""))
 	return {
+		"narration_bindings": NarrationRegistry.load_data().get("bindings", {}),
 		"chapters": chapters,
 		"captions": captions,
 		"lines": lines,
@@ -245,6 +246,12 @@ static func _validate_panel(panel: Dictionary, chapter_id: String, context: Dict
 				errors.append("motion.%s must be [x, y]" % key)
 			elif absf(float(pan[0])) > MAX_PAN or absf(float(pan[1])) > MAX_PAN:
 				errors.append("motion.%s must stay within %.2f of centre" % [key, MAX_PAN])
+	if panel.has("narration_ref"):
+		var ref: String = str(panel["narration_ref"])
+		if ref != chapter_id + ":" + str(panel.get("id", "")) or not context.get("narration_bindings", {}).has(ref):
+			errors.append("unknown or mismatched narration_ref: " + ref)
+		if panel.get("line_id") != null:
+			errors.append("narration cannot duplicate a gameplay dialogue line")
 	var caption_ref: Variant = panel.get("caption_ref")
 	if caption_ref != null and not (context.get("captions", {}) as Dictionary).has(str(caption_ref)):
 		errors.append("caption_ref '%s' does not name approved campaign text" % str(caption_ref))

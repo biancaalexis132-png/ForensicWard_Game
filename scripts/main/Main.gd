@@ -87,6 +87,7 @@ func _exit_tree() -> void:
 ## World audio belongs to the world: stop it when Main leaves (quit, tests),
 ## so no stream is still playing when the engine shuts down.
 func _silence_audio() -> void:
+	AudioDirector.stop_narration()
 	AudioDirector.stop_dialogue()
 	AudioDirector.stop_ambience(0.01)
 	AudioDirector.stop_music(0.01)
@@ -151,7 +152,18 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 		EvidenceBoard.PANEL_ID:
 			_evidence.open(data)
 		CutsceneDirector.PANEL_ID:
-			_cutscene.open(data)
+			var recap_data: Dictionary = data.duplicate()
+			var chapter: ChapterDirector = $ChapterDirector
+			if bool(data.get("replay_completed", false)):
+				var latest: String = ""
+				for id: String in ContentRegistry.get_chapter_ids():
+					if chapter.has_completed(id):
+						latest = id
+				if latest.is_empty():
+					return
+				recap_data["cutscene_id"] = CutsceneRegistry.chapter_complete_cutscene(latest)
+			recap_data["story_context"] = chapter.get_story_context()
+			_cutscene.open(recap_data)
 		InterviewScreen.PANEL_ID:
 			var with_world: Dictionary = data.duplicate()
 			with_world["world"] = _world

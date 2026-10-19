@@ -1,5 +1,6 @@
 # Narration review checkpoint
 
+> Historical approval checkpoint. The owner has since approved narration. Current implementation, scripts, controls and media blockers are documented in `docs/NARRATED_CUTSCENES.md`.
 Start with `REVIEW_AND_PLAYBACK_GUIDE.md`. Narrator audition is available at:
 https://elevenlabs.io/app/flows/u4R8fakQoM6M80IFufxG
 

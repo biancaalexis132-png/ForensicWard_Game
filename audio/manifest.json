@@ -333,6 +333,576 @@
 			"source": "Procedural synthesis, tools/audio/synth_sfx.py transition (seed 4404): additive low-string cluster A1/A2 with late Bb2 minor-second rub, two additive piano notes (E5, D#5), reverse noise swell, synthetic hall reverb"
 		},
 		{
+			"file": "audio/narration/ch01/nar_ch01_p01.ogg",
+			"category": "narration",
+			"duration_seconds": 8.4,
+			"ids": [
+				"nar_ch01_p01"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "6659994d261cfebe7df1b045dc5166da485ff395abea1e9f519b977563acbf86",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch01_p01"
+		},
+		{
+			"file": "audio/narration/ch01/nar_ch01_p02.ogg",
+			"category": "narration",
+			"duration_seconds": 8.2,
+			"ids": [
+				"nar_ch01_p02"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "97ca71c19bca8edd75977ceed688ccdf70411f7596dfca3905c48526e9eca2f5",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch01_p02"
+		},
+		{
+			"file": "audio/narration/ch01/nar_ch01_p03.ogg",
+			"category": "narration",
+			"duration_seconds": 6.7,
+			"ids": [
+				"nar_ch01_p03"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "4cb964910856d30a81ca14c22eb92c42a95c68551249355c714def51f599582f",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch01_p03"
+		},
+		{
+			"file": "audio/narration/ch01/nar_ch01_p04.ogg",
+			"category": "narration",
+			"duration_seconds": 6.7,
+			"ids": [
+				"nar_ch01_p04"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "a608302302c6293df1291aab5ac5d54b40eff3ee44a1e0882711d8445072c6ac",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch01_p04"
+		},
+		{
+			"file": "audio/narration/ch01/nar_ch01_p05.ogg",
+			"category": "narration",
+			"duration_seconds": 7.2,
+			"ids": [
+				"nar_ch01_p05"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "c1e00447f9dc32b25521e35459916d3807f19e60ca9c5ecac0239accce3e968f",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch01_p05"
+		},
+		{
+			"file": "audio/narration/ch01/nar_ch01_p06.ogg",
+			"category": "narration",
+			"duration_seconds": 6.8,
+			"ids": [
+				"nar_ch01_p06"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "a1ac08fbc9c0b20059497d4b83277a461ef2f15dc5930d5210bdaecd7976717f",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch01_p06"
+		},
+		{
+			"file": "audio/narration/ch01/nar_ch01_p07.ogg",
+			"category": "narration",
+			"duration_seconds": 8.3,
+			"ids": [
+				"nar_ch01_p07"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "58be5975917bc46e718da93fbba43950c4c63fe68e06718a502c1094a9ac1e96",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch01_p07"
+		},
+		{
+			"file": "audio/narration/ch02/nar_ch02_p01.ogg",
+			"category": "narration",
+			"duration_seconds": 6.7,
+			"ids": [
+				"nar_ch02_p01"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "dea8f7b8e575bf107589ff433fb943ad57a7d3bcd887155e95bcec5ba542a4d8",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch02_p01"
+		},
+		{
+			"file": "audio/narration/ch02/nar_ch02_p02.ogg",
+			"category": "narration",
+			"duration_seconds": 5.9,
+			"ids": [
+				"nar_ch02_p02"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "a28d0ce2084432d02b7e38dd0e5e03373d04cdf23ccce0ad0376ac2ac9047680",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch02_p02"
+		},
+		{
+			"file": "audio/narration/ch02/nar_ch02_p03.ogg",
+			"category": "narration",
+			"duration_seconds": 5.9,
+			"ids": [
+				"nar_ch02_p03"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "507f49ed671c40926c801c775de1fa30cf4edbd652d87c0e138eafafb5e06457",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch02_p03"
+		},
+		{
+			"file": "audio/narration/ch02/nar_ch02_p04.ogg",
+			"category": "narration",
+			"duration_seconds": 6.4,
+			"ids": [
+				"nar_ch02_p04"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "a31f1f68096d583bdc09fd83bdc022256479edac564c0c92c8a9e0b67a5fe64c",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch02_p04"
+		},
+		{
+			"file": "audio/narration/ch02/nar_ch02_p05.ogg",
+			"category": "narration",
+			"duration_seconds": 7.5,
+			"ids": [
+				"nar_ch02_p05"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "1cc2a15a4115cfb7a3d2816070f0fdcc623931de3013db69e5a4ffa9f1354ee6",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch02_p05"
+		},
+		{
+			"file": "audio/narration/ch02/nar_ch02_p06.ogg",
+			"category": "narration",
+			"duration_seconds": 10.3,
+			"ids": [
+				"nar_ch02_p06"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "171533a653b2021cb3b24e1590bdc50c2c0291cc5ec60e69e5d07a8e568a1c12",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch02_p06"
+		},
+		{
+			"file": "audio/narration/ch02/nar_ch02_p07.ogg",
+			"category": "narration",
+			"duration_seconds": 6.2,
+			"ids": [
+				"nar_ch02_p07"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "6e40d44c8c7c052ff2b244de5749ce309842a3a565f76382f1159ab42efc3471",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch02_p07"
+		},
+		{
+			"file": "audio/narration/ch03/nar_ch03_p01.ogg",
+			"category": "narration",
+			"duration_seconds": 6.8,
+			"ids": [
+				"nar_ch03_p01"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "1b004c6cc8a9d78a11cf6ab087f52090befeb53acd89961f021a4870f7da30b3",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch03_p01"
+		},
+		{
+			"file": "audio/narration/ch03/nar_ch03_p02.ogg",
+			"category": "narration",
+			"duration_seconds": 8.1,
+			"ids": [
+				"nar_ch03_p02"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "a5f47b3a11939efd47d65f16bfb2b2f6d310ebe4298f0ffa48bcab3867195a16",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch03_p02"
+		},
+		{
+			"file": "audio/narration/ch03/nar_ch03_p03.ogg",
+			"category": "narration",
+			"duration_seconds": 6.5,
+			"ids": [
+				"nar_ch03_p03"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "e9bac42f2e05050becaad9fb5121c892edd81df4190bb76b3944bde790e74f92",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch03_p03"
+		},
+		{
+			"file": "audio/narration/ch03/nar_ch03_p04.ogg",
+			"category": "narration",
+			"duration_seconds": 6.9,
+			"ids": [
+				"nar_ch03_p04"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "5ac37951168155ccd31072b7ea2d731b165943191c7d4f5911ee951008b53597",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch03_p04"
+		},
+		{
+			"file": "audio/narration/ch03/nar_ch03_p05.ogg",
+			"category": "narration",
+			"duration_seconds": 8.1,
+			"ids": [
+				"nar_ch03_p05"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "fb0599c839eced3d1308f906b98d619abad2829e2c1cb99d6cde31210c9657aa",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch03_p05"
+		},
+		{
+			"file": "audio/narration/ch03/nar_ch03_p06.ogg",
+			"category": "narration",
+			"duration_seconds": 5.9,
+			"ids": [
+				"nar_ch03_p06"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "6ad3fa8fd875667f71baf865093be0e9016796b24486b1ed138403402c57d666",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch03_p06"
+		},
+		{
+			"file": "audio/narration/ch03/nar_ch03_p07.ogg",
+			"category": "narration",
+			"duration_seconds": 8.2,
+			"ids": [
+				"nar_ch03_p07"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "6b734416daa3f175f0afcde21aa15deee6a797ba61a2fb8d8c7feda56e5c2e30",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch03_p07"
+		},
+		{
+			"file": "audio/narration/ch04/nar_ch04_p01.ogg",
+			"category": "narration",
+			"duration_seconds": 7.3,
+			"ids": [
+				"nar_ch04_p01"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "2bb58be0fd99445721b6f88132f987b596957c124c31d6c8330f74ce513a425c",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch04_p01"
+		},
+		{
+			"file": "audio/narration/ch04/nar_ch04_p02.ogg",
+			"category": "narration",
+			"duration_seconds": 7.4,
+			"ids": [
+				"nar_ch04_p02"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "4cd588b144f2c273f3828e72c7092e60e832ad5ed341f10337b228e68aa425d5",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch04_p02"
+		},
+		{
+			"file": "audio/narration/ch04/nar_ch04_p03.ogg",
+			"category": "narration",
+			"duration_seconds": 8.6,
+			"ids": [
+				"nar_ch04_p03"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "2b498ac61e65f648ffcd99d1ad4c1fe8f79a50c119bedd1ebe398d17d5afdfe0",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch04_p03"
+		},
+		{
+			"file": "audio/narration/ch04/nar_ch04_p04.ogg",
+			"category": "narration",
+			"duration_seconds": 7.9,
+			"ids": [
+				"nar_ch04_p04"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "90c8f01f3b528f86f98542165645ec1fb2d10e662cc96d366238ad93528cee35",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch04_p04"
+		},
+		{
+			"file": "audio/narration/ch04/nar_ch04_p05.ogg",
+			"category": "narration",
+			"duration_seconds": 8.9,
+			"ids": [
+				"nar_ch04_p05"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "61e9c3263c91b514149f07ed3ae68daab311d3ac6731b658ed99a62c598c9d7e",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch04_p05"
+		},
+		{
+			"file": "audio/narration/ch04/nar_ch04_p06.ogg",
+			"category": "narration",
+			"duration_seconds": 9.1,
+			"ids": [
+				"nar_ch04_p06"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "cc92218f3dacf76e56d5d1a04f3c08cba8a34470f12c6fa391b76aee217fd6d8",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch04_p06"
+		},
+		{
+			"file": "audio/narration/ch04/nar_ch04_p07.ogg",
+			"category": "narration",
+			"duration_seconds": 7.8,
+			"ids": [
+				"nar_ch04_p07"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "6132a3629b860cc4adcf760cb98c22bea44a6a37890d7a34a812fdbbd0f6f0ca",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch04_p07"
+		},
+		{
+			"file": "audio/narration/ch04/nar_ch04_p08.ogg",
+			"category": "narration",
+			"duration_seconds": 7.2,
+			"ids": [
+				"nar_ch04_p08"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "0ed4e02034df814485ea7a7a9238c533cbf10770ada0180cfe46ca70a83fee1c",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch04_p08"
+		},
+		{
+			"file": "audio/narration/ch05/nar_ch05_p01.ogg",
+			"category": "narration",
+			"duration_seconds": 8.4,
+			"ids": [
+				"nar_ch05_p01"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "f0b7233e104b2a0e5d35553090609e8bbc856dc6511798d37f70f6b2e4c7074a",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch05_p01"
+		},
+		{
+			"file": "audio/narration/ch05/nar_ch05_p02.ogg",
+			"category": "narration",
+			"duration_seconds": 7.4,
+			"ids": [
+				"nar_ch05_p02"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "ff5da335e78b95876673ad0396fb142c3cb3e6591ac8334768dba589c7736e1c",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch05_p02"
+		},
+		{
+			"file": "audio/narration/ch05/nar_ch05_p03.ogg",
+			"category": "narration",
+			"duration_seconds": 8.5,
+			"ids": [
+				"nar_ch05_p03"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "f03e0bdd3f408f5ffd99afe69b620f317c283945cf1d2b5aa1f316b85f3ef4e8",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch05_p03"
+		},
+		{
+			"file": "audio/narration/ch05/nar_ch05_p04.ogg",
+			"category": "narration",
+			"duration_seconds": 9.5,
+			"ids": [
+				"nar_ch05_p04"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "be7d8068d1bda3be69893e1a52d204332063c5c7eeef7700259fb426b4a58ae6",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch05_p04"
+		},
+		{
+			"file": "audio/narration/ch05/nar_ch05_p05.ogg",
+			"category": "narration",
+			"duration_seconds": 8.4,
+			"ids": [
+				"nar_ch05_p05"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "d17cc371a349e1203598f370a6f776254aaba99ec20cfb34a805e9391395de43",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch05_p05"
+		},
+		{
+			"file": "audio/narration/ch05/nar_ch05_p06_a.ogg",
+			"category": "narration",
+			"duration_seconds": 10.2,
+			"ids": [
+				"nar_ch05_p06_a"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "b5d0e3ac9e3b88c1355126dc9f76171f736b2baa12e4a2ceeadb5a0c5d355f6c",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch05_p06_a"
+		},
+		{
+			"file": "audio/narration/ch05/nar_ch05_p06_b.ogg",
+			"category": "narration",
+			"duration_seconds": 10.0,
+			"ids": [
+				"nar_ch05_p06_b"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "bdf3b33f54faad1b083ddb7dad9be802407bde671b601a84daaa93573d68718d",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch05_p06_b"
+		},
+		{
+			"file": "audio/narration/ch05/nar_ch05_p06_c.ogg",
+			"category": "narration",
+			"duration_seconds": 10.3,
+			"ids": [
+				"nar_ch05_p06_c"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "dd893258d1bb8a33cf19d72a020c90fe4d0296bc34e3f5592a060feaca12480d",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch05_p06_c"
+		},
+		{
+			"file": "audio/narration/ch05/nar_ch05_p07.ogg",
+			"category": "narration",
+			"duration_seconds": 8.7,
+			"ids": [
+				"nar_ch05_p07"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (included upstream MODEL_CARD); Piper model source attribution retained. Sherpa-ONNX runtime: Apache-2.0. No new voice cloning performed.",
+			"location": "chapter recap",
+			"review_status": "approved_narrator_production_listening_pending",
+			"sha256": "67e9af58165050ff6549205973a9e5f9b7872c9976ab2726c1dbe493931d0047",
+			"source": "Piper via Sherpa-ONNX (local CPU) LJ Speech US English female / vits-piper-en_US-ljspeech-high; FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7",
+			"track_id": "nar_ch05_p07"
+		},
+		{
 			"file": "audio/sfx/anomaly/sfx_w0_distant_knocks.ogg",
 			"category": "sfx_anomaly",
 			"duration_seconds": 5.5,

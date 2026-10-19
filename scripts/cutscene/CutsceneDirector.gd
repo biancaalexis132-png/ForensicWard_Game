@@ -6,10 +6,10 @@ extends CanvasLayer
 ## A cutscene (res://data/cutscenes/<id>.json, validated by CutsceneRegistry) is
 ## a list of painted panels. Each panel stacks up to three texture layers that
 ## drift by their own parallax factor while the panel slowly pushes or pans,
-## then dissolves, cuts or fades through black into the next one. Captions come
-## only from approved campaign text (caption_ref) and speech only from existing
-## dialogue line ids, played through AudioDirector so voice, ducking and
-## subtitles behave as in gameplay. Music runs as an AudioDirector music context
+## then dissolves, cuts or fades through black into the next one. Campaign
+## captions and optional recap narration come from validated authored registries.
+## Narration uses AudioDirector without replaying gameplay dialogue or driving
+## character lip-sync. Music runs as an AudioDirector music context
 ## and is handed back when the cutscene ends.
 ##
 ## Lifecycle: IDLE -> PRELOADING -> PLAYING -> RESTORING -> IDLE. Every exit
@@ -22,11 +22,11 @@ extends CanvasLayer
 ## Review-only gate: a cutscene with "approved": false plays only when
 ## review_mode is on, which only the --cutscene-preview=<id> argument, the
 ## review scene (scenes/cutscene/CutscenePreview.tscn) or tests turn on. The
-## only campaign trigger is "chapter_start": Main opens an approved chapter
-## title card when its chapter starts.
+## campaign triggers are chapter_start (title cards) and chapter_complete
+## (approved illustrated recaps, after their gameplay events).
 ##
 ## Controls while playing: Esc skips, Enter / Space / E advances one panel,
-## R replays (review mode only). Reduce Motion holds each panel still.
+## R replays; P pauses; V toggles narration. Reduce Motion holds each panel still.
 
 signal finished(cutscene_id: String, reason: String)
 
@@ -73,6 +73,16 @@ var _previous: Control
 var _black: ColorRect
 var _subtitle: Label
 var _hint: Label
+var _narration_data: Dictionary = {}
+var _story_context: Dictionary = {}
+var _track: Dictionary = {}
+var _panel_duration: float = 0.0
+var _voice_on: bool = false
+var _voice_tail: float = -1.0
+var narration_paused: bool = false
+var _controls: HBoxContainer
+var _pause_button: Button
+var _voice_toggle: CheckBox
 
 
 func _ready() -> void:
@@ -83,6 +93,7 @@ func _ready() -> void:
 	EventBus.game_loaded.connect(_on_game_loaded)
 	EventBus.subtitle_shown.connect(_on_subtitle_shown)
 	EventBus.subtitle_cleared.connect(_on_subtitle_cleared)
+	EventBus.settings_changed.connect(_on_narration_setting_changed)
 	var preview_id: String = preview_request(OS.get_cmdline_user_args())
 	if not preview_id.is_empty():
 		review_mode = true
@@ -104,6 +115,7 @@ static func preview_request(args: PackedStringArray) -> String:
 
 ## Main's panel interface: data = {cutscene_id}.
 func open(data: Dictionary) -> void:
+	_story_context = (data.get("story_context", {}) as Dictionary).duplicate(true)
 	play(str(data.get("cutscene_id", "")))
 
 
@@ -154,12 +166,17 @@ func _start(data: Dictionary, errors: Array[String]) -> bool:
 		return false
 	_data = data
 	_last_data = data
+	_narration_data = NarrationRegistry.load_data()
+	if not NarrationRegistry.validate(_narration_data).is_empty():
+		_narration_data = {}
+	set_narration_paused(false)
 	_saved_mouse_mode = Input.mouse_mode
-	_total = CutsceneRegistry.total_duration(_data)
+	_total = _estimated_total(_data)
 	_elapsed = 0.0
 	is_open = true
 	visible = true
-	_hint.text = "Esc  Skip     Enter  Next" + ("     R  Replay" if review_mode else "")
+	_hint.text = "Esc Skip · Enter Next · P Pause · R Replay · V Voice"
+	_voice_toggle.set_pressed_no_signal(bool(Settings.get_value("recap_narration")))
 	_start_music()
 	state = State.PLAYING
 	EventBus.cutscene_started.emit(cutscene_id)
@@ -188,6 +205,7 @@ func next_panel() -> void:
 func replay() -> void:
 	if state == State.PLAYING:
 		_stop_line()
+		set_narration_paused(false)
 		_elapsed = 0.0
 		_show_panel(0)
 	elif state == State.IDLE and not _last_data.is_empty():
@@ -200,23 +218,39 @@ func get_total_seconds() -> float:
 
 ## Advances playback; _process calls this, tests call it to step time exactly.
 func advance(delta: float) -> void:
-	if state != State.PLAYING:
+	if state != State.PLAYING or narration_paused or get_tree().paused:
 		return
 	_elapsed += delta
 	_panel_time += delta
-	if _elapsed > _total + WATCHDOG_MARGIN:
+	if _elapsed > _total + _panels().size() * 5.0 + WATCHDOG_MARGIN:
 		push_warning("CutsceneDirector: '%s' overran its length; restoring the game" % cutscene_id)
 		_finish("timeout")
 		return
 	var panel: Dictionary = _panels()[panel_index]
-	var duration: float = float(panel["duration_seconds"])
+	var duration: float = _panel_duration
+	if _voice_on:
+		if AudioDirector.narration_finished():
+			if _voice_tail < 0.0:
+				_voice_tail = _panel_time
+			duration = maxf(float(panel["duration_seconds"]), _voice_tail + 0.5)
+		elif _panel_time > minf(120.0, AudioDirector.narration_length() + 5.0):
+			runtime_errors.append("narration timeout: " + str(_track.get("id", "")))
+			AudioDirector.stop_narration()
+			_voice_on = false
+			duration = maxf(_panel_time + 0.5, _caption_duration(panel))
+			_panel_duration = duration
+		else:
+			# The final image cannot fade out or advance before speech completes.
+			duration = maxf(duration, _panel_time + EXIT_FADE_SECONDS)
+	_update_narration_caption()
 	if _panel_time >= duration:
 		if panel_index + 1 >= _panels().size():
 			_finish("completed")
 		else:
 			var overflow: float = _panel_time - duration
 			_show_panel(panel_index + 1)
-			_panel_time = overflow # Keep the authored timing exact at any frame rate.
+			if not _voice_on:
+				_panel_time = overflow # Legacy visual timing; narration starts at audio zero.
 		return
 	_update_panel(panel, duration)
 
@@ -227,18 +261,21 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not is_open:
+	if not is_open or event is InputEventMouseButton or event is InputEventMouseMotion:
 		return
-	if event.is_action_pressed("pause") or event.is_action_pressed("ui_cancel"):
-		skip()
-	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("interact"):
-		next_panel()
-	elif review_mode and event is InputEventKey and event.pressed and not event.echo \
-			and (event as InputEventKey).physical_keycode == KEY_R:
-		replay()
-	# The cutscene owns input while it is open; nothing reaches the world.
-	if event is InputEventKey or event is InputEventMouseButton:
-		get_viewport().set_input_as_handled()
+	var key: InputEventKey = event as InputEventKey
+	if event.is_pressed() and not event.is_echo():
+		if event.is_action_pressed("pause") or event.is_action_pressed("ui_cancel"):
+			skip()
+		elif event.is_action_pressed("ui_accept") or event.is_action_pressed("interact"):
+			next_panel()
+		elif key != null and key.physical_keycode == KEY_P:
+			set_narration_paused(not narration_paused)
+		elif key != null and key.physical_keycode == KEY_R:
+			replay()
+		elif key != null and key.physical_keycode == KEY_V:
+			Settings.set_value("recap_narration", not bool(Settings.get_value("recap_narration")))
+	get_viewport().set_input_as_handled()
 
 
 # --- Panels ---------------------------------------------------------------------------
@@ -250,7 +287,7 @@ func _panels() -> Array:
 func _panel_start_time(index: int) -> float:
 	var start: float = 0.0
 	for i: int in index:
-		start += float(_panels()[i]["duration_seconds"])
+		start += _estimated_panel_duration(_panels()[i])
 	return start
 
 
@@ -273,7 +310,17 @@ func _show_panel(index: int) -> void:
 			_drop_previous()
 	_release_textures_before(index)
 	_request_textures(index + 1)
-	_update_panel(panel, float(panel["duration_seconds"]))
+	_track = NarrationRegistry.resolve(str(panel.get("narration_ref", "")), _story_context, _narration_data)
+	_panel_duration = _caption_duration(panel)
+	_voice_tail = -1.0
+	_voice_on = false
+	if not _track.is_empty() and not (_track.get("cues", []) as Array).is_empty() and bool(Settings.get_value("recap_narration")):
+		_voice_on = AudioDirector.play_narration(_track)
+		if _voice_on:
+			_panel_duration = maxf(float(panel["duration_seconds"]), AudioDirector.narration_length() + 0.5)
+			AudioDirector.pause_narration(narration_paused)
+	_update_narration_caption()
+	_update_panel(panel, _panel_duration)
 	var line_id: Variant = panel.get("line_id")
 	if line_id != null:
 		_line_id = str(line_id)
@@ -468,6 +515,8 @@ func _start_music() -> void:
 
 
 func _stop_line() -> void:
+	AudioDirector.stop_narration()
+	_voice_on = false
 	if not _line_id.is_empty() and AudioDirector.is_dialogue_playing():
 		AudioDirector.stop_dialogue()
 	_line_id = ""
@@ -488,6 +537,8 @@ func _on_subtitle_cleared(line_id: String) -> void:
 
 func _on_game_loaded(_slot: int) -> void:
 	_finish("interrupted")
+	_last_data = {}
+	_story_context = {}
 
 
 ## The single exit path. Safe to call any number of times.
@@ -513,6 +564,8 @@ func _finish(reason: String) -> void:
 		ResourceLoader.load_threaded_get(path)
 	_requested.clear()
 	_black.color.a = 0.0
+	narration_paused = false
+	_track = {}
 	visible = false
 	is_open = false
 	panel_index = -1
@@ -557,8 +610,8 @@ func _build_overlay() -> void:
 	_subtitle.anchor_right = 0.85
 	_subtitle.anchor_top = 1.0
 	_subtitle.anchor_bottom = 1.0
-	_subtitle.offset_top = -170.0
-	_subtitle.offset_bottom = -80.0
+	_subtitle.offset_top = -220.0
+	_subtitle.offset_bottom = -100.0
 	_subtitle.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_root.add_child(_subtitle)
 	_hint = Label.new()
@@ -566,14 +619,102 @@ func _build_overlay() -> void:
 	_hint.text = "Esc  Skip     Enter  Next"
 	_hint.add_theme_font_size_override("font_size", 16)
 	_hint.add_theme_color_override("font_color", Color(0.75, 0.76, 0.74, 0.8))
-	_hint.anchor_left = 1.0
-	_hint.anchor_right = 1.0
+	_hint.anchor_left = 0.1
+	_hint.anchor_right = 0.9
 	_hint.anchor_top = 1.0
 	_hint.anchor_bottom = 1.0
-	_hint.offset_left = -300.0
-	_hint.offset_right = -24.0
-	_hint.offset_top = -34.0
-	_hint.offset_bottom = -10.0
-	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_hint.offset_left = 0.0
+	_hint.offset_right = 0.0
+	_hint.offset_top = -82.0
+	_hint.offset_bottom = -60.0
+	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_root.add_child(_hint)
+	_controls = HBoxContainer.new()
+	_controls.name = "PlaybackControls"
+	_controls.anchor_top = 1.0
+	_controls.anchor_bottom = 1.0
+	_controls.offset_left = 24.0
+	_controls.offset_top = -52.0
+	_controls.offset_bottom = -12.0
+	_root.add_child(_controls)
+	_pause_button = _add_control("Pause (P)", func() -> void: set_narration_paused(not narration_paused))
+	_add_control("Replay (R)", replay)
+	_add_control("Next", next_panel)
+	_add_control("Skip", skip)
+	_voice_toggle = CheckBox.new()
+	_voice_toggle.text = "Narration"
+	_voice_toggle.toggled.connect(func(enabled: bool) -> void: Settings.set_value("recap_narration", enabled))
+	_controls.add_child(_voice_toggle)
+
+
+func _add_control(text: String, action: Callable) -> Button:
+	var button: Button = Button.new()
+	button.text = text
+	# Keyboard shortcuts stay available; buttons work by click without Enter
+	# simultaneously activating the focused button and advancing a panel.
+	button.focus_mode = Control.FOCUS_NONE
+	button.pressed.connect(action)
+	_controls.add_child(button)
+	return button
+
+func set_narration_paused(paused: bool) -> void:
+	narration_paused = paused
+	AudioDirector.pause_narration(paused)
+	_pause_button.text = "Resume (P)" if paused else "Pause (P)"
+
+func _on_narration_setting_changed(key: String, value: Variant) -> void:
+	if key != "recap_narration":
+		return
+	_voice_toggle.set_pressed_no_signal(bool(value))
+	if state != State.PLAYING or _track.is_empty():
+		return
+	if not bool(value):
+		AudioDirector.stop_narration()
+		_voice_on = false
+		_panel_duration = _panel_time + _caption_duration(_panels()[panel_index])
+		_total += _caption_duration(_panels()[panel_index])
+	else:
+		# Enabling voice restarts this panel so audio and captions share zero.
+		_elapsed = _panel_start_time(panel_index)
+		_show_panel(panel_index)
+
+func _caption_duration(panel: Dictionary) -> float:
+	if _track.is_empty():
+		return float(panel["duration_seconds"])
+	return maxf(float(panel["duration_seconds"]), minf(120.0,
+			str(_track.get("text", "")).split(" ").size() * 60.0 / 130.0 + 0.5))
+
+func _estimated_panel_duration(panel: Dictionary) -> float:
+	var track: Dictionary = NarrationRegistry.resolve(str(panel.get("narration_ref", "")), _story_context, _narration_data)
+	if track.is_empty():
+		return float(panel["duration_seconds"])
+	var reading: float = str(track.get("text", "")).split(" ").size() * 60.0 / 130.0
+	var duration: float = float(track.get("duration_seconds", reading))
+	var path: String = str(track.get("audio_path", ""))
+	if not bool(Settings.get_value("recap_narration")) or path.is_empty() or (not ResourceLoader.exists(path) and not FileAccess.file_exists(path)):
+		duration = reading
+	return maxf(float(panel["duration_seconds"]), minf(120.0, duration + 0.5))
+
+func _estimated_total(data: Dictionary) -> float:
+	var total: float = 0.0
+	for panel: Dictionary in data.get("panels", []):
+		total += _estimated_panel_duration(panel)
+	return total
+
+func _update_narration_caption() -> void:
+	if _track.is_empty():
+		return
+	# Disabled/missing voice always leaves readable captions, regardless of
+	# the preference for subtitles under spoken audio.
+	if not _voice_on:
+		_subtitle.text = str(_track.get("text", ""))
+		return
+	_subtitle.text = ""
+	if not bool(Settings.get_value("subtitles")):
+		return
+	var position: float = AudioDirector.narration_position()
+	for cue: Dictionary in _track.get("cues", []):
+		if position >= float(cue["start"]) and position < float(cue["end"]):
+			_subtitle.text = str(cue["text"])
+			return
