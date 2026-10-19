@@ -17,6 +17,8 @@
 
 **Chapter 4 Scenes 09-10 (Claude Code, 2026-10-19; not merged):** runtime `ec4d3d4`. Owner approved the bounded loop. Hale's controlled inspection (team pass, ops contact refused-shortcut) returns to the Ward Zero corridor; panel 17 logged on separate sheets at W0C_Radiator_0, seen again at W0C_ClockA; keep-walking refused; any of compare/stop/analyst sets observed_repetition_unverified and fires a new safe_return beat action (fades out through conn_w0_threshold only while in zone Mac not run.
 
+**Chapter 5 finale (Claude Code, 2026-10-19; not merged):** runtime `e545408`. ch5 playable (ch4 next_chapter=ch5). Scenes 01-07 and 09-10 built: return inspection with team pass, two-state door preserved (opening refused), records review (single culprit refused), analyst report (supernatural mechanism refused), Bennett care escalation (waiting refused), four-source test (double counting refused), decision with three endings (delaying report refused), ending epilogue, rounds Mac not run.
+
 **Chapter 2 Scene 10 closing beat (Claude Code, 2026-10-19; not merged):** runtime `1bb194df802b68591f9e7ab8a7939754e91bd8e3`. Chapter 2 now completes after Bennett's end-of-shift exchange; report states what the records cannot reconstruct. W0-B locked; Chapter 3 not started. Full QA passed: game 235/0. Mac not run.
 
 **Chapter 2 Scene 09 wrong-day file (Claude Code, 2026-10-19; not merged):** runtime `1481c7ea32b8a5cb553d50529afd387e382f5898`. Export date conflict placed in the incident record, not Mara's note; one handling chosen; originals unchanged. Full QA passed: game 233/0. Mac not run.
