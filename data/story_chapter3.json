@@ -4,7 +4,7 @@
 	"title": "Chapter 3: Beneath the Hospital",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Revised CH03 (Authorized Inspection and Verification). Owner-approved first-entry premise; new dialogue proposed and pending narrative review. Scenes 01-02: inspection notice and security briefing. Clinical coverage, audit summary and clinical scope are each completed before departure; no entry without coverage, approval and a life-safety assessment. The major corridor-loop reveal belongs to Chapter 4 Scene 09 and is not preempted. Scenes 03-04 (Descent, First actual entry into Ward Zero): the team goes down through the security wing's service hatch (the restricted lift's historic landing has no floor choice yet, so the screenplay's 'service elevator' is staged as the Facilities hatch and stair). Facilities clears the isolated circuit and opens the sealed corridor's end; inside the threshold the player compares maps, checks signage, documents the entrance and verifies the return route. Restricted patient records are not searched. Anomaly states stay at their ordinary defaults.",
+	"notes": "Revised CH03 (Authorized Inspection and Verification). Owner-approved first-entry premise; new dialogue proposed and pending narrative review. Scenes 01-02: inspection notice and security briefing. Clinical coverage, audit summary and clinical scope are each completed before departure; no entry without coverage, approval and a life-safety assessment. The major corridor-loop reveal belongs to Chapter 4 Scene 09 and is not preempted. Scenes 03-04 (Descent, First actual entry into Ward Zero): the team goes down through the security wing's service hatch (the restricted lift's historic landing has no floor choice yet, so the screenplay's 'service elevator' is staged as the Facilities hatch and stair). Facilities clears the isolated circuit and opens the sealed corridor's end; inside the threshold the player compares maps, checks signage, documents the entrance and verifies the return route. Restricted patient records are not searched. Anomaly states stay at their ordinary defaults. Scenes 05-08 (The alcove, Route concern, Account for the team, Safe return): an alcove sits one bay off one plan edition (renovation or drawing error, unresolved); a junction marker resembles one logged inbound, the team holds at the authorized point (inspection_paused_for_route_check) and confirms one physically continuous route; identical labels on two plan areas may explain the notes. No loop, no changed geometry, no teleportation. All three scene passes are returned to Hale; further access is suspended until Facilities signs off. The authored route check always succeeds, so no safe-abort branch is needed in this slice.",
 	"objectives": [
 		{
 			"id": "obj_ch3_notice",
@@ -70,6 +70,44 @@
 					}
 				]
 			}
+		},
+		{
+			"id": "obj_ch3_alcove",
+			"text": "The engineer has stopped at an alcove in the service corridor.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch3_alcove_plans_compared"
+					},
+					{
+						"flag": "ch3_alcove_survey_requested"
+					},
+					{
+						"flag": "ch3_alcove_discrepancy_preserved"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch3_route",
+			"text": "Heading back, something on the route looks familiar. Check it with the team.",
+			"complete_when": {
+				"flag": "ch3_route_paused"
+			}
+		},
+		{
+			"id": "obj_ch3_team",
+			"text": "Hold at the authorized point while Hale confirms the route with control.",
+			"complete_when": {
+				"flag": "ch3_ambiguity_recorded"
+			}
+		},
+		{
+			"id": "obj_ch3_return",
+			"text": "Return with the team the way you came, and report back to Hale at the psychiatrist's office.",
+			"complete_when": {
+				"flag": "ch3_returned"
+			}
 		}
 	],
 	"beats": [
@@ -89,6 +127,13 @@
 		}
 	],
 	"staff_lines": [
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"flag": "ch3_returned"
+			},
+			"text": "Further access is suspended until Facilities signs off. That includes you, Doctor."
+		},
 		{
 			"staff_id": "staff_hale",
 			"when": {
@@ -410,6 +455,162 @@
 				}
 			],
 			"unavailable_body": "An old observation log."
+		},
+		{
+			"id": "interaction_ch3_alcove",
+			"interactable_id": "W0C_Radiator_0",
+			"title": "The alcove",
+			"body": "A shallow wall alcove beside a radiator. The engineer holds the historic plan against it.\n\nEngineer: This alcove should be one bay earlier, according to this drawing.\n\nYou: Could there have been a renovation?\n\nEngineer: Yes. Or the drawing is inaccurate. Let's annotate the reference points.",
+			"when": {
+				"all": [
+					{
+						"flag": "ch3_entry_maps_compared"
+					},
+					{
+						"flag": "ch3_entry_signage_checked"
+					},
+					{
+						"flag": "ch3_entry_condition_documented"
+					},
+					{
+						"flag": "ch3_entry_route_verified"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "moved",
+					"label": "Record that the alcove has moved",
+					"response": "Engineer: We don't know it moved. We know one drawing puts it a bay earlier. Pick a way to record that."
+				},
+				{
+					"id": "compare",
+					"label": "Compare it against the other plan editions",
+					"flag": "ch3_alcove_plans_compared",
+					"response": "Two later editions agree with what is built; the oldest puts it one bay earlier. Annotated with the reference points. Cause unknown."
+				},
+				{
+					"id": "survey",
+					"label": "Request a proper survey of this bay",
+					"flag": "ch3_alcove_survey_requested",
+					"response": "Engineer: I'll add it to the survey request with measured reference points. Until then it's a drawing discrepancy."
+				},
+				{
+					"id": "preserve",
+					"label": "Preserve the discrepancy without concluding a cause",
+					"flag": "ch3_alcove_discrepancy_preserved",
+					"response": "Logged as found: built position and one plan edition differ by one bay. Renovation and drawing error both remain possible."
+				}
+			],
+			"unavailable_body": "A shallow alcove beside a radiator.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch3_alcove_plans_compared"
+					},
+					{
+						"flag": "ch3_alcove_survey_requested"
+					},
+					{
+						"flag": "ch3_alcove_discrepancy_preserved"
+					}
+				]
+			},
+			"completed_body": "Alcove: one plan edition differs by one bay; recorded without a cause."
+		},
+		{
+			"id": "interaction_ch3_route",
+			"interactable_id": "W0C_ClockA",
+			"title": "A familiar marker",
+			"body": "Heading back, a faded junction marker looks like one you logged on the way in. The corridor is straight. The written route note is ambiguous.\n\nEngineer: I thought we'd already passed that damaged ceiling tile.",
+			"when": {
+				"any": [
+					{
+						"flag": "ch3_alcove_plans_compared"
+					},
+					{
+						"flag": "ch3_alcove_survey_requested"
+					},
+					{
+						"flag": "ch3_alcove_discrepancy_preserved"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "loop",
+					"label": "\"We've come round in a loop.\"",
+					"response": "Hale: Nobody's saying that. The corridor is straight. We stop and confirm the route before anyone draws a conclusion."
+				},
+				{
+					"id": "same_tile",
+					"label": "\"Is it the same tile, or another one with similar damage?\"",
+					"flag": "ch3_route_paused",
+					"response": "Hale: We're not moving until we confirm the route. Stay together.\n\nThe team holds at the authorized point. Inspection paused for a route check."
+				}
+			],
+			"unavailable_body": "A wall clock, stopped. A faded marker on the opposite wall.",
+			"expires_when": {
+				"flag": "ch3_route_paused"
+			}
+		},
+		{
+			"id": "interaction_ch3_team",
+			"interactable_id": "W0C_ClockA",
+			"title": "Holding point",
+			"body": "Hale: Dispatch, confirm the last authorized door event and our safe return route.\n\nDispatch: Receiving. Stand by while Facilities checks the access plan.\n\nEngineer: Two areas on these plans use identical labels. That could explain our notes.",
+			"when": {
+				"flag": "ch3_route_paused"
+			},
+			"options": [
+				{
+					"id": "split",
+					"label": "Suggest splitting up to check both labels faster",
+					"response": "Hale: We stay together. That's not negotiable down here."
+				},
+				{
+					"id": "record",
+					"label": "\"Then we should record the ambiguity exactly as it occurred.\"",
+					"flag": "ch3_ambiguity_recorded",
+					"response": "Recorded as it occurred: one marker resembles an inbound marker; two plan areas share a label; the route note is ambiguous.\n\nDispatch: Route confirmed. Last authorized door event is your threshold entry. Return the way you came.\n\nOne approved, physically continuous route back."
+				}
+			],
+			"unavailable_body": "A wall clock, stopped.",
+			"expires_when": {
+				"flag": "ch3_ambiguity_recorded"
+			},
+			"completed_body": "Route check: ambiguity recorded as it occurred; one continuous return route confirmed with control."
+		},
+		{
+			"id": "interaction_ch3_return",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: back in the office",
+			"body": "Hale counts the team in: himself, the engineer, the escort, you. Everyone accounted for.\n\nHale: Initial inspection is over. Further access is suspended until Facilities signs off.\n\nEngineer: I want the original notes and photographs preserved. There's a discrepancy we should survey properly.",
+			"when": {
+				"flag": "ch3_ambiguity_recorded"
+			},
+			"options": [
+				{
+					"id": "keep_pass",
+					"label": "Ask to keep the team pass for a quick second look",
+					"response": "Hale: No. Access is suspended. Any further entry gets its own approval."
+				},
+				{
+					"id": "return",
+					"label": "Return the team pass and log the team accounted for",
+					"flag": "ch3_returned",
+					"revokes_access": [
+						"access_ward_entry",
+						"access_maintenance",
+						"access_w0_threshold"
+					],
+					"response": "Team pass returned. Ward entry, maintenance and threshold access withdrawn. Original notes and photographs to be preserved for the debrief."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch3_returned"
+			}
 		}
 	],
 	"sign_out": {
