@@ -455,10 +455,29 @@ func _ending(choice: String, flag: String, epilogue_by: String, epilogue: String
 	_approach(epilogue_by)
 	_choose(epilogue)
 	_close()
-	_bennett("Who are we seeing first")
+	_approach("staff_bennett")
+	_choose("Who are we seeing first")
+	var summary: String = _body()
+	check("Whoever needs us." in summary, "the last line is Bennett's")
+	check(ENDING_LINES[flag] in summary, "the summary names the chosen ending")
+	for other: String in ENDING_LINES:
+		if other != flag:
+			check(not ENDING_LINES[other] in summary, "no other ending in the summary: " + other)
+	check("observed and unverified" in summary, "the Chapter 4 record carries into the summary")
+	check("Mara's questions were heard" in summary, "Mara's scene carries into the summary")
+	check(_main.get_node("InfoPanel").find_children("*", "Button", true, false).filter(
+			func(b: Node) -> bool: return "next day shift" in (b as Button).text).is_empty(), "no chapter after the last")
+	_close()
 	check(_director().has_completed("ch5"), "Chapter 5 complete")
 	check_eq(_canonical(PatientManager.to_save_data()), patients, "no clinical change from the finale")
 	check_eq(_canonical(SaveManager.capture_state().get("anomalies", {})), anomalies, "no anomaly ledger entry")
+
+
+const ENDING_LINES: Dictionary = {
+	"ch5_ending_review": "qualified external reviewers",
+	"ch5_ending_restricted": "sealed under documented restriction",
+	"ch5_ending_inquiry": "accountable inquiry continues",
+}
 
 
 func test_independent_review() -> void:

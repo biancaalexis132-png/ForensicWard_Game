@@ -65,3 +65,12 @@ Tests: Game tests on 1b83671: all passed (see PR). Full QA on the pre-rebase bra
 ## Next exact task
 
 Owner: look at the cards (--cutscene-preview=cs_ch0N_title) and decide approval/placement; Mac check later.
+## Campaign finish
+
+Runtime `3f50abe` on `claude/campaign-finish`. data/story_chapter5.json, scripts/content/ContentSchemas.gd, scripts/content/ContentValidator.gd, scripts/narrative/ChapterDirector.gd, scripts/tests/test_chapter5_finale.gd, scripts/tests/test_campaign.gd, docs/PROJECT_STATUS.md
+
+Tests: Full QA at 3f50abe: all executed checks passed; game tests 261/0; GLB 168/0. Mac check NOT completed (owner deferred).
+
+## Next exact task
+
+Owner runs the Mac check later; then pick the next build.

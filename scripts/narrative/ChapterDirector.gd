@@ -133,6 +133,17 @@ func has_open_interaction(interactable_id: String) -> bool:
 	return false
 
 
+## The closing summary: the final choice's response, then each decision line
+## that applies to this playthrough.
+func _campaign_end_panel(response: String) -> Dictionary:
+	var end: Dictionary = _story()["campaign_end"]
+	var lines: Array[String] = [response, "", end["body"]]
+	for line: Dictionary in end["lines"]:
+		if StoryLogic.evaluate(line["when"], _story_state()):
+			lines.append("• " + str(line["text"]))
+	return {"title": end["title"], "body": "\n".join(lines)}
+
+
 # --- Story progression -------------------------------------------------------------
 
 ## Re-checks beats and the current objective. Called on every relevant event.
@@ -443,5 +454,7 @@ func _on_story_option_selected(interaction_id: String, option_id: String) -> voi
 				_active_interaction = "continue:" + _chapter_id
 				panel["interaction_id"] = _active_interaction
 				panel["options"] = [{"id": "continue", "label": "Return for the next day shift"}]
+			elif option.get("flag", "") == StoryLogic.CHAPTER_COMPLETE_FLAG and _story().has("campaign_end"):
+				panel = _campaign_end_panel(option["response"])
 			EventBus.ui_panel_requested.emit("info", panel)
 			return

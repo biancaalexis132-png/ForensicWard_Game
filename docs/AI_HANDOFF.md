@@ -44,6 +44,12 @@ One row per branch that someone is working on. Claim the folders or files you wi
 - **Delivered:** Owner said continue after campaign finish; next card option. Four review-only title cards (cs_ch02..05_title): 3 panels/20 s each, chapter title caption from campaign.json, no dialogue, environment plates painted by paint_panels.py (no character likeness; no early Ward Zero or loop reveal). approved false, manual_preview only; placement at chapter openings needs owner approval. Independent of PR #90.
 - **Executed:** Game tests on 1b83671: all passed (see PR). Full QA on the pre-rebase branch: 262/0, GLB 168/0. Mac check NOT completed (owner deferred). Mac not run.
 - **Next exact task:** Owner: look at the cards (--cutscene-preview=cs_ch0N_title) and decide approval/placement; Mac check later. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+### 2026-10-19 · Claude Code · Campaign finish
+
+- **Branch / verified runtime:** `claude/campaign-finish` (main), `3f50abe`.
+- **Delivered:** Owner chose 'Campaign finish'. New optional story key campaign_end (schema + validator: last chapter only; line conditions checked). After Chapter 5's final choice the panel shows Bennett's line then 'What the record shows' with the lines that apply (ending, Ch4 unverified repetition, source count, Mara, care). The three ending tests play Chapters 1-5 and check the summary. Owner: Mac check left non-completed; owner will run it later.
+- **Executed:** Full QA at 3f50abe: all executed checks passed; game tests 261/0; GLB 168/0. Mac check NOT completed (owner deferred). Mac not run.
+- **Next exact task:** Owner runs the Mac check later; then pick the next build. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
 
 ### 2026-10-19 · Claude Code · Chapter 5 Scene 08 (Mara)
 
