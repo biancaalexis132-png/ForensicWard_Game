@@ -4,7 +4,7 @@
 	"title": "Chapter 4: The Official Record",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Revised CH04 (The Official Record). Proposed dialogue pending narrative review. Scenes 01, 02, 03 and 05: Voss's meeting keeps the transfer audit and the spatial survey as separate incident files; the junior summary's 'confirmed mapping error' is corrected with the first version kept; Rahman states the clinical boundary; an outside reviewer finds a time-order contradiction that cannot be removed without excluding an original. Not built in this slice: Scene 04 (Mara's follow-up: clinical conversation needing approval) and Scene 06 (personal call: no personal-history system). The Scene 09 corridor-loop reveal waits for the owner's approval of its effect.",
+	"notes": "Revised CH04 (The Official Record). Proposed dialogue pending narrative review. Scenes 01, 02, 03 and 05: Voss's meeting keeps the transfer audit and the spatial survey as separate incident files; the junior summary's 'confirmed mapping error' is corrected with the first version kept; Rahman states the clinical boundary; an outside reviewer finds a time-order contradiction that cannot be removed without excluding an original. Not built in this slice: Scene 04 (Mara's follow-up: clinical conversation needing approval) and Scene 06 (personal call: no personal-history system). The Scene 09 corridor-loop reveal waits for the owner's approval of its effect. Scenes 07-08 (Door-state replication attempt, Institutional disagreement): a controlled, continuously watched check of the lift lobby doors; nothing happens during the watch, and the result cannot exclude an authorized entry between the original checks, so repeatability stays open (no 'corroborated' from repeated logs). Voss, Hale and Rahman agree patient care continues and the restriction stands; the player proposes external verification, a coordinated briefing or documented dissent; safety notifications happen regardless.",
 	"objectives": [
 		{
 			"id": "obj_ch4_meeting",
@@ -43,10 +43,55 @@
 			"complete_when": {
 				"flag": "ch4_paper_trail_preserved"
 			}
+		},
+		{
+			"id": "obj_ch4_test_pass",
+			"text": "Hale is setting up a controlled check of the lobby doors. Join him at Interview Room A's door.",
+			"complete_when": {
+				"flag": "ch4_test_pass_granted"
+			}
+		},
+		{
+			"id": "obj_ch4_test",
+			"text": "Watch the lift lobby doors with the team for the controlled check.",
+			"complete_when": {
+				"flag": "ch4_repeatability_open"
+			}
+		},
+		{
+			"id": "obj_ch4_test_return",
+			"text": "Return the test pass to Hale.",
+			"complete_when": {
+				"flag": "ch4_test_pass_returned"
+			}
+		},
+		{
+			"id": "obj_ch4_disagreement",
+			"text": "Voss is meeting Hale and Rahman about access and patient continuity.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch4_disagreement_external"
+					},
+					{
+						"flag": "ch4_disagreement_briefing"
+					},
+					{
+						"flag": "ch4_disagreement_dissent"
+					}
+				]
+			}
 		}
 	],
 	"beats": [],
 	"staff_lines": [
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"flag": "ch4_test_pass_granted"
+			},
+			"text": "Lobby doors, the team, a watch that doesn't blink. That's the test."
+		},
 		{
 			"staff_id": "staff_rahman",
 			"when": {
@@ -222,6 +267,129 @@
 				"flag": "ch4_paper_trail_preserved"
 			},
 			"completed_body": "Retained originals: time-order contradiction preserved with the checks performed."
+		},
+		{
+			"id": "interaction_ch4_test_pass",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: controlled check",
+			"body": "Hale: Facilities wants to see whether the lobby door does it again. Authorized test, continuous watch, access logs pulled before and after. You come as the person who logged it the first time.",
+			"when": {
+				"flag": "ch4_paper_trail_preserved"
+			},
+			"options": [
+				{
+					"id": "join",
+					"label": "Join the controlled check",
+					"flag": "ch4_test_pass_granted",
+					"grants_access": [
+						"access_ward_entry"
+					],
+					"response": "Test pass logged: ward entry only, for this check. The lobby doors themselves stay locked."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch4_test_pass_granted"
+			}
+		},
+		{
+			"id": "interaction_ch4_test",
+			"interactable_id": "Corridor_CCTV_5",
+			"title": "Restricted lift lobby doors: controlled check",
+			"body": "The doors are closed and latched. The team watches them continuously for the agreed interval. Nothing moves. The analyst pulls the access log and the mechanical inspection notes.\n\nHale: Can the records establish there was no authorized entry between checks?\n\nAnalyst: Not yet. We'll preserve the access logs and mechanical inspection results.",
+			"when": {
+				"flag": "ch4_test_pass_granted"
+			},
+			"options": [
+				{
+					"id": "corroborated",
+					"label": "Mark the first door event corroborated by the second log",
+					"response": "The second log came from the same logging system as the first, and nothing happened during the watch. Two entries from one system are not independent corroboration."
+				},
+				{
+					"id": "open",
+					"label": "\"Then repeatability is still an open question.\"",
+					"flag": "ch4_repeatability_open",
+					"response": "Recorded: controlled watch with no door movement; an authorized entry between the original checks is not excluded; logs and inspection results preserved. Repeatability open."
+				}
+			],
+			"unavailable_body": "The lobby doors are behind the ward entry.",
+			"expires_when": {
+				"flag": "ch4_repeatability_open"
+			},
+			"completed_body": "Controlled check: no movement during the watch; repeatability open; logs preserved."
+		},
+		{
+			"id": "interaction_ch4_test_return",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: end of the check",
+			"body": "Hale: Pass back, please. The restriction stands.",
+			"when": {
+				"flag": "ch4_repeatability_open"
+			},
+			"options": [
+				{
+					"id": "return",
+					"label": "Return the test pass",
+					"flag": "ch4_test_pass_returned",
+					"revokes_access": [
+						"access_ward_entry"
+					],
+					"response": "Test pass returned. The ward entry doors are controlled access again."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch4_test_pass_returned"
+			}
+		},
+		{
+			"id": "interaction_ch4_disagreement",
+			"interactable_id": "character:staff_voss",
+			"title": "Dr Voss: access and continuity",
+			"body": "Voss, Hale and Rahman around the desk.\n\nRahman: Patient care must continue regardless of the investigation.\n\nHale: The site restriction stands until safety criteria are met.\n\nVoss: We can meet both obligations. What we cannot do is issue a false explanation.\n\nThe required safety notifications have already gone out.",
+			"when": {
+				"flag": "ch4_test_pass_returned"
+			},
+			"options": [
+				{
+					"id": "skip_notice",
+					"label": "Suggest holding the safety notification until there's an explanation",
+					"response": "Voss: No. Notifications go out whatever we think the explanation is. They already have."
+				},
+				{
+					"id": "external",
+					"label": "Propose external verification",
+					"flag": "ch4_disagreement_external",
+					"response": "Voss: Agreed. An outside team with its own instruments, under Hale's restriction."
+				},
+				{
+					"id": "briefing",
+					"label": "Propose a coordinated briefing for all three services",
+					"flag": "ch4_disagreement_briefing",
+					"response": "Voss: One briefing, three obligations: care, safety, record. I'll schedule it."
+				},
+				{
+					"id": "dissent",
+					"label": "Formally document your dissent on the pace of the review",
+					"flag": "ch4_disagreement_dissent",
+					"response": "Voss: Noted in the record under your name. The restriction and the care plan stand."
+				}
+			],
+			"unavailable_body": "Voss is busy.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch4_disagreement_external"
+					},
+					{
+						"flag": "ch4_disagreement_briefing"
+					},
+					{
+						"flag": "ch4_disagreement_dissent"
+					}
+				]
+			}
 		}
 	],
 	"sign_out": {

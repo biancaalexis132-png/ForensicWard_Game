@@ -40,6 +40,11 @@ func _test_files() -> Array[String]:
 
 func _run_file(file_name: String) -> void:
 	var script: GDScript = load("%s/%s" % [TEST_DIR, file_name])
+	# A test file that fails to parse must fail the run, not be skipped.
+	if script == null or not script.can_instantiate():
+		_failed += 1
+		_log("\n[%s]\n  FAIL (script did not load)" % file_name)
+		return
 	var test: TestCase = script.new()
 	test.runner = self
 	_log("\n[%s]" % file_name)

@@ -370,7 +370,7 @@ func _run_ch4(meeting: String, flag: String) -> void:
 	check_eq(_director().get_chapter_flags("ch4"), flags, "no original excluded")
 	_commit(RECORDS, "preserve them both")
 	check(_director().has_flag("ch4_paper_trail_preserved"), "contradiction preserved")
-	check(_objective().is_empty(), "authored Chapter 4 objectives so far complete")
+	check_eq(_objective(), "obj_ch4_test_pass", "door check follows the review")
 	check(not _director().has_completed("ch4"), "Chapter 4 not falsely complete")
 	check_eq(_canonical(PatientManager.to_save_data()), patients, "no clinical change")
 	check_eq(_canonical(EvidenceManager.to_save_data()), evidence, "no evidence created")
