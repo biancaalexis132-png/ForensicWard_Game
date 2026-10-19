@@ -29,14 +29,18 @@
 		{
 			"id": "ch3",
 			"title": "Chapter 3: Beneath the Hospital",
-			"status": "planned",
-			"provisional": true
+			"status": "playable",
+			"provisional": true,
+			"story": "story_chapter3.json",
+			"world": "world_chapter3.json"
 		},
 		{
 			"id": "ch4",
 			"title": "Chapter 4: The Official Record",
-			"status": "planned",
-			"provisional": true
+			"status": "playable",
+			"provisional": true,
+			"story": "story_chapter4.json",
+			"world": "world_chapter4.json"
 		},
 		{
 			"id": "ch5",

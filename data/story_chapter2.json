@@ -4,7 +4,7 @@
 	"title": "Chapter 2: The Missing Hours",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received. Scene 06 (Hale's Door): Hale scopes the question and the player requests one permitted follow-up. No access, escort or inspection is granted; Ward Zero entry stays in Chapter 3. Scene 07 (An Incomplete Witness): a Facilities technician recalls hearing the old lift bell during a scheduled shutdown but did not see anyone use it. Recorded as witness memory only; no clue, evidence or anomaly is created. Scene 08 (The Door That Wasn't Left Open): an escorted inspection of the restricted lift lobby doors from the security corridor, lobby only. The doors are observed closed, then found ajar after the team looked elsewhere; the escort did not watch continuously. No entry, trapping, portal or anomaly. The pass is returned to Hale afterwards. Scene 09 (A File for the Wrong Day): two archived export representations disagree about the access-event date; time-zone provenance is unreconciled. The player places it in the authorized incident record (not Mara's clinical note) and chooses one handling: formal audit escalation, preserving the separate source versions, or independent technical review. Original files are never changed; Mara's note stays independent and confidential.",
+	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received. Scene 06 (Hale's Door): Hale scopes the question and the player requests one permitted follow-up. No access, escort or inspection is granted; Ward Zero entry stays in Chapter 3. Scene 07 (An Incomplete Witness): a Facilities technician recalls hearing the old lift bell during a scheduled shutdown but did not see anyone use it. Recorded as witness memory only; no clue, evidence or anomaly is created. Scene 08 (The Door That Wasn't Left Open): an escorted inspection of the restricted lift lobby doors from the security corridor, lobby only. The doors are observed closed, then found ajar after the team looked elsewhere; the escort did not watch continuously. No entry, trapping, portal or anomaly. The pass is returned to Hale afterwards. Scene 09 (A File for the Wrong Day): two archived export representations disagree about the access-event date; time-zone provenance is unreconciled. The player places it in the authorized incident record (not Mara's clinical note) and chooses one handling: formal audit escalation, preserving the separate source versions, or independent technical review. Original files are never changed; Mara's note stays independent and confidential. Scene 10 (Missing Hours, closing beat): the analyst can account for part of the timing mismatch but not the whole interval, and the report says so. Bennett, ending her shift, closes the chapter. Chapter 2 completes with only audit inconsistencies, source disagreement, an unobserved door movement and uncertain witness recollection on record; no confirmed supernatural event, no Ward Zero entry. The optional personal-contact message is not built: no personal-history system exists yet.",
 	"objectives": [
 		{
 			"id": "obj_ch2_handoff",
@@ -275,10 +275,31 @@
 					}
 				]
 			}
+		},
+		{
+			"id": "obj_ch2_hours_report",
+			"text": "The analyst has an answer on the timing. Hear it at the export comparison worksheet.",
+			"complete_when": {
+				"flag": "ch2_hours_report_limits"
+			}
+		},
+		{
+			"id": "obj_ch2_hours_bennett",
+			"text": "Nurse Bennett is ending her shift. Catch her before she goes.",
+			"complete_when": {
+				"flag": "chapter_complete"
+			}
 		}
 	],
 	"beats": [],
 	"staff_lines": [
+		{
+			"staff_id": "staff_bennett",
+			"when": {
+				"flag": "chapter_complete"
+			},
+			"text": "Go home, Doctor. It'll still be unreconciled tomorrow."
+		},
 		{
 			"staff_id": "staff_hale",
 			"when": {
@@ -661,7 +682,10 @@
 					"flag": "ch2_records_review_complete"
 				}
 			],
-			"unavailable_body": "Complete the current records-review objective first. Clinical review remains a separate responsibility."
+			"unavailable_body": "Complete the current records-review objective first. Clinical review remains a separate responsibility.",
+			"expires_when": {
+				"flag": "ch2_records_review_complete"
+			}
 		},
 		{
 			"id": "interaction_ch2_voss_scope",
@@ -1078,7 +1102,9 @@
 					"id": "accept_escort",
 					"label": "Accept an escorted look at the lobby doors only",
 					"flag": "ch2_lobby_escort_granted",
-					"grants_access": "access_ward_entry",
+					"grants_access": [
+						"access_ward_entry"
+					],
 					"response": "Hale: Escorted pass logged against this inspection. The ward entry doors will open for you. Bring the pass back to me when you're done.\n\nScope recorded: lobby doors only, with an escort. Lift, service hatch and W0-B remain locked."
 				}
 			],
@@ -1195,7 +1221,9 @@
 					"id": "return_pass",
 					"label": "Report what you recorded and return the escorted pass",
 					"flag": "ch2_lobby_pass_returned",
-					"revokes_access": "access_ward_entry",
+					"revokes_access": [
+						"access_ward_entry"
+					],
 					"response": "Hale reads your note and signs the pass back in.\n\nHale: Closed, then ajar, nobody watching in between. That's what goes in the log.\n\nThe ward entry doors are controlled access again."
 				}
 			],
@@ -1283,6 +1311,73 @@
 				]
 			},
 			"completed_body": "Incident record: two export versions disagree on the date; handling recorded; originals unchanged."
+		},
+		{
+			"id": "interaction_ch2_hours_report",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "Missing hours",
+			"body": "The analyst's note is attached to the worksheet.\n\nAnalyst: I can show you where the clocks differ. I can't reconstruct this interval responsibly from these records alone.\n\nPart of the mismatch is accounted for by clock differences between systems. The rest of the reported interval is not.",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_wrongday_audit_escalation"
+					},
+					{
+						"flag": "ch2_wrongday_preserve_versions"
+					},
+					{
+						"flag": "ch2_wrongday_technical_review"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "all_skew",
+					"label": "Report the whole interval as clock skew",
+					"response": "The analyst only accounts for part of it. Writing the rest off as skew claims more than the records show."
+				},
+				{
+					"id": "missing_time",
+					"label": "Report the remainder as missing time",
+					"response": "Unreconciled is not missing. The records don't establish that any time was lost; they establish that they can't be reconciled yet."
+				},
+				{
+					"id": "report_limits",
+					"label": "\"Then the report should say that.\"",
+					"flag": "ch2_hours_report_limits",
+					"response": "Report recorded: part of the timing mismatch is explained by clock differences; the remainder of the reported interval cannot be reconstructed from the available records. Source, preservation and audit requests remain open."
+				}
+			],
+			"unavailable_body": "Nothing new at the worksheet yet.",
+			"expires_when": {
+				"flag": "ch2_hours_report_limits"
+			}
+		},
+		{
+			"id": "interaction_ch2_hours_bennett",
+			"interactable_id": "character:staff_bennett",
+			"title": "Nurse Bennett: end of shift",
+			"body": "Bennett is pulling on her coat.\n\nBennett: Any luck?",
+			"when": {
+				"flag": "ch2_hours_report_limits"
+			},
+			"options": [
+				{
+					"id": "claim_found",
+					"label": "\"We found the missing hours.\"",
+					"response": "Bennett: Did you? Or did you find records that don't agree?\n\nYou haven't found anything that was lost. Tell her what you actually have."
+				},
+				{
+					"id": "cant_reconcile",
+					"label": "\"We confirmed there are records we can't reconcile yet.\"",
+					"flag": "chapter_complete",
+					"response": "Bennett: Then you're doing what you're supposed to. Don't decide the answer first.\n\nShe heads for the staff entrance.\n\n[b]End of Chapter 2: The Missing Hours[/b]\nOn record: audit inconsistencies, source disagreement, an unobserved door movement and an uncertain witness recollection. W0-B remains locked; any inspection needs proper authorization."
+				}
+			],
+			"unavailable_body": "Bennett is busy.",
+			"expires_when": {
+				"flag": "chapter_complete"
+			}
 		}
 	],
 	"sign_out": {
@@ -1293,5 +1388,6 @@
 		"documented_trust": [],
 		"undocumented_trust": [],
 		"undocumented_message": "Outstanding clinical review still requires an appropriate handoff."
-	}
+	},
+	"next_chapter": "ch3"
 }

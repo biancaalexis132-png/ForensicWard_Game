@@ -1,0 +1,236 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch4",
+	"title": "Chapter 4: The Official Record",
+	"provisional": true,
+	"clinical_review_status": "PENDING",
+	"notes": "Revised CH04 (The Official Record). Proposed dialogue pending narrative review. Scenes 01, 02, 03 and 05: Voss's meeting keeps the transfer audit and the spatial survey as separate incident files; the junior summary's 'confirmed mapping error' is corrected with the first version kept; Rahman states the clinical boundary; an outside reviewer finds a time-order contradiction that cannot be removed without excluding an original. Not built in this slice: Scene 04 (Mara's follow-up: clinical conversation needing approval) and Scene 06 (personal call: no personal-history system). The Scene 09 corridor-loop reveal waits for the owner's approval of its effect.",
+	"objectives": [
+		{
+			"id": "obj_ch4_meeting",
+			"text": "Dr Voss has called Hale, Facilities and you to her office area.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch4_meeting_transparent"
+					},
+					{
+						"flag": "ch4_meeting_restrictions"
+					},
+					{
+						"flag": "ch4_meeting_outside_expertise"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch4_summary",
+			"text": "An administrative summary is waiting at the office workstation.",
+			"complete_when": {
+				"flag": "ch4_summary_corrected"
+			}
+		},
+		{
+			"id": "obj_ch4_rahman",
+			"text": "Dr Rahman wants a word at the office desk.",
+			"complete_when": {
+				"flag": "ch4_rahman_boundary"
+			}
+		},
+		{
+			"id": "obj_ch4_paper_trail",
+			"text": "The outside reviewer's comparison is on the Records worksheet.",
+			"complete_when": {
+				"flag": "ch4_paper_trail_preserved"
+			}
+		}
+	],
+	"beats": [],
+	"staff_lines": [
+		{
+			"staff_id": "staff_rahman",
+			"when": {
+				"flag": "ch4_rahman_boundary"
+			},
+			"text": "Different questions, different evidence. Come and find me when it's a clinical one."
+		},
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"chapter_completed": "ch3"
+			},
+			"text": "Nobody enters pending the independent safety review."
+		},
+		{
+			"staff_id": "staff_voss",
+			"when": {
+				"any": [
+					{
+						"flag": "ch4_meeting_transparent"
+					},
+					{
+						"flag": "ch4_meeting_restrictions"
+					},
+					{
+						"flag": "ch4_meeting_outside_expertise"
+					}
+				]
+			},
+			"text": "Two incident files. Keep them that way."
+		}
+	],
+	"interactions": [
+		{
+			"id": "interaction_ch4_meeting",
+			"interactable_id": "character:staff_voss",
+			"title": "Dr Voss: the morning after",
+			"body": "Voss: We are not here to settle a theory. We have observations we can't yet reconcile and a restricted area with possible safety implications.\n\nEngineer: Some old plans are incomplete. Other differences remain unexplained.\n\nHale: Nobody enters pending the independent safety review.\n\nYou: The inactive-credential transfer request remains an information-security question.\n\nVoss: Precisely. Don't join two incomplete cases just because their labels resemble each other.",
+			"when": {
+				"chapter_completed": "ch3"
+			},
+			"options": [
+				{
+					"id": "merge",
+					"label": "Propose one combined W0-B case file",
+					"response": "Voss: No. The transfer audit and the spatial survey are separate incident files until something other than a label connects them."
+				},
+				{
+					"id": "transparent",
+					"label": "Preserve transparent findings in both files",
+					"flag": "ch4_meeting_transparent",
+					"response": "Voss: Good. Both files say what was observed and what wasn't."
+				},
+				{
+					"id": "restrictions",
+					"label": "Focus on the access restrictions first",
+					"flag": "ch4_meeting_restrictions",
+					"response": "Hale: Then we agree. The restriction stays until the safety review signs off."
+				},
+				{
+					"id": "outside",
+					"label": "Request outside expertise for the survey",
+					"flag": "ch4_meeting_outside_expertise",
+					"response": "Voss: I'll ask for an outside reviewer. The safety review still comes first."
+				}
+			],
+			"unavailable_body": "Voss is busy.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch4_meeting_transparent"
+					},
+					{
+						"flag": "ch4_meeting_restrictions"
+					},
+					{
+						"flag": "ch4_meeting_outside_expertise"
+					}
+				]
+			}
+		},
+		{
+			"id": "interaction_ch4_summary",
+			"interactable_id": "OF_Document_TransferSummary",
+			"title": "Administrative summary (draft)",
+			"body": "A junior administrator's draft summary of the Chapter 3 inspection reads: \"Cause: confirmed mapping error.\" No review has established a cause. Facilities' own file says unresolved.\n\nVoss (note): Then the summary is wrong. Correct it. Keep the first version in the revision history.",
+			"when": {
+				"any": [
+					{
+						"flag": "ch4_meeting_transparent"
+					},
+					{
+						"flag": "ch4_meeting_restrictions"
+					},
+					{
+						"flag": "ch4_meeting_outside_expertise"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "mapping",
+					"label": "Leave \"confirmed mapping error\" as the finding",
+					"response": "Not established. A mapping error is one candidate explanation; no review has confirmed it. The draft stays open for revision."
+				},
+				{
+					"id": "geometry",
+					"label": "Replace it with \"anomalous geometry confirmed\"",
+					"response": "Not established either. Nothing the inspection recorded supports that wording. The draft stays open for revision."
+				},
+				{
+					"id": "contradiction",
+					"label": "State the observed contradiction and that the cause is unresolved",
+					"flag": "ch4_summary_corrected",
+					"response": "Official finding entered: plan editions and observations disagree; cause unresolved; independent review pending. The first draft is kept in the revision history."
+				}
+			],
+			"unavailable_body": "The records workstation.",
+			"expires_when": {
+				"flag": "ch4_summary_corrected"
+			},
+			"completed_body": "Official finding: contradiction observed, cause unresolved. Revision history kept."
+		},
+		{
+			"id": "interaction_ch4_rahman",
+			"interactable_id": "character:staff_rahman",
+			"title": "Dr Rahman: clinical boundary",
+			"body": "Rahman: An unusual facilities report doesn't change the standards for evaluating a patient who is distressed or sleeping poorly.",
+			"when": {
+				"flag": "ch4_summary_corrected"
+			},
+			"options": [
+				{
+					"id": "link",
+					"label": "Suggest the corridor report might explain some patients' distress",
+					"response": "Rahman: No. A building report isn't a clinical finding, and a patient's distress isn't building evidence. We assess the patient."
+				},
+				{
+					"id": "boundary",
+					"label": "\"And an old psychiatric diagnosis doesn't prove an audit record false.\"",
+					"flag": "ch4_rahman_boundary",
+					"response": "Rahman: Both are important. Different questions need different evidence."
+				}
+			],
+			"unavailable_body": "Rahman is reviewing notes.",
+			"expires_when": {
+				"flag": "ch4_rahman_boundary"
+			}
+		},
+		{
+			"id": "interaction_ch4_paper_trail",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "Outside review: retained originals",
+			"body": "The outside reviewer compared the retained originals after accounting for the known export display differences. A time-order contradiction remains. How independent the originals are is documented, not assumed.\n\nAnalyst: I can't make these versions agree without excluding one of the originals.",
+			"when": {
+				"flag": "ch4_rahman_boundary"
+			},
+			"options": [
+				{
+					"id": "exclude",
+					"label": "Exclude the original that doesn't fit",
+					"response": "Excluding a record to make the others agree would destroy the contradiction, not resolve it."
+				},
+				{
+					"id": "preserve",
+					"label": "\"Then preserve them both. Identify which checks were performed.\"",
+					"flag": "ch4_paper_trail_preserved",
+					"response": "Both originals preserved. Checks listed: display-difference correction, clock-source comparison, custody trail. Independence documented per record. The time-order contradiction stands."
+				}
+			],
+			"unavailable_body": "The comparison worksheet.",
+			"expires_when": {
+				"flag": "ch4_paper_trail_preserved"
+			},
+			"completed_body": "Retained originals: time-order contradiction preserved with the checks performed."
+		}
+	],
+	"sign_out": {
+		"title": "Clinical handoff",
+		"handover_patients": [
+			"pt_elias_ward"
+		],
+		"documented_trust": [],
+		"undocumented_trust": [],
+		"undocumented_message": "Outstanding clinical review still requires an appropriate handoff."
+	}
+}

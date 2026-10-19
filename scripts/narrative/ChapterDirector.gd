@@ -143,6 +143,8 @@ func set_flag(flag: String) -> void:
 	if not flag in _flags:
 		_flags.append(flag)
 		_flags.sort()
+		if flag == StoryLogic.CHAPTER_COMPLETE_FLAG:
+			EventBus.chapter_completed.emit(_chapter_id)
 		evaluate()
 
 
@@ -181,7 +183,6 @@ func sign_out() -> String:
 		set_flag(StoryLogic.CHAPTER_COMPLETE_FLAG)
 		body = "[b]End of %s[/b] (playable slice)\n\n%s\n\n%s" % [story["title"],
 				_shift_summary(), _relationship_summary()]
-		EventBus.chapter_completed.emit(_chapter_id)
 	var panel: Dictionary = {"title": config["title"], "body": body}
 	var next_chapter: String = str(story.get("next_chapter", ""))
 	if has_completed(_chapter_id) and ContentRegistry.is_chapter_playable(next_chapter):
@@ -404,11 +405,18 @@ func _on_story_option_selected(interaction_id: String, option_id: String) -> voi
 			if option["id"] != option_id:
 				continue
 			_active_interaction = ""
-			if option.has("grants_access"):
-				TrustManager.grant_access(option["grants_access"], "story:" + interaction_id)
-			if option.has("revokes_access"):
-				TrustManager.revoke_access(option["revokes_access"])
+			for access_id: String in option.get("grants_access", []):
+				TrustManager.grant_access(access_id, "story:" + interaction_id)
+			for access_id: String in option.get("revokes_access", []):
+				TrustManager.revoke_access(access_id)
 			if option.has("flag"):
 				set_flag(option["flag"])
-			EventBus.ui_panel_requested.emit("info", {"title": interaction["title"], "body": option["response"]})
+			var panel: Dictionary = {"title": interaction["title"], "body": option["response"]}
+			# A choice that completes the chapter offers the next one, as sign-out does.
+			if option.get("flag", "") == StoryLogic.CHAPTER_COMPLETE_FLAG \
+					and ContentRegistry.is_chapter_playable(str(_story().get("next_chapter", ""))):
+				_active_interaction = "continue:" + _chapter_id
+				panel["interaction_id"] = _active_interaction
+				panel["options"] = [{"id": "continue", "label": "Return for the next day shift"}]
+			EventBus.ui_panel_requested.emit("info", panel)
 			return

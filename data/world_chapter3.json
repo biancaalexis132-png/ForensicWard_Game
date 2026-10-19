@@ -1,0 +1,128 @@
+{
+	"schema_version": "0.1",
+	"world_id": "world_chapter3",
+	"notes": "Chapter 3 (Beneath the Hospital) opens in the staffed clinical wing. Scenes 01-02: Bennett hands over the inspection notice; Hale gives the security briefing at the psychiatrist's office desk. No Ward Zero entry yet in this slice; W0-B stays locked until the descent scene. Scenes 03-04: Hale's team pass (ward entry and maintenance access) opens the route through the security wing and the service hatch to the historic sublevel; Facilities clearance opens the sealed corridor's brick end (world state sealed_corridor_end) and the threshold connection into Ward Zero. Hale and the engineer accompany in the panels' text; there are no actor markers below ground. Scenes 05-08: the alcove and the route check are story points in the Ward Zero service corridor; the team pass is returned to Hale in the clinical wing.",
+	"start_zone": "zone_clinical_wing",
+	"spawn_marker": "MARK_PlayerSpawn",
+	"doors": {
+		"door_office": {
+			"display_name": "Office door"
+		},
+		"door_nurse_station": {
+			"display_name": "Nursing station door"
+		},
+		"door_archive": {
+			"display_name": "Records archive door",
+			"locked_message": "Records Archive: badge access required. Ask the charge nurse."
+		},
+		"door_patient_01": {
+			"display_name": "Room 01 door",
+			"open_angle_degrees": -100,
+			"locked_message": "Room 01: a patient's bedroom. Locked."
+		},
+		"door_patient_02": {
+			"display_name": "Room 02 door",
+			"open_angle_degrees": -100,
+			"locked_message": "Room 02: a patient's bedroom. Locked."
+		},
+		"door_interview": {
+			"display_name": "Interview room door",
+			"open_angle_degrees": -100
+		},
+		"door_ward_entry": {
+			"display_name": "Ward entry doors",
+			"locked_message": "Ward entry: controlled access. Not your route today."
+		},
+		"door_w0b": {
+			"display_name": "W0-B door",
+			"locked_message": "W0-B: sealed. The inspection does not use this door."
+		}
+	},
+	"interactables": [
+		{
+			"node": "OF_Terminal_EHR",
+			"type": "ehr_terminal",
+			"title": "EHR Workstation (Office)"
+		},
+		{
+			"node": "NS_Terminal_EHR",
+			"type": "ehr_terminal",
+			"title": "EHR Workstation (Nursing Station)"
+		},
+		{
+			"node": "NS_Clock",
+			"type": "shift_signout",
+			"title": "Clock out (end of shift)"
+		},
+		{
+			"node": "SW_FuseBoard",
+			"type": "story_terminal",
+			"title": "Stairwell fuse board (inspection log)",
+			"zone": "zone_historic_sublevel"
+		},
+		{
+			"node": "MC_FuseBoard_Isolated",
+			"type": "story_terminal",
+			"title": "Isolated circuit board (Facilities clearance)",
+			"zone": "zone_historic_sublevel"
+		},
+		{
+			"node": "W0T_EnamelPlate",
+			"type": "story_terminal",
+			"title": "Threshold: enamel plate and inner door",
+			"zone": "zone_ward_zero"
+		},
+		{
+			"node": "OM_Document_ObservationLog",
+			"type": "story_terminal",
+			"title": "Observation room records",
+			"zone": "zone_ward_zero"
+		},
+		{
+			"node": "W0C_Radiator_0",
+			"type": "story_terminal",
+			"title": "Corridor alcove",
+			"zone": "zone_ward_zero"
+		},
+		{
+			"node": "W0C_ClockA",
+			"type": "story_terminal",
+			"title": "Junction marker and ceiling",
+			"zone": "zone_ward_zero"
+		},
+		{
+			"node": "OF_Document_TransferSummary",
+			"type": "story_terminal",
+			"title": "Office workstation"
+		},
+		{
+			"node": "AR_Document_WardRoster1968",
+			"type": "story_terminal",
+			"title": "Inspection measurement comparison"
+		}
+	],
+	"characters": [
+		{
+			"marker": "MARK_Character_DrVoss",
+			"kind": "staff",
+			"character_id": "staff_voss"
+		},
+		{
+			"marker": "MARK_Character_NurseBennett",
+			"kind": "staff",
+			"character_id": "staff_bennett"
+		},
+		{
+			"marker": "MARK_Seat_Patient",
+			"kind": "patient",
+			"character_id": "pt_elias_ward",
+			"seated": true
+		},
+		{
+			"marker": "MARK_Seat_Psychiatrist_Desk",
+			"kind": "staff",
+			"character_id": "staff_hale"
+		}
+	],
+	"flicker_lights": []
+}

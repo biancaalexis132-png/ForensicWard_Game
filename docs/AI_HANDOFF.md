@@ -44,7 +44,49 @@ One row per branch that someone is working on. Claim the folders or files you wi
 - **Owner request:** "continue to finish all necessary animation and i will chec on my mac"; card answer "Naomi, then cast". Nothing approved.
 - **Delivered:** `refine_character.py` + `staff_bennett_v07.json` build v07 from v06_mpfb (painted crease rim removed, lid-margin lash line, lash tips follow roots, relaxed blink, straight trouser hems, relaxed shoes; rig/10 clips/32 morphs kept). `CharacterShadowSelector.gd`: nearest light casts the moving shadow, others the rest-pose proxy. Preview default v07. Draw-call jump not present on current main (lavapipe: v07 503, still v03 496).
 - **Executed:** full runner on `2707a37` exit 0: game 234/0, GLB 162/0, audio 336/0, QA 19/0/0, boot, CH1_SEQUENCE_DONE. Mac not run.
+- **Merged main (owner: "fix conflicts"):** conflicts were only in the continuity docs (both sides' entries kept). Full runner on the merge exit 0: game 250/0, audio 336/0, QA 19/0/0, CH1_SEQUENCE_DONE.
 - **Next exact task:** cast draft models; see `docs/handoffs/2026-10-19_claude_naomi_v07.md`.
+### 2026-10-19 · Claude Code · Chapter 4 Scenes 01-03 and 05 official record
+
+- **Branch / verified runtime:** `claude/chapter4-record` (stacked on claude/chapter3-report / PR #82), `e17fa49fb6b9665ac8f15d43990188620ba3a048`.
+- **Delivered:** Chapter 4 marked playable; story_chapter3 next_chapter ch4. New staff_rahman (Dr Leila Rahman, Consultant Psychiatrist, owner-confirmed role 2026-10-18) at the office desk; Hale at Interview Room A's door. Voss meeting (combined case refused; transparent / restrictions / outside expertise), summary correction at the office workstation (mapping error and anomalous geometry refused; contradiction with cause unresolved, first version kept), Rahman boundary (linking distress to the building refused), outside review at Records (excluding an original refused). Not built: Scene 04 Mara follow-up (clinical conversation needs approval), Scene 06 personal call (no system). Scene 09 waits on the owner's decision card. test_campaign expects ch4 playable (ch5 planned; fixture moved to ch5). New test_chapter4_record.gd.
+- **Executed:** Full runner exit 0: game 249/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run.
+- **Next exact task:** Chapter 4 Scenes 07, 08 and 10 (door-state replication attempt, institutional disagreement, official record); Scene 09 per the owner's decision on the loop effect. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
+### 2026-10-19 · Claude Code · Chapter 3 Scenes 09-14 debrief to closing photograph
+
+- **Branch / verified runtime:** `claude/chapter3-report` (stacked on claude/chapter3-return / PR #81), `095fef19331e8b72891d0027f2b7346274712b3c`.
+- **Delivered:** Data only. Hale debrief (repeat-corridor and merged-account refused; 'We shouldn't call that a physical loop.'), Bennett back-to-care, Facilities survey proposal at the office workstation (repeat entry refused), measurements at the Records worksheet (unresolved, protocol, restriction all required; 'longer than built' refused), Voss report (averaging refused), closing notice (photograph as proof refused; log, or the optional reflection line, completes Chapter 3). Chapter 4 not playable yet, so no continuation. Not built: optional Mara follow-up in Scene 10 (new clinical content needs approval). New test_chapter3_report.gd.
+- **Executed:** Full runner exit 0: game 246/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run.
+- **Next exact task:** Chapter 4 (The Official Record): read CH04_OFFICIAL_RECORD_v2.md; Scene 09 major corridor-loop reveal needs explicit owner approval of the effect and F2 safety tests before it is built. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
+### 2026-10-19 · Claude Code · Chapter 3 Scenes 05-08 alcove, route check and safe return
+
+- **Branch / verified runtime:** `claude/chapter3-return` (stacked on claude/chapter3-descent / PR #80), `aee2b95bd353bf60b649e3485be5eadd497880f4`.
+- **Delivered:** Data only. Alcove at W0C_Radiator_0 (compare plans / request survey / preserve discrepancy; 'the alcove has moved' feedback-only). Route concern and holding point at W0C_ClockA ('we've come round in a loop' and splitting up refused; flags ch3_route_paused = inspection_paused_for_route_check, ch3_ambiguity_recorded). Safe return through the threshold, stair and ward entry; Hale's 'return the team pass' revokes ward entry, maintenance and threshold access in the clinical wing. No safe-abort branch: the authored route check always succeeds. New test_chapter3_return.gd; descent test final objective updated.
+- **Executed:** Full runner exit 0: game 244/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run.
+- **Next exact task:** Chapter 3 Scenes 09-14: debrief, back to patient care, survey request, inconsistent measurements, inspection report, closing photograph; Chapter 3 completes. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
+### 2026-10-19 · Claude Code · Chapter 3 Scenes 03-04 descent and first Ward Zero entry
+
+- **Branch / verified runtime:** `claude/chapter3-descent` (stacked on claude/chapter3-briefing / PR #79), `2151b58662236e548d507a853eb1c400d42fd5fc`.
+- **Delivered:** zone_ward_zero built (7 Stage 6 environments, bounds x -6.7..6.7, z -9.5..10.2 on the sublevel) and conn_w0_threshold (fade, required access access_w0_threshold) from SC_BrickInfill to the threshold (return point W0T_Radiator). Hale's team pass grants access_ward_entry + access_maintenance; the screenplay's service elevator is staged as the Facilities hatch and stair because the restricted lift's historic landing has no floor choice yet. Stair-foot level note (SW_FuseBoard), Facilities clearance at MC_FuseBoard_Isolated (beat sets sealed_corridor_end open, grants access_w0_threshold), threshold actions at W0T_EnamelPlate (maps, signage, condition, return route); reading the observation log is refused. grants_access/revokes_access are now id lists (Chapter 2 data converted). access_ward_zero and access_restricted_lift never granted; all w0 anomaly groups stay default. test_zones fixtures updated now that Ward Zero is built. New test_chapter3_descent.gd.
+- **Executed:** Full runner exit 0: game 241/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run; Ward Zero frame time on the 8 GB Mac is unmeasured. Mac not run.
+- **Next exact task:** Chapter 3 Scenes 05-08: the alcove, route concern (no loop), account for the team, safe return (return the team pass in the clinical wing). See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
+### 2026-10-19 · Claude Code · Chapter 3 Scenes 01-02 notice and briefing
+
+- **Branch / verified runtime:** `claude/chapter3-briefing` (stacked on claude/chapter2-missing-hours / PR #78), `4c1bb95df4dc22781005a335222398a3e836b845`.
+- **Delivered:** Chapter 3 marked playable (campaign) with new story_chapter3.json/world_chapter3.json. Chapter 2 next_chapter ch3; a story choice that completes a chapter now offers 'Return for the next day shift' (ChapterDirector), and NS_Clock is Chapter 2's sign-out so completed saves can continue. Bennett's inspection notice: coverage, audit summary and clinical scope all required (leaving uncovered is refused). Hale's briefing: clinical question plus boundaries/stop conditions/return route; going alone is refused. No access, Ward Zero entry or clinical change. test_campaign now expects ch3 playable (ch4/ch5 still planned; planned-chapter fixture moved to ch4). New test_chapter3_briefing.gd.
+- **Executed:** Full runner exit 0: game 238/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run.
+- **Next exact task:** Chapter 3 Scenes 03-04: descent and first authorized Ward Zero entry. Wire zone_ward_zero (Stage 6 env exists, zone placeholder) and the W0-B route; Hale and Facilities engineer escort; marked route only. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
+### 2026-10-19 · Claude Code · Chapter 2 Scene 10 Missing Hours (chapter close)
+
+- **Branch / verified runtime:** `claude/chapter2-missing-hours` from `claude/chapter2-wrong-day` (PR #77 open), `1bb194df802b68591f9e7ab8a7939754e91bd8e3`.
+- **Delivered:** analyst's partial explanation at the export worksheet (claiming all skew or missing time is feedback-only; "Then the report should say that" records the limits); Bennett's end-of-shift exchange sets `chapter_complete` ("We found the missing hours" is feedback-only). `ChapterDirector.set_flag` now emits `chapter_completed` whenever the completion flag is set; sign-out's own emit was removed so it still fires once. `interaction_ch2_review_return` gains `expires_when` so it no longer shadows later Bennett exchanges. Chapter 3 is not started (still planned). Not built: the optional personal-contact message (no personal-history system exists) and the exterior fade-out. New `scripts/tests/test_chapter2_missing_hours.gd` + UID; wrong-day test updated for the next worksheet step.
+- **Executed:** full runner on `1bb194df802b68591f9e7ab8a7939754e91bd8e3` exit 0: game 235/0, GLB 161/0, audio 336/0, QA 19/0/0, Python 6+4+5+3, pharmacology 0, boot, CH1_SEQUENCE_DONE. First game run failed 5 (Bennett's older interaction shadowed the new one; one stale expectation), fixed. Mac not run.
+- **Next exact task:** owner narrative review of Chapter 2 Scenes 04–10; then Chapter 3 planning. See dedicated handoff.
 
 ### 2026-10-19 · Claude Code · Chapter 2 Scene 09 A File for the Wrong Day
 

@@ -51,6 +51,18 @@
 			},
 			"intro_line": "Just checking the door closers, Doctor.",
 			"grants_access": []
+		},
+		{
+			"id": "staff_rahman",
+			"name": "Dr Leila Rahman",
+			"role": "Consultant Psychiatrist",
+			"initial_trust": {
+				"respect": 0,
+				"trust": 0,
+				"suspicion": 0
+			},
+			"intro_line": "Leila Rahman. I cover the ward's consultant reviews.",
+			"grants_access": []
 		}
 	]
 }
