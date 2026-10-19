@@ -1,0 +1,343 @@
+{
+  "schema": "forensicward_narration_proposal_v1",
+  "art_policy": "Do not modify approved art bytes",
+  "voice": "third_person_literary_narrator",
+  "narration_status": "draft_requires_owner_script_and_voice_approval",
+  "audio_status": "not_recorded",
+  "chapter_recap_trigger": "after actual chapter completion only",
+  "chapters": [
+    {
+      "id": "ch01",
+      "title": "The Admission",
+      "music_cue_proposed": "mus_waiting_room",
+      "panels": [
+        {
+          "panel": 1,
+          "beat": "First Shift",
+          "narration": "At Ashcroft, a shift begins with ordinary things: identification, open doors, and an expectation that people will be looked after.",
+          "estimated_seconds": 9.9,
+          "audio_path": null,
+          "subtitle": "At Ashcroft, a shift begins with ordinary things: identification, open doors, and an expectation that people will be looked after."
+        },
+        {
+          "panel": 2,
+          "beat": "The Unit",
+          "narration": "Behind the secured doors, the ward continues its daily rhythm. Every task belongs to someone, and every handoff matters.",
+          "estimated_seconds": 9.5,
+          "audio_path": null,
+          "subtitle": "Behind the secured doors, the ward continues its daily rhythm. Every task belongs to someone, and every handoff matters."
+        },
+        {
+          "panel": 3,
+          "beat": "Naomi",
+          "narration": "Nurse Bennett knows that a unit is held together as much by small acts of attention as by written procedure.",
+          "estimated_seconds": 9.9,
+          "audio_path": null,
+          "subtitle": "Nurse Bennett knows that a unit is held together as much by small acts of attention as by written procedure."
+        },
+        {
+          "panel": 4,
+          "beat": "A Transfer",
+          "narration": "A transfer summary offers a starting point, but not an answer. The record must be read alongside the patient.",
+          "estimated_seconds": 9.5,
+          "audio_path": null,
+          "subtitle": "A transfer summary offers a starting point, but not an answer. The record must be read alongside the patient."
+        },
+        {
+          "panel": 5,
+          "beat": "The Interview",
+          "narration": "An incomplete response is not an invitation to guess. Clinical uncertainty calls for careful assessment, not a convenient story.",
+          "estimated_seconds": 9.5,
+          "audio_path": null,
+          "subtitle": "An incomplete response is not an invitation to guess. Clinical uncertainty calls for careful assessment, not a convenient story."
+        },
+        {
+          "panel": 6,
+          "beat": "A Restricted Door",
+          "narration": "Elsewhere, an access designation raises a separate question. For now, the threshold stays closed.",
+          "estimated_seconds": 7.2,
+          "audio_path": null,
+          "subtitle": "Elsewhere, an access designation raises a separate question. For now, the threshold stays closed."
+        },
+        {
+          "panel": 7,
+          "beat": "The Record",
+          "narration": "The first shift ends with care handed forward and discrepancies set aside for proper review. Nothing has been proven; something still needs checking.",
+          "estimated_seconds": 11.3,
+          "audio_path": null,
+          "subtitle": "The first shift ends with care handed forward and discrepancies set aside for proper review. Nothing has been proven; something still needs checking."
+        }
+      ],
+      "ending_inserts": {}
+    },
+    {
+      "id": "ch02",
+      "title": "The Missing Hours",
+      "music_cue_proposed": "mus_narrative",
+      "panels": [
+        {
+          "panel": 1,
+          "beat": "Routine First",
+          "narration": "The next shift begins where the last ended: with people who need treatment, attention, and continuity.",
+          "estimated_seconds": 8.1,
+          "audio_path": null,
+          "subtitle": "The next shift begins where the last ended: with people who need treatment, attention, and continuity."
+        },
+        {
+          "panel": 2,
+          "beat": "Mara Ellis",
+          "narration": "Mara Ellis has her own reasons to be here. Her care is not a puzzle to solve for the hospital.",
+          "estimated_seconds": 9.9,
+          "audio_path": null,
+          "subtitle": "Mara Ellis has her own reasons to be here. Her care is not a puzzle to solve for the hospital."
+        },
+        {
+          "panel": 3,
+          "beat": "A Document",
+          "narration": "There are gaps between the records, and gaps between what a document says and what can be verified.",
+          "estimated_seconds": 9.0,
+          "audio_path": null,
+          "subtitle": "There are gaps between the records, and gaps between what a document says and what can be verified."
+        },
+        {
+          "panel": 4,
+          "beat": "A Handoff",
+          "narration": "The staff compare what they actually know. A discrepancy becomes a question, not yet an accusation.",
+          "estimated_seconds": 8.1,
+          "audio_path": null,
+          "subtitle": "The staff compare what they actually know. A discrepancy becomes a question, not yet an accusation."
+        },
+        {
+          "panel": 5,
+          "beat": "Two Accounts",
+          "narration": "A timestamp alone cannot testify. It must be tested against the original source and its chain of custody.",
+          "estimated_seconds": 9.0,
+          "audio_path": null,
+          "subtitle": "A timestamp alone cannot testify. It must be tested against the original source and its chain of custody."
+        },
+        {
+          "panel": 6,
+          "beat": "Restricted Access",
+          "narration": "The secure area remains restricted while the proper staff determine who may examine it and why.",
+          "estimated_seconds": 8.1,
+          "audio_path": null,
+          "subtitle": "The secure area remains restricted while the proper staff determine who may examine it and why."
+        },
+        {
+          "panel": 7,
+          "beat": "Missing Hours",
+          "narration": "By the end of the shift, the official chronology is less certain. The clinical work, however, does not stop.",
+          "estimated_seconds": 9.5,
+          "audio_path": null,
+          "subtitle": "By the end of the shift, the official chronology is less certain. The clinical work, however, does not stop."
+        }
+      ],
+      "ending_inserts": {}
+    },
+    {
+      "id": "ch03",
+      "title": "Beneath the Hospital",
+      "music_cue_proposed": "mus_narrative",
+      "panels": [
+        {
+          "panel": 1,
+          "beat": "Authorization",
+          "narration": "Entry into the sublevel is agreed upon in writing, with escorts, communication checks, and a return plan.",
+          "estimated_seconds": 8.5,
+          "audio_path": null,
+          "subtitle": "Entry into the sublevel is agreed upon in writing, with escorts, communication checks, and a return plan."
+        },
+        {
+          "panel": 2,
+          "beat": "The Inspection",
+          "narration": "The team proceeds for a defined purpose. What lies below is unfamiliar, but unfamiliar is not the same as inexplicable.",
+          "estimated_seconds": 9.9,
+          "audio_path": null,
+          "subtitle": "The team proceeds for a defined purpose. What lies below is unfamiliar, but unfamiliar is not the same as inexplicable."
+        },
+        {
+          "panel": 3,
+          "beat": "The Threshold",
+          "narration": "Beyond the secured door, the physical spaces suggest a history the current ward does not fully describe.",
+          "estimated_seconds": 8.5,
+          "audio_path": null,
+          "subtitle": "Beyond the secured door, the physical spaces suggest a history the current ward does not fully describe."
+        },
+        {
+          "panel": 4,
+          "beat": "Inside",
+          "narration": "A smaller station and old equipment remain. Their presence is evidence of a place, not proof of what happened there.",
+          "estimated_seconds": 9.9,
+          "audio_path": null,
+          "subtitle": "A smaller station and old equipment remain. Their presence is evidence of a place, not proof of what happened there."
+        },
+        {
+          "panel": 5,
+          "beat": "Records",
+          "narration": "Copies and ledgers raise questions about their origins. Each item must be documented before anyone interprets it.",
+          "estimated_seconds": 8.5,
+          "audio_path": null,
+          "subtitle": "Copies and ledgers raise questions about their origins. Each item must be documented before anyone interprets it."
+        },
+        {
+          "panel": 6,
+          "beat": "The Route",
+          "narration": "When measurements and accounts fail to align, the team records the difference and follows its safety plan.",
+          "estimated_seconds": 8.5,
+          "audio_path": null,
+          "subtitle": "When measurements and accounts fail to align, the team records the difference and follows its safety plan."
+        },
+        {
+          "panel": 7,
+          "beat": "Safe Return",
+          "narration": "Everyone returns. The first authorized inspection ends with more questions, and with evidence preserved for independent review.",
+          "estimated_seconds": 8.5,
+          "audio_path": null,
+          "subtitle": "Everyone returns. The first authorized inspection ends with more questions, and with evidence preserved for independent review."
+        }
+      ],
+      "ending_inserts": {}
+    },
+    {
+      "id": "ch04",
+      "title": "The Official Record",
+      "music_cue_proposed": "mus_procedure",
+      "panels": [
+        {
+          "panel": 1,
+          "beat": "The Review",
+          "narration": "The hospital convenes a formal review. Clinical reports, security records, and engineering observations are not interchangeable.",
+          "estimated_seconds": 8.1,
+          "audio_path": null,
+          "subtitle": "The hospital convenes a formal review. Clinical reports, security records, and engineering observations are not interchangeable."
+        },
+        {
+          "panel": 2,
+          "beat": "Restricted Evidence",
+          "narration": "Every claim is examined for its source. A copied document cannot independently corroborate another copy.",
+          "estimated_seconds": 7.6,
+          "audio_path": null,
+          "subtitle": "Every claim is examined for its source. A copied document cannot independently corroborate another copy."
+        },
+        {
+          "panel": 3,
+          "beat": "The Corridor",
+          "narration": "The team returns to a controlled route with witnesses and procedures intended to make observation possible.",
+          "estimated_seconds": 8.1,
+          "audio_path": null,
+          "subtitle": "The team returns to a controlled route with witnesses and procedures intended to make observation possible."
+        },
+        {
+          "panel": 4,
+          "beat": "The Comparison",
+          "narration": "The ordinary corridor is measured against the official plan, without assuming the drawing must be correct.",
+          "estimated_seconds": 8.1,
+          "audio_path": null,
+          "subtitle": "The ordinary corridor is measured against the official plan, without assuming the drawing must be correct."
+        },
+        {
+          "panel": 5,
+          "beat": "The Clocks",
+          "narration": "In Chapter Four, an observed repetition can finally be documented. It is an event to investigate, not a diagnosis to assign.",
+          "estimated_seconds": 10.4,
+          "audio_path": null,
+          "subtitle": "In Chapter Four, an observed repetition can finally be documented. It is an event to investigate, not a diagnosis to assign."
+        },
+        {
+          "panel": 6,
+          "beat": "The Evidence",
+          "narration": "Witnesses compare what each person observed. The account remains bounded by what they can support.",
+          "estimated_seconds": 7.6,
+          "audio_path": null,
+          "subtitle": "Witnesses compare what each person observed. The account remains bounded by what they can support."
+        },
+        {
+          "panel": 7,
+          "beat": "Official Record",
+          "narration": "The report can describe what happened without pretending to explain it. Accountability begins with that distinction.",
+          "estimated_seconds": 8.1,
+          "audio_path": null,
+          "subtitle": "The report can describe what happened without pretending to explain it. Accountability begins with that distinction."
+        }
+      ],
+      "ending_inserts": {}
+    },
+    {
+      "id": "ch05",
+      "title": "Beyond the Lines",
+      "music_cue_proposed": "mus_final_revelation",
+      "panels": [
+        {
+          "panel": 1,
+          "beat": "Witnesses",
+          "narration": "The final operation begins with witnesses, explicit limits, and adequate coverage for the patients upstairs.",
+          "estimated_seconds": 7.6,
+          "audio_path": null,
+          "subtitle": "The final operation begins with witnesses, explicit limits, and adequate coverage for the patients upstairs."
+        },
+        {
+          "panel": 2,
+          "beat": "The Archive",
+          "narration": "The accumulated record is examined as a whole. Even now, some questions remain unresolved.",
+          "estimated_seconds": 7.2,
+          "audio_path": null,
+          "subtitle": "The accumulated record is examined as a whole. Even now, some questions remain unresolved."
+        },
+        {
+          "panel": 3,
+          "beat": "The Evidence",
+          "narration": "What matters is not certainty at any cost. It is whether the next action can be defended, reviewed, and reversed when necessary.",
+          "estimated_seconds": 10.9,
+          "audio_path": null,
+          "subtitle": "What matters is not certainty at any cost. It is whether the next action can be defended, reviewed, and reversed when necessary."
+        },
+        {
+          "panel": 4,
+          "beat": "Review",
+          "narration": "Different responsibilities meet at one table. Safety, access, oversight, and care all have to be considered.",
+          "estimated_seconds": 8.1,
+          "audio_path": null,
+          "subtitle": "Different responsibilities meet at one table. Safety, access, oversight, and care all have to be considered."
+        },
+        {
+          "panel": 5,
+          "beat": "A Decision",
+          "narration": "The institution must decide how to respond to findings it cannot yet explain. The choice belongs to accountable people, not a single rumor.",
+          "estimated_seconds": 11.3,
+          "audio_path": null,
+          "subtitle": "The institution must decide how to respond to findings it cannot yet explain. The choice belongs to accountable people, not a single rumor."
+        },
+        {
+          "panel": 6,
+          "beat": "Three Paths",
+          "narration": "Independent review, continued restrictions, or a bounded inquiry: each path carries obligations as well as consequences.",
+          "estimated_seconds": 8.1,
+          "audio_path": null,
+          "subtitle": "Independent review, continued restrictions, or a bounded inquiry: each path carries obligations as well as consequences."
+        },
+        {
+          "panel": 7,
+          "beat": "Morning Again",
+          "narration": "By morning, the ward is still a ward. People still need care. The next shift begins with the same ordinary responsibility.",
+          "estimated_seconds": 10.4,
+          "audio_path": null,
+          "subtitle": "By morning, the ward is still a ward. People still need care. The next shift begins with the same ordinary responsibility."
+        }
+      ],
+      "ending_inserts": {
+        "A": {
+          "beat": "Independent Review",
+          "narration": "The authenticated record is transferred for independent examination. The unanswered questions remain visible, and so do the people responsible for responding."
+        },
+        "B": {
+          "beat": "Restricted Access",
+          "narration": "The sublevel stays closed under documented safety restrictions. Oversight and periodic reconsideration remain part of the decision."
+        },
+        "C": {
+          "beat": "Continuing Inquiry",
+          "narration": "A limited inquiry continues under independent oversight. New testing requires renewed permission, and patient care remains protected."
+        }
+      }
+    }
+  ]
+}

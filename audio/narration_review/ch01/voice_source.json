@@ -1,0 +1,17 @@
+{
+  "status": "OWNER_APPROVAL_PENDING_NOT_INTEGRATED",
+  "provider": "ElevenLabs",
+  "voice_name": "Shawn - Calm & Grounded",
+  "voice_id": "d8XDgkC47nxEyrCyckjI",
+  "model_id": "eleven_multilingual_v2",
+  "flow_id": "u4R8fakQoM6M80IFufxG",
+  "session_id": "y3A42ccGBzIbLEzDPcxP",
+  "generation_id": "auQJf3Gft4pSEGc4i99U",
+  "duration_seconds": 17.04344671201814,
+  "sample_url": "https://elevenlabs.io/app/flows/u4R8fakQoM6M80IFufxG",
+  "text": "At Ashcroft, a shift begins with ordinary things: identification, open doors, and an expectation that people will be looked after.\n\nBehind the secured doors, the ward continues its daily rhythm. Every task belongs to someone, and every handoff matters.",
+  "settings": "Provider defaults; one requested take; no cloned voice created.",
+  "licence": "Generated through connected ElevenLabs account. Account plan/commercial distribution rights not independently verified; review sample only.",
+  "local_audio": "Not downloaded: storage.googleapis.com returned HTTP 403 under the workspace network policy. Play/download through the connected ElevenLabs sample view.",
+  "panel_mapping": "Chapter 1 panels p01 and p02. Continuous voice audition only; exact panel transition and subtitle timing have not been aligned."
+}

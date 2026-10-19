@@ -1,0 +1,146 @@
+[
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_01.png",
+    "sha256": "fef19f55160ad31336396d9ce6d1bb0cfe94b42e45bd41597be86757cb0bcf3a"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_02.png",
+    "sha256": "7ca4da900b4498ae7db52dce986757159c5e582d0e6baf7d4d8e509ffd3ea060"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_03.png",
+    "sha256": "f08db91d4155341a5c0f99b33deef99b8a9d6312429abb75eb75bb0c9ea8b370"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_04.png",
+    "sha256": "1aedc6082c84e8e8ed7ca587ce5cc88f2b7de3ec36f06cdfc6a08dfd4a8c2246"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_05.png",
+    "sha256": "683c8e652b845a625fe6c056cae758f57cc1514fcc46e88680ee46ccc44b7be8"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_06.png",
+    "sha256": "b49719be5f9d87dd104df3541fb8a5ec7215e1df01911c5ed4289ab062a39b65"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch01/chapter_01_panel_07.png",
+    "sha256": "9c0737d910a94b6e7640ba71a26e98ac56ea241cdab3bce37e3913f372332b8b"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_01.png",
+    "sha256": "9480efa2ae11fd5310953818911afb921d1126f3f8171ec632275aa9dd35c634"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_02.png",
+    "sha256": "ffb044662994961627777bca1a7da21ddee0d3f5fc90006df459f53abbf25c60"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_03.png",
+    "sha256": "a07b9b2e579c13b699be7be5ad975d933049d785e4816b6722feb14d1f9e4563"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_04.png",
+    "sha256": "269aba1d82df7adc267ddb071d94aab03dcefa2e26210cb80ac8ced1c0091dce"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_05.png",
+    "sha256": "f33dad53df423e2f7af34553fc93b32dd7b6eaac4840c340506265b49e2a177e"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_06.png",
+    "sha256": "d36236c0dc81821fe4ed8a17afabcb8571a052b2e18de2f7c2d46ff8c86aebef"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch02/chapter_02_panel_07.png",
+    "sha256": "de9d5754dcdf8b7994eb9b90a2744c6ffa0dc49a980eeb373f776ef799ec97e0"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_01.png",
+    "sha256": "5f9cdae4fe798357cfa0ab62145ed66a1130b686c492c9187e1789a007bf44ea"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_02.png",
+    "sha256": "938ce7beb2b4cebbea6ccdefa220361f4754e1e4617b88089bf9e4a0d3267375"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_03.png",
+    "sha256": "481fdaee6f27db27a9f8b2bdc44af7392f198ed87f8fb7271d8e412fe6dd5901"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_04.png",
+    "sha256": "bbbdb96be2977e890760e909e2ed6a6dc037704bc0fea1acb6fdd7711aaef283"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_05.png",
+    "sha256": "20182364b001407ce2eef3e58b15f0142abf075b621df9e27ec38dcf6b593db5"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_06.png",
+    "sha256": "e754cb6764a51e4d3e426ff9dbc235d3f8b375111e1dee2f57a239e74a103d0a"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch03/chapter_03_panel_07.png",
+    "sha256": "b9143a93ba44d068f63c083fba85e61ab8c593c25ecb1b9eb7db8585111c3354"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_01.png",
+    "sha256": "da45d012c971c96794de3142eae52724e4cd861385ed4e9a4498a08f8e793fa3"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_02.png",
+    "sha256": "97409fe162410c15b80eedb46159d1afe353e5853d87d93272fff1d94aff9bec"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_03.png",
+    "sha256": "ebd408d4827ffdb77f2015ac5e99c5475ae096b0a3c27240f043389ae34a8ddb"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_04.png",
+    "sha256": "921e09e0351d1d9dad9fc842a97f39e30efdd2e67f4ec6ccc38d84ab5f1ed890"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_05.png",
+    "sha256": "744527af4a23034774c96bd2ec3f94cb4855bbcd1a8151921475a3635b50e295"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_06.png",
+    "sha256": "8c2e2e88db3c17367f085626ea81114e4d4440109c89d5b051557f19f6d6f74f"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_07.png",
+    "sha256": "04c99b1f27c32f5705e093edf137c2d00b639b733816ea1e58338bad8e16a2c7"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch04/chapter_04_panel_08.png",
+    "sha256": "1f202d05532fe7f94ba6456db42f84c10d15473b4f31a8757cb12994523941b8"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_01.png",
+    "sha256": "81a9f41c880a254db3595efcf86d3a6f765d3b485f5b7a02c76db6ad61df5a39"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_02.png",
+    "sha256": "b6fd26e46ea84789bc8ed1c24856e8cb0d0ef0d29c55b249e1d52436ab97978d"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_03.png",
+    "sha256": "d553d9b82dcbd632f18f2d4944fa9132d5bd18c221647e7a68acf537513746a7"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_04.png",
+    "sha256": "33f90dbf35f17f6638dd3eaf89f43b5c67ac041b8dd1d1786ece4023cc71f38a"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_05.png",
+    "sha256": "cb148be7b6dd5cb566c442add564d4454a10fd862a3d6d0ffd659e3abfbd523b"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_06.png",
+    "sha256": "75eac2680f1c175cc7a7c1f35c83b46941d57c7ad6c039a81af09b0fb1bb822e"
+  },
+  {
+    "path": "assets/cutscenes/static_gn_v1/ch05/chapter_05_panel_07.png",
+    "sha256": "bcb4f448b3a4f1889884a514e5dc40fc17a71281f3ac03eaa9fa470d9ecd07e5"
+  }
+]
