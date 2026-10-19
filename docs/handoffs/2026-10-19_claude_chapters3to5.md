@@ -62,15 +62,12 @@ Runtime `1b83671` on `claude/chapter-cutscenes`. data/cutscenes/cs_ch0[2-5]_titl
 
 Tests: Game tests on 1b83671: all passed (see PR). Full QA on the pre-rebase branch: 262/0, GLB 168/0. Mac check NOT completed (owner deferred).
 
-## Next exact task
+## Title cards play at chapter openings
 
-Owner: look at the cards (--cutscene-preview=cs_ch0N_title) and decide approval/placement; Mac check later.
-## Campaign finish
+Runtime `#91` on `claude/chapter-cutscenes`. 
 
-Runtime `3f50abe` on `claude/campaign-finish`. data/story_chapter5.json, scripts/content/ContentSchemas.gd, scripts/content/ContentValidator.gd, scripts/narrative/ChapterDirector.gd, scripts/tests/test_chapter5_finale.gd, scripts/tests/test_campaign.gd, docs/PROJECT_STATUS.md
-
-Tests: Full QA at 3f50abe: all executed checks passed; game tests 261/0; GLB 168/0. Mac check NOT completed (owner deferred).
+Tests: Game tests 263 passed 0 failed; full QA runner: all executed checks passed. Mac check not completed (deferred by Bi).
 
 ## Next exact task
 
-Owner runs the Mac check later; then pick the next build.
+Bi merges #91. Mac check stays with Bi.

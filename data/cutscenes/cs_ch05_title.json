@@ -3,11 +3,11 @@
   "cutscene_id": "cs_ch05_title",
   "chapter_id": "ch5",
   "source_scene_id": "CH05_S01",
-  "source": "Chapter title card for review: environment plates only (tools/cutscenes/ch05_title_plates.json), no dialogue or character likeness. Placement at the chapter opening needs the owner's approval.",
-  "mode": "review_only",
-  "approved": false,
+  "source": "Chapter title card, approved by the owner 2026-10-19 and played when the chapter opens: environment plates only (tools/cutscenes/ch05_title_plates.json), no dialogue or character likeness.",
+  "mode": "campaign",
+  "approved": true,
   "trigger": {
-    "kind": "manual_preview"
+    "kind": "chapter_start"
   },
   "fallback_action": "restore_world",
   "music": {

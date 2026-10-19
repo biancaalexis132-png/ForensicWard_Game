@@ -38,6 +38,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Title cards play at chapter openings
+
+- **Branch / verified runtime:** `claude/chapter-cutscenes` (main), `#91`.
+- **Delivered:** Bi approved the Chapter 2-5 title cards and their placement; they are now mode campaign, trigger chapter_start, approved true, and Main opens each one when its chapter starts (Esc skips). The Chapter 1 pilot stays review-only.
+- **Executed:** Game tests 263 passed 0 failed; full QA runner: all executed checks passed. Mac check not completed (deferred by Bi). Mac not run.
+- **Next exact task:** Bi merges #91. Mac check stays with Bi. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
 ### 2026-10-19 · Claude Code · Chapter 2-5 title cutscenes (review-only)
 
 - **Branch / verified runtime:** `claude/chapter-cutscenes` (main), `1b83671`.
