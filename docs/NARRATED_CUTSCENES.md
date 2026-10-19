@@ -79,4 +79,4 @@ Run existing suites unchanged except the prior recap-duration assertion now uses
 
 The mandatory `check_delivery.py` must pass with **38/38 recordings**, measured subtitles and unchanged approved artwork before a ZIP can be called the final narrated delivery. Audible production voice/mix and Forward+/Metal appearance/performance still require Mac review. Realistic 3D cast models are still review-only; normal gameplay retains placeholders. This narration work does not claim to finish or approve those models.
 
-Keep the production branch and PR unmerged. The owner remains responsible for merging after review.
+PR #96 was merged into main externally at `fe1a4bd1308c35d96d9150c2dbc941b89c040fc9`. The agent did not perform that merge. Further changes belong on separate review branches; no automatic merge is authorized.

@@ -31,4 +31,4 @@ Open `NARRATION_REVIEW.html` after extraction. Each illustration has its matchin
 - `audio/narration/provenance.json`: voice attribution, settings, recording hashes and measured durations.
 - `docs/narration/TEST_RESULTS.md`: executed verification and remaining review limits.
 
-The production branch is deliberately unmerged. Narrator approval does not imply approval of character models or clinical rules.
+Narration was integrated into `main` through PR #96. Narrator approval does not imply approval of character models or clinical rules; the remaining cast and Mac review work is documented in `docs/PROJECT_STATUS.md`.
