@@ -169,15 +169,27 @@ feedback only. No access, inspection or patient movement. New
 and an interrupted conversation. Full runner exit 0: game 220/0, GLB 161/0,
 audio 336/0, QA 19/0/0, Python 6+4+5+3, pharmacology 0, boot, CH1 sequence.
 
+## Addendum: Scene 07 An Incomplete Witness
+
+Runtime `3a919c972c4cbac795dd72844567516dae68a04f` on `claude/chapter2-witness` (stacked on Hale's branch / PR #74).
+New staff entry `staff_facilities_tech` ("Facilities technician", role only; no
+invented name) stands at `MARK_Standing_Staff_Door` once a Hale follow-up is
+requested. Asking "Did you actually see anyone use the elevator?" records the
+account as witness memory; a leading question or recording lift movement gives
+feedback only. Follow-ups: confirm work orders, keep the statement as reported,
+or check timing without suggesting one. No clue, evidence, anomaly or patient
+change (tested). New `test_chapter2_witness.gd`. Full runner exit 0: game
+224/0, GLB 161/0, audio 336/0, QA 19/0/0, Python 6+4+5+3, pharmacology 0, boot,
+CH1 sequence.
+
 ## Next exact task
 
-Chapter 2 Scene 07 "An Incomplete Witness": a Facilities worker recalls an
-elevator bell during a scheduled shutdown but did not see anyone use the lift.
-No Facilities worker is placed; use an existing reachable marker with
-`present_when` (e.g. `MARK_Standing_Staff_Door` is in Interview Room A, where
-Elias sits; prefer a corridor or nursing-station position, or ask the owner) and
-a new staff entry in `data/staff.json`. Choices: confirm work orders, capture
-the recollection as reported (staff testimony, never direct observation), verify
-timing without leading questions. Then Scenes 08–10; Scene 08 reaches the
-historic-access lobby only. Naomi Mac 33 ms, lid/hem geometry, gesture shadows
-and final in-game review remain pending independently.
+Chapter 2 Scene 08 "The Door That Wasn't Left Open": an escorted inspection of
+the historic-access **lobby only** (not Ward Zero). Door observed closed; after
+the team looks elsewhere it is ajar; the escort did not watch continuously.
+Choices: document state, secure the area per policy, request latch and
+ventilation assessment. Check `data/zones.json` and the historic/restricted
+lift lobby environments for a reachable lobby and an existing escorted-access
+mechanism before building; if the lobby is not reachable without granting new
+access, ask the owner how to stage it. No trapping, portal or impossible
+architecture. Then Scenes 09–10. Naomi Mac/geometry gates remain pending.

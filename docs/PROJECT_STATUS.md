@@ -1,5 +1,7 @@
 # Project status
 
+**Chapter 2 Scene 07 witness (Claude Code, 2026-10-19; not merged):** runtime `3a919c972c4cbac795dd72844567516dae68a04f`. Technician's recollection recorded as reported; no evidence or anomaly. Full QA passed: game224/0. Mac not run.
+
 **Chapter 2 Scene 06 Hale (Claude Code, 2026-10-18; not merged):** runtime `ffd5730f9d6182d26f104f9d340fad566587fdb8`. Hale scopes the restricted-designation question and grants one permitted follow-up; no access or inspection. Full QA passed: game220/0. Mac not run.
 
 **Chapter 2 Scene 05 analyst (Claude Code, 2026-10-18; PR #72, not merged):** runtime `0d298cfa7a557eeab11a0b265e203116012fe0ad`. Untested candidate explanations and one next check; discrepancy stays open. Full QA passed: game216/0. Mac not run.
