@@ -37,6 +37,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Chapter 2 Scene 09 A File for the Wrong Day
+
+- **Branch / verified runtime:** `claude/chapter2-wrong-day` from `claude/chapter2-lobby` (PR #76 open), `1481c7ea32b8a5cb553d50529afd387e382f5898`.
+- **Delivered:** data only (`data/story_chapter2.json`): two objectives and two interactions at the export comparison worksheet. Placing the date conflict in Mara's note or treating it as a symptom is feedback-only; the player places it in the authorized incident record (screenplay lines), then chooses audit escalation, preserving separate versions, or independent technical review. Editing a version is feedback-only. No clinical, evidence, anomaly or access change (tested). New `scripts/tests/test_chapter2_wrong_day.gd` + UID; lobby test final objective updated.
+- **Executed:** full runner on `1481c7ea32b8a5cb553d50529afd387e382f5898` exit 0: game 233/0, GLB 161/0, audio 336/0, QA 19/0/0, Python 6+4+5+3, pharmacology 0, boot, CH1_SEQUENCE_DONE. Mac not run.
+- **Next exact task:** Scene 10 "Missing Hours" closing beat; see dedicated handoff.
+
 ### 2026-10-19 · Claude Code · Chapter 2 Scene 08 The Door That Wasn't Left Open
 
 - **Branch / verified runtime:** `claude/chapter2-lobby` from `claude/chapter2-witness` (PR #75 open), `4669c7c387107584e6429cf79cb035194fcec0b5`.

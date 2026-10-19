@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 2 Scene 09 — 2026-10-19
+
+- Wrong-day file on `claude/chapter2-wrong-day` at `1481c7ea32b8a5cb553d50529afd387e382f5898` (PR to main, stacked after #76). Full QA exit 0, game 233/0. Mac not run. Next: Scene 10 "Missing Hours" (analyst, Bennett, optional personal message, chapter close). Naomi Mac/geometry gates still pending.
+
 ## Claude Code Chapter 2 Scene 08 — 2026-10-19
 
 - Escorted lobby inspection on `claude/chapter2-lobby` at `4669c7c387107584e6429cf79cb035194fcec0b5` (PR to main, stacked after #75). Owner chose "Escorted pass". Full QA exit 0, game 229/0. Mac not run. Next: Scene 09 "A File for the Wrong Day", then Scene 10. Naomi Mac/geometry gates still pending.
