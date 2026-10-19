@@ -21,6 +21,8 @@
 
 **Chapter 5 Scene 08 (Mara) (Claude Code, 2026-10-19; merged to main):** runtime `1fdaa90`. Owner: 'i agree with the patiient content that is approved'. Mara replaces Elias in Interview Room A after the decision; approaching her opens the story scene (Character._approach_patient skips the interview when ChapterDirector.has_open_interaction). Suggesting the records explain her health is refused; two answers (answer first or listen first) use only screenplay lines. Epilogues now follow Mar Mac not run.
 
+**Campaign finish (Claude Code, 2026-10-19; not merged):** runtime `3f50abe`. Owner chose 'Campaign finish'. New optional story key campaign_end (schema + validator: last chapter only; line conditions checked). After Chapter 5's final choice the panel shows Bennett's line then 'What the record shows' with the lines that apply (ending, Ch4 unverified repetition, source count, Mara, care). The three ending tests play Chapters 1-5 and check the summary. Owner: Mac check left n Mac not run.
+
 **Chapter 2 Scene 10 closing beat (Claude Code, 2026-10-19; not merged):** runtime `1bb194df802b68591f9e7ab8a7939754e91bd8e3`. Chapter 2 now completes after Bennett's end-of-shift exchange; report states what the records cannot reconstruct. W0-B locked; Chapter 3 not started. Full QA passed: game 235/0. Mac not run.
 
 **Chapter 2 Scene 09 wrong-day file (Claude Code, 2026-10-19; not merged):** runtime `1481c7ea32b8a5cb553d50529afd387e382f5898`. Export date conflict placed in the incident record, not Mara's note; one handling chosen; originals unchanged. Full QA passed: game 233/0. Mac not run.

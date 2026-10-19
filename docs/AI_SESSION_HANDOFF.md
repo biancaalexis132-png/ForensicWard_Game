@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Campaign finish — 2026-10-19
+
+- `claude/campaign-finish` at `3f50abe`. Full QA at 3f50abe: all executed checks passed; game tests 261/0; GLB 168/0. Mac check NOT completed (owner deferred). Mac not run. Next: Owner runs the Mac check later; then pick the next build. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
+
 ## Claude Code Chapter 5 Scene 08 (Mara) — 2026-10-19
 
 - `claude/chapter5-mara` at `1fdaa90`. Full QA at 1fdaa90: all executed checks passed; game tests 260/0; GLB 168/0. Mac checks not run. Mac not run. Next: Mac checks on the owner's Mac (Remote Control session requested). Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
