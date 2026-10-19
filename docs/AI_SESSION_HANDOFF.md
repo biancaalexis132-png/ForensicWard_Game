@@ -8,6 +8,10 @@
 
 - `claude/chapter-cutscenes` at `#91`. Game tests 263 passed 0 failed; full QA runner: all executed checks passed. Mac check not completed (deferred by Bi). Mac not run. Next: Bi merges #91. Mac check stays with Bi. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
 
+## Claude Code Title screen — 2026-10-19
+
+- `claude/title-screen` at `pending`. Game tests 266 passed 0 failed; full QA runner: all executed checks passed. Mac check not completed (deferred by Bi). Mac not run. Next: Bi reviews the title screen look on the Mac and merges. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
+
 ## Claude Code Chapter 2-5 title cutscenes (review-only) — 2026-10-19
 
 - `claude/chapter-cutscenes` at `1b83671`. Game tests on 1b83671: all passed (see PR). Full QA on the pre-rebase branch: 262/0, GLB 168/0. Mac check NOT completed (owner deferred). Mac not run. Next: Owner: look at the cards (--cutscene-preview=cs_ch0N_title) and decide approval/placement; Mac check later. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.

@@ -29,6 +29,8 @@
 
 **Title cards play at chapter openings (Claude Code, 2026-10-19; not merged):** runtime `#91`. Bi approved the Chapter 2-5 title cards and their placement; they are now mode campaign, trigger chapter_start, approved true, and Main opens each one when its chapter starts (Esc skips). The Chapter 1 pilot stays review-only. Mac not run.
 
+**Title screen (Claude Code, 2026-10-19; not merged):** runtime `pending`. Title screen at boot (Continue from the pause menu's save slot, New Game, Quit). Shown only when Main is the running scene in a window; tests, headless QA and preview arguments skip it. Writes no game state. Not visually checked here (no screenshot rendered in the container). Mac not run.
+
 **Chapter 2 Scene 10 closing beat (Claude Code, 2026-10-19; not merged):** runtime `1bb194df802b68591f9e7ab8a7939754e91bd8e3`. Chapter 2 now completes after Bennett's end-of-shift exchange; report states what the records cannot reconstruct. W0-B locked; Chapter 3 not started. Full QA passed: game 235/0. Mac not run.
 
 **Chapter 2 Scene 09 wrong-day file (Claude Code, 2026-10-19; not merged):** runtime `1481c7ea32b8a5cb553d50529afd387e382f5898`. Export date conflict placed in the incident record, not Mara's note; one handling chosen; originals unchanged. Full QA passed: game 233/0. Mac not run.

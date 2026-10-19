@@ -24,6 +24,8 @@ Bi approved the existing **Static Graphic-Novel Cutscenes Final v1** artwork for
 
 Container (Linux, Godot 4.7 stable official, headless) on `bac05fe`, same steps as `tests/qa/run.py` with an isolated XDG dir: test_json/test_audio_manifest/test_cutscenes (6/6)/music_ai OK; import exit 0; pharmacology 0 failures; QA 19/0/0; GLB 168/0; **game tests 266 passed, 0 failed**; boot OK (content valid); audio 336/0; CH1_SEQUENCE_DONE. The runner itself timed out at its 150 s import step on a cold cache in this container, so the steps were run by hand without that cap. An earlier mid-work run (while a preview recording ran in parallel) had one failure in `test_character_visual.gd` (zone unload timing); it passed on the final run. Mac not run.
 
+After merging `main` `cca0615` (title screen, PR #93; only `docs/AI_HANDOFF.md` conflicted, both entries kept): game tests 268 passed, 1 failed, boot OK, cutscene contract OK. The one failure, `test_character_visual.gd::test_visual_is_not_saved_and_zone_rebuild_returns_to_fallback` ("unloaded zone forgets the old character"), fails the same way on untouched `main` `cca0615` in this container (265/1, and alone 4/1 three times), so it is environmental here, not this PR; hosted CI on `main` passes it.
+
 ## Not changed (rollback)
 
 `cs_ch01_first_shift_pilot`, `cs_ch02..05_title` and every plate under `assets/cutscenes/ch0*` are untouched; the title cards still open Chapters 2-5. To turn the recaps off: set the five `cs_ch0N_static_gn.json` back to `review_only` / `approved: false` / `manual_preview` and drop them from `OWNER_APPROVED_CAMPAIGN` (or revert bac05fe).

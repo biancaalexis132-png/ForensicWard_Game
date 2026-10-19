@@ -37,6 +37,7 @@ const TIME_PAUSE_REASON: String = "ui"
 @onready var _pause_menu: PauseMenu = $PauseMenu
 @onready var _zones: ZoneDirector = $ZoneDirector
 @onready var _cutscene: CutsceneDirector = $CutsceneDirector
+@onready var _title: TitleScreen = $TitleScreen
 ## Topmost first: Esc closes the first open one.
 @onready var _panels: Array[CanvasLayer] = [_cutscene, _info_panel, _interview, _ehr, _evidence]
 
@@ -47,6 +48,7 @@ func _ready() -> void:
 	EventBus.chapter_completed.connect(_on_chapter_completed)
 	EventBus.ui_panel_closed.connect(func(_panel_id: String) -> void: _update_input_mode())
 	_pause_menu.closed.connect(_update_input_mode)
+	_title.closed.connect(_update_input_mode)
 	SaveManager.register_provider(WORLD_PROVIDER_KEY, self)
 	_place_at_spawn()
 	_zones.setup(_world, _player)
@@ -56,6 +58,8 @@ func _ready() -> void:
 
 	if not ContentRegistry.is_valid:
 		_show_content_errors()
+	elif TitleScreen.wanted(self):
+		_title.open()
 	_update_input_mode()
 	# tests/qa/run.py looks for this line as boot evidence.
 	print("[The Forensic Ward] Boot OK (content %s)" % ("valid" if ContentRegistry.is_valid else "INVALID"))
@@ -121,7 +125,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _is_ui_open() -> bool:
-	return _top_panel() != null or _pause_menu.is_open
+	return _top_panel() != null or _pause_menu.is_open or _title.is_open
 
 
 func _top_panel() -> CanvasLayer:

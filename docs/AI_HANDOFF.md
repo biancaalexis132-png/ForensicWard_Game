@@ -46,6 +46,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 - **Executed:** game tests 266 passed 0 failed; pharmacology 0; QA 19/0/0; GLB 168/0; audio 336/0; boot OK; CH1 sequence done; Python contract tests OK (runner's 150 s import cap timed out on a cold cache, steps run by hand). Previews: Movie Maker MP4s per chapter (Compatibility renderer). Mac not run.
 - **Next exact task:** Bi reviews previews and the draft PR, then merges; Mac look/memory/frame time. See `docs/handoffs/2026-10-19_claude_static_graphic_novel.md`.
 
+### 2026-10-19 · Claude Code · Title screen
+
+- **Branch / verified runtime:** `claude/title-screen` (main), `pending`.
+- **Delivered:** Title screen at boot (Continue from the pause menu's save slot, New Game, Quit). Shown only when Main is the running scene in a window; tests, headless QA and preview arguments skip it. Writes no game state. Not visually checked here (no screenshot rendered in the container).
+- **Executed:** Game tests 266 passed 0 failed; full QA runner: all executed checks passed. Mac check not completed (deferred by Bi). Mac not run.
+- **Next exact task:** Bi reviews the title screen look on the Mac and merges. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
 ### 2026-10-19 · Claude Code · Title cards play at chapter openings
 
 - **Branch / verified runtime:** `claude/chapter-cutscenes` (main), `#91`.
