@@ -1,0 +1,611 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch5",
+	"title": "Chapter 5: Beyond the Lines",
+	"provisional": true,
+	"clinical_review_status": "PENDING",
+	"notes": "CH05 expanded finale v2.1 (owner review draft; dialogue proposed). Scene 01: Hale's inspection briefing and team pass. Scene 02: two recordings of the former treatment room door, preserved as unresolved; nobody opens the door. Scenes 03-04: records review and the analyst's report (a supernatural-mechanism conclusion is sent back for revision). Scene 05: Bennett's patient-care follow-up, escalated generically (no case findings). Scene 06: shared sources are not counted twice. Scene 07: three responsible endings (independent review, restricted access, continuing inquiry); delaying the report is refused. Scene 08 (Mara) is not built: it needs approved patient-state data. Scenes 09-10: ending epilogue, then rounds with Bennett. The game's supernatural truth stays out of the professional record and every clinical chart.",
+	"objectives": [
+		{
+			"id": "obj_ch5_brief",
+			"text": "Hale is briefing the return inspection. Find him at Interview Room A's door.",
+			"complete_when": {
+				"all": [
+					{
+						"flag": "ch5_brief_preserve"
+					},
+					{
+						"flag": "ch5_brief_return"
+					},
+					{
+						"flag": "ch5_brief_coverage"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch5_pass",
+			"text": "Collect the team pass from Hale.",
+			"complete_when": {
+				"flag": "ch5_team_pass"
+			}
+		},
+		{
+			"id": "obj_ch5_room",
+			"text": "Go down with the team to the Ward Zero observation room.",
+			"complete_when": {
+				"flag": "ch5_room_recorded"
+			}
+		},
+		{
+			"id": "obj_ch5_return",
+			"text": "Bring everyone back and return the team pass to Hale.",
+			"complete_when": {
+				"flag": "ch5_pass_returned"
+			}
+		},
+		{
+			"id": "obj_ch5_records",
+			"text": "The records historian's notes are on the Records worksheet.",
+			"complete_when": {
+				"all": [
+					{
+						"flag": "ch5_records_timeline"
+					},
+					{
+						"flag": "ch5_records_provenance"
+					},
+					{
+						"flag": "ch5_records_gaps"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch5_analyst",
+			"text": "The independent analyst's report is at the office workstation.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch5_finding_conflict"
+					},
+					{
+						"flag": "ch5_finding_bounded"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch5_care",
+			"text": "Bennett needs you for something that doesn't involve the basement.",
+			"complete_when": {
+				"flag": "ch5_care_escalated"
+			}
+		},
+		{
+			"id": "obj_ch5_sources",
+			"text": "The four-source comparison is on the Records worksheet.",
+			"complete_when": {
+				"flag": "ch5_sources_counted"
+			}
+		},
+		{
+			"id": "obj_ch5_decision",
+			"text": "Voss wants your recommendation.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch5_ending_review"
+					},
+					{
+						"flag": "ch5_ending_restricted"
+					},
+					{
+						"flag": "ch5_ending_inquiry"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch5_outcome",
+			"text": "See the decision through.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch5_epilogue_review"
+					},
+					{
+						"flag": "ch5_epilogue_restricted"
+					},
+					{
+						"flag": "ch5_epilogue_inquiry"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch5_rounds",
+			"text": "Bennett is at the nursing station.",
+			"complete_when": {
+				"flag": "chapter_complete"
+			}
+		}
+	],
+	"beats": [],
+	"staff_lines": [
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"flag": "ch5_team_pass"
+			},
+			"text": "Every person accounted for. Every exit checked."
+		},
+		{
+			"staff_id": "staff_rahman",
+			"when": {
+				"chapter_completed": "ch4"
+			},
+			"text": "And nobody forgets why this matters to the patients upstairs."
+		},
+		{
+			"staff_id": "staff_voss",
+			"when": {
+				"chapter_completed": "ch4"
+			},
+			"text": "Whatever we find, the record says what we can show."
+		}
+	],
+	"interactions": [
+		{
+			"id": "interaction_ch5_brief",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: return with witnesses",
+			"body": "Hale reads the inspection authorization: staffing, the escorted route, radio contact, exit procedure.\n\nHale: Every person accounted for. Every exit checked.\n\nRahman: And nobody forgets why this matters to the patients upstairs.\n\nYou: What exactly are we trying to establish today?\n\nHale: Whether the independent observations can be repeated under the approved inspection procedure.\n\nFacilities: If the conditions change, the operation stops. We don't continue because we're curious.\n\nAll three safeguards are mandatory: originals preserved, return procedure verified, clinical coverage confirmed.",
+			"when": {
+				"chapter_completed": "ch4"
+			},
+			"options": [
+				{
+					"id": "preserve",
+					"label": "\"Preserve the original observations and record new findings independently.\"",
+					"flag": "ch5_brief_preserve",
+					"response": "Hale: Logged. New sheets, new notes, originals untouched."
+				},
+				{
+					"id": "return",
+					"label": "\"Verify the return procedure first.\"",
+					"flag": "ch5_brief_return",
+					"response": "Facilities: Return route walked and checked. Stop word is 'hold'."
+				},
+				{
+					"id": "coverage",
+					"label": "\"Confirm clinical coverage while we're away.\"",
+					"flag": "ch5_brief_coverage",
+					"response": "Rahman: I'm covering the ward. Nobody upstairs goes without."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"all": [
+					{
+						"flag": "ch5_brief_preserve"
+					},
+					{
+						"flag": "ch5_brief_return"
+					},
+					{
+						"flag": "ch5_brief_coverage"
+					}
+				]
+			}
+		},
+		{
+			"id": "interaction_ch5_pass",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: the team pass",
+			"body": "Hale: If we get an answer, good. If we don't, we come back with everyone who went down.",
+			"when": {
+				"all": [
+					{
+						"flag": "ch5_brief_preserve"
+					},
+					{
+						"flag": "ch5_brief_return"
+					},
+					{
+						"flag": "ch5_brief_coverage"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "alone",
+					"label": "Offer to go ahead alone and save the team the trip",
+					"response": "Hale: No. Nobody goes down on their own."
+				},
+				{
+					"id": "join",
+					"label": "Take the team pass and go down with the team",
+					"flag": "ch5_team_pass",
+					"grants_access": [
+						"access_ward_entry",
+						"access_maintenance",
+						"access_w0_threshold"
+					],
+					"response": "Team pass logged: ward entry, maintenance and the threshold, for this inspection only."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch5_team_pass"
+			}
+		},
+		{
+			"id": "interaction_ch5_room",
+			"interactable_id": "OM_Document_ObservationLog",
+			"title": "The room in two states",
+			"body": "Two recordings of the former treatment room's inner door, over what looks like the same interval. In one the door is shut. In the other it stands open.\n\nYou: Have the timestamps been reconciled?\n\nFacilities: The clocks were checked, but I want the original timing records reviewed again.\n\nHale: Nobody opens that door to investigate.",
+			"when": {
+				"flag": "ch5_team_pass"
+			},
+			"options": [
+				{
+					"id": "open",
+					"label": "Open the door to see which recording is right",
+					"response": "Hale: No. We record it. We don't go in."
+				},
+				{
+					"id": "record",
+					"label": "Record what differs before deciding what it means",
+					"flag": "ch5_room_recorded",
+					"response": "Both recordings logged as they are, with their clock sources. The contradiction is preserved as an unresolved observation."
+				}
+			],
+			"unavailable_body": "Observation room records. Not part of this inspection.",
+			"expires_when": {
+				"flag": "ch5_room_recorded"
+			},
+			"completed_body": "Two recordings, one door, two states. Preserved as unresolved; timing records under review."
+		},
+		{
+			"id": "interaction_ch5_return",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: everyone back",
+			"body": "Hale counts the team in. Everyone who went down came back.\n\nHale: Recordings sealed for the analyst.",
+			"when": {
+				"flag": "ch5_room_recorded"
+			},
+			"options": [
+				{
+					"id": "keep",
+					"label": "Ask to keep the pass for another look",
+					"response": "Hale: No. The inspection is over. Any further entry needs its own approval."
+				},
+				{
+					"id": "return",
+					"label": "Return the team pass and log everyone accounted for",
+					"flag": "ch5_pass_returned",
+					"revokes_access": [
+						"access_ward_entry",
+						"access_maintenance",
+						"access_w0_threshold"
+					],
+					"response": "Team pass returned. Ward entry, maintenance and threshold access withdrawn."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch5_pass_returned"
+			}
+		},
+		{
+			"id": "interaction_ch5_records",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "What the records were for",
+			"body": "The records historian's notes.\n\nHistorian: Some missing records are ordinary archival failures. Different numbering systems, incomplete transfers, boxes that were never indexed.\n\nYou: And the ones that don't fit the chronology?\n\nHistorian: Those remain unresolved. The mistake would be pretending they all have the same explanation.",
+			"when": {
+				"flag": "ch5_pass_returned"
+			},
+			"options": [
+				{
+					"id": "culprit",
+					"label": "Attribute all the gaps to one person in the hospital's past",
+					"response": "Historian: There's no evidence for that. Some gaps are filing; some are unknown. One name for all of them would be invention."
+				},
+				{
+					"id": "timeline",
+					"label": "Restore the timeline from authenticated records only",
+					"flag": "ch5_records_timeline",
+					"response": "Timeline rebuilt from authenticated entries. Unauthenticated entries listed separately."
+				},
+				{
+					"id": "provenance",
+					"label": "Flag every entry with unknown provenance",
+					"flag": "ch5_records_provenance",
+					"response": "Unknown-provenance entries flagged, not removed."
+				},
+				{
+					"id": "gaps",
+					"label": "Keep archival gaps separate from proven misconduct",
+					"flag": "ch5_records_gaps",
+					"response": "Archival gaps and proven misconduct filed under separate headings. Nothing moved between them without evidence."
+				}
+			],
+			"unavailable_body": "The Records worksheet.",
+			"expires_when": {
+				"all": [
+					{
+						"flag": "ch5_records_timeline"
+					},
+					{
+						"flag": "ch5_records_provenance"
+					},
+					{
+						"flag": "ch5_records_gaps"
+					}
+				]
+			},
+			"completed_body": "Timeline from authenticated records; unknown provenance flagged; archival gaps kept apart from misconduct."
+		},
+		{
+			"id": "interaction_ch5_analyst",
+			"interactable_id": "OF_Document_TransferSummary",
+			"title": "An evidence-based choice",
+			"body": "The independent analyst's report.\n\nAnalyst: We've verified the integrity of the files submitted for review. That doesn't establish every interpretation.\n\nHale: But there is a discrepancy.\n\nAnalyst: More than one. Some are explainable. Others remain unresolved.\n\nRahman: None of this should become part of a patient's psychiatric formulation simply because somebody complained about the same location.\n\nYou: We need two separate records: the clinical assessment and the environmental investigation.",
+			"when": {
+				"all": [
+					{
+						"flag": "ch5_records_timeline"
+					},
+					{
+						"flag": "ch5_records_provenance"
+					},
+					{
+						"flag": "ch5_records_gaps"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "supernatural",
+					"label": "\"The cause is supernatural.\"",
+					"response": "Analyst: I'd ask you to revise that. A conclusion about mechanism goes beyond what the official evidence establishes."
+				},
+				{
+					"id": "conflict",
+					"label": "\"Independent observations conflict with the established environmental record; mechanism undetermined.\"",
+					"flag": "ch5_finding_conflict",
+					"response": "Analyst: That's what the evidence supports."
+				},
+				{
+					"id": "bounded",
+					"label": "\"Preserve the discrepancy and pursue clearly bounded testing.\"",
+					"flag": "ch5_finding_bounded",
+					"response": "Analyst: Agreed. Bounded, documented, stoppable."
+				}
+			],
+			"unavailable_body": "The office workstation.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch5_finding_conflict"
+					},
+					{
+						"flag": "ch5_finding_bounded"
+					}
+				]
+			}
+		},
+		{
+			"id": "interaction_ch5_care",
+			"interactable_id": "character:staff_bennett",
+			"title": "Naomi Bennett: not the basement",
+			"body": "Bennett: Doctor, I need you for something that doesn't involve the basement.\n\nYou: That sounds refreshing.\n\nBennett: A patient has questions about the plan, and we've got an outstanding follow-up before evening handoff.",
+			"when": {
+				"any": [
+					{
+						"flag": "ch5_finding_conflict"
+					},
+					{
+						"flag": "ch5_finding_bounded"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "later",
+					"label": "Ask if it can wait until the review is finished",
+					"response": "Bennett: It can't. The review doesn't get to decide when patients need us."
+				},
+				{
+					"id": "escalate",
+					"label": "Take the questions, and hand the follow-up to the receiving team with a deadline",
+					"flag": "ch5_care_escalated",
+					"response": "Questions answered within your role; the follow-up handed to the receiving team with a named deadline before evening handoff.\n\nBennett: Everybody's talking about Ward Zero, but the patients still need people to show up for them.\n\nYou: That's why we're here.\n\nBennett: Good. Because the EHR still hasn't learned to write its own progress notes."
+				}
+			],
+			"unavailable_body": "Bennett is busy.",
+			"expires_when": {
+				"flag": "ch5_care_escalated"
+			}
+		},
+		{
+			"id": "interaction_ch5_sources",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "The four-source test",
+			"body": "Four files on the worksheet: original recordings, technical measurements, physical marker logs, and an exported summary.\n\nAnalyst: We can authenticate the recordings. We can verify the measurement procedure. We can also establish where some of the evidence shares a common source.",
+			"when": {
+				"flag": "ch5_care_escalated"
+			},
+			"options": [
+				{
+					"id": "four",
+					"label": "Count the four files as four independent sources",
+					"response": "Analyst: The exported summary came from the same recordings. Counting it again would count one source twice."
+				},
+				{
+					"id": "discount",
+					"label": "Discount the shared-source copy before counting",
+					"flag": "ch5_sources_counted",
+					"response": "You: Which means we shouldn't count those records twice.\n\nAnalyst: Correct. After accounting for shared sources and known errors, the remaining observations still do not agree with the documented physical layout. A reproducible discrepancy our current technical review cannot explain.\n\nRahman: Then let's make sure that's how it's reported."
+				}
+			],
+			"unavailable_body": "The Records worksheet.",
+			"expires_when": {
+				"flag": "ch5_sources_counted"
+			},
+			"completed_body": "Shared sources counted once. A reproducible discrepancy the technical review cannot explain; mechanism not asserted."
+		},
+		{
+			"id": "interaction_ch5_decision",
+			"interactable_id": "character:staff_voss",
+			"title": "The decision nobody can make alone",
+			"body": "Voss: We've established that the observations remain inconsistent after independent review. We haven't established why.\n\nHale: Ward Zero stays restricted.\n\nRahman: Any operational changes must protect continuity of care.\n\nVoss: What do we tell independent oversight, and what further investigation do we authorize?\n\nHale: You've been involved since the first transfer discrepancy. What's your recommendation?",
+			"when": {
+				"flag": "ch5_sources_counted"
+			},
+			"options": [
+				{
+					"id": "wait",
+					"label": "Suggest waiting to report until there's an explanation",
+					"response": "Voss: We cannot make uncertainty disappear by declining to document it."
+				},
+				{
+					"id": "review",
+					"label": "Refer the authenticated findings to qualified external reviewers",
+					"flag": "ch5_ending_review",
+					"response": "Voss: Then we prepare a factual referral."
+				},
+				{
+					"id": "restricted",
+					"label": "Maintain the restriction and preserve the evidence without another inspection",
+					"flag": "ch5_ending_restricted",
+					"response": "Hale: That's a defensible safety position."
+				},
+				{
+					"id": "inquiry",
+					"label": "Authorize a limited, accountable investigation with oversight and stop conditions",
+					"flag": "ch5_ending_inquiry",
+					"response": "Rahman: As long as patient care and access controls are protected."
+				}
+			],
+			"unavailable_body": "Voss is busy.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch5_ending_review"
+					},
+					{
+						"flag": "ch5_ending_restricted"
+					},
+					{
+						"flag": "ch5_ending_inquiry"
+					}
+				]
+			}
+		},
+		{
+			"id": "interaction_ch5_outcome_review",
+			"interactable_id": "character:staff_voss",
+			"title": "Independent review",
+			"body": "Voss signs the external referral. The originals stay here; the limitations are listed on the first page.\n\nVoss: This may take longer than any of us would like.",
+			"when": {
+				"flag": "ch5_ending_review"
+			},
+			"options": [
+				{
+					"id": "close",
+					"label": "\"As long as the findings are preserved and the questions remain open.\"",
+					"flag": "ch5_epilogue_review",
+					"response": "Referral sent. Originals retained."
+				}
+			],
+			"unavailable_body": "Voss is busy.",
+			"expires_when": {
+				"flag": "ch5_epilogue_review"
+			}
+		},
+		{
+			"id": "interaction_ch5_outcome_restricted",
+			"interactable_id": "character:staff_hale",
+			"title": "Restricted access",
+			"body": "The old entrance is sealed under documented restrictions, with a periodic review date.\n\nHale: Nobody enters without authorization.",
+			"when": {
+				"flag": "ch5_ending_restricted"
+			},
+			"options": [
+				{
+					"id": "close",
+					"label": "\"And the records?\"",
+					"flag": "ch5_epilogue_restricted",
+					"response": "Hale: Preserved. Closing a door doesn't mean pretending nothing happened."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch5_epilogue_restricted"
+			}
+		},
+		{
+			"id": "interaction_ch5_outcome_inquiry",
+			"interactable_id": "character:staff_rahman",
+			"title": "Continuing inquiry",
+			"body": "An accountable review goes ahead: oversight, limited access, defined stop conditions.\n\nRahman: What happens if the next review still doesn't answer everything?",
+			"when": {
+				"flag": "ch5_ending_inquiry"
+			},
+			"options": [
+				{
+					"id": "close",
+					"label": "\"Then we document what remains unknown and decide whether further testing is justified.\"",
+					"flag": "ch5_epilogue_inquiry",
+					"response": "Rahman: Uncertainty isn't permission to abandon our standards."
+				}
+			],
+			"unavailable_body": "Dr Rahman is busy.",
+			"expires_when": {
+				"flag": "ch5_epilogue_inquiry"
+			}
+		},
+		{
+			"id": "interaction_ch5_rounds",
+			"interactable_id": "character:staff_bennett",
+			"title": "The next patient",
+			"body": "Bennett: Morning, Doctor. Ready for rounds?",
+			"when": {
+				"any": [
+					{
+						"flag": "ch5_epilogue_review"
+					},
+					{
+						"flag": "ch5_epilogue_restricted"
+					},
+					{
+						"flag": "ch5_epilogue_inquiry"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "rounds",
+					"label": "\"Who are we seeing first?\"",
+					"flag": "chapter_complete",
+					"response": "Bennett: Whoever needs us.\n\nEnd of the main campaign."
+				}
+			],
+			"unavailable_body": "Bennett is busy.",
+			"expires_when": {
+				"flag": "chapter_complete"
+			}
+		}
+	],
+	"sign_out": {
+		"title": "Clinical handoff",
+		"handover_patients": [
+			"pt_elias_ward"
+		],
+		"documented_trust": [],
+		"undocumented_trust": [],
+		"undocumented_message": "Outstanding clinical review still requires an appropriate handoff."
+	}
+}

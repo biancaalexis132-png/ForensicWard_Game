@@ -44,6 +44,12 @@ Runtime `ec4d3d4` on `claude/chapter4-loop`. data/story_chapter4.json, data/worl
 
 Tests: Full QA at ec4d3d4: all executed checks passed; game tests 255/0; GLB 161/0. Mac checks not run; Ward Zero Mac performance unmeasured.
 
+## Chapter 5 finale
+
+Runtime `e545408` on `claude/chapter5-finale`. data/campaign.json, data/story_chapter4.json, data/story_chapter5.json, data/world_chapter5.json, scripts/tests/test_campaign.gd, scripts/tests/test_chapter5_finale.gd
+
+Tests: Full QA at e545408: all executed checks passed; game tests 258/0 (3 endings each reachable with save/load at the decision); GLB 161/0. Mac checks not run.
+
 ## Next exact task
 
-Chapter 5: read CH05 screenplay, set ch4 next_chapter=ch5, make ch5 playable and build scenes.
+Owner review of Chapter 5 text; decide on Scene 08 (Mara) once patient-state content is approved; Naomi Mac/geometry gates still pending.
