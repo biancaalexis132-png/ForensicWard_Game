@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 5 Scene 08 (Mara) — 2026-10-19
+
+- `claude/chapter5-mara` at `1fdaa90`. Full QA at 1fdaa90: all executed checks passed; game tests 260/0; GLB 168/0. Mac checks not run. Mac not run. Next: Mac checks on the owner's Mac (Remote Control session requested). Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
+
 ## Claude Code Chapter 5 finale — 2026-10-19
 
 - `claude/chapter5-finale` at `e545408`. Full QA at e545408: all executed checks passed; game tests 258/0 (3 endings each reachable with save/load at the decision); GLB 161/0. Mac checks not run. Mac not run. Next: Owner review of Chapter 5 text; decide on Scene 08 (Mara) once patient-state content is approved; Naomi Mac/geometry gates still pending. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
