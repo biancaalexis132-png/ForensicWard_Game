@@ -4,7 +4,7 @@
 	"title": "Chapter 2: The Missing Hours",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received. Scene 06 (Hale's Door): Hale scopes the question and the player requests one permitted follow-up. No access, escort or inspection is granted; Ward Zero entry stays in Chapter 3. Scene 07 (An Incomplete Witness): a Facilities technician recalls hearing the old lift bell during a scheduled shutdown but did not see anyone use it. Recorded as witness memory only; no clue, evidence or anomaly is created. Scene 08 (The Door That Wasn't Left Open): an escorted inspection of the restricted lift lobby doors from the security corridor, lobby only. The doors are observed closed, then found ajar after the team looked elsewhere; the escort did not watch continuously. No entry, trapping, portal or anomaly. The pass is returned to Hale afterwards.",
+	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received. Scene 06 (Hale's Door): Hale scopes the question and the player requests one permitted follow-up. No access, escort or inspection is granted; Ward Zero entry stays in Chapter 3. Scene 07 (An Incomplete Witness): a Facilities technician recalls hearing the old lift bell during a scheduled shutdown but did not see anyone use it. Recorded as witness memory only; no clue, evidence or anomaly is created. Scene 08 (The Door That Wasn't Left Open): an escorted inspection of the restricted lift lobby doors from the security corridor, lobby only. The doors are observed closed, then found ajar after the team looked elsewhere; the escort did not watch continuously. No entry, trapping, portal or anomaly. The pass is returned to Hale afterwards. Scene 09 (A File for the Wrong Day): two archived export representations disagree about the access-event date; time-zone provenance is unreconciled. The player places it in the authorized incident record (not Mara's clinical note) and chooses one handling: formal audit escalation, preserving the separate source versions, or independent technical review. Original files are never changed; Mara's note stays independent and confidential.",
 	"objectives": [
 		{
 			"id": "obj_ch2_handoff",
@@ -250,6 +250,30 @@
 			"text": "Report back to Hale at the psychiatrist's office and return the escorted pass.",
 			"complete_when": {
 				"flag": "ch2_lobby_pass_returned"
+			}
+		},
+		{
+			"id": "obj_ch2_wrongday_frame",
+			"text": "Records has flagged a file under the wrong day. Review it at the export comparison worksheet.",
+			"complete_when": {
+				"flag": "ch2_wrongday_incident_record"
+			}
+		},
+		{
+			"id": "obj_ch2_wrongday_handling",
+			"text": "Decide how the conflicting export versions are handled.",
+			"complete_when": {
+				"any": [
+					{
+						"flag": "ch2_wrongday_audit_escalation"
+					},
+					{
+						"flag": "ch2_wrongday_preserve_versions"
+					},
+					{
+						"flag": "ch2_wrongday_technical_review"
+					}
+				]
 			}
 		}
 	],
@@ -1179,6 +1203,86 @@
 			"expires_when": {
 				"flag": "ch2_lobby_pass_returned"
 			}
+		},
+		{
+			"id": "interaction_ch2_wrongday_frame",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "A file for the wrong day",
+			"body": "Two archived export representations of the same access event disagree about its date. The time-zone provenance of each is still being reconciled. Neither version is shown to be the original.\n\nMara Ellis also raised a date question about her records. Where does this belong?",
+			"when": {
+				"flag": "ch2_lobby_pass_returned"
+			},
+			"options": [
+				{
+					"id": "add_to_mara",
+					"label": "Add it to Mara's clinical note as context for her concern",
+					"response": "Her note documents her care. An export date conflict is not a clinical finding and does not belong in her record. Her note stays as written and confidential."
+				},
+				{
+					"id": "symptom",
+					"label": "Treat the conflict as part of her presentation",
+					"response": "A disagreement between two system exports is not a psychiatric symptom. Nothing about it is hers."
+				},
+				{
+					"id": "incident_record",
+					"label": "\"This isn't a psychiatric symptom. It belongs in the authorized incident record.\"",
+					"flag": "ch2_wrongday_incident_record",
+					"response": "Records technician: Then we preserve the original versions as they were received.\n\nRecorded in the incident record: two export representations disagree on the access-event date; time-zone provenance unreconciled. Mara's clinical note is unchanged and kept separate."
+				}
+			],
+			"unavailable_body": "Nothing new at the worksheet yet.",
+			"expires_when": {
+				"flag": "ch2_wrongday_incident_record"
+			}
+		},
+		{
+			"id": "interaction_ch2_wrongday_handling",
+			"interactable_id": "AR_Document_WardRoster1968",
+			"title": "A file for the wrong day: handling",
+			"body": "[b]Incident record[/b]\nTwo export versions; dates disagree; time-zone provenance unreconciled; originals as received.\n\nHow should it be handled?",
+			"when": {
+				"flag": "ch2_wrongday_incident_record"
+			},
+			"options": [
+				{
+					"id": "correct_version",
+					"label": "Correct one version so the dates match",
+					"response": "Records technician: We don't edit originals. A corrected copy would be a third version, not an answer.\n\nNothing is changed."
+				},
+				{
+					"id": "audit_escalation",
+					"label": "Request formal audit escalation",
+					"flag": "ch2_wrongday_audit_escalation",
+					"response": "Escalation requested through the audit process. Both versions stay as received; no date is chosen."
+				},
+				{
+					"id": "preserve_versions",
+					"label": "Preserve the separate source versions as received",
+					"flag": "ch2_wrongday_preserve_versions",
+					"response": "Both versions are preserved separately with their provenance. Neither is treated as corroborating the other."
+				},
+				{
+					"id": "technical_review",
+					"label": "Request independent technical review of the time-zone handling",
+					"flag": "ch2_wrongday_technical_review",
+					"response": "Independent technical review requested. Until it reports, the date stays unresolved."
+				}
+			],
+			"unavailable_body": "Decide where the date conflict belongs first.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch2_wrongday_audit_escalation"
+					},
+					{
+						"flag": "ch2_wrongday_preserve_versions"
+					},
+					{
+						"flag": "ch2_wrongday_technical_review"
+					}
+				]
+			},
+			"completed_body": "Incident record: two export versions disagree on the date; handling recorded; originals unchanged."
 		}
 	],
 	"sign_out": {

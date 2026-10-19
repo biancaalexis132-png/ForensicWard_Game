@@ -271,7 +271,7 @@ func _run_lobby(choice: String, flag: String) -> void:
 	check(not TrustManager.has_access("access_ward_entry"), "pass returned")
 	var entry: ImportedDoor = _world().get_door("door_ward_entry")
 	check(entry.is_locked() and not entry.is_open, "ward entry closed and controlled again")
-	check(_objective().is_empty(), "authored Chapter 2 objectives so far complete")
+	check_eq(_objective(), "obj_ch2_wrongday_frame", "lobby scene hands on to the wrong-day file")
 	check(not _director().has_completed("ch2"), "Chapter 2 not falsely completed")
 	check_eq(_canonical(EvidenceManager.to_save_data()), evidence, "no clue or evidence created")
 	check_eq(_canonical(SaveManager.capture_state().get("anomalies", {})), anomalies, "no anomaly state changed")
