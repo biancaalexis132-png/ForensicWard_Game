@@ -1,5 +1,7 @@
 # Project status
 
+**Chapter 2 Scene 06 Hale (Claude Code, 2026-10-18; not merged):** runtime `ffd5730f9d6182d26f104f9d340fad566587fdb8`. Hale scopes the restricted-designation question and grants one permitted follow-up; no access or inspection. Full QA passed: game220/0. Mac not run.
+
 **Chapter 2 Scene 05 analyst (Claude Code, 2026-10-18; PR #72, not merged):** runtime `0d298cfa7a557eeab11a0b265e203116012fe0ad`. Untested candidate explanations and one next check; discrepancy stays open. Full QA passed: game216/0. Mac not run.
 
 **Chapter 2 Scene 03 Mara Ellis (Claude Code, 2026-10-18; not merged, PR #71):** owner-approved ("i approve scene 3"). Runtime `09e4a8cb45981dd0959c7dc6058b62bc870e0d58`: Mara interview through the existing dialogue system, EHR note, separate Records referral; Elias steps out of Interview Room A meanwhile. Dialogue APPROVED; patient record pending review. No diagnosis, medication, treatment or evidence. Full QA passed: game212/0, GLB161/0, audio336/0, QA19/0/0. Mac not run.

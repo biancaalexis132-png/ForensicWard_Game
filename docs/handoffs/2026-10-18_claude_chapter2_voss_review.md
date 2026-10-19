@@ -154,13 +154,30 @@ feedback only. Everything stays open; no source packet is received. New
 and a mid-scene interrupted load. Full runner exit 0: game 216/0, GLB 161/0,
 audio 336/0, QA 19/0/0, Python 6+4+5+3, pharmacology 0, boot, CH1 sequence.
 
+## Addendum: Scene 06 Hale's Door
+
+Runtime `ffd5730f9d6182d26f104f9d340fad566587fdb8` on `claude/chapter2-hale` (stacked on Scene 05's branch; PR to
+main). Once the analyst's next check is chosen, Marcus Hale stands at the
+psychiatrist's office desk (`MARK_Seat_Psychiatrist_Desk`, via `present_when`;
+his own marker is in the unreachable security wing). Talk to him: scope the
+question (how the restricted designation appeared in a live request; he answers
+with both screenplays' lines), then request one permitted follow-up: clinical
+risk check, access-log report summary or archived facilities plans. Asking for a
+badge, an escort into W0-B, or claiming the request proves a door opened gives
+feedback only. No access, inspection or patient movement. New
+`test_chapter2_hale.gd` covers all three follow-ups with post-choice save/load
+and an interrupted conversation. Full runner exit 0: game 220/0, GLB 161/0,
+audio 336/0, QA 19/0/0, Python 6+4+5+3, pharmacology 0, boot, CH1 sequence.
+
 ## Next exact task
 
-Chapter 2 Scene 06 "Hale's Door": Hale is not placed in the world. Place him
-with the existing staff actor system (he has a `MARK_Character_MarcusHale`
-marker only in the unreachable security zone, so use a reachable clinical-wing
-marker with `present_when`, or ask the owner), then implement the three choices
-(clinical risk check, permitted report summary, archived facilities plans) with
-no solo-entry access. Scenes 07–10 follow; Scene 08 reaches the historic-access
-lobby only. Naomi Mac 33 ms, lid/hem geometry, gesture shadows and final in-game
-review remain pending independently.
+Chapter 2 Scene 07 "An Incomplete Witness": a Facilities worker recalls an
+elevator bell during a scheduled shutdown but did not see anyone use the lift.
+No Facilities worker is placed; use an existing reachable marker with
+`present_when` (e.g. `MARK_Standing_Staff_Door` is in Interview Room A, where
+Elias sits; prefer a corridor or nursing-station position, or ask the owner) and
+a new staff entry in `data/staff.json`. Choices: confirm work orders, capture
+the recollection as reported (staff testimony, never direct observation), verify
+timing without leading questions. Then Scenes 08–10; Scene 08 reaches the
+historic-access lobby only. Naomi Mac 33 ms, lid/hem geometry, gesture shadows
+and final in-game review remain pending independently.
