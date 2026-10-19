@@ -26,6 +26,12 @@ Runtime `095fef19331e8b72891d0027f2b7346274712b3c` on `claude/chapter3-report`. 
 
 Tests: Full runner exit 0: game 246/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence.
 
+## Chapter 4 Scenes 01-03 and 05 official record
+
+Runtime `e17fa49fb6b9665ac8f15d43990188620ba3a048` on `claude/chapter4-record`. Voss keeps two incident files; the draft summary's unproven 'confirmed mapping error' is corrected (geometry claims refused too) with the first version kept; Rahman's clinical boundary; both retained originals preserved with the checks performed. Rahman is placed with the generic character body until her model exists.
+
+Tests: Full runner exit 0: game 249/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence.
+
 ## Next exact task
 
-Chapter 4 (The Official Record): read CH04_OFFICIAL_RECORD_v2.md; Scene 09 major corridor-loop reveal needs explicit owner approval of the effect and F2 safety tests before it is built.
+Chapter 4 Scenes 07, 08 and 10 (door-state replication attempt, institutional disagreement, official record); Scene 09 per the owner's decision on the loop effect.

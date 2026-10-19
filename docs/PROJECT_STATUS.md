@@ -8,6 +8,8 @@
 
 **Chapter 3 Scenes 09-14 debrief to closing photograph (Claude Code, 2026-10-19; not merged):** runtime `095fef19331e8b72891d0027f2b7346274712b3c`. Data only. Hale debrief (repeat-corridor and merged-account refused; 'We shouldn't call that a physical loop.'), Bennett back-to-care, Facilities survey proposal at the office workstation (repeat entry refused), measurements at the Records worksheet (unresolved, protocol, restriction all required; 'longer than built' refused), Voss report (averaging refused), closing notice (photograph as proof re Mac not run.
 
+**Chapter 4 Scenes 01-03 and 05 official record (Claude Code, 2026-10-19; not merged):** runtime `e17fa49fb6b9665ac8f15d43990188620ba3a048`. Chapter 4 marked playable; story_chapter3 next_chapter ch4. New staff_rahman (Dr Leila Rahman, Consultant Psychiatrist, owner-confirmed role 2026-10-18) at the office desk; Hale at Interview Room A's door. Voss meeting (combined case refused; transparent / restrictions / outside expertise), summary correction at the office workstation (mapping error and anomalous geometry refused; contradiction wi Mac not run.
+
 **Chapter 2 Scene 10 closing beat (Claude Code, 2026-10-19; not merged):** runtime `1bb194df802b68591f9e7ab8a7939754e91bd8e3`. Chapter 2 now completes after Bennett's end-of-shift exchange; report states what the records cannot reconstruct. W0-B locked; Chapter 3 not started. Full QA passed: game 235/0. Mac not run.
 
 **Chapter 2 Scene 09 wrong-day file (Claude Code, 2026-10-19; not merged):** runtime `1481c7ea32b8a5cb553d50529afd387e382f5898`. Export date conflict placed in the incident record, not Mara's note; one handling chosen; originals unchanged. Full QA passed: game 233/0. Mac not run.

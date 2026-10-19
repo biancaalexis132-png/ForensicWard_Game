@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 4 Scenes 01-03 and 05 official record — 2026-10-19
+
+- `claude/chapter4-record` at `e17fa49fb6b9665ac8f15d43990188620ba3a048`. Full runner exit 0: game 249/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run. Next: Chapter 4 Scenes 07, 08 and 10 (door-state replication attempt, institutional disagreement, official record); Scene 09 per the owner's decision on the loop effect. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
+
 ## Claude Code Chapter 3 Scenes 09-14 debrief to closing photograph — 2026-10-19
 
 - `claude/chapter3-report` at `095fef19331e8b72891d0027f2b7346274712b3c`. Full runner exit 0: game 246/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run. Next: Chapter 4 (The Official Record): read CH04_OFFICIAL_RECORD_v2.md; Scene 09 major corridor-loop reveal needs explicit owner approval of the effect and F2 safety tests before it is built. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
