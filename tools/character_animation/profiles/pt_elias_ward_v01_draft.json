@@ -1,0 +1,61 @@
+{
+  "character_id": "pt_elias_ward",
+  "display_name": "Elias Ward",
+  "version": "v01_draft",
+  "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+  "source_blend": "build/cast/Elias_Ward_v01_face.blend",
+  "objects": {
+    "rig": "Elias_Ward_Rig",
+    "face_mesh": "Elias_Ward_Body",
+    "eye_l": "Elias_Eye_L",
+    "eye_r": "Elias_Eye_R"
+  },
+  "refine": {
+    "lashes": {
+      "lash_material": "Elias_Lash",
+      "shapes": [
+        "blink",
+        "blink_L",
+        "blink_R"
+      ],
+      "clearance_m": 0.0006,
+      "smoothing_iterations": 4,
+      "smoothing_factor": 0.5,
+      "push_out": false
+    },
+    "shoes": {
+      "object": "Elias_Slip_Ons",
+      "iterations": 30,
+      "factor": 0.5,
+      "keep_sole_below_m": 0.004
+    }
+  },
+  "expected": {
+    "clips": [
+      "idle_neutral",
+      "idle_breathing",
+      "listen_neutral",
+      "stand_conversational",
+      "turn_from_workstation",
+      "return_to_workstation",
+      "small_greeting_nod",
+      "small_acknowledgement_nod",
+      "restrained_chart_indication",
+      "subtle_workstation_indication"
+    ],
+    "morph_targets": 32
+  },
+  "outputs": {
+    "blend": "assets/blender/characters/Elias_Ward_v01_draft.blend",
+    "glb": "assets/exports/characters/Elias_Ward_v01_draft.glb",
+    "renders": "assets/renders/characters",
+    "manifest": "assets/asset_manifest/pt_elias_ward_character_manifest_v01_draft.json",
+    "report": "tools/character_animation/reports/pt_elias_ward_v01_draft_refine_report.json"
+  },
+  "known_limitations": [
+    "Draft model for owner review; not canon and not wired to gameplay.",
+    "Hair is a scalp shell with a strand texture, not groomed strands.",
+    "Not measured on the target Mac.",
+    "Seated rest pose bent by skinning only: hips and knees have no corrective shapes."
+  ]
+}

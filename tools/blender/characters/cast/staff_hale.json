@@ -1,0 +1,182 @@
+{
+  "character": {
+    "name": "Marcus Hale",
+    "character_id": "staff_hale",
+    "file_stem": "Marcus_Hale",
+    "prefix": "Hale_",
+    "role": "Security Director",
+    "asset_version": "v01",
+    "height_m": 1.83,
+    "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+    "canon_basis": "docs/design/CHARACTER_VISUAL_CANON.md: Security Director, credible professional hospital security attire, no tactical armour (decided); mid 40s, uniform shirt, badge, belt radio, keys on reel (provisional proposal)",
+    "draft_choices": [
+      "Ethnicity, skin tone, face, build and height are draft choices; canon leaves them open.",
+      "Light-blue long-sleeve uniform shirt and charcoal trousers chosen from the provisional proposal."
+    ]
+  },
+  "source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v01.blend",
+    "body": "Naomi_Bennett_Body",
+    "rig": "Naomi_Bennett_Rig"
+  },
+  "macro": {
+    "age_years": 45,
+    "ethnicity": {
+      "caucasian": 0.55,
+      "african": 0.25,
+      "asian": 0.2
+    },
+    "min_muscle": 0.03,
+    "max_weight": 0.12
+  },
+  "pose": {
+    "upperarm_down_degrees": 62.0,
+    "upperarm_forward_degrees": 6.0,
+    "elbow_bend_degrees": 12.0
+  },
+  "skin": {
+    "base_srgb_hex": "#9C6B50",
+    "shadow_srgb_hex": "#7C513B",
+    "warm_srgb_hex": "#A66A54",
+    "lip_srgb_hex": "#7E5046",
+    "brow_srgb_hex": "#2A211B",
+    "nail_srgb_hex": "#C49B86",
+    "texture_size": 2048,
+    "roughness": 0.58,
+    "lid_shadow": 0.2,
+    "cheek_warmth": 0.15,
+    "brow_strength": 0.8,
+    "lip_strength": 0.4,
+    "beard_shadow": {
+      "srgb_hex": "#3A2D25",
+      "strength": 0.22
+    }
+  },
+  "eyes": {
+    "sclera_srgb_hex": "#E2D8CC",
+    "iris_srgb_hex": "#4A3122",
+    "limbal_srgb_hex": "#1C120C",
+    "helper_radius_scale": 0.93
+  },
+  "face": {
+    "lash_srgb_hex": "#1A120E",
+    "lash_length_m": 0.004,
+    "brow_srgb_hex": "#2A211B",
+    "brows": {
+      "inner_half_m": 0.0042,
+      "tail_half_m": 0.0015,
+      "fill": 0.55,
+      "hairs": 520
+    }
+  },
+  "hair": {
+    "style": "crop",
+    "srgb_hex": "#221A15",
+    "grey_srgb_hex": "#77726D",
+    "grey_fraction": 0.15,
+    "front_z_m": 0.055,
+    "nape_z_m": -0.06,
+    "ear_top_z_m": 0.025,
+    "volume_top_m": 0.0045,
+    "volume_side_m": 0.0012,
+    "fringe_m": 0.008
+  },
+  "garments": [
+    {
+      "kind": "top",
+      "name": "Uniform_Shirt",
+      "srgb_hex": "#B7C6D6",
+      "sleeves": "long",
+      "neckline": {
+        "type": "v",
+        "depth_m": 0.06,
+        "slope": 1.0
+      },
+      "hem_z_m": 0.93,
+      "offset_m": 0.01,
+      "drape": {
+        "from_z_m": 1.12,
+        "per_m": 0.02
+      },
+      "texture": {
+        "period": 170,
+        "roughness": 0.72,
+        "specular": 0.3
+      },
+      "collar": {
+        "rise_m": 0.085,
+        "height_m": 0.035,
+        "flare": 0.25
+      }
+    },
+    {
+      "kind": "trousers",
+      "name": "Trousers",
+      "srgb_hex": "#24272D",
+      "offset_m": 0.012,
+      "hem_radius_m": 0.078,
+      "waistband_extra_m": 0.004,
+      "over": [
+        "Uniform_Shirt"
+      ],
+      "texture": {
+        "period": 140,
+        "roughness": 0.8
+      }
+    },
+    {
+      "kind": "belt",
+      "name": "Belt",
+      "over": "Trousers",
+      "z_m": 0.99,
+      "width_m": 0.035,
+      "srgb_hex": "#141313",
+      "roughness": 0.4,
+      "specular": 0.45
+    },
+    {
+      "kind": "shoes",
+      "name": "Shoes",
+      "srgb_hex": "#141414",
+      "roughness": 0.3
+    }
+  ],
+  "accessories": [
+    {
+      "name": "Radio_Black",
+      "srgb_hex": "#1C1D1F",
+      "roughness": 0.5,
+      "specular": 0.4
+    },
+    {
+      "name": "Metal",
+      "srgb_hex": "#8C8F93",
+      "roughness": 0.3,
+      "specular": 0.7
+    }
+  ],
+  "belt_kit": {
+    "z_m": 0.972,
+    "material": "Radio_Black",
+    "reel_material": "Radio_Black",
+    "keys_material": "Metal"
+  },
+  "badge": {
+    "on": "Uniform_Shirt",
+    "card_srgb_hex": "#ECEDEE",
+    "stripe_srgb_hex": "#1F3B64"
+  },
+  "mesh": {
+    "triangle_budget": 60000,
+    "body_ratio": 0.6,
+    "clothing_ratio": 0.55,
+    "shoe_ratio": 0.25
+  },
+  "known_limitations": [
+    "Draft model for owner review; not canon and not wired to gameplay.",
+    "Shirt is an offset shell with a simple collar; no buttons, pockets or epaulettes.",
+    "Radio and key reel are simple blocks; no real-brand detail.",
+    "Hair is a scalp shell with a strand texture, not groomed strands.",
+    "Not measured on the target Mac."
+  ]
+}

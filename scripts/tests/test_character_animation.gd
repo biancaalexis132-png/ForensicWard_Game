@@ -179,7 +179,7 @@ func test_gaze_turns_the_eyes_toward_the_player_within_limits() -> void:
 	camera.queue_free()
 
 
-func test_animated_model_casts_a_static_shadow() -> void:
+func test_animated_model_casts_live_and_static_shadows_on_separate_layers() -> void:
 	var bennett: WardCharacter = _spawn_preview_bennett()
 	var model: Node3D = bennett.get_node("VisualRoot").get_child(0)
 	var skinned: int = 0
@@ -188,11 +188,13 @@ func test_animated_model_casts_a_static_shadow() -> void:
 		if mesh.skin == null:
 			continue
 		skinned += 1
-		check_eq(mesh.cast_shadow, GeometryInstance3D.SHADOW_CASTING_SETTING_OFF, "animated mesh casts no shadow: " + mesh.name)
+		check(mesh.cast_shadow != GeometryInstance3D.SHADOW_CASTING_SETTING_OFF, "animated mesh can cast a live shadow: " + mesh.name)
+		check_eq(mesh.layers, CharacterShadowSelector.LIVE_LAYER, "animated mesh is on the live-shadow layer: " + mesh.name)
 		var proxy: MeshInstance3D = mesh.get_parent().get_node_or_null(String(mesh.name) + CharacterAnimationRig.SHADOW_PROXY_SUFFIX)
 		check(proxy != null and proxy.mesh == mesh.mesh and proxy.skin == null, "static shadow copy exists: " + mesh.name)
 		if proxy != null:
 			check_eq(proxy.cast_shadow, GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY, "proxy only casts shadow")
+			check_eq(proxy.layers, CharacterShadowSelector.PROXY_LAYER, "proxy is on the static-shadow layer")
 	check(skinned >= 5, "the model's skinned meshes were found (%d)" % skinned)
 	var face: CharacterFaceRig = model.get_node("CharacterFaceRig")
 	face.blink()
@@ -202,6 +204,27 @@ func test_animated_model_casts_a_static_shadow() -> void:
 		var index: int = proxy.find_blend_shape_by_name(&"blink")
 		if index >= 0:
 			check_eq(proxy.get_blend_shape_value(index), 0.0, "the shadow copy does not blink")
+
+
+func test_only_the_nearest_light_sees_the_moving_meshes() -> void:
+	var bennett: WardCharacter = _spawn_preview_bennett()
+	var model: Node3D = bennett.get_node("VisualRoot").get_child(0)
+	var selector: CharacterShadowSelector = model.get_node("CharacterShadowSelector")
+	var near: OmniLight3D = OmniLight3D.new()
+	var far: OmniLight3D = OmniLight3D.new()
+	for light: OmniLight3D in [near, far]:
+		light.shadow_enabled = true
+		light.omni_range = 10.0
+		runner.add_child(light)
+	near.global_position = model.global_position + Vector3(0.0, 2.5, 0.0)
+	far.global_position = model.global_position + Vector3(6.0, 2.5, 0.0)
+	check_eq(selector.refresh(), near, "the nearest shadowed light is chosen")
+	check(near.shadow_caster_mask & CharacterShadowSelector.LIVE_LAYER != 0, "nearest light sees the moving meshes")
+	check_eq(near.shadow_caster_mask & CharacterShadowSelector.PROXY_LAYER, 0, "nearest light ignores the static copies")
+	check_eq(far.shadow_caster_mask & CharacterShadowSelector.LIVE_LAYER, 0, "other lights ignore the moving meshes")
+	check(far.shadow_caster_mask & CharacterShadowSelector.PROXY_LAYER != 0, "other lights see the static copies")
+	near.queue_free()
+	far.queue_free()
 
 
 func test_second_instance_gets_its_own_players() -> void:

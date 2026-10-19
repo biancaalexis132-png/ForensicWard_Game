@@ -1,0 +1,71 @@
+{
+  "character_id": "staff_voss",
+  "display_name": "Evelyn Voss",
+  "version": "v01_draft",
+  "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+  "source_blend": "build/cast/Evelyn_Voss_v01_face.blend",
+  "objects": {
+    "rig": "Evelyn_Voss_Rig",
+    "face_mesh": "Evelyn_Voss_Body",
+    "eye_l": "Voss_Eye_L",
+    "eye_r": "Voss_Eye_R"
+  },
+  "refine": {
+    "lashes": {
+      "lash_material": "Voss_Lash",
+      "shapes": [
+        "blink",
+        "blink_L",
+        "blink_R"
+      ],
+      "clearance_m": 0.0006,
+      "smoothing_iterations": 4,
+      "smoothing_factor": 0.5,
+      "push_out": false
+    },
+    "trousers": {
+      "object": "Voss_Trousers",
+      "cut_m": 0.1715,
+      "hem_m": 0.0858,
+      "flare": 0.03,
+      "inner_wall_tuck_m": 0.003,
+      "fold_depth_m": 0.006,
+      "fold_height_m": 0.012
+    },
+    "shoes": {
+      "object": "Voss_Shoes",
+      "iterations": 30,
+      "factor": 0.5,
+      "keep_sole_below_m": 0.004
+    }
+  },
+  "expected": {
+    "clips": [
+      "idle_neutral",
+      "idle_breathing",
+      "listen_neutral",
+      "stand_conversational",
+      "turn_from_workstation",
+      "return_to_workstation",
+      "small_greeting_nod",
+      "small_acknowledgement_nod",
+      "restrained_chart_indication",
+      "subtle_workstation_indication"
+    ],
+    "morph_targets": 32
+  },
+  "outputs": {
+    "blend": "assets/blender/characters/Evelyn_Voss_v01_draft.blend",
+    "glb": "assets/exports/characters/Evelyn_Voss_v01_draft.glb",
+    "renders": "assets/renders/characters",
+    "manifest": "assets/asset_manifest/staff_voss_character_manifest_v01_draft.json",
+    "report": "tools/character_animation/reports/staff_voss_v01_draft_refine_report.json"
+  },
+  "known_limitations": [
+    "Draft model for owner review; not canon and not wired to gameplay.",
+    "Blazer is an offset shell with an open front; no lapels, buttons or pockets.",
+    "Hair is a scalp shell with a strand texture and a modelled chignon, not groomed strands.",
+    "Glasses are frames only (no lens geometry).",
+    "Not measured on the target Mac."
+  ]
+}

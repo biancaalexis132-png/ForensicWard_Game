@@ -1,0 +1,232 @@
+{
+  "blender_version": "5.2.2 LTS",
+  "profile": "tools/character_animation/profiles/staff_rahman_v01_draft.json",
+  "profile_sha256": "2783d6347b3575e4386f10534d8cf04a3e357798803c3f2313ff04087e13b581",
+  "source": {
+    "path": "build/cast/Leila_Rahman_v01_face.blend",
+    "sha256": "07a02a1ee9d6f762be84453f53120ed61194fcf5be57a18777a420ee944ee263"
+  },
+  "refinements": {
+    "lids": {
+      "lash_strips": 2,
+      "blink": {
+        "skin_vertices_relaxed": 1212,
+        "lash_vertices_pushed_out": 0
+      },
+      "blink_L": {
+        "skin_vertices_relaxed": 718,
+        "lash_vertices_pushed_out": 0
+      },
+      "blink_R": {
+        "skin_vertices_relaxed": 718,
+        "lash_vertices_pushed_out": 0
+      }
+    },
+    "trousers": {
+      "cut_m": 0.1664,
+      "hem_m": 0.0832,
+      "legs": [
+        {
+          "side": "left",
+          "outer_radius_m": 0.0655,
+          "loop_vertices": 35
+        },
+        {
+          "side": "right",
+          "outer_radius_m": 0.065,
+          "loop_vertices": 34
+        }
+      ],
+      "new_faces": 138
+    },
+    "shoes": {
+      "vertices_relaxed": 2355,
+      "iterations": 30
+    }
+  },
+  "clips": [
+    "idle_breathing",
+    "idle_neutral",
+    "listen_neutral",
+    "restrained_chart_indication",
+    "return_to_workstation",
+    "small_acknowledgement_nod",
+    "small_greeting_nod",
+    "stand_conversational",
+    "subtle_workstation_indication",
+    "turn_from_workstation"
+  ],
+  "morph_targets": [
+    "attentive",
+    "blink",
+    "blink_L",
+    "blink_R",
+    "calm_professional",
+    "concerned_restrained",
+    "focused",
+    "mouth_open",
+    "professionally_serious",
+    "viseme_aa_02",
+    "viseme_aa_ah_ax_01",
+    "viseme_ao_03",
+    "viseme_aw_09",
+    "viseme_ay_11",
+    "viseme_d_t_n_19",
+    "viseme_er_05",
+    "viseme_ey_eh_uh_04",
+    "viseme_f_v_18",
+    "viseme_h_12",
+    "viseme_k_g_ng_20",
+    "viseme_l_14",
+    "viseme_ow_08",
+    "viseme_oy_10",
+    "viseme_p_b_m_21",
+    "viseme_r_13",
+    "viseme_s_z_15",
+    "viseme_sh_ch_jh_zh_16",
+    "viseme_sil_00",
+    "viseme_th_dh_17",
+    "viseme_w_uw_07",
+    "viseme_y_iy_ih_ix_06",
+    "warm_subtle"
+  ],
+  "glb": {
+    "skins": 1,
+    "animations": [
+      {
+        "name": "idle_breathing",
+        "channels": 5,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "idle_neutral",
+        "channels": 7,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "pelvis",
+          "spine_01",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "listen_neutral",
+        "channels": 4,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "restrained_chart_indication",
+        "channels": 3,
+        "nodes": [
+          "lowerarm_r",
+          "neck_01",
+          "upperarm_r"
+        ]
+      },
+      {
+        "name": "return_to_workstation",
+        "channels": 3,
+        "nodes": [
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "small_acknowledgement_nod",
+        "channels": 1,
+        "nodes": [
+          "neck_01"
+        ]
+      },
+      {
+        "name": "small_greeting_nod",
+        "channels": 1,
+        "nodes": [
+          "neck_01"
+        ]
+      },
+      {
+        "name": "stand_conversational",
+        "channels": 5,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "subtle_workstation_indication",
+        "channels": 2,
+        "nodes": [
+          "lowerarm_r",
+          "neck_01"
+        ]
+      },
+      {
+        "name": "turn_from_workstation",
+        "channels": 3,
+        "nodes": [
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      }
+    ],
+    "morph_targets": [
+      {
+        "mesh": "Leila_Rahman_Body",
+        "targets": [
+          "blink_L",
+          "blink_R",
+          "blink",
+          "attentive",
+          "warm_subtle",
+          "concerned_restrained",
+          "professionally_serious",
+          "focused",
+          "calm_professional",
+          "mouth_open",
+          "viseme_sil_00",
+          "viseme_aa_ah_ax_01",
+          "viseme_aa_02",
+          "viseme_ao_03",
+          "viseme_ey_eh_uh_04",
+          "viseme_er_05",
+          "viseme_y_iy_ih_ix_06",
+          "viseme_w_uw_07",
+          "viseme_ow_08",
+          "viseme_aw_09",
+          "viseme_oy_10",
+          "viseme_ay_11",
+          "viseme_h_12",
+          "viseme_r_13",
+          "viseme_l_14",
+          "viseme_s_z_15",
+          "viseme_sh_ch_jh_zh_16",
+          "viseme_th_dh_17",
+          "viseme_f_v_18",
+          "viseme_d_t_n_19",
+          "viseme_k_g_ng_20",
+          "viseme_p_b_m_21"
+        ]
+      }
+    ]
+  },
+  "triangles": 29018
+}
