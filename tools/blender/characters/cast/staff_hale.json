@@ -226,10 +226,11 @@
     "shoe_ratio": 0.25
   },
   "known_limitations": [
-    "Draft model for owner review; not canon and not wired to gameplay.",
-    "Shirt is an offset shell with a simple collar; no buttons, pockets or epaulettes.",
+    "v02 approved by the owner (Bi, 2026-10-19) and used in normal gameplay; the v01 draft files are kept for comparison.",
+    "Hair is alpha-scissor cards over a darker scalp base, not groomed strands; no hair physics, and cards are rigid to the head (a ponytail bends with spine_03 only).",
+    "Clothing is an offset shell with modelled trims and buttons; folds are baked into a normal map, not simulated, and do not change with pose.",
+    "Not measured on the target Mac.",
     "Radio and key reel are simple blocks; no real-brand detail.",
-    "Hair is a scalp shell with a strand texture, not groomed strands.",
-    "Not measured on the target Mac."
+    "No epaulettes."
   ]
 }

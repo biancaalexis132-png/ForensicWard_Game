@@ -5161,6 +5161,18 @@
         "draft"
       ]
     },
+    "Evelyn_Voss_v02": {
+      "path": "res://assets/exports/characters/Evelyn_Voss_v02.glb",
+      "category": "character",
+      "tags": [
+        "voss",
+        "character",
+        "animated",
+        "visemes",
+        "hair_cards",
+        "owner_approved"
+      ]
+    },
     "Marcus_Hale_v01_draft": {
       "path": "res://assets/exports/characters/Marcus_Hale_v01_draft.glb",
       "category": "character",
@@ -5170,6 +5182,18 @@
         "animated",
         "visemes",
         "draft"
+      ]
+    },
+    "Marcus_Hale_v02": {
+      "path": "res://assets/exports/characters/Marcus_Hale_v02.glb",
+      "category": "character",
+      "tags": [
+        "hale",
+        "character",
+        "animated",
+        "visemes",
+        "hair_cards",
+        "owner_approved"
       ]
     },
     "Facilities_Tech_v01_draft": {
@@ -5183,6 +5207,18 @@
         "draft"
       ]
     },
+    "Facilities_Tech_v02": {
+      "path": "res://assets/exports/characters/Facilities_Tech_v02.glb",
+      "category": "character",
+      "tags": [
+        "facilities_tech",
+        "character",
+        "animated",
+        "visemes",
+        "hair_cards",
+        "owner_approved"
+      ]
+    },
     "Leila_Rahman_v01_draft": {
       "path": "res://assets/exports/characters/Leila_Rahman_v01_draft.glb",
       "category": "character",
@@ -5192,6 +5228,18 @@
         "animated",
         "visemes",
         "draft"
+      ]
+    },
+    "Leila_Rahman_v02": {
+      "path": "res://assets/exports/characters/Leila_Rahman_v02.glb",
+      "category": "character",
+      "tags": [
+        "rahman",
+        "character",
+        "animated",
+        "visemes",
+        "hair_cards",
+        "owner_approved"
       ]
     },
     "Elias_Ward_v01_draft": {
@@ -5205,6 +5253,18 @@
         "draft"
       ]
     },
+    "Elias_Ward_v02": {
+      "path": "res://assets/exports/characters/Elias_Ward_v02.glb",
+      "category": "character",
+      "tags": [
+        "elias",
+        "character",
+        "animated",
+        "visemes",
+        "hair_cards",
+        "owner_approved"
+      ]
+    },
     "Mara_Ellis_v01_draft": {
       "path": "res://assets/exports/characters/Mara_Ellis_v01_draft.glb",
       "category": "character",
@@ -5214,6 +5274,18 @@
         "animated",
         "visemes",
         "draft"
+      ]
+    },
+    "Mara_Ellis_v02": {
+      "path": "res://assets/exports/characters/Mara_Ellis_v02.glb",
+      "category": "character",
+      "tags": [
+        "mara",
+        "character",
+        "animated",
+        "visemes",
+        "hair_cards",
+        "owner_approved"
       ]
     }
   },

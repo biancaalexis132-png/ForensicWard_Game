@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "review_status": "PENDING_OWNER_VISUAL_REVIEW",
-  "notes": "Owner requested normal-gameplay 3D integration after narration. Existing models retain visual review status; no clinical approval is implied. Offsets move the whole actor and interaction/collision together, relative to the authored marker. Imported models face +Z, while authored markers face -Z.",
+  "review_status": "OWNER_APPROVED_VISUAL",
+  "notes": "Normal-gameplay 3D cast. Bi (project owner) approved all cast models on 2026-10-19 in the project thread: \"I approve all cast models\". This covers visual appearance only (Naomi Bennett v07 and the six v02 cast models); no clinical approval is implied. The six cast models use v02 (layered hair cards, garment trims and fold maps); the v01 draft files are kept. Offsets move the whole actor and interaction/collision together, relative to the authored marker. Imported models face +Z, while authored markers face -Z.",
   "characters": {
     "staff_bennett": {
       "scene": "res://assets/exports/characters/Naomi_Bennett_v07.glb",
@@ -11,27 +11,27 @@
         0.0,
         0.55
       ],
-      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+      "review_status": "OWNER_APPROVED_VISUAL"
     },
     "staff_voss": {
-      "scene": "res://assets/exports/characters/Evelyn_Voss_v01_draft.glb",
+      "scene": "res://assets/exports/characters/Evelyn_Voss_v02.glb",
       "model_yaw_degrees": 180.0,
       "marker_offset": [
         0.0,
         0.0,
         0.0
       ],
-      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+      "review_status": "OWNER_APPROVED_VISUAL"
     },
     "staff_hale": {
-      "scene": "res://assets/exports/characters/Marcus_Hale_v01_draft.glb",
+      "scene": "res://assets/exports/characters/Marcus_Hale_v02.glb",
       "model_yaw_degrees": 180.0,
       "marker_offset": [
         0.0,
         0.0,
         0.0
       ],
-      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "review_status": "OWNER_APPROVED_VISUAL",
       "marker_offsets": {
         "MARK_Seat_Psychiatrist_Desk": [
           0.7,
@@ -41,14 +41,14 @@
       }
     },
     "staff_rahman": {
-      "scene": "res://assets/exports/characters/Leila_Rahman_v01_draft.glb",
+      "scene": "res://assets/exports/characters/Leila_Rahman_v02.glb",
       "model_yaw_degrees": 180.0,
       "marker_offset": [
         0.0,
         0.0,
         0.0
       ],
-      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "review_status": "OWNER_APPROVED_VISUAL",
       "marker_offsets": {
         "MARK_Seat_Psychiatrist_Desk": [
           0.7,
@@ -58,34 +58,40 @@
       }
     },
     "staff_facilities_tech": {
-      "scene": "res://assets/exports/characters/Facilities_Tech_v01_draft.glb",
+      "scene": "res://assets/exports/characters/Facilities_Tech_v02.glb",
       "model_yaw_degrees": 180.0,
       "marker_offset": [
         0.0,
         0.0,
         0.0
       ],
-      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+      "review_status": "OWNER_APPROVED_VISUAL"
     },
     "pt_elias_ward": {
-      "scene": "res://assets/exports/characters/Elias_Ward_v01_draft.glb",
+      "scene": "res://assets/exports/characters/Elias_Ward_v02.glb",
       "model_yaw_degrees": 180.0,
       "marker_offset": [
         0.0,
         0.0,
         0.0
       ],
-      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+      "review_status": "OWNER_APPROVED_VISUAL"
     },
     "pt_mara_ellis": {
-      "scene": "res://assets/exports/characters/Mara_Ellis_v01_draft.glb",
+      "scene": "res://assets/exports/characters/Mara_Ellis_v02.glb",
       "model_yaw_degrees": 180.0,
       "marker_offset": [
         0.0,
         0.0,
         0.0
       ],
-      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+      "review_status": "OWNER_APPROVED_VISUAL"
     }
+  },
+  "approval": {
+    "approved_by": "Bi (project owner)",
+    "date": "2026-10-19",
+    "quote": "I approve all cast models",
+    "where": "project thread"
   }
 }

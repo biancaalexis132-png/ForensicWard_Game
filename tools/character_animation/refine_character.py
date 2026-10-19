@@ -386,6 +386,8 @@ def render_review(profile: dict, body: bpy.types.Object, out_dir: Path) -> list[
     scene.cycles.seed = 0
     scene.cycles.use_adaptive_sampling = False
     scene.cycles.use_denoising = True
+    # Layered alpha-clipped hair cards need more transparent bounces than the default 8.
+    scene.cycles.transparent_max_bounces = max(scene.cycles.transparent_max_bounces, 48)
     scene.render.resolution_percentage = 100
     rig = bpy.data.objects[profile["objects"]["rig"]]
     rig.animation_data.use_nla = False

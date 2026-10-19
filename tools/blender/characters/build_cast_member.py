@@ -726,7 +726,7 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
                     return inner(p) + max(0.0, p.z - nz) * flare
             obj, loops = detail_mod.garment_shell(v3, PREFIX + g["name"], proxy, mask, fn, int(g.get("smooth", 40)),
                                                   float(g.get("thickness_m", 0.0022)), mats[g["name"]],
-                                                  decimate_ratio=detail_ratio(g))
+                                                  decimate_ratio=detail_ratio(g), hang=hang_spec(g, body))
             shell_loops[g["name"]] = loops
             covered |= reg.interior(mask, float(g.get("skin_margin_m", 0.04)))
         elif kind == "trousers":
@@ -811,6 +811,16 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
         v3.parent_to_rig(obj, rig)
     bpy.data.objects.remove(proxy, do_unlink=True)
     return objs, {"covered_faces": int(covered.sum()), "garment_detail": details}
+
+
+def hang_spec(g: dict, body) -> dict | None:
+    """detail.hang: {"from_z_m": z} lets a jacket's skirt fall straight from its widest point."""
+    h = (g.get("detail") or {}).get("hang")
+    if not h:
+        return None
+    names = {"pelvis", "spine_01", "spine_02", "thigh_l", "thigh_r"}
+    dom = v3.dominant_bones(body)
+    return {"from_z": float(h["from_z_m"]), "vertex_mask": np.array([d in names for d in dom])}
 
 
 def detail_ratio(g: dict) -> float | None:

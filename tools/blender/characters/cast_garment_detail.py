@@ -40,7 +40,8 @@ def _smooth(x):
 # ------------------------------------------------------------------ shells and loops
 
 def garment_shell(v3, name: str, body, face_mask: np.ndarray, offset_fn, smooth_iterations: int,
-                  thickness: float, material, before_thicken=None, decimate_ratio: float | None = None):
+                  thickness: float, material, before_thicken=None, decimate_ratio: float | None = None,
+                  hang: dict | None = None):
     """build_naomi_v03.shell_from_faces, also returning the shell's open edges (ordered loops).
 
     The loops are taken after the shell is pushed out and before it is thickened,
@@ -54,6 +55,9 @@ def garment_shell(v3, name: str, body, face_mask: np.ndarray, offset_fn, smooth_
     bm = bmesh.new()
     bm.from_mesh(mesh)
     bm.faces.ensure_lookup_table()
+    src = bm.verts.layers.int.new("cast_src")
+    for v in bm.verts:
+        v[src] = v.index
     bmesh.ops.delete(bm, geom=[f for f in bm.faces if not face_mask[f.index]], context="FACES")
     bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context="VERTS")
     boundary = {v.index for v in bm.verts if v.is_boundary}
@@ -95,6 +99,10 @@ def garment_shell(v3, name: str, body, face_mask: np.ndarray, offset_fn, smooth_
                     if len(nbrs) == 2:
                         v.co = v.co.lerp((nbrs[0].co + nbrs[1].co) / 2, 0.5)
         push_out()
+    if hang is not None:
+        hang_straight(bm, hang, boundary)
+        push_out()
+    bm.verts.layers.int.remove(src)
     bm.normal_update()
     loops = ordered_loops(bm)
     bm.to_mesh(mesh)
@@ -117,6 +125,50 @@ def garment_shell(v3, name: str, body, face_mask: np.ndarray, offset_fn, smooth_
         sol.offset = 1.0
         bpy.ops.object.modifier_apply(modifier=sol.name)
     return obj, loops
+
+
+def hang_straight(bm, hang: dict, boundary: set) -> None:
+    """Let the skirt of a jacket or cardigan fall straight from its widest point.
+
+    A shell offset from the body follows the buttocks and the belly back in toward
+    the hem, which reads as a peplum. Cloth hangs: going down from from_z, a torso
+    vertex is never nearer the body's vertical axis than the vertices above it at
+    the same angle. hang = {"from_z": z, "vertex_mask": bool per body vertex}.
+    """
+    src = bm.verts.layers.int.get("cast_src")
+    keep = hang["vertex_mask"]
+    z0 = float(hang["from_z"])
+    bins = int(hang.get("bins", 72))
+
+    def torso(v):
+        return bool(keep[v[src]])
+
+    verts = [v for v in bm.verts if v.co.z < z0 + 0.06 and torso(v)]
+    if not verts:
+        return
+    band = [v for v in verts if v.co.z > z0 - 0.03]
+    cx = sum(v.co.x for v in band) / max(1, len(band))
+    cy = sum(v.co.y for v in band) / max(1, len(band))
+    running = [0.0] * bins
+    moved = []
+    for v in sorted(verts, key=lambda v: -v.co.z):
+        dx, dy = v.co.x - cx, v.co.y - cy
+        r = math.hypot(dx, dy)
+        if r < 1e-6:
+            continue
+        a = int((math.atan2(dy, dx) + math.pi) / (2 * math.pi) * bins) % bins
+        need = max(running[a], 0.985 * max(running[(a - 1) % bins], running[(a + 1) % bins]))
+        if v.co.z < z0 and r < need:
+            k = need / r
+            v.co.x = cx + dx * k
+            v.co.y = cy + dy * k
+            moved.append(v)
+            r = need
+        running[a] = max(running[a], r)
+    inner = [v for v in moved if v.index not in boundary]
+    for _ in range(3):
+        bmesh.ops.smooth_vert(bm, verts=inner, factor=0.5, use_axis_x=True, use_axis_y=True, use_axis_z=False)
+    print(f"  hang: {len(moved)} vertices let fall straight below z {z0:.3f}")
 
 
 def ordered_loops(bm) -> list[dict]:
@@ -370,9 +422,11 @@ def fold_height(P: np.ndarray, w: dict, kind: str, spec: dict, sk: Skeleton, noi
             # Elbow: compression rings, strongest in the crook, twisting round the arm.
             arm = np.clip(wt(f"upperarm_{side}", f"lowerarm_{side}", f"hand_{side}") * 1.3, 0, 1)
             s, d, th, _L = sk.seg(P, f"lowerarm_{side}")
-            env = np.exp(-((s + 0.005) / 0.075) ** 2) * arm * (d < 0.09)
+            width = np.where(s < 0.0, 0.045, 0.07)
+            env = np.exp(-((s + 0.005) / width) ** 2) * arm * (d < 0.09)
             inner = 0.5 + 0.5 * np.cos(th)
-            h += 0.0026 * amp * env * (0.35 + 0.65 * inner) * np.sin(2 * np.pi * s / 0.032 + 2.0 * th + 1.6 * n1)
+            h += 0.0024 * amp * env * (0.35 + 0.65 * inner) * (0.35 + 0.65 * n2) * \
+                np.sin(2 * np.pi * s / 0.032 + 2.0 * th + 3.0 * n1)
             if spec.get("sleeves") == "long":
                 # Wrist: the sleeve gathers above the cuff.
                 above = _L - s
