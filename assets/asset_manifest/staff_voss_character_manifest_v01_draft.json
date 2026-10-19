@@ -78,10 +78,16 @@
     ]
   },
   "known_limitations": [
-    "Draft model for owner review; not canon and not wired to gameplay.",
+    "Draft likeness for owner review, integrated as a campaign candidate; not final visual canon.",
     "Blazer is an offset shell with an open front; no lapels, buttons or pockets.",
     "Hair is a scalp shell with a strand texture and a modelled chignon, not groomed strands.",
     "Glasses are frames only (no lens geometry).",
     "Not measured on the target Mac."
-  ]
+  ],
+  "campaign_integration": {
+    "status": "INTEGRATED_PENDING_OWNER_VISUAL_REVIEW",
+    "catalogue": "data/character_visuals.json",
+    "guide": "docs/CAMPAIGN_CAST_INTEGRATION.md",
+    "authorisation": "Owner explicitly requested remaining 3D character integration for Chapters 1\u20135 after narration delivery; no visual or clinical approval inferred."
+  }
 }

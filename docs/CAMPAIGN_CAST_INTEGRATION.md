@@ -40,3 +40,7 @@ Godot --path . --rendering-method gl_compatibility --audio-driver Dummy \
 ```
 
 Existing limitations remain visible in the models: shell-based clothing/hair and provisional likenesses. Final visual acceptance, refinement and Mac frame time require owner review; integration is not a photorealism or performance certification. See the latest `docs/AI_HANDOFF.md` entry for exact executed test results and branch SHA.
+
+## Executed verification
+
+Code checkpoint `515cced048d48b1dcf0ab1b6d342f6fd3c1fa5ba`: focused integration **5/0**, full gameplay **285/0**, audio **412/0**, all 36 illustration hashes unchanged and 38 narration recordings intact. Hosted standard validation completed successfully: https://github.com/biancaalexis132-png/ForensicWard_Game/actions/runs/39321295781 . The full campaign suite now receives 420 seconds for repeated 3D fixture loading; other suite limits and every error/completion check are preserved. Later metadata/documentation updates do not alter the tested game behavior.
