@@ -1,0 +1,19 @@
+{
+  "asset": "nursing_counter.png",
+  "sha256": "43536d6286a4c8a1c8eef8a7e44aa8f81d9572bdfcbbdf40362be8be40734205",
+  "source": "Original in-engine gameplay review capture; existing project assets retain their recorded licences",
+  "runtime_commit": "331268666dd8e4d2670c7ff0c173e1718362918a",
+  "capture_tool": "tools/characters/CaptureNursingCounter.tscn",
+  "engine": "Godot 4.7.stable.official.5b4e0cb0f",
+  "renderer": "Compatibility, Mesa 25.0.7-2+deb13u1 llvmpipe LLVM 19.1.7, Linux/Xvfb",
+  "resolution": [
+    1280,
+    720
+  ],
+  "shadows": "Disabled only for software review capture",
+  "review_status": "PENDING_OWNER_REVIEW",
+  "limitations": [
+    "Not Mac/Metal appearance or performance acceptance",
+    "Not replacement cutscene artwork"
+  ]
+}

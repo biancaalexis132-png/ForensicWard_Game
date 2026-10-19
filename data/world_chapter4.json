@@ -65,6 +65,11 @@
 			"title": "Inspection measurement comparison"
 		},
 		{
+			"node": "NS_NoticeBoard",
+			"type": "story_terminal",
+			"title": "Clinical worklist and handoff"
+		},
+		{
 			"node": "Corridor_CCTV_5",
 			"type": "story_terminal",
 			"title": "Restricted lift lobby doors",
@@ -92,13 +97,60 @@
 		{
 			"marker": "MARK_Character_NurseBennett",
 			"kind": "staff",
-			"character_id": "staff_bennett"
+			"character_id": "staff_bennett",
+			"interaction_box": {"center": [-1.25, 1.65, -11.0], "size": [0.2, 0.6, 1.4]}
 		},
 		{
 			"marker": "MARK_Seat_Patient",
 			"kind": "patient",
 			"character_id": "pt_elias_ward",
-			"seated": true
+			"seated": true,
+			"present_when": {
+				"not": {
+					"all": [
+						{
+							"flag": "ch4_rahman_boundary"
+						},
+						{
+							"not": {
+								"any": [
+									{
+										"flag": "ch4_mara_followup"
+									},
+									{
+										"flag": "ch4_test_pass_granted"
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		},
+		{
+			"marker": "MARK_Seat_Patient",
+			"kind": "patient",
+			"character_id": "pt_mara_ellis",
+			"seated": true,
+			"present_when": {
+				"all": [
+					{
+						"flag": "ch4_rahman_boundary"
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"flag": "ch4_mara_followup"
+								},
+								{
+									"flag": "ch4_test_pass_granted"
+								}
+							]
+						}
+					}
+				]
+			}
 		},
 		{
 			"marker": "MARK_Seat_Psychiatrist_Desk",

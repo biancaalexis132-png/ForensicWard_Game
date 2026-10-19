@@ -1,6 +1,6 @@
 {
 	"schema_version": "0.1",
-	"notes": "Chapter 2 is a provisional playable slice, not the complete chapter: opening and records review (Scenes 01–02), Voss's institutional review (Scene 04) and Mara Ellis's owner-approved introduction (Scene 03). Proposed nonclinical dialogue remains pending narrative review. Chapters 3–5 remain planned.",
+	"notes": "All five chapters are playable from the title screen to the end-of-campaign summary. The owner approved the narrative review on 2026-10-19 (\"I approve all cast models and the narrative review\"), so no chapter is provisional. Clinical approval is tracked per item in docs/clinical_review_log.md.",
 	"institution": {
 		"name": "Ashcroft State Forensic Hospital",
 		"short_name": "Ashcroft"
@@ -22,7 +22,7 @@
 			"id": "ch2",
 			"title": "Chapter 2: The Missing Hours",
 			"status": "playable",
-			"provisional": true,
+			"provisional": false,
 			"story": "story_chapter2.json",
 			"world": "world_chapter2.json"
 		},
@@ -30,7 +30,7 @@
 			"id": "ch3",
 			"title": "Chapter 3: Beneath the Hospital",
 			"status": "playable",
-			"provisional": true,
+			"provisional": false,
 			"story": "story_chapter3.json",
 			"world": "world_chapter3.json"
 		},
@@ -38,7 +38,7 @@
 			"id": "ch4",
 			"title": "Chapter 4: The Official Record",
 			"status": "playable",
-			"provisional": true,
+			"provisional": false,
 			"story": "story_chapter4.json",
 			"world": "world_chapter4.json"
 		},
@@ -46,7 +46,7 @@
 			"id": "ch5",
 			"title": "Chapter 5: Beyond the Lines",
 			"status": "playable",
-			"provisional": true,
+			"provisional": false,
 			"story": "story_chapter5.json",
 			"world": "world_chapter5.json"
 		}

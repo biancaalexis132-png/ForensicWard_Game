@@ -294,7 +294,9 @@ const _STORY_INTERACTION: Dictionary = {
 		"options": {"type": "array", "min_items": 1, "items": {
 			"type": "object", "required": {"id": _ID, "label": _STRING, "response": _STRING},
 			## grants_access/revokes_access: scene-scoped passes, recorded with source "story:<interaction id>".
-			"optional": {"flag": _ID, "grants_access": _IDS, "revokes_access": _IDS},
+			## next_interaction: the next scene in the same story opens straight after this
+			## response, in the same panel, when its own conditions hold.
+			"optional": {"flag": _ID, "grants_access": _IDS, "revokes_access": _IDS, "next_interaction": _ID},
 		}},
 	},
 	"optional": {"expires_when": _CONDITION, "completed_body": _STRING},
@@ -377,7 +379,11 @@ const WORLD_FILE: Dictionary = {
 				"required": {"marker": _STRING, "kind": {"type": "enum", "values": ["staff", "patient"]},
 						"character_id": _ID},
 				## present_when: StoryLogic condition; the character is in the scene only while it holds.
-				"optional": {"seated": {"type": "bool"}, "zone": _ID, "present_when": _CONDITION},
+				"optional": {"seated": {"type": "bool"}, "zone": _ID, "present_when": _CONDITION,
+					"interaction_box": {"type": "object", "required": {
+						"center": {"type": "array", "items": {"type": "number"}, "min_items": 3},
+						"size": {"type": "array", "items": {"type": "number"}, "min_items": 3},
+					}}},
 			},
 		},
 	},

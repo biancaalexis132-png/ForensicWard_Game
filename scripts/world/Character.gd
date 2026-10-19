@@ -44,6 +44,8 @@ func _ready() -> void:
 	_interactable.interacted.connect(_on_interacted)
 	if not present_when.is_empty():
 		EventBus.objective_changed.connect(_update_presence.unbind(2))
+		# Optional scenes set flags without moving the objective.
+		EventBus.story_option_selected.connect(_on_story_option_selected)
 		tree_entered.connect(_update_presence)
 		_update_presence()
 	var display_name: String = _display_name()
@@ -117,6 +119,11 @@ func _remove_attached_visual() -> void:
 
 func is_present() -> bool:
 	return visible
+
+
+func _on_story_option_selected(_interaction_id: String, _option_id: String) -> void:
+	# Deferred: ChapterDirector records the choice's flag in the same signal.
+	_update_presence.call_deferred()
 
 
 func _update_presence() -> void:

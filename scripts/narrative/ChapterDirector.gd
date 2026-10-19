@@ -456,5 +456,23 @@ func _on_story_option_selected(interaction_id: String, option_id: String) -> voi
 				panel["options"] = [{"id": "continue", "label": "Return for the next day shift"}]
 			elif option.get("flag", "") == StoryLogic.CHAPTER_COMPLETE_FLAG and _story().has("campaign_end"):
 				panel = _campaign_end_panel(option["response"])
+			elif option.has("next_interaction"):
+				panel = _follow_on_panel(option["next_interaction"], option["response"], panel)
 			EventBus.ui_panel_requested.emit("info", panel)
 			return
+
+
+## The next scene after a choice, opened in the same panel under the choice's
+## response. Falls back to the plain response when that scene is not open.
+func _follow_on_panel(interaction_id: String, response: String, plain: Dictionary) -> Dictionary:
+	for next: Dictionary in _story().get("interactions", []):
+		if next["id"] != interaction_id or not StoryLogic.evaluate(next["when"], _story_state()):
+			continue
+		if next.has("expires_when") and StoryLogic.evaluate(next["expires_when"], _story_state()):
+			continue
+		_active_interaction = interaction_id
+		var panel: Dictionary = next.duplicate(true)
+		panel["interaction_id"] = interaction_id
+		panel["body"] = response + "\n\n" + str(next["body"])
+		return panel
+	return plain

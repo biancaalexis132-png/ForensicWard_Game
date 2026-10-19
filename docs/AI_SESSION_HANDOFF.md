@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code owner approvals and content gaps — 2026-10-19
+
+- `claude/owner-approvals-content-gaps` code `04fdb8c` (draft PR to main). Approvals recorded (cast, narrative, four clinical items). Chapter 2 personal message and fade-out, plus Chapter 4 Scenes 04 and 06 (both optional). Full QA exit 0: game 293/0. Mac not run. Cast hair/clothing v02 is on `claude/cast-hair-clothing`. Next: Bi merges both PRs; executive producer reviews the Chapter 4 Mara wording; Chapter 3 Mara follow-up needs authored lines. See `docs/handoffs/2026-10-19_claude_approvals_content_gaps.md`.
+
 ## Claude Code Static graphic-novel chapter recaps — 2026-10-19
 
 - `claude/static-graphic-novel-cutscenes` at `bac05fe` (draft PR to main). Owner-approved static art for Ch1-5 plays as chapter-close recaps (owner's choice); art byte-identical; title cards/pilot kept as rollback. Game tests 266/0, full QA steps passed (run by hand; runner import cap timed out on a cold cache). Previews in project files `static_gn_preview/`. Mac not run. Next: Bi reviews and merges; Mac check. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates. See `docs/handoffs/2026-10-19_claude_static_graphic_novel.md`.

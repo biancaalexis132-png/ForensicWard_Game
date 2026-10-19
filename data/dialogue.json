@@ -62,5 +62,5 @@
     }
   ],
   "fallback_response": "I don't have a scripted response for that question yet. Try a listed clinical topic or ask it another way.",
-  "clinical_review_status": "PENDING"
+  "clinical_review_status": "APPROVED"
 }
