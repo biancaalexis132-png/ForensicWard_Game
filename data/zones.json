@@ -16,10 +16,31 @@
 				"res://assets/exports/clinical/env/ENV_PatientRoom_02.glb",
 				"res://assets/exports/clinical/env/ENV_InterviewRoom_A.glb"
 			],
-			"bounds": [{"min_xz": [-6.5, -20.0], "max_xz": [6.5, 0.5]}],
+			"bounds": [
+				{
+					"min_xz": [
+						-6.5,
+						-20.0
+					],
+					"max_xz": [
+						6.5,
+						0.5
+					]
+				}
+			],
 			"default_audio_location": "corridor",
 			"audio_zones": [
-				{"location": "nursing_station", "min_xz": [-5.0, -12.0], "max_xz": [-1.5, -8.0]}
+				{
+					"location": "nursing_station",
+					"min_xz": [
+						-5.0,
+						-12.0
+					],
+					"max_xz": [
+						-1.5,
+						-8.0
+					]
+				}
 			]
 		},
 		{
@@ -40,7 +61,18 @@
 				"res://assets/exports/security/env/ENV_MaintenanceAccess.glb",
 				"res://assets/exports/security/env/ENV_RestrictedLiftLobby.glb"
 			],
-			"bounds": [{"min_xz": [-6.5, -44.5], "max_xz": [6.5, -20.0]}],
+			"bounds": [
+				{
+					"min_xz": [
+						-6.5,
+						-44.5
+					],
+					"max_xz": [
+						6.5,
+						-20.0
+					]
+				}
+			],
 			"default_audio_location": "corridor",
 			"notes": "No security_wing ambience exists yet; it uses the corridor bed until the audio workstream adds one."
 		},
@@ -63,7 +95,18 @@
 				"res://assets/exports/research/env/ENV_LabSupport.glb",
 				"res://assets/exports/research/env/ENV_SecureSampleStorage.glb"
 			],
-			"bounds": [{"min_xz": [-6.5, -44.5], "max_xz": [6.5, -19.5]}],
+			"bounds": [
+				{
+					"min_xz": [
+						-6.5,
+						-44.5
+					],
+					"max_xz": [
+						6.5,
+						-19.5
+					]
+				}
+			],
 			"default_audio_location": "corridor",
 			"notes": "No research_wing ambience exists yet; it uses the corridor bed until the audio workstream adds one."
 		},
@@ -87,18 +130,48 @@
 				"res://assets/exports/historic/env/ENV_PaperRecordsArchive.glb",
 				"res://assets/exports/historic/env/ENV_SealedConnectingCorridor.glb"
 			],
-			"bounds": [{"min_xz": [-6.5, -44.5], "max_xz": [6.5, -9.5]}],
+			"bounds": [
+				{
+					"min_xz": [
+						-6.5,
+						-44.5
+					],
+					"max_xz": [
+						6.5,
+						-9.5
+					]
+				}
+			],
 			"default_audio_location": "historical_wing"
 		},
 		{
 			"id": "zone_ward_zero",
 			"title": "Ward Zero",
 			"level": "sublevel",
-			"status": "placeholder",
-			"environments": [],
-			"bounds": [],
+			"status": "built",
+			"environments": [
+				"res://assets/exports/wardzero/env/ENV_W0_Threshold.glb",
+				"res://assets/exports/wardzero/env/ENV_W0_ServiceCorridor_16m.glb",
+				"res://assets/exports/wardzero/env/ENV_W0_ObservationRoom.glb",
+				"res://assets/exports/wardzero/env/ENV_W0_IsolationCell.glb",
+				"res://assets/exports/wardzero/env/ENV_W0_ServiceStore.glb",
+				"res://assets/exports/wardzero/env/ENV_W0_InstrumentRoom.glb",
+				"res://assets/exports/wardzero/env/ENV_W0_PlantRoom.glb"
+			],
+			"bounds": [
+				{
+					"min_xz": [
+						-6.7,
+						-9.5
+					],
+					"max_xz": [
+						6.7,
+						10.2
+					]
+				}
+			],
 			"default_audio_location": "ward_zero",
-			"notes": "Environment Stage 6, not built. Listed so ids and saves are stable."
+			"notes": "Environment Stage 6 rooms beyond the sealed connecting corridor. Reached only through conn_w0_threshold (Chapter 3 authorized inspection). Anomaly state groups stay at their ordinary defaults."
 		}
 	],
 	"connections": [
@@ -108,10 +181,17 @@
 			"transition": "seamless",
 			"door_id": "door_ward_entry",
 			"door_zone": "zone_clinical_wing",
-			"anchor_xz": [0.0, -20.0],
+			"anchor_xz": [
+				0.0,
+				-20.0
+			],
 			"ends": [
-				{"zone": "zone_clinical_wing"},
-				{"zone": "zone_security_admin"}
+				{
+					"zone": "zone_clinical_wing"
+				},
+				{
+					"zone": "zone_security_admin"
+				}
 			],
 			"notes": "Same level and frame: walking through the doors changes zone with no fade. The doors belong to the clinical wing geometry, so the clinical wing is loaded whenever the player is in the security wing. Access comes from the door's own required_access (access_ward_entry), never from trust."
 		},
@@ -126,14 +206,28 @@
 					"zone": "zone_security_admin",
 					"node": "LL_ElevatorDoors",
 					"prompt": "Take the restricted lift down to the research unit",
-					"arrival": {"position": [0.0, 0.0, -42.6], "yaw_degrees": 180.0},
+					"arrival": {
+						"position": [
+							0.0,
+							0.0,
+							-42.6
+						],
+						"yaw_degrees": 180.0
+					},
 					"placeholder_arrival": true
 				},
 				{
 					"zone": "zone_research_level",
 					"node": "RE_ElevatorDoors",
 					"prompt": "Take the restricted lift up to the security wing",
-					"arrival": {"position": [0.0, 0.0, -42.6], "yaw_degrees": 180.0},
+					"arrival": {
+						"position": [
+							0.0,
+							0.0,
+							-42.6
+						],
+						"yaw_degrees": 180.0
+					},
 					"placeholder_arrival": true
 				}
 			],
@@ -150,17 +244,67 @@
 					"zone": "zone_security_admin",
 					"node": "MA_ServiceHatch",
 					"prompt": "Climb down through the service hatch",
-					"arrival": {"position": [2.6, 0.0, -37.4], "yaw_degrees": -90.0},
+					"arrival": {
+						"position": [
+							2.6,
+							0.0,
+							-37.4
+						],
+						"yaw_degrees": -90.0
+					},
 					"placeholder_arrival": true
 				},
 				{
 					"zone": "zone_historic_sublevel",
 					"node": "SW_ServiceStair",
 					"prompt": "Climb the service stair to the hatch",
-					"arrival": {"position": [2.6, 0.0, -38.0], "yaw_degrees": -90.0},
+					"arrival": {
+						"position": [
+							2.6,
+							0.0,
+							-38.0
+						],
+						"yaw_degrees": -90.0
+					},
 					"placeholder_arrival": true
 				}
 			]
+		},
+		{
+			"id": "conn_w0_threshold",
+			"kind": "corridor",
+			"transition": "fade",
+			"required_access": "access_w0_threshold",
+			"locked_message": "Brick infill. The sealed corridor ends here.",
+			"ends": [
+				{
+					"zone": "zone_historic_sublevel",
+					"node": "SC_BrickInfill",
+					"prompt": "Go through the opened threshold with the team",
+					"arrival": {
+						"position": [
+							0.0,
+							0.0,
+							-12.5
+						],
+						"yaw_degrees": 0.0
+					}
+				},
+				{
+					"zone": "zone_ward_zero",
+					"node": "W0T_Radiator",
+					"prompt": "Return to the sealed corridor with the team",
+					"arrival": {
+						"position": [
+							0.0,
+							0.0,
+							-8.6
+						],
+						"yaw_degrees": 180.0
+					}
+				}
+			],
+			"notes": "Chapter 3: Facilities opens the bricked-up end (world state sealed_corridor_end) for the authorized inspection. Uses its own access id so the Chapter 1 W0-B door (access_ward_zero) stays locked."
 		}
 	]
 }

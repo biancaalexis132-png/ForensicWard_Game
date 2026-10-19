@@ -282,7 +282,8 @@ func test_zone_rules_are_validated() -> void:
 	var connections: Array = docs["zones"]["data"]["connections"]
 	zones[2]["level"] = "ground"  # Research floor plan on the ground floor.
 	zones[3]["id"] = "historic_sublevel"
-	zones[4]["environments"] = ["res://assets/exports/ward_zero/env/ENV_Missing.glb"]
+	zones[4]["status"] = "placeholder"  # A placeholder may not ship geometry.
+	zones[3]["environments"].append("res://assets/exports/ward_zero/env/ENV_Missing.glb")
 	connections[0]["ends"][1]["zone"] = RESEARCH
 	connections[1]["ends"][0].erase("arrival")
 	connections[2]["ends"][1]["zone"] = SECURITY
@@ -310,6 +311,8 @@ func test_world_file_names_a_built_start_zone() -> void:
 	var world: Dictionary = docs[ContentRegistry.WORLD_KEY + "ch1"]["data"]
 	world["start_zone"] = "zone_ward_zero"
 	world["characters"][0]["zone"] = "zone_atrium"
+	docs["zones"]["data"]["zones"][4]["status"] = "placeholder"
+	docs["zones"]["data"]["zones"][4]["environments"] = []
 	var report: Dictionary = ContentValidator.validate_documents(docs)
 	check_contains(report["errors"], "start_zone: 'zone_ward_zero' is a placeholder zone", "start zone built")
 	check_contains(report["errors"], "characters[0].zone: unknown zone id 'zone_atrium'", "entry zone known")

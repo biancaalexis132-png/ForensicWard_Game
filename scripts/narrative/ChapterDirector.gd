@@ -405,10 +405,10 @@ func _on_story_option_selected(interaction_id: String, option_id: String) -> voi
 			if option["id"] != option_id:
 				continue
 			_active_interaction = ""
-			if option.has("grants_access"):
-				TrustManager.grant_access(option["grants_access"], "story:" + interaction_id)
-			if option.has("revokes_access"):
-				TrustManager.revoke_access(option["revokes_access"])
+			for access_id: String in option.get("grants_access", []):
+				TrustManager.grant_access(access_id, "story:" + interaction_id)
+			for access_id: String in option.get("revokes_access", []):
+				TrustManager.revoke_access(access_id)
 			if option.has("flag"):
 				set_flag(option["flag"])
 			var panel: Dictionary = {"title": interaction["title"], "body": option["response"]}

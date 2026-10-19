@@ -4,7 +4,7 @@
 	"title": "Chapter 3: Beneath the Hospital",
 	"provisional": true,
 	"clinical_review_status": "PENDING",
-	"notes": "Revised CH03 (Authorized Inspection and Verification). Owner-approved first-entry premise; new dialogue proposed and pending narrative review. Scenes 01-02: inspection notice and security briefing. Clinical coverage, audit summary and clinical scope are each completed before departure; no entry without coverage, approval and a life-safety assessment. The major corridor-loop reveal belongs to Chapter 4 Scene 09 and is not preempted.",
+	"notes": "Revised CH03 (Authorized Inspection and Verification). Owner-approved first-entry premise; new dialogue proposed and pending narrative review. Scenes 01-02: inspection notice and security briefing. Clinical coverage, audit summary and clinical scope are each completed before departure; no entry without coverage, approval and a life-safety assessment. The major corridor-loop reveal belongs to Chapter 4 Scene 09 and is not preempted. Scenes 03-04 (Descent, First actual entry into Ward Zero): the team goes down through the security wing's service hatch (the restricted lift's historic landing has no floor choice yet, so the screenplay's 'service elevator' is staged as the Facilities hatch and stair). Facilities clears the isolated circuit and opens the sealed corridor's end; inside the threshold the player compares maps, checks signage, documents the entrance and verifies the return route. Restricted patient records are not searched. Anomaly states stay at their ordinary defaults.",
 	"objectives": [
 		{
 			"id": "obj_ch3_notice",
@@ -36,10 +36,66 @@
 					}
 				]
 			}
+		},
+		{
+			"id": "obj_ch3_descent",
+			"text": "Go down with Hale and Facilities: through the ward entry, the maintenance room and the service hatch.",
+			"complete_when": {
+				"flag": "ch3_levels_noted"
+			}
+		},
+		{
+			"id": "obj_ch3_clearance",
+			"text": "Wait for Facilities to clear the isolated circuit at the end of the mechanical corridor.",
+			"complete_when": {
+				"flag": "ch3_threshold_opened"
+			}
+		},
+		{
+			"id": "obj_ch3_entry",
+			"text": "Inside the threshold: compare the maps, check the signage, document the entrance and verify the way back.",
+			"complete_when": {
+				"all": [
+					{
+						"flag": "ch3_entry_maps_compared"
+					},
+					{
+						"flag": "ch3_entry_signage_checked"
+					},
+					{
+						"flag": "ch3_entry_condition_documented"
+					},
+					{
+						"flag": "ch3_entry_route_verified"
+					}
+				]
+			}
 		}
 	],
-	"beats": [],
+	"beats": [
+		{
+			"id": "beat_ch3_open_threshold",
+			"when": {
+				"flag": "ch3_threshold_opened"
+			},
+			"actions": [
+				{
+					"world_state": {
+						"group": "sealed_corridor_end",
+						"state": "open"
+					}
+				}
+			]
+		}
+	],
 	"staff_lines": [
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"flag": "ch3_descent_started"
+			},
+			"text": "Ward entry, maintenance room, hatch. We meet you at the bottom of the stair."
+		},
 		{
 			"staff_id": "staff_hale",
 			"when": {
@@ -195,6 +251,165 @@
 					}
 				]
 			}
+		},
+		{
+			"id": "interaction_ch3_descent",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: going down",
+			"body": "Hale: Coverage confirmed, approval signed, life-safety check done. We go down through the maintenance hatch in the security wing. Facilities has the key; you're on the team pass.",
+			"when": {
+				"all": [
+					{
+						"flag": "ch3_question_confirmed"
+					},
+					{
+						"flag": "ch3_briefing_complete"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "go_down",
+					"label": "Go down with the team",
+					"flag": "ch3_descent_started",
+					"grants_access": [
+						"access_ward_entry",
+						"access_maintenance"
+					],
+					"response": "Team pass logged: ward entry and maintenance access for this inspection only. The restricted lift, W0-B and every uncleared door stay locked."
+				}
+			],
+			"unavailable_body": "Hale is busy.",
+			"expires_when": {
+				"flag": "ch3_descent_started"
+			}
+		},
+		{
+			"id": "interaction_ch3_levels",
+			"interactable_id": "SW_FuseBoard",
+			"title": "Bottom of the service stair",
+			"body": "The engineer logs the time and level at the stair foot. Motor noise from the plant, administrative labels, a maintenance inspection tag dated last month.\n\nEngineer: Renovations changed the levels. The old plan's 'ground' isn't our current ground.",
+			"when": {
+				"flag": "ch3_descent_started"
+			},
+			"options": [
+				{
+					"id": "wrong_level",
+					"label": "Log the level mismatch as something wrong with the building",
+					"response": "Engineer: It's a drawing convention, not a fault. Write down what's different, not what it means."
+				},
+				{
+					"id": "might_differ",
+					"label": "\"So the drawing might differ without anything being wrong.\"",
+					"flag": "ch3_levels_noted",
+					"response": "Engineer: Exactly.\n\nLogged: current and historic level datums differ; no conclusion drawn."
+				}
+			],
+			"unavailable_body": "A stairwell fuse board, isolated and tagged.",
+			"expires_when": {
+				"flag": "ch3_levels_noted"
+			},
+			"completed_body": "Inspection log: level datums differ between plan editions; no conclusion drawn."
+		},
+		{
+			"id": "interaction_ch3_clearance",
+			"interactable_id": "MC_FuseBoard_Isolated",
+			"title": "Facilities clearance",
+			"body": "The engineer tests the isolated circuit and the air at the end of the sealed corridor. Hale radios control.\n\nHale: This area isn't in clinical service. Keep within the marked route.",
+			"when": {
+				"flag": "ch3_levels_noted"
+			},
+			"options": [
+				{
+					"id": "go_ahead",
+					"label": "Go on ahead to the brick end while they test",
+					"response": "Hale: Nobody goes past this board until Facilities says so. Stay with us."
+				},
+				{
+					"id": "wait_clearance",
+					"label": "Wait for clearance, then go in together",
+					"flag": "ch3_threshold_opened",
+					"grants_access": [
+						"access_w0_threshold"
+					],
+					"response": "Engineer: Circuit isolated, air's fine, structure's sound. Opening the end now.\n\nThe infill at the end of the sealed corridor is taken down along a marked line. Behind it, a threshold room."
+				}
+			],
+			"unavailable_body": "An isolated circuit board. Facilities will check it.",
+			"expires_when": {
+				"flag": "ch3_threshold_opened"
+			},
+			"completed_body": "Clearance logged: circuit isolated, air and structure checked, threshold opened for the authorized team."
+		},
+		{
+			"id": "interaction_ch3_entry",
+			"interactable_id": "W0T_EnamelPlate",
+			"title": "The threshold",
+			"body": "Heavy doorframes, faded institutional paint, empty fixtures. A stencil reads LOWER LEVEL B. An enamel plate is fixed beside the inner door.\n\nYou: Was this designated W0-B?\n\nEngineer: The archival plan says so. We'll verify physical markers.",
+			"when": {
+				"flag": "ch3_threshold_opened"
+			},
+			"options": [
+				{
+					"id": "compare_maps",
+					"label": "Compare the current map with the historic plan",
+					"flag": "ch3_entry_maps_compared",
+					"response": "The historic plan shows this threshold and a corridor beyond; the current map shows nothing below the sealed corridor. Logged as a plan-edition difference."
+				},
+				{
+					"id": "signage",
+					"label": "Check the authorized signage and markers",
+					"flag": "ch3_entry_signage_checked",
+					"response": "Stencils read LOWER LEVEL B and SERVICE B. The plate's wording matches the archival plan's room schedule. No sign uses the W0-B code itself; the designation remains the plan's."
+				},
+				{
+					"id": "condition",
+					"label": "Document the entrance condition",
+					"flag": "ch3_entry_condition_documented",
+					"response": "Documented with the time: inner door closed, frame intact, dust undisturbed except along the team's marked line, one radiator, one lamp working."
+				},
+				{
+					"id": "return_route",
+					"label": "Verify the return route back to the sealed corridor",
+					"flag": "ch3_entry_route_verified",
+					"response": "Hale walks it with you: threshold, opened infill, sealed corridor, mechanical corridor, stair. One route, physically continuous, marked."
+				}
+			],
+			"unavailable_body": "An enamel plate beside a closed inner door.",
+			"expires_when": {
+				"all": [
+					{
+						"flag": "ch3_entry_maps_compared"
+					},
+					{
+						"flag": "ch3_entry_signage_checked"
+					},
+					{
+						"flag": "ch3_entry_condition_documented"
+					},
+					{
+						"flag": "ch3_entry_route_verified"
+					}
+				]
+			},
+			"completed_body": "Entry documented: plans compared, signage checked, condition recorded, return route verified."
+		},
+		{
+			"id": "interaction_ch3_records_refused",
+			"interactable_id": "OM_Document_ObservationLog",
+			"title": "Observation room records",
+			"body": "An old observation log lies on the desk.\n\nHale: Not ours to read. Historic patient records go to Records under its own authority, not into an inspection notebook.",
+			"when": {
+				"flag": "ch3_threshold_opened"
+			},
+			"options": [
+				{
+					"id": "read_anyway",
+					"label": "Open it anyway",
+					"response": "Hale: No. Leave it where it is. If it matters, Records will request it properly."
+				}
+			],
+			"unavailable_body": "An old observation log."
 		}
 	],
 	"sign_out": {
