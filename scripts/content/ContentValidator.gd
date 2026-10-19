@@ -199,6 +199,15 @@ static func check_references(documents: Dictionary) -> Array[String]:
 					_require_known(entry["clue_id"], clue_ids, "clue", file, "interactables[%d].clue_id" % i, errors)
 		for i: int in world["characters"].size():
 			var character: Dictionary = world["characters"][i]
+			if character.has("interaction_box"):
+				var box: Dictionary = character["interaction_box"]
+				for field: String in ["center", "size"]:
+					var values: Array = box[field]
+					var valid: bool = values.size() == 3
+					for value: float in values:
+						valid = valid and is_finite(value) and (value > 0.0 and value <= 2.0 if field == "size" else absf(value) <= 100.0)
+					if not valid:
+						errors.append("[%s] characters[%d].interaction_box.%s: expected three finite coordinates (size > 0 and <= 2 m; center within 100 m)." % [file, i, field])
 			var known: Dictionary = staff_ids if character["kind"] == "staff" else patient_ids
 			_require_known(character["character_id"], known, character["kind"], file,
 					"characters[%d].character_id" % i, errors)

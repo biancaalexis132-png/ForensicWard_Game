@@ -248,6 +248,20 @@ func _build_characters(root: Node3D, zone_id: String, entries: Array) -> void:
 		# Seat markers sit at seat height; characters stand on the floor plane.
 		character.global_transform = Transform3D(xf.basis.orthonormalized(), Vector3(xf.origin.x, 0.0, xf.origin.z)) \
 				* Transform3D(Basis.IDENTITY, visual_offset)
+		if entry.has("interaction_box"):
+			# A designated public talk point, not a second actor or a raycast bypass.
+			# Zone-local coordinates keep it independent of cosmetic model offsets.
+			var box: Dictionary = entry["interaction_box"]
+			var center: Array = box["center"]
+			var size: Array = box["size"]
+			var shape: CollisionShape3D = CollisionShape3D.new()
+			shape.name = "PublicTalkPoint"
+			var bounds: BoxShape3D = BoxShape3D.new()
+			bounds.size = Vector3(size[0], size[1], size[2])
+			shape.shape = bounds
+			var interaction: Interactable = character.get_node("Interactable")
+			interaction.add_child(shape)
+			shape.global_transform = Transform3D(root.global_basis, root.to_global(Vector3(center[0], center[1], center[2])))
 		_characters[character.character_id] = character
 
 

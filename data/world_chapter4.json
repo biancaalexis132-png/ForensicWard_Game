@@ -92,7 +92,8 @@
 		{
 			"marker": "MARK_Character_NurseBennett",
 			"kind": "staff",
-			"character_id": "staff_bennett"
+			"character_id": "staff_bennett",
+			"interaction_box": {"center": [-1.25, 1.65, -11.0], "size": [0.2, 0.6, 1.4]}
 		},
 		{
 			"marker": "MARK_Seat_Patient",
