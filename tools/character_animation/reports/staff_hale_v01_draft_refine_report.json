@@ -4,7 +4,7 @@
   "profile_sha256": "f8e54f1e601fd48ee39ee17ca94e6df298e4abfc927cef8aa59cde23eee9f219",
   "source": {
     "path": "build/cast/Marcus_Hale_v01_face.blend",
-    "sha256": "46d2081478fccd732ec598ce9a5f31159a5fa6cd82da18c17a9f7ae403cd7d3b"
+    "sha256": "c2e2f73b723f39b8ae55d7f72f846f26630e30c6d0a616e43448460723e08b8a"
   },
   "refinements": {
     "lids": {
@@ -28,19 +28,19 @@
       "legs": [
         {
           "side": "left",
-          "outer_radius_m": 0.0801,
-          "loop_vertices": 33
+          "outer_radius_m": 0.0844,
+          "loop_vertices": 34
         },
         {
           "side": "right",
-          "outer_radius_m": 0.0806,
+          "outer_radius_m": 0.0845,
           "loop_vertices": 30
         }
       ],
-      "new_faces": 126
+      "new_faces": 128
     },
     "shoes": {
-      "vertices_relaxed": 2444,
+      "vertices_relaxed": 2585,
       "iterations": 30
     }
   },
@@ -228,5 +228,5 @@
       }
     ]
   },
-  "triangles": 28492
+  "triangles": 28890
 }

@@ -214,6 +214,7 @@ def load_body() -> tuple[bpy.types.Object, bpy.types.Object, list, dict]:
     co *= scale
     body.data.vertices.foreach_set("co", co.ravel())
     body.data.update()
+    refit = refit_limb_joints(rig, co, weights, names, helper)
 
     eye_sockets = v3.find_eye_helpers(body, weights[:, names.index("HelperGeometry")] > 0)
     bm = bmesh.new()
@@ -234,8 +235,92 @@ def load_body() -> tuple[bpy.types.Object, bpy.types.Object, list, dict]:
         "base_floor_z_m": float(lowest),
         "normalise_scale": float(scale),
         "stored_rig_offset_z_m": round(dz, 4),
+        "limb_joints_refit_m": refit,
     }
     return body, rig, eye_sockets, info
+
+
+LIMB_JOINTS = (("thigh", "calf"), ("calf", "foot"), ("foot", "ball"), ("upperarm", "lowerarm"),
+               ("lowerarm", "hand"))
+
+
+def refit_limb_joints(rig, co: np.ndarray, weights: np.ndarray, names: list[str], helper: np.ndarray) -> dict:
+    """Put knees, ankles, toes, elbows and wrists where the mesh bends.
+
+    The stored rigs fit Naomi's mix; on the male base the shins and feet sit several
+    centimetres high. The skin that blends between two bones is a ring around the
+    joint, so its centroid is the joint. Children of a moved bone move with it.
+    """
+    moved = {}
+    v3.select_only(rig)
+    bpy.ops.object.mode_set(mode="EDIT")
+    ebs = rig.data.edit_bones
+    for side in ("l", "r"):
+        for parent, child in LIMB_JOINTS:
+            p, c = f"{parent}_{side}", f"{child}_{side}"
+            ring = ~helper & (weights[:, names.index(p)] > 0.2) & (weights[:, names.index(c)] > 0.2)
+            if ring.sum() < 12:
+                continue
+            target = Vector(co[ring].mean(axis=0).tolist())
+            shift = target - ebs[c].head
+            moved[c] = round(shift.length, 4)
+            ebs[p].tail = target
+            ebs[c].head = target
+            if child in ("ball",):
+                ebs[c].tail = ebs[c].tail + shift
+            if child == "hand":
+                ebs[c].tail = ebs[c].tail + shift
+                for eb in ebs:
+                    if eb.name.endswith(f"_{side}") and eb.name.startswith(HAND_PREFIXES[1:]):
+                        eb.head = eb.head + shift
+                        eb.tail = eb.tail + shift
+    bpy.ops.object.mode_set(mode="OBJECT")
+    return moved
+
+
+def seat_pose(body, rig, spec: dict) -> None:
+    """Thighs forward, shins down: a seated rest pose baked like relax_pose's arms."""
+    v3.select_only(rig)
+    bpy.ops.object.mode_set(mode="POSE")
+
+    def aim_bone(pbone, direction: Vector) -> None:
+        bpy.context.view_layer.update()
+        current = (pbone.tail - pbone.head).normalized()
+        rot = current.rotation_difference(direction.normalized()).to_matrix()
+        m = pbone.matrix.to_3x3().normalized()
+        pbone.rotation_mode = "QUATERNION"
+        pbone.rotation_quaternion = pbone.rotation_quaternion @ (m.inverted() @ rot @ m).to_quaternion()
+        bpy.context.view_layer.update()
+
+    drop = math.radians(float(spec.get("thigh_drop_deg", 6.0)))
+    spread = float(spec.get("knee_spread", 0.08))
+    back = math.radians(float(spec.get("shin_back_deg", 4.0)))
+    for side, sign in (("l", 1.0), ("r", -1.0)):
+        aim_bone(rig.pose.bones[f"thigh_{side}"], Vector((sign * spread, -math.cos(drop), -math.sin(drop))))
+        aim_bone(rig.pose.bones[f"calf_{side}"], Vector((0.0, math.sin(back), -math.cos(back))))
+    bpy.ops.object.mode_set(mode="OBJECT")
+    v3.select_only(body)
+    arm_mod = next(m for m in body.modifiers if m.type == "ARMATURE")
+    bpy.ops.object.modifier_apply(modifier=arm_mod.name)
+    v3.select_only(rig)
+    bpy.ops.object.mode_set(mode="POSE")
+    bpy.ops.pose.armature_apply(selected=False)
+    bpy.ops.object.mode_set(mode="OBJECT")
+    mod = body.modifiers.new("Armature", "ARMATURE")
+    mod.object = rig
+
+
+def lower_character(rig, meshes, dz: float) -> None:
+    m = Matrix.Translation((0.0, 0.0, -dz))
+    for obj in meshes:
+        obj.data.transform(m)
+        obj.data.update()
+    v3.select_only(rig)
+    bpy.ops.object.mode_set(mode="EDIT")
+    for eb in rig.data.edit_bones:
+        eb.head.z -= dz
+        eb.tail.z -= dz
+    bpy.ops.object.mode_set(mode="OBJECT")
 
 
 def scale_character(rig: bpy.types.Object, meshes: list[bpy.types.Object], s: float) -> None:
@@ -478,6 +563,9 @@ class BodyRegions:
         self.dom = np.array([dom[f.vertices[0]] for f in polys])
         self.hand = np.array([d.startswith(HAND_PREFIXES) for d in self.dom])
         self.neck = Vector(rig.data.bones["neck_01"].head_local)
+        # Height of the soles: 0 standing, the knee drop when seated.
+        feet = np.isin(self.dom, ["foot_l", "foot_r", "ball_l", "ball_r"])
+        self.sole_z = float(self.centres[feet, 2].min())
         self.bone = {b.name: (Vector(b.head_local), Vector(b.tail_local)) for b in rig.data.bones}
         bm = bmesh.new()
         bm.from_mesh(body.data)
@@ -579,8 +667,8 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
         elif kind == "trousers":
             waist = float(g.get("waist_z_m", 1.0))
             legs = np.isin(reg.dom, ["pelvis", "thigh_l", "thigh_r", "calf_l", "calf_r", "spine_01"]) | (
-                np.isin(reg.dom, ["foot_l", "foot_r"]) & (z > 0.10))
-            mask = legs & (z < waist) & (z > 0.085) & ~reg.hand & ~np.isin(reg.dom, list(ARM_PREFIXES))
+                np.isin(reg.dom, ["foot_l", "foot_r"]) & (z > 0.10 + reg.sole_z))
+            mask = legs & (z < waist) & (z > 0.085 + reg.sole_z) & ~reg.hand
             mask &= ~np.array([d.startswith(ARM_PREFIXES) for d in reg.dom])
             knee_z = reg.bone["calf_l"][0].z
             off = float(g.get("offset_m", 0.012))
@@ -595,12 +683,14 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
                         own = max(own, t(p) + 0.004)
                 return own
             obj = v3.shell_from_faces(PREFIX + g["name"], body, mask, fn, 14, 0.0022, mats[g["name"]])
-            straight_legs(obj, rig, float(g.get("hem_radius_m", 0.074)))
+            if not CFG.get("seated"):
+                straight_legs(obj, rig, float(g.get("hem_radius_m", 0.074)))
             covered |= reg.interior(mask, 0.04) & (z < waist - 0.03)
         elif kind == "shoes":
-            mask = np.isin(reg.dom, ["foot_l", "foot_r", "ball_l", "ball_r"]) & (z < float(g.get("top_z_m", 0.115)))
+            mask = np.isin(reg.dom, ["foot_l", "foot_r", "ball_l", "ball_r"]) & (
+                z < float(g.get("top_z_m", 0.115)) + reg.sole_z)
             obj = v3.shell_from_faces(PREFIX + g["name"], body, mask,
-                                      lambda p: 0.007 + max(0.0, 0.035 - p.z) * 0.12, 60, 0.003,
+                                      lambda p, s=reg.sole_z: 0.007 + max(0.0, 0.035 - (p.z - s)) * 0.12, 60, 0.003,
                                       mats[g["name"]])
             covered |= mask
         elif kind == "collar":
@@ -1235,6 +1325,9 @@ def write_profiles(metrics: dict, names: dict, scale_final: float, garments: dic
         },
         "known_limitations": CFG.get("known_limitations", []),
     }
+    if CFG.get("seated"):
+        # The hem rebuild assumes straight vertical legs.
+        del refine["refine"]["trousers"]
     lib = json.loads((ROOT / "tools/character_animation/clip_library.json").read_text())
     refine["expected"]["clips"] = [c["name"] for c in lib["clips"]]
     paths = []
@@ -1269,6 +1362,8 @@ def main() -> None:
     body, rig, eye_data, info = load_body()
     dz = v3.align_rig_to_mesh(body, rig)
     v3.relax_pose(body, rig)
+    if CFG.get("seated"):
+        seat_pose(body, rig, CFG["seated"])
     metrics = face_metrics(body, eye_data)
     weight_source = body.copy()
     weight_source.data = body.data.copy()
@@ -1317,6 +1412,12 @@ def main() -> None:
             v3.decimate(obj, ratio)
     scale_final = float(ch["height_m"]) / NOMINAL_HEIGHT_M
     scale_character(rig, meshes, scale_final)
+    drop = 0.0
+    if CFG.get("seated"):
+        # Seated: lower everything until the soles rest on the floor.
+        drop = min(min((o.matrix_world @ v.co).z for v in o.data.vertices) for o in meshes)
+        lower_character(rig, meshes, drop)
+    rig["cast_offset_z_m"] = -drop
     # transfer_face_shapes.py matches the face to the base mesh with these.
     rig["cast_base_scale"] = info["normalise_scale"] * scale_final
     rig["cast_base_floor_z_m"] = info["base_floor_z_m"]
@@ -1333,7 +1434,7 @@ def main() -> None:
     collection["character_id"] = ch["character_id"]
     collection["production_status"] = ch["production_status"]
     v3.export_glb(rig, meshes)
-    renders = [] if args.no_render else render_review(meshes, float(ch["height_m"]), head_centre * scale_final,
+    renders = [] if args.no_render else render_review(meshes, float(ch["height_m"]), head_centre * scale_final - Vector((0, 0, drop)),
                                                      ROOT / "assets/renders/characters", ver)
     for image in bpy.data.images:
         if image.name.startswith(PREFIX) and not image.packed_file and image.has_data:

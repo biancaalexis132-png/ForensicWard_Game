@@ -137,10 +137,12 @@ def main() -> None:
     weights = json.loads(rig["cast_macro_weights"])
     scale = float(rig["cast_base_scale"])
     floor = float(rig["cast_base_floor_z_m"])
+    offset = float(rig.get("cast_offset_z_m", 0.0))
     tb = profile["target_base"]
     target_base = base_positions(ROOT / tb["blend"], tb["body"], weights)
     target_base[:, 2] -= floor
     target_base *= scale
+    target_base[:, 2] += offset
 
     bpy.ops.wm.open_mainfile(filepath=str(source))
     rig = bpy.data.objects[profile["objects"]["rig"]]

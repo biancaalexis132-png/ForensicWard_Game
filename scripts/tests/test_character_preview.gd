@@ -39,7 +39,8 @@ func test_arguments_select_only_known_candidates() -> void:
 
 
 func test_cast_drafts_attach_with_shared_clips_and_face_morphs() -> void:
-	for id: String in ["staff_voss", "staff_hale"]:
+	for id: String in ["staff_voss", "staff_hale", "staff_rahman", "staff_facilities_tech", "pt_elias_ward",
+			"pt_mara_ellis"]:
 		var version: String = str(CharacterVisualPreview.DEFAULT_VERSION[id])
 		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path(id, version)), "%s draft GLB is imported" % id)
 		CharacterVisualPreview.set_requests({id: version})
