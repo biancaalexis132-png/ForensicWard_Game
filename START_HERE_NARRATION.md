@@ -9,7 +9,7 @@ This source project includes the existing campaign, all 36 unchanged approved re
 3. Import the extracted `project.godot`, wait for asset import, and run the project (F6 runs only the selected scene; use F5 for the game).
 4. Complete a chapter normally. Its illustrated narrated recap plays, followed by the normal chapter-completion panel, then the next-chapter choice. Chapter 5 leads to the campaign summary.
 
-This is a Godot source project, not a signed macOS application. No speech service, Python installation, API key or internet connection is needed during gameplay. Chapters 2–5 remain provisional content. Normal gameplay character models remain placeholders; realistic cast drafts are a separate unfinished workstream. Mac visual/performance acceptance remains pending.
+This is a Godot source project, not a signed macOS application. No speech service, Python installation, API key or internet connection is needed during gameplay. Chapters 2–5 remain provisional content. This cast-integration branch now uses the seven existing animated 3D character models during normal play across Chapters 1–5. Their visual quality and likenesses still await owner acceptance; see `docs/CAMPAIGN_CAST_INTEGRATION.md` and the included in-engine review images. Mac visual/performance acceptance remains pending.
 
 ## Recap controls
 
