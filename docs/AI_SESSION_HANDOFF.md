@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 2-5 title cutscenes (review-only) — 2026-10-19
+
+- `claude/chapter-cutscenes` at `1b83671`. Game tests on 1b83671: all passed (see PR). Full QA on the pre-rebase branch: 262/0, GLB 168/0. Mac check NOT completed (owner deferred). Mac not run. Next: Owner: look at the cards (--cutscene-preview=cs_ch0N_title) and decide approval/placement; Mac check later. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
+
 ## Claude Code Chapter 5 Scene 08 (Mara) — 2026-10-19
 
 - `claude/chapter5-mara` at `1fdaa90`. Full QA at 1fdaa90: all executed checks passed; game tests 260/0; GLB 168/0. Mac checks not run. Mac not run. Next: Mac checks on the owner's Mac (Remote Control session requested). Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
