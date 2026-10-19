@@ -20,6 +20,12 @@ Runtime `aee2b95bd353bf60b649e3485be5eadd497880f4` on `claude/chapter3-return`. 
 
 Tests: Full runner exit 0: game 244/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence.
 
+## Chapter 3 Scenes 09-14 debrief to closing photograph
+
+Runtime `095fef19331e8b72891d0027f2b7346274712b3c` on `claude/chapter3-report`. Debrief keeps statements separate and refuses the loop; Bennett returns the player to clinical work; the survey is requested without a repeat entry; two measurements stay unresolved with a protocol and the restriction; Voss keeps the originals; the photograph is logged with camera, lens and plan revision unverified (optional reflection line). Chapter 3 completes.
+
+Tests: Full runner exit 0: game 246/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence.
+
 ## Next exact task
 
-Chapter 3 Scenes 09-14: debrief, back to patient care, survey request, inconsistent measurements, inspection report, closing photograph; Chapter 3 completes.
+Chapter 4 (The Official Record): read CH04_OFFICIAL_RECORD_v2.md; Scene 09 major corridor-loop reveal needs explicit owner approval of the effect and F2 safety tests before it is built.
