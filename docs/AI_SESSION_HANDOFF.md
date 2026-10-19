@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 2 Scene 07 — 2026-10-19
+
+- Witness scene on `claude/chapter2-witness` at `3a919c972c4cbac795dd72844567516dae68a04f` (PR to main, stacked after #74). Full QA exit 0, game 224/0. Next: Scene 08 lobby-only inspection.
+
 ## Claude Code Chapter 2 Scene 06 — 2026-10-19
 
 - Hale's Door added on `claude/chapter2-hale` at `ffd5730f9d6182d26f104f9d340fad566587fdb8` (PR to main; stacked after #73). Full QA exit 0, game 220/0. Next: Scene 07 witness.
