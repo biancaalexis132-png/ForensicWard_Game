@@ -2,9 +2,9 @@
 	"schema_version": "0.1",
 	"chapter": "ch2",
 	"title": "Chapter 2: The Missing Hours",
-	"provisional": true,
-	"clinical_review_status": "PENDING",
-	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received. Scene 06 (Hale's Door): Hale scopes the question and the player requests one permitted follow-up. No access, escort or inspection is granted; Ward Zero entry stays in Chapter 3. Scene 07 (An Incomplete Witness): a Facilities technician recalls hearing the old lift bell during a scheduled shutdown but did not see anyone use it. Recorded as witness memory only; no clue, evidence or anomaly is created. Scene 08 (The Door That Wasn't Left Open): an escorted inspection of the restricted lift lobby doors from the security corridor, lobby only. The doors are observed closed, then found ajar after the team looked elsewhere; the escort did not watch continuously. No entry, trapping, portal or anomaly. The pass is returned to Hale afterwards. Scene 09 (A File for the Wrong Day): two archived export representations disagree about the access-event date; time-zone provenance is unreconciled. The player places it in the authorized incident record (not Mara's clinical note) and chooses one handling: formal audit escalation, preserving the separate source versions, or independent technical review. Original files are never changed; Mara's note stays independent and confidential. Scene 10 (Missing Hours, closing beat): the analyst can account for part of the timing mismatch but not the whole interval, and the report says so. Bennett, ending her shift, closes the chapter. Chapter 2 completes with only audit inconsistencies, source disagreement, an unobserved door movement and uncertain witness recollection on record; no confirmed supernatural event, no Ward Zero entry. The optional personal-contact message is not built: no personal-history system exists yet.",
+	"provisional": false,
+	"clinical_review_status": "APPROVED",
+	"notes": "Playable opening and nonclinical source-review continuation from revised Chapter 2 Scenes 01–02. Owner authorized Chapter 2 implementation; proposed dialogue remains pending narrative review. No new clinical findings, Mara interview, Ward Zero entry or supernatural effect. Work ownership is not clinical completion. The source-question review ends with an unresolved follow-up memo, not a received source packet or completed reconciliation. Both follow-up choices retain all missing information. No new exact event time or approved clinical fact is authored. Scene 04 (Voss institutional review) records factual scope, missing permissions and an authorized follow-up; the pending source request, credential audit and W0-B restriction are unchanged. An urgent safety escalation is feedback-only because no new clinical finding is documented. Scene 03 (Mara Ellis) is owner-approved (2026-10-18) and runs after Scene 04 in this build: clinical interview through the existing dialogue system, EHR note, then a separate referral of her date question to Records. No diagnosis, medication, forensic opinion or treatment effect; Mara is not an evidence source for the hospital inquiry. Scene 05 (working explanation) logs clock skew, migrated location codes, export sorting and identifier collision as untested candidate explanations and chooses one next check; every item stays open because no source packet has been received. Scene 06 (Hale's Door): Hale scopes the question and the player requests one permitted follow-up. No access, escort or inspection is granted; Ward Zero entry stays in Chapter 3. Scene 07 (An Incomplete Witness): a Facilities technician recalls hearing the old lift bell during a scheduled shutdown but did not see anyone use it. Recorded as witness memory only; no clue, evidence or anomaly is created. Scene 08 (The Door That Wasn't Left Open): an escorted inspection of the restricted lift lobby doors from the security corridor, lobby only. The doors are observed closed, then found ajar after the team looked elsewhere; the escort did not watch continuously. No entry, trapping, portal or anomaly. The pass is returned to Hale afterwards. Scene 09 (A File for the Wrong Day): two archived export representations disagree about the access-event date; time-zone provenance is unreconciled. The player places it in the authorized incident record (not Mara's clinical note) and chooses one handling: formal audit escalation, preserving the separate source versions, or independent technical review. Original files are never changed; Mara's note stays independent and confidential. Scene 10 (Missing Hours, closing beat): the analyst can account for part of the timing mismatch but not the whole interval, and the report says so. Bennett, ending her shift, closes the chapter. Chapter 2 completes with only audit inconsistencies, source disagreement, an unobserved door movement and uncertain witness recollection on record; no confirmed supernatural event, no Ward Zero entry. After Bennett leaves, an optional personal message arrives (partner, friend, family or the player's own reminder, or left until later); the choice is the player's moderate personal history and returns in Chapter 4's personal call. No patient or work detail is shared. The chapter fades out over an ordinary hospital exterior, then the recap plays.",
 	"objectives": [
 		{
 			"id": "obj_ch2_handoff",
@@ -287,6 +287,13 @@
 			"id": "obj_ch2_hours_bennett",
 			"text": "Nurse Bennett is ending her shift. Catch her before she goes.",
 			"complete_when": {
+				"flag": "ch2_shift_ended"
+			}
+		},
+		{
+			"id": "obj_ch2_end_of_shift",
+			"text": "Collect your things at the nursing station and head home.",
+			"complete_when": {
 				"flag": "chapter_complete"
 			}
 		}
@@ -419,6 +426,114 @@
 		}
 	],
 	"interactions": [
+		{
+			"id": "interaction_ch2_personal_message",
+			"interactable_id": "NS_NoticeBoard",
+			"title": "Your phone",
+			"body": "Your phone buzzes as you collect your things at the nursing station. Whatever it is, nothing from today's work goes into the reply: no patient, no record, no ward.",
+			"when": {
+				"flag": "ch2_shift_ended"
+			},
+			"options": [
+				{
+					"id": "overshare",
+					"label": "Reply with what happened on the ward today",
+					"response": "You stop before you send it. A personal message is not the place for records, patients or the inquiry, and nothing from today is yours to share."
+				},
+				{
+					"id": "partner",
+					"label": "A message from your partner",
+					"flag": "ch2_contact_partner",
+					"next_interaction": "interaction_ch2_fade_out",
+					"response": "Partner: Long one? Call me when you're out. Dinner's waiting either way.\n\nYou: Leaving now. Can't talk about the day, but I'm glad you're there."
+				},
+				{
+					"id": "friend",
+					"label": "A message from a friend",
+					"flag": "ch2_contact_friend",
+					"next_interaction": "interaction_ch2_fade_out",
+					"response": "Friend: Still alive in there? Drinks this week, no shop talk.\n\nYou: Still alive. Drinks sound good. No shop talk is a promise."
+				},
+				{
+					"id": "family",
+					"label": "A message from family",
+					"flag": "ch2_contact_family",
+					"next_interaction": "interaction_ch2_fade_out",
+					"response": "Family: Just checking you got home all right. Ring when you can.\n\nYou: Heading home now. I'll ring tomorrow."
+				},
+				{
+					"id": "self",
+					"label": "Your own reminder",
+					"flag": "ch2_contact_self",
+					"next_interaction": "interaction_ch2_fade_out",
+					"response": "Reminder (set by you): Leave work at work. Write tomorrow's list, then stop.\n\nYou write three lines for tomorrow, then put the phone away."
+				},
+				{
+					"id": "later",
+					"label": "Leave it for now",
+					"flag": "ch2_contact_later",
+					"next_interaction": "interaction_ch2_fade_out",
+					"response": "You put the phone in your pocket. It can wait until you're home."
+				}
+			],
+			"unavailable_body": "Nothing new on the board.",
+			"expires_when": {
+				"any": [
+					{
+						"flag": "ch2_contact_partner"
+					},
+					{
+						"flag": "ch2_contact_friend"
+					},
+					{
+						"flag": "ch2_contact_family"
+					},
+					{
+						"flag": "ch2_contact_self"
+					},
+					{
+						"flag": "ch2_contact_later"
+					}
+				]
+			}
+		},
+		{
+			"id": "interaction_ch2_fade_out",
+			"interactable_id": "NS_NoticeBoard",
+			"title": "End of shift",
+			"body": "The staff entrance lets you out into the evening. From the car park Ashcroft is just a hospital: lit windows, a bus at the stop, the night staff arriving.",
+			"when": {
+				"any": [
+					{
+						"flag": "ch2_contact_partner"
+					},
+					{
+						"flag": "ch2_contact_friend"
+					},
+					{
+						"flag": "ch2_contact_family"
+					},
+					{
+						"flag": "ch2_contact_self"
+					},
+					{
+						"flag": "ch2_contact_later"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "head_out",
+					"label": "Head out",
+					"flag": "chapter_complete",
+					"response": "You head home.\n\n[b]End of Chapter 2: The Missing Hours[/b]\nOn record: audit inconsistencies, source disagreement, an unobserved door movement and an uncertain witness recollection. W0-B remains locked; any inspection needs proper authorization."
+				}
+			],
+			"unavailable_body": "Nothing new on the board.",
+			"expires_when": {
+				"flag": "chapter_complete"
+			}
+		},
 		{
 			"id": "interaction_ch2_worklist",
 			"interactable_id": "NS_NoticeBoard",
@@ -1370,13 +1485,14 @@
 				{
 					"id": "cant_reconcile",
 					"label": "\"We confirmed there are records we can't reconcile yet.\"",
-					"flag": "chapter_complete",
-					"response": "Bennett: Then you're doing what you're supposed to. Don't decide the answer first.\n\nShe heads for the staff entrance.\n\n[b]End of Chapter 2: The Missing Hours[/b]\nOn record: audit inconsistencies, source disagreement, an unobserved door movement and an uncertain witness recollection. W0-B remains locked; any inspection needs proper authorization."
+					"flag": "ch2_shift_ended",
+					"response": "Bennett: Then you're doing what you're supposed to. Don't decide the answer first.\n\nShe heads for the staff entrance.",
+					"next_interaction": "interaction_ch2_personal_message"
 				}
 			],
 			"unavailable_body": "Bennett is busy.",
 			"expires_when": {
-				"flag": "chapter_complete"
+				"flag": "ch2_shift_ended"
 			}
 		}
 	],

@@ -268,6 +268,18 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			if interaction.has("expires_when"):
 				StoryLogic.check_condition(interaction["expires_when"], path + ".expires_when", refs, errors)
 			_collect_ids(interaction["options"], file, "interactions[%d].options" % i, errors)
+		var interaction_ids: Dictionary = {}
+		for interaction: Dictionary in interactions:
+			interaction_ids[interaction["id"]] = true
+		for i: int in interactions.size():
+			var options: Array = interactions[i]["options"]
+			for j: int in options.size():
+				if not options[j].has("next_interaction"):
+					continue
+				_require_known(options[j]["next_interaction"], interaction_ids, "interaction", file,
+						"interactions[%d].options[%d].next_interaction" % [i, j], errors)
+				if options[j]["next_interaction"] == interactions[i]["id"]:
+					errors.append("[%s] interactions[%d].options[%d].next_interaction: an interaction cannot follow itself." % [file, i, j])
 		var sign_out: Dictionary = story["sign_out"]
 		for j: int in sign_out["handover_patients"].size():
 			_require_known(sign_out["handover_patients"][j], patient_ids, "patient", file, "sign_out.handover_patients[%d]" % j, errors)

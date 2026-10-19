@@ -1,5 +1,16 @@
 # AI progress tracker
 
+## Owner approvals and content gaps — Claude Code (cloud), 2026-10-19
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Record cast, narrative and clinical approvals | Done, draft PR | Bi's message and "Approve all" card | `data/campaign.json`, `data/story_chapter*.json`, `data/clinical_rules.json`, `data/dialogue.json`, `data/patients.json`, `docs/clinical_review_log.md` | Full QA on `04fdb8c` | Owner merges |
+| Chapter 2 personal message and fade-out | Done, draft PR | | `data/story_chapter2.json`, `ChapterDirector.gd` (`next_interaction`) | `test_chapter2_missing_hours.gd` | Owner merges |
+| Chapter 4 Scene 04 Mara follow-up (optional) | Done, draft PR; wording pending clinical review | | `data/story_chapter4.json`, `data/world_chapter4.json` | `test_chapter4_optional_scenes.gd` | Executive producer reviews |
+| Chapter 4 Scene 06 personal call (optional) | Done, draft PR | Chapter 2 contact | same | same | Owner merges |
+| Chapter 3 optional Mara follow-up | Not started | Authored lines and clinical approval | | | Owner decides |
+| Mac playthrough and export presets | Not started | Owner's Mac | | | Owner / local thread |
+
 ## Static graphic-novel cutscenes — Claude Code (cloud), 2026-10-19
 
 | Task | State | Dependencies | Paths | Validation | Next action |
