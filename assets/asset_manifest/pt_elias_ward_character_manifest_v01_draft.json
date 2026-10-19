@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Elias_Ward_v01_face.blend",
-      "sha256": "e5ac0c44f5f398cae3bd1a787130965016901cbc226ab4bfc7d68ae0b831edca",
+      "sha256": "2fd85b97e99af60df5c1f603040f003cd40eadf9846b20457623e4b8c60773d4",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
