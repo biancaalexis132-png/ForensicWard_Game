@@ -490,6 +490,14 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-10-19 · Claude Code · Owner approvals and content gaps
+
+- **Branch:** `claude/owner-approvals-content-gaps` from main `572bf40`, code `04fdb8c` (pushed; draft PR). Not merged by the agent.
+- **Owner:** Bi approved all cast models and the narrative review; chose "Approve all" for the four pending clinical items on a card (the typed sentence was cut off).
+- **Done:** approvals recorded; Chapter 2 personal message and fade-out; Chapter 4 Scene 04 Mara follow-up (pending clinical review of the new wording) and Scene 06 personal call; `next_interaction` option; `present_when` re-check after story choices.
+- **Tests:** `python3 tests/qa/run.py` on `04fdb8c` exit 0: game 293/0, GLB 168/0, audio 412/0, QA 19/0/0, CH1 sequence 61.8 s. Mac not run.
+- **Next:** see `docs/handoffs/2026-10-19_claude_approvals_content_gaps.md`. The cast v02 work is on `claude/cast-hair-clothing`.
+
 
 
 
