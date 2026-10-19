@@ -1384,5 +1384,6 @@
 		"documented_trust": [],
 		"undocumented_trust": [],
 		"undocumented_message": "Outstanding clinical review still requires an appropriate handoff."
-	}
+	},
+	"next_chapter": "ch3"
 }

@@ -411,5 +411,12 @@ func _on_story_option_selected(interaction_id: String, option_id: String) -> voi
 				TrustManager.revoke_access(option["revokes_access"])
 			if option.has("flag"):
 				set_flag(option["flag"])
-			EventBus.ui_panel_requested.emit("info", {"title": interaction["title"], "body": option["response"]})
+			var panel: Dictionary = {"title": interaction["title"], "body": option["response"]}
+			# A choice that completes the chapter offers the next one, as sign-out does.
+			if option.get("flag", "") == StoryLogic.CHAPTER_COMPLETE_FLAG \
+					and ContentRegistry.is_chapter_playable(str(_story().get("next_chapter", ""))):
+				_active_interaction = "continue:" + _chapter_id
+				panel["interaction_id"] = _active_interaction
+				panel["options"] = [{"id": "continue", "label": "Return for the next day shift"}]
+			EventBus.ui_panel_requested.emit("info", panel)
 			return
