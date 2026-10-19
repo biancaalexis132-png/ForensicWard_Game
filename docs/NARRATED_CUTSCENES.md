@@ -14,6 +14,8 @@ The current work extends the existing CutsceneDirector and AudioDirector; it doe
 | 4 The Official Record | chapter_completed(ch4) | cs_ch04_static_gn | 8 | mus_procedure |
 | 5 Beyond the Lines | chapter_completed(ch5) | cs_ch05_static_gn | 7 | mus_compassion |
 
+Measured voice totals are approximately 52 seconds (Chapter 1), 49 (Chapter 2), 50 (Chapter 3), 64 (Chapter 4), and 61 (Chapter 5, depending on ending). Panel tails add a few seconds; pause, skip and caption-only reading holds can change the total.
+
 The existing completion panel is created underneath the recap. The recap owns mouse/keyboard input and pauses the world clock. On completion or skip, its single cleanup path exposes the normal completion panel; the player then chooses the next chapter. Chapter 5 returns to the campaign summary. Existing chapter-opening title cards remain separate and unvoiced. Never trigger a recap at an incomplete chapter slice or use narration to grant story progress.
 
 ## Player controls

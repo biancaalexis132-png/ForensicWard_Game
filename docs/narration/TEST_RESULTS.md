@@ -25,3 +25,20 @@ Initial cross-suite input/camera failures were reproduced and fixed in the new t
 Owner approval: “yes” to the 18-second Chapter 1 replacement sample, 19 October 2026. All production uses Piper LJ Speech through Sherpa-ONNX 1.13.8, speed 0.92. No ElevenLabs recording is shipped or mixed into the replacement narration. Exact model/settings/source hashes are recorded in the runtime voice metadata and per-clip provenance.
 
 Final asset and runtime check results are recorded after generation below. The standard runner's 150-second cap remains unchanged; any extended suite run is reported separately. Headless playback validates state, timing and asset loading; it does not establish audible mix or Mac visual acceptance. Realistic cast integration remains unfinished.
+
+## Shipped replacement verification
+
+Frozen recording/code commit: `8ebcf4cc949b37d5d49d41d6230d46d34f96933c` on `codex/cutscene-narration-production`. Subsequent edits are documentation only.
+
+- Full FFmpeg decoding and signal checks: **38/38**, non-silent, finite levels, no sample clipping; exact measured cue ends. Voice audio totals **297.3 seconds** across all alternative tracks. Details in `MEDIA_VERIFICATION.json`.
+- Strict delivery gate: **38/38 voices, 36 approved artwork hashes, 0 errors**.
+- In-engine shipped-media smoke: **38 unique tracks, 0 failures** across all panels and three Chapter 5 variants. Checks actual audio start, subtitle statement, and stream length on the assigned panel; no substitute fixture used.
+- Full unchanged gameplay suite (420-second outer allowance): **280 passed, 0 failed**, exit 0. Covers save/load, progression, skip/replay/toggle, pause/recovery and reduced motion via the retained narration regressions.
+- Local standard runner: JSON **6/0**, audio manifest **4/0**, cutscene contracts **6/0**, music pipeline **3/0**, import pass, pharmacology **0 failures**, gameplay QA **19/0/0**, GLB **168/0**; then its unchanged 150-second campaign-suite cap timed out. The standalone full suite above completed successfully; the local standard runner is not represented as passing.
+- Hosted **Godot headless validation passed** on the exact recording commit: https://github.com/biancaalexis132-png/ForensicWard_Game/actions/runs/39313971653 . This is an observed completed/success run, including the standard runner.
+- Hosted log evidence: **280 gameplay tests / 0 failures**, **412 audio checks / 0 failures**, `CH1_SEQUENCE_DONE` at 61.5 seconds, and `All executed checks passed`. The independent local audio wrapper used 120 seconds and timed out; the hosted unchanged standard runner completed that same suite within its 150-second cap. No local audio pass is claimed for the interrupted run.
+- All 38 SRT statements exactly match the runtime scripts and recording queue; all 38 provenance entries identify the same approved replacement voice.
+
+Local evidence: `/workspace/work/local-tts/final-checks.log` and `production-smoke.log` (disposable; results summarized here). Mac Forward+/Metal appearance/performance and full artistic listening/mix acceptance remain untested. Narrator/pacing sample approval is recorded; it is not a claim of full production-mix approval. Normal campaign character models remain placeholders.
+
+Local standalone Chapter 1 sequence also completed at **66.6 seconds**, exit 0. The local wrapper reports an overall failure because of its separate 120-second audio timeout; the successful hosted standard run is the complete-suite result.

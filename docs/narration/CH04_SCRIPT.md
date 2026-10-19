@@ -1,6 +1,6 @@
 # Chapter 4 — panel narration
 
-Production script; approved narrator/style. Audio export and listening checks remain pending.
+Production script; owner-approved replacement narrator/style. Recordings, measured subtitle cues and SRTs are included. Mac listening review remains pending.
 
 ## p01
 
