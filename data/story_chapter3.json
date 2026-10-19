@@ -1,0 +1,209 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch3",
+	"title": "Chapter 3: Beneath the Hospital",
+	"provisional": true,
+	"clinical_review_status": "PENDING",
+	"notes": "Revised CH03 (Authorized Inspection and Verification). Owner-approved first-entry premise; new dialogue proposed and pending narrative review. Scenes 01-02: inspection notice and security briefing. Clinical coverage, audit summary and clinical scope are each completed before departure; no entry without coverage, approval and a life-safety assessment. The major corridor-loop reveal belongs to Chapter 4 Scene 09 and is not preempted.",
+	"objectives": [
+		{
+			"id": "obj_ch3_notice",
+			"text": "Naomi has an inspection notice for you at the nursing station. Settle your clinical work before you go.",
+			"complete_when": {
+				"all": [
+					{
+						"flag": "ch3_coverage_confirmed"
+					},
+					{
+						"flag": "ch3_audit_summary_read"
+					},
+					{
+						"flag": "ch3_scope_clarified"
+					}
+				]
+			}
+		},
+		{
+			"id": "obj_ch3_briefing",
+			"text": "Attend Marcus Hale's security briefing at the psychiatrist's office.",
+			"complete_when": {
+				"all": [
+					{
+						"flag": "ch3_question_confirmed"
+					},
+					{
+						"flag": "ch3_briefing_complete"
+					}
+				]
+			}
+		}
+	],
+	"beats": [],
+	"staff_lines": [
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"all": [
+					{
+						"flag": "ch3_question_confirmed"
+					},
+					{
+						"flag": "ch3_briefing_complete"
+					}
+				]
+			},
+			"text": "Stay with the team, keep to the marked route, and we all come back the way we went in."
+		},
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"not": {
+					"all": [
+						{
+							"flag": "ch3_coverage_confirmed"
+						},
+						{
+							"flag": "ch3_audit_summary_read"
+						},
+						{
+							"flag": "ch3_scope_clarified"
+						}
+					]
+				}
+			},
+			"text": "Briefing's when your ward is covered, Doctor. Not before."
+		},
+		{
+			"staff_id": "staff_hale",
+			"when": {
+				"chapter_completed": "ch2"
+			},
+			"text": "Maps are on the desk when you're ready."
+		},
+		{
+			"staff_id": "staff_bennett",
+			"when": {
+				"all": [
+					{
+						"flag": "ch3_coverage_confirmed"
+					},
+					{
+						"flag": "ch3_audit_summary_read"
+					},
+					{
+						"flag": "ch3_scope_clarified"
+					}
+				]
+			},
+			"text": "Your patients are covered. Go read your old floor plans."
+		}
+	],
+	"interactions": [
+		{
+			"id": "interaction_ch3_notice",
+			"interactable_id": "character:staff_bennett",
+			"title": "Naomi Bennett: inspection notice",
+			"body": "Bennett: You've got an inspection briefing. Apparently your day job now includes reading old floor plans.\n\nThe notice: Security and Facilities will inspect the historic-access discrepancy. You attend as clinical liaison for the transfer workflow. Clinical coverage must be in place before departure.",
+			"when": {
+				"chapter_completed": "ch2"
+			},
+			"options": [
+				{
+					"id": "coverage",
+					"label": "Confirm who covers your patients while you're away",
+					"flag": "ch3_coverage_confirmed",
+					"response": "Bennett: The ward doctor has your list and I'm on until handover. Anything urgent goes to them, not to you underground.\n\nClinical coverage confirmed."
+				},
+				{
+					"id": "audit_summary",
+					"label": "Read the audit summary attached to the notice",
+					"flag": "ch3_audit_summary_read",
+					"response": "The summary lists what Chapter 2 left open: an inactive credential in the transfer-request audit, export versions that disagree on a date, an unwatched door found ajar and a witness who heard but did not see. Nothing in it is resolved."
+				},
+				{
+					"id": "scope",
+					"label": "\"Only the part related to clinical transfers.\"",
+					"flag": "ch3_scope_clarified",
+					"response": "Bennett: Good. We'd hate to lose another psychiatrist to Facilities.\n\nScope recorded: you attend for the transfer-workflow question only. The building survey belongs to Security and Facilities."
+				},
+				{
+					"id": "skip_coverage",
+					"label": "Leave now and sort out coverage later",
+					"response": "Bennett: No. Nobody leaves this ward uncovered, inspection or not."
+				}
+			],
+			"unavailable_body": "Bennett is busy.",
+			"expires_when": {
+				"all": [
+					{
+						"flag": "ch3_coverage_confirmed"
+					},
+					{
+						"flag": "ch3_audit_summary_read"
+					},
+					{
+						"flag": "ch3_scope_clarified"
+					}
+				]
+			}
+		},
+		{
+			"id": "interaction_ch3_briefing",
+			"interactable_id": "character:staff_hale",
+			"title": "Marcus Hale: security briefing",
+			"body": "Hale has the current and historic maps side by side. A Facilities engineer has marked the approved areas, the radio channel and the stop conditions.\n\nHale: This is an authorized inspection, not a tour. Nobody enters alone; nobody opens an uncleared door.\n\nEngineer: The old drawings weren't consistently revised. We'll establish what exists before we draw conclusions.",
+			"when": {
+				"all": [
+					{
+						"flag": "ch3_coverage_confirmed"
+					},
+					{
+						"flag": "ch3_audit_summary_read"
+					},
+					{
+						"flag": "ch3_scope_clarified"
+					}
+				]
+			},
+			"options": [
+				{
+					"id": "ask_question",
+					"label": "\"What is the specific clinical question?\"",
+					"flag": "ch3_question_confirmed",
+					"response": "Hale: Whether an obsolete code is still being routed through patient-transfer software. The building survey is ours."
+				},
+				{
+					"id": "go_ahead",
+					"label": "Offer to go ahead and check the W0-B door yourself",
+					"response": "Hale: Read the first line again. Nobody enters alone."
+				},
+				{
+					"id": "confirm_route",
+					"label": "Review the boundaries, stop conditions and return route",
+					"flag": "ch3_briefing_complete",
+					"response": "Boundaries reviewed: marked route only; stop on any loss of contact, unsafe air or structure; return by the entry sequence logged on the way in.\n\nHale: Entry approval and the Facilities life-safety check are signed. We go down together from the service lift."
+				}
+			],
+			"unavailable_body": "Hale is waiting for your ward to be covered.",
+			"expires_when": {
+				"all": [
+					{
+						"flag": "ch3_question_confirmed"
+					},
+					{
+						"flag": "ch3_briefing_complete"
+					}
+				]
+			}
+		}
+	],
+	"sign_out": {
+		"title": "Clinical handoff",
+		"handover_patients": [
+			"pt_elias_ward"
+		],
+		"documented_trust": [],
+		"undocumented_trust": [],
+		"undocumented_message": "Outstanding clinical review still requires an appropriate handoff."
+	}
+}

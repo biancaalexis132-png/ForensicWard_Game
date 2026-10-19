@@ -37,6 +37,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Chapter 3 Scenes 01-02 notice and briefing
+
+- **Branch / verified runtime:** `claude/chapter3-briefing` (stacked on claude/chapter2-missing-hours / PR #78), `4c1bb95df4dc22781005a335222398a3e836b845`.
+- **Delivered:** Chapter 3 marked playable (campaign) with new story_chapter3.json/world_chapter3.json. Chapter 2 next_chapter ch3; a story choice that completes a chapter now offers 'Return for the next day shift' (ChapterDirector), and NS_Clock is Chapter 2's sign-out so completed saves can continue. Bennett's inspection notice: coverage, audit summary and clinical scope all required (leaving uncovered is refused). Hale's briefing: clinical question plus boundaries/stop conditions/return route; going alone is refused. No access, Ward Zero entry or clinical change. test_campaign now expects ch3 playable (ch4/ch5 still planned; planned-chapter fixture moved to ch4). New test_chapter3_briefing.gd.
+- **Executed:** Full runner exit 0: game 238/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run.
+- **Next exact task:** Chapter 3 Scenes 03-04: descent and first authorized Ward Zero entry. Wire zone_ward_zero (Stage 6 env exists, zone placeholder) and the W0-B route; Hale and Facilities engineer escort; marked route only. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
 ### 2026-10-19 · Claude Code · Chapter 2 Scene 10 Missing Hours (chapter close)
 
 - **Branch / verified runtime:** `claude/chapter2-missing-hours` from `claude/chapter2-wrong-day` (PR #77 open), `1bb194df802b68591f9e7ab8a7939754e91bd8e3`.

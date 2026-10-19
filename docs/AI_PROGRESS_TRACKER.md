@@ -13,6 +13,7 @@
 | Scene 08 lobby inspection | Done, draft PR | Scene 07; owner chose escorted pass | `data/story_chapter2.json`, `data/world_chapter2.json`, `TrustManager`, `AuthoredWorld`, `scripts/tests/test_chapter2_lobby.gd` | Full QA on `4669c7c`: game 229/0 | Owner review |
 | Scene 09 wrong-day file | Done, draft PR | Scene 08 | `data/story_chapter2.json`, `scripts/tests/test_chapter2_wrong_day.gd` | Full QA on `1481c7e`: game 233/0 | Owner review |
 | Scene 10 missing hours (chapter close) | Done, draft PR | Scene 09 | `data/story_chapter2.json`, `ChapterDirector.gd`, `scripts/tests/test_chapter2_missing_hours.gd` | Full QA on `1bb194d`: game 235/0 | Owner review; personal message and fade-out not built |
+| Chapter 3 Scenes 01-02 notice and briefing | Done, draft PR | previous slice | see dedicated handoff | Full runner exit 0: game 238/0, GLB 161/0, audio 336/0, QA 1 | Owner review |
 | Mac visual/performance | Not run | Owner's Mac | | | Owner / local thread |
 
 ## Dialogue visemes — Codex, 2026-10-18

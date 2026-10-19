@@ -39,7 +39,8 @@ func test_campaign_names_ashcroft_and_five_chapters() -> void:
 	check_eq(ContentRegistry.get_start_chapter_id(), "ch1", "starts in chapter 1")
 	check(ContentRegistry.is_chapter_playable("ch1"), "chapter 1 playable")
 	check(ContentRegistry.is_chapter_playable("ch2"), "chapter 2 opening is playable")
-	for chapter_id: String in ["ch3", "ch4", "ch5"]:
+	check(ContentRegistry.is_chapter_playable("ch3"), "chapter 3 is playable")
+	for chapter_id: String in ["ch4", "ch5"]:
 		check(not ContentRegistry.is_chapter_playable(chapter_id), "%s ships no story yet" % chapter_id)
 		check(ContentRegistry.get_story(chapter_id).is_empty(), "%s has no story text in res://data" % chapter_id)
 	check_eq(ContentRegistry.get_story(), ContentRegistry.get_story("ch1"), "default story is the start chapter")
@@ -83,8 +84,8 @@ func test_id_without_its_prefix_fails() -> void:
 func test_planned_chapter_cannot_ship_a_story() -> void:
 	var problems: Array[String] = []
 	var docs: Dictionary = ContentRegistry.collect_documents(ContentRegistry.DATA_DIR, problems)
-	var chapter: Dictionary = docs["campaign"]["data"]["chapters"][2]
-	chapter["story"] = "story_ch3_fixture.json"
+	var chapter: Dictionary = docs["campaign"]["data"]["chapters"][3]
+	chapter["story"] = "story_ch4_fixture.json"
 	var report: Dictionary = ContentValidator.validate_documents(docs)
 	check_contains(report["errors"], "a planned chapter ships no story or world yet", "planned stays empty")
 
