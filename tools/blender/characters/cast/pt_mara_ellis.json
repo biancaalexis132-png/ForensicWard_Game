@@ -5,14 +5,22 @@
     "file_stem": "Mara_Ellis",
     "prefix": "Mara_",
     "role": "Patient",
-    "asset_version": "v01",
+    "asset_version": "v02",
     "height_m": 1.62,
-    "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+    "production_status": "OWNER_APPROVED",
     "canon_basis": "docs/design/CHARACTER_VISUAL_CANON.md: woman, around 37, introduced in Chapter 2 (decided); simple top, cardigan, soft trousers, slip-ons, low ponytail (provisional proposal); dossier still needs reconciling",
     "draft_choices": [
       "Ethnicity, skin tone, face and height are draft choices; canon leaves them open.",
       "Seated rest pose for the interview chair; only the shared neutral clips."
-    ]
+    ],
+    "approval": {
+      "approved": true,
+      "by": "Bi (project owner)",
+      "date": "2026-10-19",
+      "quote": "I approve all cast models",
+      "where": "ForensicWard project thread",
+      "scope": "Likeness, body, age, colours and outfit design of the v01 draft; v02 improves hair and clothing quality only."
+    }
   },
   "source": {
     "blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
@@ -86,7 +94,8 @@
     "tail_radius_m": [
       0.018,
       0.008
-    ]
+    ],
+    "cards": {}
   },
   "garments": [
     {
@@ -108,6 +117,12 @@
       "texture": {
         "period": 170,
         "roughness": 0.8
+      },
+      "detail": {
+        "neck_band": {
+          "width_m": 0.01,
+          "lift_m": 0.001
+        }
       }
     },
     {
@@ -135,6 +150,20 @@
         "roughness": 0.93,
         "rib": 0.7,
         "specular": 0.2
+      },
+      "detail": {
+        "front_band": {
+          "width_m": 0.028
+        },
+        "cuff": {
+          "width_m": 0.045
+        },
+        "trim": {
+          "rib": 1.0,
+          "period": 44,
+          "tone": 0.94
+        },
+        "drape_folds_m": 0.0018
       }
     },
     {
@@ -146,6 +175,9 @@
         "period": 110,
         "roughness": 0.9,
         "rib": 0.3
+      },
+      "detail": {
+        "fold_scale": 1.2
       }
     },
     {

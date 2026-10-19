@@ -5,14 +5,22 @@
     "file_stem": "Leila_Rahman",
     "prefix": "Rahman_",
     "role": "Consultant Psychiatrist",
-    "asset_version": "v01",
+    "asset_version": "v02",
     "height_m": 1.63,
-    "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+    "production_status": "OWNER_APPROVED",
     "canon_basis": "docs/design/CHARACTER_VISUAL_CANON.md: Consultant Psychiatrist (decided); late 30s, sage blouse, tailored trousers, badge, shoulder-length hair tied back (provisional proposal)",
     "draft_choices": [
       "Ethnicity, skin tone, face and height are draft choices; the reference guide's 'South Asian woman' is not decided.",
       "Sage long-sleeve blouse and charcoal trousers chosen from the provisional proposal; no clinical coat or notebook yet."
-    ]
+    ],
+    "approval": {
+      "approved": true,
+      "by": "Bi (project owner)",
+      "date": "2026-10-19",
+      "quote": "I approve all cast models",
+      "where": "ForensicWard project thread",
+      "scope": "Likeness, body, age, colours and outfit design of the v01 draft; v02 improves hair and clothing quality only."
+    }
   },
   "source": {
     "blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
@@ -82,7 +90,8 @@
     "tail_radius_m": [
       0.017,
       0.007
-    ]
+    ],
+    "cards": {}
   },
   "garments": [
     {
@@ -105,6 +114,19 @@
         "period": 170,
         "roughness": 0.72,
         "specular": 0.3
+      },
+      "detail": {
+        "cuff": {
+          "width_m": 0.028
+        },
+        "neck_band": {
+          "width_m": 0.01,
+          "lift_m": 0.001
+        },
+        "trim": {
+          "tone": 0.96,
+          "period": 40
+        }
       }
     },
     {
@@ -116,6 +138,10 @@
       "texture": {
         "period": 140,
         "roughness": 0.8
+      },
+      "detail": {
+        "crease": true,
+        "hip_ease_m": 0.005
       }
     },
     {

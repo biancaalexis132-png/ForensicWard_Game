@@ -5,14 +5,22 @@
     "file_stem": "Facilities_Tech",
     "prefix": "Tech_",
     "role": "Facilities technician",
-    "asset_version": "v01",
+    "asset_version": "v02",
     "height_m": 1.76,
-    "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+    "production_status": "OWNER_APPROVED",
     "canon_basis": "Role only (Chapter 2-3 escort); no appearance decided",
     "draft_choices": [
       "Sex, age (about 40), ethnicity, face, build, height and uniform are all draft choices; canon only fixes the role.",
       "Dark grey work polo, khaki work trousers, belt radio and key reel, ID badge."
-    ]
+    ],
+    "approval": {
+      "approved": true,
+      "by": "Bi (project owner)",
+      "date": "2026-10-19",
+      "quote": "I approve all cast models",
+      "where": "ForensicWard project thread",
+      "scope": "Likeness, body, age, colours and outfit design of the v01 draft; v02 improves hair and clothing quality only."
+    }
   },
   "source": {
     "blend": "assets/blender/characters/Naomi_Bennett_Base_v01.blend",
@@ -78,7 +86,8 @@
     "ear_top_z_m": 0.025,
     "volume_top_m": 0.005,
     "volume_side_m": 0.0012,
-    "fringe_m": 0.008
+    "fringe_m": 0.008,
+    "cards": {}
   },
   "garments": [
     {
@@ -106,6 +115,22 @@
         "period": 200,
         "roughness": 0.85,
         "rib": 0.3
+      },
+      "detail": {
+        "cuff": {
+          "width_m": 0.022
+        },
+        "placket": {
+          "width_m": 0.028,
+          "buttons": 2,
+          "button_spacing_m": 0.035
+        },
+        "button_srgb_hex": "#2E3236",
+        "trim": {
+          "rib": 0.8,
+          "period": 48,
+          "tone": 0.95
+        }
       }
     },
     {
@@ -121,6 +146,9 @@
       "texture": {
         "period": 120,
         "roughness": 0.85
+      },
+      "detail": {
+        "hip_ease_m": 0.007
       }
     },
     {

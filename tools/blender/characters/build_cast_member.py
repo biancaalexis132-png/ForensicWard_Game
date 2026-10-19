@@ -60,6 +60,8 @@ def _load(name: str, path: str):
 
 v3 = _load("naomi_v03", "tools/blender/characters/build_naomi_v03.py")
 anim = _load("animated_builder", "tools/character_animation/build_animated_character.py")
+cards_mod = _load("cast_hair_cards", "tools/blender/characters/cast_hair_cards.py")
+detail_mod = _load("cast_garment_detail", "tools/blender/characters/cast_garment_detail.py")
 
 # Naomi's height: build_naomi_v03's body-region thresholds assume it, so every body
 # is built at this height and scaled to its own height at the end.
@@ -537,11 +539,26 @@ def build_materials(skin_image) -> dict:
                                             roughness=float(g.get("roughness", 0.45)),
                                             specular=float(g.get("specular", 0.4)))
     hair = CFG["hair"]
-    hcol, hnrm = hair_textures(hair)
-    # No normal map: at game distances the fine strand normals alias into bright ribs.
-    bpy.data.images.remove(hnrm)
-    mats["hair"] = v3.principled(PREFIX + "Hair", roughness=float(hair.get("roughness", 0.62)), image=hcol,
-                                 specular=float(hair.get("specular", 0.22)))
+    if hair.get("cards") is not None:
+        # v02: a dark, stripe-free scalp base under alpha-scissor hair cards.
+        cfg = hair_card_config(hair)
+        atlas = cards_mod.strand_atlas(hair, PREFIX + "Hair_Strands_BaseColor", int(cfg["atlas_size"]),
+                                       int(cfg["seed"]))
+        mats["hair"] = cards_mod.base_material(
+            PREFIX + "Hair_Base", cards_mod.base_texture(hair, PREFIX + "Hair_Base_BaseColor", int(cfg["seed"]),
+                                                         atlas.get("mean_srgb")),
+            roughness=0.8)
+        mats["hair_cards"] = cards_mod.card_material(PREFIX + "Hair_Cards", atlas,
+                                                     roughness=float(hair.get("card_roughness", 0.68)),
+                                                     specular=float(hair.get("card_specular", 0.22)))
+        mats["hair_tie"] = v3.principled(PREFIX + "Hair_Tie", color=hex_rgb(hair.get("tie_srgb_hex", "#151414"), linear=True),
+                                         roughness=0.5, specular=0.3)
+    else:
+        hcol, hnrm = hair_textures(hair)
+        # No normal map: at game distances the fine strand normals alias into bright ribs.
+        bpy.data.images.remove(hnrm)
+        mats["hair"] = v3.principled(PREFIX + "Hair", roughness=float(hair.get("roughness", 0.62)), image=hcol,
+                                     specular=float(hair.get("specular", 0.22)))
     for key in ("badge",):
         if CFG.get(key):
             mats[key] = v3.principled(PREFIX + "ID_Badge", roughness=0.35, image=badge_texture(CFG[key]),
@@ -689,6 +706,7 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
     built: dict[str, tuple[bpy.types.Object, np.ndarray, object]] = {}
     covered = np.zeros(len(z), dtype=bool)
     objs = []
+    shell_loops: dict[str, list] = {}
     proxy = cloth_proxy(body)
     torso_bones = ["pelvis", "spine_01", "spine_02", "spine_03", "clavicle_l", "clavicle_r", "neck_01"]
     for g in CFG["garments"]:
@@ -706,8 +724,10 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
                 def fn(p, inner=fn, nz=top_limit - float(collar.get("height_m", 0.035)),
                        flare=float(collar["flare"])):
                     return inner(p) + max(0.0, p.z - nz) * flare
-            obj = v3.shell_from_faces(PREFIX + g["name"], proxy, mask, fn, int(g.get("smooth", 40)),
-                                      float(g.get("thickness_m", 0.0022)), mats[g["name"]])
+            obj, loops = detail_mod.garment_shell(v3, PREFIX + g["name"], proxy, mask, fn, int(g.get("smooth", 40)),
+                                                  float(g.get("thickness_m", 0.0022)), mats[g["name"]],
+                                                  decimate_ratio=detail_ratio(g))
+            shell_loops[g["name"]] = loops
             covered |= reg.interior(mask, float(g.get("skin_margin_m", 0.04)))
         elif kind == "trousers":
             waist = float(g.get("waist_z_m", 1.0))
@@ -720,16 +740,31 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
             band = float(g.get("waistband_extra_m", 0.0))
             tucked = [built[n][2] for n in g.get("over", [])]
 
-            def fn(p, off=off, knee_z=knee_z, band=band, waist=waist, tucked=tucked):
+            ease = float(g.get("detail", {}).get("hip_ease_m", 0.0))
+
+            def fn(p, off=off, knee_z=knee_z, band=band, waist=waist, tucked=tucked, ease=ease):
                 own = off + max(0.0, knee_z - p.z) * 0.02
+                if ease:
+                    # A little room over the hips and thighs, so cloth does not cling
+                    # and the hanging hand does not meet the leg.
+                    rise = min(1.0, max(0.0, (p.z - knee_z - 0.04) / 0.14))
+                    fall = min(1.0, max(0.0, (waist - 0.03 - p.z) / 0.09))
+                    own += ease * rise * fall
                 if p.z > waist - 0.08:
                     own += band
                     for t in tucked:
                         own = max(own, t(p) + 0.004)
                 return own
-            obj = v3.shell_from_faces(PREFIX + g["name"], body, mask, fn, 14, 0.0022, mats[g["name"]])
-            if not CFG.get("seated"):
-                straight_legs(obj, rig, float(g.get("hem_radius_m", 0.074)))
+            hem_r = float(g.get("hem_radius_m", 0.074))
+            # Straighten the legs before thickening: straightening both walls to one radius
+            # made them coincide and fight below the knee.
+            legs_fn = None if CFG.get("seated") else (lambda o, r=hem_r: straight_legs(o, rig, r))
+            obj, loops = detail_mod.garment_shell(v3, PREFIX + g["name"], body, mask, fn, 14, 0.0022, mats[g["name"]],
+                                                  before_thicken=legs_fn if g.get("detail") is not None else None,
+                                                  decimate_ratio=detail_ratio(g))
+            shell_loops[g["name"]] = loops
+            if not CFG.get("seated") and g.get("detail") is None:
+                straight_legs(obj, rig, hem_r)
             covered |= reg.interior(mask, 0.04) & (z < waist - 0.03)
         elif kind == "shoes":
             mask = np.isin(reg.dom, ["foot_l", "foot_r", "ball_l", "ball_r"]) & (
@@ -758,6 +793,12 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
             built[g["name"]] = (obj, mask, fn)
         objs.append(obj)
 
+    details = {}
+    skin_weights = detail_mod.SkinWeights(v3, body) if any(g.get("detail") is not None for g in CFG["garments"]) else None
+    for g in CFG["garments"]:
+        if g.get("detail") is not None and g["name"] in built:
+            details[g["name"]] = finish_garment(g, built[g["name"]][0], shell_loops.get(g["name"], []), reg, mats,
+                                                skin_weights)
     # Keep skin near the neckline visible under open fronts and V necks.
     bm = bmesh.new()
     bm.from_mesh(body.data)
@@ -769,7 +810,204 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
     for obj in objs:
         v3.parent_to_rig(obj, rig)
     bpy.data.objects.remove(proxy, do_unlink=True)
-    return objs, {"covered_faces": int(covered.sum())}
+    return objs, {"covered_faces": int(covered.sum()), "garment_detail": details}
+
+
+def detail_ratio(g: dict) -> float | None:
+    """v02 garments are decimated as single surfaces, before they are thickened."""
+    return float(CFG["mesh"]["clothing_ratio"]) if g.get("detail") is not None else None
+
+
+def darker_hex(value: str, k: float) -> str:
+    r, g, b = (int(value.lstrip("#")[i:i + 2], 16) for i in (0, 2, 4))
+    return "#" + "".join(f"{max(0, min(255, int(round(c * k)))):02x}" for c in (r, g, b))
+
+
+def finish_garment(g: dict, obj, loops: list[dict], reg: "BodyRegions", mats: dict, skin_weights) -> dict:
+    """v02 detail on one garment: decimate, unique UVs, baked folds, trims joined in."""
+    spec = dict(g["detail"])
+    spec.setdefault("sleeves", g.get("sleeves"))
+    kind = g["kind"]
+    tucked_into = [t for t in CFG["garments"] if t.get("kind") == "trousers" and g["name"] in t.get("over", [])]
+    if kind == "top" and tucked_into:
+        spec.setdefault("tucked", True)
+    obj["cast_detail"] = True  # decimated in garment_shell, before thickening
+    inner_faces = detail_mod.smart_uvs(v3, obj, reg.body)
+    sk = detail_mod.Skeleton(reg.rig)
+    seated = bool(CFG.get("seated"))
+    hem_z = float(g["hem_z_m"]) if "hem_z_m" in g else None
+
+    bones = [f"{b}_{s}" for b in ("upperarm", "lowerarm", "hand", "thigh", "calf", "foot", "clavicle") for s in "lr"]
+    bones += ["pelvis", "spine_01", "spine_02", "spine_03", "neck_01"]
+
+    def h_fn(P):
+        return detail_mod.fold_height(P, skin_weights.at(P, bones), kind, spec, sk, anim.value_noise, seated, hem_z)
+    tex = g.get("texture", {})
+    size = int(spec.get("texture_size", 1024))
+    base = np.array(hex_rgb(g["srgb_hex"]))
+    ci, ni, info = detail_mod.bake_fold_maps(anim, obj, h_fn, base, size, PREFIX + g["name"] + "_Folds",
+                                            shade=float(spec.get("fold_shade", 22.0)), v3=v3)
+    main = detail_mod.fabric_material(PREFIX + g["name"], ci, ni, float(tex.get("roughness", 0.86)),
+                                      float(tex.get("specular", 0.25)), float(spec.get("normal_strength", 1.0)))
+    old = obj.data.materials[0]
+    obj.data.materials[0] = main
+    mats[g["name"]] = main
+    if old is not None and old.users == 0:
+        bpy.data.materials.remove(old)
+    # Trim material: the garment's cloth, tiled, a touch darker; rib knit when asked.
+    trim = spec.get("trim", {})
+    tcol, tnrm = fabric_textures(darker_hex(g["srgb_hex"], float(trim.get("tone", 0.94))), g["name"] + "_Trim",
+                                 256, float(trim.get("period", 24)), float(trim.get("rib", 0.0)))
+    trim_mat = v3.principled(PREFIX + g["name"] + "_Trim", roughness=float(tex.get("roughness", 0.86)), image=tcol,
+                             normal=tnrm, specular=float(tex.get("specular", 0.25)))
+    button_mat = None
+    if spec.get("buttons") or spec.get("placket", {}).get("buttons"):
+        bh = spec.get("button_srgb_hex", darker_hex(g["srgb_hex"], 0.55))
+        button_mat = v3.principled(PREFIX + g["name"] + "_Buttons", color=hex_rgb(bh, linear=True), roughness=0.35,
+                                   specular=0.5)
+    obj.data.materials.append(trim_mat)
+    obj.data.materials.append(button_mat or trim_mat)
+    tree = BVHTree.FromObject(obj, bpy.context.evaluated_depsgraph_get())
+    parts = []
+    built_report = []
+    hand_z = reg.bone["hand_l"][0].z
+
+    def loop_role(lp):
+        c = Vector(lp["centre"].tolist())
+        if kind == "trousers":
+            return "waist" if c.z > reg.bone["thigh_l"][0].z - 0.02 else "leg"
+        ua = reg.bone["upperarm_l"][0]
+        if abs(c.x) > abs(ua.x) * 0.8 and c.z < ua.z - 0.03:
+            return "sleeve"
+        if c.z > reg.neck.z - 0.12:
+            return "neck"
+        return "hem"
+    roles = [loop_role(lp) for lp in loops]
+    for lp, role in zip(loops, roles):
+        cfg = None
+        if role == "sleeve" and spec.get("cuff"):
+            cfg = spec["cuff"]
+        elif role == "hem" and spec.get("hem_band"):
+            cfg = spec["hem_band"]
+        elif role == "neck" and spec.get("neck_band"):
+            cfg = spec["neck_band"]
+        elif role == "waist" and spec.get("waistband"):
+            cfg = spec["waistband"]
+        elif role in ("neck", "hem") and spec.get("front_band"):
+            cfg = spec["front_band"]
+        if cfg is None and not (role == "neck" and spec.get("lapel")):
+            continue
+        pts, nrm, length = detail_mod.resample_loop(lp["pts"], lp["nrm"], 0.008)
+        if role == "neck" and spec.get("lapel"):
+            parts.append(lapel_band(g, spec["lapel"], pts, nrm, tree))
+            built_report.append({"trim": "lapels_and_collar", "length_m": round(length, 3)})
+            if cfg is None:
+                continue
+        parts.append(detail_mod.band(PREFIX + g["name"] + "_" + role, pts, nrm, float(cfg["width_m"]), tree,
+                                     float(cfg.get("lift_m", 0.0016)), True, 1, overhang=float(cfg.get("overhang_m", 0.003))))
+        built_report.append({"trim": role, "width_m": cfg["width_m"], "length_m": round(length, 3)})
+    neck = reg.neck
+    if spec.get("placket"):
+        pk = spec["placket"]
+        top = float(pk.get("top_z_m", neck.z - float(g.get("neckline", {}).get("depth_m", 0.05)) - 0.005))
+        bottom = float(pk.get("bottom_z_m", (hem_z or 0.95) + 0.01))
+        w = float(pk.get("width_m", 0.026))
+        patch = detail_mod.front_patch(PREFIX + g["name"] + "_Placket", tree, -w / 2, w / 2, bottom, top,
+                                       float(pk.get("lift_m", 0.0013)), 1, nx=2, nz=max(2, int((top - bottom) / 0.03)))
+        if patch:
+            parts.append(patch)
+        n = int(pk.get("buttons", 0))
+        for k in range(n):
+            z = top - 0.02 - k * float(pk.get("button_spacing_m", 0.085))
+            if z < bottom + 0.01:
+                break
+            b = detail_mod.button(PREFIX + g["name"] + f"_Button{k}", tree, 0.0, z, float(pk.get("button_radius_m", 0.0055)),
+                                  float(pk.get("lift_m", 0.0013)), 2)
+            if b:
+                parts.append(b)
+        built_report.append({"trim": "placket", "buttons": n})
+    for k, pocket in enumerate(spec.get("pockets", [])):
+        x, z = pocket["centre_m"]
+        w, hgt = pocket["size_m"]
+        if pocket.get("patch", True):
+            pp = detail_mod.front_patch(PREFIX + g["name"] + f"_Pocket{k}", tree, x - w / 2, x + w / 2, z - hgt / 2,
+                                        z + hgt / 2, 0.0013, 1)
+            if pp:
+                parts.append(pp)
+        if pocket.get("flap_m"):
+            fh = float(pocket["flap_m"])
+            top_z = z + hgt / 2 + 0.004
+            fp = detail_mod.front_patch(PREFIX + g["name"] + f"_Flap{k}", tree, x - w / 2 - 0.003, x + w / 2 + 0.003,
+                                        top_z - fh, top_z, 0.0028, 1, nx=4, nz=2,
+                                        taper=lambda u, v: 1.0 + 0.5 * (1 - v))
+            if fp:
+                parts.append(fp)
+            if pocket.get("button"):
+                b = detail_mod.button(PREFIX + g["name"] + f"_PocketButton{k}", tree, x, top_z - fh + 0.012, 0.0055,
+                                      0.0045, 2)
+                if b:
+                    parts.append(b)
+        built_report.append({"trim": "pocket", "centre_m": [x, z]})
+    for k, (x, z) in enumerate(spec.get("buttons", [])):
+        b = detail_mod.button(PREFIX + g["name"] + f"_FrontButton{k}", tree, float(x), float(z),
+                              float(spec.get("button_radius_m", 0.0085)), float(spec.get("button_lift_m", 0.0025)), 2)
+        if b:
+            parts.append(b)
+    if spec.get("buttons"):
+        built_report.append({"trim": "buttons", "count": len(spec["buttons"])})
+    uv_name = obj.data.uv_layers.active.name
+    for part in parts:
+        if not part.name.split("_")[-1].startswith(("Button", "FrontButton", "PocketButton")) and "Button" not in part.name:
+            detail_mod.thicken(v3, part, float(spec.get("trim_thickness_m", 0.0012)))
+        part.data.uv_layers.active.name = uv_name
+        part.data.materials.clear()
+        for m in obj.data.materials:
+            part.data.materials.append(m)
+    if parts:
+        bpy.ops.object.select_all(action="DESELECT")
+        for part in parts:
+            part.select_set(True)
+        obj.select_set(True)
+        bpy.context.view_layer.objects.active = obj
+        bpy.ops.object.join()
+    return {"folds": info, "inner_wall_faces": inner_faces, "trims": built_report, "loops": roles}
+
+
+def lapel_band(g: dict, spec: dict, pts: np.ndarray, nrm: np.ndarray, tree) -> bpy.types.Object:
+    """Blazer lapels and collar: one strip round the neckline, turned back onto the jacket.
+
+    Width follows the opening: nothing at the top button, widening up the chest to
+    `width_m`, a notch at the gorge, then `collar_m` round the back of the neck.
+    """
+    button = float(g["neckline"]["button_z_m"])
+    neck_y = float(np.median(pts[:, 1]))
+    top_front = pts[pts[:, 1] < neck_y][:, 2].max() if (pts[:, 1] < neck_y).any() else pts[:, 2].max()
+    lapel_w = float(spec.get("width_m", 0.065))
+    collar_w = float(spec.get("collar_m", 0.035))
+    gorge = float(spec.get("gorge_drop_m", 0.07))
+    notch_z = top_front - gorge
+    widths = []
+    for p in pts:
+        z = p[2]
+        front = p[1] < neck_y - 0.015
+        if not front:
+            widths.append(collar_w)
+            continue
+        rise = float(_smooth_s((z - button) / max(0.02, (notch_z - button) * 0.75)))
+        w = lapel_w * rise
+        if z > notch_z - 0.006:
+            # The notch: the lapel steps in, then the collar carries on round the neck.
+            t = float(_smooth_s((z - notch_z + 0.006) / 0.012))
+            w = w * (1 - t) + (collar_w * 0.75) * t
+        widths.append(max(0.0, w))
+    return detail_mod.band(PREFIX + g["name"] + "_Lapels", pts, nrm, np.array(widths), tree,
+                           float(spec.get("lift_m", 0.0028)), True, 1, roll=float(spec.get("roll_m", 0.003)),
+                           overhang=0.004, rows=4)
+
+
+def _smooth_s(x: float) -> float:
+    x = min(1.0, max(0.0, x))
+    return x * x * (3 - 2 * x)
 
 
 def collar_band(body, reg: "BodyRegions", g: dict, under, mat) -> bpy.types.Object:
@@ -990,6 +1228,25 @@ def build_glasses(body, rig, eye_data, mats) -> bpy.types.Object:
         closed.append(False)
     obj = curve_object(PREFIX + "Reading_Glasses", lines, float(spec.get("wire_radius_m", 0.0013)),
                        mats[spec["material"]], closed=closed)
+    if spec.get("lens"):
+        # Thin, faintly tinted lenses (alpha blend) inside the rims, joined to the frame.
+        lmat = detail_mod.lens_material(PREFIX + "Glasses_Lens", tuple(spec["lens"].get("tint_srgb", (0.93, 0.95, 1.0))),
+                                        float(spec["lens"].get("alpha", 0.12)))
+        lenses = [detail_mod.lens(PREFIX + f"Lens_{side}", c, ring, lmat) for side, (c, ring) in rims.items()]
+        obj.data.materials.append(lmat)
+        bpy.ops.object.select_all(action="DESELECT")
+        for ln in lenses:
+            ln.data.materials.clear()
+            for m in obj.data.materials:
+                ln.data.materials.append(m)
+            for poly in ln.data.polygons:
+                poly.material_index = 1
+            if not ln.data.uv_layers:
+                ln.data.uv_layers.new(name="UVMap")
+            ln.select_set(True)
+        obj.select_set(True)
+        bpy.context.view_layer.objects.active = obj
+        bpy.ops.object.join()
     v3.rigid_weight(obj, "head")
     v3.parent_to_rig(obj, rig)
     return obj
@@ -1148,8 +1405,133 @@ def paint_hairline(body, cap, image: bpy.types.Image, spec: dict) -> int:
     return painted
 
 
+def hair_card_config(spec: dict) -> dict:
+    cfg = dict(cards_mod.STYLE_DEFAULTS[spec["style"]])
+    cfg.update({"seed": 3, "atlas_size": 1024})
+    cfg.update(spec.get("cards") or {})
+    return cfg
+
+
+def build_hair_cards(body, rig, mats) -> list[bpy.types.Object]:
+    """v02 hair: thin scalp base, layered cards along the style's flow, bun or tail of cards."""
+    spec = CFG["hair"]
+    cfg = hair_card_config(spec)
+    rng = np.random.default_rng(int(cfg["seed"]))
+    centre, head_w, top_z = head_frame(body)
+    tree = BVHTree.FromObject(body, bpy.context.evaluated_depsgraph_get())
+    mask = hairline_mask(body, centre, head_w, spec)
+    vol_top = float(spec.get("volume_top_m", 0.006))
+    vol_side = float(spec.get("volume_side_m", 0.003))
+    taper = float(spec.get("hairline_taper_m", 0.02))
+    base_off = float(cfg["base_offset_m"])
+
+    def offset(p: Vector, edge_distance: float) -> float:
+        t = min(1.0, edge_distance / taper)
+        edge = t * t * (3 - 2 * t)
+        up = min(1.0, max(0.0, (p.z - centre.z) / (top_z - centre.z)))
+        return 0.0004 + edge * (base_off - 0.0004 + 0.25 * (vol_side + (vol_top - vol_side) * up))
+    cap = scalp_shell(PREFIX + "Hair", body, mask, offset, mats["hair"])
+    spherical_uvs(cap, centre, 1.0)
+    # Paint the skin under and just beyond the base in the strands' average colour.
+    mean = mats["hair_cards"].node_tree.nodes["Image Texture"].image.get("mean_srgb")
+    paint_spec = dict(spec, srgb_hex="#" + "".join(f"{int(round(c * 0.92 * 255)):02x}" for c in mean)) if mean else spec
+    print("  hairline texels painted:", paint_hairline(body, cap, mats["skin"].node_tree.nodes["Image Texture"].image,
+                                                      paint_spec))
+    style = spec["style"]
+    tie = None
+    out = None
+    if style in ("chignon", "ponytail"):
+        d = Vector(spec.get("tie_direction", (0.0, 1.0, -0.42))).normalized()
+        hit, normal, _i, _dd = tree.ray_cast(centre + d * 0.3, -d)
+        tie = hit + normal * (vol_side + 0.002)
+        out = Vector((normal.x, normal.y, 0)).normalized()
+    cards = cards_mod.scalp_cards(body, cap, centre, top_z, spec, cfg, tie, mask, rng)
+    objs = [cap]
+    extra_cards = []
+    tail_obj = []
+    if style == "chignon":
+        r = spec["bun_radii_m"]
+        bun_centre = tie + out * (r[1] * 0.55)
+        bm = bmesh.new()
+        bmesh.ops.create_uvsphere(bm, u_segments=14, v_segments=10, radius=1.0)
+        for v in bm.verts:
+            v.co = Vector((v.co.x * r[0], v.co.y * r[1], v.co.z * r[2])) * 0.9
+        bmesh.ops.translate(bm, vec=bun_centre, verts=bm.verts)
+        mesh = bpy.data.meshes.new(PREFIX + "Hair_Chignon")
+        bm.to_mesh(mesh)
+        bm.free()
+        mesh.materials.append(mats["hair"])
+        bun = bpy.data.objects.new(PREFIX + "Hair_Chignon", mesh)
+        bpy.context.scene.collection.objects.link(bun)
+        for poly in mesh.polygons:
+            poly.use_smooth = True
+        spherical_uvs(bun, bun_centre, 1.0)
+        objs.append(bun)
+        # The bun's local axes: x across the head, y outward, z up.
+        extra_cards = cards_mod.bun_cards(bun_centre, out, (r[0] * 0.95, r[1] * 0.95, r[2] * 0.95),
+                                          int(cfg["bun_cards"]), rng)
+    elif style == "ponytail":
+        length = float(spec["tail_length_m"])
+        r0, r1 = spec["tail_radius_m"]
+        pts, radii = [], []
+        n = 14
+        for k in range(n):
+            t = k / (n - 1)
+            # Gathered just off the head, arcing back then falling.
+            p = tie + out * (r0 * 0.7 + 0.022 * math.sin(math.pi * min(1.0, t * 1.6) * 0.5)) + \
+                Vector((0, 0, -length * t))
+            loc, nrm, _i, _dd = tree.find_nearest(p)
+            rad = r0 + (r1 - r0) * t ** 0.8
+            if loc is not None and (p - loc).dot(nrm) < rad + 0.004:
+                p = loc + nrm * (rad + 0.004)
+            pts.append(p)
+            radii.append(rad)
+        core = curve_object(PREFIX + "Hair_Ponytail", [pts], r0 * 0.8,
+                            mats["hair"], radii=[[0.6 if k == 0 else radii[k] / r0 for k in range(n)]], resolution=2)
+        spherical_uvs(core, tie, 1.0)
+        objs.append(core)
+        tail_obj.append(core)
+        extra_cards = cards_mod.tail_cards(pts, radii, int(cfg["tail_cards"]), rng)
+        # The elastic wraps round the tail, just below where the cards gather.
+        axis = (pts[2] - pts[0]).normalized()
+        e1 = (Vector((1, 0, 0)) - axis * axis.x).normalized()
+        e2 = axis.cross(e1).normalized()
+        ring_c = pts[0] + axis * 0.012
+        ring_r = (r0 + (r1 - r0) * (0.012 / length) ** 0.8) * 1.12
+        band = curve_object(PREFIX + "Hair_Tie", [[ring_c + (e1 * math.cos(a) + e2 * math.sin(a)) * ring_r
+                                                   for a in np.linspace(0, math.tau, 17)[:-1]]],
+                            0.0026, mats["hair_tie"], closed=[True])
+        objs.append(band)
+    card_obj = cards_mod.cards_object(PREFIX + "Hair_Cards", cards, mats["hair_cards"])
+    objs.append(card_obj)
+    if extra_cards:
+        name = PREFIX + ("Hair_Bun_Cards" if style == "chignon" else "Hair_Tail_Cards")
+        extra = cards_mod.cards_object(name, extra_cards, mats["hair_cards"])
+        objs.append(extra)
+        if style == "ponytail":
+            tail_obj.append(extra)
+    print(f"  hair cards: {len(cards)} scalp + {len(extra_cards)} {style} cards")
+    for obj in objs:
+        v3.rigid_weight(obj, "head")
+        v3.parent_to_rig(obj, rig)
+    for tail in tail_obj:
+        # The tail rests on the upper back: blend its lower half toward the chest bone.
+        zs = [v.co.z for v in tail.data.vertices]
+        z_top, z_bot = tie.z, min(zs)
+        chest = tail.vertex_groups.new(name="spine_03")
+        head = tail.vertex_groups["head"]
+        for v in tail.data.vertices:
+            t = (z_top - v.co.z) / max(1e-6, z_top - z_bot)
+            w = 0.6 * max(0.0, min(1.0, (t - 0.3) / 0.7))
+            head.add([v.index], 1.0 - w, "REPLACE")
+            chest.add([v.index], w, "REPLACE")
+    return objs
+
+
 def build_hair(body, rig, mats) -> list[bpy.types.Object]:
     spec = CFG["hair"]
+    if spec.get("cards") is not None:
+        return build_hair_cards(body, rig, mats)
     centre, head_w, top_z = head_frame(body)
     tree = BVHTree.FromObject(body, bpy.context.evaluated_depsgraph_get())
     mask = hairline_mask(body, centre, head_w, spec)
@@ -1348,8 +1730,14 @@ def write_profiles(metrics: dict, names: dict, scale_final: float, garments: dic
         },
     }
     lash_material = PREFIX + "Lash"
+    final = final_version()
+    approval = ch.get("approval")
+    if approval:
+        for data in (animated, face_cfg):
+            data["approved"] = bool(approval.get("approved"))
+            data["approval"] = approval
     refine = {
-        "character_id": cid, "display_name": ch["name"], "version": "v01_draft",
+        "character_id": cid, "display_name": ch["name"], "version": final,
         "production_status": ch["production_status"],
         "source_blend": face_cfg["outputs"]["blend"], "objects": names,
         "refine": {
@@ -1363,25 +1751,36 @@ def write_profiles(metrics: dict, names: dict, scale_final: float, garments: dic
         },
         "expected": {"clips": [], "morph_targets": 32},
         "outputs": {
-            "blend": f"assets/blender/characters/{stem}_v01_draft.blend",
-            "glb": f"assets/exports/characters/{stem}_v01_draft.glb",
+            "blend": f"assets/blender/characters/{stem}_{final}.blend",
+            "glb": f"assets/exports/characters/{stem}_{final}.glb",
             "renders": "assets/renders/characters",
-            "manifest": f"assets/asset_manifest/{cid}_character_manifest_v01_draft.json",
-            "report": f"tools/character_animation/reports/{cid}_v01_draft_refine_report.json",
+            "manifest": f"assets/asset_manifest/{cid}_character_manifest_{final}.json",
+            "report": f"tools/character_animation/reports/{cid}_{final}_refine_report.json",
         },
         "known_limitations": CFG.get("known_limitations", []),
     }
+    if approval:
+        refine["approved"] = bool(approval.get("approved"))
+        refine["approval"] = approval
+    if CFG.get("clip_adjustments"):
+        animated["clip_adjustments"] = CFG["clip_adjustments"]
     if CFG.get("seated"):
         # The hem rebuild assumes straight vertical legs.
         del refine["refine"]["trousers"]
     lib = json.loads((ROOT / "tools/character_animation/clip_library.json").read_text())
     refine["expected"]["clips"] = [c["name"] for c in lib["clips"]]
     paths = []
-    for suffix, data in (("v01_anim", animated), ("v01_face", face_cfg), ("v01_draft", refine)):
+    for suffix, data in ((f"{ver}_anim", animated), (f"{ver}_face", face_cfg), (final, refine)):
         p = ROOT / f"tools/character_animation/profiles/{cid}_{suffix}.json"
         p.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
         paths.append(str(p.relative_to(ROOT)))
     return paths
+
+
+def final_version() -> str:
+    """v01 shipped as `v01_draft`; later versions are named by their asset version alone."""
+    ver = CFG["character"]["asset_version"]
+    return CFG["character"].get("final_version", "v01_draft" if ver == "v01" else ver)
 
 
 # --------------------------------------------------------------------------- main
@@ -1423,7 +1822,8 @@ def main() -> None:
     by_name = {o.name[len(PREFIX):]: o for o in clothing}
     kinds = {g["kind"]: g["name"] for g in CFG["garments"]}
     for obj in clothing:
-        v3.project_fabric_uvs(obj)
+        if not obj.get("cast_detail"):
+            v3.project_fabric_uvs(obj)
         v3.copy_weights_from(obj, weight_source)
     extras = []
     if CFG.get("badge"):
@@ -1454,6 +1854,8 @@ def main() -> None:
     for obj in clothing:
         g = next(g for g in CFG["garments"] if PREFIX + g["name"] == obj.name)
         ratio = mcfg["shoe_ratio"] if g["kind"] == "shoes" else mcfg["clothing_ratio"]
+        if obj.get("cast_detail"):
+            continue  # decimated before its folds were baked
         if ratio < 1.0:
             v3.decimate(obj, ratio)
     scale_final = float(ch["height_m"]) / NOMINAL_HEIGHT_M
@@ -1495,7 +1897,8 @@ def main() -> None:
         "character_id": ch["character_id"],
         "version": ver,
         "production_status": ch["production_status"],
-        "approved": False,
+        "approved": bool(ch.get("approval", {}).get("approved", False)),
+        **({"approval": ch["approval"]} if ch.get("approval") else {}),
         "canon_basis": ch.get("canon_basis", ""),
         "draft_choices_not_canon": ch.get("draft_choices", []),
         "builder": "tools/blender/characters/build_cast_member.py",

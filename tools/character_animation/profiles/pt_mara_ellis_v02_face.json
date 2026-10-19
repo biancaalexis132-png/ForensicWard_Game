@@ -1,0 +1,38 @@
+{
+  "character_id": "pt_mara_ellis",
+  "display_name": "Mara Ellis",
+  "version": "v02_face",
+  "production_status": "OWNER_APPROVED",
+  "source_blend": "build/cast/Mara_Ellis_v02_anim.blend",
+  "objects": {
+    "rig": "Mara_Ellis_Rig",
+    "face_mesh": "Mara_Ellis_Body",
+    "eye_l": "Mara_Eye_L",
+    "eye_r": "Mara_Eye_R"
+  },
+  "face_source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v07.blend",
+    "body": "Naomi_Bennett_Body",
+    "base_blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "base_body": "Naomi_Bennett_Body"
+  },
+  "target_base": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "body": "Naomi_Bennett_Body",
+    "cast_config": "tools/blender/characters/cast/pt_mara_ellis.json"
+  },
+  "outputs": {
+    "blend": "build/cast/Mara_Ellis_v02_face.blend",
+    "glb": "build/cast/Mara_Ellis_v02_face.glb",
+    "report": "tools/character_animation/reports/pt_mara_ellis_v02_face_report.json"
+  },
+  "approved": true,
+  "approval": {
+    "approved": true,
+    "by": "Bi (project owner)",
+    "date": "2026-10-19",
+    "quote": "I approve all cast models",
+    "where": "ForensicWard project thread",
+    "scope": "Likeness, body, age, colours and outfit design of the v01 draft; v02 improves hair and clothing quality only."
+  }
+}

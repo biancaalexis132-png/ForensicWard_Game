@@ -5,14 +5,22 @@
     "file_stem": "Marcus_Hale",
     "prefix": "Hale_",
     "role": "Security Director",
-    "asset_version": "v01",
+    "asset_version": "v02",
     "height_m": 1.83,
-    "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+    "production_status": "OWNER_APPROVED",
     "canon_basis": "docs/design/CHARACTER_VISUAL_CANON.md: Security Director, credible professional hospital security attire, no tactical armour (decided); mid 40s, uniform shirt, badge, belt radio, keys on reel (provisional proposal)",
     "draft_choices": [
       "Ethnicity, skin tone, face, build and height are draft choices; canon leaves them open.",
       "Light-blue long-sleeve uniform shirt and charcoal trousers chosen from the provisional proposal."
-    ]
+    ],
+    "approval": {
+      "approved": true,
+      "by": "Bi (project owner)",
+      "date": "2026-10-19",
+      "quote": "I approve all cast models",
+      "where": "ForensicWard project thread",
+      "scope": "Likeness, body, age, colours and outfit design of the v01 draft; v02 improves hair and clothing quality only."
+    }
   },
   "source": {
     "blend": "assets/blender/characters/Naomi_Bennett_Base_v01.blend",
@@ -79,7 +87,8 @@
     "ear_top_z_m": 0.025,
     "volume_top_m": 0.0045,
     "volume_side_m": 0.0012,
-    "fringe_m": 0.008
+    "fringe_m": 0.008,
+    "cards": {}
   },
   "garments": [
     {
@@ -107,6 +116,46 @@
         "rise_m": 0.085,
         "height_m": 0.035,
         "flare": 0.25
+      },
+      "detail": {
+        "cuff": {
+          "width_m": 0.05
+        },
+        "placket": {
+          "width_m": 0.028,
+          "buttons": 5
+        },
+        "pockets": [
+          {
+            "centre_m": [
+              0.095,
+              1.235
+            ],
+            "size_m": [
+              0.11,
+              0.12
+            ],
+            "flap_m": 0.045,
+            "button": true
+          },
+          {
+            "centre_m": [
+              -0.095,
+              1.235
+            ],
+            "size_m": [
+              0.11,
+              0.12
+            ],
+            "flap_m": 0.045,
+            "button": true
+          }
+        ],
+        "button_srgb_hex": "#E4E7EA",
+        "trim": {
+          "tone": 0.97,
+          "period": 40
+        }
       }
     },
     {
@@ -122,6 +171,10 @@
       "texture": {
         "period": 140,
         "roughness": 0.8
+      },
+      "detail": {
+        "crease": true,
+        "hip_ease_m": 0.006
       }
     },
     {

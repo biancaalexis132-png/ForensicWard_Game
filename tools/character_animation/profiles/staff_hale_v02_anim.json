@@ -1,0 +1,112 @@
+{
+  "character_id": "staff_hale",
+  "display_name": "Marcus Hale",
+  "version": "v02_anim",
+  "production_status": "OWNER_APPROVED",
+  "source_blend": "build/cast/Marcus_Hale_v02.blend",
+  "objects": {
+    "rig": "Marcus_Hale_Rig",
+    "face_mesh": "Marcus_Hale_Body",
+    "eye_l": "Hale_Eye_L",
+    "eye_r": "Hale_Eye_R"
+  },
+  "forward": [
+    0.0,
+    -1.0,
+    0.0
+  ],
+  "up": [
+    0.0,
+    0.0,
+    1.0
+  ],
+  "bones": {
+    "pelvis": "pelvis",
+    "spine_lower": "spine_01",
+    "spine_mid": "spine_02",
+    "chest": "spine_03",
+    "neck": "neck_01",
+    "head": "head",
+    "clavicle_l": "clavicle_l",
+    "clavicle_r": "clavicle_r",
+    "upperarm_l": "upperarm_l",
+    "upperarm_r": "upperarm_r",
+    "lowerarm_l": "lowerarm_l",
+    "lowerarm_r": "lowerarm_r",
+    "hand_l": "hand_l",
+    "hand_r": "hand_r"
+  },
+  "eye_bones": {
+    "l": "eye_l",
+    "r": "eye_r"
+  },
+  "face": {
+    "mouth_line_z_below_eyes_m": 0.0744,
+    "mouth_corner_x_of_eye_x": 0.934,
+    "jaw_pivot_offset_from_eye_mid_m": [
+      0.0,
+      0.0605,
+      -0.0495
+    ],
+    "lid_corner_deg": [
+      55.0,
+      72.0
+    ],
+    "lashes": {
+      "material": "Hale_Lash",
+      "color_srgb_hex": "#1A120E",
+      "length_m": 0.004,
+      "width_m": 0.0012
+    },
+    "brows": {
+      "mode": "painted",
+      "color_srgb_hex": "#2A211B",
+      "seed": 7,
+      "inner_m": -0.0176,
+      "outer_m": 0.033,
+      "height_m": 0.0247,
+      "arch_m": 0.0028,
+      "tail_drop_m": 0.004,
+      "inner_half_m": 0.0042,
+      "tail_half_m": 0.0015,
+      "fill": 0.55,
+      "hairs": 520,
+      "hair_length_m": [
+        0.0045,
+        0.0075
+      ],
+      "hair_width_m": [
+        0.00018,
+        0.00028
+      ],
+      "hair_feather_m": 0.00015
+    }
+  },
+  "skin": {
+    "roughness": 0.58,
+    "roughness_variation": 0.05,
+    "roughness_cell_m": 0.003,
+    "specular": 0.35,
+    "pore_size_m": 0.0009,
+    "pore_normal_strength": 0.0
+  },
+  "clothing_tidy": {
+    "shoes": "Hale_Shoes"
+  },
+  "outputs": {
+    "blend": "build/cast/Marcus_Hale_v02_anim.blend",
+    "glb": "build/cast/Marcus_Hale_v02_anim.glb",
+    "renders": "assets/renders/characters",
+    "manifest": "build/cast/staff_hale_character_manifest_v02_anim.json",
+    "report": "tools/character_animation/reports/staff_hale_v02_anim_rig_report.json"
+  },
+  "approved": true,
+  "approval": {
+    "approved": true,
+    "by": "Bi (project owner)",
+    "date": "2026-10-19",
+    "quote": "I approve all cast models",
+    "where": "ForensicWard project thread",
+    "scope": "Likeness, body, age, colours and outfit design of the v01 draft; v02 improves hair and clothing quality only."
+  }
+}

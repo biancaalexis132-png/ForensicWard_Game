@@ -5,14 +5,22 @@
     "file_stem": "Elias_Ward",
     "prefix": "Elias_",
     "role": "Patient",
-    "asset_version": "v01",
+    "asset_version": "v02",
     "height_m": 1.78,
-    "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+    "production_status": "OWNER_APPROVED",
     "canon_basis": "docs/design/CHARACTER_VISUAL_CANON.md: man, 29 (decided); neat short hair, soft grey sweatshirt, soft trousers, slip-ons (provisional proposal); clean and ordinary, no symptom movement without clinical review",
     "draft_choices": [
       "Ethnicity, skin tone, face, build and height are draft choices; canon leaves them open.",
       "Seated rest pose for the interview chair; only the shared neutral clips, no symptom-related movement."
-    ]
+    ],
+    "approval": {
+      "approved": true,
+      "by": "Bi (project owner)",
+      "date": "2026-10-19",
+      "quote": "I approve all cast models",
+      "where": "ForensicWard project thread",
+      "scope": "Likeness, body, age, colours and outfit design of the v01 draft; v02 improves hair and clothing quality only."
+    }
   },
   "source": {
     "blend": "assets/blender/characters/Naomi_Bennett_Base_v01.blend",
@@ -83,7 +91,8 @@
     "ear_top_z_m": 0.025,
     "volume_top_m": 0.009,
     "volume_side_m": 0.002,
-    "fringe_m": 0.007
+    "fringe_m": 0.007,
+    "cards": {}
   },
   "garments": [
     {
@@ -108,6 +117,23 @@
         "roughness": 0.92,
         "rib": 0.5,
         "specular": 0.2
+      },
+      "detail": {
+        "cuff": {
+          "width_m": 0.05
+        },
+        "hem_band": {
+          "width_m": 0.055
+        },
+        "neck_band": {
+          "width_m": 0.018
+        },
+        "trim": {
+          "rib": 1.0,
+          "period": 44,
+          "tone": 0.95
+        },
+        "drape_folds_m": 0.0018
       }
     },
     {
@@ -119,6 +145,9 @@
         "period": 110,
         "roughness": 0.9,
         "rib": 0.3
+      },
+      "detail": {
+        "fold_scale": 1.2
       }
     },
     {
