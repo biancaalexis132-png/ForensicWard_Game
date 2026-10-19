@@ -182,14 +182,28 @@ change (tested). New `test_chapter2_witness.gd`. Full runner exit 0: game
 224/0, GLB 161/0, audio 336/0, QA 19/0/0, Python 6+4+5+3, pharmacology 0, boot,
 CH1 sequence.
 
+## Addendum: Scene 08 The Door That Wasn't Left Open
+
+Runtime `4669c7c387107584e6429cf79cb035194fcec0b5` on `claude/chapter2-lobby` (stacked on the witness branch / PR #75).
+Owner chose "Escorted pass". After the technician's follow-up, Hale offers an
+escorted look at the restricted lift lobby doors only (asking for W0-B is
+refused). Accepting grants `access_ward_entry` for this inspection; walk through
+the ward entry doors to the end of the security corridor and use the lobby
+doors' inspection point (the camera dome in front of `Door_LiftLobby`; the lobby
+door shares `access_restricted_lift` with the lift, so the player never enters).
+Note them closed; the escort's radio draws you both to the maintenance door; on
+return they are ajar. The escort's and player's screenplay lines play. Document
+the state, have it secured, or request a latch and ventilation assessment;
+stepping in or recording an intruder is feedback-only. Return the pass to Hale
+at the psychiatrist's office: access is revoked and the ward entry doors swing
+shut. No trapping, portal, anomaly, evidence or patient change (tested).
+
+**Follow-up:** a dedicated MARK/story prop at the lobby doors would read better
+than the ceiling camera dome; needs an asset change.
+
 ## Next exact task
 
-Chapter 2 Scene 08 "The Door That Wasn't Left Open": an escorted inspection of
-the historic-access **lobby only** (not Ward Zero). Door observed closed; after
-the team looks elsewhere it is ajar; the escort did not watch continuously.
-Choices: document state, secure the area per policy, request latch and
-ventilation assessment. Check `data/zones.json` and the historic/restricted
-lift lobby environments for a reachable lobby and an existing escorted-access
-mechanism before building; if the lobby is not reachable without granting new
-access, ask the owner how to stage it. No trapping, portal or impossible
-architecture. Then Scenes 09–10. Naomi Mac/geometry gates remain pending.
+Chapter 2 Scene 09 "A File for the Wrong Day" (screenplay CH02 expanded Scene
+09). Check its text and existing records props before building; invent no
+record content beyond the screenplay. Then Scene 10 "Missing Hours". Naomi
+Mac/geometry gates remain pending.

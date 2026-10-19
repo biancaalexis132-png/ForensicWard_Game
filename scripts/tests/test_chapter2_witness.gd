@@ -188,7 +188,7 @@ func _run_witness(choice: String, flag: String) -> void:
 	check_eq(_director().get_chapter_flags("ch2"), flags, "movement cannot be recorded")
 	_talk_tech(choice)
 	check(_director().has_flag(flag), "follow-up recorded: " + flag)
-	check(_objective().is_empty(), "authored Chapter 2 objectives so far complete")
+	check_eq(_objective(), "obj_ch2_lobby_escort", "witness scene hands on to the escorted lobby inspection")
 	check(not _director().has_completed("ch2"), "Chapter 2 not falsely completed")
 	check_eq(_canonical(EvidenceManager.to_save_data()), evidence, "no clue or evidence created")
 	check_eq(_canonical(SaveManager.capture_state().get("anomalies", {})), anomalies, "no anomaly state changed")

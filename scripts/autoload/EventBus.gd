@@ -149,6 +149,9 @@ signal cutscene_finished(cutscene_id: String, reason: String)
 signal trust_changed(staff_id: String, axis: String, value: float)
 @warning_ignore("unused_signal")
 signal access_granted(access_id: String, source_id: String)
+## A temporary pass ended; doors it opened close behind it.
+@warning_ignore("unused_signal")
+signal access_revoked(access_id: String)
 
 # --- Interaction and UI ----------------------------------------------------------------
 

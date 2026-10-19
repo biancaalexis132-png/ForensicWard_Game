@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 2 Scene 08 — 2026-10-19
+
+- Escorted lobby inspection on `claude/chapter2-lobby` at `4669c7c387107584e6429cf79cb035194fcec0b5` (PR to main, stacked after #75). Owner chose "Escorted pass". Full QA exit 0, game 229/0. Mac not run. Next: Scene 09 "A File for the Wrong Day", then Scene 10. Naomi Mac/geometry gates still pending.
+
 ## Claude Code Chapter 2 Scene 07 — 2026-10-19
 
 - Witness scene on `claude/chapter2-witness` at `3a919c972c4cbac795dd72844567516dae68a04f` (PR to main, stacked after #74). Full QA exit 0, game 224/0. Next: Scene 08 lobby-only inspection.

@@ -284,7 +284,8 @@ const _STORY_INTERACTION: Dictionary = {
 		"when": _CONDITION,
 		"options": {"type": "array", "min_items": 1, "items": {
 			"type": "object", "required": {"id": _ID, "label": _STRING, "response": _STRING},
-			"optional": {"flag": _ID},
+			## grants_access/revokes_access: a scene-scoped pass, recorded with source "story:<interaction id>".
+			"optional": {"flag": _ID, "grants_access": _ID, "revokes_access": _ID},
 		}},
 	},
 	"optional": {"expires_when": _CONDITION, "completed_body": _STRING},

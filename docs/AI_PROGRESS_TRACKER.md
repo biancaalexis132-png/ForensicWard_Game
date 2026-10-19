@@ -10,8 +10,9 @@
 | Scene 05 analyst working explanation | Done, draft PR #72 | `ch2_mara_records_referred` | `data/story_chapter2.json`, `scripts/tests/test_chapter2_analyst.gd` | Full QA on `0d298cf`: game 216/0 | Owner review |
 | Scene 06 Hale's Door | Done, draft PR | Scene 05 | `data/world_chapter2.json`, `data/story_chapter2.json`, `scripts/tests/test_chapter2_hale.gd` | Full QA on `ffd5730`: game 220/0 | Owner review |
 | Scene 07 witness | Done, draft PR | Scene 06 | `data/staff.json`, `data/world_chapter2.json`, `scripts/tests/test_chapter2_witness.gd` | Full QA on `3a919c9`: game 224/0 | Owner review |
-| Scene 08 lobby inspection | Next | Reachable historic-access lobby; escorted access | `data/zones.json`, `data/world_chapter2.json` | | Investigate staging |
-| Scenes 09–10 | Planned | Scene 05; Scene 08 lobby-only rule | | | In order |
+| Scene 08 lobby inspection | Done, draft PR | Scene 07; owner chose escorted pass | `data/story_chapter2.json`, `data/world_chapter2.json`, `TrustManager`, `AuthoredWorld`, `scripts/tests/test_chapter2_lobby.gd` | Full QA on `4669c7c`: game 229/0 | Owner review |
+| Scene 09 wrong-day file | Next | Scene 08 | | | Build |
+| Scene 10 | Planned | Scene 05; Scene 08 lobby-only rule | | | In order |
 | Mac visual/performance | Not run | Owner's Mac | | | Owner / local thread |
 
 ## Dialogue visemes — Codex, 2026-10-18
