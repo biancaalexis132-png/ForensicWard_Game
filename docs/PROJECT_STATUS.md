@@ -1,5 +1,7 @@
 # Project status
 
+**Chapter 2 Scene 08 escorted lobby inspection (Claude Code, 2026-10-19; not merged):** runtime `4669c7c387107584e6429cf79cb035194fcec0b5`. Scene-only ward-entry pass; lobby doors closed then ajar after an unwatched interval; pass returned; lift, lobby, hatch and W0-B stay locked. Full QA passed: game 229/0. Mac not run.
+
 **Chapter 2 Scene 07 witness (Claude Code, 2026-10-19; not merged):** runtime `3a919c972c4cbac795dd72844567516dae68a04f`. Technician's recollection recorded as reported; no evidence or anomaly. Full QA passed: game224/0. Mac not run.
 
 **Chapter 2 Scene 06 Hale (Claude Code, 2026-10-18; not merged):** runtime `ffd5730f9d6182d26f104f9d340fad566587fdb8`. Hale scopes the restricted-designation question and grants one permitted follow-up; no access or inspection. Full QA passed: game220/0. Mac not run.
