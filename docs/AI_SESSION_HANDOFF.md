@@ -1,5 +1,8 @@
 # AI session handoff
 
+## Claude Code Naomi v07 refinement — 2026-10-19
+
+- Owner: "continue to finish all necessary animation and i will chec on my mac"; chose "Naomi, then cast". Naomi v07 on `claude/naomi-v07-refine` (draft PR to main), runtime `2707a37e3387cfcea253882f8fbead9eaf9e8773` pushed and verified: hems, shoes, closed-lid line fixed; live gesture shadow from the nearest light. Full QA exit 0, game 234/0. Mac not run. Next: cast draft models (Voss, Hale first). See `docs/handoffs/2026-10-19_claude_naomi_v07.md`.
 ## Claude Code Chapter 4 Scenes 01-03 and 05 official record — 2026-10-19
 
 - `claude/chapter4-record` at `e17fa49fb6b9665ac8f15d43990188620ba3a048`. Full runner exit 0: game 249/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run. Next: Chapter 4 Scenes 07, 08 and 10 (door-state replication attempt, institutional disagreement, official record); Scene 09 per the owner's decision on the loop effect. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.

@@ -1,0 +1,88 @@
+{
+  "character_id": "staff_bennett",
+  "display_name": "Naomi Bennett",
+  "version": "v07",
+  "production_status": "ANIMATION_DEVELOPMENT_PENDING_OWNER_REVIEW",
+  "source_blend": "assets/blender/characters/Naomi_Bennett_v06_mpfb.blend",
+  "objects": {
+    "rig": "Naomi_Bennett_Rig",
+    "face_mesh": "Naomi_Bennett_Body",
+    "eye_l": "Naomi_Eye_L",
+    "eye_r": "Naomi_Eye_R"
+  },
+  "refine": {
+    "skin_rim": {
+      "image": "Naomi_Skin_BaseColor_v06",
+      "output_image": "Naomi_Skin_BaseColor_v07",
+      "material_index": 0,
+      "ellipse_half_m": [
+        0.019,
+        0.012
+      ],
+      "band": [
+        0.8,
+        1.05
+      ],
+      "above_centre_m": -0.001
+    },
+    "lashes": {
+      "lash_material": "Naomi_Lash",
+      "shapes": [
+        "blink",
+        "blink_L",
+        "blink_R"
+      ],
+      "clearance_m": 0.0006,
+      "smoothing_iterations": 4,
+      "smoothing_factor": 0.5,
+      "push_out": false,
+      "line_color_srgb_hex": "#24150e",
+      "line_core_m": 0.0004,
+      "line_feather_m": 0.0008,
+      "line_strength": 0.6
+    },
+    "trousers": {
+      "object": "Naomi_Scrub_Trousers",
+      "cut_m": 0.17,
+      "hem_m": 0.085,
+      "flare": 0.03,
+      "inner_wall_tuck_m": 0.003,
+      "fold_depth_m": 0.006,
+      "fold_height_m": 0.012
+    },
+    "shoes": {
+      "object": "Naomi_Practical_Shoes",
+      "iterations": 30,
+      "factor": 0.5,
+      "keep_sole_below_m": 0.004
+    }
+  },
+  "expected": {
+    "clips": [
+      "idle_neutral",
+      "idle_breathing",
+      "listen_neutral",
+      "stand_conversational",
+      "turn_from_workstation",
+      "return_to_workstation",
+      "small_greeting_nod",
+      "small_acknowledgement_nod",
+      "restrained_chart_indication",
+      "subtle_workstation_indication"
+    ],
+    "morph_targets": 32
+  },
+  "outputs": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v07.blend",
+    "glb": "assets/exports/characters/Naomi_Bennett_v07.glb",
+    "renders": "assets/renders/characters",
+    "manifest": "assets/asset_manifest/naomi_character_manifest_v07.json",
+    "report": "tools/character_animation/reports/staff_bennett_v07_refine_report.json"
+  },
+  "known_limitations": [
+    "Procedural keyframed clips, not motion capture.",
+    "Dialogue mouth shapes are MPFB2 visemes driven by a text-based approximation, not phoneme-timed lip sync.",
+    "Clothing follows the body skin weights; no cloth simulation or corrective shapes.",
+    "Reviewed only in Cycles stills and the Linux container; not measured on the target Mac."
+  ]
+}

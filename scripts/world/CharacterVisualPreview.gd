@@ -6,6 +6,8 @@ extends RefCounted
 ## being wired into it: run the game with `-- --character-preview=staff_bennett`
 ## (or `staff_bennett:v03`, `:v02`, `:v01` for an older candidate).
 ## Use `staff_bennett:v06_mpfb` for the v06 candidate with 22 visemes (`:v06` is the stage).
+## The default is v07: v06_mpfb with straight trouser hems, rounder shoes and a
+## clean closed-lid line (tools/character_animation/refine_character.py).
 ## Without a preview argument every WardCharacter keeps its placeholder. Nothing here touches story, dialogue,
 ## clinical or save state; WardCharacter.set_visual_scene still validates the model
 ## and falls back to the capsule if it is missing or invalid.
@@ -26,13 +28,15 @@ const CANDIDATES: Dictionary = {
 		# Mac build: v04 with MPFB2 CC0 faceunit expressions and visemes (bake_mpfb_face_shapes.py).
 		"v05_mpfb": "res://assets/exports/characters/Naomi_Bennett_v05_mpfb.glb",
 		# v06 stage has ten stable shapes; the MPFB candidate adds the 22 visemes.
-		# Both remain explicit, unapproved review choices; default stays v05.
+		# Both remain explicit, unapproved review choices.
 		"v06": "res://assets/exports/characters/Naomi_Bennett_v06.glb",
 		"v06_mpfb": "res://assets/exports/characters/Naomi_Bennett_v06_mpfb.glb",
+		# v06_mpfb refined: hems, shoes and closed lids fixed; same rig, clips and 32 morphs.
+		"v07": "res://assets/exports/characters/Naomi_Bennett_v07.glb",
 	},
 }
 const DEFAULT_VERSION: Dictionary = {
-	"staff_bennett": "v05",
+	"staff_bennett": "v07",
 }
 ## Where the previewed model stands, relative to the character's marker. Only the
 ## model moves; the interaction box, collision and name label stay on the marker.
