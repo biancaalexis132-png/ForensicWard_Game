@@ -88,7 +88,7 @@ func test_static_graphic_novel_chapters_recap_each_chapter() -> void:
 			if director.is_open and director.panel_index != visited.back():
 				visited.append(director.panel_index)
 		check_eq(visited.size(), (cutscene["panels"] as Array).size(), id + " shows every panel once")
-		check(absf(elapsed - CutsceneRegistry.total_duration(cutscene)) < 0.2, id + " runs its authored length")
+		check(absf(elapsed - director.get_total_seconds()) < 0.2, id + " runs its authored length")
 		check(not director.is_open, id + " finishes")
 		check_eq(director.runtime_errors, [], id + " textures load")
 		check_eq(AudioDirector.get_music_context(), "", id + " restores the music")

@@ -17,6 +17,7 @@ const DEFAULTS: Dictionary = {
 	"chromatic_distortion": true,
 	"flash_effects": true,     ## Flickering lights and flashes.
 	"subtitles": true,
+	"recap_narration": true,    ## Voice-over is optional; recap captions remain.
 	"text_scale": 1.0,
 	"perf_log": false,         ## Debug: ZoneDirector writes user://perf_log.csv around zone transitions.
 }

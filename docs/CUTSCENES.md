@@ -131,3 +131,8 @@ Findings for the owner (the art itself is not changed):
 - Paperwork, names, dates and record numbers in the art (for example Mara's record cards in Chapter 2) are illustrative only and are not clinical or story data.
 - The art shows one fixed protagonist appearance and staff looks that differ from the 3D draft models.
 - Not seen on the Mac yet: Forward+ look, texture memory and frame time on the 8 GB M1 (only the current and next 1600x900 texture are held), audio mix.
+
+
+## Optional narrated chapter recaps
+
+The owner approved the narrator on 2026-10-19. The production continuation adds optional `narration_ref` panel bindings to `data/narration/recaps.json`; gameplay line IDs remain separate. See `docs/NARRATED_CUTSCENES.md` for controls, timing, save/load recovery, branch selection and current production blockers. No artwork bytes change.

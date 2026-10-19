@@ -14,6 +14,7 @@ const TOGGLES: Dictionary = {
 	"VisualEffects": "visual_effects",
 	"FlashEffects": "flash_effects",
 	"Subtitles": "subtitles",
+	"RecapNarration": "recap_narration",
 	"InvertY": "invert_y",
 }
 
@@ -40,6 +41,14 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 	_resume_button.pressed.connect(close)
+	var replay_button: Button = Button.new()
+	replay_button.name = "ReplayRecap"
+	replay_button.text = "Replay latest completed chapter recap"
+	_resume_button.get_parent().add_child(replay_button)
+	_resume_button.get_parent().move_child(replay_button, _resume_button.get_index() + 1)
+	replay_button.pressed.connect(func() -> void:
+		close()
+		EventBus.ui_panel_requested.emit("cutscene", {"replay_completed": true}))
 	$Root/Panel/Margin/VBox/Save.pressed.connect(_on_save)
 	$Root/Panel/Margin/VBox/Load.pressed.connect(_on_load)
 	# Same path as closing the window: Main stops audio first, then quits.
