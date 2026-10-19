@@ -8,10 +8,10 @@ extends RefCounted
 ## chapter ids and caption text in res://data/campaign.json, and panel textures
 ## on disk. A cutscene that fails validation never plays.
 ##
-## Nothing here writes story, clinical or save state. Until the owner approves a
-## cutscene and its placement, the only allowed mode is "review_only" and the only
-## trigger is "manual_preview" (the --cutscene-preview command-line argument or
-## the review scene), so no cutscene can start in the normal campaign.
+## Nothing here writes story, clinical or save state. A "review_only" cutscene
+## uses the "manual_preview" trigger (the --cutscene-preview command-line argument
+## or the review scene). Only a cutscene the owner approved, with mode "campaign",
+## may use the "chapter_start" trigger, which plays it when its chapter opens.
 
 const DIRECTORY: String = "res://data/cutscenes"
 const CAMPAIGN_PATH: String = "res://data/campaign.json"
@@ -19,8 +19,8 @@ const CUES_PATH: String = "res://audio/cues.json"
 const NARRATIVE_DIR: String = "res://data/narrative"
 
 const SCHEMA_VERSION: int = 1
-const MODES: Array[String] = ["review_only"]
-const TRIGGER_KINDS: Array[String] = ["manual_preview"]
+const MODES: Array[String] = ["review_only", "campaign"]
+const TRIGGER_KINDS: Array[String] = ["manual_preview", "chapter_start"]
 const TRANSITIONS: Array[String] = ["cut", "dissolve", "fade_black"]
 const FRAMES: Array[String] = ["inset", "full_bleed"]
 const AMBIENCE_MODES: Array[String] = ["keep", "duck", "stop"]
@@ -59,6 +59,16 @@ static func load_all() -> Dictionary:
 		if problems.is_empty():
 			cutscenes[id] = data
 	return {"cutscenes": cutscenes, "errors": errors}
+
+
+## The approved cutscene that opens `chapter_id`, or "" if there is none.
+static func chapter_start_cutscene(chapter_id: String) -> String:
+	var cutscenes: Dictionary = load_all()["cutscenes"]
+	for id: String in cutscenes:
+		var data: Dictionary = cutscenes[id]
+		if data.get("chapter_id") == chapter_id and str((data.get("trigger", {}) as Dictionary).get("kind", "")) == "chapter_start":
+			return id
+	return ""
 
 
 ## The validated cutscene, or {} with `errors` filled in.
@@ -132,6 +142,12 @@ static func validate(data: Dictionary, context: Dictionary) -> Array[String]:
 	var trigger: Variant = data.get("trigger")
 	if not trigger is Dictionary or not str(trigger.get("kind", "")) in TRIGGER_KINDS:
 		errors.append("trigger.kind must be one of %s" % str(TRIGGER_KINDS))
+	else:
+		var campaign: bool = data.get("mode") == "campaign"
+		if campaign != (str(trigger.get("kind")) == "chapter_start"):
+			errors.append("mode campaign goes with trigger chapter_start, and review_only with manual_preview")
+		if campaign and data.get("approved") != true:
+			errors.append("a campaign cutscene must be approved by the owner")
 	if data.get("fallback_action") != "restore_world":
 		errors.append("fallback_action must be restore_world")
 	if data.has("music"):

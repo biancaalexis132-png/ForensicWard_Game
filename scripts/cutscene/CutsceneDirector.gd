@@ -21,8 +21,9 @@ extends CanvasLayer
 ##
 ## Review-only gate: a cutscene with "approved": false plays only when
 ## review_mode is on, which only the --cutscene-preview=<id> argument, the
-## review scene (scenes/cutscene/CutscenePreview.tscn) or tests turn on. No
-## campaign trigger exists yet; the owner approves visuals and placement first.
+## review scene (scenes/cutscene/CutscenePreview.tscn) or tests turn on. The
+## only campaign trigger is "chapter_start": Main opens an approved chapter
+## title card when its chapter starts.
 ##
 ## Controls while playing: Esc skips, Enter / Space / E advances one panel,
 ## R replays (review mode only). Reduce Motion holds each panel still.

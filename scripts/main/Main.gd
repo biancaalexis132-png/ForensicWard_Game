@@ -12,8 +12,9 @@ extends Node3D
 ##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
 ##   "ehr"        EHRScreen (also opened with J)
 ##   "evidence"   EvidenceBoard (also opened with Tab)
-##   "cutscene"   CutsceneDirector (graphic-novel cutscene; review-only until the
-##                owner approves one: `-- --cutscene-preview=<cutscene_id>`)
+##   "cutscene"   CutsceneDirector (graphic-novel cutscene: approved chapter title
+##                cards play when a chapter opens; others only with
+##                `-- --cutscene-preview=<cutscene_id>`)
 ## ChapterDirector (story), AnomalyLedger (anomaly evidence, flag off by
 ## default), AudioZoneTracker (ambience per room) and ZoneDirector (which
 ## zones are loaded, transitions) are children of Main, so they exist exactly
@@ -210,10 +211,13 @@ func _sync_chapter_world() -> bool:
 	return true
 
 
-func _on_chapter_started(_chapter_id: String) -> void:
+func _on_chapter_started(chapter_id: String) -> void:
 	if not _sync_chapter_world():
 		return
 	_silence_audio()
 	_zones.reset_state()
 	_place_at_spawn()
 	_update_input_mode()
+	var opening: String = CutsceneRegistry.chapter_start_cutscene(chapter_id)
+	if not opening.is_empty():
+		EventBus.ui_panel_requested.emit(CutsceneDirector.PANEL_ID, {"cutscene_id": opening})
