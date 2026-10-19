@@ -168,8 +168,9 @@ func test_public_counter_talk_point_preserves_wall_and_chapter_bindings() -> voi
 		nurse.present_when = {"flag": "counter_presence_probe"}
 		nurse._update_presence()
 		check_eq((nurse.get_node("Interactable") as Interactable).collision_layer, 0, "absent actor also disables the public talk point")
-		nurse.present_when = {}
+		nurse.present_when = {"not": {"flag": "counter_presence_probe"}}
 		nurse._update_presence()
+		nurse.present_when = {}
 	# A loaded/rebuilt zone recreates the one extra shape without saved state.
 	world.configure_chapter("ch1")
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "counter setup can be saved")
