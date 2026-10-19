@@ -1,6 +1,6 @@
 # Narrated chapter recaps — implementation and playback guide
 
-**Status: implementation candidate, not final delivery.** The owner approved the Chapter 1 narrator, pacing and writing with “i approve of the narration. Continue” on 19 October 2026. Narration approval is no longer pending. Clinical rules and character-model approval are separate and unchanged.
+**Status: approved local narrator production.** The owner approved the original writing, then approved the 18-second local replacement voice and pacing with “yes” on 19 October 2026. The production narrator is now Piper LJ Speech, consistently across all five chapters and endings; ElevenLabs is superseded. Narration approval is no longer pending. Clinical rules and character-model approval are separate and unchanged.
 
 The current work extends the existing CutsceneDirector and AudioDirector; it does not replace either system or modify an illustration. Runtime captions and voice text live in `data/narration/recaps.json`. Exact panel scripts are in `docs/narration/CH01_SCRIPT.md` through `CH05_SCRIPT.md`; these supersede the historical draft mapping under `docs/narration_review/source_scripts/`.
 
@@ -48,25 +48,28 @@ Missing voice or missing cue data uses captions and a hold of at least max(origi
 
 Save/load preserves chapter and ending flags through existing providers. The recap overlay is transient: loading cancels it and clears the old replay snapshot. It does not resume mid-word or re-fire completion. The pause-menu replay action reconstructs it from the loaded completed chapter. No save-schema migration is needed.
 
-## Voice provenance and production blockers
+## Voice source and reproducibility
 
-Approved voice: ElevenLabs **Shawn – Calm & Grounded**, `d8XDgkC47nxEyrCyckjI`; model `eleven_multilingual_v2`, provider default voice settings and MP3 44.1 kHz/128 kbps. No cloned voice was created. The source queue has 38 recordings: 36 panels minus the neutral Chapter 5 p06 plus three exclusive ending clips. The neutral p06 still has a caption recovery script.
+The approved replacement is **Piper LJ Speech US English female**, model `vits-piper-en_US-ljspeech-high`, run locally on CPU through **Sherpa-ONNX 1.13.8** at speed **0.92**, speaker 0, default noise settings. The owner heard Chapter 1 p01/p02 and approved this replacement before the remaining recordings were produced. No new voice cloning was performed. All chapters use this one model; the earlier ElevenLabs take is not mixed into production.
 
-Flow: https://elevenlabs.io/app/flows/yQMcIpjsr8E8Q7HI00l7
+`audio/narration/LOCAL_VOICE_MODEL_CARD.md` retains the upstream attribution (LJ Speech public-domain dataset). `data/narration/recaps.json` records the download URL, model SHA-256, settings and approval. `audio/narration/provenance.json` records source WAV and shipped OGG hashes, measured durations and attribution per clip. Historical `generation_records.json` describes the abandoned ElevenLabs attempt only; it is not the source of shipped audio.
 
-`audio/narration/generation_records.json` maps every track to its provider node. One production recording completed (Chapter 2 p04); remaining starts were rejected with HTTP 429 or remain prepared. No completed recording was regenerated. At the latest live check the active environment still allowed only api.github.com, despite the owner's saved network edit; a fresh Google Storage download was denied by the proxy with HTTP 403. The completed recording is not yet imported. Do not mark the voice delivery complete or silently replace the approved voice.
+The queue contains **38 recordings**: 36 panels minus neutral Chapter 5 p06 plus three exclusive ending clips. Neutral p06 remains caption-only recovery when saved ending flags are absent or inconsistent. Each finished panel has an OGG, SRT and measured full-statement cue. The shared Chapter 5 artwork remains unchanged.
 
-After the provider/network issue is resolved, retrieve existing completed generations by their recorded IDs. Generate only nodes confirmed not to have started; never blindly rerun the batch or charge for another completed take. Download each as `<track_id>.mp3`. Import with:
+To reproduce (weights and Python dependencies are authoring-only and stay outside the project):
 
 ```
-python3 tools/narration/import_recordings.py /path/to/downloads
+python3 -m pip install -r tools/narration/requirements-local.txt
+# Download/extract voice.source_url from data/narration/recaps.json externally.
+python3 tools/narration/generate_local.py /path/to/vits-piper-en_US-ljspeech-high /path/to/wavs
+python3 tools/narration/import_recordings.py /path/to/wavs
 python3 tools/audio/build_manifest.py
 python3 tools/narration/check_delivery.py
-# After committing the validated media and source tree:
+# After committing validated assets:
 python3 tools/narration/package_delivery.py /path/to/ForensicWard_Narrated.zip
 ```
 
-The importer encodes mono OGG 44.1 kHz with libvorbis q5 and loudness target -18 LUFS/-2 dBTP, measures actual duration, creates exact full-statement subtitle cues/SRT, and records source/output SHA-256 and settings. It does not generate replacement voices. Runtime voice is offline; no API calls or inference are needed during play. Scope remains the owner's private/personal project; commercial rights are not independently verified.
+The importer encodes mono OGG at 44.1 kHz with libvorbis q5, loudness target -18 LUFS/-2 dBTP, and measures actual duration. Subtitles display each complete panel statement from clip start to clip finish; they are not word-by-word karaoke. Generation can vary slightly on rerun, so shipped hashes identify the delivered take. Gameplay is fully offline and requires no voice service or Python installation.
 
 ## Verification and final release gate
 

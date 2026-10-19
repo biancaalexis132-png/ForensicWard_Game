@@ -202,5 +202,7 @@
   "blockers": [
     "Provider HTTP 429 prevented 37 initial recording starts; no completed recording was regenerated.",
     "Live runtime network still allows only api.github.com. Downloads from storage.googleapis.com receive proxy HTTP 403."
-  ]
+  ],
+  "status": "historical_superseded",
+  "superseded_by": "Owner-approved local Piper LJ Speech replacement; shipped recording provenance is audio/narration/provenance.json. No ElevenLabs asset is used in production."
 }

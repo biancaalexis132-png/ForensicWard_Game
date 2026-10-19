@@ -129,7 +129,7 @@ def build():
         else:
             if relative in narration:
                 record = narration[relative]
-                entry.update({"category": "narration", "source": "ElevenLabs " + record["voice"]["name"] + " / " + record["voice"]["model_id"] + "; " + record["conversion"],
+                entry.update({"category": "narration", "source": record["voice"]["provider"] + " " + record["voice"]["name"] + " / " + record["voice"]["model_id"] + "; " + record["conversion"],
                               "license": record["license"], "review_status": record["review_status"],
                               "location": "chapter recap", "track_id": record["track_id"]})
             entry["ids"] = by_path.get(relative, entry.get("ids", []))

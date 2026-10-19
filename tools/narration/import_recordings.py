@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Import the approved narrator's downloaded panel recordings, without network calls.
 
-Name each MP3 <track_id>.mp3 using audio/narration/recording_queue.json, then:
+Name each WAV/MP3 <track_id>.wav or <track_id>.mp3 using audio/narration/recording_queue.json, then:
   python3 tools/narration/import_recordings.py /path/to/downloads
   python3 tools/narration/check_delivery.py
 Requires FFmpeg/ffprobe with libvorbis. Does not synthesize substitute voices.
@@ -40,7 +40,9 @@ def main():
     for item in queue:
         track_id = item['track']
         track = data['tracks'][track_id]
-        source = args.downloads / (track_id + '.mp3')
+        source = args.downloads / (track_id + '.wav')
+        if not source.exists():
+            source = args.downloads / (track_id + '.mp3')
         target = ROOT / track['audio_path'].removeprefix('res://')
         if source.exists():
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -68,7 +70,7 @@ def main():
             'source_sha256': source_hash, 'sha256': hashlib.sha256(target.read_bytes()).hexdigest(),
             'duration_seconds': duration, 'voice': data['voice'],
             'conversion': 'FFmpeg libvorbis q5, mono 44100Hz; loudnorm I=-18 TP=-2 LRA=7',
-            'license': 'ElevenLabs-generated recording through the connected owner account; private/personal project scope. Commercial rights not independently verified.',
+            'license': data['voice'].get('license', 'ElevenLabs-generated recording through the connected owner account; private/personal project scope. Commercial rights not independently verified.'),
             'review_status': 'approved_narrator_production_listening_pending'}
     DATA.write_text(json.dumps(data, indent=2) + '\n')
     provenance_path.write_text(json.dumps(provenance, indent=2) + '\n')

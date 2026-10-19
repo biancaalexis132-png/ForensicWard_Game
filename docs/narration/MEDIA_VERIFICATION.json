@@ -1,0 +1,233 @@
+{
+  "method": "Full FFmpeg OGG decode with volumedetect; finite non-silent signal, no sample clipping; measured cue ends match durations. This is technical verification, not an artistic listening review.",
+  "assets": [
+    {
+      "track": "nar_ch01_p01",
+      "duration": 8.4,
+      "mean_dbfs": -18.8,
+      "peak_dbfs": -1.8
+    },
+    {
+      "track": "nar_ch01_p02",
+      "duration": 8.2,
+      "mean_dbfs": -18.7,
+      "peak_dbfs": -1.7
+    },
+    {
+      "track": "nar_ch01_p03",
+      "duration": 6.7,
+      "mean_dbfs": -18.9,
+      "peak_dbfs": -2.3
+    },
+    {
+      "track": "nar_ch01_p04",
+      "duration": 6.7,
+      "mean_dbfs": -18.6,
+      "peak_dbfs": -1.8
+    },
+    {
+      "track": "nar_ch01_p05",
+      "duration": 7.2,
+      "mean_dbfs": -18.3,
+      "peak_dbfs": -1.8
+    },
+    {
+      "track": "nar_ch01_p06",
+      "duration": 6.8,
+      "mean_dbfs": -18.5,
+      "peak_dbfs": -2.0
+    },
+    {
+      "track": "nar_ch01_p07",
+      "duration": 8.3,
+      "mean_dbfs": -18.4,
+      "peak_dbfs": -2.2
+    },
+    {
+      "track": "nar_ch02_p01",
+      "duration": 6.7,
+      "mean_dbfs": -19.3,
+      "peak_dbfs": -2.1
+    },
+    {
+      "track": "nar_ch02_p02",
+      "duration": 5.9,
+      "mean_dbfs": -19.0,
+      "peak_dbfs": -1.8
+    },
+    {
+      "track": "nar_ch02_p03",
+      "duration": 5.9,
+      "mean_dbfs": -18.9,
+      "peak_dbfs": -2.0
+    },
+    {
+      "track": "nar_ch02_p04",
+      "duration": 6.4,
+      "mean_dbfs": -20.0,
+      "peak_dbfs": -1.9
+    },
+    {
+      "track": "nar_ch02_p05",
+      "duration": 7.5,
+      "mean_dbfs": -18.7,
+      "peak_dbfs": -1.7
+    },
+    {
+      "track": "nar_ch02_p06",
+      "duration": 10.3,
+      "mean_dbfs": -18.5,
+      "peak_dbfs": -1.9
+    },
+    {
+      "track": "nar_ch02_p07",
+      "duration": 6.2,
+      "mean_dbfs": -18.5,
+      "peak_dbfs": -1.8
+    },
+    {
+      "track": "nar_ch03_p01",
+      "duration": 6.8,
+      "mean_dbfs": -18.6,
+      "peak_dbfs": -2.0
+    },
+    {
+      "track": "nar_ch03_p02",
+      "duration": 8.1,
+      "mean_dbfs": -18.6,
+      "peak_dbfs": -1.9
+    },
+    {
+      "track": "nar_ch03_p03",
+      "duration": 6.5,
+      "mean_dbfs": -19.2,
+      "peak_dbfs": -1.7
+    },
+    {
+      "track": "nar_ch03_p04",
+      "duration": 6.9,
+      "mean_dbfs": -18.6,
+      "peak_dbfs": -1.4
+    },
+    {
+      "track": "nar_ch03_p05",
+      "duration": 8.1,
+      "mean_dbfs": -18.7,
+      "peak_dbfs": -1.9
+    },
+    {
+      "track": "nar_ch03_p06",
+      "duration": 5.9,
+      "mean_dbfs": -18.5,
+      "peak_dbfs": -1.7
+    },
+    {
+      "track": "nar_ch03_p07",
+      "duration": 8.2,
+      "mean_dbfs": -18.7,
+      "peak_dbfs": -2.0
+    },
+    {
+      "track": "nar_ch04_p01",
+      "duration": 7.3,
+      "mean_dbfs": -19.1,
+      "peak_dbfs": -1.9
+    },
+    {
+      "track": "nar_ch04_p02",
+      "duration": 7.4,
+      "mean_dbfs": -18.3,
+      "peak_dbfs": -1.9
+    },
+    {
+      "track": "nar_ch04_p03",
+      "duration": 8.6,
+      "mean_dbfs": -18.1,
+      "peak_dbfs": -2.1
+    },
+    {
+      "track": "nar_ch04_p04",
+      "duration": 7.9,
+      "mean_dbfs": -18.7,
+      "peak_dbfs": -1.9
+    },
+    {
+      "track": "nar_ch04_p05",
+      "duration": 8.9,
+      "mean_dbfs": -18.7,
+      "peak_dbfs": -1.6
+    },
+    {
+      "track": "nar_ch04_p06",
+      "duration": 9.1,
+      "mean_dbfs": -18.9,
+      "peak_dbfs": -1.8
+    },
+    {
+      "track": "nar_ch04_p07",
+      "duration": 7.8,
+      "mean_dbfs": -19.1,
+      "peak_dbfs": -1.8
+    },
+    {
+      "track": "nar_ch04_p08",
+      "duration": 7.2,
+      "mean_dbfs": -18.8,
+      "peak_dbfs": -1.7
+    },
+    {
+      "track": "nar_ch05_p01",
+      "duration": 8.4,
+      "mean_dbfs": -18.6,
+      "peak_dbfs": -2.0
+    },
+    {
+      "track": "nar_ch05_p02",
+      "duration": 7.4,
+      "mean_dbfs": -19.1,
+      "peak_dbfs": -1.8
+    },
+    {
+      "track": "nar_ch05_p03",
+      "duration": 8.5,
+      "mean_dbfs": -18.5,
+      "peak_dbfs": -1.6
+    },
+    {
+      "track": "nar_ch05_p04",
+      "duration": 9.5,
+      "mean_dbfs": -18.9,
+      "peak_dbfs": -1.8
+    },
+    {
+      "track": "nar_ch05_p05",
+      "duration": 8.4,
+      "mean_dbfs": -19.0,
+      "peak_dbfs": -1.7
+    },
+    {
+      "track": "nar_ch05_p07",
+      "duration": 8.7,
+      "mean_dbfs": -19.7,
+      "peak_dbfs": -1.7
+    },
+    {
+      "track": "nar_ch05_p06_a",
+      "duration": 10.2,
+      "mean_dbfs": -19.3,
+      "peak_dbfs": -1.9
+    },
+    {
+      "track": "nar_ch05_p06_b",
+      "duration": 10.0,
+      "mean_dbfs": -18.4,
+      "peak_dbfs": -1.9
+    },
+    {
+      "track": "nar_ch05_p06_c",
+      "duration": 10.3,
+      "mean_dbfs": -18.5,
+      "peak_dbfs": -1.8
+    }
+  ]
+}

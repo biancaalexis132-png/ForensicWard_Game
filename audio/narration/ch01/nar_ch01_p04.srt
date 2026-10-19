@@ -1,0 +1,3 @@
+1
+00:00:00,000 --> 00:00:06,700
+A transfer summary offers a starting point, but not an answer. The record must be read alongside the patient.

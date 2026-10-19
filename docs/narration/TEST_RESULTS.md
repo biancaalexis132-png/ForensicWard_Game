@@ -1,4 +1,6 @@
-# Narration implementation validation — 19 October 2026
+# Narration verification — 19 October 2026
+
+The owner subsequently approved the local Piper LJ Speech replacement sample. The production-media verification below supersedes the historical ElevenLabs blocker.
 
 Implementation checkpoint: `d5a10ad782cbc43c72b0f9acccaf5308a5a602ba`, pushed on `codex/cutscene-narration-production`. Baseline main: `27798757a8e8844a7301910a4610d0ec5817a0d2`. No merge or artwork change.
 
@@ -18,12 +20,8 @@ Narration regressions use a temporary real OGG playback stimulus. They verify ex
 
 Initial cross-suite input/camera failures were reproduced and fixed in the new test cleanup: scenes unregister synchronously and the physics-frame test returns through an idle timer before later suites register input handlers. Existing tests were retained. The original all-panel recap test now runs in caption-only mode with the narration-aware duration; dedicated new tests cover audio timing. Empty narration cleanup no longer creates redundant speech-release fades.
 
-## Media and release gate
+## Local replacement production
 
-`tools/narration/check_delivery.py` currently reports **0/38 imported voices**, 36 approved images intact, and rejects final delivery. The packaging command was also executed and refused to create a final ZIP, as required by the missing-media gate. One production clip exists remotely, Chapter 2 p04 (`uqvmiHtJM7fBjQYYjviy`, 6.037 seconds), with its session/node IDs in `audio/narration/generation_records.json`. The remaining 37 nodes are confirmed not run. Later first-start attempts on previously unstarted nodes were also rejected with provider HTTP 429; completed media was not regenerated.
+Owner approval: “yes” to the 18-second Chapter 1 replacement sample, 19 October 2026. All production uses Piper LJ Speech through Sherpa-ONNX 1.13.8, speed 0.92. No ElevenLabs recording is shipped or mixed into the replacement narration. Exact model/settings/source hashes are recorded in the runtime voice metadata and per-clip provenance.
 
-A fresh download of the completed clip failed at the proxy with HTTP 403. The live environment status still reports only api.github.com allowed, revision 9; the owner's saved storage-host edit is not reflected in the active runtime. No production MP3/OGG/SRT has been imported, and production narration listening or mix approval is not claimed.
-
-The runtime works through its caption/music recovery path while media is unavailable. Mac Forward+/Metal visual/audio/performance checks and finished realistic character integration remain pending. The normal campaign uses placeholders; review-only cast candidates do not establish finished realistic gameplay.
-
-Local verification logs are `/workspace/work/production-qa.log`, `/workspace/work/narration-verified-game.log`, and `/workspace/work/narration-checkpoint-verification.log`. These disposable paths are not a substitute for this pushed summary. Hosted CI success is not claimed.
+Final asset and runtime check results are recorded after generation below. The standard runner's 150-second cap remains unchanged; any extended suite run is reported separately. Headless playback validates state, timing and asset loading; it does not establish audible mix or Mac visual acceptance. Realistic cast integration remains unfinished.
