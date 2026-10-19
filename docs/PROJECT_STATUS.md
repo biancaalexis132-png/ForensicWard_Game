@@ -1,5 +1,7 @@
 # Project status
 
+**Chapter 3 Scenes 01-02 notice and briefing (Claude Code, 2026-10-19; not merged):** runtime `4c1bb95df4dc22781005a335222398a3e836b845`. Chapter 3 marked playable (campaign) with new story_chapter3.json/world_chapter3.json. Chapter 2 next_chapter ch3; a story choice that completes a chapter now offers 'Return for the next day shift' (ChapterDirector), and NS_Clock is Chapter 2's sign-out so completed saves can continue. Bennett's inspection notice: coverage, audit summary and clinical scope all required (leaving uncovered is refuse Mac not run.
+
 **Chapter 2 Scene 10 closing beat (Claude Code, 2026-10-19; not merged):** runtime `1bb194df802b68591f9e7ab8a7939754e91bd8e3`. Chapter 2 now completes after Bennett's end-of-shift exchange; report states what the records cannot reconstruct. W0-B locked; Chapter 3 not started. Full QA passed: game 235/0. Mac not run.
 
 **Chapter 2 Scene 09 wrong-day file (Claude Code, 2026-10-19; not merged):** runtime `1481c7ea32b8a5cb553d50529afd387e382f5898`. Export date conflict placed in the incident record, not Mara's note; one handling chosen; originals unchanged. Full QA passed: game 233/0. Mac not run.

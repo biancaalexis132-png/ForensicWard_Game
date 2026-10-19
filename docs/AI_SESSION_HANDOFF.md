@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 3 Scenes 01-02 notice and briefing — 2026-10-19
+
+- `claude/chapter3-briefing` at `4c1bb95df4dc22781005a335222398a3e836b845`. Full runner exit 0: game 238/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run. Next: Chapter 3 Scenes 03-04: descent and first authorized Ward Zero entry. Wire zone_ward_zero (Stage 6 env exists, zone placeholder) and the W0-B route; Hale and Facilities engineer escort; marked route only. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
+
 ## Claude Code Chapter 2 Scene 10 — 2026-10-19
 
 - Closing beat on `claude/chapter2-missing-hours` at `1bb194df802b68591f9e7ab8a7939754e91bd8e3` (PR to main, stacked after #77). Chapter 2 is now completable end to end. Full QA exit 0, game 235/0. Mac not run. Not built: optional personal-contact message, exterior fade-out. Pending: owner narrative review of Scenes 04–10 (story file stays provisional/PENDING); Naomi Mac/geometry gates.
