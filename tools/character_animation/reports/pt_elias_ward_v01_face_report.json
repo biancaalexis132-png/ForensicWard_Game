@@ -1,0 +1,223 @@
+{
+  "blender_version": "5.2.2 LTS",
+  "profile": "tools/character_animation/profiles/pt_elias_ward_v01_face.json",
+  "profile_sha256": "d585a22f328739a645a8398e333845b74443768d47d44d19d92310d329f6c41a",
+  "source": {
+    "path": "build/cast/Elias_Ward_v01_anim.blend",
+    "sha256": "ff57868a761c4ff81ab1a27c9007177f64ec8efdd24d1abe5ee3f01ede89b7e9"
+  },
+  "face_source": {
+    "path": "assets/blender/characters/Naomi_Bennett_v07.blend",
+    "sha256": "e4b39c654e2ecbba1b4c33dae8ae65a3d7edc7ee72520cef7536465e4835c4a7"
+  },
+  "naomi_vertices_on_base": 4149,
+  "target_vertices_on_base_with_offsets": 4123,
+  "target_vertices_filled_from_neighbours": 89,
+  "eye_spacing_ratio": 1.04,
+  "morph_targets": [
+    "blink_L",
+    "blink_R",
+    "blink",
+    "attentive",
+    "warm_subtle",
+    "concerned_restrained",
+    "professionally_serious",
+    "focused",
+    "calm_professional",
+    "mouth_open",
+    "viseme_sil_00",
+    "viseme_aa_ah_ax_01",
+    "viseme_aa_02",
+    "viseme_ao_03",
+    "viseme_ey_eh_uh_04",
+    "viseme_er_05",
+    "viseme_y_iy_ih_ix_06",
+    "viseme_w_uw_07",
+    "viseme_ow_08",
+    "viseme_aw_09",
+    "viseme_oy_10",
+    "viseme_ay_11",
+    "viseme_h_12",
+    "viseme_r_13",
+    "viseme_l_14",
+    "viseme_s_z_15",
+    "viseme_sh_ch_jh_zh_16",
+    "viseme_th_dh_17",
+    "viseme_f_v_18",
+    "viseme_d_t_n_19",
+    "viseme_k_g_ng_20",
+    "viseme_p_b_m_21"
+  ],
+  "vertices_moved": {
+    "blink_L": 758,
+    "blink_R": 758,
+    "blink": 1292,
+    "attentive": 1501,
+    "warm_subtle": 2517,
+    "concerned_restrained": 2639,
+    "professionally_serious": 2726,
+    "focused": 1387,
+    "calm_professional": 2352,
+    "mouth_open": 2211,
+    "viseme_sil_00": 0,
+    "viseme_aa_ah_ax_01": 1831,
+    "viseme_aa_02": 2092,
+    "viseme_ao_03": 1923,
+    "viseme_ey_eh_uh_04": 1719,
+    "viseme_er_05": 1830,
+    "viseme_y_iy_ih_ix_06": 1581,
+    "viseme_w_uw_07": 1297,
+    "viseme_ow_08": 1907,
+    "viseme_aw_09": 1914,
+    "viseme_oy_10": 1946,
+    "viseme_ay_11": 1815,
+    "viseme_h_12": 1961,
+    "viseme_r_13": 1486,
+    "viseme_l_14": 1581,
+    "viseme_s_z_15": 415,
+    "viseme_sh_ch_jh_zh_16": 1491,
+    "viseme_th_dh_17": 1330,
+    "viseme_f_v_18": 1450,
+    "viseme_d_t_n_19": 1339,
+    "viseme_k_g_ng_20": 1794,
+    "viseme_p_b_m_21": 1526
+  },
+  "glb": {
+    "skins": 1,
+    "animations": [
+      {
+        "name": "idle_breathing",
+        "channels": 5,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "idle_neutral",
+        "channels": 7,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "pelvis",
+          "spine_01",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "listen_neutral",
+        "channels": 4,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "restrained_chart_indication",
+        "channels": 3,
+        "nodes": [
+          "lowerarm_r",
+          "neck_01",
+          "upperarm_r"
+        ]
+      },
+      {
+        "name": "return_to_workstation",
+        "channels": 3,
+        "nodes": [
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "small_acknowledgement_nod",
+        "channels": 1,
+        "nodes": [
+          "neck_01"
+        ]
+      },
+      {
+        "name": "small_greeting_nod",
+        "channels": 1,
+        "nodes": [
+          "neck_01"
+        ]
+      },
+      {
+        "name": "stand_conversational",
+        "channels": 5,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "subtle_workstation_indication",
+        "channels": 2,
+        "nodes": [
+          "lowerarm_r",
+          "neck_01"
+        ]
+      },
+      {
+        "name": "turn_from_workstation",
+        "channels": 3,
+        "nodes": [
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      }
+    ],
+    "morph_targets": [
+      {
+        "mesh": "Elias_Ward_Body",
+        "targets": [
+          "blink_L",
+          "blink_R",
+          "blink",
+          "attentive",
+          "warm_subtle",
+          "concerned_restrained",
+          "professionally_serious",
+          "focused",
+          "calm_professional",
+          "mouth_open",
+          "viseme_sil_00",
+          "viseme_aa_ah_ax_01",
+          "viseme_aa_02",
+          "viseme_ao_03",
+          "viseme_ey_eh_uh_04",
+          "viseme_er_05",
+          "viseme_y_iy_ih_ix_06",
+          "viseme_w_uw_07",
+          "viseme_ow_08",
+          "viseme_aw_09",
+          "viseme_oy_10",
+          "viseme_ay_11",
+          "viseme_h_12",
+          "viseme_r_13",
+          "viseme_l_14",
+          "viseme_s_z_15",
+          "viseme_sh_ch_jh_zh_16",
+          "viseme_th_dh_17",
+          "viseme_f_v_18",
+          "viseme_d_t_n_19",
+          "viseme_k_g_ng_20",
+          "viseme_p_b_m_21"
+        ]
+      }
+    ]
+  }
+}
