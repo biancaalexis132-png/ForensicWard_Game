@@ -4,6 +4,8 @@
 
 **Chapter 3 Scenes 03-04 descent and first Ward Zero entry (Claude Code, 2026-10-19; not merged):** runtime `2151b58662236e548d507a853eb1c400d42fd5fc`. zone_ward_zero built (7 Stage 6 environments, bounds x -6.7..6.7, z -9.5..10.2 on the sublevel) and conn_w0_threshold (fade, required access access_w0_threshold) from SC_BrickInfill to the threshold (return point W0T_Radiator). Hale's team pass grants access_ward_entry + access_maintenance; the screenplay's service elevator is staged as the Facilities hatch and stair because the restricted lift's  Mac not run.
 
+**Chapter 3 Scenes 05-08 alcove, route check and safe return (Claude Code, 2026-10-19; not merged):** runtime `aee2b95bd353bf60b649e3485be5eadd497880f4`. Data only. Alcove at W0C_Radiator_0 (compare plans / request survey / preserve discrepancy; 'the alcove has moved' feedback-only). Route concern and holding point at W0C_ClockA ('we've come round in a loop' and splitting up refused; flags ch3_route_paused = inspection_paused_for_route_check, ch3_ambiguity_recorded). Safe return through the threshold, stair and ward entry; Hale's 'return the team p Mac not run.
+
 **Chapter 2 Scene 10 closing beat (Claude Code, 2026-10-19; not merged):** runtime `1bb194df802b68591f9e7ab8a7939754e91bd8e3`. Chapter 2 now completes after Bennett's end-of-shift exchange; report states what the records cannot reconstruct. W0-B locked; Chapter 3 not started. Full QA passed: game 235/0. Mac not run.
 
 **Chapter 2 Scene 09 wrong-day file (Claude Code, 2026-10-19; not merged):** runtime `1481c7ea32b8a5cb553d50529afd387e382f5898`. Export date conflict placed in the incident record, not Mara's note; one handling chosen; originals unchanged. Full QA passed: game 233/0. Mac not run.

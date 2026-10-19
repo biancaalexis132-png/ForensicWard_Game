@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 3 Scenes 05-08 alcove, route check and safe return — 2026-10-19
+
+- `claude/chapter3-return` at `aee2b95bd353bf60b649e3485be5eadd497880f4`. Full runner exit 0: game 244/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run. Next: Chapter 3 Scenes 09-14: debrief, back to patient care, survey request, inconsistent measurements, inspection report, closing photograph; Chapter 3 completes. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
+
 ## Claude Code Chapter 3 Scenes 03-04 descent and first Ward Zero entry — 2026-10-19
 
 - `claude/chapter3-descent` at `2151b58662236e548d507a853eb1c400d42fd5fc`. Full runner exit 0: game 241/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run; Ward Zero frame time on the 8 GB Mac is unmeasured. Mac not run. Next: Chapter 3 Scenes 05-08: the alcove, route concern (no loop), account for the team, safe return (return the team pass in the clinical wing). Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.

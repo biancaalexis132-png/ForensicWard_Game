@@ -37,6 +37,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Chapter 3 Scenes 05-08 alcove, route check and safe return
+
+- **Branch / verified runtime:** `claude/chapter3-return` (stacked on claude/chapter3-descent / PR #80), `aee2b95bd353bf60b649e3485be5eadd497880f4`.
+- **Delivered:** Data only. Alcove at W0C_Radiator_0 (compare plans / request survey / preserve discrepancy; 'the alcove has moved' feedback-only). Route concern and holding point at W0C_ClockA ('we've come round in a loop' and splitting up refused; flags ch3_route_paused = inspection_paused_for_route_check, ch3_ambiguity_recorded). Safe return through the threshold, stair and ward entry; Hale's 'return the team pass' revokes ward entry, maintenance and threshold access in the clinical wing. No safe-abort branch: the authored route check always succeeds. New test_chapter3_return.gd; descent test final objective updated.
+- **Executed:** Full runner exit 0: game 244/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run.
+- **Next exact task:** Chapter 3 Scenes 09-14: debrief, back to patient care, survey request, inconsistent measurements, inspection report, closing photograph; Chapter 3 completes. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
 ### 2026-10-19 · Claude Code · Chapter 3 Scenes 03-04 descent and first Ward Zero entry
 
 - **Branch / verified runtime:** `claude/chapter3-descent` (stacked on claude/chapter3-briefing / PR #79), `2151b58662236e548d507a853eb1c400d42fd5fc`.

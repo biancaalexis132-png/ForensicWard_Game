@@ -14,6 +14,12 @@ Runtime `2151b58662236e548d507a853eb1c400d42fd5fc` on `claude/chapter3-descent`.
 
 Tests: Full runner exit 0: game 241/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run; Ward Zero frame time on the 8 GB Mac is unmeasured.
 
+## Chapter 3 Scenes 05-08 alcove, route check and safe return
+
+Runtime `aee2b95bd353bf60b649e3485be5eadd497880f4` on `claude/chapter3-return`. The alcove's one-bay difference is recorded three possible ways without a cause. A familiar marker pauses the inspection; a loop is never claimed; the team holds together while control confirms one continuous route. Back in the office Hale counts the team in and takes back every scene pass.
+
+Tests: Full runner exit 0: game 244/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence.
+
 ## Next exact task
 
-Chapter 3 Scenes 05-08: the alcove, route concern (no loop), account for the team, safe return (return the team pass in the clinical wing).
+Chapter 3 Scenes 09-14: debrief, back to patient care, survey request, inconsistent measurements, inspection report, closing photograph; Chapter 3 completes.
