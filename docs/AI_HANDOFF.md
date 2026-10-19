@@ -37,6 +37,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Chapter 4 Scenes 07-08
+
+- **Branch / verified runtime:** `claude/chapter4-door-test` (claude/chapter4-record), `daca017`.
+- **Delivered:** Hale test pass and Corridor_CCTV_5 check (repeatability open), pass returned; Voss disagreement, holding safety notification refused. TestRunner now fails runs on unloadable test files (verified with a deliberately broken file: 252 passed, 1 failed).
+- **Executed:** Full QA at daca017: all executed checks passed; game tests 252 passed 0 failed; GLB 161/0. Mac checks not run. Mac not run.
+- **Next exact task:** Await owner answer on Ch4 Scene 09 corridor-loop card, then build Scenes 09-10; then Chapter 5. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
 ### 2026-10-19 · Claude Code · Chapter 4 Scenes 01-03 and 05 official record
 
 - **Branch / verified runtime:** `claude/chapter4-record` (stacked on claude/chapter3-report / PR #82), `e17fa49fb6b9665ac8f15d43990188620ba3a048`.

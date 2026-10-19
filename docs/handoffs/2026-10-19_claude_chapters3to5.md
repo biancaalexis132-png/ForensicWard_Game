@@ -32,6 +32,12 @@ Runtime `e17fa49fb6b9665ac8f15d43990188620ba3a048` on `claude/chapter4-record`. 
 
 Tests: Full runner exit 0: game 249/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence.
 
+## Chapter 4 Scenes 07-08
+
+Runtime `daca017` on `claude/chapter4-door-test`. data/story_chapter4.json, data/world_chapter4.json, scripts/tests/TestRunner.gd, scripts/tests/test_chapter4_door_test.gd
+
+Tests: Full QA at daca017: all executed checks passed; game tests 252 passed 0 failed; GLB 161/0. Mac checks not run.
+
 ## Next exact task
 
-Chapter 4 Scenes 07, 08 and 10 (door-state replication attempt, institutional disagreement, official record); Scene 09 per the owner's decision on the loop effect.
+Await owner answer on Ch4 Scene 09 corridor-loop card, then build Scenes 09-10; then Chapter 5.

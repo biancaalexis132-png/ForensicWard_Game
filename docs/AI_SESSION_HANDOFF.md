@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code Chapter 4 Scenes 07-08 — 2026-10-19
+
+- `claude/chapter4-door-test` at `daca017`. Full QA at daca017: all executed checks passed; game tests 252 passed 0 failed; GLB 161/0. Mac checks not run. Mac not run. Next: Await owner answer on Ch4 Scene 09 corridor-loop card, then build Scenes 09-10; then Chapter 5. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
+
 ## Claude Code Chapter 4 Scenes 01-03 and 05 official record — 2026-10-19
 
 - `claude/chapter4-record` at `e17fa49fb6b9665ac8f15d43990188620ba3a048`. Full runner exit 0: game 249/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run. Next: Chapter 4 Scenes 07, 08 and 10 (door-state replication attempt, institutional disagreement, official record); Scene 09 per the owner's decision on the loop effect. Pending: owner narrative review (Chapters 2-3 story files provisional/PENDING); Naomi Mac/geometry gates.
