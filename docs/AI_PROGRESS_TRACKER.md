@@ -1,5 +1,15 @@
 # AI progress tracker
 
+## Static graphic-novel cutscenes — Claude Code (cloud), 2026-10-19
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Chapter 1 static panels | Done, draft PR | Owner art approval 2026-10-19 | `assets/cutscenes/static_gn_v1/ch01/`, `data/cutscenes/cs_ch01_static_gn.json` | SHA-256 match; game tests 266/0 on `bac05fe` | Owner review |
+| Chapters 2-5 static panels | Done, draft PR | Chapter 1 | `assets/cutscenes/static_gn_v1/ch0[2-5]/`, `data/cutscenes/cs_ch0[2-5]_static_gn.json` | Same | Owner review |
+| Chapter-close recap trigger | Done, draft PR | Owner chose "Chapter close" | `scripts/cutscene/CutsceneRegistry.gd`, `scripts/main/Main.gd` | `test_chapter_recap_plays_over_the_end_of_chapter_panel` | Owner review |
+| Previews per chapter | Done | | project files `static_gn_preview/*.mp4` | Compatibility renderer only | Owner watches |
+| Mac look, memory, frame time, music mix | Not run | Owner's Mac | | | Owner / local thread |
+
 ## Character animation completion — Claude Code (cloud), 2026-10-19
 
 | Task | State | Dependencies | Paths | Validation | Next action |
