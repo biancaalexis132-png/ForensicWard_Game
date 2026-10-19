@@ -1,7 +1,7 @@
 {
 	"schema_version": "0.1",
 	"world_id": "world_chapter4",
-	"notes": "Chapter 4 (The Official Record) opens in the clinical wing. Dr Leila Rahman (Consultant Psychiatrist, owner-confirmed role) is at the office desk; Hale stands at Interview Room A's door. Ward Zero access stays restricted; the zones and threshold connection from Chapter 3 remain wired but locked.",
+	"notes": "Chapter 4 (The Official Record) opens in the clinical wing. Dr Leila Rahman (Consultant Psychiatrist, owner-confirmed role) is at the office desk; Hale stands at Interview Room A's door. Ward Zero access stays restricted; the zones and threshold connection from Chapter 3 remain wired but locked. Scene 07: Hale's test pass reopens the ward entry for a controlled door-state check at the lift lobby doors (same story point as Chapter 2 Scene 08); returned to Hale afterwards. Scenes 09-10: Hale's controlled inspection (team pass) returns to the Ward Zero corridor through the hatch and threshold, which Facilities left open in Chapter 3. The repetition is one bounded staged observation at two existing story points; seeing it fires a one-time safe return out of Ward Zero, and the record stays observed_repetition_unverified because the game has no independent instruments.",
 	"start_zone": "zone_clinical_wing",
 	"spawn_marker": "MARK_PlayerSpawn",
 	"doors": {
@@ -63,6 +63,24 @@
 			"node": "AR_Document_WardRoster1968",
 			"type": "story_terminal",
 			"title": "Inspection measurement comparison"
+		},
+		{
+			"node": "Corridor_CCTV_5",
+			"type": "story_terminal",
+			"title": "Restricted lift lobby doors",
+			"zone": "zone_security_admin"
+		},
+		{
+			"node": "W0C_Radiator_0",
+			"type": "story_terminal",
+			"title": "Corridor alcove",
+			"zone": "zone_ward_zero"
+		},
+		{
+			"node": "W0C_ClockA",
+			"type": "story_terminal",
+			"title": "Junction marker",
+			"zone": "zone_ward_zero"
 		}
 	],
 	"characters": [

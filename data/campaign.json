@@ -45,8 +45,10 @@
 		{
 			"id": "ch5",
 			"title": "Chapter 5: Beyond the Lines",
-			"status": "planned",
-			"provisional": true
+			"status": "playable",
+			"provisional": true,
+			"story": "story_chapter5.json",
+			"world": "world_chapter5.json"
 		}
 	]
 }

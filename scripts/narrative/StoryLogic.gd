@@ -26,13 +26,15 @@ extends RefCounted
 ##   {"chart_entry": {"patient_id", "type", "by", "text"}}   EHR audit entry
 ##   {"world_state": {"group", "state"}}
 ##   {"start_chapter": chapter_id}   ChapterDirector moves to that chapter
+##   {"safe_return": {"connection", "from"}}   fade the player out through that
+##       connection, only while they stand in "from" (bounded anomaly exits)
 ## Evaluation is read-only. Narrative state never changes clinical state:
 ## chart entries are audit records, not observations or results.
 
 const CONDITIONS: Array[String] = ["talked_to", "observations_recorded", "note_saved", "action_committed",
 		"clue_acquired", "hypothesis_supported", "shift", "day", "flag", "trust_at_least", "chapter_completed",
 		"chapter_flag", "zone", "world_state", "all", "any", "not"]
-const ACTIONS: Array[String] = ["audio_event", "notify", "flag", "chart_entry", "world_state", "start_chapter"]
+const ACTIONS: Array[String] = ["audio_event", "notify", "flag", "chart_entry", "world_state", "start_chapter", "safe_return"]
 ## The flag ChapterDirector sets when a chapter ends.
 const CHAPTER_COMPLETE_FLAG: String = "chapter_complete"
 ## Same axes as TrustManager.AXES; duplicated because content is validated
@@ -124,6 +126,9 @@ static func check_action(action: Variant, path: String, refs: Dictionary, errors
 				errors.append("%s: needs {\"group\", \"state\"}." % at)
 		"start_chapter":
 			_check_ref(value, refs.get("chapters", {}), "chapter", at, errors)
+		"safe_return":
+			if not value is Dictionary or not value.has_all(["connection", "from"]):
+				errors.append("%s: needs {\"connection\", \"from\"}." % at)
 		_:
 			errors.append("%s: unknown action '%s'. Use one of: %s." % [path, kind, ", ".join(ACTIONS)])
 
