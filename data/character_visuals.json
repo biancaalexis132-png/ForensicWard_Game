@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+  "notes": "Owner requested normal-gameplay 3D integration after narration. Existing models retain visual review status; no clinical approval is implied. Offsets move the whole actor and interaction/collision together, relative to the authored marker. Imported models face +Z, while authored markers face -Z.",
+  "characters": {
+    "staff_bennett": {
+      "scene": "res://assets/exports/characters/Naomi_Bennett_v07.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        -0.05,
+        0.0,
+        0.55
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "staff_voss": {
+      "scene": "res://assets/exports/characters/Evelyn_Voss_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "staff_hale": {
+      "scene": "res://assets/exports/characters/Marcus_Hale_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "marker_offsets": {
+        "MARK_Seat_Psychiatrist_Desk": [
+          0.7,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "staff_rahman": {
+      "scene": "res://assets/exports/characters/Leila_Rahman_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "marker_offsets": {
+        "MARK_Seat_Psychiatrist_Desk": [
+          0.7,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "staff_facilities_tech": {
+      "scene": "res://assets/exports/characters/Facilities_Tech_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_elias_ward": {
+      "scene": "res://assets/exports/characters/Elias_Ward_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_mara_ellis": {
+      "scene": "res://assets/exports/characters/Mara_Ellis_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    }
+  }
+}
