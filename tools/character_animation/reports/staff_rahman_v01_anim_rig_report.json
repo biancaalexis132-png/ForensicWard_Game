@@ -14,8 +14,8 @@
         0.023399999365210533,
         0.9121000170707703
       ],
-      "weighted_vertices": 982,
-      "centroid_to_bone_m": 0.0034,
+      "weighted_vertices": 961,
+      "centroid_to_bone_m": 0.0029,
       "bone_inside_weighted_volume": true
     },
     "spine_lower": {
@@ -30,8 +30,8 @@
         0.007600000128149986,
         0.9781000018119812
       ],
-      "weighted_vertices": 709,
-      "centroid_to_bone_m": 0.0676,
+      "weighted_vertices": 680,
+      "centroid_to_bone_m": 0.0637,
       "bone_inside_weighted_volume": true
     },
     "spine_mid": {
@@ -47,7 +47,7 @@
         1.0529999732971191
       ],
       "weighted_vertices": 577,
-      "centroid_to_bone_m": 0.0398,
+      "centroid_to_bone_m": 0.036,
       "bone_inside_weighted_volume": true
     },
     "chest": {
@@ -63,7 +63,7 @@
         1.1926000118255615
       ],
       "weighted_vertices": 1252,
-      "centroid_to_bone_m": 0.0809,
+      "centroid_to_bone_m": 0.0801,
       "bone_inside_weighted_volume": true
     },
     "neck": {
@@ -78,8 +78,8 @@
         -0.039000000804662704,
         1.462499976158142
       ],
-      "weighted_vertices": 331,
-      "centroid_to_bone_m": 0.011,
+      "weighted_vertices": 333,
+      "centroid_to_bone_m": 0.0115,
       "bone_inside_weighted_volume": true
     },
     "head": {
@@ -110,8 +110,8 @@
         -0.012400000356137753,
         1.2726999521255493
       ],
-      "weighted_vertices": 234,
-      "centroid_to_bone_m": 0.0538,
+      "weighted_vertices": 228,
+      "centroid_to_bone_m": 0.054,
       "bone_inside_weighted_volume": true
     },
     "clavicle_r": {
@@ -126,7 +126,7 @@
         -0.012400000356137753,
         1.2726999521255493
       ],
-      "weighted_vertices": 234,
+      "weighted_vertices": 226,
       "centroid_to_bone_m": 0.0541,
       "bone_inside_weighted_volume": true
     },
@@ -142,8 +142,8 @@
         -0.03400000184774399,
         1.065999984741211
       ],
-      "weighted_vertices": 461,
-      "centroid_to_bone_m": 0.0095,
+      "weighted_vertices": 486,
+      "centroid_to_bone_m": 0.009,
       "bone_inside_weighted_volume": true
     },
     "upperarm_r": {
@@ -158,8 +158,8 @@
         -0.03400000184774399,
         1.065999984741211
       ],
-      "weighted_vertices": 478,
-      "centroid_to_bone_m": 0.0101,
+      "weighted_vertices": 487,
+      "centroid_to_bone_m": 0.0088,
       "bone_inside_weighted_volume": true
     },
     "lowerarm_l": {
@@ -174,8 +174,8 @@
         -0.08959999680519104,
         0.8431000113487244
       ],
-      "weighted_vertices": 349,
-      "centroid_to_bone_m": 0.0048,
+      "weighted_vertices": 366,
+      "centroid_to_bone_m": 0.0046,
       "bone_inside_weighted_volume": true
     },
     "lowerarm_r": {
@@ -190,8 +190,8 @@
         -0.08959999680519104,
         0.8428000211715698
       ],
-      "weighted_vertices": 355,
-      "centroid_to_bone_m": 0.0039,
+      "weighted_vertices": 365,
+      "centroid_to_bone_m": 0.0053,
       "bone_inside_weighted_volume": true
     },
     "hand_l": {
@@ -206,8 +206,8 @@
         -0.09709999710321426,
         0.8130000233650208
       ],
-      "weighted_vertices": 141,
-      "centroid_to_bone_m": 0.006,
+      "weighted_vertices": 145,
+      "centroid_to_bone_m": 0.0061,
       "bone_inside_weighted_volume": true
     },
     "hand_r": {
@@ -222,8 +222,8 @@
         -0.09709999710321426,
         0.8126999735832214
       ],
-      "weighted_vertices": 146,
-      "centroid_to_bone_m": 0.0049,
+      "weighted_vertices": 151,
+      "centroid_to_bone_m": 0.0047,
       "bone_inside_weighted_volume": true
     }
   },
