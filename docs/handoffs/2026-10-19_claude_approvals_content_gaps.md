@@ -16,6 +16,16 @@
 
 All are logged in `docs/clinical_review_log.md`.
 
+**Later the same evening (22:48 UTC)**, Bi also approved the following, recorded as written. Their message ends mid-word: "...without a separately scripted Chapter 3 follow-".
+
+- The Chapter 4 Mara follow-up dialogue "exactly as shown, including the insomnia, anxiety, daily functioning and follow-up wording".
+- Elias's record (`pt_elias_ward` APPROVED).
+- "the medical review" (`clinical_rule_medical_review_request_v1` and `request_medical_review` APPROVED).
+
+Every shipped clinical rule is now approved. The governance tests load a test-only fixture where the medical review rule is pending, and `test_shipped_clinical_rules_are_all_approved` guards the shipped state.
+
+**Chapter 3 decision (owner):** Mara's optional follow-up is left unimplemented. Chapter 3 focuses on the authorized Ward Zero inspection, and her established clinical care continues through the existing systems (`data/story_chapter3.json` notes).
+
 ## Content gaps filled
 
 - **Chapter 2 Scene 10:**
@@ -29,13 +39,46 @@ All are logged in `docs/clinical_review_log.md`.
   - Mara attends a follow-up in Interview Room A from Rahman's boundary until the door check starts. Elias steps out meanwhile.
   - Uses the screenplay lines only. Claiming the review has found the wrong date is refused.
   - Flag: `ch4_mara_followup`.
-  - The new wording is logged as **pending** clinical review.
+  - The owner approved the wording exactly as shown on 2026-10-19.
 - **Chapter 4 Scene 06 (optional):**
   - After the paper trail, a phone notification sends the player to the nursing station.
-  - The call comes from the Chapter 2 contact. The self-reminder gets its own version, and older saves get "someone close to you".
+  - The call comes from the Chapter 2 contact. The self-reminder gets its own version. If the message was left until later, or the save predates the message, the player sees only a neutral break reminder, so no relationship is assumed.
   - The player can accept support, keep it short or set a boundary (`ch4_call_*`). Sharing inquiry detail is refused.
-- **Not built:**
-  - Chapter 3's optional Mara follow-up. The screenplay gives no lines for it, so it would need new clinical dialogue written and approved.
+- **Not built, by owner decision:**
+  - Chapter 3's optional Mara follow-up.
+
+## Owner review checks (2026-10-19 22:43 UTC)
+
+1. **Protagonist customization and confidentiality**, checked against `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md`:
+   - Personal-life scope is moderate. No relationship, romance or family is mandatory: the own-reminder and "Leave it for now" choices are independent-life paths, and the later path never assumes a relationship.
+   - No trauma or personality score is involved.
+   - Only stable flag ids are stored (`ch2_contact_*`, `ch4_call_*`), never contact details.
+   - Text appears in the existing InfoPanel only, with no phone simulation and no new location.
+   - No protagonist name or pronouns are used, so the text stays valid for any future identity.
+   - Sharing ward, patient or inquiry detail is refused in both chapters.
+   - Mara's follow-up adds nothing to incident evidence (the test checks this).
+   - Clinical rules take no personal input.
+   - When the P1 protagonist schema lands, these flags map into its choice ledger.
+
+   Callback authoring table:
+
+   | Chapter | Selected option | Delivery | Fallback | Dedupe | Convergence |
+   |---|---|---|---|---|---|
+   | 2 | partner, friend, family, self, later | InfoPanel after Bennett; re-open at `NS_NoticeBoard` | "Leave it for now" | one flag; the interaction expires once chosen | "Head out" then `chapter_complete` |
+   | 4 | Chapter 2 flag via `chapter_flag` | notify toast, then `NS_NoticeBoard` | neutral break reminder (later or old saves) | expires on any `ch4_call_*` | none needed; the door check proceeds regardless |
+
+2. **Chapter 2 exterior fade:**
+   - The approved Static Graphic-Novel art has no hospital exterior panel; Chapter 2's panels are the ward, interviews, nursing station, records and the Mara record comparison.
+   - So the close is text only ("You sign out at the staff entrance. The shift is over." and "The screen fades out.").
+   - The owner-approved `cs_ch02_static_gn` recap then plays, opening on its black fade.
+   - No new image, scene or environment was added. The branch changes no files under `assets/`.
+
+3. **Save/load, skipping and recap:** new tests cover each of these.
+   - Save with the message unanswered, load, answer at the notice board, head out.
+   - The recap `cs_ch02_static_gn` opens over the end panel, and Chapter 3 follows.
+   - Save and load with Mara in the room and with the call waiting. The Chapter 2 contact survives in the archive.
+   - Skipping the Mara follow-up returns Elias at the door check.
+   - Chapters 3–5 and Chapter 4 still complete through the existing tests without either optional scene.
 
 ## Engine changes
 
