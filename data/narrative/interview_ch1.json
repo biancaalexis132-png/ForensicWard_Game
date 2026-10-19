@@ -1,0 +1,23 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch1",
+	"provisional": true,
+	"_note": "Spoken versions of the psychiatrist's Elias Ward interview topics (data/dialogue.json labels are topics, not speech). Presentation only: each line asks what its approved topic already covers and adds no finding. Pending owner narrative review. Line IDs are stable: never reuse an ID for different wording.",
+	"clinical_review_status": "PENDING",
+	"speakers": {
+		"player": "You"
+	},
+	"scenes": [
+		{
+			"id": "ch1_interview_elias_questions",
+			"beat": "Interview Room A: the psychiatrist's spoken questions to Elias Ward",
+			"location": "interview_room",
+			"lines": [
+				{"id": "ch1_int_elias_ask_intake", "speaker": "player", "dialogue_choice": "pt_elias_ward:ask_intake", "text": "Elias, have you been able to eat or drink anything today?"},
+				{"id": "ch1_int_elias_assess_motor", "speaker": "player", "dialogue_choice": "pt_elias_ward:assess_motor", "text": "I'd like to look at how you're sitting and moving, Elias. I'll explain each step before I do it."},
+				{"id": "ch1_int_elias_ask_ward_zero", "speaker": "player", "dialogue_choice": "pt_elias_ward:ask_ward_zero", "text": "Elias, does the name Ward Zero mean anything to you?"},
+				{"id": "ch1_int_elias_return_to_general", "speaker": "player", "dialogue_choice": "pt_elias_ward:return_to_general", "text": "Let's leave the examination there for now and go back to a few general questions."}
+			]
+		}
+	]
+}

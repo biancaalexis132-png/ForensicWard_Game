@@ -18,6 +18,12 @@ const TOGGLES: Dictionary = {
 	"InvertY": "invert_y",
 }
 
+## Toggles added in code (CheckBox name -> Settings key), listed after the scene's own.
+const EXTRA_TOGGLES: Dictionary = {
+	"SubtitleSpeakerNames": ["subtitle_speaker_names", "Subtitles: show speaker names"],
+	"SubtitleBackground": ["subtitle_background", "Subtitles: background box"],
+}
+
 ## HSlider node name (under Audio) -> AudioDirector volume setting (linear 0..1).
 const VOLUMES: Dictionary = {
 	"Master": "volume_master",
@@ -35,6 +41,7 @@ const VOLUMES: Dictionary = {
 @onready var _reduce_startle: CheckBox = $Root/Panel/Margin/VBox/Accessibility/ReduceStartlingAudio
 
 var is_open: bool = false
+var _subtitle_size: HSlider
 
 
 func _ready() -> void:
@@ -66,6 +73,28 @@ func _ready() -> void:
 		var box: CheckBox = _toggles.get_node(node_name)
 		var key: String = TOGGLES[node_name]
 		box.toggled.connect(func(pressed: bool) -> void: Settings.set_value(key, pressed))
+	for node_name: String in EXTRA_TOGGLES:
+		var extra: CheckBox = CheckBox.new()
+		extra.name = node_name
+		extra.text = EXTRA_TOGGLES[node_name][1]
+		_toggles.add_child(extra)
+		var extra_key: String = EXTRA_TOGGLES[node_name][0]
+		extra.toggled.connect(func(pressed: bool) -> void: Settings.set_value(extra_key, pressed))
+	var size_row: HBoxContainer = HBoxContainer.new()
+	size_row.name = "SubtitleSize"
+	var size_label: Label = Label.new()
+	size_label.text = "Subtitle size"
+	size_label.custom_minimum_size.x = 160
+	size_row.add_child(size_label)
+	_subtitle_size = HSlider.new()
+	_subtitle_size.name = "Slider"
+	_subtitle_size.min_value = 0.8
+	_subtitle_size.max_value = 1.6
+	_subtitle_size.step = 0.1
+	_subtitle_size.custom_minimum_size.x = 220
+	_subtitle_size.value_changed.connect(func(value: float) -> void: Settings.set_value("subtitle_scale", value))
+	size_row.add_child(_subtitle_size)
+	_toggles.add_child(size_row)
 	_sensitivity.value_changed.connect(func(value: float) -> void: Settings.set_value("mouse_sensitivity", value))
 	# Audio settings belong to AudioDirector, which applies and saves them.
 	for node_name: String in VOLUMES:
@@ -79,6 +108,9 @@ func _ready() -> void:
 func open() -> void:
 	for node_name: String in TOGGLES:
 		(_toggles.get_node(node_name) as CheckBox).set_pressed_no_signal(Settings.get_value(TOGGLES[node_name]))
+	for node_name: String in EXTRA_TOGGLES:
+		(_toggles.get_node(node_name) as CheckBox).set_pressed_no_signal(Settings.get_value(EXTRA_TOGGLES[node_name][0]))
+	_subtitle_size.set_value_no_signal(Settings.get_value("subtitle_scale"))
 	_sensitivity.set_value_no_signal(Settings.get_value("mouse_sensitivity"))
 	for node_name: String in VOLUMES:
 		(_volumes.get_node(node_name) as HSlider).set_value_no_signal(AudioDirector.get_setting(VOLUMES[node_name]))
