@@ -37,6 +37,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Chapter 2 Scene 10 Missing Hours (chapter close)
+
+- **Branch / verified runtime:** `claude/chapter2-missing-hours` from `claude/chapter2-wrong-day` (PR #77 open), `1bb194df802b68591f9e7ab8a7939754e91bd8e3`.
+- **Delivered:** analyst's partial explanation at the export worksheet (claiming all skew or missing time is feedback-only; "Then the report should say that" records the limits); Bennett's end-of-shift exchange sets `chapter_complete` ("We found the missing hours" is feedback-only). `ChapterDirector.set_flag` now emits `chapter_completed` whenever the completion flag is set; sign-out's own emit was removed so it still fires once. `interaction_ch2_review_return` gains `expires_when` so it no longer shadows later Bennett exchanges. Chapter 3 is not started (still planned). Not built: the optional personal-contact message (no personal-history system exists) and the exterior fade-out. New `scripts/tests/test_chapter2_missing_hours.gd` + UID; wrong-day test updated for the next worksheet step.
+- **Executed:** full runner on `1bb194df802b68591f9e7ab8a7939754e91bd8e3` exit 0: game 235/0, GLB 161/0, audio 336/0, QA 19/0/0, Python 6+4+5+3, pharmacology 0, boot, CH1_SEQUENCE_DONE. First game run failed 5 (Bennett's older interaction shadowed the new one; one stale expectation), fixed. Mac not run.
+- **Next exact task:** owner narrative review of Chapter 2 Scenes 04–10; then Chapter 3 planning. See dedicated handoff.
+
 ### 2026-10-19 · Claude Code · Chapter 2 Scene 09 A File for the Wrong Day
 
 - **Branch / verified runtime:** `claude/chapter2-wrong-day` from `claude/chapter2-lobby` (PR #76 open), `1481c7ea32b8a5cb553d50529afd387e382f5898`.

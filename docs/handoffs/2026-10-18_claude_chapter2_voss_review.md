@@ -213,11 +213,26 @@ theirs. Then one handling: formal audit escalation, preserve separate source
 versions, or independent technical review. "Correct one version" is refused.
 Mara's note, evidence, anomalies and access are unchanged (tested).
 
+## Addendum: Scene 10 Missing Hours (closing beat)
+
+Runtime `1bb194df802b68591f9e7ab8a7939754e91bd8e3` on `claude/chapter2-missing-hours` (stacked on PR #77). The
+analyst's note at the export worksheet accounts for part of the mismatch but not
+the whole interval (revised CH02 Scene 10 lines). Reporting it all as skew, or
+the remainder as missing time, is feedback-only; "Then the report should say
+that." records the limits. Bennett, ending her shift, asks "Any luck?"; claiming
+the missing hours were found is feedback-only; "We confirmed there are records
+we can't reconcile yet." gets her screenplay reply and completes Chapter 2. No
+evidence, anomaly, access or clinical change; W0-B locked; Chapter 3 is not
+started (campaign status planned). Not built: the optional personal-contact
+message (needs a personal-history system) and the exterior fade-out.
+
+Code: `ChapterDirector.set_flag` emits `chapter_completed` for the completion
+flag (sign-out no longer emits separately, so it still fires once).
+`interaction_ch2_review_return` now expires after acknowledgement.
+
 ## Next exact task
 
-Chapter 2 Scene 10 "Missing Hours" closing beat (revised CH02 Scene 10): the
-analyst accounts for part of the mismatch but not the whole interval; Bennett
-at shift end; optional personal-contact message with no patient information;
-then Chapter 2 completes. Check how Chapter 1 completes (sign_out /
-next_chapter) before building, and keep W0-B locked: Chapter 3 owns first entry.
-Naomi Mac/geometry gates remain pending.
+Chapter 2 is completable end to end. Ask the owner for narrative review of
+Scenes 04–10 (story file remains provisional / PENDING). Then plan Chapter 3
+(first authorized Ward Zero entry) only on the owner's go-ahead. Naomi
+Mac/geometry gates remain pending.
