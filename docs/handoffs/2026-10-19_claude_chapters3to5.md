@@ -8,6 +8,12 @@ Runtime `4c1bb95df4dc22781005a335222398a3e836b845` on `claude/chapter3-briefing`
 
 Tests: Full runner exit 0: game 238/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence.
 
+## Chapter 3 Scenes 03-04 descent and first Ward Zero entry
+
+Runtime `2151b58662236e548d507a853eb1c400d42fd5fc` on `claude/chapter3-descent`. The team pass (ward entry, maintenance) comes from Hale; descent via the security wing's maintenance hatch. Facilities clears the isolated circuit, the brick end opens (world state), and a fade connection enters the threshold. Inside, four documented actions; patient records are off limits. Save/load inside Ward Zero restores the zone. Ward Zero performance on the target Mac is unmeasured.
+
+Tests: Full runner exit 0: game 241/0, GLB 161/0, audio 336/0, QA 19/0/0, Python, pharmacology 0, boot, CH1 sequence. Mac not run; Ward Zero frame time on the 8 GB Mac is unmeasured.
+
 ## Next exact task
 
-Chapter 3 Scenes 03-04: descent and first authorized Ward Zero entry. Wire zone_ward_zero (Stage 6 env exists, zone placeholder) and the W0-B route; Hale and Facilities engineer escort; marked route only.
+Chapter 3 Scenes 05-08: the alcove, route concern (no loop), account for the team, safe return (return the team pass in the clinical wing).

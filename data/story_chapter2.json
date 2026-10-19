@@ -1102,7 +1102,9 @@
 					"id": "accept_escort",
 					"label": "Accept an escorted look at the lobby doors only",
 					"flag": "ch2_lobby_escort_granted",
-					"grants_access": "access_ward_entry",
+					"grants_access": [
+						"access_ward_entry"
+					],
 					"response": "Hale: Escorted pass logged against this inspection. The ward entry doors will open for you. Bring the pass back to me when you're done.\n\nScope recorded: lobby doors only, with an escort. Lift, service hatch and W0-B remain locked."
 				}
 			],
@@ -1219,7 +1221,9 @@
 					"id": "return_pass",
 					"label": "Report what you recorded and return the escorted pass",
 					"flag": "ch2_lobby_pass_returned",
-					"revokes_access": "access_ward_entry",
+					"revokes_access": [
+						"access_ward_entry"
+					],
 					"response": "Hale reads your note and signs the pass back in.\n\nHale: Closed, then ajar, nobody watching in between. That's what goes in the log.\n\nThe ward entry doors are controlled access again."
 				}
 			],
