@@ -68,6 +68,12 @@ Runtime `#91` on `claude/chapter-cutscenes`.
 
 Tests: Game tests 263 passed 0 failed; full QA runner: all executed checks passed. Mac check not completed (deferred by Bi).
 
+## Title screen
+
+Runtime `pending` on `claude/title-screen`. 
+
+Tests: Game tests 266 passed 0 failed; full QA runner: all executed checks passed. Mac check not completed (deferred by Bi).
+
 ## Next exact task
 
-Bi merges #91. Mac check stays with Bi.
+Bi reviews the title screen look on the Mac and merges.

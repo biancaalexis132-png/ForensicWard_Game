@@ -38,6 +38,13 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+### 2026-10-19 · Claude Code · Title screen
+
+- **Branch / verified runtime:** `claude/title-screen` (main), `pending`.
+- **Delivered:** Title screen at boot (Continue from the pause menu's save slot, New Game, Quit). Shown only when Main is the running scene in a window; tests, headless QA and preview arguments skip it. Writes no game state. Not visually checked here (no screenshot rendered in the container).
+- **Executed:** Game tests 266 passed 0 failed; full QA runner: all executed checks passed. Mac check not completed (deferred by Bi). Mac not run.
+- **Next exact task:** Bi reviews the title screen look on the Mac and merges. See `docs/handoffs/2026-10-19_claude_chapters3to5.md`.
+
 ### 2026-10-19 · Claude Code · Title cards play at chapter openings
 
 - **Branch / verified runtime:** `claude/chapter-cutscenes` (main), `#91`.
