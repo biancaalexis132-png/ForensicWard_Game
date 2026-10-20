@@ -5,7 +5,7 @@ var _main_node: Node
 
 func after_each() -> void:
 	if is_instance_valid(_main_node):
-		_main_node.queue_free()
+		_main_node.free()
 	_main_node = null
 	runner.get_tree().paused = false
 	super.after_each()
@@ -65,7 +65,7 @@ func test_journal_scene_lists_and_displays_entries() -> void:
 	check_eq(panel._list.get_child_count(), 1, "scene paths resolve and list has entry")
 	check("Test content" in panel._details.text, "selected entry content is visible")
 	panel.close()
-	panel.queue_free()
+	panel.free()
 
 
 func test_title_settings_hide_gameplay_panel_buttons() -> void:
@@ -79,4 +79,4 @@ func test_title_settings_hide_gameplay_panel_buttons() -> void:
 	for button_name: String in ["CaseJournal", "Directory"]:
 		check(pause.get_node("Root/Panel/Margin/VBox/" + button_name).visible, "game menu shows " + button_name)
 	pause.close()
-	pause.queue_free()
+	pause.free()
