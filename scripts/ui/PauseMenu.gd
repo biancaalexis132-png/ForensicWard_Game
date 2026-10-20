@@ -49,6 +49,14 @@ func _ready() -> void:
 	replay_button.pressed.connect(func() -> void:
 		close()
 		EventBus.ui_panel_requested.emit("cutscene", {"replay_completed": true}))
+	for panel_id: String in ["case_journal", "map"]:
+		var button: Button = Button.new()
+		button.name = "CaseJournal" if panel_id == "case_journal" else "Directory"
+		button.text = "Clinical Case Journal" if panel_id == "case_journal" else "Floor Directory"
+		_resume_button.get_parent().add_child(button)
+		button.pressed.connect(func() -> void:
+			close()
+			EventBus.ui_panel_requested.emit(panel_id, {}))
 	# The fiction disclaimer lives here and on the title screen, not inside the EHR.
 	var disclaimer: Label = Label.new()
 	disclaimer.name = "Disclaimer"

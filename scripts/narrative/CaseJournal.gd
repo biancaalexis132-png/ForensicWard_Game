@@ -1,4 +1,3 @@
-class_name CaseJournal
 extends Node
 ## CaseJournal: separates clinical documentation from evidence/hypotheses.
 ## Clinical notes, plans, observations go here. Evidence stays on EvidenceBoard.
@@ -24,7 +23,7 @@ func add_clinical_entry(patient_id: String, entry_type: String, content: String,
 		"at_minutes": TimeManager.total_minutes,
 		"day": TimeManager.get_shift_day(),
 		"shift": TimeManager.get_shift(),
-		"tags": tags.duplicate()
+		"tags": tags.duplicate(true)
 	})
 	EventBus.notification_requested.emit("Journal entry added")
 	return entry_id
@@ -47,7 +46,9 @@ func to_save_data() -> Dictionary:
 
 
 func load_save_data(data: Dictionary) -> void:
-	_entries = data.get("entries", []).duplicate(true)
+	_entries.clear()
+	for entry: Dictionary in data.get("entries", []):
+		_entries.append(entry.duplicate(true))
 
 
 func reset_state() -> void:

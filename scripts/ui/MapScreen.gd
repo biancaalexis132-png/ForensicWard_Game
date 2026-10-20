@@ -19,8 +19,12 @@ func _ready() -> void:
 func open(_data: Dictionary = {}) -> void:
 	visible = true
 	is_open = true
-	if _text:
-		_text.text = "[b]Ashcroft State Forensic Hospital - Clinical Wing[/b]\n\n[b]Key Locations:[/b]\n- Nursing Station - Handover, sign-out\n- Interview Room A - Patient interviews\n- EHR Workstation - Chart review & orders\n- Records Archive - Transfer summaries & documentation\n- Corridor - Navigation between areas\n- Psychiatrist Office - Staff consultations\n\n[b]Controls:[/b]\n[E] Interact  |  [Tab/Journal] Evidence Board  |  [I/EHR] Electronic Health Record  |  [Esc] Pause/Menu\n\nClinical duties are separate from institutional investigation objectives."
+	var document: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://data/ui/floor_directory.json"))
+	if document is Dictionary and document.get("body") is String:
+		_text.text = document["body"]
+	else:
+		push_error("Floor directory requires a JSON object with a string body")
+		_text.text = "Directory unavailable."
 	if has_node("Root/Panel/Margin/VBox/Close"):
 		_close_button.grab_focus()
 
