@@ -54,6 +54,12 @@ func open() -> void:
 	(_continue_button if has_save else _new_button).grab_focus()
 
 
+## Freed while open (scene change, quit to a new Main, tests): leave the tree running.
+func _exit_tree() -> void:
+	if is_open:
+		get_tree().paused = false
+
+
 func close() -> void:
 	if not is_open:
 		return

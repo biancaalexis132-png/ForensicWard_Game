@@ -87,6 +87,8 @@ var _choice_index: Dictionary = {} ## "patient_id:choice_id" -> spoken question 
 ## event's scene waits for them, so two voices never talk over each other.
 var _conversations: int = 0
 var _text_serial: int = 0
+## Bumped by cancel_pending_events(); trigger_event actions from an older value are dropped.
+var _event_generation: int = 0
 var _scenes: Dictionary = {} ## scene_id -> Array of line ids
 
 var _location: String = ""
@@ -139,6 +141,7 @@ func _ready() -> void:
 	_shift = GameState.shift
 	EventBus.shift_started.connect(_on_shift_started)
 	EventBus.narrative_event_fired.connect(_on_narrative_event_fired)
+	EventBus.game_loaded.connect(func(_slot: int) -> void: cancel_pending_events())
 
 
 func _process(_delta: float) -> void:
@@ -744,12 +747,15 @@ func _on_narrative_event_fired(event_id: String, payload: Dictionary) -> void:
 ## Runs the audio actions mapped to an explicit narrative event. Events without
 ## audio are ignored. payload.position (Vector3) makes SFX positional.
 func trigger_event(event_id: String, payload: Dictionary = {}) -> void:
+	var generation: int = _event_generation
 	var elapsed: float = 0.0
 	for action: Dictionary in _events.get(event_id, []):
 		var at: float = float(action.get("at", 0.0))
 		if at > elapsed:
 			await get_tree().create_timer(at - elapsed).timeout
 			elapsed = at
+		if generation != _event_generation:
+			return
 		if action.has("sfx"):
 			if payload.get("position") is Vector3:
 				play_sfx_3d(action["sfx"], payload["position"])
@@ -774,7 +780,16 @@ func trigger_event(event_id: String, payload: Dictionary = {}) -> void:
 		elif action.has("scene"):
 			# Let a conversation already on screen finish instead of cutting it off.
 			await wait_for_voice_idle()
-			play_scene(action["scene"])
+			if generation == _event_generation:
+				play_scene(action["scene"])
+
+
+## Drops event actions still waiting to run (a delayed cue, a scene waiting
+## for a conversation to end) and stops the current line. Loading a save does
+## this, so audio from the abandoned moment never plays over the loaded one.
+func cancel_pending_events() -> void:
+	_event_generation += 1
+	stop_dialogue()
 
 
 # ===========================================================================

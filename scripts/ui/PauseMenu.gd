@@ -22,6 +22,9 @@ const TOGGLES: Dictionary = {
 const EXTRA_TOGGLES: Dictionary = {
 	"SubtitleSpeakerNames": ["subtitle_speaker_names", "Subtitles: show speaker names"],
 	"SubtitleBackground": ["subtitle_background", "Subtitles: background box"],
+	"ObjectiveChecklist": ["objective_checklist", "Objectives: show checklist"],
+	"ObjectiveBanners": ["objective_banners", "Objectives: show banners"],
+	"ObjectiveSound": ["objective_sound", "Objectives: completion chime"],
 }
 
 ## HSlider node name (under Audio) -> AudioDirector volume setting (linear 0..1).
@@ -120,6 +123,12 @@ func open() -> void:
 	is_open = true
 	get_tree().paused = true
 	_resume_button.grab_focus()
+
+
+## Freed while open (scene change, quit to a new Main, tests): leave the tree running.
+func _exit_tree() -> void:
+	if is_open:
+		get_tree().paused = false
 
 
 func close() -> void:

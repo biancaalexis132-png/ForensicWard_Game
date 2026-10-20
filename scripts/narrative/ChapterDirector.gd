@@ -94,6 +94,27 @@ func get_current_objective() -> Dictionary:
 	return {}
 
 
+## The current chapter's objectives in authored order, each with its status
+## derived from saved story state: "done", "expired", "current" or "upcoming".
+## Objective feedback reads this instead of keeping its own list.
+func get_objective_list() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	if not ContentRegistry.is_valid:
+		return result
+	var state: Dictionary = _story_state()
+	var current: String = get_current_objective().get("id", "")
+	for objective: Dictionary in _story().get("objectives", []):
+		var status: String = "upcoming"
+		if objective["id"] == current:
+			status = "current"
+		elif objective.has("expires_when") and StoryLogic.evaluate(objective["expires_when"], state):
+			status = "expired"
+		elif StoryLogic.evaluate(objective["complete_when"], state):
+			status = "done"
+		result.append({"id": objective["id"], "text": objective["text"], "status": status})
+	return result
+
+
 ## Read-only story state for other evaluators (AnomalyLedger): flags of the
 ## current chapter and every earlier one, in StoryLogic.evaluate()'s shape.
 func get_story_context() -> Dictionary:
