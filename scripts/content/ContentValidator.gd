@@ -176,6 +176,7 @@ static func check_references(documents: Dictionary) -> Array[String]:
 			for j: int in rule["source_catalog_ids"].size():
 				_require_known(rule["source_catalog_ids"][j], source_ids, "source catalog", file,
 						"rules[%d].source_catalog_ids[%d]" % [i, j], errors)
+	_check_order_catalog(documents, observations_by_patient, errors)
 	for key: String in _keys(documents, ContentRegistry.WORLD_KEY):
 		var world: Dictionary = _data(documents, key)
 		var file: String = _file(documents, key)
@@ -541,6 +542,41 @@ static func _bounds_overlap(a: Array, b: Array) -> bool:
 ## connections must carry their kind's prefix (ContentSchemas.ID_PREFIXES)
 ## and be unique across every file and chapter, so a later chapter can never
 ## shadow an earlier id.
+## Every order wraps a known clinical action, at most one order per action,
+## ids are unique across orders and unavailable entries, and prerequisite
+## findings are observations of the action's patient.
+static func _check_order_catalog(documents: Dictionary, observations_by_patient: Dictionary,
+		errors: Array[String]) -> void:
+	if not documents.has("order_catalog"):
+		return
+	var catalog: Dictionary = _data(documents, "order_catalog")
+	var file: String = _file(documents, "order_catalog")
+	var actions: Dictionary = {}
+	for action: Dictionary in _data(documents, "clinical_rules").get("actions", []):
+		actions[action["id"]] = action
+	_collect_ids(catalog["orders"] + catalog["unavailable"], file, "orders+unavailable", errors)
+	var wrapped: Dictionary = {}
+	for i: int in catalog["orders"].size():
+		var order: Dictionary = catalog["orders"][i]
+		var path: String = "orders[%d]" % i
+		if not str(order["id"]).begins_with("ord_"):
+			errors.append("[%s] %s.id: order id '%s' must start with 'ord_'." % [file, path, order["id"]])
+		_require_known(order["action_id"], actions, "clinical action", file, path + ".action_id", errors)
+		if wrapped.has(order["action_id"]):
+			errors.append("[%s] %s.action_id: '%s' is already ordered by %s; one order per action." % [
+					file, path, order["action_id"], wrapped[order["action_id"]]])
+		wrapped[order["action_id"]] = order["id"]
+		var patient_id: String = actions.get(order["action_id"], {}).get("patient_id", "")
+		var needed: Array = order.get("prerequisites", {}).get("observations", [])
+		for j: int in needed.size():
+			_require_known(needed[j], observations_by_patient.get(patient_id, {}), "observation of %s" % patient_id,
+					file, "%s.prerequisites.observations[%d]" % [path, j], errors)
+	for i: int in catalog["unavailable"].size():
+		if not str(catalog["unavailable"][i]["id"]).begins_with("ord_"):
+			errors.append("[%s] unavailable[%d].id: order id '%s' must start with 'ord_'." % [
+					file, i, catalog["unavailable"][i]["id"]])
+
+
 static func check_global_ids(documents: Dictionary) -> Array[String]:
 	var errors: Array[String] = []
 	var seen: Dictionary = {}  # id -> "file path"

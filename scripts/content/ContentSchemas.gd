@@ -152,6 +152,50 @@ const CLINICAL_RULES_FILE: Dictionary = {
 	"optional": {"actions": {"type": "array", "items": CLINICAL_ACTION}},
 }
 
+## How an order finishes once placed: "immediate" (done when placed) or
+## "awaiting_response" (logged and shown as waiting; no result is simulated).
+const ORDER_COMPLETIONS: Array[String] = ["immediate", "awaiting_response"]
+
+## One orderable item in the EHR catalog (data/order_catalog.json). It wraps
+## a clinical action and adds what the Orders tab shows: category, indication,
+## details and the witnessed findings it needs. Outcomes still come only from
+## ClinicalRules; the catalog adds no effect, result or story flag.
+const ORDER: Dictionary = {
+	"type": "object",
+	"required": {
+		"id": _ID,
+		"action_id": _ID,
+		"category": _STRING,
+		"indication": _STRING,
+		"details": _STRING,
+		"completion": {"type": "enum", "values": ORDER_COMPLETIONS},
+	},
+	"optional": {
+		"prerequisites": {
+			"type": "object",
+			"required": {"observations": _IDS, "explanation": _STRING},
+		},
+		"placed_text": _STRING,
+	},
+}
+
+## An order the catalog lists so the player can see it exists, with the reason
+## it cannot be placed in this build.
+const UNAVAILABLE_ORDER: Dictionary = {
+	"type": "object",
+	"required": {"id": _ID, "label": _STRING, "category": _STRING, "reason": _STRING},
+}
+
+const ORDER_CATALOG_FILE: Dictionary = {
+	"type": "object",
+	"required": {
+		"schema_version": _STRING,
+		"orders": {"type": "array", "items": ORDER},
+		"unavailable": {"type": "array", "items": UNAVAILABLE_ORDER},
+	},
+	"optional": {"_note": _STRING},
+}
+
 const CLUES_FILE: Dictionary = {
 	"type": "object",
 	"required": {

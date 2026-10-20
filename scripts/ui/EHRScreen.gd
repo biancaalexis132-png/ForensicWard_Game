@@ -9,7 +9,11 @@ extends CanvasLayer
 ##                 each with source, time and provenance
 ##   Notes         append-only structured notes: cite recorded findings,
 ##                 mark differentials under consideration, write a plan
-##   Orders        authored clinical actions, evaluated by ClinicalRules
+##   Orders        the order catalog (data/order_catalog.json): patient
+##                 identification, witnessed findings, assessment status,
+##                 each order's indication, prerequisites, time and history;
+##                 select, place, confirm. Unavailable orders are listed
+##                 apart with the reason. Outcomes come from ClinicalRules.
 ##   Audit         every chart event with time and rule ids
 ## The screen owns no state: it reads PatientManager/ContentRegistry and
 ## calls their commands. The button handlers are public so tests drive the
@@ -36,6 +40,9 @@ var _plan: TextEdit
 var _note_status: Label
 var _orders: VBoxContainer
 var _order_result: RichTextLabel
+## The order whose details are shown, and whether its confirmation is showing.
+var _selected_order: String = ""
+var _confirming: bool = false
 var _audit: RichTextLabel
 var _close_button: Button
 
@@ -89,6 +96,8 @@ func select_patient(id: String) -> void:
 	if not id.is_empty():
 		PatientManager.open_record(id)  # Audited once per patient per day.
 	_order_result.text = ""
+	_selected_order = ""
+	_confirming = false
 	_note_status.text = ""
 	_plan.text = ""
 	_refresh()
@@ -139,12 +148,49 @@ func commit_action(action_id: String) -> Dictionary:
 	return result
 
 
+## Shows an order's details in the Orders tab.
+func select_order(order_id: String) -> void:
+	_selected_order = order_id
+	_confirming = false
+	_refresh()
+
+
+## Asks for confirmation before placing the selected order.
+func request_place(order_id: String) -> void:
+	var order: Dictionary = ContentRegistry.get_order(order_id)
+	if order.is_empty() or not ClinicalOrders.status(patient_id, order)["can_place"]:
+		return
+	_selected_order = order_id
+	_confirming = true
+	_refresh()
+
+
+## Places the order awaiting confirmation. Returns the ClinicalRules result,
+## or {} when nothing was awaiting confirmation or it was already placed.
+func confirm_order() -> Dictionary:
+	var order: Dictionary = ContentRegistry.get_order(_selected_order)
+	if not _confirming or order.is_empty():
+		return {}
+	_confirming = false
+	var result: Dictionary = commit_action(order["action_id"])
+	if not result.is_empty():
+		var placed: String = str(order.get("placed_text", "%s placed." % ContentRegistry.get_action(order["action_id"])["label"]))
+		EventBus.notification_requested.emit(placed if not result["rule_ids"].is_empty() else
+				"Order logged; no rule applied yet")
+	return result
+
+
+func cancel_order() -> void:
+	_confirming = false
+	_refresh()
+
+
 func get_tab_text(tab_name: String) -> String:
 	match tab_name:
 		"Summary": return _summary.get_parsed_text()
 		"Observations": return _observations.get_parsed_text()
 		"Notes": return _notes_list.get_parsed_text()
-		"Orders": return _order_result.get_parsed_text()
+		"Orders": return _orders_text() + "\n" + _order_result.get_parsed_text()
 		"Audit": return _audit.get_parsed_text()
 	return ""
 
@@ -193,19 +239,9 @@ func _has_unapproved_content() -> bool:
 	if ContentRegistry.get_patient(patient_id).get("clinical_review_status", "") != "APPROVED":
 		return true
 	for action: Dictionary in ContentRegistry.get_actions(patient_id):
-		if not _is_approved(action):
+		if not ClinicalOrders.is_action_approved(action):
 			return true
 	return false
-
-
-## An order is approved when it and every rule it triggers are approved.
-func _is_approved(action: Dictionary) -> bool:
-	if action.get("clinical_review_status", "") != "APPROVED":
-		return false
-	for rule: Dictionary in ContentRegistry.get_rules():
-		if rule["trigger_action"] == action["id"] and rule["review_status"] != "APPROVED":
-			return false
-	return true
 
 
 func _summary_text(definition: Dictionary, state: Dictionary) -> String:
@@ -305,26 +341,118 @@ func _rebuild_note_composer(definition: Dictionary, state: Dictionary) -> void:
 
 func _rebuild_orders(state: Dictionary) -> void:
 	_clear(_orders)
-	var actions: Array[Dictionary] = ContentRegistry.get_actions(patient_id)
-	if actions.is_empty():
-		_orders.add_child(UIStyle.label("No clinical actions are authored for this patient yet.", 17, UIStyle.MUTED))
-	for action: Dictionary in actions:
-		var row: VBoxContainer = VBoxContainer.new()
-		var title: String = action["label"] if _is_approved(action) else "%s   (awaiting clinical review)" % action["label"]
-		row.add_child(UIStyle.label(title, 18))
-		row.add_child(UIStyle.label(action["description"], 16, UIStyle.MUTED))
-		var done: bool = PatientManager.has_processed(patient_id, PatientManager.action_event_id(patient_id, action["id"]))
-		var button: Button = UIStyle.button("Committed this shift day" if done else "Commit  (%d min)" % int(action["time_minutes"]))
-		button.name = "Action_" + str(action["id"])
-		button.disabled = done
-		button.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-		var action_id: String = action["id"]
-		button.pressed.connect(func() -> void: commit_action(action_id))
-		row.add_child(button)
-		_orders.add_child(row)
+	var definition: Dictionary = ContentRegistry.get_patient(patient_id)
+	_orders.add_child(UIStyle.label("Patient: %s, %d  ·  %s  ·  %s" % [definition["name"], definition["age"],
+			UIStyle.humanize(definition["legal_status"]), UIStyle.humanize(state["location"])], 18))
+	_orders.add_child(UIStyle.label("Findings you have witnessed: %s" % _finding_list(state["observations"].keys()), 16, UIStyle.MUTED))
+	var assessment: Dictionary = state["assessment"]
+	_orders.add_child(UIStyle.label("Structured assessment: %s    Medical review: %s" % [
+			"started" if assessment.get("started", false) else "not started",
+			"requested" if assessment.get("medical_review_requested", false) else "not requested"], 16, UIStyle.MUTED))
+	_orders.add_child(HSeparator.new())
+	_orders.add_child(UIStyle.label("Available orders", 19))
+	var orders: Array[Dictionary] = ContentRegistry.get_orders(patient_id)
+	if orders.is_empty():
+		_orders.add_child(UIStyle.label("No orders are available for this patient yet.", 17, UIStyle.MUTED))
+	for order: Dictionary in orders:
+		_orders.add_child(_order_row(order))
+		if order["id"] == _selected_order:
+			_orders.add_child(_order_details(order))
 		_orders.add_child(HSeparator.new())
-	var recorded: int = state["observations"].size()
-	_orders.add_child(UIStyle.label("Actions cite the %d finding(s) you have witnessed." % recorded, 16, UIStyle.MUTED))
+	var unavailable: Array[Dictionary] = ContentRegistry.get_unavailable_orders()
+	if not unavailable.is_empty():
+		_orders.add_child(UIStyle.label("Not available in this build", 19, UIStyle.MUTED))
+		for entry: Dictionary in unavailable:
+			_orders.add_child(UIStyle.label("%s  ·  %s" % [entry["label"], entry["category"]], 17, UIStyle.MUTED))
+			_orders.add_child(UIStyle.label("  " + str(entry["reason"]), 15, UIStyle.MUTED))
+
+
+func _order_row(order: Dictionary) -> HBoxContainer:
+	var action: Dictionary = ContentRegistry.get_action(order["action_id"])
+	var status: Dictionary = ClinicalOrders.status(patient_id, order)
+	var row: HBoxContainer = HBoxContainer.new()
+	var title: Label = UIStyle.label("%s  ·  %s" % [action["label"], order["category"]], 18)
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	row.add_child(title)
+	var color: Color = UIStyle.WARNING if status["state"] in [ClinicalOrders.REVIEW_BLOCKED, ClinicalOrders.NEEDS_PREREQUISITES] else UIStyle.MUTED
+	row.add_child(UIStyle.label(status["label"], 16, color))
+	var open: bool = order["id"] == _selected_order
+	var button: Button = UIStyle.button("Hide details" if open else "Details")
+	# Named after the action so earlier tests and tools find the same control.
+	button.name = "Action_" + str(order["action_id"])
+	button.disabled = not status["can_place"] and not open and status["state"] != ClinicalOrders.REVIEW_BLOCKED
+	var order_id: String = order["id"]
+	button.pressed.connect(func() -> void: select_order("" if _selected_order == order_id else order_id))
+	row.add_child(button)
+	return row
+
+
+func _order_details(order: Dictionary) -> VBoxContainer:
+	var action: Dictionary = ContentRegistry.get_action(order["action_id"])
+	var status: Dictionary = ClinicalOrders.status(patient_id, order)
+	var box: VBoxContainer = VBoxContainer.new()
+	box.name = "OrderDetails"
+	box.add_child(_wrapped("Indication: " + str(order["indication"]), 16))
+	box.add_child(_wrapped(str(order["details"]), 16, UIStyle.MUTED))
+	var needed: Array = order.get("prerequisites", {}).get("observations", [])
+	if not needed.is_empty():
+		var parts: PackedStringArray = []
+		for observation_id: String in needed:
+			parts.append("%s (%s)" % [_finding_list([observation_id]), "not yet recorded" if observation_id in status["missing"] else "recorded"])
+		box.add_child(_wrapped("Needs: " + ", ".join(parts), 16, UIStyle.WARNING if not status["missing"].is_empty() else UIStyle.MUTED))
+	box.add_child(UIStyle.label("Time: %d min    Review: %s" % [int(action["time_minutes"]),
+			"clinically approved" if ClinicalOrders.is_action_approved(action) else "awaiting clinical review"], 16, UIStyle.MUTED))
+	if not str(status["reason"]).is_empty():
+		box.add_child(_wrapped(status["reason"], 16, UIStyle.WARNING))
+	for entry: Dictionary in ClinicalOrders.history(patient_id, order):
+		box.add_child(UIStyle.label("  Placed %s%s" % [TimeManager.format_minutes(int(entry["at_minutes"])),
+				"" if entry["rule_ids"].is_empty() else "  ·  rule applied"], 15, UIStyle.MUTED))
+	var order_id: String = order["id"]
+	if _confirming:
+		var prompt: String = "Place %s for %s? It takes %d minutes." % [action["label"],
+				ContentRegistry.get_patient(patient_id)["name"], int(action["time_minutes"])]
+		if not status["missing"].is_empty():
+			prompt += " The findings it needs are not recorded, so the request will be logged without effect."
+		box.add_child(_wrapped(prompt, 16))
+		var row: HBoxContainer = HBoxContainer.new()
+		var confirm: Button = UIStyle.button("Confirm order")
+		confirm.name = "Confirm_" + order_id
+		confirm.pressed.connect(func() -> void: confirm_order())
+		row.add_child(confirm)
+		var cancel: Button = UIStyle.button("Cancel")
+		cancel.name = "Cancel_" + order_id
+		cancel.pressed.connect(cancel_order)
+		row.add_child(cancel)
+		box.add_child(row)
+	elif status["can_place"]:
+		var place: Button = UIStyle.button("Place order  (%d min)" % int(action["time_minutes"]))
+		place.name = "Place_" + order_id
+		place.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+		place.pressed.connect(func() -> void: request_place(order_id))
+		box.add_child(place)
+	return box
+
+
+## Plain text of the Orders tab, for tests and screen readers.
+func _orders_text() -> String:
+	var lines: PackedStringArray = []
+	for node: Node in _orders.find_children("*", "Label", true, false):
+		lines.append((node as Label).text)
+	return "\n".join(lines)
+
+
+func _finding_list(ids: Array) -> String:
+	if ids.is_empty():
+		return "none yet"
+	var names: Array = ids.duplicate()
+	names.sort()
+	return ", ".join(names.map(func(id: String) -> String: return UIStyle.humanize(id.trim_prefix("obs_"))))
+
+
+func _wrapped(text: String, size: int, color: Color = UIStyle.TEXT) -> Label:
+	var label: Label = UIStyle.label(text, size, color)
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	return label
 
 
 func _describe_result(action_id: String, result: Dictionary) -> String:
