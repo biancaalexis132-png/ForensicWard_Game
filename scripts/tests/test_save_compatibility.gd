@@ -107,7 +107,10 @@ func test_real_v1_and_v2_saves_reset_new_provider_after_migration() -> void:
 
 func test_added_provider_round_trips_and_reset_all_clears_it() -> void:
 	# Let the first objective be announced, as it is before any real save.
-	await wait_physics_frames(2)
+	# Idle frames, not physics ones, so the next test file's simulated input
+	# is flushed before it is checked.
+	await runner.get_tree().process_frame
+	await runner.get_tree().process_frame
 	var optional: OptionalProvider = OptionalProvider.new()
 	SaveManager.register_provider(PROVIDER_KEY, optional)
 	optional.value = "saved choice"
