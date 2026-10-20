@@ -151,6 +151,20 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 			_ehr.open(data)
 		EvidenceBoard.PANEL_ID:
 			_evidence.open(data)
+		"case_journal":
+			if has_node("CaseJournalScreen"):
+				get_node("CaseJournalScreen").open(data)
+			else:
+				var journal = load("res://scenes/ui/CaseJournalScreen.tscn").instantiate()
+				add_child(journal)
+				journal.open(data)
+		"map":
+			if has_node("MapScreen"):
+				get_node("MapScreen").open(data)
+			else:
+				var map = load("res://scenes/ui/MapScreen.tscn").instantiate()
+				add_child(map)
+				map.open(data)
 		CutsceneDirector.PANEL_ID:
 			var recap_data: Dictionary = data.duplicate()
 			var chapter: ChapterDirector = $ChapterDirector
