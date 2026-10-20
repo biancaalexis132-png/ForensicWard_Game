@@ -34,6 +34,8 @@ func test_profile_choice_ledger_deduplicates_and_survives_json() -> void:
 	SaveManager.reset_all()
 	check_eq(SaveManager.load_game(TEST_SAVE_SLOT), OK, "load profile")
 	check_eq(ProtagonistProfile.get_profile()["choices"].size(), 1, "no replay on load")
+	check_eq(typeof(ProtagonistProfile.get_profile()["profile_version"]), TYPE_INT, "profile version keeps canonical integer type after JSON")
+	check_eq(typeof(ProtagonistProfile.get_profile()["choices"][0]["at_minutes"]), TYPE_INT, "choice timestamp keeps canonical integer type")
 
 func test_v3_migration_preserves_campaign_and_rejects_bad_profile_before_mutation() -> void:
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "baseline save")

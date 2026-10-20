@@ -80,6 +80,9 @@ func to_save_data() -> Dictionary:
 func load_save_data(data: Dictionary) -> void:
 	if validate_save_data(data):
 		_profile = data.duplicate(true)
+		_profile["profile_version"] = int(_profile["profile_version"])
+		for choice: Dictionary in _profile["choices"]:
+			choice["at_minutes"] = int(choice["at_minutes"])
 		EventBus.protagonist_profile_changed.emit()
 
 func reset_state() -> void:

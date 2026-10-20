@@ -36,7 +36,7 @@ func _on_state(state: String) -> void:
 func test_title_buttons_order_and_background_art() -> void:
 	var title: TitleScreen = _main.get_node("TitleScreen")
 	var labels: Array = title.find_children("*", "Button", true, false).map(func(b: Button) -> String: return b.text)
-	check_eq(labels, ["New Game", "Continue", "Settings", "Quit"], "menu order")
+	check_eq(labels, ["New Game", "Customize new psychiatrist", "Continue", "Settings", "Quit"], "menu order including optional new-game customization")
 	var art: TextureRect = title.find_child("BackgroundArt", true, false)
 	check(art != null and art.texture != null, "approved Chapter 1 art behind the menu")
 
