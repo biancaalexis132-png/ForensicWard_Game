@@ -2,7 +2,7 @@
 
 ## Verified scope
 
-Reviewed GitHub main `1afd31183e7bc9c98f9df7ca85c879ec1e2ca5d1` and PR #104 head `24fc99366d161e66b7a8c6b73efe1734a4c00d55`. The Mac QA branch exists at `057c1f50ae3b1ca1fa0d56d65135d5bb36161410`. PR #104 is the only open PR returned by the connected repository search. Historical status tables retain obsolete “not merged” and “planned” entries; current GitHub history takes precedence.
+Reviewed GitHub main `1afd31183e7bc9c98f9df7ca85c879ec1e2ca5d1` and PR #104 head `24fc99366d161e66b7a8c6b73efe1734a4c00d55`. The Mac QA branch exists at `057c1f50ae3b1ca1fa0d56d65135d5bb36161410`; PR #103 was merged into main at `477fed42c15cbd813f3ae6378224d0b8e358fa65`. At initial inspection, PR #104 was the only open PR returned by the connected repository search. Historical status tables retain obsolete “not merged” and “planned” entries; current GitHub history takes precedence.
 
 Main already contains playable Chapters 1–5 and endings, title cards, static illustrated recaps with all 38 narrator tracks, seven normal-gameplay cast models, counter interaction, dialogue-viseme support, and the player-experience work from merged PRs #102/#105–108 (voiced choices, EHR orders, objectives, title/settings/preload, presentation states). These are not missing builds. Naomi v07 supersedes the older v06 candidates; plain v06's absent visemes remain a correct historical finding, not a reason to rebuild the current model.
 
@@ -18,7 +18,7 @@ Main already contains playable Chapters 1–5 and endings, title cards, static i
 | 6 | Environment production and polish | Stage 7 apartment/parking/exterior is not started. Stage 8 textures/UVs, trim sheets, LODs/lightmap UV2 and visual polish is not started per `docs/ENVIRONMENT_STAGES.md`; Stages 1–6 are predominantly untextured v1. Select scope and target-device budgets before generating more assets. |
 | 7 | Protagonist customization | `docs/design/PROTAGONIST_CUSTOMIZATION_PLAN.md` remains a proposal. No creator/profile provider, background/appearance catalog, personality callbacks or proposed v4 migration ships. Review that design before implementation. |
 | 8 | Continuing Practice / CP-001 | The Jordan Vale v2 authoring package exists; a runtime case schema/validator/loader, longitudinal shift lifecycle, reviewed case rules and save integration are still required. Keep its clinical/canon review separate from the main campaign. |
-| 9 | Broader medical simulation scope | The EHR currently supports assessment/referral only. Medication orders and laboratory tests are explicitly unavailable in `data/order_catalog.json`; results and treatment outcomes require reviewed rules and implementation if they are part of the intended release. Preserve these honest limits until that work exists. |
+| 9 | Broader medical simulation scope | The EHR currently supports assessment/referral only. Medication orders and laboratory tests are explicitly unavailable in `data/order_catalog.json`; results and treatment outcomes require reviewed rules and implementation if they are part of the intended release. Preserve these honest limits until that work exists. Current content loading also reports the two PT-001/PT-002 pharmacology clue gates as known F0 C7 exceptions; that owner decision remains open. |
 | 10 | Release packaging | Produce a tested Mac export and source/sync bundle with required assets/LFS objects and provenance. Verify it on the target Mac and verify external-drive sync separately. This cloud session has no mounted SSK drive and makes no claim of syncing it. |
 
 Recommended next implementation after #104: settle the journal's EHR relationship and connect one approved clinical documentation action end-to-end, including persistence and duplicate-event handling. Run Mac acceptance in parallel with that decision; it may reveal higher-priority presentation defects.
@@ -34,3 +34,7 @@ Recommended next implementation after #104: settle the journal's EHR relationshi
 - Directory prose was hard-coded and claimed I opened EHR; move it to validated-at-load JSON and show the real J binding.
 
 No clinical content, models, audio, existing authored campaign lines, or save version was changed by these repairs. The directory remains deliberately labelled and described as a directory, not a spatial map.
+
+## Repair delivery
+
+PR #109 (`codex/chapter1-vertical-slice-cont-1`) was merged externally at `6cf4656e5bc868b3b3419f82210860e134f6d78a` and includes #104 and its repairs, plus current-main integration and isolated test cleanup at `ed43cefff6e3a12c0de0b3dd81e7fa727b649de1`. Its diff excluded already merged player-experience work. Original #104 was subsequently closed/merged; its commit is an ancestor of #109 and its branch was not rewritten. New gameplay panel buttons are hidden from title-screen Settings. Four focused regressions pass. Full standard QA results are recorded in the newest AI handoff entry. No merge was performed by the agent, and no external-drive operation was performed. Final validation/review documentation was pushed after #109 merged and is delivered in a documentation-only follow-up.
