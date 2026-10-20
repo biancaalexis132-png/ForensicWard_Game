@@ -17,7 +17,7 @@ git checkout main   # #102 and #105–108 are merged
 python3 tests/qa/run.py --godot /Applications/Godot.app/Contents/MacOS/Godot
 ```
 
-To review the #104 repairs before #109 merges, check out `codex/chapter1-vertical-slice-cont-1` instead of `main`, then run the same import and QA commands. The original `kilo/chapter1-vertical-slice` branch still contains the failing autoload; use the continuation for repair acceptance.
+PR #109 repairs are merged into main. Use current main for journal/directory acceptance; the original `kilo/chapter1-vertical-slice` branch contains the pre-repair autoload and should not be used for this check.
 
 The import step matters: a copy that has never been imported shows grey capsules instead of the cast models, which is the likely cause of the grey characters seen before.
 
