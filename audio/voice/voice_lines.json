@@ -79,6 +79,46 @@
 		"fx": "dialogue",
 		"source_hash": "ba0392fcf05624c40947a1f4dd63202d7bfdc73d"
 	},
+	"ch1_pro_01_arrival": {
+		"path": "audio/voice/ch1/ch1_pro_01_arrival.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "de0ea460d68831d94166b52f60eceebccc822518"
+	},
+	"ch1_pro_02_badge": {
+		"path": "audio/voice/ch1/ch1_pro_02_badge.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "bcbdc3f672d974da87fdbf90c0e1775c97af0479"
+	},
+	"ch1_pro_03_desk": {
+		"path": "audio/voice/ch1/ch1_pro_03_desk.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b9ac0ae2e4178127cf9b035edf0d6372f2000e6c"
+	},
+	"ch1_pro_04_corridor": {
+		"path": "audio/voice/ch1/ch1_pro_04_corridor.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7c2f93680a378bd1d7a43ec34355e981c3c25af4"
+	},
+	"ch1_pro_05_start": {
+		"path": "audio/voice/ch1/ch1_pro_05_start.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7459c7e2edea53a446005ef96407ce9e7ca6199e"
+	},
 	"ch1_v_2e722d1e12": {
 		"path": "audio/voice/ch1/ch1_v_2e722d1e12.ogg",
 		"speaker": "staff_bennett",

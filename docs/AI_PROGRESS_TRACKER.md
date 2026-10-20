@@ -1,5 +1,17 @@
 # AI progress tracker
 
+## Player experience overhaul — Claude Code (cloud), 2026-10-20
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| P1 real 3D cast, no placeholder labels, disclaimer moved | Done, draft PR #102 | PR #98 | `scripts/world/Character.gd`, `CampaignCastVisuals.gd`, `EHRScreen.gd`, `TitleScreen.gd`, `PauseMenu.gd` | Full QA 299/0, hosted CI green | Owner review, Mac look |
+| P2 voiced choices, narrated Elias, subtitle and voice settings | Done, draft #105 | #102 | `systems/audio/AudioDirector.gd`, `data/narrative/*`, `audio/voice/**` | all executed checks passed: game 308/0, audio 1612/0, QA 19/0/0, GLB 168/0, Chapter 1 sequence done | Owner approves lines and voice profiles |
+| P3 EHR order catalog | Done, draft #106 | #105 | `data/order_catalog.json`, `scripts/clinical/ClinicalOrders.gd`, `EHRScreen.gd` | `test_order_catalog.gd` 7/0 | Clinical wording review |
+| P5 objective feedback | Done, draft #107 | #106 | `scripts/ui/ObjectiveTracker.gd`, `ChapterDirector.gd`, `Settings.gd` | `test_objective_feedback.gd` 5/0 | Owner review |
+| P4/P7 title, preload, presentation states, prologue | Done, draft #108; prologue review-only | #107 | `TitleScreen.gd`, `Main.gd`, `data/cutscenes/cs_ch01_prologue.json` | `test_presentation.gd` 7/0, `test_title_screen.gd` 3/0 | Owner approves prologue |
+| P6 split-screen milestones | Done, draft #108; review-only | #107 | `scripts/ui/MilestonePresenter.gd`, `data/milestones.json` | `test_milestones.gd` 4/0 | Owner approves milestone |
+| Mac acceptance | Not run | Owner's Mac | `docs/MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md` | | Owner |
+
 ## Owner approvals and content gaps — Claude Code (cloud), 2026-10-19
 
 | Task | State | Dependencies | Paths | Validation | Next action |

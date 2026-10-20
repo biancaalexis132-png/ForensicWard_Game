@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/world/Chapter1Ward.tscn" id="2_world"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" path="res://scenes/cutscene/CutsceneDirector.tscn" id="14_cutscene"]
 [ext_resource type="Script" path="res://scripts/ui/TitleScreen.gd" id="15_title"]
 [ext_resource type="Script" path="res://scripts/ui/ObjectiveTracker.gd" id="16_objectives"]
+[ext_resource type="Script" path="res://scripts/ui/MilestonePresenter.gd" id="17_milestones"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
@@ -52,6 +53,9 @@ script = ExtResource("12_zones")
 [node name="PauseMenu" parent="." instance=ExtResource("6_pause")]
 
 [node name="CutsceneDirector" parent="." instance=ExtResource("14_cutscene")]
+
+[node name="MilestonePresenter" type="CanvasLayer" parent="."]
+script = ExtResource("17_milestones")
 
 [node name="TitleScreen" type="CanvasLayer" parent="."]
 script = ExtResource("15_title")

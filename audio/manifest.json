@@ -1478,6 +1478,86 @@
 			"text": "Let's leave the examination there for now and go back to a few general questions."
 		},
 		{
+			"file": "audio/voice/ch1/ch1_pro_01_arrival.ogg",
+			"category": "narration",
+			"duration_seconds": 6.183,
+			"ids": [
+				"ch1_pro_01_arrival"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (upstream MODEL_CARD); Piper vits-piper-en_US-ljspeech-high model source attribution retained; Sherpa-ONNX runtime Apache-2.0. The owner-approved recap narrator voice; no voice cloning.",
+			"location": "prologue",
+			"review_status": "pending_listening_review",
+			"sha256": "9e2a728e6c284c8bfb9190635c5dd838947f425f1e62d8113cf037ef44bbc5bb",
+			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
+			"speaker": "narrator",
+			"text": "Ashcroft State Forensic Hospital. Today is your first shift as the ward's new psychiatrist."
+		},
+		{
+			"file": "audio/voice/ch1/ch1_pro_02_badge.ogg",
+			"category": "narration",
+			"duration_seconds": 6.418,
+			"ids": [
+				"ch1_pro_02_badge"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (upstream MODEL_CARD); Piper vits-piper-en_US-ljspeech-high model source attribution retained; Sherpa-ONNX runtime Apache-2.0. The owner-approved recap narrator voice; no voice cloning.",
+			"location": "prologue",
+			"review_status": "pending_listening_review",
+			"sha256": "fa31cb8223e96943b91ad2a7f87fe7220f3b702d43186d4cbdcd19c21aac2157",
+			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
+			"speaker": "narrator",
+			"text": "Every door here is logged. Your badge says who you are, and the system decides where you may go."
+		},
+		{
+			"file": "audio/voice/ch1/ch1_pro_03_desk.ogg",
+			"category": "narration",
+			"duration_seconds": 3.827,
+			"ids": [
+				"ch1_pro_03_desk"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (upstream MODEL_CARD); Piper vits-piper-en_US-ljspeech-high model source attribution retained; Sherpa-ONNX runtime Apache-2.0. The owner-approved recap narrator voice; no voice cloning.",
+			"location": "prologue",
+			"review_status": "pending_listening_review",
+			"sha256": "6dae29a998019a3073b3e2d197a3708a13af38d27df879e8e23d941bff3c4d0a",
+			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
+			"speaker": "narrator",
+			"text": "A desk, a terminal, and a caseload you have not met yet."
+		},
+		{
+			"file": "audio/voice/ch1/ch1_pro_04_corridor.ogg",
+			"category": "narration",
+			"duration_seconds": 8.571,
+			"ids": [
+				"ch1_pro_04_corridor"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (upstream MODEL_CARD); Piper vits-piper-en_US-ljspeech-high model source attribution retained; Sherpa-ONNX runtime Apache-2.0. The owner-approved recap narrator voice; no voice cloning.",
+			"location": "prologue",
+			"review_status": "pending_listening_review",
+			"sha256": "584dedcab18f4bd3554e00b2a64907819342a0f654244f6df7d09796736a59b8",
+			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
+			"speaker": "narrator",
+			"text": "The patients on this ward were sent by the courts. Your job is to see each of them clearly, and to record only what you observe."
+		},
+		{
+			"file": "audio/voice/ch1/ch1_pro_05_start.ogg",
+			"category": "narration",
+			"duration_seconds": 4.18,
+			"ids": [
+				"ch1_pro_05_start"
+			],
+			"integration_status": "integrated",
+			"license": "LJ Speech dataset: public domain (upstream MODEL_CARD); Piper vits-piper-en_US-ljspeech-high model source attribution retained; Sherpa-ONNX runtime Apache-2.0. The owner-approved recap narrator voice; no voice cloning.",
+			"location": "prologue",
+			"review_status": "pending_listening_review",
+			"sha256": "08614f04b116fc27113eef906e4ae6bec6938aacaea27a64ace33806bfebeb68",
+			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
+			"speaker": "narrator",
+			"text": "The charge nurse is expecting you at the nursing station. Start there."
+		},
+		{
 			"file": "audio/voice/ch1/ch1_v_2e722d1e12.ogg",
 			"category": "dialogue",
 			"duration_seconds": 8.0,

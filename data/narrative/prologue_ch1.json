@@ -1,0 +1,24 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch1",
+	"provisional": true,
+	"_note": "Narration for the review-only prologue cs_ch01_prologue (plays on New Game only once the owner approves it). Arrival only: it does not repeat the Chapter 1 recap, name any patient, or mention Ward Zero or anything unexplained. Pending owner narrative review. Line IDs are stable: never reuse an ID for different wording.",
+	"clinical_review_status": "PENDING",
+	"speakers": {
+		"narrator": ""
+	},
+	"scenes": [
+		{
+			"id": "ch1_prologue",
+			"beat": "New Game prologue: arriving at Ashcroft for the first shift",
+			"location": "prologue",
+			"lines": [
+				{"id": "ch1_pro_01_arrival", "speaker": "narrator", "text": "Ashcroft State Forensic Hospital. Today is your first shift as the ward's new psychiatrist."},
+				{"id": "ch1_pro_02_badge", "speaker": "narrator", "text": "Every door here is logged. Your badge says who you are, and the system decides where you may go."},
+				{"id": "ch1_pro_03_desk", "speaker": "narrator", "text": "A desk, a terminal, and a caseload you have not met yet."},
+				{"id": "ch1_pro_04_corridor", "speaker": "narrator", "text": "The patients on this ward were sent by the courts. Your job is to see each of them clearly, and to record only what you observe."},
+				{"id": "ch1_pro_05_start", "speaker": "narrator", "text": "The charge nurse is expecting you at the nursing station. Start there."}
+			]
+		}
+	]
+}
