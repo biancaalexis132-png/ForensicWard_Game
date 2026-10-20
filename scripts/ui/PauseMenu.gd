@@ -64,11 +64,14 @@ func _ready() -> void:
 	replay_button.pressed.connect(func() -> void:
 		close()
 		EventBus.ui_panel_requested.emit("cutscene", {"replay_completed": true}))
+	var route_index: int = $Root/Panel/Scroll/Margin/VBox/Status.get_index()
 	for panel_id: String in ["case_journal", "map"]:
 		var button: Button = Button.new()
 		button.name = "CaseJournal" if panel_id == "case_journal" else "Directory"
 		button.text = "Clinical Case Journal" if panel_id == "case_journal" else "Spatial Map"
 		_resume_button.get_parent().add_child(button)
+		_resume_button.get_parent().move_child(button, route_index)
+		route_index += 1
 		button.pressed.connect(func() -> void:
 			close()
 			EventBus.ui_panel_requested.emit(panel_id, {}))
@@ -77,6 +80,8 @@ func _ready() -> void:
 		button.name = route[0]
 		button.text = route[1]
 		_resume_button.get_parent().add_child(button)
+		_resume_button.get_parent().move_child(button, route_index)
+		route_index += 1
 		button.pressed.connect(func() -> void:
 			close()
 			EventBus.ui_panel_requested.emit(route[2], {}))
