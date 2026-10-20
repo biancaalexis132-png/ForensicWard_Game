@@ -9,6 +9,7 @@ var _case_id: String = "cp_001"
 var _task_description: LineEdit
 var _task_owner: LineEdit
 var _review_point: LineEdit
+var _safety_hold: CheckBox
 var _tasks: VBoxContainer
 
 func _ready() -> void:
@@ -46,6 +47,10 @@ func _ready() -> void:
 	_task_description = _edit(task_fields, "Follow-up task")
 	_task_owner = _edit(task_fields, "Responsible role")
 	_review_point = _edit(task_fields, "Next review point")
+	_safety_hold = CheckBox.new()
+	_safety_hold.text = "Safety hold"
+	_safety_hold.tooltip_text = "Keep this concern blocking shift closure until completed; handoff acknowledgment alone will not clear it."
+	task_fields.add_child(_safety_hold)
 	var add: Button = Button.new()
 	add.text = "Add follow-up"
 	task_fields.add_child(add)
@@ -135,8 +140,9 @@ func _add_task() -> void:
 	var case: PracticeCase = ContinuingPractice.get_case(_case_id)
 	if case != null:
 		var id: String = "task_%d" % (case.to_save_data()["tasks"].size() + 1)
-		if case.add_task(id, _task_description.text, _task_owner.text, _review_point.text):
+		if case.add_task(id, _task_description.text, _task_owner.text, _review_point.text, _safety_hold.button_pressed):
 			_task_description.clear()
+			_safety_hold.button_pressed = false
 			_refresh()
 
 func _toggle_hold() -> void:
