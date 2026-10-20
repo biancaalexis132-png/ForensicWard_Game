@@ -63,7 +63,7 @@ func test_journal_scene_lists_and_displays_entries() -> void:
 	runner.add_child(panel)
 	panel.open()
 	check_eq(panel._list.get_child_count(), 1, "scene paths resolve and list has entry")
-	check("Test content" in panel._details.text, "selected entry content is visible")
+	check("Test content" in panel._details.get_parsed_text(), "selected entry content is visible")
 	panel.close()
 	panel.free()
 

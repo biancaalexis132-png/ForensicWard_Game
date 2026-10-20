@@ -49,11 +49,9 @@ func _refresh() -> void:
 
 
 func _show_entry(entry: Dictionary) -> void:
-	_details.text = "[b]%s - %s[/b]\nDay %s, %s (min %s)\n\n%s" % [
-		entry.get("patient_id",""),
-		entry.get("type",""),
-		entry.get("day",""),
-		entry.get("shift",""),
-		entry.get("at_minutes",""),
-		entry.get("content","")
-	]
+	_details.clear()
+	var patient: Dictionary = ContentRegistry.get_patient(str(entry.get("patient_id", "")))
+	_details.add_text("%s — %s\nDay %s, %s (min %s)\nSource: %s\n\n%s" % [
+		patient.get("name", entry.get("patient_id", "")), entry.get("type", ""),
+		entry.get("day", ""), entry.get("shift", ""), entry.get("at_minutes", ""),
+		entry.get("source_id", "Player entry"), entry.get("content", "")])
