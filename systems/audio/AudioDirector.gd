@@ -81,6 +81,14 @@ var _music_states: Dictionary = {} ## state_id -> [{cue, min_intensity}] sorted 
 var _music_contexts: Dictionary = {} ## context_id -> {cue, ambience: keep|duck|stop, ambience_db, fade}
 var _context_stack: Array[String] = [] ## Active contexts, newest last.
 var _lines: Dictionary = {}  ## line_id -> {id, chapter, speaker, speaker_name, text}
+var _text_index: Dictionary = {} ## "speaker\u001ftext" -> line_id (first authored wins)
+var _choice_index: Dictionary = {} ## "patient_id:choice_id" -> spoken question line_id
+## Conversations in progress (ConversationPlayer, narrative scenes). A narrative
+## event's scene waits for them, so two voices never talk over each other.
+var _conversations: int = 0
+var _text_serial: int = 0
+## Bumped by cancel_pending_events(); trigger_event actions from an older value are dropped.
+var _event_generation: int = 0
 var _scenes: Dictionary = {} ## scene_id -> Array of line ids
 
 var _location: String = ""
@@ -133,6 +141,7 @@ func _ready() -> void:
 	_shift = GameState.shift
 	EventBus.shift_started.connect(_on_shift_started)
 	EventBus.narrative_event_fired.connect(_on_narrative_event_fired)
+	EventBus.game_loaded.connect(func(_slot: int) -> void: cancel_pending_events())
 
 
 func _process(_delta: float) -> void:
@@ -567,7 +576,7 @@ func play_line(line_id: String, emitter: Node3D = null) -> bool:
 		duration = stream.get_length()
 	else:
 		push_warning("AudioDirector: no voice clip for '%s'; showing subtitle only" % line_id)
-		duration = clampf(line["text"].split(" ").size() * 0.4, 2.0, 12.0)
+		duration = reading_seconds(line["text"])
 		get_tree().create_timer(duration, false).timeout.connect(
 				_on_unvoiced_timeout.bind(line_id, _current_line_token))
 	EventBus.subtitle_shown.emit(line_id, line["speaker_name"], line["text"], duration)
@@ -587,15 +596,80 @@ func play_scene(scene_id: String, emitters: Dictionary = {}) -> void:
 	if line_ids.is_empty():
 		push_warning("AudioDirector: unknown or empty narrative scene '%s'" % scene_id)
 		return
+	begin_conversation()
 	for index: int in line_ids.size():
 		var line_id: String = line_ids[index]
 		if not await play_line(line_id, emitters.get(_lines[line_id]["speaker"])):
-			return # Stopped or replaced by another line.
+			break # Stopped or replaced by another line.
 		if index < line_ids.size() - 1:
 			var token: int = _dialogue_token
 			await get_tree().create_timer(LINE_GAP_SECONDS, false).timeout
 			if token != _dialogue_token:
-				return # Dialogue was stopped or restarted during the pause.
+				break # Dialogue was stopped or restarted during the pause.
+	end_conversation()
+
+
+## The voiced line for this speaker saying exactly this text, or "".
+func find_line(speaker: String, text: String) -> String:
+	return str(_text_index.get(speaker + "\u001f" + text, ""))
+
+
+## The psychiatrist's spoken question for an interview choice, or "".
+func find_choice_line(patient_id: String, choice_id: String) -> String:
+	return str(_choice_index.get(patient_id + ":" + choice_id, ""))
+
+
+## Shows a subtitle with no clip for an estimated reading time: the fallback
+## for text that has no recording (or whose clip failed to load). Awaitable;
+## false if stopped or replaced first.
+func play_text(speaker_name: String, text: String) -> bool:
+	if text.strip_edges().is_empty():
+		return true
+	stop_dialogue()
+	_text_serial += 1
+	var line_id: String = "text:%d" % _text_serial
+	_current_line_id = line_id
+	_current_line_token = _dialogue_token
+	var duration: float = reading_seconds(text)
+	get_tree().create_timer(duration, false).timeout.connect(_on_unvoiced_timeout.bind(line_id, _current_line_token))
+	EventBus.subtitle_shown.emit(line_id, speaker_name, text, duration)
+	var completed: bool = false
+	while true:
+		var result: Array = await _line_done
+		if result[0] == line_id:
+			completed = result[1]
+			break
+	return completed
+
+
+## Subtitle time for unvoiced text: about 0.4 s a word, 2 to 12 s.
+static func reading_seconds(text: String) -> float:
+	return clampf(text.split(" ").size() * 0.4, 2.0, 12.0)
+
+
+func begin_conversation() -> void:
+	_conversations += 1
+
+
+func end_conversation() -> void:
+	_conversations = maxi(0, _conversations - 1)
+
+
+## True while a line plays or a conversation holds the voice channel.
+func is_voice_busy() -> bool:
+	return is_dialogue_playing() or _conversations > 0
+
+
+## Waits until no line or conversation holds the voice channel, up to
+## `timeout` seconds. Returns false on timeout.
+func wait_for_voice_idle(timeout: float = 60.0) -> bool:
+	var waited: float = 0.0
+	while is_voice_busy():
+		if waited >= timeout:
+			return false
+		await get_tree().create_timer(0.1, false).timeout
+		waited += 0.1
+	return true
 
 
 ## Ducks (true) or restores (false) music and ambience around speech.
@@ -673,12 +747,15 @@ func _on_narrative_event_fired(event_id: String, payload: Dictionary) -> void:
 ## Runs the audio actions mapped to an explicit narrative event. Events without
 ## audio are ignored. payload.position (Vector3) makes SFX positional.
 func trigger_event(event_id: String, payload: Dictionary = {}) -> void:
+	var generation: int = _event_generation
 	var elapsed: float = 0.0
 	for action: Dictionary in _events.get(event_id, []):
 		var at: float = float(action.get("at", 0.0))
 		if at > elapsed:
 			await get_tree().create_timer(at - elapsed).timeout
 			elapsed = at
+		if generation != _event_generation:
+			return
 		if action.has("sfx"):
 			if payload.get("position") is Vector3:
 				play_sfx_3d(action["sfx"], payload["position"])
@@ -701,7 +778,18 @@ func trigger_event(event_id: String, payload: Dictionary = {}) -> void:
 		elif action.has("line"):
 			play_line(action["line"])
 		elif action.has("scene"):
-			play_scene(action["scene"])
+			# Let a conversation already on screen finish instead of cutting it off.
+			await wait_for_voice_idle()
+			if generation == _event_generation:
+				play_scene(action["scene"])
+
+
+## Drops event actions still waiting to run (a delayed cue, a scene waiting
+## for a conversation to end) and stops the current line. Loading a save does
+## this, so audio from the abandoned moment never plays over the loaded one.
+func cancel_pending_events() -> void:
+	_event_generation += 1
+	stop_dialogue()
 
 
 # ===========================================================================
@@ -792,6 +880,11 @@ func _load_narrative() -> void:
 					"id": line["id"], "chapter": data.get("chapter", ""), "speaker": line["speaker"],
 					"speaker_name": speakers.get(line["speaker"], line["speaker"]), "text": line["text"],
 				}
+				var key: String = str(line["speaker"]) + "\u001f" + str(line["text"])
+				if not _text_index.has(key) or not file_name.begins_with("voice_"):
+					_text_index[key] = line["id"]
+				if line.has("dialogue_choice"):
+					_choice_index[str(line["dialogue_choice"])] = line["id"]
 				ids.append(line["id"])
 			_scenes[scene["id"]] = ids
 

@@ -66,3 +66,17 @@ func test_journal_scene_lists_and_displays_entries() -> void:
 	check("Test content" in panel._details.text, "selected entry content is visible")
 	panel.close()
 	panel.queue_free()
+
+
+func test_title_settings_hide_gameplay_panel_buttons() -> void:
+	var pause: PauseMenu = load("res://scenes/ui/PauseMenu.tscn").instantiate()
+	runner.add_child(pause)
+	pause.open_settings_from_title()
+	for button_name: String in ["CaseJournal", "Directory"]:
+		check(not pause.get_node("Root/Panel/Margin/VBox/" + button_name).visible, "title settings hides " + button_name)
+	pause.close()
+	pause.open()
+	for button_name: String in ["CaseJournal", "Directory"]:
+		check(pause.get_node("Root/Panel/Margin/VBox/" + button_name).visible, "game menu shows " + button_name)
+	pause.close()
+	pause.queue_free()

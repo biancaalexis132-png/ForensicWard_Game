@@ -1,0 +1,42 @@
+{
+	"schema_version": "0.1",
+	"_note": "EHR order catalog. Each order wraps a clinical action in clinical_rules.json; outcomes come only from ClinicalRules. Orders add no result, story flag or treatment effect. Indication and detail wording is pending the owner's narrative check (docs/clinical_review_log.md).",
+	"orders": [
+		{
+			"id": "ord_catatonia_assessment",
+			"action_id": "evaluate_catatonia",
+			"category": "Assessment",
+			"indication": "Mutism and posturing are reported in the referral. The approved escalation rule needs both findings witnessed by you and recorded.",
+			"details": "A structured bedside examination documented in the chart from the findings you have witnessed. It marks the structured assessment as started. No treatment, dose or medication follows from it in this build.",
+			"completion": "immediate",
+			"prerequisites": {
+				"observations": ["obs_mutism", "obs_posturing"],
+				"explanation": "Witness and record both findings first, at the bedside or in interview. If you place the order without them, the request is logged but the assessment does not start."
+			},
+			"placed_text": "Structured assessment documented."
+		},
+		{
+			"id": "ord_medical_team_review",
+			"action_id": "request_medical_review",
+			"category": "Referral",
+			"indication": "Ask the medical team to review the patient alongside your psychiatric assessment.",
+			"details": "The request is logged and shown as awaiting the medical team. No medical result, test or treatment is simulated.",
+			"completion": "awaiting_response",
+			"placed_text": "Medical team review requested. Awaiting the medical team."
+		}
+	],
+	"unavailable": [
+		{
+			"id": "ord_medication",
+			"label": "Medication orders",
+			"category": "Medication",
+			"reason": "No medication logic has clinical approval, so medication cannot be ordered in this build."
+		},
+		{
+			"id": "ord_laboratory",
+			"label": "Laboratory tests",
+			"category": "Laboratory",
+			"reason": "Laboratory results are not simulated in this build, so tests cannot be ordered."
+		}
+	]
+}

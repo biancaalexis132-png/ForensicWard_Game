@@ -18,6 +18,15 @@ const TOGGLES: Dictionary = {
 	"InvertY": "invert_y",
 }
 
+## Toggles added in code (CheckBox name -> Settings key), listed after the scene's own.
+const EXTRA_TOGGLES: Dictionary = {
+	"SubtitleSpeakerNames": ["subtitle_speaker_names", "Subtitles: show speaker names"],
+	"SubtitleBackground": ["subtitle_background", "Subtitles: background box"],
+	"ObjectiveChecklist": ["objective_checklist", "Objectives: show checklist"],
+	"ObjectiveBanners": ["objective_banners", "Objectives: show banners"],
+	"ObjectiveSound": ["objective_sound", "Objectives: completion chime"],
+}
+
 ## HSlider node name (under Audio) -> AudioDirector volume setting (linear 0..1).
 const VOLUMES: Dictionary = {
 	"Master": "volume_master",
@@ -35,6 +44,11 @@ const VOLUMES: Dictionary = {
 @onready var _reduce_startle: CheckBox = $Root/Panel/Margin/VBox/Accessibility/ReduceStartlingAudio
 
 var is_open: bool = false
+## True while opened from the title screen: settings only, drawn above the title.
+var from_title: bool = false
+var _subtitle_size: HSlider
+## Rows that only make sense inside a running game.
+const IN_GAME_ROWS: Array[String] = ["Save", "Load", "ReplayRecap", "CaseJournal", "Directory", "Quit"]
 
 
 func _ready() -> void:
@@ -74,6 +88,28 @@ func _ready() -> void:
 		var box: CheckBox = _toggles.get_node(node_name)
 		var key: String = TOGGLES[node_name]
 		box.toggled.connect(func(pressed: bool) -> void: Settings.set_value(key, pressed))
+	for node_name: String in EXTRA_TOGGLES:
+		var extra: CheckBox = CheckBox.new()
+		extra.name = node_name
+		extra.text = EXTRA_TOGGLES[node_name][1]
+		_toggles.add_child(extra)
+		var extra_key: String = EXTRA_TOGGLES[node_name][0]
+		extra.toggled.connect(func(pressed: bool) -> void: Settings.set_value(extra_key, pressed))
+	var size_row: HBoxContainer = HBoxContainer.new()
+	size_row.name = "SubtitleSize"
+	var size_label: Label = Label.new()
+	size_label.text = "Subtitle size"
+	size_label.custom_minimum_size.x = 160
+	size_row.add_child(size_label)
+	_subtitle_size = HSlider.new()
+	_subtitle_size.name = "Slider"
+	_subtitle_size.min_value = 0.8
+	_subtitle_size.max_value = 1.6
+	_subtitle_size.step = 0.1
+	_subtitle_size.custom_minimum_size.x = 220
+	_subtitle_size.value_changed.connect(func(value: float) -> void: Settings.set_value("subtitle_scale", value))
+	size_row.add_child(_subtitle_size)
+	_toggles.add_child(size_row)
 	_sensitivity.value_changed.connect(func(value: float) -> void: Settings.set_value("mouse_sensitivity", value))
 	# Audio settings belong to AudioDirector, which applies and saves them.
 	for node_name: String in VOLUMES:
@@ -84,9 +120,26 @@ func _ready() -> void:
 		AudioDirector.set_setting("reduce_startling_audio", pressed))
 
 
+## Opens the settings over the title screen: no save, load, replay or quit,
+## and closing it returns to the title with the game still paused.
+func open_settings_from_title() -> void:
+	from_title = true
+	layer = 40
+	_resume_button.text = "Back"
+	_set_in_game_rows(false)
+	open()
+
+
 func open() -> void:
+	if not from_title:
+		layer = 20
+		_resume_button.text = "Resume"
+		_set_in_game_rows(true)
 	for node_name: String in TOGGLES:
 		(_toggles.get_node(node_name) as CheckBox).set_pressed_no_signal(Settings.get_value(TOGGLES[node_name]))
+	for node_name: String in EXTRA_TOGGLES:
+		(_toggles.get_node(node_name) as CheckBox).set_pressed_no_signal(Settings.get_value(EXTRA_TOGGLES[node_name][0]))
+	_subtitle_size.set_value_no_signal(Settings.get_value("subtitle_scale"))
 	_sensitivity.set_value_no_signal(Settings.get_value("mouse_sensitivity"))
 	for node_name: String in VOLUMES:
 		(_volumes.get_node(node_name) as HSlider).set_value_no_signal(AudioDirector.get_setting(VOLUMES[node_name]))
@@ -98,13 +151,28 @@ func open() -> void:
 	_resume_button.grab_focus()
 
 
+## Freed while open (scene change, quit to a new Main, tests): leave the tree running.
+func _exit_tree() -> void:
+	if is_open:
+		get_tree().paused = false
+
+
 func close() -> void:
 	if not is_open:
 		return
 	visible = false
 	is_open = false
-	get_tree().paused = false
+	# Back to the title: it keeps the game paused until New Game or Continue.
+	get_tree().paused = from_title
+	from_title = false
 	closed.emit()
+
+
+func _set_in_game_rows(shown: bool) -> void:
+	for row: String in IN_GAME_ROWS:
+		var node: Control = $Root/Panel/Margin/VBox.get_node_or_null(row)
+		if node != null:
+			node.visible = shown
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -47,6 +47,4846 @@
 		"fx": "intercom",
 		"source_hash": "5a2cccab25b4fe8f165c46221e4c8b237c1d57a0"
 	},
+	"ch1_int_elias_ask_intake": {
+		"path": "audio/voice/ch1/ch1_int_elias_ask_intake.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "9fac331a6cbdef1551af63808c50827e86614b97"
+	},
+	"ch1_int_elias_ask_ward_zero": {
+		"path": "audio/voice/ch1/ch1_int_elias_ask_ward_zero.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "7aa03060d064e137d6fa93de6508fdbd34504f2a"
+	},
+	"ch1_int_elias_assess_motor": {
+		"path": "audio/voice/ch1/ch1_int_elias_assess_motor.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "8311eb9f70bd5d217ec80aa56eeb6523c6b5a4d1"
+	},
+	"ch1_int_elias_return_to_general": {
+		"path": "audio/voice/ch1/ch1_int_elias_return_to_general.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "ba0392fcf05624c40947a1f4dd63202d7bfdc73d"
+	},
+	"ch1_pro_01_arrival": {
+		"path": "audio/voice/ch1/ch1_pro_01_arrival.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "de0ea460d68831d94166b52f60eceebccc822518"
+	},
+	"ch1_pro_02_badge": {
+		"path": "audio/voice/ch1/ch1_pro_02_badge.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "bcbdc3f672d974da87fdbf90c0e1775c97af0479"
+	},
+	"ch1_pro_03_desk": {
+		"path": "audio/voice/ch1/ch1_pro_03_desk.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b9ac0ae2e4178127cf9b035edf0d6372f2000e6c"
+	},
+	"ch1_pro_04_corridor": {
+		"path": "audio/voice/ch1/ch1_pro_04_corridor.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7c2f93680a378bd1d7a43ec34355e981c3c25af4"
+	},
+	"ch1_pro_05_start": {
+		"path": "audio/voice/ch1/ch1_pro_05_start.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7459c7e2edea53a446005ef96407ce9e7ca6199e"
+	},
+	"ch1_v_2e722d1e12": {
+		"path": "audio/voice/ch1/ch1_v_2e722d1e12.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "491ed0d556b1e9d1cff5efd526e7d2cc07ef17e1"
+	},
+	"ch1_v_3556aa2f5b": {
+		"path": "audio/voice/ch1/ch1_v_3556aa2f5b.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "e742b29a2dec0545dea1fc678faf64d3547729ad"
+	},
+	"ch1_v_3fbdfea147": {
+		"path": "audio/voice/ch1/ch1_v_3fbdfea147.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "41aa82a743cddd82b7521eb34ad56a0d741fd43c"
+	},
+	"ch1_v_4010216886": {
+		"path": "audio/voice/ch1/ch1_v_4010216886.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "d9e3745f216c653c5be21b02c58ade94fd062ef9"
+	},
+	"ch1_v_644ddc544a": {
+		"path": "audio/voice/ch1/ch1_v_644ddc544a.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "909a8915c8fc0c803a792fe8252185067135a1af"
+	},
+	"ch1_v_6c7f05ebd6": {
+		"path": "audio/voice/ch1/ch1_v_6c7f05ebd6.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "2c064d1dfc11ce5df04943e3653e92ba683625b5"
+	},
+	"ch1_v_8f8a358493": {
+		"path": "audio/voice/ch1/ch1_v_8f8a358493.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "0003a22b50908682a90e94c0fcd42e99a27de398"
+	},
+	"ch1_v_956fe95776": {
+		"path": "audio/voice/ch1/ch1_v_956fe95776.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "07728470279c9287962f25d20e5dcf0bbbaad351"
+	},
+	"ch1_v_9ffe7dc73d": {
+		"path": "audio/voice/ch1/ch1_v_9ffe7dc73d.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "f7cffc13667b71634ab891449b5c9c0d284a855d"
+	},
+	"ch1_v_a9b86763fb": {
+		"path": "audio/voice/ch1/ch1_v_a9b86763fb.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "4a3ec502800c8f630b71c3cf9108612d429a2aaa"
+	},
+	"ch1_v_ac5023524f": {
+		"path": "audio/voice/ch1/ch1_v_ac5023524f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c645acd9310410900460c1c87a888fb95a03cc14"
+	},
+	"ch1_v_cea17c0644": {
+		"path": "audio/voice/ch1/ch1_v_cea17c0644.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "e1bfb1ae111c2255992492f85b9eb795243d2228"
+	},
+	"ch1_v_e7b59eb291": {
+		"path": "audio/voice/ch1/ch1_v_e7b59eb291.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cf9a1bb7f0f0dcb2caeecd66f75a9628f3641903"
+	},
+	"ch2_v_0112ade4ec": {
+		"path": "audio/voice/ch2/ch2_v_0112ade4ec.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "916d7cde0b56f73ede8278060f520dd45f60009f"
+	},
+	"ch2_v_01d066efa1": {
+		"path": "audio/voice/ch2/ch2_v_01d066efa1.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5060279d9ac3b682169c59994bf8a75094a3e508"
+	},
+	"ch2_v_025d159609": {
+		"path": "audio/voice/ch2/ch2_v_025d159609.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fc1cf839605d43e3ddf41be1389a3e70b313a24d"
+	},
+	"ch2_v_0316f33153": {
+		"path": "audio/voice/ch2/ch2_v_0316f33153.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "07cdf2f6bd0f188308a57e1ea3863ccb43182500"
+	},
+	"ch2_v_0369f0eb10": {
+		"path": "audio/voice/ch2/ch2_v_0369f0eb10.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "001f29c61cefcecd793c1289b259871061231510"
+	},
+	"ch2_v_07366eed93": {
+		"path": "audio/voice/ch2/ch2_v_07366eed93.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "746139e1c628ec9c6cd22c255074da2f13887a0f"
+	},
+	"ch2_v_0b8273955f": {
+		"path": "audio/voice/ch2/ch2_v_0b8273955f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9b43486cd5f94f4baafdf9692695d6df8a2262f1"
+	},
+	"ch2_v_0bdc0700d9": {
+		"path": "audio/voice/ch2/ch2_v_0bdc0700d9.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "f096181680b4e9e1628fcb2650df803f9557dcc0"
+	},
+	"ch2_v_0da71b46be": {
+		"path": "audio/voice/ch2/ch2_v_0da71b46be.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "6de8351b988c1c89b6340f841c30ef3ff6126180"
+	},
+	"ch2_v_0ecd6ddc93": {
+		"path": "audio/voice/ch2/ch2_v_0ecd6ddc93.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "65fb51cb1a5635e59182b9167f74c49ab26a3f01"
+	},
+	"ch2_v_0f3fb52ed2": {
+		"path": "audio/voice/ch2/ch2_v_0f3fb52ed2.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "5860189970b3c819135565bee2528e70c94af4fc"
+	},
+	"ch2_v_0f91fac34d": {
+		"path": "audio/voice/ch2/ch2_v_0f91fac34d.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "84ab71c50e7fe5bcda37fa6b2e39dd1275372b85"
+	},
+	"ch2_v_108d1ec74a": {
+		"path": "audio/voice/ch2/ch2_v_108d1ec74a.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "84d0961ab2fee7f8b33464fecab74edfdd4f6259"
+	},
+	"ch2_v_111c10e5c5": {
+		"path": "audio/voice/ch2/ch2_v_111c10e5c5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "4fc304ed94c0f7e145791cb0b0a6a50273025f2b"
+	},
+	"ch2_v_12eb49a450": {
+		"path": "audio/voice/ch2/ch2_v_12eb49a450.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "d62dde1940b16406fc62bdb81af5948ff15ef6e7"
+	},
+	"ch2_v_13101819f5": {
+		"path": "audio/voice/ch2/ch2_v_13101819f5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "3cd688fac4c145ed953c778cfd9da74344b50e5b"
+	},
+	"ch2_v_14ac8c2b99": {
+		"path": "audio/voice/ch2/ch2_v_14ac8c2b99.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "307ba9a0d9d76f79ccb4996ff3c48b488024233f"
+	},
+	"ch2_v_1526338645": {
+		"path": "audio/voice/ch2/ch2_v_1526338645.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "d954002b959b986f7be6a44316f41200a6b53d56"
+	},
+	"ch2_v_166aed0744": {
+		"path": "audio/voice/ch2/ch2_v_166aed0744.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "afbf9074a60215f5d2343981711b09080ffd6a65"
+	},
+	"ch2_v_18da98f624": {
+		"path": "audio/voice/ch2/ch2_v_18da98f624.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "6ab449d999ebc7afdb101e736ec8a7b8f30440f8"
+	},
+	"ch2_v_190e761a2f": {
+		"path": "audio/voice/ch2/ch2_v_190e761a2f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "135d7cef9c87a7d8afab711c36e94f5f275daea9"
+	},
+	"ch2_v_195634b907": {
+		"path": "audio/voice/ch2/ch2_v_195634b907.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "09d0b179e7f32602f4541b676bb2e6d573695df0"
+	},
+	"ch2_v_1a01c8841b": {
+		"path": "audio/voice/ch2/ch2_v_1a01c8841b.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "0674016c52136c2c09d58a16e672da4a3a9abade"
+	},
+	"ch2_v_1a7b5aa06d": {
+		"path": "audio/voice/ch2/ch2_v_1a7b5aa06d.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "55609c68fd7c714a474178153d356080bb8e9d1c"
+	},
+	"ch2_v_1e541135fe": {
+		"path": "audio/voice/ch2/ch2_v_1e541135fe.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "4847284ca86c9d9c9c4bf6c85046745b0cc48fba"
+	},
+	"ch2_v_1e617c1f67": {
+		"path": "audio/voice/ch2/ch2_v_1e617c1f67.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "b33b71aed4d77edbb1990450e0e5a7d757945a24"
+	},
+	"ch2_v_1ebd05f278": {
+		"path": "audio/voice/ch2/ch2_v_1ebd05f278.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "835619de78c3d4ca3bff41b8ecdaec61712fad0e"
+	},
+	"ch2_v_20d40ccfc0": {
+		"path": "audio/voice/ch2/ch2_v_20d40ccfc0.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "a7c4aa26d403887188c7c1216ad777a0dde544ae"
+	},
+	"ch2_v_234dbce3fb": {
+		"path": "audio/voice/ch2/ch2_v_234dbce3fb.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "dd4104d1d896c85f9a3d0b9e20961d389f1f2437"
+	},
+	"ch2_v_2391c72ef1": {
+		"path": "audio/voice/ch2/ch2_v_2391c72ef1.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5fe24d5354bb46ff57a71ed9a123c499fe71be0c"
+	},
+	"ch2_v_23b45b9187": {
+		"path": "audio/voice/ch2/ch2_v_23b45b9187.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "aa08ec2be6ba32ab3c9b0ba265b848f16861488e"
+	},
+	"ch2_v_25a8288bad": {
+		"path": "audio/voice/ch2/ch2_v_25a8288bad.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "1eba61fd0f7ef536751b8f6f6130a3645b7bf834"
+	},
+	"ch2_v_2692b95cff": {
+		"path": "audio/voice/ch2/ch2_v_2692b95cff.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "525d1e7f5f7df8e9fb7f51e4f37cdf4aeaeadb1c"
+	},
+	"ch2_v_26f41fda8b": {
+		"path": "audio/voice/ch2/ch2_v_26f41fda8b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c70a344f9efade5645bcaefb23663d2d4ed78504"
+	},
+	"ch2_v_27489e0333": {
+		"path": "audio/voice/ch2/ch2_v_27489e0333.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "35de5efb7eb6b1a6e4659fd5d69d14c9e1e2c031"
+	},
+	"ch2_v_27e282d301": {
+		"path": "audio/voice/ch2/ch2_v_27e282d301.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "fe609fad4b45b60e33712c6ac5c83d1bec232b2f"
+	},
+	"ch2_v_27fa7bc3b1": {
+		"path": "audio/voice/ch2/ch2_v_27fa7bc3b1.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "3ff456a751a4e56ebc050239fe565ec065cd0a73"
+	},
+	"ch2_v_28caf48ab8": {
+		"path": "audio/voice/ch2/ch2_v_28caf48ab8.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "08a991b79047d936f763291a0023238d5195c9cc"
+	},
+	"ch2_v_29ba5ec975": {
+		"path": "audio/voice/ch2/ch2_v_29ba5ec975.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b68ee4cc79cd5abf20f06706658660797d45fc6e"
+	},
+	"ch2_v_2abeaf1879": {
+		"path": "audio/voice/ch2/ch2_v_2abeaf1879.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "1240ba0277a99807c49e2894e10712c71ed81b4d"
+	},
+	"ch2_v_2ac30fb7cf": {
+		"path": "audio/voice/ch2/ch2_v_2ac30fb7cf.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "98368067c4b06401d908cf9082b87a6da2d6df9c"
+	},
+	"ch2_v_2bd9ccf863": {
+		"path": "audio/voice/ch2/ch2_v_2bd9ccf863.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "85da5cc63379d4ab57b992e5bf49e9e148390a95"
+	},
+	"ch2_v_2d74097e83": {
+		"path": "audio/voice/ch2/ch2_v_2d74097e83.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "530fc418c3a17035b743fd9f2b40ebfd93d0ebdd"
+	},
+	"ch2_v_2e2fd01cd9": {
+		"path": "audio/voice/ch2/ch2_v_2e2fd01cd9.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "76c639dfe4e3c330eba01c2f5e67bad9f80e957a"
+	},
+	"ch2_v_2f082f4f22": {
+		"path": "audio/voice/ch2/ch2_v_2f082f4f22.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "cd4cf55973d070a872597cc57df65de23a62328b"
+	},
+	"ch2_v_2f12f0a4a4": {
+		"path": "audio/voice/ch2/ch2_v_2f12f0a4a4.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e5c6f7242c34fb693ea69dd5d4a06b519c0da450"
+	},
+	"ch2_v_2fe1047a67": {
+		"path": "audio/voice/ch2/ch2_v_2fe1047a67.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "64cc04634dc8b2faeefd742e35df3adee5e93f07"
+	},
+	"ch2_v_3202c36832": {
+		"path": "audio/voice/ch2/ch2_v_3202c36832.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "1d6071eee226c35489f4406d0b371bc61c876d30"
+	},
+	"ch2_v_33b7616b92": {
+		"path": "audio/voice/ch2/ch2_v_33b7616b92.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "031c363f541a67d8a9ccf5f756b49086aa421bfc"
+	},
+	"ch2_v_33bb597d68": {
+		"path": "audio/voice/ch2/ch2_v_33bb597d68.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "35c89baff051c1ea687a4d5612d414bbc2cae308"
+	},
+	"ch2_v_33cde93c1b": {
+		"path": "audio/voice/ch2/ch2_v_33cde93c1b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "6aaf9fa0a7e259832608b2036553f994d1abafeb"
+	},
+	"ch2_v_33f9136c8c": {
+		"path": "audio/voice/ch2/ch2_v_33f9136c8c.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7b5a3e5cc5f28d54c7f182cf4e6ed885dcc66baa"
+	},
+	"ch2_v_34b6a970d3": {
+		"path": "audio/voice/ch2/ch2_v_34b6a970d3.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "f98afe7d54f1f13d0e1256934e0dd72acfbf6070"
+	},
+	"ch2_v_355df72b81": {
+		"path": "audio/voice/ch2/ch2_v_355df72b81.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cf132e872e32848e987bdd654c5fd5d2a1fad851"
+	},
+	"ch2_v_380701e9e7": {
+		"path": "audio/voice/ch2/ch2_v_380701e9e7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9181a3ea19fa654a9363209c06d7925eee8ca217"
+	},
+	"ch2_v_3a7f721ede": {
+		"path": "audio/voice/ch2/ch2_v_3a7f721ede.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "31b10ced4e1ded0ea1383d7c8d69186d1b6fcd2b"
+	},
+	"ch2_v_3b456cf4c2": {
+		"path": "audio/voice/ch2/ch2_v_3b456cf4c2.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a4535a731674cc398aafc3de4cc789621c639ccd"
+	},
+	"ch2_v_3bb0af8b44": {
+		"path": "audio/voice/ch2/ch2_v_3bb0af8b44.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "507538e1367d4f107d795173af11dbbba9d8f4ec"
+	},
+	"ch2_v_3bd0c0ec6f": {
+		"path": "audio/voice/ch2/ch2_v_3bd0c0ec6f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b981c817274ba53d442620b2b6ed78e1e74cf102"
+	},
+	"ch2_v_3c322746a4": {
+		"path": "audio/voice/ch2/ch2_v_3c322746a4.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "3848b0c7e2df49638ee79f04cccdc204568e5104"
+	},
+	"ch2_v_3da4bb162e": {
+		"path": "audio/voice/ch2/ch2_v_3da4bb162e.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "06fa3a9e757d6215bbb7f54b1b22bc12614d5d13"
+	},
+	"ch2_v_3e1e72ea43": {
+		"path": "audio/voice/ch2/ch2_v_3e1e72ea43.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "db687d112594bdacb9bf4c31c2761e8190eba976"
+	},
+	"ch2_v_3f3872d262": {
+		"path": "audio/voice/ch2/ch2_v_3f3872d262.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "0e973d624e44e89e56363473b76622c3e45d8c8a"
+	},
+	"ch2_v_40b107bdde": {
+		"path": "audio/voice/ch2/ch2_v_40b107bdde.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "1eb21c3c1e34bd733b858b43a80921cd398478f2"
+	},
+	"ch2_v_40ec61fd9d": {
+		"path": "audio/voice/ch2/ch2_v_40ec61fd9d.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a212fac34a7bfb8738159b22325fbcf1dd40e6a9"
+	},
+	"ch2_v_4137f7e5ee": {
+		"path": "audio/voice/ch2/ch2_v_4137f7e5ee.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "2799e92ba8989c7edc826740d08b051608f4a2c3"
+	},
+	"ch2_v_41d0ddca04": {
+		"path": "audio/voice/ch2/ch2_v_41d0ddca04.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "253448b4d668ffddf7faa0c03fbf1606374a7559"
+	},
+	"ch2_v_41f20fdb59": {
+		"path": "audio/voice/ch2/ch2_v_41f20fdb59.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "71a90e74a8e80de23085995f905e11e5eccb711b"
+	},
+	"ch2_v_42b467571c": {
+		"path": "audio/voice/ch2/ch2_v_42b467571c.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "3fcf6e07c1f4d95cfea777258f2b8555d2803187"
+	},
+	"ch2_v_439100cd8f": {
+		"path": "audio/voice/ch2/ch2_v_439100cd8f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "29a6ccf9278a7f2cf2a1b262cff2031e985919c7"
+	},
+	"ch2_v_446694a131": {
+		"path": "audio/voice/ch2/ch2_v_446694a131.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cead7741da27723139e97656b2bf5e05ea27049a"
+	},
+	"ch2_v_44b4d5810e": {
+		"path": "audio/voice/ch2/ch2_v_44b4d5810e.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8ccb6596dfe93300829474b051f18f23ab0c41f2"
+	},
+	"ch2_v_468127e1fb": {
+		"path": "audio/voice/ch2/ch2_v_468127e1fb.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "760793c44250d76f499ddc3197626ff07beaffb7"
+	},
+	"ch2_v_46b79287c7": {
+		"path": "audio/voice/ch2/ch2_v_46b79287c7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "d5463fa45335eaa555461876feecdedc7239c49a"
+	},
+	"ch2_v_46ca0f741b": {
+		"path": "audio/voice/ch2/ch2_v_46ca0f741b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b60bc14fc6db61b27243e56cea5afbd14bf6144d"
+	},
+	"ch2_v_4719d22798": {
+		"path": "audio/voice/ch2/ch2_v_4719d22798.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "ea2131b6a446f74323e47b8fc70257d1180fcb97"
+	},
+	"ch2_v_47b7f0af38": {
+		"path": "audio/voice/ch2/ch2_v_47b7f0af38.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "257a4153c401e006636a32a3ee1fcf4b284e9944"
+	},
+	"ch2_v_48dc11bc7b": {
+		"path": "audio/voice/ch2/ch2_v_48dc11bc7b.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "43fd68ef90e0dcb5c9eb1cebba9fc6e873e7c6bc"
+	},
+	"ch2_v_4b537a942f": {
+		"path": "audio/voice/ch2/ch2_v_4b537a942f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "d9dca3c940b9f4c3ebbd8a8e4dc06bd54bbf0a22"
+	},
+	"ch2_v_4b860054b8": {
+		"path": "audio/voice/ch2/ch2_v_4b860054b8.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c6d985bdbeb57042239d57691e51582727953f07"
+	},
+	"ch2_v_4c42ef72b6": {
+		"path": "audio/voice/ch2/ch2_v_4c42ef72b6.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "cae7c4b193a14575c807f18f94c7f2747f3bcc77"
+	},
+	"ch2_v_4d1497e9da": {
+		"path": "audio/voice/ch2/ch2_v_4d1497e9da.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "6904f6d36a1de4ac4758459c4a8798723b1fae02"
+	},
+	"ch2_v_4d2e668624": {
+		"path": "audio/voice/ch2/ch2_v_4d2e668624.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "bfd9a49589eb4f5ebad6b56d1f59f4480c61cf60"
+	},
+	"ch2_v_4d4a38a331": {
+		"path": "audio/voice/ch2/ch2_v_4d4a38a331.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "b72d89515bab440879ef2f91724885b88de3c440"
+	},
+	"ch2_v_4e1bd78463": {
+		"path": "audio/voice/ch2/ch2_v_4e1bd78463.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "3313d59866a6697ed96ea255327639b61e5c9bba"
+	},
+	"ch2_v_4e1f3574fe": {
+		"path": "audio/voice/ch2/ch2_v_4e1f3574fe.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "0f7a0bef7cb47bc0aba944f27a64faeb506fb7b9"
+	},
+	"ch2_v_4e2c077efa": {
+		"path": "audio/voice/ch2/ch2_v_4e2c077efa.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fdb0fdea8810d9e1666f491af35469fba9ea2dd1"
+	},
+	"ch2_v_4ffe499ddd": {
+		"path": "audio/voice/ch2/ch2_v_4ffe499ddd.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "b46aaac7653ed72072ee94426e2646033d51fba3"
+	},
+	"ch2_v_5101bf87fc": {
+		"path": "audio/voice/ch2/ch2_v_5101bf87fc.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "fa4a014e8aa19856a61f2a9d8cd555b8dbd59b5a"
+	},
+	"ch2_v_533ceae01e": {
+		"path": "audio/voice/ch2/ch2_v_533ceae01e.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "a741c176bb0ad2d29d753e9738f353dd1259688c"
+	},
+	"ch2_v_54df9c9968": {
+		"path": "audio/voice/ch2/ch2_v_54df9c9968.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "d6b60f4813eef008ded2262642d4e51409ad6cab"
+	},
+	"ch2_v_5562397bb9": {
+		"path": "audio/voice/ch2/ch2_v_5562397bb9.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "82e2fd92d5ea25111a04b64678b3a3919145fbb6"
+	},
+	"ch2_v_5617b7220b": {
+		"path": "audio/voice/ch2/ch2_v_5617b7220b.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "8c368d2fa8e326839d4bda89a12bdf54899218e8"
+	},
+	"ch2_v_569609703e": {
+		"path": "audio/voice/ch2/ch2_v_569609703e.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "10c5b57e6cc3118d75dabd78e47319fe4aa75c3f"
+	},
+	"ch2_v_569ec6f01c": {
+		"path": "audio/voice/ch2/ch2_v_569ec6f01c.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "74df4987fd1ca07989d97c489697204cec6a65ec"
+	},
+	"ch2_v_571304ecc5": {
+		"path": "audio/voice/ch2/ch2_v_571304ecc5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e2bce8f43cfddf7a8a88d4bfc617b4f8f86f6587"
+	},
+	"ch2_v_57c2a2b901": {
+		"path": "audio/voice/ch2/ch2_v_57c2a2b901.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "18b1ba1fa7a1382c7d4f5f476c4af9941a1fc812"
+	},
+	"ch2_v_5d4694e131": {
+		"path": "audio/voice/ch2/ch2_v_5d4694e131.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "217508bf5f774e684b2286d29f947ad0234d78c4"
+	},
+	"ch2_v_5ee7d18fe4": {
+		"path": "audio/voice/ch2/ch2_v_5ee7d18fe4.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "faaddb759ad4925e73e635138cb59a12288f3069"
+	},
+	"ch2_v_6107802bf8": {
+		"path": "audio/voice/ch2/ch2_v_6107802bf8.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "175879efb70a13bd71e7835f199931b7192d2a2a"
+	},
+	"ch2_v_627b71e685": {
+		"path": "audio/voice/ch2/ch2_v_627b71e685.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "519cef80cc24d9ab17e52176714984292157843f"
+	},
+	"ch2_v_683a5e1cb7": {
+		"path": "audio/voice/ch2/ch2_v_683a5e1cb7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8d004a7b34a047b1bd08095cd49c3853a6948250"
+	},
+	"ch2_v_6a0c593e1e": {
+		"path": "audio/voice/ch2/ch2_v_6a0c593e1e.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "23a7f54525a62c73dac65437e73f2646f7e85914"
+	},
+	"ch2_v_6b92b2f98e": {
+		"path": "audio/voice/ch2/ch2_v_6b92b2f98e.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "64783aadcc7d4fa2b6cdcfe542a2c0c8e55b435e"
+	},
+	"ch2_v_6ba24da4b8": {
+		"path": "audio/voice/ch2/ch2_v_6ba24da4b8.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "540f34af6d3ca5e6313fafb11226f9d6a63cd48c"
+	},
+	"ch2_v_6ce9f5148c": {
+		"path": "audio/voice/ch2/ch2_v_6ce9f5148c.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8fcedc9820ba56adb75cc5da540ef1d22826efc4"
+	},
+	"ch2_v_6d5bf9cc3c": {
+		"path": "audio/voice/ch2/ch2_v_6d5bf9cc3c.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "71b7267f46356d4e74640d80d06303bc492bfba4"
+	},
+	"ch2_v_704b973bc3": {
+		"path": "audio/voice/ch2/ch2_v_704b973bc3.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cd812e333e164e747df081358452eef3e5d458a7"
+	},
+	"ch2_v_71571e4e3c": {
+		"path": "audio/voice/ch2/ch2_v_71571e4e3c.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "74cc8fe7218d015878fb5ca638575bfc6a74fbe0"
+	},
+	"ch2_v_72276bed22": {
+		"path": "audio/voice/ch2/ch2_v_72276bed22.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "dc3b6b3556d3688520adbb411d5adb256b1e1779"
+	},
+	"ch2_v_726afefab9": {
+		"path": "audio/voice/ch2/ch2_v_726afefab9.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e3b0e96fd391037b090b9c7b41591f9b7b40c34f"
+	},
+	"ch2_v_754092e2d5": {
+		"path": "audio/voice/ch2/ch2_v_754092e2d5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c62269e20bacc23785c70e5f20735839f57c0420"
+	},
+	"ch2_v_75d5870143": {
+		"path": "audio/voice/ch2/ch2_v_75d5870143.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "69000ed5dbe810ee2f51a623b4ba32de25447c3d"
+	},
+	"ch2_v_77622c54ed": {
+		"path": "audio/voice/ch2/ch2_v_77622c54ed.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "fab7d525d35cd99fe08ac77e9f5a1a4e23219015"
+	},
+	"ch2_v_77b14691e9": {
+		"path": "audio/voice/ch2/ch2_v_77b14691e9.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "04746dcc2a411f088e88045c38e069a6d23cf577"
+	},
+	"ch2_v_77e025c4e1": {
+		"path": "audio/voice/ch2/ch2_v_77e025c4e1.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e4941d5024bb9a744c583ac98257c8a3d9cb1fcb"
+	},
+	"ch2_v_7860de0228": {
+		"path": "audio/voice/ch2/ch2_v_7860de0228.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "546926bf576edbf983dc3e9f7d681e0c9070b94b"
+	},
+	"ch2_v_7943633a11": {
+		"path": "audio/voice/ch2/ch2_v_7943633a11.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "946ed732ffaba12abcfe054f4e7e2250bd5ff56b"
+	},
+	"ch2_v_7946b713b0": {
+		"path": "audio/voice/ch2/ch2_v_7946b713b0.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e06630b6ec151f9edc612b0560354cea7573bc8f"
+	},
+	"ch2_v_79c40221d7": {
+		"path": "audio/voice/ch2/ch2_v_79c40221d7.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "2734a8a6f6a38bfc86e4dfb57e2fb29e1c34dfe8"
+	},
+	"ch2_v_7b4f54e390": {
+		"path": "audio/voice/ch2/ch2_v_7b4f54e390.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "3c528373daeeb09b16a23490f8834d164e4e52df"
+	},
+	"ch2_v_7ecbce6900": {
+		"path": "audio/voice/ch2/ch2_v_7ecbce6900.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fd1458b696445a07907218c13dad4f36e2ca4e9b"
+	},
+	"ch2_v_7f21f61313": {
+		"path": "audio/voice/ch2/ch2_v_7f21f61313.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "aae035b26f7423a2128b136293f6c03c1e285c4f"
+	},
+	"ch2_v_804499d6fb": {
+		"path": "audio/voice/ch2/ch2_v_804499d6fb.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "d9577083afbc64c6cff93281c00f33cf2a0145ee"
+	},
+	"ch2_v_8258b5c843": {
+		"path": "audio/voice/ch2/ch2_v_8258b5c843.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "eb32ab64168444ba92b79c1c7a77d31a610291de"
+	},
+	"ch2_v_829daf3d70": {
+		"path": "audio/voice/ch2/ch2_v_829daf3d70.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8d32142d33e4d0cf32d8325cf134df5b0d125ac5"
+	},
+	"ch2_v_82b919d475": {
+		"path": "audio/voice/ch2/ch2_v_82b919d475.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "a77f8aaeef14f142c39b7e7e9d20449a5db25c48"
+	},
+	"ch2_v_8339146af2": {
+		"path": "audio/voice/ch2/ch2_v_8339146af2.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "44c78bad8b84f5aa15d5ad7b70e9772dac9ebfc3"
+	},
+	"ch2_v_8675b555e4": {
+		"path": "audio/voice/ch2/ch2_v_8675b555e4.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "0ac8a92278e40465bb122610bd4557184417adf2"
+	},
+	"ch2_v_86f83ce218": {
+		"path": "audio/voice/ch2/ch2_v_86f83ce218.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "eec44559fee238fa1ec34ecab26622a97288bd7b"
+	},
+	"ch2_v_884961216f": {
+		"path": "audio/voice/ch2/ch2_v_884961216f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a29720aceb1d8e7961d7dfa600022e6d0fa3d7da"
+	},
+	"ch2_v_88f76a74c5": {
+		"path": "audio/voice/ch2/ch2_v_88f76a74c5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fe6fa427c86a2bce5857a31fab01b57008d77947"
+	},
+	"ch2_v_89436c7b6d": {
+		"path": "audio/voice/ch2/ch2_v_89436c7b6d.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "bcbf303e4fea83f1b9bcdfc500e53522775094ed"
+	},
+	"ch2_v_8a31f68f9f": {
+		"path": "audio/voice/ch2/ch2_v_8a31f68f9f.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "513bc3289b4608f7a09a1f0a5b3b5ba023a2d22f"
+	},
+	"ch2_v_8a69a58bf5": {
+		"path": "audio/voice/ch2/ch2_v_8a69a58bf5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "63b483f78ec652bacb80b85c7164f65c38155981"
+	},
+	"ch2_v_8bc484ac9f": {
+		"path": "audio/voice/ch2/ch2_v_8bc484ac9f.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "dc07bdfc31f4f91560ecd8a9d5fe56e741dcccb0"
+	},
+	"ch2_v_8d87e9107d": {
+		"path": "audio/voice/ch2/ch2_v_8d87e9107d.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "f60173dc8da5d26b02496e08a8073ba3a5753f58"
+	},
+	"ch2_v_8df912d541": {
+		"path": "audio/voice/ch2/ch2_v_8df912d541.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "d9ce0bebf99582778d8c1e438efe0bed9b52cb95"
+	},
+	"ch2_v_8e0bc51950": {
+		"path": "audio/voice/ch2/ch2_v_8e0bc51950.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5fc10acac6c0a7be70636854cace53fde1903189"
+	},
+	"ch2_v_8e81ded588": {
+		"path": "audio/voice/ch2/ch2_v_8e81ded588.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "f3b5f80c4fbafb331a919111b3f11e4d85623b49"
+	},
+	"ch2_v_8f3047f758": {
+		"path": "audio/voice/ch2/ch2_v_8f3047f758.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "74dad17c557ba6902e6fd0839b356f9dd76cc505"
+	},
+	"ch2_v_8f9f77526e": {
+		"path": "audio/voice/ch2/ch2_v_8f9f77526e.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a3ba1966c89dd66558f9b1b068abb1f987f6a909"
+	},
+	"ch2_v_8ff4b8d2cb": {
+		"path": "audio/voice/ch2/ch2_v_8ff4b8d2cb.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "44c324c04b06348bd10a1e66cbf60f524d5ca314"
+	},
+	"ch2_v_8ff725b376": {
+		"path": "audio/voice/ch2/ch2_v_8ff725b376.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "df6e68ef83df584221ad69e0fbea54dbc74fb3b4"
+	},
+	"ch2_v_9002d473fe": {
+		"path": "audio/voice/ch2/ch2_v_9002d473fe.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "778be1b891e1c1749f75fa216e6896713f9a4e52"
+	},
+	"ch2_v_92aa101d59": {
+		"path": "audio/voice/ch2/ch2_v_92aa101d59.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "5ba1960005bccb8d4dbeb2604f7954daa6880917"
+	},
+	"ch2_v_92e0cf3230": {
+		"path": "audio/voice/ch2/ch2_v_92e0cf3230.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "91301573ca2e09356341ba8fbaeb20d9df5a9152"
+	},
+	"ch2_v_93ad1933bf": {
+		"path": "audio/voice/ch2/ch2_v_93ad1933bf.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "db32c02723b6a5c9e9d8cab2dd325a73710ebe09"
+	},
+	"ch2_v_9405e68a84": {
+		"path": "audio/voice/ch2/ch2_v_9405e68a84.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9eadcccc91a87c2c438a2969d1c0b671fa2220e4"
+	},
+	"ch2_v_94cc2bf70f": {
+		"path": "audio/voice/ch2/ch2_v_94cc2bf70f.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "4e579aa9d827b3cc04e5c29be4e96fb1307e7145"
+	},
+	"ch2_v_971c57aaa9": {
+		"path": "audio/voice/ch2/ch2_v_971c57aaa9.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "0f53a471350195fc67d847e17d185c686248231b"
+	},
+	"ch2_v_9777f05e13": {
+		"path": "audio/voice/ch2/ch2_v_9777f05e13.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e4739bd7cd6bb3c50c034dc43b93613879c0f16c"
+	},
+	"ch2_v_97e187fd1f": {
+		"path": "audio/voice/ch2/ch2_v_97e187fd1f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "ef86b32d5c0eb273baf08862299c009bc63d6187"
+	},
+	"ch2_v_986c5be764": {
+		"path": "audio/voice/ch2/ch2_v_986c5be764.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "69985ad69eb3cf19a876d4138ac3aed31ae7823c"
+	},
+	"ch2_v_9985cf5d0f": {
+		"path": "audio/voice/ch2/ch2_v_9985cf5d0f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b5368905ebda6a02264868ec1f73680eec92537c"
+	},
+	"ch2_v_9aab902648": {
+		"path": "audio/voice/ch2/ch2_v_9aab902648.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "347eeb146e1a00b0cf832aa9b36dce3d38df91be"
+	},
+	"ch2_v_9bb48c07c9": {
+		"path": "audio/voice/ch2/ch2_v_9bb48c07c9.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "a91e6a0def89f7847308eb83b1acad8ca7e99a77"
+	},
+	"ch2_v_9cad577258": {
+		"path": "audio/voice/ch2/ch2_v_9cad577258.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "ae924c78c8bfc38a77f8f4c0e8c5223888ca0ab0"
+	},
+	"ch2_v_9cd3758cfb": {
+		"path": "audio/voice/ch2/ch2_v_9cd3758cfb.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "fe98bfe049702712ed197931239a602ab8164053"
+	},
+	"ch2_v_9e28d614c4": {
+		"path": "audio/voice/ch2/ch2_v_9e28d614c4.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "62d038e0a674b3992220f2d9a9dfce7339b3bc52"
+	},
+	"ch2_v_a0371204de": {
+		"path": "audio/voice/ch2/ch2_v_a0371204de.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a6ae14bd0ff3092d6666f39b4fda67edb6f88d9c"
+	},
+	"ch2_v_a0e86c16db": {
+		"path": "audio/voice/ch2/ch2_v_a0e86c16db.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "0ee6366fd224caeb0294f0217d495875e15b6b0d"
+	},
+	"ch2_v_a511d6b4aa": {
+		"path": "audio/voice/ch2/ch2_v_a511d6b4aa.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a6aa6b918d97794bfd85ba9e894eaf5e1009e5a0"
+	},
+	"ch2_v_a5a6c1e75e": {
+		"path": "audio/voice/ch2/ch2_v_a5a6c1e75e.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "dca4360a1cf56731fad46b4b82a4fc18df94d09f"
+	},
+	"ch2_v_a60e87580f": {
+		"path": "audio/voice/ch2/ch2_v_a60e87580f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "1d286aca212ee4dad20b8fefcf0318625c00cff5"
+	},
+	"ch2_v_a63df79106": {
+		"path": "audio/voice/ch2/ch2_v_a63df79106.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "4587f7c9b96756629029d4112d074debb066c2ed"
+	},
+	"ch2_v_a7613470b0": {
+		"path": "audio/voice/ch2/ch2_v_a7613470b0.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "b5beb42f946446ddbd8bad496b20e23c2c09bd47"
+	},
+	"ch2_v_a85a45b47e": {
+		"path": "audio/voice/ch2/ch2_v_a85a45b47e.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5473267549852c38e8d31243d15b86cb06e51191"
+	},
+	"ch2_v_aaf21a3b1a": {
+		"path": "audio/voice/ch2/ch2_v_aaf21a3b1a.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "3224c98173dcb7f0512c9df2c90413d20870e330"
+	},
+	"ch2_v_ac567b9817": {
+		"path": "audio/voice/ch2/ch2_v_ac567b9817.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "aedbf720b4b861fd6b07fcdbb44ccd3e455401c6"
+	},
+	"ch2_v_acd159da59": {
+		"path": "audio/voice/ch2/ch2_v_acd159da59.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "dcdc823d70a5a483af8326604da331150701c9fd"
+	},
+	"ch2_v_b1e70fc30a": {
+		"path": "audio/voice/ch2/ch2_v_b1e70fc30a.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9ecc9f85a212aeedda128bca306cf4917ab65b93"
+	},
+	"ch2_v_b297f7c223": {
+		"path": "audio/voice/ch2/ch2_v_b297f7c223.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "2fe7b816aae214a516d11817279f0639fa62a163"
+	},
+	"ch2_v_b2f0006f24": {
+		"path": "audio/voice/ch2/ch2_v_b2f0006f24.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b843ebac8b8f29cc5d4743d49629a03f852a3f78"
+	},
+	"ch2_v_b32d9ffe39": {
+		"path": "audio/voice/ch2/ch2_v_b32d9ffe39.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "66c1c4995bfaadf307f8ea11316e9c94ec9047a9"
+	},
+	"ch2_v_b3464c6913": {
+		"path": "audio/voice/ch2/ch2_v_b3464c6913.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "0b75adea9549b065a9c4d98294fbe1df19f62c6b"
+	},
+	"ch2_v_b3b08c81fc": {
+		"path": "audio/voice/ch2/ch2_v_b3b08c81fc.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "07bfb15e5b2a5b3e7ea31c0d9f7e1a5844f5fe79"
+	},
+	"ch2_v_b60b432043": {
+		"path": "audio/voice/ch2/ch2_v_b60b432043.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9bbe095782cf824b8773d554ff138420db819367"
+	},
+	"ch2_v_b611c46f65": {
+		"path": "audio/voice/ch2/ch2_v_b611c46f65.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "e0223d09c1c00b9579dc8caa1a609cf38eb9b833"
+	},
+	"ch2_v_b84c67d257": {
+		"path": "audio/voice/ch2/ch2_v_b84c67d257.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "bdc3034ccc632418c133c5ecdd02b177c9ea9dcc"
+	},
+	"ch2_v_bf421d6ca9": {
+		"path": "audio/voice/ch2/ch2_v_bf421d6ca9.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "2a7e76ecec47b965baa6d313bc45e19dcfb41cac"
+	},
+	"ch2_v_bfa47d1998": {
+		"path": "audio/voice/ch2/ch2_v_bfa47d1998.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "addfc5c59e643050bdf748e7d48248a59e378abd"
+	},
+	"ch2_v_c033796ab5": {
+		"path": "audio/voice/ch2/ch2_v_c033796ab5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "36697aa985c380dee5100fb7308eec9e6d15e479"
+	},
+	"ch2_v_c176e47cfa": {
+		"path": "audio/voice/ch2/ch2_v_c176e47cfa.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "17f8c9a4d240e8257932a9bfb8be23f02105db98"
+	},
+	"ch2_v_c2c7a5ed1e": {
+		"path": "audio/voice/ch2/ch2_v_c2c7a5ed1e.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "4088cf7191d006a7e60f0a7d088b75a855bf587c"
+	},
+	"ch2_v_c3080ed86e": {
+		"path": "audio/voice/ch2/ch2_v_c3080ed86e.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "ee9aa1b3a4329c5b258ac55c46ba5caf3476a652"
+	},
+	"ch2_v_c4988c84b5": {
+		"path": "audio/voice/ch2/ch2_v_c4988c84b5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "83f262b14e341dad6155e3d17296037e808634d1"
+	},
+	"ch2_v_c51369e614": {
+		"path": "audio/voice/ch2/ch2_v_c51369e614.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "0a3e44990cd3ea0ee3a593f510230166c48b3378"
+	},
+	"ch2_v_c523361681": {
+		"path": "audio/voice/ch2/ch2_v_c523361681.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "963913047bded437d00e048407a829ec542dc3db"
+	},
+	"ch2_v_c67676f3b7": {
+		"path": "audio/voice/ch2/ch2_v_c67676f3b7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c0ea06ec4ec4fd6be4de2870ccb0009c0c0c917b"
+	},
+	"ch2_v_c697650264": {
+		"path": "audio/voice/ch2/ch2_v_c697650264.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "409ca98dc6c5580b7c980a2c252a0b39d4ad8a26"
+	},
+	"ch2_v_c71936877e": {
+		"path": "audio/voice/ch2/ch2_v_c71936877e.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "0454e14340431fd20d6f8167e807b383feeab1a8"
+	},
+	"ch2_v_c77698db23": {
+		"path": "audio/voice/ch2/ch2_v_c77698db23.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "5b0908dd1e61bb9885b79046b514f25016b37bbf"
+	},
+	"ch2_v_c8261b520b": {
+		"path": "audio/voice/ch2/ch2_v_c8261b520b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "f38fa424131f3cca523b6806636a07a8759f84d5"
+	},
+	"ch2_v_c8c5e8dfe4": {
+		"path": "audio/voice/ch2/ch2_v_c8c5e8dfe4.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "ab413fade6a3e7a6a15d495d2abbb36896d1d658"
+	},
+	"ch2_v_ca4a0299e7": {
+		"path": "audio/voice/ch2/ch2_v_ca4a0299e7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "bf7f3271f396f59e19b0b631eb522a2387e10086"
+	},
+	"ch2_v_caac1dcc0b": {
+		"path": "audio/voice/ch2/ch2_v_caac1dcc0b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "268f15976229453a388ac951255e36fd57e8ec4d"
+	},
+	"ch2_v_cb472c7087": {
+		"path": "audio/voice/ch2/ch2_v_cb472c7087.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "df657a086b3c4b4e5dfc4cdb8fe97b66e9decc73"
+	},
+	"ch2_v_cceeed7acd": {
+		"path": "audio/voice/ch2/ch2_v_cceeed7acd.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "8fdeaa1b181ae54d5c22ea702da074109b313bed"
+	},
+	"ch2_v_cdd31c1336": {
+		"path": "audio/voice/ch2/ch2_v_cdd31c1336.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "d1cbd0126fbc659e3c6521419c150af54f944d24"
+	},
+	"ch2_v_ced08fb21b": {
+		"path": "audio/voice/ch2/ch2_v_ced08fb21b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b942f24dfd1fdc9d241acbf317805e28e04da002"
+	},
+	"ch2_v_d1370dd35e": {
+		"path": "audio/voice/ch2/ch2_v_d1370dd35e.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "25711c211224bc2825e7f9577cc4a519e3ca5a4b"
+	},
+	"ch2_v_d15df2e691": {
+		"path": "audio/voice/ch2/ch2_v_d15df2e691.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "9ad85e4e9addc6eaf460835c6fda3e7722a6550d"
+	},
+	"ch2_v_d19e3ef134": {
+		"path": "audio/voice/ch2/ch2_v_d19e3ef134.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "5a8cded7ce457a57eaee65acc81a38786e2c071c"
+	},
+	"ch2_v_d40a41cf38": {
+		"path": "audio/voice/ch2/ch2_v_d40a41cf38.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "967cdafe5adb95651cee24b4c45908cab6c1b197"
+	},
+	"ch2_v_d42659b990": {
+		"path": "audio/voice/ch2/ch2_v_d42659b990.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "6c9f4b1b6c9039118704de7e765c327b59df3715"
+	},
+	"ch2_v_d49dc22936": {
+		"path": "audio/voice/ch2/ch2_v_d49dc22936.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "f0abc4494c8a30b43569f865102f2280f3bd5fba"
+	},
+	"ch2_v_d4abede45c": {
+		"path": "audio/voice/ch2/ch2_v_d4abede45c.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "6b3bc09b11c50be8d2366986bd73ae3f5e7b461d"
+	},
+	"ch2_v_d513d20a57": {
+		"path": "audio/voice/ch2/ch2_v_d513d20a57.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5b3fe19c46efd91fe66912a8713ae2c2fa73142a"
+	},
+	"ch2_v_d57aa1d457": {
+		"path": "audio/voice/ch2/ch2_v_d57aa1d457.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "177c349f76fce13578c6836318590b29ef00bf2b"
+	},
+	"ch2_v_d5851d56d2": {
+		"path": "audio/voice/ch2/ch2_v_d5851d56d2.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "08a6eff00731cd1926bf92f6b4b34841402e4990"
+	},
+	"ch2_v_d6861d9fc7": {
+		"path": "audio/voice/ch2/ch2_v_d6861d9fc7.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "995d276953d503a06fad2fb8cf2d5347a9c0c2c4"
+	},
+	"ch2_v_d79bb3cff0": {
+		"path": "audio/voice/ch2/ch2_v_d79bb3cff0.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a1ae81948e79348e7e9a5fac92553b0c2f435eed"
+	},
+	"ch2_v_d8ebd3e8e5": {
+		"path": "audio/voice/ch2/ch2_v_d8ebd3e8e5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "f221fe85af961c6212fb3cc5753acf486c48bf9d"
+	},
+	"ch2_v_da806e0920": {
+		"path": "audio/voice/ch2/ch2_v_da806e0920.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cf0145fba9bd14a0f11adcde4e75ed98971be0cc"
+	},
+	"ch2_v_daeaca34ab": {
+		"path": "audio/voice/ch2/ch2_v_daeaca34ab.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5b5b0f2228e5a21170256da6a32296d163fe16bd"
+	},
+	"ch2_v_dd087cd541": {
+		"path": "audio/voice/ch2/ch2_v_dd087cd541.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9ecc84f8fc6ff4b6d107f12910ca050f61b8b9df"
+	},
+	"ch2_v_dd3103a1a7": {
+		"path": "audio/voice/ch2/ch2_v_dd3103a1a7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "336aaa8528c2f1facf82cf26fc66843e5ebb7620"
+	},
+	"ch2_v_e12bc1b40d": {
+		"path": "audio/voice/ch2/ch2_v_e12bc1b40d.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "77f2944a89db04f2357a8d14a697f6cb92679912"
+	},
+	"ch2_v_e2077e9705": {
+		"path": "audio/voice/ch2/ch2_v_e2077e9705.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "20ea0e3b0fcd2f8d98717f2a0a434d4aeb62b3a0"
+	},
+	"ch2_v_e3a70ddb57": {
+		"path": "audio/voice/ch2/ch2_v_e3a70ddb57.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "50b560e974c216dbd8d2ba20481fb8691bff9a61"
+	},
+	"ch2_v_e3d2759e4a": {
+		"path": "audio/voice/ch2/ch2_v_e3d2759e4a.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "039b04ad7a28f184ae22bc67faeeea991251616e"
+	},
+	"ch2_v_e4af9652e5": {
+		"path": "audio/voice/ch2/ch2_v_e4af9652e5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "6256d38767c73c0f63a57d53b6de7034aa959ba4"
+	},
+	"ch2_v_e4c54b2b06": {
+		"path": "audio/voice/ch2/ch2_v_e4c54b2b06.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "f17d95ce8f5d904cbfe4a11a30c7a896afefe23e"
+	},
+	"ch2_v_e5255da0c3": {
+		"path": "audio/voice/ch2/ch2_v_e5255da0c3.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9801e6cad38ed2bc9b843e6604d69f2d87b4c369"
+	},
+	"ch2_v_e559f17047": {
+		"path": "audio/voice/ch2/ch2_v_e559f17047.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "2ebc0018e1379f67eab39a45f39e59094cca9ad4"
+	},
+	"ch2_v_e55fca692b": {
+		"path": "audio/voice/ch2/ch2_v_e55fca692b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "91322b2a8a77fb3a4bd3764647e85257e9d23391"
+	},
+	"ch2_v_e5915ec0cb": {
+		"path": "audio/voice/ch2/ch2_v_e5915ec0cb.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "ffe595685cd224f8d1158202e36e1e43aa8683e1"
+	},
+	"ch2_v_e65ac58b06": {
+		"path": "audio/voice/ch2/ch2_v_e65ac58b06.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "196ff689fc2d892a29d8dfa6db94c6c13b002883"
+	},
+	"ch2_v_e6a01a5c44": {
+		"path": "audio/voice/ch2/ch2_v_e6a01a5c44.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fa053678917d7c377017f2cf277e6b1cbd7a110a"
+	},
+	"ch2_v_e76f466a56": {
+		"path": "audio/voice/ch2/ch2_v_e76f466a56.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "8e45779d5f41413b29d9217db2f2f7f14a10cf1a"
+	},
+	"ch2_v_e92feee071": {
+		"path": "audio/voice/ch2/ch2_v_e92feee071.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "c6a7d90417a8a8ea54f0351e1345bc62174a95e2"
+	},
+	"ch2_v_eaa3139611": {
+		"path": "audio/voice/ch2/ch2_v_eaa3139611.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a75efd09067dfb7ffd09a80686cadc5186b5b5e4"
+	},
+	"ch2_v_ece8665ac6": {
+		"path": "audio/voice/ch2/ch2_v_ece8665ac6.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "eaa0e5b7332453c6b15a7124bfb6277a02e6490e"
+	},
+	"ch2_v_eded46ed65": {
+		"path": "audio/voice/ch2/ch2_v_eded46ed65.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "accd8d2d721a997b8df1270205f6a02e475f8dbf"
+	},
+	"ch2_v_f22c3c89db": {
+		"path": "audio/voice/ch2/ch2_v_f22c3c89db.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a8b53c5823c0fdcebfa523504d4c6f6cf545e0e8"
+	},
+	"ch2_v_f3280b1e7a": {
+		"path": "audio/voice/ch2/ch2_v_f3280b1e7a.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c8e7fee26399016b183706ce9170d632001ff9c7"
+	},
+	"ch2_v_f3cad19bb7": {
+		"path": "audio/voice/ch2/ch2_v_f3cad19bb7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cabbc6f1dbbdd7b0ece695dabc6a02a6d240279c"
+	},
+	"ch2_v_f701640931": {
+		"path": "audio/voice/ch2/ch2_v_f701640931.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "48c3ce6afa5f6f391551823d89cb2473c0daeb6d"
+	},
+	"ch2_v_f8797efa45": {
+		"path": "audio/voice/ch2/ch2_v_f8797efa45.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "600127927159ab0ba3059aa2d9577d172004819d"
+	},
+	"ch2_v_fa350f5574": {
+		"path": "audio/voice/ch2/ch2_v_fa350f5574.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "11ff0756a48fbe12d6070bcf9a7a1417955dcaef"
+	},
+	"ch2_v_fa73ffa444": {
+		"path": "audio/voice/ch2/ch2_v_fa73ffa444.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "224473554c86e978dbffcdaec3dff0cdc3ddc445"
+	},
+	"ch2_v_fc856319cc": {
+		"path": "audio/voice/ch2/ch2_v_fc856319cc.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "2bc89c3577455c61c0c911594b2c17ab63c8e6e3"
+	},
+	"ch2_v_fded22fe29": {
+		"path": "audio/voice/ch2/ch2_v_fded22fe29.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "87e767e025819b094104e89a46a00f67c5e21d5f"
+	},
+	"ch2_v_fe86ef8c42": {
+		"path": "audio/voice/ch2/ch2_v_fe86ef8c42.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "c71da710c1f24762215d5091446a0a19f8708c1e"
+	},
+	"ch2_v_feab0e2b3d": {
+		"path": "audio/voice/ch2/ch2_v_feab0e2b3d.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "ec14b951b16ef40a4cb43107292ef46f78b8d057"
+	},
+	"ch2_v_ff7c764b44": {
+		"path": "audio/voice/ch2/ch2_v_ff7c764b44.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cf602d51d14f3e3020deb010c251c32df1105824"
+	},
+	"ch2_v_ffbc340374": {
+		"path": "audio/voice/ch2/ch2_v_ffbc340374.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "5759e0ebc40884923b5a46b2eaa966014a9320b0"
+	},
+	"ch2_v_ffed06b360": {
+		"path": "audio/voice/ch2/ch2_v_ffed06b360.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a1da22548eee2566d203cf311d8a1834ccae6c5f"
+	},
+	"ch3_v_01ed2d480f": {
+		"path": "audio/voice/ch3/ch3_v_01ed2d480f.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "e7c5aac116d48554267511fa67cf913525b4b55a"
+	},
+	"ch3_v_02066cfaae": {
+		"path": "audio/voice/ch3/ch3_v_02066cfaae.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "158335c5823ff0a59115799328d4790aac95e811"
+	},
+	"ch3_v_03bcf0543f": {
+		"path": "audio/voice/ch3/ch3_v_03bcf0543f.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "28337f09431ea50e5046d53ef25ba4609243d913"
+	},
+	"ch3_v_06f08de719": {
+		"path": "audio/voice/ch3/ch3_v_06f08de719.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "3353e6df9723bd5e436fc94acf234f96aaacab9c"
+	},
+	"ch3_v_098b70a6da": {
+		"path": "audio/voice/ch3/ch3_v_098b70a6da.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "467669007000e08e916a942b7b9782a90afb2b6c"
+	},
+	"ch3_v_0a3cef81be": {
+		"path": "audio/voice/ch3/ch3_v_0a3cef81be.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "793ffb332a391f2442a256d651d70f2c5f8d85ce"
+	},
+	"ch3_v_0a721017c8": {
+		"path": "audio/voice/ch3/ch3_v_0a721017c8.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "81ac1f014653f36bb3f232e8488c48994e73a3d8"
+	},
+	"ch3_v_0a987b9ee7": {
+		"path": "audio/voice/ch3/ch3_v_0a987b9ee7.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "153c803babfc2b4cf055671091ae8c533d6fa7fc"
+	},
+	"ch3_v_0d546f576a": {
+		"path": "audio/voice/ch3/ch3_v_0d546f576a.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b3ce637734556b08668bce707031bf963221cd9f"
+	},
+	"ch3_v_143c87f3af": {
+		"path": "audio/voice/ch3/ch3_v_143c87f3af.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "89d618aadab068dd84a99a05884e10c70bc4f1ae"
+	},
+	"ch3_v_14997629a9": {
+		"path": "audio/voice/ch3/ch3_v_14997629a9.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "a550971436ff00da0f075afd92028af644425b7c"
+	},
+	"ch3_v_176a19b58d": {
+		"path": "audio/voice/ch3/ch3_v_176a19b58d.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "861ad27bad7b49fac6cc77016da458625de0a55b"
+	},
+	"ch3_v_1962c6a17e": {
+		"path": "audio/voice/ch3/ch3_v_1962c6a17e.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "005889a834ab315ade9919b4d0e16aa01864f493"
+	},
+	"ch3_v_19b3e78c37": {
+		"path": "audio/voice/ch3/ch3_v_19b3e78c37.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9f2f62b89b10578a9254fa03360ce7d09ddbb728"
+	},
+	"ch3_v_1a1bc55e75": {
+		"path": "audio/voice/ch3/ch3_v_1a1bc55e75.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7480b79c66657cb6c43678360a173139746ec64d"
+	},
+	"ch3_v_1c3226911a": {
+		"path": "audio/voice/ch3/ch3_v_1c3226911a.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "dc5a9f6165ca2d3edb39d664d9c1c52c92bd70a1"
+	},
+	"ch3_v_1cbfd0bd5e": {
+		"path": "audio/voice/ch3/ch3_v_1cbfd0bd5e.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "85f291091a2d08188423566cd43647070fb03e7e"
+	},
+	"ch3_v_1d177f14fb": {
+		"path": "audio/voice/ch3/ch3_v_1d177f14fb.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "d71dc9e324c83d3167b6fac465cfce8cfdbf20d4"
+	},
+	"ch3_v_1d9cfbc93c": {
+		"path": "audio/voice/ch3/ch3_v_1d9cfbc93c.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "a1dd2744c768213217e0318fb29a48074d10952d"
+	},
+	"ch3_v_1df097e9ab": {
+		"path": "audio/voice/ch3/ch3_v_1df097e9ab.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "3e7a131d07755f609f3b4790cfb2659ab2793911"
+	},
+	"ch3_v_2577d1e662": {
+		"path": "audio/voice/ch3/ch3_v_2577d1e662.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "4f287638762b9665bcec817b30f145f2c4d0a267"
+	},
+	"ch3_v_26e8816d9c": {
+		"path": "audio/voice/ch3/ch3_v_26e8816d9c.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "0d84c6dde4d4b24466de37ea9e723a18300e0335"
+	},
+	"ch3_v_284120d331": {
+		"path": "audio/voice/ch3/ch3_v_284120d331.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "dcf63c49073ca9b5e241408cb1c146cc07f75fc7"
+	},
+	"ch3_v_294a212de9": {
+		"path": "audio/voice/ch3/ch3_v_294a212de9.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "d527cde497fba4721872f7a35a846f2ca8ac3d21"
+	},
+	"ch3_v_2fb9cc7298": {
+		"path": "audio/voice/ch3/ch3_v_2fb9cc7298.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cf2fed01ae3d8ed23766ef37fcc1abfa66568e67"
+	},
+	"ch3_v_309c97a5ef": {
+		"path": "audio/voice/ch3/ch3_v_309c97a5ef.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b13ef7fa1b327c26c2fc4134746f3a1db4713e7c"
+	},
+	"ch3_v_30d22b5def": {
+		"path": "audio/voice/ch3/ch3_v_30d22b5def.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "af709887a322f011e7280be1a29046a788f7b8b2"
+	},
+	"ch3_v_3108e35788": {
+		"path": "audio/voice/ch3/ch3_v_3108e35788.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "3bf382069117393fe78eb567552f868a4e624528"
+	},
+	"ch3_v_344d18b42f": {
+		"path": "audio/voice/ch3/ch3_v_344d18b42f.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "aa6c09ffe915e459cc21f4a7dfed7bf7c29112a9"
+	},
+	"ch3_v_368669a173": {
+		"path": "audio/voice/ch3/ch3_v_368669a173.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "4d5a696fd0fdf9db730c78b50579d1a6ea1ffef4"
+	},
+	"ch3_v_374ef9a513": {
+		"path": "audio/voice/ch3/ch3_v_374ef9a513.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "460c49e9d4d4f0c36a27647de0a60e8d847e26d8"
+	},
+	"ch3_v_3feaccd3eb": {
+		"path": "audio/voice/ch3/ch3_v_3feaccd3eb.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "39f88771a3199713300dfff82e696215d08ce994"
+	},
+	"ch3_v_4396096a84": {
+		"path": "audio/voice/ch3/ch3_v_4396096a84.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "f158e05f16ed4540aaea2357f67f24fbb3140b67"
+	},
+	"ch3_v_4b4f235feb": {
+		"path": "audio/voice/ch3/ch3_v_4b4f235feb.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "4dd5ebc83915454c6a0cdb3cb7a60960c8dee51c"
+	},
+	"ch3_v_4b9bd02202": {
+		"path": "audio/voice/ch3/ch3_v_4b9bd02202.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cedf6ac565eb10d5458f2274f283fea1ecc69d2c"
+	},
+	"ch3_v_4de5affd8e": {
+		"path": "audio/voice/ch3/ch3_v_4de5affd8e.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "037a4272085a602fa020ab9c916c71cde681ef45"
+	},
+	"ch3_v_4e95a0d308": {
+		"path": "audio/voice/ch3/ch3_v_4e95a0d308.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8ca1f3d6869909ac1b75851f39064945da9276d6"
+	},
+	"ch3_v_52c426ddf5": {
+		"path": "audio/voice/ch3/ch3_v_52c426ddf5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "97ed78108c8e465aa05a51fc638fbae07be445d4"
+	},
+	"ch3_v_55c63f96d3": {
+		"path": "audio/voice/ch3/ch3_v_55c63f96d3.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "29b33fbe1f82ca07bd4e1261d2702da7d7a1dfa0"
+	},
+	"ch3_v_56ec34d400": {
+		"path": "audio/voice/ch3/ch3_v_56ec34d400.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e3687d80dc3770708ac43541d1dc92d60871c7fa"
+	},
+	"ch3_v_5770568fac": {
+		"path": "audio/voice/ch3/ch3_v_5770568fac.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "01aa9a03c3514f79b87b7628a48cf252f70f65df"
+	},
+	"ch3_v_58895efcbb": {
+		"path": "audio/voice/ch3/ch3_v_58895efcbb.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "9fb495f79526f4e8bf23dd98bebd78227d8ea524"
+	},
+	"ch3_v_5a41ddc99e": {
+		"path": "audio/voice/ch3/ch3_v_5a41ddc99e.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e57bf9b59328b4d7bc7bc3591743dbd86ac5836f"
+	},
+	"ch3_v_5c96b49ab9": {
+		"path": "audio/voice/ch3/ch3_v_5c96b49ab9.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "d71a56d34a45f0a81d8f756a5d1d3f980727a555"
+	},
+	"ch3_v_5cbd5482bd": {
+		"path": "audio/voice/ch3/ch3_v_5cbd5482bd.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "b6524fa302e466c9ecf44d3c5b90c5adb90ca66e"
+	},
+	"ch3_v_63fc907f5f": {
+		"path": "audio/voice/ch3/ch3_v_63fc907f5f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b05bfb2ec6207aaf673a7029ea1181bd1e989c7e"
+	},
+	"ch3_v_6997c439df": {
+		"path": "audio/voice/ch3/ch3_v_6997c439df.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "470ecf1da36c3a791e50855967ac4d4fa01fe6bb"
+	},
+	"ch3_v_6cfa46b531": {
+		"path": "audio/voice/ch3/ch3_v_6cfa46b531.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "83c14d24c84658dc83ab2c9e8dc44cb851b92ed6"
+	},
+	"ch3_v_6d128f04b0": {
+		"path": "audio/voice/ch3/ch3_v_6d128f04b0.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "50a79c96df1a0ee2d7177ed82c9321aae1fa5197"
+	},
+	"ch3_v_6d42c1dbc2": {
+		"path": "audio/voice/ch3/ch3_v_6d42c1dbc2.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "186bb975926f644d311e2941323bd23b9a6b89c6"
+	},
+	"ch3_v_6ddd244949": {
+		"path": "audio/voice/ch3/ch3_v_6ddd244949.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "f5e873e71915b0ef097c48527993c58b62729ac1"
+	},
+	"ch3_v_6de4f384a7": {
+		"path": "audio/voice/ch3/ch3_v_6de4f384a7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5773bdf4abda829877f068e339c4a39e4f37d6d9"
+	},
+	"ch3_v_6dfe924d96": {
+		"path": "audio/voice/ch3/ch3_v_6dfe924d96.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fcb0b96d969a3b9f50ffe34b421561fe65701ba7"
+	},
+	"ch3_v_6e0b7b1e6c": {
+		"path": "audio/voice/ch3/ch3_v_6e0b7b1e6c.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "58aa07414f6a067c33c730a4705a6f5ad4bc19a7"
+	},
+	"ch3_v_70b6b3ca7e": {
+		"path": "audio/voice/ch3/ch3_v_70b6b3ca7e.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "c10684f1553250173fec046041172b29c29d7c49"
+	},
+	"ch3_v_71baf9ff8e": {
+		"path": "audio/voice/ch3/ch3_v_71baf9ff8e.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "4a8b7a0921b64c20e03699318c63f9dd46e71d83"
+	},
+	"ch3_v_73b1c439da": {
+		"path": "audio/voice/ch3/ch3_v_73b1c439da.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "4938eb13696ced9b3a78c8b71bbe1a3785de3154"
+	},
+	"ch3_v_7494f2bc5e": {
+		"path": "audio/voice/ch3/ch3_v_7494f2bc5e.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "066f1cfa5e97fa6eae511d967df6e917e1a56ae7"
+	},
+	"ch3_v_766af470ac": {
+		"path": "audio/voice/ch3/ch3_v_766af470ac.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "8cae9b7414a8a0735ea0f76f98703a08fc4e14e5"
+	},
+	"ch3_v_7739049b1b": {
+		"path": "audio/voice/ch3/ch3_v_7739049b1b.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "ddd825fc547bd32a13f00e461393309ed4984343"
+	},
+	"ch3_v_782a29a74c": {
+		"path": "audio/voice/ch3/ch3_v_782a29a74c.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "ba62d70ec887e3724ca05720186e315164470666"
+	},
+	"ch3_v_7eda5fb359": {
+		"path": "audio/voice/ch3/ch3_v_7eda5fb359.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "723cd3d79b28796d55e2a176d586707f18cffd8b"
+	},
+	"ch3_v_80a2e3f89b": {
+		"path": "audio/voice/ch3/ch3_v_80a2e3f89b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "bf806b7b72fff5147ac72f14643999ce9b530b89"
+	},
+	"ch3_v_83ab77b49b": {
+		"path": "audio/voice/ch3/ch3_v_83ab77b49b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "1e41111ef17bc9f0c8e03f486e6fb03d371ebde8"
+	},
+	"ch3_v_84b226ca98": {
+		"path": "audio/voice/ch3/ch3_v_84b226ca98.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "3db166a9178f6a6f70429f907de56a7f8f0a2aae"
+	},
+	"ch3_v_86b2ff1c60": {
+		"path": "audio/voice/ch3/ch3_v_86b2ff1c60.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "23d7dea2b99b733bef11fad4b5cdcc5c8d5d2ea4"
+	},
+	"ch3_v_8b359a48fd": {
+		"path": "audio/voice/ch3/ch3_v_8b359a48fd.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8d1485a32d63bc2fd556b7098872673debd53256"
+	},
+	"ch3_v_8cbde52870": {
+		"path": "audio/voice/ch3/ch3_v_8cbde52870.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "63fabe408bfd4a86ac39be34063b8b76905f8a6b"
+	},
+	"ch3_v_8d9e0729b5": {
+		"path": "audio/voice/ch3/ch3_v_8d9e0729b5.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "203ad48f7fea5229579a513f1ed3f19d80ad3ef0"
+	},
+	"ch3_v_8eab71a986": {
+		"path": "audio/voice/ch3/ch3_v_8eab71a986.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9b1522c78f5720fb68c4678f6e807717ec9ff33d"
+	},
+	"ch3_v_907ced0975": {
+		"path": "audio/voice/ch3/ch3_v_907ced0975.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "8dc4f579e19a3df6460043e0888be181f59d9ef0"
+	},
+	"ch3_v_90c697cf5c": {
+		"path": "audio/voice/ch3/ch3_v_90c697cf5c.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "83bf8d1efe668a2987d7caacaef7a77cf3e81e99"
+	},
+	"ch3_v_96259ee150": {
+		"path": "audio/voice/ch3/ch3_v_96259ee150.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "f443456feecf4719f65c11731a123846f2e7c6a8"
+	},
+	"ch3_v_988b683ec0": {
+		"path": "audio/voice/ch3/ch3_v_988b683ec0.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "83e5c1d632c4a8dfc84b124d6c6d0db2c49e4fd7"
+	},
+	"ch3_v_9a0f3ab4d7": {
+		"path": "audio/voice/ch3/ch3_v_9a0f3ab4d7.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "4a7ab4f6dabedfb7cf0417ee26443a159fc35e9a"
+	},
+	"ch3_v_9c64e106eb": {
+		"path": "audio/voice/ch3/ch3_v_9c64e106eb.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cfc9aea024419e1aff795976baca3d2cd7ef8648"
+	},
+	"ch3_v_9da06ee744": {
+		"path": "audio/voice/ch3/ch3_v_9da06ee744.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "044b5d2ebdcc85663c4a3f0ab0d4f6bcf7fa273a"
+	},
+	"ch3_v_9e53217f66": {
+		"path": "audio/voice/ch3/ch3_v_9e53217f66.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8f8ade20409d56fea7bfbc274183dc1763eeea5e"
+	},
+	"ch3_v_9e99bbe679": {
+		"path": "audio/voice/ch3/ch3_v_9e99bbe679.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "4dc2d7abdfc1626db4637d03417e76c88a0c6bcd"
+	},
+	"ch3_v_a15ae0bd0b": {
+		"path": "audio/voice/ch3/ch3_v_a15ae0bd0b.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "43ffc1c144e1132057ec44454e9af1d4a1b07da0"
+	},
+	"ch3_v_a3668b8f73": {
+		"path": "audio/voice/ch3/ch3_v_a3668b8f73.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "0fdfe597860f84032ce6c1c3c2ce626fae48f9fe"
+	},
+	"ch3_v_a673f16c1b": {
+		"path": "audio/voice/ch3/ch3_v_a673f16c1b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "68499a52b35bc8b257fd95d1e84e610b414f4959"
+	},
+	"ch3_v_a6fc998c7c": {
+		"path": "audio/voice/ch3/ch3_v_a6fc998c7c.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "5b81befd812927acd59686bad10f845c07fec2e4"
+	},
+	"ch3_v_a94a3f3cc0": {
+		"path": "audio/voice/ch3/ch3_v_a94a3f3cc0.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "1d7b82a176f57bc16f2d235fbafc6b70cedc50c8"
+	},
+	"ch3_v_aa19bb5a92": {
+		"path": "audio/voice/ch3/ch3_v_aa19bb5a92.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "7662d145bf43bfc9268985f06b361b51b7ddb993"
+	},
+	"ch3_v_aaef7801cb": {
+		"path": "audio/voice/ch3/ch3_v_aaef7801cb.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b3e9a90ec99dc742d9803c820bb0347e3c2ae37c"
+	},
+	"ch3_v_ab80f48082": {
+		"path": "audio/voice/ch3/ch3_v_ab80f48082.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "5674ad6d0ff1a0ef9904f0ccd38adae725a84d61"
+	},
+	"ch3_v_b420291955": {
+		"path": "audio/voice/ch3/ch3_v_b420291955.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "54688ef708e2c55dc2d8ba4f07fc00ae8d3459f7"
+	},
+	"ch3_v_b57c4162e0": {
+		"path": "audio/voice/ch3/ch3_v_b57c4162e0.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b0018fc69ba31b14f3164fceefcec509be689c40"
+	},
+	"ch3_v_bb5eb88a01": {
+		"path": "audio/voice/ch3/ch3_v_bb5eb88a01.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "9e0de9610cd96178aa2dbd199629012e7fde3e5d"
+	},
+	"ch3_v_c18609cfa1": {
+		"path": "audio/voice/ch3/ch3_v_c18609cfa1.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "76d77e9823705a67db3e3547144f9207dcb22095"
+	},
+	"ch3_v_c1c6e78595": {
+		"path": "audio/voice/ch3/ch3_v_c1c6e78595.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "54721821d290ed6e36dd8733f525b695a885b6cd"
+	},
+	"ch3_v_c47318c2e2": {
+		"path": "audio/voice/ch3/ch3_v_c47318c2e2.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "39c69b42542693b609e368ce26e105f1ec887b78"
+	},
+	"ch3_v_cb97af124d": {
+		"path": "audio/voice/ch3/ch3_v_cb97af124d.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "b6545a3a5ca6cd3b5ccf59b0c7a7f8777167799a"
+	},
+	"ch3_v_cc67747280": {
+		"path": "audio/voice/ch3/ch3_v_cc67747280.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "90915a35f3eb9a04d6968e9877d644b04638bfe3"
+	},
+	"ch3_v_cd7556a794": {
+		"path": "audio/voice/ch3/ch3_v_cd7556a794.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "c75de0c000af4565bff5221014a73b2f60ce3fa4"
+	},
+	"ch3_v_cdd935c623": {
+		"path": "audio/voice/ch3/ch3_v_cdd935c623.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5d229ff57c790e29d50c421fc7ecaaf8be85cedb"
+	},
+	"ch3_v_cdfd2da7eb": {
+		"path": "audio/voice/ch3/ch3_v_cdfd2da7eb.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "528b16ce1404986be3a1b7d8ed681989484e9f2d"
+	},
+	"ch3_v_d1dc17de40": {
+		"path": "audio/voice/ch3/ch3_v_d1dc17de40.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "4476b3da4bc3bb0c528385acc505c8e72da0fd2e"
+	},
+	"ch3_v_d46cc1dfcb": {
+		"path": "audio/voice/ch3/ch3_v_d46cc1dfcb.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "59d9541fe96dfe95ddd8e322952ed3a6aa7a0c42"
+	},
+	"ch3_v_d6f346b440": {
+		"path": "audio/voice/ch3/ch3_v_d6f346b440.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "7a936ff8c6a59e7ed3eb900026ab2db3a30c9090"
+	},
+	"ch3_v_d9f958430c": {
+		"path": "audio/voice/ch3/ch3_v_d9f958430c.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9fd5e2c33f27f73140d4e80f610db6ee4ee7a595"
+	},
+	"ch3_v_da34bf6f2d": {
+		"path": "audio/voice/ch3/ch3_v_da34bf6f2d.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "43f62a8152ce4dc7ff842e84f34a9bd110358554"
+	},
+	"ch3_v_da80c30b10": {
+		"path": "audio/voice/ch3/ch3_v_da80c30b10.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9f280443aea7f3ee544a8ac4d69af3cfe68d88eb"
+	},
+	"ch3_v_dad5952c37": {
+		"path": "audio/voice/ch3/ch3_v_dad5952c37.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "731b5fb1c853f8af23a3a51b979cbdc1ab71fd75"
+	},
+	"ch3_v_dae668d28f": {
+		"path": "audio/voice/ch3/ch3_v_dae668d28f.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "15a9f7f8c72fd42c57c1ef424d23e5b75ff826cd"
+	},
+	"ch3_v_dbed14252d": {
+		"path": "audio/voice/ch3/ch3_v_dbed14252d.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c674670243dce8004ca283d76a47f6870a6b3f0c"
+	},
+	"ch3_v_de4e297bca": {
+		"path": "audio/voice/ch3/ch3_v_de4e297bca.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8b248e6fa14a2cfe1bca0ce2e8a5708df42a5fc3"
+	},
+	"ch3_v_e0f2e0b4c8": {
+		"path": "audio/voice/ch3/ch3_v_e0f2e0b4c8.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "c599bc4ae33582034b0800d61a9149b152594f82"
+	},
+	"ch3_v_e25f95c49d": {
+		"path": "audio/voice/ch3/ch3_v_e25f95c49d.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "2c63d71014cda24b26f966f7302de5b1d4a5e2e7"
+	},
+	"ch3_v_e2e5cfefa3": {
+		"path": "audio/voice/ch3/ch3_v_e2e5cfefa3.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "7d8f778ed4eb627cd4c573821167f85e2372df38"
+	},
+	"ch3_v_e45c851e8d": {
+		"path": "audio/voice/ch3/ch3_v_e45c851e8d.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e10abeb0699d22a8c107155fe2d6bdf282d68d8d"
+	},
+	"ch3_v_e867b33757": {
+		"path": "audio/voice/ch3/ch3_v_e867b33757.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "076be11201d2b4ab808a8387995f1cd17734c198"
+	},
+	"ch3_v_efc7e9506d": {
+		"path": "audio/voice/ch3/ch3_v_efc7e9506d.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "927c995a0b08be82c34ac8f3ba9ef664cc9a65c6"
+	},
+	"ch3_v_f0b726d2c4": {
+		"path": "audio/voice/ch3/ch3_v_f0b726d2c4.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7126310051268f24395dcdf32f3f30d354c4e5f9"
+	},
+	"ch3_v_f32e82add6": {
+		"path": "audio/voice/ch3/ch3_v_f32e82add6.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "039c09f33dfa4908380a2e774b5061e52b7741ec"
+	},
+	"ch3_v_f47f60c39f": {
+		"path": "audio/voice/ch3/ch3_v_f47f60c39f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e1953ea0c03264a059619baf07d17f46b10e5395"
+	},
+	"ch3_v_f75a4cd09b": {
+		"path": "audio/voice/ch3/ch3_v_f75a4cd09b.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "efdbd0a6fdbb5c9c7988ebde718fd4075e94efc3"
+	},
+	"ch3_v_f7e1eb0efd": {
+		"path": "audio/voice/ch3/ch3_v_f7e1eb0efd.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "625f224b5fb386b33d59371b6783b7255c9bdff8"
+	},
+	"ch3_v_f84de77f4f": {
+		"path": "audio/voice/ch3/ch3_v_f84de77f4f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "0b0a250774ba2ace480f40a77a907e8b4df1b982"
+	},
+	"ch3_v_f86c0f2b3e": {
+		"path": "audio/voice/ch3/ch3_v_f86c0f2b3e.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "63caa835ec694d15165404f3dafadc2ced9194a1"
+	},
+	"ch3_v_f95e26fb73": {
+		"path": "audio/voice/ch3/ch3_v_f95e26fb73.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "63204e9f562435f1c85b85b89ee5737e0c24292b"
+	},
+	"ch3_v_fb03666d25": {
+		"path": "audio/voice/ch3/ch3_v_fb03666d25.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "29d634bb8878e58e24b5da655f250687e7b2050b"
+	},
+	"ch3_v_fc1fbeccbe": {
+		"path": "audio/voice/ch3/ch3_v_fc1fbeccbe.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c2ba3f95e04eb09ad70dfe6a63618dd0818d2e5a"
+	},
+	"ch3_v_fcab647daa": {
+		"path": "audio/voice/ch3/ch3_v_fcab647daa.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e911ed404331f1b00dd20f6acef44dfabb6d68da"
+	},
+	"ch3_v_fff3d328a2": {
+		"path": "audio/voice/ch3/ch3_v_fff3d328a2.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "1f4ec06dbbf5f3b44591f07ea5f288da7f6e8e23"
+	},
+	"ch4_v_005d948389": {
+		"path": "audio/voice/ch4/ch4_v_005d948389.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "f2e56b4b3236ddd8105802d0f88ec66a23e17f89"
+	},
+	"ch4_v_01fc5f7786": {
+		"path": "audio/voice/ch4/ch4_v_01fc5f7786.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "b15e159d51783c513baf4f4dbecbb674ae12edab"
+	},
+	"ch4_v_0549b43f95": {
+		"path": "audio/voice/ch4/ch4_v_0549b43f95.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "4ee81f1767f5d37128f42687f14fae43f6d6d2fc"
+	},
+	"ch4_v_06b0b5dc84": {
+		"path": "audio/voice/ch4/ch4_v_06b0b5dc84.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a6f7b2f3870409c3427dfd8d8f8d38f5ee816c74"
+	},
+	"ch4_v_08a625aa81": {
+		"path": "audio/voice/ch4/ch4_v_08a625aa81.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "b7b622cb1019fce18160c00f4e340e7ee11faef2"
+	},
+	"ch4_v_08be2f99b9": {
+		"path": "audio/voice/ch4/ch4_v_08be2f99b9.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "673edd8b403ab5701028d1d590c99e7f11c62053"
+	},
+	"ch4_v_0a9bb93c02": {
+		"path": "audio/voice/ch4/ch4_v_0a9bb93c02.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "4e02822ac46aa69fa91e46749c87c39369526325"
+	},
+	"ch4_v_0b60b7d969": {
+		"path": "audio/voice/ch4/ch4_v_0b60b7d969.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9f375941f2d3e5e0bbaaa5bc51d50f0751aa5056"
+	},
+	"ch4_v_0c3a4c42d2": {
+		"path": "audio/voice/ch4/ch4_v_0c3a4c42d2.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "e08178b0b3fbc668259f1e4f9f1d0e8584e665c9"
+	},
+	"ch4_v_0c6c8662c0": {
+		"path": "audio/voice/ch4/ch4_v_0c6c8662c0.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "e67980f12f70bb50935dd684b6cb06fae268c659"
+	},
+	"ch4_v_0fc51ad4a7": {
+		"path": "audio/voice/ch4/ch4_v_0fc51ad4a7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b72f2d19f689a3a5a8b44d6b10c9fa0d5d3eb157"
+	},
+	"ch4_v_1136e7f737": {
+		"path": "audio/voice/ch4/ch4_v_1136e7f737.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fe1898784a1e9312e62cb056097d5352f6f0a564"
+	},
+	"ch4_v_113f5b8487": {
+		"path": "audio/voice/ch4/ch4_v_113f5b8487.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "d7c72f8127db34a8900bff6993a7032e53820502"
+	},
+	"ch4_v_121d46bae1": {
+		"path": "audio/voice/ch4/ch4_v_121d46bae1.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "7361db49843fe86442a4823473aab38ecff4cf35"
+	},
+	"ch4_v_136f2dba91": {
+		"path": "audio/voice/ch4/ch4_v_136f2dba91.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fafdf34810c45431ae00577d17d25e9fd6c28b2b"
+	},
+	"ch4_v_1590bdd134": {
+		"path": "audio/voice/ch4/ch4_v_1590bdd134.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "f53a681079ebf0d0c43d17d459cdaf4d090b5c4d"
+	},
+	"ch4_v_15d7559413": {
+		"path": "audio/voice/ch4/ch4_v_15d7559413.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a9c446d181be702fcd586bfe1140f9e059aabdd7"
+	},
+	"ch4_v_1a2008d6fb": {
+		"path": "audio/voice/ch4/ch4_v_1a2008d6fb.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "07f5d08216d0c96a6f9dfd28094ed9bed10b816d"
+	},
+	"ch4_v_1b20db42e0": {
+		"path": "audio/voice/ch4/ch4_v_1b20db42e0.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "ecd66c11dd7f5814f1b41864c44bc786d6039b1e"
+	},
+	"ch4_v_1ff1164139": {
+		"path": "audio/voice/ch4/ch4_v_1ff1164139.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "00151eee12b33461552e0321912ecc6d531b5ac6"
+	},
+	"ch4_v_2687f45b1f": {
+		"path": "audio/voice/ch4/ch4_v_2687f45b1f.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "28b99a917c10eea684e95b608850c05c84245946"
+	},
+	"ch4_v_288bb5c5ed": {
+		"path": "audio/voice/ch4/ch4_v_288bb5c5ed.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "240b25ce7d1a5758a24f2b4ffef6ee5cd3060a18"
+	},
+	"ch4_v_294caaf778": {
+		"path": "audio/voice/ch4/ch4_v_294caaf778.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b5588fe3357825c0b8b815094f8c01a8c2cb1964"
+	},
+	"ch4_v_2adc2e7bb2": {
+		"path": "audio/voice/ch4/ch4_v_2adc2e7bb2.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "23b1bc5920ef93a6c599003dba3a527a75421496"
+	},
+	"ch4_v_2b4a5515f4": {
+		"path": "audio/voice/ch4/ch4_v_2b4a5515f4.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "1cd884ce4781d66c827441a45c56384a0f3da6c1"
+	},
+	"ch4_v_2b5ee25bea": {
+		"path": "audio/voice/ch4/ch4_v_2b5ee25bea.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "b82f96ae5cb856be7a81bb1d1190f61159df8179"
+	},
+	"ch4_v_2ce683b952": {
+		"path": "audio/voice/ch4/ch4_v_2ce683b952.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "13294fc121ff59cd3e6b9e9c96d2a11f6455073e"
+	},
+	"ch4_v_37d6dd953d": {
+		"path": "audio/voice/ch4/ch4_v_37d6dd953d.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "78eb44d1164bbb228a341729850bf2193fa17ae9"
+	},
+	"ch4_v_3b09b2ca9c": {
+		"path": "audio/voice/ch4/ch4_v_3b09b2ca9c.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "345991a38d08c315f8be411c354efa6f798ea002"
+	},
+	"ch4_v_3c53cca4e6": {
+		"path": "audio/voice/ch4/ch4_v_3c53cca4e6.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "5147572fe22472b80b882471aab61d14dded0e89"
+	},
+	"ch4_v_3ecdb9a7ef": {
+		"path": "audio/voice/ch4/ch4_v_3ecdb9a7ef.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "5ee03632af7f1a8405d55cfb6584d12006a3f425"
+	},
+	"ch4_v_411add06ea": {
+		"path": "audio/voice/ch4/ch4_v_411add06ea.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5c76559e63e6814ce0f5ff8e69df29246d141af1"
+	},
+	"ch4_v_42c6361898": {
+		"path": "audio/voice/ch4/ch4_v_42c6361898.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "36442bf52a1ef1e78eba9d28f39584b75134bc99"
+	},
+	"ch4_v_4381f9ea20": {
+		"path": "audio/voice/ch4/ch4_v_4381f9ea20.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "360ff8a7e1f0899da92afcefe8efb4ffe4566e8b"
+	},
+	"ch4_v_4886356979": {
+		"path": "audio/voice/ch4/ch4_v_4886356979.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7bf11fc46ecfc1a8687cac9e3d5939a62b61c393"
+	},
+	"ch4_v_4988fca264": {
+		"path": "audio/voice/ch4/ch4_v_4988fca264.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fb9814972cb8b2572281101ca61b1f79e1b88aa4"
+	},
+	"ch4_v_4d987589f4": {
+		"path": "audio/voice/ch4/ch4_v_4d987589f4.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "424206e2283affc91be4a2a7d87487ad1f319793"
+	},
+	"ch4_v_507f6653ab": {
+		"path": "audio/voice/ch4/ch4_v_507f6653ab.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "22d772ac281bfddc4e7b8e828aad74e11a39177e"
+	},
+	"ch4_v_52e0cb6ec6": {
+		"path": "audio/voice/ch4/ch4_v_52e0cb6ec6.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "a18df0bd1cf18d4f57f794e81fae05367bb6b859"
+	},
+	"ch4_v_5687083abd": {
+		"path": "audio/voice/ch4/ch4_v_5687083abd.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fda3871bb230e3e304540c84e3106fda64a2c3ba"
+	},
+	"ch4_v_597e6324ed": {
+		"path": "audio/voice/ch4/ch4_v_597e6324ed.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "714a634ad690ceb69fc95db7e834cb5671fb7076"
+	},
+	"ch4_v_5a1ff86379": {
+		"path": "audio/voice/ch4/ch4_v_5a1ff86379.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "a63f0fc95cc1f18f2a8c8fb6408965074c8a6a34"
+	},
+	"ch4_v_5b7a61f8e7": {
+		"path": "audio/voice/ch4/ch4_v_5b7a61f8e7.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "825ba9fe65f500da56091a99cbe9b72449a17bfc"
+	},
+	"ch4_v_5e254efab5": {
+		"path": "audio/voice/ch4/ch4_v_5e254efab5.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "af17782cb6cebf409c301da29fa0ad844cf60aa8"
+	},
+	"ch4_v_5e4b441bd7": {
+		"path": "audio/voice/ch4/ch4_v_5e4b441bd7.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "ac0d19340e226d24dcbf064079248ae7bd63f242"
+	},
+	"ch4_v_60584216cb": {
+		"path": "audio/voice/ch4/ch4_v_60584216cb.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5b301d4685811fa05d0390b7993979ec68490073"
+	},
+	"ch4_v_6262297d26": {
+		"path": "audio/voice/ch4/ch4_v_6262297d26.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "afde89f445d091e0e78e2223666d63b24d7a5f04"
+	},
+	"ch4_v_6280dca161": {
+		"path": "audio/voice/ch4/ch4_v_6280dca161.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c3ce98d56fc36be7ffe503cf8f3488f1ebebdf91"
+	},
+	"ch4_v_662440660b": {
+		"path": "audio/voice/ch4/ch4_v_662440660b.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "a6c1c782a6dd9d86fd75286fee88ce370006703c"
+	},
+	"ch4_v_6a83ae6cab": {
+		"path": "audio/voice/ch4/ch4_v_6a83ae6cab.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "21d09183b5df9e29082e9e0cfd42fb8a3914420f"
+	},
+	"ch4_v_71672cbdf7": {
+		"path": "audio/voice/ch4/ch4_v_71672cbdf7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a0dbd9baca4710e0763d2d2f2200d21890a635d6"
+	},
+	"ch4_v_74794c9b28": {
+		"path": "audio/voice/ch4/ch4_v_74794c9b28.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "fa0d237b34a13738781e47a2c915a982bc7fd7e7"
+	},
+	"ch4_v_7603e8679c": {
+		"path": "audio/voice/ch4/ch4_v_7603e8679c.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "e570b98c0646e16e4bd0a3cd928be0461d352249"
+	},
+	"ch4_v_76cf142801": {
+		"path": "audio/voice/ch4/ch4_v_76cf142801.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "84d548c62279cbbd4d6147f1679931f8ba21ee76"
+	},
+	"ch4_v_7a02356973": {
+		"path": "audio/voice/ch4/ch4_v_7a02356973.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "078ae4e92d7d228931ff1dba40483d73209e2731"
+	},
+	"ch4_v_7d0cb79b02": {
+		"path": "audio/voice/ch4/ch4_v_7d0cb79b02.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "71f6dcf1cfbc149c10ec817d066ed0357b662bec"
+	},
+	"ch4_v_7f8929cecf": {
+		"path": "audio/voice/ch4/ch4_v_7f8929cecf.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c2473b4bd005bc985a27f5643078fee0970aa8b0"
+	},
+	"ch4_v_83434dd66a": {
+		"path": "audio/voice/ch4/ch4_v_83434dd66a.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "288813eefab57cb97cb073fcdb1f209197a9d1e4"
+	},
+	"ch4_v_85560df194": {
+		"path": "audio/voice/ch4/ch4_v_85560df194.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "7ac86d218e0f9423df0d525f11162bdddd220cf5"
+	},
+	"ch4_v_896e40ad18": {
+		"path": "audio/voice/ch4/ch4_v_896e40ad18.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "be2e5f0b718acb0b4aa15dc079367b4a9434914a"
+	},
+	"ch4_v_89a545299d": {
+		"path": "audio/voice/ch4/ch4_v_89a545299d.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "816034122e5bb411a33472e86255b89a504ad0bb"
+	},
+	"ch4_v_8a59a01d5c": {
+		"path": "audio/voice/ch4/ch4_v_8a59a01d5c.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "75bebf7ffd85af4065d5cc8ca9f7f065c02ff394"
+	},
+	"ch4_v_8a7f58f812": {
+		"path": "audio/voice/ch4/ch4_v_8a7f58f812.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "4c22cfcb190981d0df64cba1038dfcfc8b412ad5"
+	},
+	"ch4_v_8cf2c06b30": {
+		"path": "audio/voice/ch4/ch4_v_8cf2c06b30.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8639c6d41bb5a14188cf0f311bebbe2ce4706ad9"
+	},
+	"ch4_v_8d0d3edf24": {
+		"path": "audio/voice/ch4/ch4_v_8d0d3edf24.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "313e6a09aff4b6aa835af8e84736bf671c732ce0"
+	},
+	"ch4_v_8d482a0518": {
+		"path": "audio/voice/ch4/ch4_v_8d482a0518.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c7743275bd6d3046f104db46c4de9bdd7ae4a683"
+	},
+	"ch4_v_8e9de32577": {
+		"path": "audio/voice/ch4/ch4_v_8e9de32577.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "07baeba5c4759ae8d938b4594f368441766f2c4b"
+	},
+	"ch4_v_90709385e8": {
+		"path": "audio/voice/ch4/ch4_v_90709385e8.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "ce568ec2bb2f0d326114ac9be5b01bcb8687e1ac"
+	},
+	"ch4_v_96d0879345": {
+		"path": "audio/voice/ch4/ch4_v_96d0879345.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a747ae621272497abc196439f764828a1de0274c"
+	},
+	"ch4_v_9af462f4b5": {
+		"path": "audio/voice/ch4/ch4_v_9af462f4b5.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "8ae0be120d22407e4d47b15685372c8c276595d0"
+	},
+	"ch4_v_a0291ee0ee": {
+		"path": "audio/voice/ch4/ch4_v_a0291ee0ee.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "f07d6814b6f2973d9beaff0d35c3fe96c6d39e42"
+	},
+	"ch4_v_a087ac5ce0": {
+		"path": "audio/voice/ch4/ch4_v_a087ac5ce0.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e4fb43b8140dda7f72ffc667671fdf632178925e"
+	},
+	"ch4_v_a11be751f7": {
+		"path": "audio/voice/ch4/ch4_v_a11be751f7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "988dd5e5f0beb6d435602ef6d00b75db6c30a340"
+	},
+	"ch4_v_a806787a4d": {
+		"path": "audio/voice/ch4/ch4_v_a806787a4d.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "8583a9ae99a41da80115f617b15e6f5889f0d558"
+	},
+	"ch4_v_ad839c329b": {
+		"path": "audio/voice/ch4/ch4_v_ad839c329b.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "ed43bd2b84e74be766faafd7353f8ae0a5408357"
+	},
+	"ch4_v_b11f2c68cd": {
+		"path": "audio/voice/ch4/ch4_v_b11f2c68cd.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "843e308acc288b8f4120a8b4ffbbc3661df39a59"
+	},
+	"ch4_v_b47706f941": {
+		"path": "audio/voice/ch4/ch4_v_b47706f941.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e1e90d340f152e57a67803ef89de8ccbd3c76cac"
+	},
+	"ch4_v_b9df5b109f": {
+		"path": "audio/voice/ch4/ch4_v_b9df5b109f.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "263e4bf87bec5f53a50e4ed609064ac9b9f6662e"
+	},
+	"ch4_v_bc0674bc22": {
+		"path": "audio/voice/ch4/ch4_v_bc0674bc22.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "85ef816ce389f54f426f72aa42c1cdb592e676a5"
+	},
+	"ch4_v_bca5ffb4d4": {
+		"path": "audio/voice/ch4/ch4_v_bca5ffb4d4.ogg",
+		"speaker": "engineer",
+		"voice": "bm_daniel",
+		"speed": 0.97,
+		"fx": "dialogue",
+		"source_hash": "28872795ad37a3270206cfdde7f55ed5edf5b0fc"
+	},
+	"ch4_v_c23ca8045b": {
+		"path": "audio/voice/ch4/ch4_v_c23ca8045b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fe08536cbb3654626dfaf45d8910cb3b70085313"
+	},
+	"ch4_v_c2a69ed581": {
+		"path": "audio/voice/ch4/ch4_v_c2a69ed581.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "8095d69c65d487a047e3dd2943b582f6c8277674"
+	},
+	"ch4_v_c48feb9d91": {
+		"path": "audio/voice/ch4/ch4_v_c48feb9d91.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "a942021ff1a6e1b560809c39e8f0fdf7ceb6bcf1"
+	},
+	"ch4_v_cb1439b960": {
+		"path": "audio/voice/ch4/ch4_v_cb1439b960.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "5890dc8aa012cafd80c42456588012edabffdd75"
+	},
+	"ch4_v_cd02497c50": {
+		"path": "audio/voice/ch4/ch4_v_cd02497c50.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "a5c2da1c52e32bf17ee6de8acac3a26eb59ae347"
+	},
+	"ch4_v_cea16c4283": {
+		"path": "audio/voice/ch4/ch4_v_cea16c4283.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "839b788b6ead4330d9e9e5a60e8a229f309b1ca3"
+	},
+	"ch4_v_d229fc3468": {
+		"path": "audio/voice/ch4/ch4_v_d229fc3468.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cff4c71d394774eedf8909ac60dd973229c7603d"
+	},
+	"ch4_v_d5ba92ef1a": {
+		"path": "audio/voice/ch4/ch4_v_d5ba92ef1a.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e997f6f5ad1ee3fce407a4cfa18d174dd2ea639e"
+	},
+	"ch4_v_d7ec0333fb": {
+		"path": "audio/voice/ch4/ch4_v_d7ec0333fb.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "6217b6c452232aade75151ac7236cbc32aae9084"
+	},
+	"ch4_v_d818bdb81e": {
+		"path": "audio/voice/ch4/ch4_v_d818bdb81e.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a7df0249235087f3581f3ab427089160b6ca58de"
+	},
+	"ch4_v_dd47a4aa1b": {
+		"path": "audio/voice/ch4/ch4_v_dd47a4aa1b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c4ac4f89fa18f49d3fc1f322aafcdb154b3c9897"
+	},
+	"ch4_v_e1f7218853": {
+		"path": "audio/voice/ch4/ch4_v_e1f7218853.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "d3bd462f2dd2db9ae6aba1082e3bb5591ad7e02a"
+	},
+	"ch4_v_e27fd66597": {
+		"path": "audio/voice/ch4/ch4_v_e27fd66597.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "6c20fd2e9faba5227b326ffa15adb7e297d90060"
+	},
+	"ch4_v_e3103b7a7e": {
+		"path": "audio/voice/ch4/ch4_v_e3103b7a7e.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "58fb083fe29f43400afde6e87c033fc6883eba5c"
+	},
+	"ch4_v_e35ec3414c": {
+		"path": "audio/voice/ch4/ch4_v_e35ec3414c.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "bb724ccf64de30f2bd9db87a6e3775c317514f74"
+	},
+	"ch4_v_e41959b3b2": {
+		"path": "audio/voice/ch4/ch4_v_e41959b3b2.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "0df664b1b6ef20c0384ad47edf071ba54e0913e8"
+	},
+	"ch4_v_e4583480b8": {
+		"path": "audio/voice/ch4/ch4_v_e4583480b8.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "2105940f23a04d51943e8e426727bcba56f5531e"
+	},
+	"ch4_v_e4e710d543": {
+		"path": "audio/voice/ch4/ch4_v_e4e710d543.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "cb9937131052608e3b4f380a2ea3d9ca300805b1"
+	},
+	"ch4_v_e635e7f752": {
+		"path": "audio/voice/ch4/ch4_v_e635e7f752.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "13a8550aecaab64f83ae971b33c3bbd77aaf15af"
+	},
+	"ch4_v_e7e5ea70df": {
+		"path": "audio/voice/ch4/ch4_v_e7e5ea70df.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "bc781ba2b1852e7c09cb4774c89e0908af25bdb9"
+	},
+	"ch4_v_e96249f95a": {
+		"path": "audio/voice/ch4/ch4_v_e96249f95a.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9627c0f8ffeb70ca5c1c8ed11e68427965bb3fc7"
+	},
+	"ch4_v_eae37d2339": {
+		"path": "audio/voice/ch4/ch4_v_eae37d2339.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8fd4b9b874a0ec522b79f93c4907ef78fd40f8f6"
+	},
+	"ch4_v_efe559c1a8": {
+		"path": "audio/voice/ch4/ch4_v_efe559c1a8.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "d2608240b6a22de070ac952c35760a32d2f953fa"
+	},
+	"ch4_v_f33ae5d570": {
+		"path": "audio/voice/ch4/ch4_v_f33ae5d570.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "d18934a94dc2ddf09fc1144f4a296ac4c6c34dc5"
+	},
+	"ch4_v_f4537c811c": {
+		"path": "audio/voice/ch4/ch4_v_f4537c811c.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e5a12ce959d8f67f3589c477995b0722acf8e99b"
+	},
+	"ch4_v_f593bef6fc": {
+		"path": "audio/voice/ch4/ch4_v_f593bef6fc.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "38d2f88342ba382716d614010fd1c892a198e71b"
+	},
+	"ch4_v_f7735a96fd": {
+		"path": "audio/voice/ch4/ch4_v_f7735a96fd.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "ea1ad25c5f38a67f4352e624a5c2f6e8cbd10f29"
+	},
+	"ch4_v_fb842b846b": {
+		"path": "audio/voice/ch4/ch4_v_fb842b846b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fbb7d738a6e9f2f236b6ca7c4304982a9111f142"
+	},
+	"ch4_v_fc6104a183": {
+		"path": "audio/voice/ch4/ch4_v_fc6104a183.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "9aafc12ef4db22bc1813bfa2a32120d49977004d"
+	},
+	"ch4_v_fc93fae588": {
+		"path": "audio/voice/ch4/ch4_v_fc93fae588.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "6057250f850f635ee581596881216a10f0043d58"
+	},
+	"ch5_v_02ed017586": {
+		"path": "audio/voice/ch5/ch5_v_02ed017586.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7f9ffd2ec35f59f520344bf8f93db203f2f9cd52"
+	},
+	"ch5_v_0cd6994cd9": {
+		"path": "audio/voice/ch5/ch5_v_0cd6994cd9.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "def566ffa7dc0242da34b42776f709eebe8c8880"
+	},
+	"ch5_v_0f251bb988": {
+		"path": "audio/voice/ch5/ch5_v_0f251bb988.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "116f1014dcfc4aab09c90a85eed02ceebe6584f1"
+	},
+	"ch5_v_0fdc65f6a8": {
+		"path": "audio/voice/ch5/ch5_v_0fdc65f6a8.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "0934de78d02b24d823d70ea016b148de9792a266"
+	},
+	"ch5_v_1272cc7fc9": {
+		"path": "audio/voice/ch5/ch5_v_1272cc7fc9.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "3fe136cd2a58fb66851c7f1fd849dd8160313bbd"
+	},
+	"ch5_v_15899bbb72": {
+		"path": "audio/voice/ch5/ch5_v_15899bbb72.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "753c0acecd0f59c2998f619683f92a2d3a78fb9b"
+	},
+	"ch5_v_15fcc55cb2": {
+		"path": "audio/voice/ch5/ch5_v_15fcc55cb2.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "c6116a343367a32447f76efd087a3df07d871091"
+	},
+	"ch5_v_17d3ed0748": {
+		"path": "audio/voice/ch5/ch5_v_17d3ed0748.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "9ec809b3cd7d33e070571b7b1809ac3b744af7f3"
+	},
+	"ch5_v_1984a489ef": {
+		"path": "audio/voice/ch5/ch5_v_1984a489ef.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "4052d96fa8116a87b9e5d2e2a89f3a3f3a4aeef0"
+	},
+	"ch5_v_1b3f81a146": {
+		"path": "audio/voice/ch5/ch5_v_1b3f81a146.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "242eb56d33bc10376b069e2858e2a0f133ff35a2"
+	},
+	"ch5_v_1df18cd348": {
+		"path": "audio/voice/ch5/ch5_v_1df18cd348.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "a4dd0579d49593a2fee80c465f6815ae03c9c4d2"
+	},
+	"ch5_v_1e490edc9e": {
+		"path": "audio/voice/ch5/ch5_v_1e490edc9e.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "32b69f8fec1d8cabe5f8f5115bbef226773a9a50"
+	},
+	"ch5_v_1ff6fabf10": {
+		"path": "audio/voice/ch5/ch5_v_1ff6fabf10.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "78ab17a12d62d510d08eda10669251d883e66b5f"
+	},
+	"ch5_v_255beba258": {
+		"path": "audio/voice/ch5/ch5_v_255beba258.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "61fbf9bb32846c952b3b65876de0a7204e14cb81"
+	},
+	"ch5_v_277b883090": {
+		"path": "audio/voice/ch5/ch5_v_277b883090.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "a9101652138dba3f5069ad7fd57cf135a8cf9c0b"
+	},
+	"ch5_v_2c0c5adde4": {
+		"path": "audio/voice/ch5/ch5_v_2c0c5adde4.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8ba2e7b0b101d1371c6ec4e12a037614a3cb14d0"
+	},
+	"ch5_v_2c745a1130": {
+		"path": "audio/voice/ch5/ch5_v_2c745a1130.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "8cb2eadfbc52f9bc1e8e325d6bdb04b6f64ee2bb"
+	},
+	"ch5_v_30a101ac81": {
+		"path": "audio/voice/ch5/ch5_v_30a101ac81.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cfaa092ed532ea385c58c731118d8a516b5c0e7d"
+	},
+	"ch5_v_312ba98c65": {
+		"path": "audio/voice/ch5/ch5_v_312ba98c65.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5e288d6c236dff64d15c3dd02c78c04bfb156052"
+	},
+	"ch5_v_3319d5801f": {
+		"path": "audio/voice/ch5/ch5_v_3319d5801f.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "7afcf0cc5b6b36147121d27fc2e6947402d8b294"
+	},
+	"ch5_v_33f27d7e80": {
+		"path": "audio/voice/ch5/ch5_v_33f27d7e80.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "6a6216fd9fb9e821ec874ad4c522beca44fba7b2"
+	},
+	"ch5_v_395a95876f": {
+		"path": "audio/voice/ch5/ch5_v_395a95876f.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "0c0ebc8c0d9bd93ad565d67ed02a6299938f9eac"
+	},
+	"ch5_v_3a75e5a062": {
+		"path": "audio/voice/ch5/ch5_v_3a75e5a062.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "40085aea36c449a23a9c66e686ac494385b2a1f4"
+	},
+	"ch5_v_3bcfb78a8c": {
+		"path": "audio/voice/ch5/ch5_v_3bcfb78a8c.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "5e944273063699f63b83de079587d1bcf03c0f6c"
+	},
+	"ch5_v_423f6321bc": {
+		"path": "audio/voice/ch5/ch5_v_423f6321bc.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "09246d9a4e578f5996fd103ee2bdf1a75a38e950"
+	},
+	"ch5_v_454f0d59f7": {
+		"path": "audio/voice/ch5/ch5_v_454f0d59f7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "21ade3d4705635088c5e7705fff2ac50b5d6a79c"
+	},
+	"ch5_v_487df585e4": {
+		"path": "audio/voice/ch5/ch5_v_487df585e4.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "d6d19e78e01c5d29d14f8600b2fe28ee6d91b339"
+	},
+	"ch5_v_48811ed26f": {
+		"path": "audio/voice/ch5/ch5_v_48811ed26f.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "555e50630a2d9de1cf68fef0b3cafdd1ae2de43b"
+	},
+	"ch5_v_49363fd4d3": {
+		"path": "audio/voice/ch5/ch5_v_49363fd4d3.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "835b92f213fcdb9e8d99a61a24d7ddaf85423b5d"
+	},
+	"ch5_v_4a5688b9b5": {
+		"path": "audio/voice/ch5/ch5_v_4a5688b9b5.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "231b40bd3e5a1663df264c3266b4aca25431b63c"
+	},
+	"ch5_v_4ab9ce6329": {
+		"path": "audio/voice/ch5/ch5_v_4ab9ce6329.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "1f96c29f0d3d37f86bbf0be9ef000542ec384309"
+	},
+	"ch5_v_55dff1c4ae": {
+		"path": "audio/voice/ch5/ch5_v_55dff1c4ae.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "389d9f0742bd55a4960c23c258277db1bdacc289"
+	},
+	"ch5_v_564e9cc449": {
+		"path": "audio/voice/ch5/ch5_v_564e9cc449.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "2b54252967f56f88d4d386b4ee8b049561b8e69c"
+	},
+	"ch5_v_567d388b24": {
+		"path": "audio/voice/ch5/ch5_v_567d388b24.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b475f12484cd6d54664fd135e55148bd11d7c5ab"
+	},
+	"ch5_v_5e8f368688": {
+		"path": "audio/voice/ch5/ch5_v_5e8f368688.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "cfdefdeef073bba034a04fdcdf3af3f47e9ff0ee"
+	},
+	"ch5_v_5f5ad0f1df": {
+		"path": "audio/voice/ch5/ch5_v_5f5ad0f1df.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "51da0abded0b7d0bbd498a5f6f13f3a2a2b39eb8"
+	},
+	"ch5_v_6078c47824": {
+		"path": "audio/voice/ch5/ch5_v_6078c47824.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "923392bf33f4c222c33c778616735aa8ddc177e3"
+	},
+	"ch5_v_623e239d1a": {
+		"path": "audio/voice/ch5/ch5_v_623e239d1a.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "f86ed6d17102d9ce3631545dbc89d454c57b8a3b"
+	},
+	"ch5_v_624fb131a0": {
+		"path": "audio/voice/ch5/ch5_v_624fb131a0.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7d58e943a488b89c5f756fc747239af006f1daf3"
+	},
+	"ch5_v_64462982c1": {
+		"path": "audio/voice/ch5/ch5_v_64462982c1.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "c608fa4db6da0e6c10c3816ad464585b882d3a2f"
+	},
+	"ch5_v_65c2c7fb3f": {
+		"path": "audio/voice/ch5/ch5_v_65c2c7fb3f.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "00ef7a4c51c9b1bf9e156c54198fa1add4029a54"
+	},
+	"ch5_v_671bd8c9a7": {
+		"path": "audio/voice/ch5/ch5_v_671bd8c9a7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "391dbf0a41d7f47b63a0b0b242d65a306b809084"
+	},
+	"ch5_v_678dda6392": {
+		"path": "audio/voice/ch5/ch5_v_678dda6392.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "7671a02a4ab9faecd0d6895f6d437d9e9110e6bf"
+	},
+	"ch5_v_6c7d3aedb1": {
+		"path": "audio/voice/ch5/ch5_v_6c7d3aedb1.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "f4e72fda26f0aeb6f7e77103913c759ee13320a5"
+	},
+	"ch5_v_6e6987d40d": {
+		"path": "audio/voice/ch5/ch5_v_6e6987d40d.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "185e8fc1d612008979e9f28713eb509108a2f259"
+	},
+	"ch5_v_7045ae29ac": {
+		"path": "audio/voice/ch5/ch5_v_7045ae29ac.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "290f12896aa9286109f3d5fc4b1b0a0bbe21ee15"
+	},
+	"ch5_v_7458ebf1a7": {
+		"path": "audio/voice/ch5/ch5_v_7458ebf1a7.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "15e26f8537f25bdabb1c047eaa559c4d3729318e"
+	},
+	"ch5_v_7561b8e317": {
+		"path": "audio/voice/ch5/ch5_v_7561b8e317.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5d3d77bdd4ef4d851fae8ac9ef2cee169ce99ed1"
+	},
+	"ch5_v_7fd54e0a71": {
+		"path": "audio/voice/ch5/ch5_v_7fd54e0a71.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "ff5d356f86333e1970cf5abd55ac927d579869bb"
+	},
+	"ch5_v_7ff6d6a9e5": {
+		"path": "audio/voice/ch5/ch5_v_7ff6d6a9e5.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "596fb55441370f0067d7f892ad92d993bbc76e8d"
+	},
+	"ch5_v_851d43a3b3": {
+		"path": "audio/voice/ch5/ch5_v_851d43a3b3.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "3cf81b7145d74cd81cb8439a6fa83aecb9f41143"
+	},
+	"ch5_v_872db3807a": {
+		"path": "audio/voice/ch5/ch5_v_872db3807a.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "a86b9cf15373e61ab3c6433ccde406c174d7655e"
+	},
+	"ch5_v_8cb153923f": {
+		"path": "audio/voice/ch5/ch5_v_8cb153923f.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "a8f131c29f818247528dfd9c190387d9079a44af"
+	},
+	"ch5_v_8e6ca76bed": {
+		"path": "audio/voice/ch5/ch5_v_8e6ca76bed.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "328796efb57cd1501a8db1bc5c9fbbd2898b0d22"
+	},
+	"ch5_v_93b739a8fb": {
+		"path": "audio/voice/ch5/ch5_v_93b739a8fb.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "fd4c12564c83365c5667cfc80bd8a7a024db00cd"
+	},
+	"ch5_v_93e1860840": {
+		"path": "audio/voice/ch5/ch5_v_93e1860840.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b6a033ca9fc905a675b5a7f2e922179da0cd4770"
+	},
+	"ch5_v_943f107714": {
+		"path": "audio/voice/ch5/ch5_v_943f107714.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "695a860880ebf10a21dae3e654fe2b3a4259733d"
+	},
+	"ch5_v_975ccb410d": {
+		"path": "audio/voice/ch5/ch5_v_975ccb410d.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "7a5f145a38ea1c60848de68e481475445a1aaf0b"
+	},
+	"ch5_v_9789e8c0c5": {
+		"path": "audio/voice/ch5/ch5_v_9789e8c0c5.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "28e8ad89d47532d7368de5f3202e921a5e4c48be"
+	},
+	"ch5_v_98a30ce3a9": {
+		"path": "audio/voice/ch5/ch5_v_98a30ce3a9.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "c42e40f82713f7025d4dd496ff56c8fb5a106afa"
+	},
+	"ch5_v_98d7f1554a": {
+		"path": "audio/voice/ch5/ch5_v_98d7f1554a.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "45eacdb12db4fe0e13d864a6e921767a85ad2d36"
+	},
+	"ch5_v_9d256c2fe4": {
+		"path": "audio/voice/ch5/ch5_v_9d256c2fe4.ogg",
+		"speaker": "pt_mara_ellis",
+		"voice": "af_river",
+		"speed": 0.96,
+		"fx": "dialogue",
+		"source_hash": "19abc8078dfc1c4f2afcafac86eda7b0bc514b67"
+	},
+	"ch5_v_9f9b34a813": {
+		"path": "audio/voice/ch5/ch5_v_9f9b34a813.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "dd55e45d573bfc9537c17da8a46a93caf6a28b21"
+	},
+	"ch5_v_a2724261c5": {
+		"path": "audio/voice/ch5/ch5_v_a2724261c5.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "5073028d0b6f8e64762999538f698b0bfb634453"
+	},
+	"ch5_v_a34295caed": {
+		"path": "audio/voice/ch5/ch5_v_a34295caed.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "913718b9c275e606363a489ab900c71e4bde5adc"
+	},
+	"ch5_v_a6fed6c3ab": {
+		"path": "audio/voice/ch5/ch5_v_a6fed6c3ab.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "9a71aa7489d40aa216b95988b2a2852edb860a32"
+	},
+	"ch5_v_abf34b599a": {
+		"path": "audio/voice/ch5/ch5_v_abf34b599a.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "5d902e99ec1f4fea516a38cc1bc4a875f36b8842"
+	},
+	"ch5_v_ace36ae65d": {
+		"path": "audio/voice/ch5/ch5_v_ace36ae65d.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "ab81ff57b4ec8c64f6e9ca04b4c6ef72afb3d24e"
+	},
+	"ch5_v_b1b7a4d3ed": {
+		"path": "audio/voice/ch5/ch5_v_b1b7a4d3ed.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "67e1d18d4b28edfbbd55129deb5952ec10a9e8ae"
+	},
+	"ch5_v_b1dddbf86c": {
+		"path": "audio/voice/ch5/ch5_v_b1dddbf86c.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5ae690dbe6f8235920b456abbbefffa5ecba3e9b"
+	},
+	"ch5_v_b5d613569e": {
+		"path": "audio/voice/ch5/ch5_v_b5d613569e.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "a25361ae45540f7bf2d6f9ab931bc99f8a98e8e5"
+	},
+	"ch5_v_b71c02f84f": {
+		"path": "audio/voice/ch5/ch5_v_b71c02f84f.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "db9b95377012dc2f18d6001e4f3717b8c6644c11"
+	},
+	"ch5_v_c640918a0f": {
+		"path": "audio/voice/ch5/ch5_v_c640918a0f.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "b7cc34f94cc5c65a381bb5898168667c8d4e09d5"
+	},
+	"ch5_v_cda2421584": {
+		"path": "audio/voice/ch5/ch5_v_cda2421584.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "6c7cbbe805357e52ccbbd61c811b79281423e7fc"
+	},
+	"ch5_v_d070f91c71": {
+		"path": "audio/voice/ch5/ch5_v_d070f91c71.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "b9103062ea38bfa4e2fb2db4f9ca3362f1f1b3d5"
+	},
+	"ch5_v_d0a93ec59b": {
+		"path": "audio/voice/ch5/ch5_v_d0a93ec59b.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "5b3003a8bafa189fd893d7c9a09f65a13da30b20"
+	},
+	"ch5_v_d2c7b386fc": {
+		"path": "audio/voice/ch5/ch5_v_d2c7b386fc.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "94f610f70a8d4e17b6d79a43e187722172975c49"
+	},
+	"ch5_v_d2e7ae9405": {
+		"path": "audio/voice/ch5/ch5_v_d2e7ae9405.ogg",
+		"speaker": "staff_facilities_tech",
+		"voice": "am_eric",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "1026126f0a04d36a1d3238c5add87213433c02fa"
+	},
+	"ch5_v_d363d9ef08": {
+		"path": "audio/voice/ch5/ch5_v_d363d9ef08.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "97f483c50f42d190c1b1bce4af2f946871ef1c73"
+	},
+	"ch5_v_d7b257e9ff": {
+		"path": "audio/voice/ch5/ch5_v_d7b257e9ff.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "51063bc902a414c43eaf7742393587522d99be6a"
+	},
+	"ch5_v_d8391c204c": {
+		"path": "audio/voice/ch5/ch5_v_d8391c204c.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7d7a2a16bb782ba3377f9c930d19f00e5279d0e6"
+	},
+	"ch5_v_dc0d516c3e": {
+		"path": "audio/voice/ch5/ch5_v_dc0d516c3e.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "b9533613840e189b8db02c384e49871b6e41be9b"
+	},
+	"ch5_v_e33778a176": {
+		"path": "audio/voice/ch5/ch5_v_e33778a176.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "37c85cc3c86d177ca2b084e7b1fd15b165694182"
+	},
+	"ch5_v_e7ca417c26": {
+		"path": "audio/voice/ch5/ch5_v_e7ca417c26.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "256fa5cf0d48282bdc3226f54b5072e61e79e2a5"
+	},
+	"ch5_v_e819ea73b7": {
+		"path": "audio/voice/ch5/ch5_v_e819ea73b7.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "e85e5fa84a82fc5e02e102031afc3379c6842a90"
+	},
+	"ch5_v_e9436f41a1": {
+		"path": "audio/voice/ch5/ch5_v_e9436f41a1.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "b45e9ff5fff5963682972c5d41293b2b55a51267"
+	},
+	"ch5_v_e966e1f938": {
+		"path": "audio/voice/ch5/ch5_v_e966e1f938.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "0491a1b77f14d101fcc24e27c830244c157e8bd7"
+	},
+	"ch5_v_e98b87c7b6": {
+		"path": "audio/voice/ch5/ch5_v_e98b87c7b6.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "7efb15f508ca7db587a01579cbefa2ac14eef752"
+	},
+	"ch5_v_ec8fcf2cfb": {
+		"path": "audio/voice/ch5/ch5_v_ec8fcf2cfb.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "9ca11868d3000813134f4aa916855540298aa2c5"
+	},
+	"ch5_v_ee9604b2d4": {
+		"path": "audio/voice/ch5/ch5_v_ee9604b2d4.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "0d0fda08f851d740acf555990d3bec37cf2d67be"
+	},
+	"ch5_v_eee536cd96": {
+		"path": "audio/voice/ch5/ch5_v_eee536cd96.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "b83a08039787dcda91a785b01c439daaa23b33ad"
+	},
+	"ch5_v_f08af33da8": {
+		"path": "audio/voice/ch5/ch5_v_f08af33da8.ogg",
+		"speaker": "analyst",
+		"voice": "af_nova",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "10207ad299a9d2b3cb1b1dc499e30ab972f150a0"
+	},
+	"ch5_v_f0f1027813": {
+		"path": "audio/voice/ch5/ch5_v_f0f1027813.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "563a8c41c0dd7f325907fa4eff90fc2fd5f68493"
+	},
+	"ch5_v_f3a913fa98": {
+		"path": "audio/voice/ch5/ch5_v_f3a913fa98.ogg",
+		"speaker": "narrator",
+		"voice": "en_US-ljspeech-high",
+		"speed": 0.92,
+		"fx": "narration",
+		"source_hash": "ed154af6a49010155774a5b53fe725d3ddac0b91"
+	},
+	"ch5_v_f450e8717f": {
+		"path": "audio/voice/ch5/ch5_v_f450e8717f.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "0c99d021f54810800e8d8e5737581514b6f0b58d"
+	},
+	"ch5_v_fc420e7bcb": {
+		"path": "audio/voice/ch5/ch5_v_fc420e7bcb.ogg",
+		"speaker": "player",
+		"voice": "am_liam",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "512682a542cecc788544ba618f6579a2dae09c31"
+	},
+	"ch5_v_fe07666b79": {
+		"path": "audio/voice/ch5/ch5_v_fe07666b79.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "69c0b7001c74e4ac06fda980dc590c748e5799a8"
+	},
+	"ch5_v_ff594228f5": {
+		"path": "audio/voice/ch5/ch5_v_ff594228f5.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "3b4f3f1ed6cdc88e4246db25c8434222e9deedad"
+	},
 	"walla_ns_001": {
 		"path": "audio/voice/walla/walla_ns_001.ogg",
 		"speaker": "walla_staff_a",

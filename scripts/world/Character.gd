@@ -207,7 +207,8 @@ func _talk_to_staff() -> void:
 	for access_id: String in staff.get("grants_access", []):
 		if TrustManager.grant_access(access_id, character_id):
 			EventBus.notification_requested.emit("Access granted: " + access_id.trim_prefix("access_").replace("_", " "))
-	EventBus.ui_panel_requested.emit("info", {"title": staff.get("name", character_id), "body": body})
+	EventBus.ui_panel_requested.emit("info", {"title": staff.get("name", character_id), "body": body,
+			"voice_speaker": character_id})
 
 
 func _approach_patient() -> void:

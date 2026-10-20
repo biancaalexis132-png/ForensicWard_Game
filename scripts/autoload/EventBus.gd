@@ -182,6 +182,10 @@ signal story_beat_fired(beat_id: String)
 signal shift_signout_requested()
 @warning_ignore("unused_signal")
 signal chapter_completed(chapter_id: String)
+## Main's presentation state changed: TITLE, PROLOGUE, GAMEPLAY, MILESTONE,
+## CHAPTER_RECAP or CHAPTER_COMPLETE (see Main.get_presentation_state()).
+@warning_ignore("unused_signal")
+signal presentation_state_changed(state: String)
 ## ChapterDirector moved to a chapter (a new run, a loaded save or a
 ## start_chapter story action). Earlier chapters keep their state.
 @warning_ignore("unused_signal")

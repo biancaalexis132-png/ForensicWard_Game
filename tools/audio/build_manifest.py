@@ -31,6 +31,9 @@ AUDIO_ROOTS = ("audio", "assets/audio", "assets/creative_references/Music/Ready_
 VOICE_LICENSE = ("Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); "
                  "phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not "
                  "distributed with the game. Stock synthetic voice, not cloned from a real person.")
+NARRATOR_LICENSE = ("LJ Speech dataset: public domain (upstream MODEL_CARD); Piper vits-piper-en_US-ljspeech-high "
+                    "model source attribution retained; Sherpa-ONNX runtime Apache-2.0. The owner-approved recap "
+                    "narrator voice; no voice cloning.")
 REQUIRED = ("file", "ids", "category", "source", "license", "location", "duration_seconds",
             "integration_status", "review_status")
 
@@ -118,11 +121,14 @@ def build():
                 problems.append(f"{relative}: stale; text or voice profile changed (run generate_voice.py)")
             entry.update({
                 "ids": [line_id] + by_line.get(line_id, []),
-                "category": "walla_source" if chapter == "walla" else ("intercom" if profile["fx"] == "intercom" else "dialogue"),
+                "category": "walla_source" if chapter == "walla" else ("intercom" if profile["fx"] == "intercom" else
+                            "narration" if profile.get("engine") == "piper" else "dialogue"),
                 "speaker": line["speaker"],
                 "text": line["text"],
-                "source": f"Kokoro TTS voice '{profile['voice']}' speed {profile['speed']}, fx '{profile['fx']}' (tools/audio/generate_voice.py)",
-                "license": VOICE_LICENSE,
+                "source": (f"Piper '{profile['voice']}' via Sherpa-ONNX (owner-approved narrator voice) speed {profile['speed']}, fx '{profile['fx']}' (tools/audio/generate_voice.py)"
+                           if profile.get("engine") == "piper" else
+                           f"Kokoro TTS voice '{profile['voice']}' speed {profile['speed']}, fx '{profile['fx']}' (tools/audio/generate_voice.py)"),
+                "license": NARRATOR_LICENSE if profile.get("engine") == "piper" else VOICE_LICENSE,
                 "location": entry.get("location") or scene_locations.get(line_id, ""),
             })
             integrated = True

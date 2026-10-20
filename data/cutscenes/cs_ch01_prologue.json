@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "cutscene_id": "cs_ch01_prologue",
+  "chapter_id": "ch1",
+  "source_scene_id": "CH01_SCENE_01_NEW_BADGE",
+  "source": "New Game prologue: five plates from the review-only Chapter 1 pilot (assets/cutscenes/ch01_pilot, unchanged; the unapproved Naomi likeness and the records shelf are left out) with narrator lines from data/narrative/prologue_ch1.json. Arrival only: it does not repeat the Chapter 1 recap or show Ward Zero. Review-only until the owner approves the plates and the narration; then set mode campaign, approved true and trigger new_game, and add it to OWNER_APPROVED_CAMPAIGN in tests/qa/test_cutscenes.py.",
+  "mode": "review_only",
+  "approved": false,
+  "trigger": {
+    "kind": "manual_preview"
+  },
+  "fallback_action": "restore_world",
+  "music": {
+    "cue": "mus_waiting_room",
+    "ambience": "duck",
+    "ambience_db": -8.0,
+    "fade": 2.0
+  },
+  "panels": [
+    {
+      "id": "p01_arrival",
+      "duration_seconds": 6.0,
+      "transition": "fade_black",
+      "transition_seconds": 1.5,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/ch01_pilot/p01_staff_entry.png",
+          "parallax": 1.0
+        },
+        {
+          "texture": "res://assets/cutscenes/ch01_pilot/glaze.png",
+          "parallax": 1.8
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.0,
+        "zoom_to": 1.03,
+        "pan_from": [
+          0.0,
+          0.0
+        ],
+        "pan_to": [
+          -0.006,
+          0.0
+        ]
+      },
+      "caption_ref": "institution.name",
+      "line_id": "ch1_pro_01_arrival"
+    },
+    {
+      "id": "p02_badge",
+      "duration_seconds": 6.0,
+      "transition": "dissolve",
+      "transition_seconds": 1.5,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/ch01_pilot/p02_badge_door.png",
+          "parallax": 1.0
+        },
+        {
+          "texture": "res://assets/cutscenes/ch01_pilot/glaze.png",
+          "parallax": 1.8
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.03,
+        "zoom_to": 1.0,
+        "pan_from": [
+          0.006,
+          0.0
+        ],
+        "pan_to": [
+          0.0,
+          0.0
+        ]
+      },
+      "caption_ref": null,
+      "line_id": "ch1_pro_02_badge"
+    },
+    {
+      "id": "p03_desk",
+      "duration_seconds": 6.0,
+      "transition": "dissolve",
+      "transition_seconds": 1.5,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/ch01_pilot/p03_office_desk.png",
+          "parallax": 1.0
+        },
+        {
+          "texture": "res://assets/cutscenes/ch01_pilot/glaze.png",
+          "parallax": 1.8
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.0,
+        "zoom_to": 1.03,
+        "pan_from": [
+          0.0,
+          0.004
+        ],
+        "pan_to": [
+          0.0,
+          -0.004
+        ]
+      },
+      "caption_ref": null,
+      "line_id": "ch1_pro_03_desk"
+    },
+    {
+      "id": "p04_corridor",
+      "duration_seconds": 6.0,
+      "transition": "dissolve",
+      "transition_seconds": 1.5,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/ch01_pilot/p04_corridor.png",
+          "parallax": 1.0
+        },
+        {
+          "texture": "res://assets/cutscenes/ch01_pilot/glaze.png",
+          "parallax": 1.8
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.03,
+        "zoom_to": 1.0,
+        "pan_from": [
+          -0.006,
+          0.0
+        ],
+        "pan_to": [
+          0.006,
+          0.0
+        ]
+      },
+      "caption_ref": null,
+      "line_id": "ch1_pro_04_corridor"
+    },
+    {
+      "id": "p05_start",
+      "duration_seconds": 6.0,
+      "transition": "dissolve",
+      "transition_seconds": 1.5,
+      "frame": "inset",
+      "layers": [
+        {
+          "texture": "res://assets/cutscenes/ch01_pilot/p07_corridor_return.png",
+          "parallax": 1.0
+        },
+        {
+          "texture": "res://assets/cutscenes/ch01_pilot/glaze.png",
+          "parallax": 1.8
+        }
+      ],
+      "motion": {
+        "zoom_from": 1.0,
+        "zoom_to": 1.04,
+        "pan_from": [
+          0.0,
+          0.0
+        ],
+        "pan_to": [
+          0.0,
+          0.0
+        ]
+      },
+      "caption_ref": "chapter.ch1.title",
+      "line_id": "ch1_pro_05_start"
+    }
+  ]
+}

@@ -13,13 +13,18 @@ Setup (once):
     mkdir -p tools/audio/models && cd tools/audio/models
     curl -LO https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
     curl -LO https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
+    # Narrator profile ("engine": "piper"): the owner-approved recap voice.
+    curl -LO https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-ljspeech-high.tar.bz2
+    tar xjf vits-piper-en_US-ljspeech-high.tar.bz2   # model sha256 fea8faae...e82e33
 
 Usage, from the repository root:
     .venv-audio/bin/python tools/audio/generate_voice.py               # only new or changed lines
     .venv-audio/bin/python tools/audio/generate_voice.py --force       # everything
     .venv-audio/bin/python tools/audio/generate_voice.py ch1_b2_bennett_001
+    .venv-audio/bin/python tools/audio/generate_voice.py --jobs 4       # parallel workers
 """
 import argparse
+from concurrent.futures import ProcessPoolExecutor
 import hashlib
 import json
 import os
@@ -107,22 +112,61 @@ def fx_intercom(audio, rng):
     return fx.fade(wet, 0.0, 0.6)
 
 
-FX_CHAINS = {"dialogue": fx_dialogue, "intercom": fx_intercom}
+def fx_narration(audio, rng):
+    """The approved recap narration was loudness-normalised to about -18 LUFS; match its level."""
+    audio = fx.butter(audio, "highpass", 60, order=2)
+    return fx.fade(level_dialogue(audio, rms_db=-19.0, peak_db=-2.0), 0.01, 0.05)
 
 
-def synthesize(kokoro, line, profile):
-    samples, rate = kokoro.create(line["text"], voice=profile["voice"], speed=profile["speed"], lang=profile["lang"])
+FX_CHAINS = {"dialogue": fx_dialogue, "intercom": fx_intercom, "narration": fx_narration}
+PIPER_DIR = "vits-piper-en_US-ljspeech-high"
+_engines = {}
+
+
+def _engine(name, model_dir):
+    """Loads each TTS engine once per process."""
+    if name not in _engines:
+        if name == "piper":
+            import sherpa_onnx
+            base = model_dir / PIPER_DIR
+            config = sherpa_onnx.OfflineTtsConfig(model=sherpa_onnx.OfflineTtsModelConfig(
+                vits=sherpa_onnx.OfflineTtsVitsModelConfig(model=str(base / "en_US-ljspeech-high.onnx"),
+                    tokens=str(base / "tokens.txt"), data_dir=str(base / "espeak-ng-data"),
+                    noise_scale=0.667, noise_scale_w=0.8, length_scale=1.0),
+                num_threads=1))
+            _engines[name] = sherpa_onnx.OfflineTts(config)
+        else:
+            from kokoro_onnx import Kokoro  # Imported late so --help works without the model.
+            _engines[name] = Kokoro(str(model_dir / "kokoro-v1.0.onnx"), str(model_dir / "voices-v1.0.bin"))
+    return _engines[name]
+
+
+def synthesize(model_dir, line, profile):
+    if profile.get("engine") == "piper":
+        generated = _engine("piper", model_dir).generate(line["text"], sid=0, speed=profile["speed"])
+        samples, rate = generated.samples, generated.sample_rate
+    else:
+        samples, rate = _engine("kokoro", model_dir).create(
+                line["text"], voice=profile["voice"], speed=profile["speed"], lang=profile["lang"])
     audio = signal.resample_poly(np.asarray(samples, dtype=np.float64), SR, rate)
     audio = trim_silence(audio)
     seed = int(hashlib.sha1(line["id"].encode()).hexdigest()[:8], 16)
     return FX_CHAINS[profile["fx"]](audio, np.random.default_rng(seed))
 
 
+def _render(job):
+    model_dir, line, profile, relative = job
+    fx.write_ogg(synthesize(model_dir, line, profile), relative, quality=5)
+    return True
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("line_ids", nargs="*", help="only these line IDs (default: all new or changed lines)")
     parser.add_argument("--force", action="store_true", help="regenerate even if text and profile are unchanged")
-    parser.add_argument("--model-dir", type=Path, default=Path(os.environ.get("KOKORO_MODEL_DIR", DEFAULT_MODEL_DIR)))
+    parser.add_argument("--model-dir", type=Path, default=Path(os.environ.get("KOKORO_MODEL_DIR", DEFAULT_MODEL_DIR)),
+                        help="folder holding the Kokoro files and the Piper narrator folder")
+    parser.add_argument("--jobs", type=int, default=1, help="parallel synthesis processes")
     args = parser.parse_args()
 
     profiles = load_json(PROFILES_PATH)["profiles"]
@@ -133,9 +177,7 @@ def main():
     if unknown:
         parser.error("line IDs not found in data/narrative: " + ", ".join(sorted(unknown)))
 
-    from kokoro_onnx import Kokoro  # Imported late so --help works without the model.
-    kokoro = Kokoro(str(args.model_dir / "kokoro-v1.0.onnx"), str(args.model_dir / "voices-v1.0.bin"))
-
+    jobs = []
     for chapter, line in lines:
         if args.line_ids and line["id"] not in args.line_ids:
             continue
@@ -146,12 +188,14 @@ def main():
         relative = f"audio/voice/{chapter}/{line['id']}.ogg"
         if not args.force and index.get(line["id"], {}).get("source_hash") == digest and (ROOT / relative).exists():
             continue
-        audio = synthesize(kokoro, line, profile)
-        fx.write_ogg(audio, relative, quality=5)
-        index[line["id"]] = {
-            "path": relative, "speaker": line["speaker"], "voice": profile["voice"],
-            "speed": profile["speed"], "fx": profile["fx"], "source_hash": digest,
-        }
+        jobs.append((args.model_dir, line, profile, relative))
+
+    with ProcessPoolExecutor(max_workers=max(1, args.jobs)) as pool:
+        for (_, line, profile, relative), _done in zip(jobs, pool.map(_render, jobs)):
+            index[line["id"]] = {
+                "path": relative, "speaker": line["speaker"], "voice": profile["voice"],
+                "speed": profile["speed"], "fx": profile["fx"], "source_hash": line_hash(line, profile),
+            }
 
     for stale in sorted(set(index) - known_ids):
         print(f"warning: {stale} is no longer in data/narrative; delete {index[stale]['path']} if unused")
