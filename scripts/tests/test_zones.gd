@@ -175,7 +175,9 @@ func test_ten_lift_round_trips_free_each_level_and_keep_memory_flat() -> void:
 	var last: Dictionary = _zones().sample_performance()
 	var growth: float = last["static_memory_bytes"] - first["static_memory_bytes"]
 	check(growth < MEMORY_TOLERANCE_BYTES, "static memory grew %.2f MB over nine round trips" % (growth / 1048576.0))
-	check_eq(last["object_count"], first["object_count"], "no objects left behind by nine round trips")
+	# Fewer is fine: voice clips from earlier tests can finish and free during the loop.
+	check(last["object_count"] <= first["object_count"],
+			"no objects left behind by nine round trips (first %d, last %d)" % [first["object_count"], last["object_count"]])
 
 
 func test_every_fade_arrival_stands_on_a_floor() -> void:
