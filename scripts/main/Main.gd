@@ -182,6 +182,10 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 			_ehr.open(data)
 		EvidenceBoard.PANEL_ID:
 			_evidence.open(data)
+		CaseJournalScreen.PANEL_ID:
+			_open_optional_panel("CaseJournalScreen", "res://scenes/ui/CaseJournalScreen.tscn", data)
+		MapScreen.PANEL_ID:
+			_open_optional_panel("MapScreen", "res://scenes/ui/MapScreen.tscn", data)
 		CutsceneDirector.PANEL_ID:
 			var recap_data: Dictionary = data.duplicate()
 			var chapter: ChapterDirector = $ChapterDirector
@@ -208,6 +212,16 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 			push_warning("Main: unknown panel '%s'" % panel_id)
 			return
 	_update_input_mode()
+
+
+func _open_optional_panel(node_name: String, scene_path: String, data: Dictionary) -> void:
+	var panel: CanvasLayer = get_node_or_null(NodePath(node_name)) as CanvasLayer
+	if panel == null:
+		var scene: PackedScene = load(scene_path) as PackedScene
+		panel = scene.instantiate() as CanvasLayer
+		add_child(panel)
+		_panels.push_front(panel)
+	panel.call("open", data)
 
 
 func get_presentation_state() -> String:

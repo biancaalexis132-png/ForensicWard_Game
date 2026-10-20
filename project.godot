@@ -32,6 +32,7 @@ WorldStateManager="*res://scripts/autoload/WorldStateManager.gd"
 GameState="*res://scripts/autoload/GameState.gd"
 PharmacologyEngine="*res://systems/pharmacology/PharmacologyEngine.gd"
 AudioDirector="*res://systems/audio/AudioDirector.gd"
+CaseJournal="*res://scripts/narrative/CaseJournal.gd"
 
 [display]
 
