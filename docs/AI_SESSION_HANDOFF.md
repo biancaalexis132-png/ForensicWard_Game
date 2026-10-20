@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code player experience overhaul — 2026-10-20
+
+- Stacked draft PRs to main: #102 `claude/player-experience-overhaul` `1168f49`, #105 `-dialogue` `837b4ff`, #106 `-ehr-orders` `3abc0dc`, #107 `-objectives` `1e86590`, #108 `-title-prologue` `a20e8f4`. Full headless QA: B all executed checks passed: game 308/0, audio 1612/0, QA 19/0/0, GLB 168/0, Chapter 1 sequence done; stack tip all executed checks passed: game 331/0, audio 1622/0, QA 19/0/0, GLB 168/0, Chapter 1 sequence done (705 s). Mac not run. Next: Bi reviews in order, gives the approvals listed in `docs/handoffs/2026-10-20_claude_player_experience.md`, and runs `docs/MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md`. Last updated 2026-10-20.
+
 ## Claude Code owner approvals and content gaps — 2026-10-19
 
 - `claude/owner-approvals-content-gaps` code `04fdb8c` (draft PR to main). Approvals recorded (cast, narrative, four clinical items). Chapter 2 personal message and fade-out, plus Chapter 4 Scenes 04 and 06 (both optional). Full QA exit 0: game 293/0. Mac not run. Cast hair/clothing v02 is on `claude/cast-hair-clothing`. Next: Bi merges both PRs; executive producer reviews the Chapter 4 Mara wording; Chapter 3 Mara follow-up needs authored lines. See `docs/handoffs/2026-10-19_claude_approvals_content_gaps.md`.
