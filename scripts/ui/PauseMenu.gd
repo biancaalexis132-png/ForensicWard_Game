@@ -44,7 +44,11 @@ const VOLUMES: Dictionary = {
 @onready var _reduce_startle: CheckBox = $Root/Panel/Margin/VBox/Accessibility/ReduceStartlingAudio
 
 var is_open: bool = false
+## True while opened from the title screen: settings only, drawn above the title.
+var from_title: bool = false
 var _subtitle_size: HSlider
+## Rows that only make sense inside a running game.
+const IN_GAME_ROWS: Array[String] = ["Save", "Load", "ReplayRecap", "Quit"]
 
 
 func _ready() -> void:
@@ -108,7 +112,21 @@ func _ready() -> void:
 		AudioDirector.set_setting("reduce_startling_audio", pressed))
 
 
+## Opens the settings over the title screen: no save, load, replay or quit,
+## and closing it returns to the title with the game still paused.
+func open_settings_from_title() -> void:
+	from_title = true
+	layer = 40
+	_resume_button.text = "Back"
+	_set_in_game_rows(false)
+	open()
+
+
 func open() -> void:
+	if not from_title:
+		layer = 20
+		_resume_button.text = "Resume"
+		_set_in_game_rows(true)
 	for node_name: String in TOGGLES:
 		(_toggles.get_node(node_name) as CheckBox).set_pressed_no_signal(Settings.get_value(TOGGLES[node_name]))
 	for node_name: String in EXTRA_TOGGLES:
@@ -136,8 +154,17 @@ func close() -> void:
 		return
 	visible = false
 	is_open = false
-	get_tree().paused = false
+	# Back to the title: it keeps the game paused until New Game or Continue.
+	get_tree().paused = from_title
+	from_title = false
 	closed.emit()
+
+
+func _set_in_game_rows(shown: bool) -> void:
+	for row: String in IN_GAME_ROWS:
+		var node: Control = $Root/Panel/Margin/VBox.get_node_or_null(row)
+		if node != null:
+			node.visible = shown
 
 
 func _unhandled_input(event: InputEvent) -> void:

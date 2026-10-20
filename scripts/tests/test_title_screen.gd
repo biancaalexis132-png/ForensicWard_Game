@@ -1,6 +1,7 @@
 extends TestCase
 ## Title screen: hidden in tests and headless runs, New Game and Continue hand
-## control to the game, and opening it writes no game state.
+## control to the game, and opening it writes no game state. Settings, the
+## preload and the prologue are covered in test_presentation.gd.
 
 const MAIN_SCENE: String = "res://scenes/main/Main.tscn"
 
@@ -48,6 +49,8 @@ func test_continue_needs_a_save_and_loads_it() -> void:
 	title.close()
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "a save is written")
 	title.open()
+	while title.is_loading():  # The buttons wait for the short, bounded preload.
+		await runner.get_tree().process_frame
 	check(not title._continue_button.disabled, "Continue is on with a save")
 	title.continue_game()
 	check(not title.is_open, "Continue loads the save and closes the title")
