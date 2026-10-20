@@ -214,6 +214,9 @@ func start_chapter(chapter_id: String) -> bool:
 ## Signs out at the handover board. Day: hand over and start the night shift.
 ## Night: complete the chapter. Returns the summary text shown to the player.
 func sign_out() -> String:
+	if not ContinuingPractice.can_close_shift():
+		EventBus.notification_requested.emit("Account for Continuing Practice follow-up before signing out.")
+		return ""
 	var story: Dictionary = _story()
 	if not story.has("sign_out"):
 		push_warning("ChapterDirector: chapter '%s' has no sign-out" % _chapter_id)
@@ -462,6 +465,7 @@ func _on_story_option_selected(interaction_id: String, option_id: String) -> voi
 			if option["id"] != option_id:
 				continue
 			_active_interaction = ""
+			EventBus.story_choice_committed.emit(_chapter_id, interaction_id, option_id)
 			for access_id: String in option.get("grants_access", []):
 				TrustManager.grant_access(access_id, "story:" + interaction_id)
 			for access_id: String in option.get("revokes_access", []):

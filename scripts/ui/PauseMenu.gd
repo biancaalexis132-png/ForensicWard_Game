@@ -48,7 +48,7 @@ var is_open: bool = false
 var from_title: bool = false
 var _subtitle_size: HSlider
 ## Rows that only make sense inside a running game.
-const IN_GAME_ROWS: Array[String] = ["Save", "Load", "ReplayRecap", "CaseJournal", "Directory", "Quit"]
+const IN_GAME_ROWS: Array[String] = ["Save", "Load", "ReplayRecap", "CaseJournal", "Directory", "Protagonist", "ContinuingPractice", "Quit"]
 
 
 func _ready() -> void:
@@ -71,6 +71,14 @@ func _ready() -> void:
 		button.pressed.connect(func() -> void:
 			close()
 			EventBus.ui_panel_requested.emit(panel_id, {}))
+	for route: Array in [["Protagonist", "Your psychiatrist", "protagonist"], ["ContinuingPractice", "Continuing Practice", "continuing_practice"]]:
+		var button: Button = Button.new()
+		button.name = route[0]
+		button.text = route[1]
+		_resume_button.get_parent().add_child(button)
+		button.pressed.connect(func() -> void:
+			close()
+			EventBus.ui_panel_requested.emit(route[2], {}))
 	# The fiction disclaimer lives here and on the title screen, not inside the EHR.
 	var disclaimer: Label = Label.new()
 	disclaimer.name = "Disclaimer"

@@ -1,0 +1,435 @@
+{
+	"schema_version": 1,
+	"id": "cp_001",
+	"title": "The Follow-Up Visit — Schizophrenia and Longitudinal Recovery",
+	"clinical_review_status": "PENDING",
+	"patient": {
+		"id": "pt_cp001_jordan_vale",
+		"name": "Jordan Vale",
+		"clinical_review_status": "PENDING",
+		"continuity": "Same patient as Chapter 1 Scene 07; owner confirmed 2026-10-20. No earlier clinical findings or encounter are inferred.",
+		"schema_version": "0.1",
+		"age": 36,
+		"fictional": true,
+		"legal_status": "Not established in the available records",
+		"arrival_shift": 1,
+		"presentation": {
+			"complaints": [],
+			"observations": []
+		},
+		"differential_tags": [],
+		"initial_rapport": 0,
+		"current_location": "clinical_unit"
+	},
+	"no_automatic_medical_effects": true,
+	"encounters": [
+		{
+			"id": "cp001_encounter_1",
+			"title": "Establishing Trust",
+			"clinical_review_status": "PENDING",
+			"requires": [
+				"interview",
+				"signed_note"
+			],
+			"review_text": "**Where:** Nursing station → approved interview room. **Purpose:** Introduce the follow-up and invite Jordan to set priorities. Establish separately their present account, nursing reports and the historical chart diagnosis.\n\n### Scene and performance\nThe ward continues ordinary work without horror music. Give Jordan conversational pauses and agency, with no fixed facial-expression shorthand for mental illness. The player approaches respectfully, with the option to review existing records before the encounter. No unapproved patient movement or locked-room crossing.\n\n### Draft full conversation\n\n**NAOMI (proposed):** Jordan asked whether today's visit would leave time to talk about sleep. The nursing notes are available; I don't want you to assume I know the cause.\n\n**PLAYER:** Thank you. I will review the note and hear Jordan's account.\n\n**PLAYER:** Hello, Jordan. I'm the psychiatrist following up today. What would be most useful for us to discuss?\n\n**JORDAN:** Sleep. And the way everyone asks if I take my medication as though that answers everything.\n\n**PLAYER:** I hear that. Tell me about the nights you've been having.\n\n**JORDAN:** I fall asleep, then wake up. Some nights it's noise. Other nights I just lie there. I'm tired when the art group starts.\n\n**PLAYER:** How has that affected the things you want to do?\n\n**JORDAN:** Sketching helps. I'm still trying to go. I just want enough energy to be there.\n\n**PLAYER:** I also want to understand your mood, anxiety, and how you've been feeling overall, not only the sleep problem. Would it be alright to ask about those?\n\n**JORDAN:** Yes. Just tell me why you're asking instead of writing an answer before I give one.\n\n**PLAYER:** Fair. Your chart lists schizophrenia, but I won't assume it explains everything you're describing.\n\n### Meaningful player branches\n\n**A — Lead with patient's goal.** Ask about sleep, function and preferred priorities; maintain shared agenda.\n**B — Begin by comparing record sources.** Read the nursing summary first, explicitly separate it from what Jordan reports; then ask their perspective.\n**C — Discuss historical diagnosis respectfully.** Explain that schizophrenia is listed in the chart; invite correction and concern without implying current symptoms.\n**D — Jordan defers a topic.** Acknowledge the boundary, note `NOT_ASSESSED`, offer to revisit later. No penalty or hidden information gate.\n\n### Documentable exit / state\n\nComplete a source-attributed history note, including reported sleep and impact, and pending chart/medication verification. Do not automatically populate MSE, risk, anxiety/depression screen or psychotic symptom negatives. Unresolved medically relevant questions should be assigned for follow-up or supported escalation. Introduce the next optional encounter.\n\n### QA and clinical review gates\nNo new clinical facts may appear solely because a branch is selected. Replay must not duplicate notes/events. Dialogue skips and scene unloads must leave a valid resume point; the original patient report and nursing chart are not marked independently verified merely because they agree. The reviewer must approve each MSE/safety prompt and any medical-related responses.\n\n\n---",
+			"dialogue": {
+				"schema_version": "0.1",
+				"patient_id": "pt_cp001_jordan_vale",
+				"states": [
+					{
+						"id": "cp001_e1_s0",
+						"choices": [
+							{
+								"id": "cp001_e1_q0",
+								"label": "Hello, Jordan. I'm the psychiatrist following up today. What would be most useful for us to discuss?",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "Sleep. And the way everyone asks if I take my medication as though that answers everything.",
+								"next": "cp001_e1_s1"
+							}
+						]
+					},
+					{
+						"id": "cp001_e1_s1",
+						"choices": [
+							{
+								"id": "cp001_e1_q1",
+								"label": "I hear that. Tell me about the nights you've been having.",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "I fall asleep, then wake up. Some nights it's noise. Other nights I just lie there. I'm tired when the art group starts.",
+								"next": "cp001_e1_s2"
+							}
+						]
+					},
+					{
+						"id": "cp001_e1_s2",
+						"choices": [
+							{
+								"id": "cp001_e1_q2",
+								"label": "How has that affected the things you want to do?",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "Sketching helps. I'm still trying to go. I just want enough energy to be there.",
+								"next": "cp001_e1_s3"
+							}
+						]
+					},
+					{
+						"id": "cp001_e1_s3",
+						"choices": [
+							{
+								"id": "cp001_e1_q3",
+								"label": "I also want to understand your mood, anxiety, and how you've been feeling overall, not only the sleep problem. Would it be alright to ask about those?",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "Yes. Just tell me why you're asking instead of writing an answer before I give one.",
+								"next": "cp001_e1_s4"
+							}
+						]
+					},
+					{
+						"id": "cp001_e1_s4",
+						"choices": []
+					}
+				],
+				"fallback_response": "Please use the authored conversation choices.",
+				"clinical_review_status": "PENDING"
+			}
+		},
+		{
+			"id": "cp001_encounter_2",
+			"title": "A Difficult Morning",
+			"clinical_review_status": "PENDING",
+			"requires": [
+				"interview",
+				"signed_note"
+			],
+			"review_text": "**Where:** Nursing station → interview room. **Purpose:** Investigate attendance without treating it as nonadherence, deterioration or intentional disengagement.\n\n### Scene and performance\nThe ward continues ordinary work without horror music. Give Jordan conversational pauses and agency, with no fixed facial-expression shorthand for mental illness. The player approaches respectfully, with the option to review existing records before the encounter. No unapproved patient movement or locked-room crossing.\n\n### Draft full conversation\n\n**NAOMI:** Jordan wasn't at art group this morning. That is what the activity log says. I haven't drawn a conclusion about why.\n\n**PLAYER:** Thanks. I'll review the entry and ask Jordan.\n\n**PLAYER:** I saw that you missed art group. Would you be comfortable telling me what happened?\n\n**JORDAN:** I slept badly. By the time I got up, it was almost finished. People keep saying I refused. I didn't refuse art.\n\n**PLAYER:** So the attendance note doesn't capture your reason. I'd like to make sure your explanation is represented accurately.\n\n**JORDAN:** That's all I wanted.\n\n**PLAYER:** How have your mood and worries been since we last spoke?\n\n**JORDAN:** I was worried people would think I was slipping backward. I know that's different from them actually saying it.\n\n**PLAYER:** We can keep what you experienced, what someone observed, and what remains uncertain separate.\n\n**JORDAN:** That would be a start.\n\n### Meaningful player branches\n\n**A — Validate Jordan's perspective.** Reflect without deciding causality.\n**B — Review the chart log.** Obtain timestamp and author; mark source as staff report.\n**C — Explore alternative contributors.** Ask about sleep, environmental disturbances, physical symptoms and the need for an approved medication review, without declaring a cause.\n**D — Ask about worsening psychosis.** Offer a respectful, optional assessment prompt; any response must be explicitly authored and clinically reviewed, not improvised.\n\n### Documentable exit / state\n\nDocument the observed attendance status and patient-explained fatigue separately. Update the symptom timeline and follow-up task. Do not auto-label relapse or risk; inability to access a record is a pending task, not a normal result.\n\n### QA and clinical review gates\nNo new clinical facts may appear solely because a branch is selected. Replay must not duplicate notes/events. Dialogue skips and scene unloads must leave a valid resume point; the original patient report and nursing chart are not marked independently verified merely because they agree. The reviewer must approve each MSE/safety prompt and any medical-related responses.\n\n\n---",
+			"dialogue": {
+				"schema_version": "0.1",
+				"patient_id": "pt_cp001_jordan_vale",
+				"states": [
+					{
+						"id": "cp001_e2_s0",
+						"choices": [
+							{
+								"id": "cp001_e2_q0",
+								"label": "I saw that you missed art group. Would you be comfortable telling me what happened?",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "I slept badly. By the time I got up, it was almost finished. People keep saying I refused. I didn't refuse art.",
+								"next": "cp001_e2_s1"
+							}
+						]
+					},
+					{
+						"id": "cp001_e2_s1",
+						"choices": [
+							{
+								"id": "cp001_e2_q1",
+								"label": "So the attendance note doesn't capture your reason. I'd like to make sure your explanation is represented accurately.",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "That's all I wanted.",
+								"next": "cp001_e2_s2"
+							}
+						]
+					},
+					{
+						"id": "cp001_e2_s2",
+						"choices": [
+							{
+								"id": "cp001_e2_q2",
+								"label": "How have your mood and worries been since we last spoke?",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "I was worried people would think I was slipping backward. I know that's different from them actually saying it.",
+								"next": "cp001_e2_s3"
+							}
+						]
+					},
+					{
+						"id": "cp001_e2_s3",
+						"choices": [
+							{
+								"id": "cp001_e2_q3",
+								"label": "We can keep what you experienced, what someone observed, and what remains uncertain separate.",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "That would be a start.",
+								"next": "cp001_e2_s4"
+							}
+						]
+					},
+					{
+						"id": "cp001_e2_s4",
+						"choices": []
+					}
+				],
+				"fallback_response": "Please use the authored conversation choices.",
+				"clinical_review_status": "PENDING"
+			}
+		},
+		{
+			"id": "cp001_encounter_3",
+			"title": "The Treatment Conversation",
+			"clinical_review_status": "PENDING",
+			"requires": [
+				"interview",
+				"signed_note"
+			],
+			"review_text": "**Where:** Scheduled interview room. **Purpose:** Explore shared decision-making within the limits of unavailable medication and legal information.\n\n### Scene and performance\nThe ward continues ordinary work without horror music. Give Jordan conversational pauses and agency, with no fixed facial-expression shorthand for mental illness. The player approaches respectfully, with the option to review existing records before the encounter. No unapproved patient movement or locked-room crossing.\n\n### Draft full conversation\n\n**PLAYER:** Last time you wanted to understand what options you have. Is that still something you'd like to focus on?\n\n**JORDAN:** Yes. I know the chart says schizophrenia. I also get anxious about appointments, and sometimes I feel low. I don't want all of that put under one word.\n\n**PLAYER:** We should look at those experiences individually and over time. I won't assume what causes them.\n\n**JORDAN:** Sometimes I worry that asking questions makes me seem difficult.\n\n**PLAYER:** Asking questions is part of participating in your care. What do you most want to understand?\n\n**JORDAN:** What I'm taking, why, and whether anything could be contributing to the grogginess. I don't want changes made without an explanation.\n\n**PLAYER:** That's reasonable to raise. The medication record still needs to be verified before we discuss any specific change.\n\n**JORDAN:** Thank you. Also, my sister Sam might know how things used to be. I need to think about whether I want you to contact her.\n\n**PLAYER:** We can leave that decision with you for now, and discuss what information would be shared before anything happens.\n\n### Meaningful player branches\n\n**A — Prioritize reconciliation.** Create a request for the authorized medication/MAR record; do not show speculative items.\n**B — Map mood/anxiety symptoms.** Ask about onset, duration and interference using reviewed follow-up prompts; do not certify a comorbid diagnosis.\n**C — Discuss possible collateral.** Ask whether Jordan authorizes contact and the limits. No call if consent not confirmed and authorization appropriate.\n**D — Jordan declines collateral.** Respect decision; continue care with available information and document that sources are limited.\n\n### Documentable exit / state\n\nPreserve a source-separated preference note, unanswered questions and pending medication review. A treatment plan may be proposed for clinician review but no clinical order is committed, no unapproved treatment effect applied and no family information disclosed.\n\n### QA and clinical review gates\nNo new clinical facts may appear solely because a branch is selected. Replay must not duplicate notes/events. Dialogue skips and scene unloads must leave a valid resume point; the original patient report and nursing chart are not marked independently verified merely because they agree. The reviewer must approve each MSE/safety prompt and any medical-related responses.\n\n\n---",
+			"dialogue": {
+				"schema_version": "0.1",
+				"patient_id": "pt_cp001_jordan_vale",
+				"states": [
+					{
+						"id": "cp001_e3_s0",
+						"choices": [
+							{
+								"id": "cp001_e3_q0",
+								"label": "Last time you wanted to understand what options you have. Is that still something you'd like to focus on?",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "Yes. I know the chart says schizophrenia. I also get anxious about appointments, and sometimes I feel low. I don't want all of that put under one word.",
+								"next": "cp001_e3_s1"
+							}
+						]
+					},
+					{
+						"id": "cp001_e3_s1",
+						"choices": [
+							{
+								"id": "cp001_e3_q1",
+								"label": "We should look at those experiences individually and over time. I won't assume what causes them.",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "Sometimes I worry that asking questions makes me seem difficult.",
+								"next": "cp001_e3_s2"
+							}
+						]
+					},
+					{
+						"id": "cp001_e3_s2",
+						"choices": [
+							{
+								"id": "cp001_e3_q2",
+								"label": "Asking questions is part of participating in your care. What do you most want to understand?",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "What I'm taking, why, and whether anything could be contributing to the grogginess. I don't want changes made without an explanation.",
+								"next": "cp001_e3_s3"
+							}
+						]
+					},
+					{
+						"id": "cp001_e3_s3",
+						"choices": [
+							{
+								"id": "cp001_e3_q3",
+								"label": "That's reasonable to raise. The medication record still needs to be verified before we discuss any specific change.",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "Thank you. Also, my sister Sam might know how things used to be. I need to think about whether I want you to contact her.",
+								"next": "cp001_e3_s4"
+							}
+						]
+					},
+					{
+						"id": "cp001_e3_s4",
+						"choices": []
+					}
+				],
+				"fallback_response": "Please use the authored conversation choices.",
+				"clinical_review_status": "PENDING"
+			}
+		},
+		{
+			"id": "cp001_encounter_4",
+			"title": "A Setback, Not a Failure",
+			"clinical_review_status": "PENDING",
+			"requires": [
+				"interview",
+				"signed_note"
+			],
+			"review_text": "**Where:** Optional follow-up after one or more shifts. **Purpose:** Reassess a difficult night in longitudinal context; protect patient agency and avoid the binary cured/relapsed model.\n\n### Scene and performance\nThe ward continues ordinary work without horror music. Give Jordan conversational pauses and agency, with no fixed facial-expression shorthand for mental illness. The player approaches respectfully, with the option to review existing records before the encounter. No unapproved patient movement or locked-room crossing.\n\n### Draft full conversation\n\n**JORDAN:** I had another bad night. I thought we were getting somewhere, and now I feel like I'm back at the beginning.\n\n**PLAYER:** One difficult night doesn't erase the work you've done. What felt different this time?\n\n**JORDAN:** It was quieter yesterday. Today I woke up worrying about the next review meeting. Then I couldn't fall back asleep.\n\n**PLAYER:** We can record what you noticed, and consider the different contributors without guessing.\n\n**JORDAN:** I did finish a drawing this week. I wanted you to know that too.\n\n**PLAYER:** That matters. It's part of how things are going, not separate from it.\n\n**JORDAN:** I don't need you to promise it'll be easy. I just need the plan to make sense when days like this happen.\n\n**PLAYER:** Let's identify what needs follow-up and who will be responsible, rather than treating this visit as a verdict.\n\n### Meaningful player branches\n\n**A — Review longitudinal pattern.** Compare patient-reported nights and functioning over time without inventing objective values.\n**B — Ask about anxiety and mood.** Offer contextual, reviewed questions including relevant safety assessment as indicated; don't auto-generate safety conclusions.\n**C — Celebrate a meaningful activity.** Acknowledge drawing as Jordan's stated goal without rewarding a superficial positivity choice.\n**D — Handoff unresolved concern.** Identify recipient, communication event, status and next review; no false completed badge.\n\n### Documentable exit / state\n\nUpdate note and longitudinal timeline. Do not infer relapse, remission, medication failure, nonadherence, suicide risk or violence. Keep unresolved clinical issues visible after shift closure via an acknowledged handoff.\n\n### QA and clinical review gates\nNo new clinical facts may appear solely because a branch is selected. Replay must not duplicate notes/events. Dialogue skips and scene unloads must leave a valid resume point; the original patient report and nursing chart are not marked independently verified merely because they agree. The reviewer must approve each MSE/safety prompt and any medical-related responses.\n\n\n---",
+			"dialogue": {
+				"schema_version": "0.1",
+				"patient_id": "pt_cp001_jordan_vale",
+				"states": [
+					{
+						"id": "cp001_e4_s0",
+						"choices": [
+							{
+								"id": "cp001_e4_q0",
+								"label": "One difficult night doesn't erase the work you've done. What felt different this time?",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "It was quieter yesterday. Today I woke up worrying about the next review meeting. Then I couldn't fall back asleep.",
+								"next": "cp001_e4_s1"
+							}
+						]
+					},
+					{
+						"id": "cp001_e4_s1",
+						"choices": [
+							{
+								"id": "cp001_e4_q1",
+								"label": "We can record what you noticed, and consider the different contributors without guessing.",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "I did finish a drawing this week. I wanted you to know that too.",
+								"next": "cp001_e4_s2"
+							}
+						]
+					},
+					{
+						"id": "cp001_e4_s2",
+						"choices": [
+							{
+								"id": "cp001_e4_q2",
+								"label": "That matters. It's part of how things are going, not separate from it.",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "I don't need you to promise it'll be easy. I just need the plan to make sense when days like this happen.",
+								"next": "cp001_e4_s3"
+							}
+						]
+					},
+					{
+						"id": "cp001_e4_s3",
+						"choices": []
+					}
+				],
+				"fallback_response": "Please use the authored conversation choices.",
+				"clinical_review_status": "PENDING"
+			}
+		},
+		{
+			"id": "cp001_encounter_5",
+			"title": "A Plan That Belongs to Jordan",
+			"clinical_review_status": "PENDING",
+			"requires": [
+				"interview",
+				"signed_note"
+			],
+			"review_text": "**Where:** Interview room → nursing station sign-out. **Purpose:** Review five encounters, explicitly report source limitations, record the patient's recovery priorities and provide a continuing-care handoff.\n\n### Scene and performance\nThe ward continues ordinary work without horror music. Give Jordan conversational pauses and agency, with no fixed facial-expression shorthand for mental illness. The player approaches respectfully, with the option to review existing records before the encounter. No unapproved patient movement or locked-room crossing.\n\n### Draft full conversation\n\n**PLAYER:** We've met over several shifts now. Before I summarize, what feels most important to you?\n\n**JORDAN:** You ask what happened, not what you think should have happened. That makes it easier to tell the truth when a day goes badly.\n\n**PLAYER:** You wanted better sleep, enough energy for art group, and a clearer understanding of treatment. Does that still capture your priorities?\n\n**JORDAN:** Yes. And I want someone to remember I'm more than the diagnosis.\n\n**PLAYER:** I will record both what you reported and what we actually observed, plus what we haven't established yet.\n\n**JORDAN:** What if the next doctor starts the same questions again?\n\n**PLAYER:** I'll prepare a handoff with your goals, the documented history, and any outstanding review items. That doesn't mean every question is answered.\n\n**JORDAN:** I'd rather have an honest plan than a perfect one on paper.\n\n**NAOMI (proposed sign-out):** I'll review the outstanding items you handed off and document what has actually been acknowledged. The next team needs the open questions, not just the completed boxes.\n\n**PLAYER:** Agreed. The handoff stays open until the right person receives responsibility.\n\n### Meaningful player branches\n\n**A — Patient-authored goal summary.** Jordan confirms or edits their priorities.\n**B — Clinical uncertainty summary.** List pending medication, historical, medical and symptom details with original sources.\n**C — Team handoff.** Communicate unresolved tasks with accountable role and acknowledgment; do not mark clinical resolution automatically.\n**D — Continue ongoing relationship.** Close the authored five-encounter arc while leaving Jordan eligible for additional reviewed routine follow-ups; no forced discharge.\n\n### Documentable exit / state\n\nAfter signed note and safe handoff, mark `cp001_cycle_complete` once, but keep ongoing clinical care accessible. No recovery score, forced discharge, ending-specific case restriction, paranormal clue or treatment reward. Show a modest post-encounter reflection: Jordan's goals have become clearer even though symptoms and uncertainties persist.\n\n### QA and clinical review gates\nNo new clinical facts may appear solely because a branch is selected. Replay must not duplicate notes/events. Dialogue skips and scene unloads must leave a valid resume point; the original patient report and nursing chart are not marked independently verified merely because they agree. The reviewer must approve each MSE/safety prompt and any medical-related responses.",
+			"dialogue": {
+				"schema_version": "0.1",
+				"patient_id": "pt_cp001_jordan_vale",
+				"states": [
+					{
+						"id": "cp001_e5_s0",
+						"choices": [
+							{
+								"id": "cp001_e5_q0",
+								"label": "We've met over several shifts now. Before I summarize, what feels most important to you?",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "You ask what happened, not what you think should have happened. That makes it easier to tell the truth when a day goes badly.",
+								"next": "cp001_e5_s1"
+							}
+						]
+					},
+					{
+						"id": "cp001_e5_s1",
+						"choices": [
+							{
+								"id": "cp001_e5_q1",
+								"label": "You wanted better sleep, enough energy for art group, and a clearer understanding of treatment. Does that still capture your priorities?",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "Yes. And I want someone to remember I'm more than the diagnosis.",
+								"next": "cp001_e5_s2"
+							}
+						]
+					},
+					{
+						"id": "cp001_e5_s2",
+						"choices": [
+							{
+								"id": "cp001_e5_q2",
+								"label": "I will record both what you reported and what we actually observed, plus what we haven't established yet.",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "What if the next doctor starts the same questions again?",
+								"next": "cp001_e5_s3"
+							}
+						]
+					},
+					{
+						"id": "cp001_e5_s3",
+						"choices": [
+							{
+								"id": "cp001_e5_q3",
+								"label": "I'll prepare a handoff with your goals, the documented history, and any outstanding review items. That doesn't mean every question is answered.",
+								"intents": [
+									"practice_continue"
+								],
+								"response": "I'd rather have an honest plan than a perfect one on paper.",
+								"next": "cp001_e5_s4"
+							}
+						]
+					},
+					{
+						"id": "cp001_e5_s4",
+						"choices": []
+					}
+				],
+				"fallback_response": "Please use the authored conversation choices.",
+				"clinical_review_status": "PENDING"
+			}
+		}
+	],
+	"source_catalog": [
+		{
+			"id": "source_cp001_referral",
+			"type": "UNAVAILABLE",
+			"verified": false
+		},
+		{
+			"id": "source_cp001_nursing_shift",
+			"type": "UNAVAILABLE",
+			"verified": false
+		},
+		{
+			"id": "source_cp001_patient_report",
+			"type": "UNAVAILABLE",
+			"verified": false
+		},
+		{
+			"id": "source_cp001_medication_reconciliation",
+			"type": "UNAVAILABLE",
+			"verified": false
+		},
+		{
+			"id": "source_cp001_family",
+			"type": "UNAVAILABLE",
+			"verified": false
+		}
+	],
+	"review_documents": {
+		"PATIENT_DOSSIER.md": "# Jordan Vale — Complete revised fictional clinical dossier (v2)\n\n> **REVIEW STATUS: PENDING CLINICAL / PENDING LEGAL CONTEXT / PENDING OWNER SCREENPLAY APPROVAL.** All case details are fictional. This is a case-authoring specification, not a real chart, diagnosis guide, treatment algorithm, or medically approved decision rule.\n\n## Identification and setting\n- Patient: **Jordan Vale**; **36 years old**; **they/them**. Proposed ID `pt_cp001_jordan_vale` (collision check required).\n- Setting: Adult secure forensic inpatient unit at Ashcroft State Forensic Hospital, Continuing Practice after Chapter 5. Jordan may appear regardless of the campaign's A, B or C ending.\n- Established longitudinal chart diagnosis: **Schizophrenia**. Its existence in the fictional prior record is now owner-approved *narrative direction*; original diagnostic records, date of diagnosis, first episode details, and adjudication are **not authored**. The psychiatrist should verify source records and avoid claiming independent diagnostic confirmation from these encounters alone.\n- Current presenting problems: approximately two weeks of **fragmented sleep**, **morning fatigue/grogginess**, anxiety about being misunderstood and concern that care conversations focus narrowly on adherence. The details are *patient-reported* unless otherwise stated.\n- Additional diagnoses: **No depressive disorder, anxiety disorder, or schizoaffective disorder is confirmed.** Symptoms must be assessed for timing, duration, function and context, including overlap with negative symptoms, medication effects, environmental disruption and physical illness.\n- Legal basis of detention, security classification, criminal history, dangerousness, charges, court competence, discharge eligibility: **unavailable / unapproved**. Do not infer criminality or violence from schizophrenia or secure setting.\n\n## Personal narrative and strengths\n- Former library assistant; likes sketching buildings, cataloguing used books and attending art group. These are optional fictional biographical proposals from v1.\n- Older sister Sam Vale may be supportive, but works irregular shifts; no permission to contact or disclosure is presumed. A former partner has no role in care.\n- Jordan can discuss interests, decline questions, request a clarification, correct misstatements, and help set priorities. Their central articulated goals: sleep more consistently; feel alert enough to participate in art group; understand medication choices; have explanations recorded accurately; sustain meaningful routines.\n- Recovery is **not** portrayed as absence of every psychotic symptom, automatic discharge, perfect adherence, an inevitable deterioration, or a miraculous cure.\n\n## Source-attributed presenting record\n| Field | Source | Authored case information | Reliability / limits |\n|---|---|---|---|\n| Established historical schizophrenia diagnosis | prior chart summary (proposed; primary original record pending) | Schizophrenia listed as established historical diagnosis | Do not invent confirming historical criteria, hospitalization years or symptoms |\n| Fragmented sleep for ~2 weeks | patient at intake | Wakes during night; sometimes environmental noise, sometimes unexplained | No sleep log, sleep study, objective count, or etiology established |\n| Morning grogginess | patient | Feels foggy, sometimes struggles with early art group | Do not attribute automatically to medication, depression, or negative symptoms |\n| Variable art-group attendance and daytime resting | nursing shift notes | Attendance has varied; a missed group occurs before encounter 2 | Distinguish attendance from motive, refusal, medication effects or relapse |\n| Interpersonal anxiety/frustration | patient | Worries concerns will be dismissed or equated with nonadherence | Not a formal anxiety diagnosis |\n| Medication exposure/adherence/dose | pending verified medication administration record | Jordan says they have taken medication; exact list unknown | Do not infer adherence from dialogue; never fabricate medication or doses |\n| Current positive/negative psychotic symptoms | clinical interview and records pending | Historical diagnosis; no specific current hallucinations/delusions supplied | Ask respectfully and document only disclosures authored and reviewed |\n| Medical conditions, allergies, labs, vitals | not provided | Unavailable until approved clinical record supplied | Never populate with normal or abnormal invented values |\n| Family collateral | Sam, only after valid consent/authority and approved script | Not yet acquired | Must be optional; refusal must not gate all care |\n\n## Psychiatric formulation boundaries\nThe established schizophrenia diagnosis contextualizes continuity needs, but the present symptoms have multiple possible causes. Evaluate potentially co-occurring **depressive symptoms**, **anxiety symptoms**, sleep disruption from the environment, physical health conditions, substance effects (history unavailable), medication adverse effects (reconciliation unavailable), residual symptoms and functional stress. Avoid equating anhedonia with avolition, worry with paranoia, or insomnia with mania without supporting history.\n\nClinical review should decide which *particular* symptom prompts are safe and accurate for the playable encounter and what follow-up/escalation prompts are indicated. No case text predetermines suicidal or violent ideation, psychosis relapse, catatonia, capacity impairment, or a diagnostic score.\n\n## Proposed MSE authoring contract (not prefilled observations)\n- At each encounter, document appearance/behavior, engagement, speech, mood (reported), affect (observed), thought process, thought content when elicited, perceptions when elicited, cognition as tested, insight/judgment if supported.\n- Do not turn Jordan's articulate scripted dialogue into an automatic finding of organized thinking in all settings; do not invent orientation scores or normal examination results.\n- Do not treat declining personal questions as a clinical symptom or a negative rapport penalty.\n- If the player does not ask about a domain, label **NOT ASSESSED** rather than normal.\n- Direct observations must be tagged as direct; chart/nursing statements must retain the original speaker, time and record ID.\n\n## Safety and forensic context\nSafety evaluation must be situation-specific and approved by a qualified reviewer. The case does not establish current suicidal ideation, intent, self-injury, aggression, victimization, elopement risk or need for restrictive intervention. An unassessed domain is **UNKNOWN / REQUIRES ASSESSMENT**, not low risk. Escalation pathways may be authored but cannot claim a clinical action was completed without an event and proper recipient.\n\n## Medications and shared decision-making\nMedication names, dose, schedules, allergies, adherence verification and adverse effects remain **UNAVAILABLE**. Jordan's interest in understanding options is a communication goal, not a scripted medication recommendation. The player may request reconciliation and discuss general questions with appropriate oversight; no medication change, side effect resolution or treatment success occurs automatically.\n\n## Consent, confidentiality and legal records\nDo not contact Sam or share confidential information without an applicable recorded basis. Individual care decisions, assent/consent, unit privileges, legal status, involuntary treatment authority, guardianship, competency and discharge are separate matters requiring authored evidence. Avoid representing refusal of an optional discussion as inability to make decisions.\n\n## Longitudinal recovery goals and monitoring\n- Jordan chooses priorities; functioning and quality of life are tracked descriptively, not as universal 0–100 scores.\n- Suggested optional monitoring dimensions: sleep quality as reported, daytime functioning/participation, perceived understanding of treatment, anxiety, mood, self-determined goals, continuing psychosis symptoms **when assessed**, and safety/medical concerns **when assessed**.\n- No single good/bad day establishes response or relapse. A complete case may end with uncertainties and explicit follow-up.\n\n## Outstanding case approvals\n1. Authoritative original diagnosis source and illness timeline, if intended for higher-fidelity clinical simulation.\n2. Specific mood/anxiety symptom inventory and discriminating chronology, if diagnostic scoring will be added.\n3. Medication and physical health records; only if actual medication-management gameplay is approved.\n4. Fictional forensic legal setting and limits of player authority.\n5. Source-specific MSE, medical safety/risk assessment and disposition/escalation content.\n6. Five encounters' dialogue and appropriate trauma-informed consent language.\n7. Any longitudinal change in symptoms, authored separately from player choice, with no deterministic medication reward.\n",
+		"CLINICAL_REVIEW_MATRIX.md": "# CP-001 — Clinical content signoff matrix\n\nNo item is approved for clinical scoring simply because the owner's high-level diagnosis direction is approved.\n\n| Content domain | Proposed | Pending specialist reviewer check | Allowed before review |\n|---|---|---|---|\n| Historical schizophrenia diagnosis | established fictional chart history | longitudinal source, diagnostic accuracy, wording | narrative summary in proposal docs only |\n| Mood and anxiety symptoms | Jordan describes worry and sometimes feeling low | duration, severity, differential from negative symptoms, sleep issues, psychosis | unscored proposed dialogue only |\n| Sleep/fatigue/function | ~2 weeks interrupted sleep; difficulty attending art | medical differential and risk screening | source-attributed fiction in docs |\n| Medication | patient requests explanation and worries about grogginess | reconcile medication/MAR, contraindications and response | no drugs, doses or pharmacologic effects |\n| Positive/negative psychosis | not pre-authored current assessment | current presentation, history, MSE, meaningful longitudinal course | never assume symptoms present/absent |\n| Risk | not pre-authored risk findings | appropriate, encounter-specific risk prompts and escalation | no risk score or mandatory negative response |\n| Legal/forensic | secure unit only | authority, current legal status, permissions | do not assign crimes, incompetence or dangerousness |\n| Collateral | sister Sam proposed | consent, legal basis, privacy, exact approved dialogue | no unauthorized disclosures |\n| Capacity | no incapacity finding | decision-specific assessment only if relevant | no capacity ruling |\n| Recovery | patient-defined sleep, activity, participation, understanding | measurement and potential confounders | functional goals, no guarantee of improvement |\n| Notes/handoff | append-only notes and explicit acknowledged follow-up | documentation rubric and recipient roles | design contract only |\n\n**Formal signoff fields (leave blank until actual review):** Reviewer name/credentials: ______  Version: ______  Date: ______  Sections approved: ______  Restrictions: ______  Evidence reviewed: ______.\n\n**Acceptance invariants:** no diagnostic points for guessing schizophrenia; no false attribution of collateral; no psychosis/supernatural coupling; respectful refusal allowed; medications/labs/vitals absent until authored; no forced discharge; three endings and any protagonist background can access CP-001; completing five encounters does not automatically assert remission.\n",
+		"GAMEPLAY_CONTRACT.md": "# CP-001 — Godot / data / QA implementation contract\n\n**Proposal; not executable clinical content.** Adapt to verified repository APIs and naming contracts before implementation. Current baseline at planning: SaveManager v3; PatientManager append-only notes/audit; clinical rules have pending approvals; protagonist profile, Chapter 5 and postgame persistence are coordinated proposals.\n\n## Lifecycle\n`available → accepted → encounter_1 → encounter_2 → encounter_3 → encounter_4 → encounter_5 → followup_cycle_complete`.\nSupport `on_hold`, `handoff_pending`, `handoff_acknowledged` without allowing a pending task to disappear; after the fifth encounter the recurring patient remains in longitudinal care, but this authored story arc is complete. Never make elapsed-time progression override a safety concern or current unfinished assessment. Numbered encounters may span any number of chosen shifts, not forced consecutive days.\n\n## State separation\n- Authored case: immutable metadata + source catalog + reviewed scripted encounters.\n- Mutable case: acceptance, completed encounter IDs, action event ledger, follow-up task IDs, handoff status, note IDs, source references, preference callbacks.\n- PatientManager retains exclusive ownership of patient observations, assessment and signed notes.\n- Narrative ending provider owns A/B/C selection; case state reads but never modifies it.\n- Protagonist provider owns background; clinical competence and case access independent of background/relationship/trust.\n- Do not increment SaveManager from v3 independently; coordinate one reviewed v3→v4 migration with finale, protagonist and Continuing Practice.\n\n## Suggested event names (reserve after collision audit)\n`cp001_case_accepted`, `cp001_s1_interview_done`, `cp001_s1_note_signed`, ... `cp001_s5_interview_done`, `cp001_s5_note_signed`, `cp001_handoff_ack`, `cp001_cycle_complete`. Every commit should be idempotent and bound to patient and encounter.\n\n## UI\nWorklist clearly marks case clinical-review status. Source chips: `PATIENT_REPORTED`, `STAFF_REPORTED`, `DIRECT_OBSERVATION`, `CHART_RECORD`, `UNAVAILABLE`. Handoff panel: concern/task, responsible role, communication status, acknowledged event, next review point. Avoid misleading \"verified\" badges for merely copied notes.\n\n## Explicit non-features in v1\nNo drug choice mini-game, automatic medication administration, diagnoses scored as right/wrong, coercive action, forensic court decision, discharge, loss of patient agency, paranormal interpretation of symptoms, procedural patient-generation by LLM, or new locked-room access.\n\n## Deterministic tests required\n1. All five encounters reachable across A/B/C endings and protagonist variants.\n2. Case is optional and cannot block ordinary free-roam or unrelated cases.\n3. Duplicate accepted/encounter/signed events produce no duplicate progress.\n4. Save/load in each encounter retains clinical notes, patient identity, pending follow-ups and ending state.\n5. v1/v2/v3 legacy save fixtures remain readable after approved migration; no forced character creator.\n6. Patient-reported vs staff vs direct observation and chart source distinction is preserved.\n7. An absent medication reconciliation cannot generate a medication list, result or adverse effect.\n8. Optional collateral requires consent; absent consent yields no private disclosure.\n9. A note does not imply a spoken handoff; acknowledgment does not imply clinical resolution.\n10. Unfinished accepted tasks must be completed or appropriately handed off with accountable owner before shift close.\n11. Restart/replay isolates state and never overwrites an existing completed campaign.\n12. No Ward Zero evidence modifies patient state or this case's eligibility.\n13. Missing voice/model/animation falls back to accessible text/placeholder, and scene unload cleans audio/controllers.\n14. Accessibility and 8GB Mac performance evaluated locally; Godot 4.7 end-to-end tests required.\n\n## Integration phases\nCP-001A: contract validation and tests only. CP-001B: case lifecycle after consolidated state approval. CP-001C: reviewed dossier, dialogue, assessment presentation. CP-001D: handoff, save-load, QA and voice/character performance. Each separate PR; no automatic merge.\n"
+	}
+}

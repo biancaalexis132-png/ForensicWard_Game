@@ -142,7 +142,8 @@ func get_patient_ids() -> Array[String]:
 
 
 func get_dialogue(patient_id: String) -> Dictionary:
-	return _dialogues.get(patient_id, {})
+	var practice: Dictionary = ContinuingPractice.current_dialogue(patient_id)
+	return practice if not practice.is_empty() else _dialogues.get(patient_id, {})
 
 
 func get_rules() -> Array:
@@ -380,3 +381,24 @@ func _sorted(dictionary: Dictionary) -> Array[String]:
 	keys.assign(dictionary.keys())
 	keys.sort()
 	return keys
+
+
+## Boot-time registration of reviewed, immutable case content. Pending cases
+## never enter the census or the ordinary clinical registry.
+func register_practice_patient(definition: Dictionary) -> bool:
+	if not PracticeCase.new(definition).ready_for_play():
+		return false
+	var patient: Dictionary = definition["patient"]
+	var problems: Array[String] = []
+	var notices: Array[String] = []
+	ContentValidator.validate_value(patient, ContentSchemas.PATIENT, "practice.patient", problems, notices)
+	for encounter: Dictionary in definition["encounters"]:
+		ContentValidator.validate_value(encounter["dialogue"], ContentSchemas.DIALOGUE_FILE, "practice.dialogue", problems, notices)
+		if encounter["dialogue"].get("patient_id") != patient.get("id"):
+			problems.append("Practice dialogue patient does not match the dossier")
+	if not problems.is_empty():
+		return false
+	if _patients.has(patient["id"]):
+		return _patients[patient["id"]].get("clinical_review_status") == "APPROVED"
+	_patients[patient["id"]] = _freeze(patient)
+	return true
