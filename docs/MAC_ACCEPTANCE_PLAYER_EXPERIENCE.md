@@ -12,10 +12,12 @@ Use a fresh clone on the internal disk, not the SSK external-drive copy.
 cd ~/Developer
 git clone https://github.com/biancaalexis132-png/ForensicWard_Game.git forensicward-pxo
 cd forensicward-pxo
-git checkout claude/player-experience-title-prologue   # top of the stack; includes every earlier PR
+git checkout main   # #102 and #105–108 are merged
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --editor --import
 python3 tests/qa/run.py --godot /Applications/Godot.app/Contents/MacOS/Godot
 ```
+
+PR #109 repairs are merged into main. Use current main for journal/directory acceptance; the original `kilo/chapter1-vertical-slice` branch contains the pre-repair autoload and should not be used for this check.
 
 The import step matters: a copy that has never been imported shows grey capsules instead of the cast models, which is the likely cause of the grey characters seen before.
 
@@ -33,6 +35,7 @@ The import step matters: a copy that has never been imported shows grey capsules
 | Voices | Staff panels and story passages in Chapters 1-5 | Each speaker sounds like themselves; the narrator is the approved voice; nothing plays twice at once |
 | Subtitles | Pause menu: speaker names, background box, size slider, voice volume | Each setting changes subtitles at once |
 | EHR Orders | Open the EHR (J), Orders tab | Patient line, witnessed findings, assessment status; Details, Place order, Confirm or Cancel; status and history update; Medication and Laboratory listed as not available with the reason; no "fictional patient" or review labels |
+| Journal and directory (#109) | In-game pause menu: Clinical Case Journal and Floor Directory; reopen each and press Esc | Both open, release the mouse, stop movement/clock and close cleanly. Title-screen Settings hides these buttons. An empty journal is expected until real documentation actions are wired; the directory is text, not a spatial map |
 | Objectives | Complete "Report to the charge nurse" | One "Objective complete" banner with a quiet chime, then "New objective". Save, load: no repeat. Pause menu toggles hide the checklist, banners and chime |
 | Recap | Finish Chapter 1 | The approved recap plays, then the end-of-chapter panel; closing it returns control |
 | Performance | Activity Monitor during play | Memory stays well inside 8 GB; no stutter when a voice line starts |
