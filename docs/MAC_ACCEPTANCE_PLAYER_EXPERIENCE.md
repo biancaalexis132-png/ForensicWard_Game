@@ -19,6 +19,8 @@ python3 tools/qa/mac_acceptance.py --godot /Applications/Godot.app/Contents/MacO
 
 The collector imports assets, runs standard QA and writes `work/mac-acceptance/report.json` plus `qa.log`. It checks that it is running on macOS; visual/listening acceptance remains pending even when automated QA passes. The import step matters: a copy that has never been imported shows grey capsules instead of the cast models, which is the likely cause of the grey characters seen before.
 
+PR #109 repairs are merged into main. Do not use the original pre-repair `kilo/chapter1-vertical-slice` branch for acceptance.
+
 ## 2. Play
 
 ```sh
