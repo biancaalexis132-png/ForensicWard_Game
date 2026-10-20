@@ -1,0 +1,87 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch1",
+	"generated_by": "tools/audio/extract_voice_lines.py",
+	"_note": "Generated. Do not edit: change the authored text in data/ and re-run the tool, then generate_voice.py.",
+	"speakers": {
+		"narrator": "",
+		"staff_bennett": "Nurse Bennett",
+		"staff_facilities_tech": "Technician",
+		"staff_hale": "Hale",
+		"staff_rahman": "Dr Rahman",
+		"staff_voss": "Dr Voss"
+	},
+	"scenes": [
+		{
+			"id": "voice_ch1_authored_text",
+			"location": "CH1 in-game panels and interviews",
+			"lines": [
+				{
+					"id": "ch1_v_3556aa2f5b",
+					"speaker": "staff_voss",
+					"text": "Welcome to the ward, Doctor. Orientation continues tomorrow."
+				},
+				{
+					"id": "ch1_v_8f8a358493",
+					"speaker": "staff_bennett",
+					"text": "You're the new attending? Elias Ward is in the interview room. Here's the archive badge for the transfer paperwork."
+				},
+				{
+					"id": "ch1_v_3fbdfea147",
+					"speaker": "staff_hale",
+					"text": "Badge visible at all times, Doctor."
+				},
+				{
+					"id": "ch1_v_a9b86763fb",
+					"speaker": "staff_facilities_tech",
+					"text": "Just checking the door closers, Doctor."
+				},
+				{
+					"id": "ch1_v_9ffe7dc73d",
+					"speaker": "staff_rahman",
+					"text": "Leila Rahman. I cover the ward's consultant reviews."
+				},
+				{
+					"id": "ch1_v_6c7f05ebd6",
+					"speaker": "narrator",
+					"text": "The patient remains silent. Nursing reports reduced intake; intake chart review is available."
+				},
+				{
+					"id": "ch1_v_4010216886",
+					"speaker": "narrator",
+					"text": "A structured bedside motor and medical assessment becomes available; no diagnosis is automatically confirmed."
+				},
+				{
+					"id": "ch1_v_ac5023524f",
+					"speaker": "narrator",
+					"text": "No verbal response. An orderly closes the observation window."
+				},
+				{
+					"id": "ch1_v_e7b59eb291",
+					"speaker": "narrator",
+					"text": "You note the bedside findings so far and return to general questions."
+				},
+				{
+					"id": "ch1_v_2e722d1e12",
+					"speaker": "staff_bennett",
+					"text": "That transfer call went out under a credential that has been inactive for months. I checked the board twice. Nobody on my shift asked for it."
+				},
+				{
+					"id": "ch1_v_644ddc544a",
+					"speaker": "staff_bennett",
+					"text": "Night shift is meant to be quiet. Whatever that intercom was, it isn't on my board."
+				},
+				{
+					"id": "ch1_v_cea17c0644",
+					"speaker": "staff_bennett",
+					"text": "I saw your note on Elias. Thank you. The night team will need it."
+				},
+				{
+					"id": "ch1_v_956fe95776",
+					"speaker": "staff_bennett",
+					"text": "There's nothing in the notes for Elias. The night team is going in blind."
+				}
+			]
+		}
+	]
+}

@@ -151,7 +151,7 @@ def build():
             "generated_by": "tools/audio/extract_voice_lines.py",
             "_note": "Generated. Do not edit: change the authored text in data/ and re-run the tool, then generate_voice.py.",
             "speakers": {speaker: SPEAKER_NAMES.get(speaker, speaker) for speaker in speakers},
-            "scenes": [{"id": f"voice_{chapter}_authored_text", "location": "", "lines": lines}],
+            "scenes": [{"id": f"voice_{chapter}_authored_text", "location": f"{chapter.upper()} in-game panels and interviews", "lines": lines}],
         }
     return files
 
