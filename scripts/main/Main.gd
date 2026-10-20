@@ -12,6 +12,8 @@ extends Node3D
 ##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
 ##   "ehr"        EHRScreen (also opened with J)
 ##   "evidence"   EvidenceBoard (also opened with Tab)
+##   "milestone"  MilestonePresenter (split-screen moment after an objective;
+##                waits until nothing else is open)
 ##   "cutscene"   CutsceneDirector (graphic-novel cutscene: approved chapter title
 ##                cards play when a chapter opens, approved chapter recaps when
 ##                a chapter is completed (drawn over its end-of-chapter panel);
@@ -57,8 +59,9 @@ var _chapter_complete_showing: bool = false
 @onready var _zones: ZoneDirector = $ZoneDirector
 @onready var _cutscene: CutsceneDirector = $CutsceneDirector
 @onready var _title: TitleScreen = $TitleScreen
+@onready var _milestones: MilestonePresenter = $MilestonePresenter
 ## Topmost first: Esc closes the first open one.
-@onready var _panels: Array[CanvasLayer] = [_cutscene, _info_panel, _interview, _ehr, _evidence]
+@onready var _panels: Array[CanvasLayer] = [_cutscene, _milestones, _info_panel, _interview, _ehr, _evidence]
 
 
 func _ready() -> void:
@@ -192,6 +195,11 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 				recap_data["cutscene_id"] = CutsceneRegistry.chapter_complete_cutscene(latest)
 			recap_data["story_context"] = chapter.get_story_context()
 			_cutscene.open(recap_data)
+		MilestonePresenter.PANEL_ID:
+			if _is_ui_open() or _zones.in_transition:
+				return  # Stays queued; _update_input_mode() shows it once the screen is clear.
+			if not _milestones.open(data):
+				return
 		InterviewScreen.PANEL_ID:
 			var with_world: Dictionary = data.duplicate()
 			with_world["world"] = _world
@@ -211,6 +219,8 @@ func _derive_presentation_state() -> String:
 		return TITLE
 	if _cutscene.is_open:
 		return CHAPTER_RECAP if _cutscene.get_trigger_kind() == "chapter_complete" else PROLOGUE
+	if _milestones.is_open:
+		return MILESTONE
 	if _chapter_complete_showing and _info_panel.is_open:
 		return CHAPTER_COMPLETE
 	return GAMEPLAY
@@ -229,6 +239,9 @@ func _update_input_mode() -> void:
 		TimeManager.push_pause(TIME_PAUSE_REASON)
 	else:
 		TimeManager.pop_pause(TIME_PAUSE_REASON)
+		# A milestone that came due while something else was open plays now.
+		if _milestones.flush_pending():
+			_update_input_mode()
 
 
 func _show_content_errors() -> void:
