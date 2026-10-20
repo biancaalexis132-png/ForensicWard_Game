@@ -14,7 +14,8 @@ enum Kind { STAFF, PATIENT }
 @export var character_id: String = ""
 ## Seated on a chair that has its own collider: shorter silhouette, no body collision.
 @export var seated: bool = false
-## Optional imported visual scene. The placeholder remains available as a fallback.
+## Optional imported visual scene. The capsule stays only as a technical fallback:
+## when a catalogued model fails it is shown as a development error, not a character.
 @export var visual_scene: PackedScene
 ## Cosmetic model alignment, assigned before _ready by campaign casting.
 var visual_placement: Transform3D = Transform3D.IDENTITY
@@ -30,6 +31,13 @@ var present_when: Dictionary = {}
 var _naomi_acting: NaomiActingController
 var _attached_visual: Node3D
 var _visual_slot_ready: bool = false
+## Why a catalogued model could not be shown ("" when there is no fault).
+var visual_error: String = ""
+
+## Magenta reads as "broken build" at a glance; no authored character uses it.
+const MISSING_VISUAL_COLOR: Color = Color(1.0, 0.0, 0.85)
+## Development errors already announced this session (one toast per actor id).
+static var _announced_errors: Dictionary = {}
 
 
 func _ready() -> void:
@@ -52,7 +60,10 @@ func _ready() -> void:
 	_name_label.text = display_name
 	_interactable.prompt = ("Talk to " if kind == Kind.STAFF else "Approach ") + display_name
 	if visual_scene != null:
-		set_visual_scene(visual_scene)
+		if not set_visual_scene(visual_scene):
+			mark_visual_missing("model could not be attached")
+	elif not visual_error.is_empty():
+		_show_visual_error()
 	else:
 		# Review-only: off unless the game was started with --character-preview.
 		var preview: PackedScene = CharacterVisualPreview.scene_for(character_id)
@@ -89,8 +100,35 @@ func set_visual_scene(scene: PackedScene) -> bool:
 	_attached_visual.transform = visual_placement * _attached_visual.transform
 	CharacterAnimationRig.setup(_attached_visual)
 	visual_scene = scene
+	visual_error = ""
+	_placeholder_mesh.material_override = null
 	_placeholder_mesh.visible = false
+	_name_label.text = _display_name()
+	_name_label.modulate = Color(0.85, 0.9, 0.9, 0.85)
 	return true
+
+
+## Records a development error for a catalogued model that failed to load.
+## Safe before or after _ready; the capsule turns magenta and is labelled.
+func mark_visual_missing(reason: String) -> void:
+	visual_error = reason
+	# A warning, not push_error: the QA runner treats engine errors as test failures.
+	push_warning("WardCharacter: DEVELOPMENT ERROR for %s: %s. Reimport assets in the Godot editor or update the checkout." % [character_id, reason])
+	if _visual_slot_ready:
+		_show_visual_error()
+
+
+func _show_visual_error() -> void:
+	var material: StandardMaterial3D = StandardMaterial3D.new()
+	material.albedo_color = MISSING_VISUAL_COLOR
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	_placeholder_mesh.material_override = material
+	_placeholder_mesh.visible = true
+	_name_label.text = "DEV ERROR: missing 3D model\n%s" % _display_name()
+	_name_label.modulate = MISSING_VISUAL_COLOR
+	if not _announced_errors.has(character_id):
+		_announced_errors[character_id] = true
+		EventBus.notification_requested.emit("Development error: %s's 3D model did not load (see the Output log)." % _display_name())
 
 
 func clear_visual_scene() -> void:

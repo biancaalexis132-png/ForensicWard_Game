@@ -11,7 +11,7 @@
 				"trust": 0,
 				"suspicion": 0
 			},
-			"intro_line": "[Placeholder] Welcome to the ward, Doctor. Orientation continues tomorrow.",
+			"intro_line": "Welcome to the ward, Doctor. Orientation continues tomorrow.",
 			"grants_access": []
 		},
 		{
@@ -23,7 +23,7 @@
 				"trust": 5,
 				"suspicion": 0
 			},
-			"intro_line": "[Placeholder] You're the new attending? Elias Ward is in the interview room. Here's the archive badge for the transfer paperwork.",
+			"intro_line": "You're the new attending? Elias Ward is in the interview room. Here's the archive badge for the transfer paperwork.",
 			"grants_access": [
 				"access_records_archive"
 			]
@@ -37,7 +37,7 @@
 				"trust": -5,
 				"suspicion": 10
 			},
-			"intro_line": "[Placeholder] Badge visible at all times, Doctor.",
+			"intro_line": "Badge visible at all times, Doctor.",
 			"grants_access": []
 		},
 		{

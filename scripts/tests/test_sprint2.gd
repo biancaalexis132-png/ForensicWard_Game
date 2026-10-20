@@ -89,7 +89,9 @@ func test_j_opens_ehr_and_shows_chart_tabs() -> void:
 	check("competency restoration transfer" in _ehr().get_tab_text("Summary"), "legal status shown")
 	check("Not yet witnessed by you" in _ehr().get_tab_text("Observations"), "reports kept apart from witnessed findings")
 	check("record opened" in _ehr().get_tab_text("Audit"), "opening the chart is audited")
-	check("NOT clinically validated" in _ehr()._banner.text, "prototype banner states the review status")
+	check_eq(_ehr()._banner.text, "", "an approved record shows no review banner")
+	check(not "fictional patient" in _ehr().get_tab_text("Summary"), "no disclaimer label inside the chart")
+	check(not "APPROVED" in _ehr().get_tab_text("Summary"), "no review-status label inside the chart")
 	_press_action("ehr")
 	await runner.get_tree().process_frame
 	check(not _ehr().is_open, "J closes it again")
@@ -152,9 +154,10 @@ func test_full_mvp_loop_updates_chart_deterministically() -> void:
 func test_validated_build_refuses_pending_rule_from_ehr() -> void:
 	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
 	_open_ehr()
-	check("switched off" in _ehr()._banner.text, "validated banner")
+	check_eq(_ehr()._banner.text, "", "no banner while every order is approved")
 	_load_pending_rule_fixture()
 	_ehr().commit_action("request_medical_review")
+	check("switched off" in _ehr()._banner.text, "validated banner names the switched-off pending order")
 	_restore_content()
 	check(not PatientManager.get_state(ELIAS)["assessment"].get("medical_review_requested", false), "pending rule not applied")
 	check("Review flag" in _ehr().get_tab_text("Orders"), "refusal shown to the player")
