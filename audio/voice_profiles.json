@@ -1,7 +1,7 @@
 {
 	"schema_version": "0.1",
 	"engine": "kokoro-onnx 0.6.1 / Kokoro-82M v1.0 (Apache-2.0)",
-	"_note": "One fixed profile per speaker ID so every line of a character sounds the same. All voices are Kokoro's stock synthetic voices; none is cloned from a real person. 'fx' names a post-processing chain in tools/audio/generate_voice.py.",
+	"_note": "One fixed profile per speaker ID so every line of a character sounds the same. Character voices are Kokoro's stock synthetic voices; the narrator is the owner-approved Piper LJ Speech voice (public-domain dataset). None is cloned from a real person. 'fx' names a post-processing chain in tools/audio/generate_voice.py.",
 	"profiles": {
 		"staff_voss":    {"name": "Dr Evelyn Voss",      "voice": "bf_emma",    "speed": 0.92, "lang": "en-gb", "fx": "dialogue", "direction": "Composed, measured, faintly formal medical director."},
 		"staff_bennett": {"name": "Nurse Naomi Bennett", "voice": "af_sarah",   "speed": 1.0,  "lang": "en-us", "fx": "dialogue", "direction": "Brisk, practical, warm under pressure."},
@@ -14,6 +14,11 @@
 		"walla_staff_a": {"name": "Background staff A", "voice": "af_nicole", "speed": 1.05, "lang": "en-us", "fx": "dialogue", "direction": "Walla only; mixed distant and unintelligible."},
 		"walla_staff_b": {"name": "Background staff B", "voice": "am_michael", "speed": 1.05, "lang": "en-us", "fx": "dialogue", "direction": "Walla only; mixed distant and unintelligible."},
 		"walla_staff_c": {"name": "Background staff C", "voice": "bf_isabella", "speed": 1.08, "lang": "en-gb", "fx": "dialogue", "direction": "Walla only; mixed distant and unintelligible."},
+		"pt_mara_ellis": {"name": "Mara Ellis",          "voice": "af_river",   "speed": 0.96, "lang": "en-us", "fx": "dialogue", "direction": "Former records worker; tired, careful, wants to be heard."},
+		"staff_facilities_tech": {"name": "Facilities technician", "voice": "am_eric", "speed": 1.0, "lang": "en-us", "fx": "dialogue", "direction": "Practical, matter-of-fact maintenance technician."},
+		"engineer":      {"name": "Engineer",            "voice": "bm_daniel",  "speed": 0.97, "lang": "en-gb", "fx": "dialogue", "direction": "Survey engineer; careful, factual."},
+		"analyst":       {"name": "Analyst",             "voice": "af_nova",    "speed": 1.0,  "lang": "en-us", "fx": "dialogue", "direction": "Records analyst; quick, precise."},
+		"narrator":      {"name": "Narrator", "engine": "piper", "voice": "en_US-ljspeech-high", "speed": 0.92, "lang": "en-us", "fx": "narration", "direction": "The owner-approved recap narrator voice (Piper LJ Speech via Sherpa-ONNX), used for descriptive text, observed behaviour and silence. Same settings as audio/narration/provenance.json."},
 		"player":        {"name": "Protagonist (default)", "voice": "am_liam",  "speed": 1.0,  "lang": "en-us", "fx": "dialogue", "direction": "Newly graduated attending. Default voice only; the protagonist is customizable, so a second profile is a planned addition."}
 	}
 }

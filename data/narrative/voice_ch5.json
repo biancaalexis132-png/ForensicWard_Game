@@ -1,0 +1,515 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch5",
+	"generated_by": "tools/audio/extract_voice_lines.py",
+	"_note": "Generated. Do not edit: change the authored text in data/ and re-run the tool, then generate_voice.py.",
+	"speakers": {
+		"analyst": "Analyst",
+		"narrator": "",
+		"player": "You",
+		"pt_mara_ellis": "Mara",
+		"staff_bennett": "Nurse Bennett",
+		"staff_facilities_tech": "Technician",
+		"staff_hale": "Hale",
+		"staff_rahman": "Dr Rahman",
+		"staff_voss": "Dr Voss"
+	},
+	"scenes": [
+		{
+			"id": "voice_ch5_authored_text",
+			"location": "CH5 in-game panels and interviews",
+			"lines": [
+				{
+					"id": "ch5_v_d070f91c71",
+					"speaker": "staff_hale",
+					"text": "Every person accounted for. Every exit checked."
+				},
+				{
+					"id": "ch5_v_7ff6d6a9e5",
+					"speaker": "staff_rahman",
+					"text": "And nobody forgets why this matters to the patients upstairs."
+				},
+				{
+					"id": "ch5_v_0f251bb988",
+					"speaker": "staff_voss",
+					"text": "Whatever we find, the record says what we can show."
+				},
+				{
+					"id": "ch5_v_02ed017586",
+					"speaker": "narrator",
+					"text": "Hale reads the inspection authorization: staffing, the escorted route, radio contact, exit procedure."
+				},
+				{
+					"id": "ch5_v_a2724261c5",
+					"speaker": "player",
+					"text": "What exactly are we trying to establish today?"
+				},
+				{
+					"id": "ch5_v_277b883090",
+					"speaker": "staff_hale",
+					"text": "Whether the independent observations can be repeated under the approved inspection procedure."
+				},
+				{
+					"id": "ch5_v_6c7d3aedb1",
+					"speaker": "staff_facilities_tech",
+					"text": "If the conditions change, the operation stops. We don't continue because we're curious."
+				},
+				{
+					"id": "ch5_v_2c745a1130",
+					"speaker": "narrator",
+					"text": "All three safeguards are mandatory: originals preserved, return procedure verified, clinical coverage confirmed."
+				},
+				{
+					"id": "ch5_v_487df585e4",
+					"speaker": "staff_hale",
+					"text": "Logged. New sheets, new notes, originals untouched."
+				},
+				{
+					"id": "ch5_v_d2e7ae9405",
+					"speaker": "staff_facilities_tech",
+					"text": "Return route walked and checked. Stop word is 'hold'."
+				},
+				{
+					"id": "ch5_v_a6fed6c3ab",
+					"speaker": "staff_rahman",
+					"text": "I'm covering the ward. Nobody upstairs goes without."
+				},
+				{
+					"id": "ch5_v_98a30ce3a9",
+					"speaker": "staff_hale",
+					"text": "If we get an answer, good. If we don't, we come back with everyone who went down."
+				},
+				{
+					"id": "ch5_v_f0f1027813",
+					"speaker": "staff_hale",
+					"text": "No. Nobody goes down on their own."
+				},
+				{
+					"id": "ch5_v_65c2c7fb3f",
+					"speaker": "narrator",
+					"text": "Team pass logged: ward entry, maintenance and the threshold, for this inspection only."
+				},
+				{
+					"id": "ch5_v_454f0d59f7",
+					"speaker": "narrator",
+					"text": "Two recordings of the former treatment room's inner door, over what looks like the same interval. In one the door is shut. In the other it stands open."
+				},
+				{
+					"id": "ch5_v_1ff6fabf10",
+					"speaker": "player",
+					"text": "Have the timestamps been reconciled?"
+				},
+				{
+					"id": "ch5_v_678dda6392",
+					"speaker": "staff_facilities_tech",
+					"text": "The clocks were checked, but I want the original timing records reviewed again."
+				},
+				{
+					"id": "ch5_v_0cd6994cd9",
+					"speaker": "staff_hale",
+					"text": "Nobody opens that door to investigate."
+				},
+				{
+					"id": "ch5_v_e98b87c7b6",
+					"speaker": "narrator",
+					"text": "Observation room records. Not part of this inspection."
+				},
+				{
+					"id": "ch5_v_f3a913fa98",
+					"speaker": "narrator",
+					"text": "Two recordings, one door, two states. Preserved as unresolved; timing records under review."
+				},
+				{
+					"id": "ch5_v_564e9cc449",
+					"speaker": "staff_hale",
+					"text": "No. We record it. We don't go in."
+				},
+				{
+					"id": "ch5_v_49363fd4d3",
+					"speaker": "narrator",
+					"text": "Both recordings logged as they are, with their clock sources. The contradiction is preserved as an unresolved observation."
+				},
+				{
+					"id": "ch5_v_312ba98c65",
+					"speaker": "narrator",
+					"text": "Hale counts the team in. Everyone who went down came back."
+				},
+				{
+					"id": "ch5_v_64462982c1",
+					"speaker": "staff_hale",
+					"text": "Recordings sealed for the analyst."
+				},
+				{
+					"id": "ch5_v_abf34b599a",
+					"speaker": "staff_hale",
+					"text": "No. The inspection is over. Any further entry needs its own approval."
+				},
+				{
+					"id": "ch5_v_623e239d1a",
+					"speaker": "narrator",
+					"text": "Team pass returned. Ward entry, maintenance and threshold access withdrawn."
+				},
+				{
+					"id": "ch5_v_1df18cd348",
+					"speaker": "narrator",
+					"text": "The records historian's notes."
+				},
+				{
+					"id": "ch5_v_255beba258",
+					"speaker": "narrator",
+					"text": "Historian: Some missing records are ordinary archival failures. Different numbering systems, incomplete transfers, boxes that were never indexed."
+				},
+				{
+					"id": "ch5_v_8e6ca76bed",
+					"speaker": "player",
+					"text": "And the ones that don't fit the chronology?"
+				},
+				{
+					"id": "ch5_v_a34295caed",
+					"speaker": "narrator",
+					"text": "Historian: Those remain unresolved. The mistake would be pretending they all have the same explanation."
+				},
+				{
+					"id": "ch5_v_e819ea73b7",
+					"speaker": "narrator",
+					"text": "The Records worksheet."
+				},
+				{
+					"id": "ch5_v_d0a93ec59b",
+					"speaker": "narrator",
+					"text": "Timeline from authenticated records; unknown provenance flagged; archival gaps kept apart from misconduct."
+				},
+				{
+					"id": "ch5_v_93e1860840",
+					"speaker": "narrator",
+					"text": "Historian: There's no evidence for that. Some gaps are filing; some are unknown. One name for all of them would be invention."
+				},
+				{
+					"id": "ch5_v_30a101ac81",
+					"speaker": "narrator",
+					"text": "Timeline rebuilt from authenticated entries. Unauthenticated entries listed separately."
+				},
+				{
+					"id": "ch5_v_93b739a8fb",
+					"speaker": "narrator",
+					"text": "Unknown-provenance entries flagged, not removed."
+				},
+				{
+					"id": "ch5_v_d8391c204c",
+					"speaker": "narrator",
+					"text": "Archival gaps and proven misconduct filed under separate headings. Nothing moved between them without evidence."
+				},
+				{
+					"id": "ch5_v_567d388b24",
+					"speaker": "narrator",
+					"text": "The independent analyst's report."
+				},
+				{
+					"id": "ch5_v_1b3f81a146",
+					"speaker": "analyst",
+					"text": "We've verified the integrity of the files submitted for review. That doesn't establish every interpretation."
+				},
+				{
+					"id": "ch5_v_eee536cd96",
+					"speaker": "staff_hale",
+					"text": "But there is a discrepancy."
+				},
+				{
+					"id": "ch5_v_48811ed26f",
+					"speaker": "analyst",
+					"text": "More than one. Some are explainable. Others remain unresolved."
+				},
+				{
+					"id": "ch5_v_7fd54e0a71",
+					"speaker": "staff_rahman",
+					"text": "None of this should become part of a patient's psychiatric formulation simply because somebody complained about the same location."
+				},
+				{
+					"id": "ch5_v_5f5ad0f1df",
+					"speaker": "player",
+					"text": "We need two separate records: the clinical assessment and the environmental investigation."
+				},
+				{
+					"id": "ch5_v_7045ae29ac",
+					"speaker": "narrator",
+					"text": "The office workstation."
+				},
+				{
+					"id": "ch5_v_b5d613569e",
+					"speaker": "analyst",
+					"text": "I'd ask you to revise that. A conclusion about mechanism goes beyond what the official evidence establishes."
+				},
+				{
+					"id": "ch5_v_dc0d516c3e",
+					"speaker": "analyst",
+					"text": "That's what the evidence supports."
+				},
+				{
+					"id": "ch5_v_b1b7a4d3ed",
+					"speaker": "analyst",
+					"text": "Agreed. Bounded, documented, stoppable."
+				},
+				{
+					"id": "ch5_v_33f27d7e80",
+					"speaker": "staff_bennett",
+					"text": "Doctor, I need you for something that doesn't involve the basement."
+				},
+				{
+					"id": "ch5_v_15899bbb72",
+					"speaker": "player",
+					"text": "That sounds refreshing."
+				},
+				{
+					"id": "ch5_v_98d7f1554a",
+					"speaker": "staff_bennett",
+					"text": "A patient has questions about the plan, and we've got an outstanding follow-up before evening handoff."
+				},
+				{
+					"id": "ch5_v_fe07666b79",
+					"speaker": "staff_bennett",
+					"text": "It can't. The review doesn't get to decide when patients need us."
+				},
+				{
+					"id": "ch5_v_423f6321bc",
+					"speaker": "narrator",
+					"text": "Questions answered within your role; the follow-up handed to the receiving team with a named deadline before evening handoff."
+				},
+				{
+					"id": "ch5_v_851d43a3b3",
+					"speaker": "staff_bennett",
+					"text": "Everybody's talking about Ward Zero, but the patients still need people to show up for them."
+				},
+				{
+					"id": "ch5_v_3a75e5a062",
+					"speaker": "player",
+					"text": "That's why we're here."
+				},
+				{
+					"id": "ch5_v_3bcfb78a8c",
+					"speaker": "staff_bennett",
+					"text": "Good. Because the EHR still hasn't learned to write its own progress notes."
+				},
+				{
+					"id": "ch5_v_ec8fcf2cfb",
+					"speaker": "narrator",
+					"text": "Four files on the worksheet: original recordings, technical measurements, physical marker logs, and an exported summary."
+				},
+				{
+					"id": "ch5_v_7458ebf1a7",
+					"speaker": "analyst",
+					"text": "We can authenticate the recordings. We can verify the measurement procedure. We can also establish where some of the evidence shares a common source."
+				},
+				{
+					"id": "ch5_v_2c0c5adde4",
+					"speaker": "narrator",
+					"text": "Shared sources counted once. A reproducible discrepancy the technical review cannot explain; mechanism not asserted."
+				},
+				{
+					"id": "ch5_v_3319d5801f",
+					"speaker": "analyst",
+					"text": "The exported summary came from the same recordings. Counting it again would count one source twice."
+				},
+				{
+					"id": "ch5_v_fc420e7bcb",
+					"speaker": "player",
+					"text": "Which means we shouldn't count those records twice."
+				},
+				{
+					"id": "ch5_v_f08af33da8",
+					"speaker": "analyst",
+					"text": "Correct. After accounting for shared sources and known errors, the remaining observations still do not agree with the documented physical layout. A reproducible discrepancy our current technical review cannot explain."
+				},
+				{
+					"id": "ch5_v_c640918a0f",
+					"speaker": "staff_rahman",
+					"text": "Then let's make sure that's how it's reported."
+				},
+				{
+					"id": "ch5_v_17d3ed0748",
+					"speaker": "staff_voss",
+					"text": "We've established that the observations remain inconsistent after independent review. We haven't established why."
+				},
+				{
+					"id": "ch5_v_e966e1f938",
+					"speaker": "staff_hale",
+					"text": "Ward Zero stays restricted."
+				},
+				{
+					"id": "ch5_v_395a95876f",
+					"speaker": "staff_rahman",
+					"text": "Any operational changes must protect continuity of care."
+				},
+				{
+					"id": "ch5_v_cda2421584",
+					"speaker": "staff_voss",
+					"text": "What do we tell independent oversight, and what further investigation do we authorize?"
+				},
+				{
+					"id": "ch5_v_d7b257e9ff",
+					"speaker": "staff_hale",
+					"text": "You've been involved since the first transfer discrepancy. What's your recommendation?"
+				},
+				{
+					"id": "ch5_v_872db3807a",
+					"speaker": "staff_voss",
+					"text": "We cannot make uncertainty disappear by declining to document it."
+				},
+				{
+					"id": "ch5_v_f450e8717f",
+					"speaker": "staff_voss",
+					"text": "Then we prepare a factual referral."
+				},
+				{
+					"id": "ch5_v_d2c7b386fc",
+					"speaker": "staff_hale",
+					"text": "That's a defensible safety position."
+				},
+				{
+					"id": "ch5_v_1272cc7fc9",
+					"speaker": "staff_rahman",
+					"text": "As long as patient care and access controls are protected."
+				},
+				{
+					"id": "ch5_v_9d256c2fe4",
+					"speaker": "pt_mara_ellis",
+					"text": "I heard the hospital is still reviewing some old records. Does that mean my aunt's record is one of them?"
+				},
+				{
+					"id": "ch5_v_9f9b34a813",
+					"speaker": "narrator",
+					"text": "You stop yourself. Nothing in the building review says anything about Mara's health, and her assessment stands on its own."
+				},
+				{
+					"id": "ch5_v_4a5688b9b5",
+					"speaker": "player",
+					"text": "I can't give you an explanation we haven't established."
+				},
+				{
+					"id": "ch5_v_4ab9ce6329",
+					"speaker": "pt_mara_ellis",
+					"text": "I think what bothered me most was feeling like no one wanted to listen."
+				},
+				{
+					"id": "ch5_v_975ccb410d",
+					"speaker": "player",
+					"text": "You deserved an assessment based on the information available, and an opportunity to explain your concerns."
+				},
+				{
+					"id": "ch5_v_1984a489ef",
+					"speaker": "pt_mara_ellis",
+					"text": "I know I'm not always easy when I'm frustrated."
+				},
+				{
+					"id": "ch5_v_9789e8c0c5",
+					"speaker": "player",
+					"text": "Frustration doesn't make your questions irrelevant."
+				},
+				{
+					"id": "ch5_v_e33778a176",
+					"speaker": "player",
+					"text": "You deserved an assessment based on the information available, and an opportunity to explain your concerns. The discrepancy you raised remains part of the authorized historical review. I can't give you an explanation we haven't established."
+				},
+				{
+					"id": "ch5_v_55dff1c4ae",
+					"speaker": "narrator",
+					"text": "Voss signs the external referral. The originals stay here; the limitations are listed on the first page."
+				},
+				{
+					"id": "ch5_v_ee9604b2d4",
+					"speaker": "staff_voss",
+					"text": "This may take longer than any of us would like."
+				},
+				{
+					"id": "ch5_v_7561b8e317",
+					"speaker": "narrator",
+					"text": "Referral sent. Originals retained."
+				},
+				{
+					"id": "ch5_v_b1dddbf86c",
+					"speaker": "narrator",
+					"text": "The old entrance is sealed under documented restrictions, with a periodic review date."
+				},
+				{
+					"id": "ch5_v_e7ca417c26",
+					"speaker": "staff_hale",
+					"text": "Nobody enters without authorization."
+				},
+				{
+					"id": "ch5_v_ff594228f5",
+					"speaker": "staff_hale",
+					"text": "Preserved. Closing a door doesn't mean pretending nothing happened."
+				},
+				{
+					"id": "ch5_v_6078c47824",
+					"speaker": "narrator",
+					"text": "An accountable review goes ahead: oversight, limited access, defined stop conditions."
+				},
+				{
+					"id": "ch5_v_1e490edc9e",
+					"speaker": "staff_rahman",
+					"text": "What happens if the next review still doesn't answer everything?"
+				},
+				{
+					"id": "ch5_v_624fb131a0",
+					"speaker": "narrator",
+					"text": "Dr Rahman is busy."
+				},
+				{
+					"id": "ch5_v_6e6987d40d",
+					"speaker": "staff_rahman",
+					"text": "Uncertainty isn't permission to abandon our standards."
+				},
+				{
+					"id": "ch5_v_b71c02f84f",
+					"speaker": "staff_bennett",
+					"text": "Morning, Doctor. Ready for rounds?"
+				},
+				{
+					"id": "ch5_v_8cb153923f",
+					"speaker": "staff_bennett",
+					"text": "Whoever needs us."
+				},
+				{
+					"id": "ch5_v_943f107714",
+					"speaker": "narrator",
+					"text": "What the record shows:"
+				},
+				{
+					"id": "ch5_v_5e8f368688",
+					"speaker": "narrator",
+					"text": "The authenticated findings went to qualified external reviewers, with the originals preserved."
+				},
+				{
+					"id": "ch5_v_d363d9ef08",
+					"speaker": "narrator",
+					"text": "Ward Zero is sealed under documented restriction, with its evidence preserved and a periodic review."
+				},
+				{
+					"id": "ch5_v_0fdc65f6a8",
+					"speaker": "narrator",
+					"text": "A limited, accountable inquiry continues under independent oversight and stop conditions."
+				},
+				{
+					"id": "ch5_v_671bd8c9a7",
+					"speaker": "narrator",
+					"text": "The corridor repetition stays on record as observed and unverified."
+				},
+				{
+					"id": "ch5_v_e9436f41a1",
+					"speaker": "narrator",
+					"text": "After shared sources were counted once, a reproducible discrepancy remains unexplained."
+				},
+				{
+					"id": "ch5_v_15fcc55cb2",
+					"speaker": "narrator",
+					"text": "Mara's questions were heard, and her care stayed her own."
+				},
+				{
+					"id": "ch5_v_ace36ae65d",
+					"speaker": "narrator",
+					"text": "Patient care never waited on the investigation."
+				}
+			]
+		}
+	]
+}

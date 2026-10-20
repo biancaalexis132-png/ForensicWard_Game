@@ -34,6 +34,10 @@ func _test_files() -> Array[String]:
 		# Exported/imported projects may list .gd.remap; only plain scripts here.
 		if file_name.begins_with("test_") and file_name.ends_with(".gd"):
 			files.append(file_name)
+	# Development shortcut: FW_TEST_FILTER=voiced runs only matching files. QA never sets it.
+	var only: String = OS.get_environment("FW_TEST_FILTER")
+	if not only.is_empty():
+		files = files.filter(func(name: String) -> bool: return only in name)
 	files.sort()
 	return files
 
