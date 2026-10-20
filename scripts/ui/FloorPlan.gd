@@ -27,7 +27,7 @@ static func snapshot(world: AuthoredWorld, player: Node3D, zones: ZoneDirector) 
 			found = true
 		if found:
 			result["floors"].append({"rect": room_bounds,
-					"label": environment.scene_file_path.get_file().get_basename().trim_prefix("ENV_").to_snake_case().capitalize()})
+					"label": environment.scene_file_path.get_file().get_basename().trim_prefix("ENV_").trim_suffix("_20m").to_snake_case().capitalize()})
 	for object: Node in world.get_persistent_nodes(zone_id):
 		if object is ImportedDoor:
 			var door_root: Node3D = object.get_parent() as Node3D

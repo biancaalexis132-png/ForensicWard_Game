@@ -12,11 +12,18 @@ func _ready() -> void:
 	layer = 45
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
+	var backdrop: Control = UIStyle.make_root(self, 0.72)
 	var root: PanelContainer = PanelContainer.new()
-	root.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	root.position = Vector2(240, 75)
-	root.custom_minimum_size = Vector2(1050, 760)
-	add_child(root)
+	root.add_theme_stylebox_override("panel", UIStyle.panel_style())
+	backdrop.add_child(root)
+	root.anchor_left = 0.5
+	root.anchor_right = 0.5
+	root.anchor_top = 0.5
+	root.anchor_bottom = 0.5
+	root.offset_left = -580
+	root.offset_right = 580
+	root.offset_top = -340
+	root.offset_bottom = 340
 	var margin: MarginContainer = MarginContainer.new()
 	for side: String in ["left", "right", "top", "bottom"]:
 		margin.add_theme_constant_override("margin_" + side, 20)
@@ -24,10 +31,11 @@ func _ready() -> void:
 	var box: VBoxContainer = VBoxContainer.new()
 	margin.add_child(box)
 	var title: Label = Label.new()
-	title.text = "Your psychiatrist · Identity, appearance and background"
+	title.text = "Your psychiatrist"
 	title.add_theme_font_size_override("font_size", 24)
 	box.add_child(title)
 	var help: Label = Label.new()
+	help.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	help.text = "Background and personal history are optional. Every choice retains the same professional competence."
 	box.add_child(help)
 	var row: HBoxContainer = HBoxContainer.new()

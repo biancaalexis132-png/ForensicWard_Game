@@ -38,7 +38,7 @@ func test_optional_panels_pause_and_escape_and_reuse() -> void:
 		var pause: PauseMenu = _main_node.get_node("PauseMenu")
 		pause.open()
 		var button_name: String = "CaseJournal" if panel_id == "case_journal" else "Directory"
-		pause.get_node("Root/Panel/Margin/VBox/" + button_name).pressed.emit()
+		pause.get_node("Root/Panel/Scroll/Margin/VBox/" + button_name).pressed.emit()
 		var panel: CanvasLayer = _main_node.get_node(node_name)
 		check(panel.get("is_open"), "menu opens " + panel_id)
 		check(not runner.get_tree().paused, "menu releases scene pause")
@@ -73,10 +73,10 @@ func test_title_settings_hide_gameplay_panel_buttons() -> void:
 	runner.add_child(pause)
 	pause.open_settings_from_title()
 	for button_name: String in ["CaseJournal", "Directory"]:
-		check(not pause.get_node("Root/Panel/Margin/VBox/" + button_name).visible, "title settings hides " + button_name)
+		check(not pause.get_node("Root/Panel/Scroll/Margin/VBox/" + button_name).visible, "title settings hides " + button_name)
 	pause.close()
 	pause.open()
 	for button_name: String in ["CaseJournal", "Directory"]:
-		check(pause.get_node("Root/Panel/Margin/VBox/" + button_name).visible, "game menu shows " + button_name)
+		check(pause.get_node("Root/Panel/Scroll/Margin/VBox/" + button_name).visible, "game menu shows " + button_name)
 	pause.close()
 	pause.free()

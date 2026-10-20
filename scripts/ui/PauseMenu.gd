@@ -25,6 +25,7 @@ const EXTRA_TOGGLES: Dictionary = {
 	"ObjectiveChecklist": ["objective_checklist", "Objectives: show checklist"],
 	"ObjectiveBanners": ["objective_banners", "Objectives: show banners"],
 	"ObjectiveSound": ["objective_sound", "Objectives: completion chime"],
+	"PerformanceLog": ["perf_log", "Diagnostics: log zone performance"],
 }
 
 ## HSlider node name (under Audio) -> AudioDirector volume setting (linear 0..1).
@@ -36,12 +37,12 @@ const VOLUMES: Dictionary = {
 	"Ambience": "volume_ambient",
 }
 
-@onready var _status: Label = $Root/Panel/Margin/VBox/Status
-@onready var _toggles: VBoxContainer = $Root/Panel/Margin/VBox/Accessibility
-@onready var _sensitivity: HSlider = $Root/Panel/Margin/VBox/Sensitivity/Slider
-@onready var _resume_button: Button = $Root/Panel/Margin/VBox/Resume
-@onready var _volumes: GridContainer = $Root/Panel/Margin/VBox/Audio
-@onready var _reduce_startle: CheckBox = $Root/Panel/Margin/VBox/Accessibility/ReduceStartlingAudio
+@onready var _status: Label = $Root/Panel/Scroll/Margin/VBox/Status
+@onready var _toggles: VBoxContainer = $Root/Panel/Scroll/Margin/VBox/Accessibility
+@onready var _sensitivity: HSlider = $Root/Panel/Scroll/Margin/VBox/Sensitivity/Slider
+@onready var _resume_button: Button = $Root/Panel/Scroll/Margin/VBox/Resume
+@onready var _volumes: GridContainer = $Root/Panel/Scroll/Margin/VBox/Audio
+@onready var _reduce_startle: CheckBox = $Root/Panel/Scroll/Margin/VBox/Accessibility/ReduceStartlingAudio
 
 var is_open: bool = false
 ## True while opened from the title screen: settings only, drawn above the title.
@@ -66,7 +67,7 @@ func _ready() -> void:
 	for panel_id: String in ["case_journal", "map"]:
 		var button: Button = Button.new()
 		button.name = "CaseJournal" if panel_id == "case_journal" else "Directory"
-		button.text = "Clinical Case Journal" if panel_id == "case_journal" else "Floor Directory"
+		button.text = "Clinical Case Journal" if panel_id == "case_journal" else "Spatial Map"
 		_resume_button.get_parent().add_child(button)
 		button.pressed.connect(func() -> void:
 			close()
@@ -86,11 +87,11 @@ func _ready() -> void:
 	disclaimer.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	disclaimer.add_theme_font_size_override("font_size", 13)
 	disclaimer.modulate = Color(0.75, 0.77, 0.8)
-	$Root/Panel/Margin/VBox.add_child(disclaimer)
-	$Root/Panel/Margin/VBox/Save.pressed.connect(_on_save)
-	$Root/Panel/Margin/VBox/Load.pressed.connect(_on_load)
+	$Root/Panel/Scroll/Margin/VBox.add_child(disclaimer)
+	$Root/Panel/Scroll/Margin/VBox/Save.pressed.connect(_on_save)
+	$Root/Panel/Scroll/Margin/VBox/Load.pressed.connect(_on_load)
 	# Same path as closing the window: Main stops audio first, then quits.
-	$Root/Panel/Margin/VBox/Quit.pressed.connect(func() -> void:
+	$Root/Panel/Scroll/Margin/VBox/Quit.pressed.connect(func() -> void:
 		get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST))
 	for node_name: String in TOGGLES:
 		var box: CheckBox = _toggles.get_node(node_name)
@@ -178,7 +179,7 @@ func close() -> void:
 
 func _set_in_game_rows(shown: bool) -> void:
 	for row: String in IN_GAME_ROWS:
-		var node: Control = $Root/Panel/Margin/VBox.get_node_or_null(row)
+		var node: Control = $Root/Panel/Scroll/Margin/VBox.get_node_or_null(row)
 		if node != null:
 			node.visible = shown
 

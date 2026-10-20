@@ -17,7 +17,9 @@ func _ready() -> void:
 	var panel: PanelContainer = PanelContainer.new()
 	panel.position = Vector2(210, 65)
 	panel.custom_minimum_size = Vector2(1300, 850)
-	add_child(panel)
+	var backdrop: Control = UIStyle.make_root(self, 0.72)
+	panel.add_theme_stylebox_override("panel", UIStyle.panel_style())
+	backdrop.add_child(panel)
 	var box: VBoxContainer = VBoxContainer.new()
 	panel.add_child(box)
 	_status = Label.new()
@@ -31,10 +33,14 @@ func _ready() -> void:
 		button.pressed.connect(_show_encounter.bind(i))
 	_body = RichTextLabel.new()
 	_body.custom_minimum_size = Vector2(1220, 370)
+	_body.add_theme_font_size_override("normal_font_size", 18)
 	_body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	box.add_child(_body)
 	_tasks = VBoxContainer.new()
-	box.add_child(_tasks)
+	var task_scroll: ScrollContainer = ScrollContainer.new()
+	task_scroll.custom_minimum_size.y = 80
+	box.add_child(task_scroll)
+	task_scroll.add_child(_tasks)
 	var task_fields: HBoxContainer = HBoxContainer.new()
 	box.add_child(task_fields)
 	_task_description = _edit(task_fields, "Follow-up task")
@@ -106,7 +112,11 @@ func _show_encounter(index: int) -> void:
 	if definition.is_empty():
 		return
 	var encounter: Dictionary = definition["encounters"][index]
-	_body.add_text("%s\nClinical review: %s\n\n%s" % [encounter["title"], encounter["clinical_review_status"], encounter["review_text"]])
+	var case: PracticeCase = ContinuingPractice.get_case(_case_id)
+	if case != null and case.ready_for_play():
+		_body.add_text("%s\n\nOpen the interview to speak with Jordan, then document the encounter in their chart. Record follow-up concerns with a responsible role and a next review point. A handoff acknowledgment does not resolve the concern.\n\nCollateral sources listed for this case are not available. No collateral contact has been made." % encounter["title"])
+	else:
+		_body.add_text("%s\nClinical review: %s\n\n%s" % [encounter["title"], encounter["clinical_review_status"], encounter["review_text"]])
 
 func _accept_case() -> void:
 	if not ContinuingPractice.accept_case(_case_id):

@@ -28,7 +28,7 @@ python3 tests/qa/test_json.py
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --quit-after 60
 ```
 
-Prefer the Python runner: it enforces a 150-second timeout per command, with 420 seconds for the full campaign suite that instantiates the animated 3D cast, nonzero failures, completion markers, and failure on Godot script/runtime errors even if Godot exits zero. Each suite runs in a separate Godot process. Save/load tests write only to test slot 99, and the runner points Godot's user data at a temporary directory, so real saves are never touched. Godot may refresh its ignored `.godot/` resource cache. The runner requires 4.7; upgrade it and CI together when the project changes engine version.
+Prefer the Python runner: it enforces a 150-second timeout per command, with 600 seconds for cold import and 1800 seconds for the full campaign suite that instantiates the animated 3D cast and exercises the five-encounter Continuing Practice fixture, nonzero failures, completion markers, and failure on Godot script/runtime errors even if Godot exits zero. Each suite runs in a separate Godot process. Save/load tests write only to test slot 99, and on Linux the runner isolates Godot user data with temporary XDG directories. macOS uses Godot's normal application user-data location; slot 99 is reserved for these tests, while normal play uses slot 1. Godot may refresh its ignored `.godot/` resource cache. The runner requires 4.7; upgrade it and CI together when the project changes engine version.
 
 ## Executed coverage
 
@@ -73,3 +73,5 @@ When Claude opens `claude/sprint-01-foundation -> main`, request review in its P
 That command requests a review; this workflow does not enable the separate Codex integration or automatic reviews. Review the exact PR revision against the supplied design and run these checks on that revision. For each finding record severity, file/line, expected/actual behavior, reproduction command or steps, and whether it is **execution-confirmed** or **static-inspection only**. Keep missing coverage distinct from confirmed defects. Send fixes to Claude's existing branch/PR, rerun checks after the new commit, and review again. Do not modify gameplay files in the QA branch or auto-merge.
 
 Finally test on Mac: lighting, animations, cinematic dialogue, input feel, and clinical correctness require human inspection. Passing headless checks does not validate those qualities.
+
+The full-suite bound is configurable with `--gameplay-timeout SECONDS`; it does not change tests, completion markers or failure handling. The 2026-10-20 CPU-only run showed the animated campaign exceeded the previous 900-second allowance under render load, so the default is now 1800 seconds and CI has a 45-minute job bound. This is a test execution allowance, not a gameplay performance acceptance result.

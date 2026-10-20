@@ -75,6 +75,7 @@ func build_zone(zone_id: String, scenes: Array[PackedScene]) -> Node3D:
 	_build_characters(root, zone_id, _config.get("characters", []))
 	_collect_state_nodes(root)
 	_apply_states()
+	EnvironmentFinish.apply(root)
 	return root
 
 

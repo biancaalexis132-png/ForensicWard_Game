@@ -24,7 +24,7 @@ func open(_data: Dictionary = {}) -> void:
 	_refresh_map()
 	var document: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://data/ui/floor_directory.json"))
 	if document is Dictionary and document.get("body") is String:
-		_text.text = "White: you / heading · Amber: locked door · Green: accessible door · E: EHR\nCurrent floor only. Closed outline: open door. North is up."
+		_text.text = "White: you / heading · Amber: locked door · Green: accessible door · E: EHR\nCurrent floor only. Outline: open door. North is up."
 	else:
 		push_error("Floor directory requires a JSON object with a string body")
 		_text.text = "Directory unavailable."

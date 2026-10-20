@@ -23,19 +23,25 @@ func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, size), Color("142029"))
 	if plan.is_empty():
 		return
-	_scale = minf((size.x - 32) / maxf(_bounds.size.x, 1), (size.y - 32) / maxf(_bounds.size.y, 1))
-	_offset = (size - _bounds.size * _scale) / 2
+	_scale = minf((size.x * 0.52 - 32) / maxf(_bounds.size.x, 1), (size.y - 32) / maxf(_bounds.size.y, 1))
+	_offset = Vector2((size.x * 0.52 - _bounds.size.x * _scale) / 2, (size.y - _bounds.size.y * _scale) / 2)
 	var font: Font = ThemeDB.fallback_font
+	var room_number: int = 0
+	draw_string(font, Vector2(size.x * 0.55, 40), "Rooms", HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color.WHITE)
 	for floor: Dictionary in plan.get("floors", []):
+		room_number += 1
 		var rect: Rect2 = floor["rect"]
 		var screen: Rect2 = Rect2(_point(rect.position), rect.size * _scale)
 		draw_rect(screen, Color("304652"))
 		draw_rect(screen, Color("8ba2a8"), false, 1.0)
-		draw_string(font, screen.position + Vector2(3, 14), str(floor["label"]), HORIZONTAL_ALIGNMENT_LEFT, screen.size.x - 6, 11)
+		draw_string(font, screen.get_center() + Vector2(-4, 5), str(room_number), HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color.WHITE)
+		draw_string(font, Vector2(size.x * 0.55, 48 + room_number * 27), "%d. %s" % [room_number, floor["label"]], HORIZONTAL_ALIGNMENT_LEFT, size.x * 0.43, 14, Color.WHITE)
 	for door: Dictionary in plan.get("doors", []):
 		var p: Vector2 = _point(door["position"])
 		var color: Color = Color("edb164") if door["locked"] else Color("82d1a5")
-		draw_circle(p, 4, color, not bool(door["open"]), 1.5)
+		draw_circle(p, 4, color, not bool(door["open"]), 1.5 if door["open"] else -1.0)
+		if door["locked"]:
+			draw_line(p + Vector2(-4, -4), p + Vector2(4, 4), color, 1.5)
 	for station: Vector2 in plan.get("stations", []):
 		draw_string(font, _point(station) + Vector2(-4, 4), "E", HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color("91d7ee"))
 	var here: Vector2 = _point(plan["player"])

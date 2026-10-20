@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "asset_id": "ENV_CampusGrounds",
+      "asset_name": "CampusGrounds",
+      "category": "environment",
+      "source_file": "assets/blender/exterior/FW_CampusGrounds.blend",
+      "export_file": "assets/exports/exterior/ENV_CampusGrounds.glb",
+      "dimensions_m": [
+        104.0,
+        126.0,
+        7.54
+      ],
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "intended_location": "CampusGrounds",
+      "collision": "Box collider proxies (-colonly)",
+      "materials": [
+        "M_Finish_Asphalt",
+        "M_Finish_Bark",
+        "M_Finish_Brick",
+        "M_Finish_CarBlue",
+        "M_Finish_CarRed",
+        "M_Finish_Glass",
+        "M_Finish_Grass",
+        "M_Finish_Lamp",
+        "M_Finish_Leaves",
+        "M_Finish_Metal",
+        "M_Finish_Paint",
+        "M_Finish_Rubber",
+        "M_Finish_Stone"
+      ],
+      "triangles_base": 7116,
+      "markers": [
+        "CAM_CampusGrounds_Review",
+        "MARK_Campus_Entry"
+      ],
+      "implementation_notes": "Original procedural Stage 7 candidate. Surface UV and nonoverlapping secondary UV included.",
+      "status": "PENDING_OWNER_VISUAL_REVIEW",
+      "authoring_tool": "Blender 4.3.2",
+      "generator": "tools/blender/build_stage7_exterior.py",
+      "seed": 70620,
+      "license": "Original project asset; rights retained by project owner",
+      "third_party_art_inputs": [],
+      "sha256": "d761c8fb51b339b841a6957578b0f3f34ace398befb0297277b2591a9c606737"
+    },
+    {
+      "asset_id": "ENV_HospitalExterior",
+      "asset_name": "HospitalExterior",
+      "category": "environment",
+      "source_file": "assets/blender/exterior/FW_HospitalExterior.blend",
+      "export_file": "assets/exports/exterior/ENV_HospitalExterior.glb",
+      "dimensions_m": [
+        15.0,
+        49.7,
+        8.26
+      ],
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "intended_location": "HospitalExterior",
+      "collision": "Box collider proxies (-colonly)",
+      "materials": [
+        "M_Finish_Brick",
+        "M_Finish_Glass",
+        "M_Finish_Metal",
+        "M_Finish_Stone"
+      ],
+      "triangles_base": 2788,
+      "markers": [
+        "CAM_HospitalExterior_Review",
+        "MARK_Hospital_Entrance"
+      ],
+      "implementation_notes": "Original procedural Stage 7 candidate. Surface UV and nonoverlapping secondary UV included.",
+      "status": "PENDING_OWNER_VISUAL_REVIEW",
+      "authoring_tool": "Blender 4.3.2",
+      "generator": "tools/blender/build_stage7_exterior.py",
+      "seed": 70620,
+      "license": "Original project asset; rights retained by project owner",
+      "third_party_art_inputs": [],
+      "sha256": "706fd79b41ce86c99677900ba2c141f24ca879a45362e6bc59872fdedc266bed"
+    },
+    {
+      "asset_id": "ENV_Apartment",
+      "asset_name": "Apartment",
+      "category": "environment",
+      "source_file": "assets/blender/exterior/FW_Apartment.blend",
+      "export_file": "assets/exports/exterior/ENV_Apartment.glb",
+      "dimensions_m": [
+        10.18,
+        8.18,
+        3.355
+      ],
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "intended_location": "Apartment",
+      "collision": "Box collider proxies (-colonly)",
+      "materials": [
+        "M_Finish_Brick",
+        "M_Finish_Glass",
+        "M_Finish_Metal",
+        "M_Finish_Plaster",
+        "M_Finish_Sofa",
+        "M_Finish_Stone",
+        "M_Finish_Wood"
+      ],
+      "triangles_base": 704,
+      "markers": [
+        "CAM_Apartment_Review",
+        "LIGHTMARK_Apartment_Ceiling",
+        "MARK_Apartment_Entry"
+      ],
+      "implementation_notes": "Original procedural Stage 7 candidate. Surface UV and nonoverlapping secondary UV included.",
+      "status": "PENDING_OWNER_VISUAL_REVIEW",
+      "authoring_tool": "Blender 4.3.2",
+      "generator": "tools/blender/build_stage7_exterior.py",
+      "seed": 70620,
+      "license": "Original project asset; rights retained by project owner",
+      "third_party_art_inputs": [],
+      "sha256": "fd40a05e3da87c86087317583a093b62fe711c667e3b7cfa76eb341c43941cd7"
+    }
+  ],
+  "textures": {
+    "asphalt.png": "c136fcea5c1af99673b5e275c174db91b0155df54205eefe2fcab0e513cd5087",
+    "bark.png": "50f7a8aae69aa4d1562d09d2119f8decc3b6c28ddd2304a165fe846f4c4efb0d",
+    "brick.png": "f571e425bfd02d95d653c4978175bb98e50e20a1eb7b043774eb5799b96e623c",
+    "carblue.png": "7471f186551d7dfbff24558f178f9a6e75ac8e2d9b83d6f2e104d21301a5d896",
+    "carred.png": "fca77cd2600ae81b5332ff436a01ba33b2df506688cb28be7a3c440d95dc84f8",
+    "glass.png": "6e3921989b3b254af77467a39528e0cf35a5ab3ced07a36e8f26b58e71ac355f",
+    "grain.png": "84b343350b4bc80036a63422c69c8494e250e134440c70ba7e4f10a768c7e1d3",
+    "grass.png": "ddd389e644ae8381c14d1c89f2a6ba27238cc3e7af7a4ee309d7d32b54803ad4",
+    "lamp.png": "5d065ab2ca9dae1682d2b27212b0e14b61f687d372ae1833d037b17e7c01ac39",
+    "leaves.png": "83d4155ba56ba453e4905dafd485cffac690b33fadb71b96d2573eae15a3bbaf",
+    "metal.png": "8cb0594bcda66acbf4d8c7440b4d59d0b67c4f7a7c40293ccb650e0df54cf549",
+    "normal.png": "46a0307b18db941dab96fe7af0356474c09fc1e66e99e59217b5fe7e2da145d2",
+    "paint.png": "f977c6f72738c7d7c3db03466b41d8cad2f58773a5ed77d58ca0d3bcbd47168b",
+    "plaster.png": "8f2cf988e1cb3c24d7434209752e68d22a85f1878afbb5033bf06fc2497428ee",
+    "roughness.png": "f05bd6393a11773e173bf9b32ac2ca3d9eea34e9829220c845e6cd12b591a4b9",
+    "rubber.png": "19785f88a04d50384d4130e0bf47ff210831839c0d8cb2266a07a8fb15711acb",
+    "sofa.png": "7f953f2c0a905d79d8d353f49b9c40bd0ab0d0d9d4c833e539587412bee62113",
+    "stone.png": "3289ca6f9c1bd0b12915a7eba493175a186e4c8249c26c99cadf8ceb92aa6cbd",
+    "wood.png": "35a213034bdcc1d035c5076857c2946fd8b74851bdc148e8a1cd9d29632e2443"
+  }
+}

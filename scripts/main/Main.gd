@@ -84,6 +84,11 @@ func _ready() -> void:
 	_place_at_spawn()
 	_zones.setup(_world, _player)
 	_zones.transition_finished.connect(_update_input_mode)
+	var campus: CampusBackdrop = CampusBackdrop.new()
+	campus.name = "CampusBackdrop"
+	add_child(campus)
+	if "--acceptance-perf" in OS.get_cmdline_user_args():
+		add_child(AcceptancePerformance.new())
 	($AudioZoneTracker as AudioZoneTracker).target = _player
 	get_tree().auto_accept_quit = false  # Quit via _quit_gracefully (audio first).
 
