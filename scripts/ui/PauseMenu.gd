@@ -22,6 +22,9 @@ const TOGGLES: Dictionary = {
 const EXTRA_TOGGLES: Dictionary = {
 	"SubtitleSpeakerNames": ["subtitle_speaker_names", "Subtitles: show speaker names"],
 	"SubtitleBackground": ["subtitle_background", "Subtitles: background box"],
+	"ObjectiveChecklist": ["objective_checklist", "Objectives: show checklist"],
+	"ObjectiveBanners": ["objective_banners", "Objectives: show banners"],
+	"ObjectiveSound": ["objective_sound", "Objectives: completion chime"],
 }
 
 ## HSlider node name (under Audio) -> AudioDirector volume setting (linear 0..1).

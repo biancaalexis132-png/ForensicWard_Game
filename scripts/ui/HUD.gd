@@ -97,8 +97,7 @@ func _overlay_label(size: int, alignment: HorizontalAlignment) -> Label:
 func _on_objective_changed(_objective_id: String, text: String) -> void:
 	objective_text = text
 	_objective.text = "" if text.is_empty() else "Objective: " + text
-	if not text.is_empty():
-		show_toast("New objective: " + text)
+	# Completion and new-objective banners are ObjectiveTracker's, once per save.
 
 
 func _on_subtitle_shown(_line_id: String, speaker: String, text: String, _duration: float) -> void:

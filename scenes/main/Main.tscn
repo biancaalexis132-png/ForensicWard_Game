@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/world/Chapter1Ward.tscn" id="2_world"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/narrative/AnomalyLedger.gd" id="13_anomaly"]
 [ext_resource type="PackedScene" path="res://scenes/cutscene/CutsceneDirector.tscn" id="14_cutscene"]
 [ext_resource type="Script" path="res://scripts/ui/TitleScreen.gd" id="15_title"]
+[ext_resource type="Script" path="res://scripts/ui/ObjectiveTracker.gd" id="16_objectives"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
@@ -24,6 +25,9 @@ script = ExtResource("1_main")
 [node name="Player" parent="." instance=ExtResource("3_player")]
 
 [node name="HUD" parent="." instance=ExtResource("4_hud")]
+
+[node name="ObjectiveTracker" type="CanvasLayer" parent="."]
+script = ExtResource("16_objectives")
 
 [node name="EHRScreen" parent="." instance=ExtResource("7_ehr")]
 
