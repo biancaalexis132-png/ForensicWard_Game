@@ -74,6 +74,31 @@ class AudioManifestTests(unittest.TestCase):
                         self.assertTrue((ROOT / f"audio/voice/{data['chapter']}/{line['id']}.ogg").exists())
                         self.assertIn(line["id"], index)
 
+    def test_every_player_line_has_female_variant(self):
+        # The protagonist profile's female choice plays these; the male clip is the fallback.
+        profiles = load("audio/voice_profiles.json")["profiles"]
+        self.assertEqual(profiles["player_female"]["variant_of"], "player")
+        other_voices = {p["voice"] for speaker, p in profiles.items() if speaker != "player_female"}
+        self.assertNotIn(profiles["player_female"]["voice"], other_voices, "female player voice is unique")
+        index = load("audio/voice/voice_lines.json")
+        manifest = {a["file"]: a for a in load("audio/manifest.json")["assets"]}
+        count = 0
+        for path in narrative_files():
+            data = json.loads(path.read_text(encoding="utf-8"))
+            for scene in data["scenes"]:
+                for line in scene["lines"]:
+                    if line["speaker"] != "player":
+                        continue
+                    count += 1
+                    with self.subTest(line=line["id"]):
+                        clip = f"audio/voice/{data['chapter']}/female/{line['id']}.ogg"
+                        self.assertTrue((ROOT / clip).exists())
+                        self.assertEqual(index[line["id"]]["variants"]["female"]["path"], clip)
+                        self.assertEqual(manifest[clip]["review_status"], "PENDING_OWNER_LISTENING")
+                        self.assertIn("Kokoro-82M", manifest[clip]["license"])
+                        self.assertIn("Apache-2.0", manifest[clip]["license"])
+        self.assertGreater(count, 0)
+
     def test_cue_references(self):
         cues = load("audio/cues.json")
         lines = {line["id"] for p in narrative_files()

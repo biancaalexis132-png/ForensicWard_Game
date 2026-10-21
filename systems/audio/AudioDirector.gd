@@ -29,6 +29,10 @@ const CUES_PATH: String = "res://audio/cues.json"
 const AI_MUSIC_CUES_PATH: String = "res://audio/music_ai/music_cues.json"
 const NARRATIVE_DIR: String = "res://data/narrative"
 const VOICE_DIR: String = "res://audio/voice"
+## Alternative voices a speaker can use: speaker -> variant names. A variant clip
+## lives at audio/voice/<chapter>/<variant>/<line_id>.ogg. Keep in step with
+## VOICE_VARIANTS in tools/audio/generate_voice.py.
+const VOICE_VARIANTS: Dictionary = {"player": ["female"]}
 const SETTINGS_PATH: String = "user://audio_settings.cfg"
 const SETTINGS_SECTION: String = "audio"
 
@@ -115,6 +119,8 @@ var _tweens: Dictionary = {} ## Object -> Tween, so a new fade replaces the old 
 var _current_line_id: String = ""
 var _current_line_token: int = 0
 var _current_voice: Node = null
+## speaker -> the VOICE_VARIANTS entry it uses now; absent = main voice.
+var _voice_variants: Dictionary = {}
 ## Bumped whenever dialogue is started or stopped, so a scene notices interruptions.
 var _dialogue_token: int = 0
 ## Recap narration shares speech ducking but never enters gameplay dialogue.
@@ -145,6 +151,7 @@ func _ready() -> void:
 	EventBus.shift_started.connect(_on_shift_started)
 	EventBus.narrative_event_fired.connect(_on_narrative_event_fired)
 	EventBus.game_loaded.connect(func(_slot: int) -> void: cancel_pending_events())
+	EventBus.protagonist_profile_changed.connect(_on_protagonist_profile_changed)
 
 
 func _process(_delta: float) -> void:
@@ -566,13 +573,43 @@ func get_scene_lines(scene_id: String) -> Array:
 	return _scenes.get(scene_id, []).duplicate()
 
 
-## Voice clip for a line, or null if it has not been generated yet.
+## Voice clip for a line, or null if it has not been generated yet. When the
+## speaker uses a voice variant (the female player voice), that clip plays,
+## falling back to the main clip if the variant was not generated.
 func get_voice_stream(line_id: String) -> AudioStream:
+	var path: String = get_voice_path(line_id)
+	return load(path) if not path.is_empty() else null
+
+
+## The res:// path of the clip get_voice_stream() plays for a line, or "".
+func get_voice_path(line_id: String) -> String:
 	var line: Dictionary = _lines.get(line_id, {})
 	if line.is_empty():
-		return null
+		return ""
+	var variant: String = str(_voice_variants.get(line["speaker"], ""))
+	if not variant.is_empty():
+		var variant_path: String = "%s/%s/%s/%s.ogg" % [VOICE_DIR, line["chapter"], variant, line_id]
+		if ResourceLoader.exists(variant_path):
+			return variant_path
 	var path: String = "%s/%s/%s.ogg" % [VOICE_DIR, line["chapter"], line_id]
-	return load(path) if ResourceLoader.exists(path) else null
+	return path if ResourceLoader.exists(path) else ""
+
+
+## Makes a speaker use one of its VOICE_VARIANTS ("" for the main voice).
+func set_voice_variant(speaker: String, variant: String) -> void:
+	if variant.is_empty() or not variant in VOICE_VARIANTS.get(speaker, []):
+		_voice_variants.erase(speaker)
+	else:
+		_voice_variants[speaker] = variant
+
+
+func get_voice_variant(speaker: String) -> String:
+	return str(_voice_variants.get(speaker, ""))
+
+
+func _on_protagonist_profile_changed() -> void:
+	# The profile's female/male choice picks the psychiatrist's voice.
+	set_voice_variant("player", "female" if ProtagonistProfile.gender() == "female" else "")
 
 
 ## Plays one line and shows its subtitle for exactly as long as the clip plays.
