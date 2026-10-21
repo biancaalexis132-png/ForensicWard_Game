@@ -32,7 +32,8 @@ func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(anchor) or not AudioDirector.is_voice_busy():
 		anchor = null
 		return
-	if is_instance_valid(target) and distance_to_anchor() > WALK_AWAY_METERS:
+	# A modal panel holds the player in place; only free movement walks away.
+	if _target_can_move() and distance_to_anchor() > WALK_AWAY_METERS:
 		walk_away()
 
 
@@ -58,9 +59,20 @@ func _on_subtitle_shown(line_id: String, _speaker_name: String, _text: String, _
 		return
 	var character: WardCharacter = find_character(speaker)
 	if character != null:
+		# Only a conversation the player is part of: a character heard from
+		# afar (a line triggered elsewhere) is not one to walk away from.
 		anchor = character
+		if distance_to_anchor() > WALK_AWAY_METERS:
+			anchor = null
 	elif anchor != null and not _is_anchor_speaker(speaker):
 		anchor = null # A narrator, intercom or off-screen voice took over.
+
+
+func _target_can_move() -> bool:
+	if not is_instance_valid(target):
+		return false
+	var can_move: Variant = target.get("input_enabled")
+	return can_move == null or bool(can_move)
 
 
 func _is_anchor_speaker(speaker: String) -> bool:

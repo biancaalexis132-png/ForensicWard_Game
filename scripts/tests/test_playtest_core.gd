@@ -60,6 +60,28 @@ func test_walking_away_stops_the_conversation() -> void:
 	await _release_audio()
 
 
+func test_distant_speakers_and_open_panels_do_not_walk_away() -> void:
+	var main: Node = await _main()
+	var range_node: ConversationRange = main.get_node("ConversationRange")
+	var bennett: WardCharacter = range_node.find_character("staff_bennett")
+	var player: FirstPersonController = main.get_node("Player")
+	var line_id: String = _bennett_line()
+	player.global_position = bennett.global_position + Vector3(ConversationRange.WALK_AWAY_METERS + 3.0, 0.0, 0.0)
+	AudioDirector.play_line(line_id)
+	await _physics_frames(3)
+	check(range_node.anchor == null, "a line heard from afar is not anchored")
+	check(AudioDirector.is_dialogue_playing(), "and it keeps playing")
+	player.global_position = bennett.global_position + Vector3(1.5, 0.0, 0.0)
+	AudioDirector.play_line(line_id)
+	await _physics_frames(2)
+	player.set_input_enabled(false) # A panel is open: the player cannot walk.
+	player.global_position = bennett.global_position + Vector3(ConversationRange.WALK_AWAY_METERS + 3.0, 0.0, 0.0)
+	await _physics_frames(3)
+	check(AudioDirector.is_dialogue_playing(), "a conversation in an open panel is not cut off")
+	player.set_input_enabled(true)
+	await _release_audio()
+
+
 func test_narrator_lines_do_not_anchor() -> void:
 	var main: Node = await _main()
 	var range_node: ConversationRange = main.get_node("ConversationRange")
