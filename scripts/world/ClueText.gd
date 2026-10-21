@@ -11,3 +11,12 @@ static func describe(clue: Dictionary) -> String:
 		str(clue["provenance"]).replace("_", " "),
 		"Independently verified" if clue["verified"] else "Not independently verified",
 	]
+
+
+## InfoPanel data for reading a clue: its title, text and id, so the panel
+## shows the paper document beside the text when an image exists.
+static func panel_data(clue_id: String) -> Dictionary:
+	var clue: Dictionary = ContentRegistry.get_clue(clue_id)
+	if clue.is_empty():
+		return {}
+	return {"title": clue["title"], "body": describe(clue), "clue_id": clue_id}
