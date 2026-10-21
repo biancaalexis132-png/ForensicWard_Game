@@ -1766,6 +1766,110 @@
 			"text": "You note the bedside findings so far and return to general questions."
 		},
 		{
+			"file": "audio/voice/ch1/female/ch1_b2_player_001.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.035,
+			"ids": [
+				"ch1_b2_player_001",
+				"ch1_bennett_handover"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "nursing_station",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "5975dec629088b3c63d88aa60ab89011e3f17b2cb4355b7db91193d3bfde213c",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Good to meet you. What do I need to know?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch1/female/ch1_b2_player_002.ogg",
+			"category": "dialogue",
+			"duration_seconds": 3.13,
+			"ids": [
+				"ch1_b2_player_002",
+				"ch1_bennett_handover"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "nursing_station",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "396133a5f269016cea6b46266b58e1fd2367430ef55dcc2c4f8348bc77bd4464",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Has anyone checked his vitals and fluid intake today?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch1/female/ch1_int_elias_ask_intake.ogg",
+			"category": "dialogue",
+			"duration_seconds": 3.042,
+			"ids": [
+				"ch1_int_elias_ask_intake"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "interview_room",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "59c488349dadb917d6bec64f4c7a140c71173353f17fd1ac00183991280966e0",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Elias, have you been able to eat or drink anything today?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch1/female/ch1_int_elias_ask_ward_zero.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.981,
+			"ids": [
+				"ch1_int_elias_ask_ward_zero"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "interview_room",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "993b3b0ec6a5c068724f5c318aaa7e77f1ddd644b93f7859ddc88b2ffd3dd6b9",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Elias, does the name Ward Zero mean anything to you?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch1/female/ch1_int_elias_assess_motor.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.269,
+			"ids": [
+				"ch1_int_elias_assess_motor"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "interview_room",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "ce1d28ae20929e59168de0b9bcb72947a934435cd9a92f1479041db8e2ffa719",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "I'd like to look at how you're sitting and moving, Elias. I'll explain each step before I do it.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch1/female/ch1_int_elias_return_to_general.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.459,
+			"ids": [
+				"ch1_int_elias_return_to_general"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "interview_room",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "e58c54325fcf32c8621ef310ee59a3793223c0fa0d6df6d34003c6e3535fe669",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Let's leave the examination there for now and go back to a few general questions.",
+			"variant": "female"
+		},
+		{
 			"file": "audio/voice/ch2/ch2_v_0112ade4ec.ogg",
 			"category": "dialogue",
 			"duration_seconds": 6.616,
@@ -5750,6 +5854,346 @@
 			"text": "Decide where the date conflict belongs first."
 		},
 		{
+			"file": "audio/voice/ch2/female/ch2_v_2692b95cff.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.072,
+			"ids": [
+				"ch2_v_2692b95cff"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "bd22f45466c1d8f4ae0fb2df14a49887658752e7b4f6ba86b7bd7276e98c7543",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "What would a legitimate inspection require?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_27fa7bc3b1.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.965,
+			"ids": [
+				"ch2_v_27fa7bc3b1"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "29c6c3770a29554c8acb4e5689121bc8a498406b17534253e9b25a779cb76608",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Before you go, there are a few more things I'd like to ask.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_42b467571c.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.355,
+			"ids": [
+				"ch2_v_42b467571c"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "1df23f6303480085e3acf80e00c90ef2b1ca256c0d05b1f6a5be62bde902db0c",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "An earlier note mentions a mood disorder. Can we discuss what was happening during that period?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_468127e1fb.ogg",
+			"category": "dialogue",
+			"duration_seconds": 3.819,
+			"ids": [
+				"ch2_v_468127e1fb"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "a6504bb7ffed2723170d6e25031e2f7ef9b68843986052e46dc1cc303ba89738",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Still alive. Drinks sound good. No shop talk is a promise.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_533ceae01e.ogg",
+			"category": "dialogue",
+			"duration_seconds": 1.582,
+			"ids": [
+				"ch2_v_533ceae01e"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "a7030b05f8b9d6cb887f008fe3004a685aa7f441895b1c097075f5d009112614",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Where did each copy originate?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_5617b7220b.ogg",
+			"category": "dialogue",
+			"duration_seconds": 3.221,
+			"ids": [
+				"ch2_v_5617b7220b"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "8cf93532a5c944f63f78b9bb0cfc2e87eb97ee317bff1d4ee4d0ce5ef3207446",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Leaving now. Can't talk about the day, but I'm glad you're there.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_6b92b2f98e.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.092,
+			"ids": [
+				"ch2_v_6b92b2f98e"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "3df5d4d9b8c7646a74549b6eb7455bdb603dc21a78a898d975f6629efa602ecb",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Heading home now. I'll ring tomorrow.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_6d5bf9cc3c.ogg",
+			"category": "dialogue",
+			"duration_seconds": 3.52,
+			"ids": [
+				"ch2_v_6d5bf9cc3c"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "c64eef2d1f479540a2c2da36ddaafc670ac0e93eb5c0786ac972466eabacc6cb",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "What other explanations have you considered for the date conflict?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_7b4f54e390.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.44,
+			"ids": [
+				"ch2_v_7b4f54e390"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "e2eecbfe4cf279738008ea1dba2bcdc021ab62a82b197d5a8429efb3e850b820",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "When the stress feels overwhelming, have you thought about suicide, hurting yourself or somebody else?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_82b919d475.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.908,
+			"ids": [
+				"ch2_v_82b919d475"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "cb532ff98fa69f5c056a768085413e6bc1543bec15cab42c8c68534640bbcc89",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "I'm here to assess your health and hear your account. The records question can be documented separately.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_94cc2bf70f.ogg",
+			"category": "dialogue",
+			"duration_seconds": 3.904,
+			"ids": [
+				"ch2_v_94cc2bf70f"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "82a4bcb20d75b7b149f0ad5b368ea7c75e728372af403dd1f803d0da77197703",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "It sounds as though you've had to repeat yourself. Where would you like to begin?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_986c5be764.ogg",
+			"category": "dialogue",
+			"duration_seconds": 1.987,
+			"ids": [
+				"ch2_v_986c5be764"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "c953a823fa3c35e944a09cf8c2c21f723a9617b305fb872f557f1b54bb4498c1",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "And when they don't account for every line?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_9aab902648.ogg",
+			"category": "dialogue",
+			"duration_seconds": 15.019,
+			"ids": [
+				"ch2_v_9aab902648"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "76889280dc164a439cdc6917bd877ed29e1218bd40f85038856b9a8d5726077b",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "An inactive credential appears in an archived transfer-request audit. It doesn't identify the person who used it. The export mismatch is reported and unresolved; clock authority, ordering, lineage and preservation are unverified.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_a63df79106.ogg",
+			"category": "dialogue",
+			"duration_seconds": 6.827,
+			"ids": [
+				"ch2_v_a63df79106"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "d4cc145017014b35fe0be001b283e9d315a367462bf78be325609021d6b8678b",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Who might know how your sleep and daily routine have changed? We can discuss what information might be requested and shared.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_a7613470b0.ogg",
+			"category": "dialogue",
+			"duration_seconds": 3.58,
+			"ids": [
+				"ch2_v_a7613470b0"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "e32b7114e1f65991132221536547ad1c8f89639262e289ea16950d19d6445bff",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Then let's check the approved work orders before concluding anything.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_b3b08c81fc.ogg",
+			"category": "dialogue",
+			"duration_seconds": 6.8,
+			"ids": [
+				"ch2_v_b3b08c81fc"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "81895a77ccfc9fdd2a70d4c71d573cb988c49788a7ff7944822fac87baa8e057",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "My role is clinical care. I won't promise an administrative finding, but I can document your concerns accurately.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_c3080ed86e.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.139,
+			"ids": [
+				"ch2_v_c3080ed86e"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "ca45705f5868ab00e175a7b19a4c2e1dcb5b2bda0d4acc298b2e4e5f65743d0f",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "I'm asking how the restricted designation appeared in a live request.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_c77698db23.ogg",
+			"category": "dialogue",
+			"duration_seconds": 8.765,
+			"ids": [
+				"ch2_v_c77698db23"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "8af93b294689f6340d5bbbf6663d7758b37e534b11b6f26fd5548f25908c888b",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "If the dates differ, it would establish something about the records. Your assessment still depends on your history, examination and reliable information.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_e4c54b2b06.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.896,
+			"ids": [
+				"ch2_v_e4c54b2b06"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "ba5e8bdd8e53e1a59826ac6039e31a69e517b1762a4fdcb4e816a8e0105d4770",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "How much sleep are you getting? How do you feel the next day?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch2/female/ch2_v_ffbc340374.ogg",
+			"category": "dialogue",
+			"duration_seconds": 1.504,
+			"ids": [
+				"ch2_v_ffbc340374"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH2 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "74dde72bcb6f720b8cb8f6d63cdecb51b3e47a6fd4eff28b3dc5f624916031ce",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "What do you think could explain it?",
+			"variant": "female"
+		},
+		{
 			"file": "audio/voice/ch3/ch3_v_01ed2d480f.ogg",
 			"category": "dialogue",
 			"duration_seconds": 3.369,
@@ -7766,6 +8210,74 @@
 			"text": "Separate statements. If they agree, that matters only because they were taken separately."
 		},
 		{
+			"file": "audio/voice/ch3/female/ch3_v_1cbfd0bd5e.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.38,
+			"ids": [
+				"ch3_v_1cbfd0bd5e"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "1852d1045f97446e48d52642c5f918c2c0838d7bdb7fe2d8fca5c89231332688",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Was this designated W0-B?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch3/female/ch3_v_294a212de9.ogg",
+			"category": "dialogue",
+			"duration_seconds": 3.627,
+			"ids": [
+				"ch3_v_294a212de9"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "d8dd6202ecc55be4e34d0e77a03d80695d32a387b4dfca467d7782e7e6b199b0",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "So we have a reason for a more controlled review, not a conclusion.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch3/female/ch3_v_4396096a84.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.651,
+			"ids": [
+				"ch3_v_4396096a84"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "1a05ac145f086f3c17c3ad4a0eec5517e6bd786b14cf9b71a756e95e13b73ae1",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "We knew the drawings might be wrong. That didn't explain why I kept wanting to look again.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch3/female/ch3_v_a3668b8f73.ogg",
+			"category": "dialogue",
+			"duration_seconds": 1.48,
+			"ids": [
+				"ch3_v_a3668b8f73"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "8fa4bfa23540089bae03e963f78c0a9cbcbf05a00ab02a083672f03ce46f4e9e",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Could there have been a renovation?",
+			"variant": "female"
+		},
+		{
 			"file": "audio/voice/ch4/ch4_v_005d948389.ogg",
 			"category": "narration",
 			"duration_seconds": 5.518,
@@ -9526,6 +10038,108 @@
 			"text": "You snooze the reminder. It will come back."
 		},
 		{
+			"file": "audio/voice/ch4/female/ch4_v_0a9bb93c02.ogg",
+			"category": "dialogue",
+			"duration_seconds": 9.941,
+			"ids": [
+				"ch4_v_0a9bb93c02"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH4 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "0e9df52c9c3c5c4747666a1f1daf0d44368f0be2a02f0c1b76807407f82bbefe",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "The restriction governs until the safety review says otherwise. And patients keep receiving their care without their histories becoming part of the building investigation.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch4/female/ch4_v_2b5ee25bea.ogg",
+			"category": "dialogue",
+			"duration_seconds": 0.621,
+			"ids": [
+				"ch4_v_2b5ee25bea"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH4 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "e67be11d1ce431339b3785f8dc0e699dd8e029c95edbdcc46bcd57974d62ab1c",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Hold.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch4/female/ch4_v_9af462f4b5.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.885,
+			"ids": [
+				"ch4_v_9af462f4b5"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH4 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "b93febd7bf59e2ed6dea7f8c55ddb4cebac9b775abad3293e4c7894913d514fb",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "The inactive-credential transfer request remains an information-security question.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch4/female/ch4_v_e27fd66597.ogg",
+			"category": "dialogue",
+			"duration_seconds": 10.496,
+			"ids": [
+				"ch4_v_e27fd66597"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH4 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "9569935eaa0033155a99f271d605575c533d8e94ac8cb6f1da6150108590894a",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "An outside inquiry, its own instruments, under Hale's restriction. And patients keep receiving their care without their histories becoming part of the building investigation.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch4/female/ch4_v_f33ae5d570.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.267,
+			"ids": [
+				"ch4_v_f33ae5d570"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH4 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "7cdce131d6a303f647355735f59e718c840934e808695979e9e4f340913038d7",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Stop. Confirm our position and use the documented return procedure.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch4/female/ch4_v_f593bef6fc.ogg",
+			"category": "dialogue",
+			"duration_seconds": 3.565,
+			"ids": [
+				"ch4_v_f593bef6fc"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH4 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "e337f5fb46eceeb7f126c2275c50ebae5d10d1fc3617b7f78ae879a0836e3596",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "I'd also like to talk about how the insomnia has been affecting you.",
+			"variant": "female"
+		},
+		{
 			"file": "audio/voice/ch5/ch5_v_02ed017586.ogg",
 			"category": "narration",
 			"duration_seconds": 6.791,
@@ -11092,6 +11706,193 @@
 			"source": "Kokoro TTS voice 'am_onyx' speed 0.94, fx 'dialogue' (tools/audio/generate_voice.py)",
 			"speaker": "staff_hale",
 			"text": "Preserved. Closing a door doesn't mean pretending nothing happened."
+		},
+		{
+			"file": "audio/voice/ch5/female/ch5_v_15899bbb72.ogg",
+			"category": "dialogue",
+			"duration_seconds": 1.275,
+			"ids": [
+				"ch5_v_15899bbb72"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "718beaf8914c03c98b6cd760bc7798b638f34a2e676a6181755e7b1fd56fde18",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "That sounds refreshing.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch5/female/ch5_v_1ff6fabf10.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.018,
+			"ids": [
+				"ch5_v_1ff6fabf10"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "3c9a363ab790a2da9d7c3130716d48636c2dcacfa2cc662fa51d6f718bdecff2",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Have the timestamps been reconciled?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch5/female/ch5_v_3a75e5a062.ogg",
+			"category": "dialogue",
+			"duration_seconds": 1.068,
+			"ids": [
+				"ch5_v_3a75e5a062"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "b27e5c8d23d9a3b29e28ccf5129218c6ecb1dc7032bdc10593b5dd58ca7b2694",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "That's why we're here.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch5/female/ch5_v_4a5688b9b5.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.965,
+			"ids": [
+				"ch5_v_4a5688b9b5"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "121332b5e2bd2d38d5e728f34dbc320f290b8ceff42a47aa6a4539dcb5627843",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "I can't give you an explanation we haven't established.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch5/female/ch5_v_5f5ad0f1df.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.266,
+			"ids": [
+				"ch5_v_5f5ad0f1df"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "1f51f6ebc9820441d18b421f1c01e9f3c2ac5768d872d867c5425b936ed0acdc",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "We need two separate records: the clinical assessment and the environmental investigation.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch5/female/ch5_v_8e6ca76bed.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.175,
+			"ids": [
+				"ch5_v_8e6ca76bed"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "7356a83e764e4b3205520045f717d8926e8d37eae8fbfeed1e6c2c62042bed9b",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "And the ones that don't fit the chronology?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch5/female/ch5_v_975ccb410d.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.973,
+			"ids": [
+				"ch5_v_975ccb410d"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "b5761cc6004381f066851e278b763d52da9b0e9fc3f66ddf1912520edf5c2698",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "You deserved an assessment based on the information available, and an opportunity to explain your concerns.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch5/female/ch5_v_9789e8c0c5.ogg",
+			"category": "dialogue",
+			"duration_seconds": 3.008,
+			"ids": [
+				"ch5_v_9789e8c0c5"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "b226f82709cb10ce9295976991ce6213bc537c14d151907e127828dbefac567d",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Frustration doesn't make your questions irrelevant.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch5/female/ch5_v_a2724261c5.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.492,
+			"ids": [
+				"ch5_v_a2724261c5"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "e4a81045b67230d121c69c505217b1337db9c5d808e0e2ea1c11810b4ca90baf",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "What exactly are we trying to establish today?",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch5/female/ch5_v_e33778a176.ogg",
+			"category": "dialogue",
+			"duration_seconds": 14.677,
+			"ids": [
+				"ch5_v_e33778a176"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "43faab53c422b6e261fa7355bec4a527a61ff5aff8f2d20a7a439cd2c2a34439",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "You deserved an assessment based on the information available, and an opportunity to explain your concerns. The discrepancy you raised remains part of the authorized historical review. I can't give you an explanation we haven't established.",
+			"variant": "female"
+		},
+		{
+			"file": "audio/voice/ch5/female/ch5_v_fc420e7bcb.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.475,
+			"ids": [
+				"ch5_v_fc420e7bcb"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "PENDING_OWNER_LISTENING",
+			"sha256": "db00843a8cee0317a22ab34ae8857f7ee778d7df56bf85d41519596e77f74f94",
+			"source": "Kokoro TTS voice 'af_heart' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "player",
+			"text": "Which means we shouldn't count those records twice.",
+			"variant": "female"
 		},
 		{
 			"file": "audio/voice/walla/walla_ns_001.ogg",

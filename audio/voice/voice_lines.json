@@ -29,7 +29,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "23f8fc49a4ccfdf1819a208b07d9b69f478327c9"
+		"source_hash": "23f8fc49a4ccfdf1819a208b07d9b69f478327c9",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch1/female/ch1_b2_player_001.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "3093eb6ea26031085dad1179477c36874fb78d46"
+			}
+		}
 	},
 	"ch1_b2_player_002": {
 		"path": "audio/voice/ch1/ch1_b2_player_002.ogg",
@@ -37,7 +46,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "ddc671d51aa4cb46a3a652edc8d8dc8e4c1d0bfb"
+		"source_hash": "ddc671d51aa4cb46a3a652edc8d8dc8e4c1d0bfb",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch1/female/ch1_b2_player_002.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "f3640b61ca3d491d56148c43b9cb7395203e7f6b"
+			}
+		}
 	},
 	"ch1_b6_intercom_001": {
 		"path": "audio/voice/ch1/ch1_b6_intercom_001.ogg",
@@ -53,7 +71,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "9fac331a6cbdef1551af63808c50827e86614b97"
+		"source_hash": "9fac331a6cbdef1551af63808c50827e86614b97",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch1/female/ch1_int_elias_ask_intake.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "ccc5366a357a8ad097349cc8a1f556d78e02c339"
+			}
+		}
 	},
 	"ch1_int_elias_ask_ward_zero": {
 		"path": "audio/voice/ch1/ch1_int_elias_ask_ward_zero.ogg",
@@ -61,7 +88,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "7aa03060d064e137d6fa93de6508fdbd34504f2a"
+		"source_hash": "7aa03060d064e137d6fa93de6508fdbd34504f2a",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch1/female/ch1_int_elias_ask_ward_zero.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "fd56ebe4d503baaaaa39edb26284dc8f60d6a022"
+			}
+		}
 	},
 	"ch1_int_elias_assess_motor": {
 		"path": "audio/voice/ch1/ch1_int_elias_assess_motor.ogg",
@@ -69,7 +105,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "8311eb9f70bd5d217ec80aa56eeb6523c6b5a4d1"
+		"source_hash": "8311eb9f70bd5d217ec80aa56eeb6523c6b5a4d1",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch1/female/ch1_int_elias_assess_motor.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "fda68d4d6663c46f46283ece1719797e5a5aaede"
+			}
+		}
 	},
 	"ch1_int_elias_return_to_general": {
 		"path": "audio/voice/ch1/ch1_int_elias_return_to_general.ogg",
@@ -77,7 +122,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "ba0392fcf05624c40947a1f4dd63202d7bfdc73d"
+		"source_hash": "ba0392fcf05624c40947a1f4dd63202d7bfdc73d",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch1/female/ch1_int_elias_return_to_general.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "8ae6a0dce3ac0d0109297e292f9bbff0d07ba50d"
+			}
+		}
 	},
 	"ch1_pro_01_arrival": {
 		"path": "audio/voice/ch1/ch1_pro_01_arrival.ogg",
@@ -485,7 +539,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "525d1e7f5f7df8e9fb7f51e4f37cdf4aeaeadb1c"
+		"source_hash": "525d1e7f5f7df8e9fb7f51e4f37cdf4aeaeadb1c",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_2692b95cff.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "daa0aef9305b379a9c40adf4e0661e515d3b8210"
+			}
+		}
 	},
 	"ch2_v_26f41fda8b": {
 		"path": "audio/voice/ch2/ch2_v_26f41fda8b.ogg",
@@ -517,7 +580,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "3ff456a751a4e56ebc050239fe565ec065cd0a73"
+		"source_hash": "3ff456a751a4e56ebc050239fe565ec065cd0a73",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_27fa7bc3b1.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "d9b28b35fc99bf706fe2754a9983bd0f6562ad98"
+			}
+		}
 	},
 	"ch2_v_28caf48ab8": {
 		"path": "audio/voice/ch2/ch2_v_28caf48ab8.ogg",
@@ -773,7 +845,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "3fcf6e07c1f4d95cfea777258f2b8555d2803187"
+		"source_hash": "3fcf6e07c1f4d95cfea777258f2b8555d2803187",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_42b467571c.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "8f8a27739c9535633b6a4bb6cb9bf44749672fc4"
+			}
+		}
 	},
 	"ch2_v_439100cd8f": {
 		"path": "audio/voice/ch2/ch2_v_439100cd8f.ogg",
@@ -805,7 +886,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "760793c44250d76f499ddc3197626ff07beaffb7"
+		"source_hash": "760793c44250d76f499ddc3197626ff07beaffb7",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_468127e1fb.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "388ccd4410a0057fa3afc7802ff565ac220d305c"
+			}
+		}
 	},
 	"ch2_v_46b79287c7": {
 		"path": "audio/voice/ch2/ch2_v_46b79287c7.ogg",
@@ -941,7 +1031,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "a741c176bb0ad2d29d753e9738f353dd1259688c"
+		"source_hash": "a741c176bb0ad2d29d753e9738f353dd1259688c",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_533ceae01e.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "1423754e6caab8ce289d6e45ef55df87548f0662"
+			}
+		}
 	},
 	"ch2_v_54df9c9968": {
 		"path": "audio/voice/ch2/ch2_v_54df9c9968.ogg",
@@ -965,7 +1064,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "8c368d2fa8e326839d4bda89a12bdf54899218e8"
+		"source_hash": "8c368d2fa8e326839d4bda89a12bdf54899218e8",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_5617b7220b.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "194b0ffc4f7c185d01551457c1c8688daceaac2e"
+			}
+		}
 	},
 	"ch2_v_569609703e": {
 		"path": "audio/voice/ch2/ch2_v_569609703e.ogg",
@@ -1053,7 +1161,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "64783aadcc7d4fa2b6cdcfe542a2c0c8e55b435e"
+		"source_hash": "64783aadcc7d4fa2b6cdcfe542a2c0c8e55b435e",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_6b92b2f98e.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "946b764c2b98ab62e857206e3af14918ef45fa79"
+			}
+		}
 	},
 	"ch2_v_6ba24da4b8": {
 		"path": "audio/voice/ch2/ch2_v_6ba24da4b8.ogg",
@@ -1077,7 +1194,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "71b7267f46356d4e74640d80d06303bc492bfba4"
+		"source_hash": "71b7267f46356d4e74640d80d06303bc492bfba4",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_6d5bf9cc3c.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "ddc30df7d5d931e49b24dad6a4b2fbdea43bbb56"
+			}
+		}
 	},
 	"ch2_v_704b973bc3": {
 		"path": "audio/voice/ch2/ch2_v_704b973bc3.ogg",
@@ -1189,7 +1315,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "3c528373daeeb09b16a23490f8834d164e4e52df"
+		"source_hash": "3c528373daeeb09b16a23490f8834d164e4e52df",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_7b4f54e390.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "ebe5c08f17418a1876c92ad2111accaa15214777"
+			}
+		}
 	},
 	"ch2_v_7ecbce6900": {
 		"path": "audio/voice/ch2/ch2_v_7ecbce6900.ogg",
@@ -1237,7 +1372,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "a77f8aaeef14f142c39b7e7e9d20449a5db25c48"
+		"source_hash": "a77f8aaeef14f142c39b7e7e9d20449a5db25c48",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_82b919d475.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "3ad4e5bd7c31de0ccd9c56cfd2af074774276f15"
+			}
+		}
 	},
 	"ch2_v_8339146af2": {
 		"path": "audio/voice/ch2/ch2_v_8339146af2.ogg",
@@ -1421,7 +1565,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "4e579aa9d827b3cc04e5c29be4e96fb1307e7145"
+		"source_hash": "4e579aa9d827b3cc04e5c29be4e96fb1307e7145",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_94cc2bf70f.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "7757badd7403a53798a66b807cd9e369550c1c0f"
+			}
+		}
 	},
 	"ch2_v_971c57aaa9": {
 		"path": "audio/voice/ch2/ch2_v_971c57aaa9.ogg",
@@ -1453,7 +1606,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "69985ad69eb3cf19a876d4138ac3aed31ae7823c"
+		"source_hash": "69985ad69eb3cf19a876d4138ac3aed31ae7823c",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_986c5be764.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "4306487c4d5668a690888b1738b89b6233c63290"
+			}
+		}
 	},
 	"ch2_v_9985cf5d0f": {
 		"path": "audio/voice/ch2/ch2_v_9985cf5d0f.ogg",
@@ -1469,7 +1631,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "347eeb146e1a00b0cf832aa9b36dce3d38df91be"
+		"source_hash": "347eeb146e1a00b0cf832aa9b36dce3d38df91be",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_9aab902648.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "cadb0f745da43e9eb68b2664f46be7d1657e8e85"
+			}
+		}
 	},
 	"ch2_v_9bb48c07c9": {
 		"path": "audio/voice/ch2/ch2_v_9bb48c07c9.ogg",
@@ -1549,7 +1720,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "4587f7c9b96756629029d4112d074debb066c2ed"
+		"source_hash": "4587f7c9b96756629029d4112d074debb066c2ed",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_a63df79106.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "498bf4f804d53197c1ba333471871967167e13d4"
+			}
+		}
 	},
 	"ch2_v_a7613470b0": {
 		"path": "audio/voice/ch2/ch2_v_a7613470b0.ogg",
@@ -1557,7 +1737,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "b5beb42f946446ddbd8bad496b20e23c2c09bd47"
+		"source_hash": "b5beb42f946446ddbd8bad496b20e23c2c09bd47",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_a7613470b0.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "b758f4c554794cb12b0eaedd3e80766eddd39ec0"
+			}
+		}
 	},
 	"ch2_v_a85a45b47e": {
 		"path": "audio/voice/ch2/ch2_v_a85a45b47e.ogg",
@@ -1637,7 +1826,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "07bfb15e5b2a5b3e7ea31c0d9f7e1a5844f5fe79"
+		"source_hash": "07bfb15e5b2a5b3e7ea31c0d9f7e1a5844f5fe79",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_b3b08c81fc.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "3eb302becaacca166942425997fc8a0401d0a6cc"
+			}
+		}
 	},
 	"ch2_v_b60b432043": {
 		"path": "audio/voice/ch2/ch2_v_b60b432043.ogg",
@@ -1709,7 +1907,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "ee9aa1b3a4329c5b258ac55c46ba5caf3476a652"
+		"source_hash": "ee9aa1b3a4329c5b258ac55c46ba5caf3476a652",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_c3080ed86e.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "8d94950ef631970b7da793b3a9e7755e5d405358"
+			}
+		}
 	},
 	"ch2_v_c4988c84b5": {
 		"path": "audio/voice/ch2/ch2_v_c4988c84b5.ogg",
@@ -1765,7 +1972,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "5b0908dd1e61bb9885b79046b514f25016b37bbf"
+		"source_hash": "5b0908dd1e61bb9885b79046b514f25016b37bbf",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_c77698db23.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "f2122c389496683adb04db28312a3332e8f0beb6"
+			}
+		}
 	},
 	"ch2_v_c8261b520b": {
 		"path": "audio/voice/ch2/ch2_v_c8261b520b.ogg",
@@ -2013,7 +2229,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "f17d95ce8f5d904cbfe4a11a30c7a896afefe23e"
+		"source_hash": "f17d95ce8f5d904cbfe4a11a30c7a896afefe23e",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_e4c54b2b06.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "ae8637ca70329df9369f33276a711b32cd7a08ea"
+			}
+		}
 	},
 	"ch2_v_e5255da0c3": {
 		"path": "audio/voice/ch2/ch2_v_e5255da0c3.ogg",
@@ -2205,7 +2430,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "5759e0ebc40884923b5a46b2eaa966014a9320b0"
+		"source_hash": "5759e0ebc40884923b5a46b2eaa966014a9320b0",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch2/female/ch2_v_ffbc340374.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "00e3bb446c7fb9bdeea83eb21f9c5fbe2bc01c6d"
+			}
+		}
 	},
 	"ch2_v_ffed06b360": {
 		"path": "audio/voice/ch2/ch2_v_ffed06b360.ogg",
@@ -2349,7 +2583,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "85f291091a2d08188423566cd43647070fb03e7e"
+		"source_hash": "85f291091a2d08188423566cd43647070fb03e7e",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch3/female/ch3_v_1cbfd0bd5e.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "5c8467cb552072fccafe25bc75b88b091d343903"
+			}
+		}
 	},
 	"ch3_v_1d177f14fb": {
 		"path": "audio/voice/ch3/ch3_v_1d177f14fb.ogg",
@@ -2405,7 +2648,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "d527cde497fba4721872f7a35a846f2ca8ac3d21"
+		"source_hash": "d527cde497fba4721872f7a35a846f2ca8ac3d21",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch3/female/ch3_v_294a212de9.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "1e59256a23d90b45e245653fc0aeabd2a732b936"
+			}
+		}
 	},
 	"ch3_v_2fb9cc7298": {
 		"path": "audio/voice/ch3/ch3_v_2fb9cc7298.ogg",
@@ -2477,7 +2729,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "f158e05f16ed4540aaea2357f67f24fbb3140b67"
+		"source_hash": "f158e05f16ed4540aaea2357f67f24fbb3140b67",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch3/female/ch3_v_4396096a84.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "c10e76e3f7132670698b678341cb1b27d4df8664"
+			}
+		}
 	},
 	"ch3_v_4b4f235feb": {
 		"path": "audio/voice/ch3/ch3_v_4b4f235feb.ogg",
@@ -2861,7 +3122,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "0fdfe597860f84032ce6c1c3c2ce626fae48f9fe"
+		"source_hash": "0fdfe597860f84032ce6c1c3c2ce626fae48f9fe",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch3/female/ch3_v_a3668b8f73.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "db4f0b4f8ed5acf04de1389c2fd612d2cb0206fc"
+			}
+		}
 	},
 	"ch3_v_a673f16c1b": {
 		"path": "audio/voice/ch3/ch3_v_a673f16c1b.ogg",
@@ -3277,7 +3547,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "4e02822ac46aa69fa91e46749c87c39369526325"
+		"source_hash": "4e02822ac46aa69fa91e46749c87c39369526325",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch4/female/ch4_v_0a9bb93c02.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "99509eb40a3c5943eea67ff30d35d2a0f11f1fa1"
+			}
+		}
 	},
 	"ch4_v_0b60b7d969": {
 		"path": "audio/voice/ch4/ch4_v_0b60b7d969.ogg",
@@ -3429,7 +3708,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "b82f96ae5cb856be7a81bb1d1190f61159df8179"
+		"source_hash": "b82f96ae5cb856be7a81bb1d1190f61159df8179",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch4/female/ch4_v_2b5ee25bea.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "742b00830a5eae5037f95958d5949104b936f6f2"
+			}
+		}
 	},
 	"ch4_v_2ce683b952": {
 		"path": "audio/voice/ch4/ch4_v_2ce683b952.ogg",
@@ -3781,7 +4069,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "8ae0be120d22407e4d47b15685372c8c276595d0"
+		"source_hash": "8ae0be120d22407e4d47b15685372c8c276595d0",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch4/female/ch4_v_9af462f4b5.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "fdb094c4330ba189484badaecccfc043cfd878c1"
+			}
+		}
 	},
 	"ch4_v_a0291ee0ee": {
 		"path": "audio/voice/ch4/ch4_v_a0291ee0ee.ogg",
@@ -3965,7 +4262,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "6c20fd2e9faba5227b326ffa15adb7e297d90060"
+		"source_hash": "6c20fd2e9faba5227b326ffa15adb7e297d90060",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch4/female/ch4_v_e27fd66597.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "ddd5ced26df78d089730cb52d73629bd2c77f469"
+			}
+		}
 	},
 	"ch4_v_e3103b7a7e": {
 		"path": "audio/voice/ch4/ch4_v_e3103b7a7e.ogg",
@@ -4053,7 +4359,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "d18934a94dc2ddf09fc1144f4a296ac4c6c34dc5"
+		"source_hash": "d18934a94dc2ddf09fc1144f4a296ac4c6c34dc5",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch4/female/ch4_v_f33ae5d570.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "d607f7ff163888615a0fd36e487ef67d3146e111"
+			}
+		}
 	},
 	"ch4_v_f4537c811c": {
 		"path": "audio/voice/ch4/ch4_v_f4537c811c.ogg",
@@ -4069,7 +4384,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "38d2f88342ba382716d614010fd1c892a198e71b"
+		"source_hash": "38d2f88342ba382716d614010fd1c892a198e71b",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch4/female/ch4_v_f593bef6fc.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "63272aae366cbc06a0ae5001d0ac39bf83ca8482"
+			}
+		}
 	},
 	"ch4_v_f7735a96fd": {
 		"path": "audio/voice/ch4/ch4_v_f7735a96fd.ogg",
@@ -4149,7 +4473,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "753c0acecd0f59c2998f619683f92a2d3a78fb9b"
+		"source_hash": "753c0acecd0f59c2998f619683f92a2d3a78fb9b",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch5/female/ch5_v_15899bbb72.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "2e76d8a28fb94598cd1fc89597705e01f81b3d05"
+			}
+		}
 	},
 	"ch5_v_15fcc55cb2": {
 		"path": "audio/voice/ch5/ch5_v_15fcc55cb2.ogg",
@@ -4205,7 +4538,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "78ab17a12d62d510d08eda10669251d883e66b5f"
+		"source_hash": "78ab17a12d62d510d08eda10669251d883e66b5f",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch5/female/ch5_v_1ff6fabf10.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "0a94d29d312d203f589fc59b0626c55e0868eb53"
+			}
+		}
 	},
 	"ch5_v_255beba258": {
 		"path": "audio/voice/ch5/ch5_v_255beba258.ogg",
@@ -4285,7 +4627,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "40085aea36c449a23a9c66e686ac494385b2a1f4"
+		"source_hash": "40085aea36c449a23a9c66e686ac494385b2a1f4",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch5/female/ch5_v_3a75e5a062.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "95965a62d46f79038bfd5221a872c42a941b9a46"
+			}
+		}
 	},
 	"ch5_v_3bcfb78a8c": {
 		"path": "audio/voice/ch5/ch5_v_3bcfb78a8c.ogg",
@@ -4341,7 +4692,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "231b40bd3e5a1663df264c3266b4aca25431b63c"
+		"source_hash": "231b40bd3e5a1663df264c3266b4aca25431b63c",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch5/female/ch5_v_4a5688b9b5.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "31a4235c6e487e3ec87b6f10b4286625c7464ade"
+			}
+		}
 	},
 	"ch5_v_4ab9ce6329": {
 		"path": "audio/voice/ch5/ch5_v_4ab9ce6329.ogg",
@@ -4389,7 +4749,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "51da0abded0b7d0bbd498a5f6f13f3a2a2b39eb8"
+		"source_hash": "51da0abded0b7d0bbd498a5f6f13f3a2a2b39eb8",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch5/female/ch5_v_5f5ad0f1df.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "f656de979e15b278ee9cbc660be296a3fcdf5395"
+			}
+		}
 	},
 	"ch5_v_6078c47824": {
 		"path": "audio/voice/ch5/ch5_v_6078c47824.ogg",
@@ -4533,7 +4902,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "328796efb57cd1501a8db1bc5c9fbbd2898b0d22"
+		"source_hash": "328796efb57cd1501a8db1bc5c9fbbd2898b0d22",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch5/female/ch5_v_8e6ca76bed.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "7b7e4c3e936cd37f7f302ebcac9854e55887dba3"
+			}
+		}
 	},
 	"ch5_v_93b739a8fb": {
 		"path": "audio/voice/ch5/ch5_v_93b739a8fb.ogg",
@@ -4565,7 +4943,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "7a5f145a38ea1c60848de68e481475445a1aaf0b"
+		"source_hash": "7a5f145a38ea1c60848de68e481475445a1aaf0b",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch5/female/ch5_v_975ccb410d.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "f996de84fce5e5a349d278f31d7d102f8e0f3d27"
+			}
+		}
 	},
 	"ch5_v_9789e8c0c5": {
 		"path": "audio/voice/ch5/ch5_v_9789e8c0c5.ogg",
@@ -4573,7 +4960,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "28e8ad89d47532d7368de5f3202e921a5e4c48be"
+		"source_hash": "28e8ad89d47532d7368de5f3202e921a5e4c48be",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch5/female/ch5_v_9789e8c0c5.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "ce35c7e40d4c8b88a37b4676f2d0a8afcaed1986"
+			}
+		}
 	},
 	"ch5_v_98a30ce3a9": {
 		"path": "audio/voice/ch5/ch5_v_98a30ce3a9.ogg",
@@ -4613,7 +5009,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "5073028d0b6f8e64762999538f698b0bfb634453"
+		"source_hash": "5073028d0b6f8e64762999538f698b0bfb634453",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch5/female/ch5_v_a2724261c5.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "3c74cd1aaff6a37b33e460a0b08be2d6f2bd8795"
+			}
+		}
 	},
 	"ch5_v_a34295caed": {
 		"path": "audio/voice/ch5/ch5_v_a34295caed.ogg",
@@ -4765,7 +5170,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "37c85cc3c86d177ca2b084e7b1fd15b165694182"
+		"source_hash": "37c85cc3c86d177ca2b084e7b1fd15b165694182",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch5/female/ch5_v_e33778a176.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "3ffcc6b204c1a89061e98a2cfd26e80aa9669745"
+			}
+		}
 	},
 	"ch5_v_e7ca417c26": {
 		"path": "audio/voice/ch5/ch5_v_e7ca417c26.ogg",
@@ -4869,7 +5283,16 @@
 		"voice": "am_liam",
 		"speed": 1.0,
 		"fx": "dialogue",
-		"source_hash": "512682a542cecc788544ba618f6579a2dae09c31"
+		"source_hash": "512682a542cecc788544ba618f6579a2dae09c31",
+		"variants": {
+			"female": {
+				"path": "audio/voice/ch5/female/ch5_v_fc420e7bcb.ogg",
+				"voice": "af_heart",
+				"speed": 1.0,
+				"fx": "dialogue",
+				"source_hash": "cc79c027c3a9893cf65c5ef50c523701ee2f10a7"
+			}
+		}
 	},
 	"ch5_v_fe07666b79": {
 		"path": "audio/voice/ch5/ch5_v_fe07666b79.ogg",

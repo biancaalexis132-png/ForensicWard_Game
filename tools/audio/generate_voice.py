@@ -7,6 +7,13 @@ audio/voice_profiles.json and written to audio/voice/<chapter>/<line_id>.ogg.
 audio/voice/voice_lines.json records which text and profile produced each clip,
 so build_manifest.py can flag clips that went stale after a text edit.
 
+Variant voices: a speaker listed in VOICE_VARIANTS also gets one extra clip per
+line for each variant, voiced with that variant's profile and written to
+audio/voice/<chapter>/<variant>/<line_id>.ogg (for example the female player
+voice, chosen in the protagonist profile). Its record sits under the line's
+"variants" key in voice_lines.json. The game falls back to the main clip when a
+variant clip is missing.
+
 Setup (once):
     python3 -m venv .venv-audio
     .venv-audio/bin/pip install -r tools/audio/requirements.txt
@@ -42,6 +49,13 @@ NARRATIVE_DIR = ROOT / "data/narrative"
 PROFILES_PATH = ROOT / "audio/voice_profiles.json"
 INDEX_PATH = ROOT / "audio/voice/voice_lines.json"
 DEFAULT_MODEL_DIR = ROOT / "tools/audio/models"
+# speaker -> {variant name: profile id in voice_profiles.json}. Keep the variant
+# names in step with AudioDirector.VOICE_VARIANTS.
+VOICE_VARIANTS = {"player": {"female": "player_female"}}
+
+
+def variant_path(chapter, variant, line_id):
+    return f"audio/voice/{chapter}/{variant}/{line_id}.ogg"
 
 
 def load_json(path):
@@ -155,7 +169,7 @@ def synthesize(model_dir, line, profile):
 
 
 def _render(job):
-    model_dir, line, profile, relative = job
+    model_dir, line, profile, relative, _variant = job
     fx.write_ogg(synthesize(model_dir, line, profile), relative, quality=5)
     return True
 
@@ -183,19 +197,26 @@ def main():
             continue
         if line["speaker"] not in profiles:
             sys.exit(f"{line['id']}: speaker '{line['speaker']}' has no voice profile in {PROFILES_PATH.name}")
-        profile = profiles[line["speaker"]]
-        digest = line_hash(line, profile)
-        relative = f"audio/voice/{chapter}/{line['id']}.ogg"
-        if not args.force and index.get(line["id"], {}).get("source_hash") == digest and (ROOT / relative).exists():
-            continue
-        jobs.append((args.model_dir, line, profile, relative))
+        record = index.get(line["id"], {})
+        targets = [(None, profiles[line["speaker"]], f"audio/voice/{chapter}/{line['id']}.ogg", record)]
+        for variant, profile_id in VOICE_VARIANTS.get(line["speaker"], {}).items():
+            targets.append((variant, profiles[profile_id], variant_path(chapter, variant, line["id"]),
+                            record.get("variants", {}).get(variant, {})))
+        for variant, profile, relative, existing in targets:
+            if not args.force and existing.get("source_hash") == line_hash(line, profile) and (ROOT / relative).exists():
+                continue
+            jobs.append((args.model_dir, line, profile, relative, variant))
 
     with ProcessPoolExecutor(max_workers=max(1, args.jobs)) as pool:
-        for (_, line, profile, relative), _done in zip(jobs, pool.map(_render, jobs)):
-            index[line["id"]] = {
-                "path": relative, "speaker": line["speaker"], "voice": profile["voice"],
-                "speed": profile["speed"], "fx": profile["fx"], "source_hash": line_hash(line, profile),
-            }
+        for (_, line, profile, relative, variant), _done in zip(jobs, pool.map(_render, jobs)):
+            record = {"path": relative, "voice": profile["voice"], "speed": profile["speed"],
+                      "fx": profile["fx"], "source_hash": line_hash(line, profile)}
+            entry = index.setdefault(line["id"], {})
+            if variant is None:
+                # Keep any variant records; only the main clip was rendered here.
+                entry.update({"path": relative, "speaker": line["speaker"], **record})
+            else:
+                entry.setdefault("variants", {})[variant] = record
 
     for stale in sorted(set(index) - known_ids):
         print(f"warning: {stale} is no longer in data/narrative; delete {index[stale]['path']} if unused")
