@@ -1,5 +1,18 @@
 # AI progress tracker
 
+## Owner playtest fixes — Claude Code (cloud), 2026-10-21
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Naomi opening repetition | Done, draft PR | Bi's playtest | `data/staff.json`, `scripts/world/Character.gd` | `test_playtest_voice` | Bi replays |
+| Door signs | Done, draft PR | | `scripts/world/ImportedDoor.gd`, `data/world_chapter*.json` | `test_playtest_core`, captures | Bi looks on Mac |
+| Document images | Done, draft PR; images pending review | | `scripts/ui/DocumentViewer.gd`, `assets/documents/` | `test_playtest_ui` | Bi reviews images |
+| Female/male voice | Done, draft PR; voice pending listening | | `ProtagonistProfile.gd`, `audio/voice/*/female/` | `test_playtest_voice` | Bi listens |
+| Quiet day underscore | Done, draft PR | Approved soundtrack | `audio/cues.json`, `AudioDirector.gd`, `PauseMenu.gd` | TestAudio, `test_playtest_core` | Bi listens |
+| Walk-away stops conversation | Done, draft PR | | `scripts/dialogue/ConversationRange.gd` | `test_playtest_core` | Bi replays |
+| EHR usability | Done, draft PR | | `scripts/ui/EHRScreen.gd` | `test_playtest_ui` | Bi replays |
+| Medication and lab orders | Waiting on Bi's decision | Clinical approval | `data/order_catalog.json` | | Bi decides |
+
 ## Final build approvals — Claude Code (cloud), 2026-10-21
 
 | Task | State | Dependencies | Paths | Validation | Next action |
