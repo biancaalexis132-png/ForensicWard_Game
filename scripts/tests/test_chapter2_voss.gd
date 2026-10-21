@@ -58,7 +58,7 @@ func _choose(text: String) -> void:
 func _buttons() -> Array[String]:
 	var labels: Array[String] = []
 	for button: Node in _main.get_node("InfoPanel").find_children("*", "Button", true, false):
-		if button.name != "CloseButton":
+		if button.name != "CloseButton" and (button as Button).is_visible_in_tree():
 			labels.append((button as Button).text)
 	return labels
 

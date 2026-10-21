@@ -19,6 +19,7 @@
 		"engineer":      {"name": "Engineer",            "voice": "bm_daniel",  "speed": 0.97, "lang": "en-gb", "fx": "dialogue", "direction": "Survey engineer; careful, factual."},
 		"analyst":       {"name": "Analyst",             "voice": "af_nova",    "speed": 1.0,  "lang": "en-us", "fx": "dialogue", "direction": "Records analyst; quick, precise."},
 		"narrator":      {"name": "Narrator", "engine": "piper", "voice": "en_US-ljspeech-high", "speed": 0.92, "lang": "en-us", "fx": "narration", "direction": "The owner-approved recap narrator voice (Piper LJ Speech via Sherpa-ONNX), used for descriptive text, observed behaviour and silence. Same settings as audio/narration/provenance.json."},
-		"player":        {"name": "Protagonist (default)", "voice": "am_liam",  "speed": 1.0,  "lang": "en-us", "fx": "dialogue", "direction": "Newly graduated attending. Default voice only; the protagonist is customizable, so a second profile is a planned addition."}
+		"player":        {"name": "Protagonist (default)", "voice": "am_liam",  "speed": 1.0,  "lang": "en-us", "fx": "dialogue", "direction": "Newly graduated attending. Default voice only; the protagonist is customizable, so a second profile is a planned addition."},
+		"player_female": {"name": "Protagonist (female)", "voice": "af_heart", "speed": 1.0,  "lang": "en-us", "fx": "dialogue", "variant_of": "player", "direction": "Female variant of every player line, used when the protagonist profile chooses the female voice (generate_voice.py VOICE_VARIANTS). Same delivery and settings as the default player profile."}
 	}
 }

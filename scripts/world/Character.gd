@@ -9,6 +9,9 @@ extends Node3D
 
 enum Kind { STAFF, PATIENT }
 
+## Every character in the world, for ConversationRange.
+const GROUP: String = "ward_characters"
+
 @export var kind: Kind = Kind.STAFF
 ## staff id (data/staff.json) or patient id (data/patients.json).
 @export var character_id: String = ""
@@ -41,6 +44,7 @@ static var _announced_errors: Dictionary = {}
 
 
 func _ready() -> void:
+	add_to_group(GROUP)
 	_visual_slot_ready = true
 	if seated:
 		# The legacy capsule is shortened; imported humanoid scenes stay unscaled.
@@ -198,6 +202,11 @@ func _talk_to_staff() -> void:
 	# The chapter's story data can give a situational line instead.
 	var director: Node = get_tree().get_first_node_in_group(ChapterDirector.GROUP)
 	var line: Dictionary = director.get_staff_line(character_id) if director != null else {}
+	# Talking again before anything new happens: show the intro, but do not
+	# replay a line the player has already heard (ChapterDirector records the
+	# first talk per chapter, after this handler runs).
+	var heard: bool = line.is_empty() and director != null \
+			and character_id in director.get_story_context().get("talked_to", [])
 	if not line.is_empty():
 		text = line["text"]
 		var clue_id: String = line.get("verify_clue", "")
@@ -208,7 +217,7 @@ func _talk_to_staff() -> void:
 		if TrustManager.grant_access(access_id, character_id):
 			EventBus.notification_requested.emit("Access granted: " + access_id.trim_prefix("access_").replace("_", " "))
 	EventBus.ui_panel_requested.emit("info", {"title": staff.get("name", character_id), "body": body,
-			"voice_speaker": character_id})
+			"voice_speaker": character_id, "voiced": not heard})
 
 
 func _approach_patient() -> void:

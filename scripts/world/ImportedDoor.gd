@@ -14,6 +14,9 @@ var display_name: String = "Door"
 var required_access: String = ""
 var locked_message: String = "Locked."
 var open_angle_degrees: float = 100.0
+## Room name on the plaques above a configured door, "" for none. Defaults to
+## the display name without "door"; a chapter's "sign" overrides it.
+var sign_text: String = ""
 var swing_seconds: float = 0.6
 var is_open: bool = false
 ## Optional Callable run just before the player opens the door. ZoneDirector
@@ -39,7 +42,81 @@ func setup(door_root: Node3D, config: Dictionary) -> void:
 			_add_leaf(child)
 	if _leaves.is_empty():
 		push_warning("ImportedDoor %s: no leaf nodes found" % door_root.name)
+	elif not config.is_empty():
+		sign_text = str(config.get("sign", default_sign(display_name)))
+		if not sign_text.is_empty():
+			_add_signs(door_root)
 	add_to_group("persistent_world")
+
+
+## "Records archive door" -> "Records Archive"; "Ward entry doors" -> "Ward Entry".
+static func default_sign(name: String) -> String:
+	var words: PackedStringArray = name.split(" ", false)
+	if not words.is_empty() and words[-1].to_lower() in ["door", "doors"]:
+		words.remove_at(words.size() - 1)
+	var titled: PackedStringArray = []
+	for word: String in words:
+		titled.append(word if word == word.to_upper() else word.capitalize())
+	return " ".join(titled)
+
+
+## A plaque on each face of the door, centred just above the frame.
+func _add_signs(door_root: Node3D) -> void:
+	var bounds: AABB = AABB()
+	for index: int in _leaves.size():
+		var leaf: Node3D = _leaves[index]
+		var local: AABB = (leaf as MeshInstance3D).get_aabb() if leaf is MeshInstance3D else AABB(Vector3(0, 0, -0.03), Vector3(1, 2.1, 0.06))
+		var placed: AABB = leaf.transform * local
+		bounds = placed if index == 0 else bounds.merge(placed)
+	# The door faces along its thinner horizontal axis.
+	var normal: Vector3 = Vector3.FORWARD if bounds.size.z <= bounds.size.x else Vector3.RIGHT
+	# Clear the frame (and the wall it is set in), not just the leaf.
+	var depth: float = maxf(minf(bounds.size.z, bounds.size.x), MIN_WALL_DEPTH_METERS)
+	for mesh: Node in door_root.find_children("*", "MeshInstance3D", true, false):
+		var frame_box: AABB = door_root.global_transform.affine_inverse() * (mesh as MeshInstance3D).global_transform \
+				* (mesh as MeshInstance3D).get_aabb()
+		depth = maxf(depth, absf(frame_box.size.dot(normal)))
+	var top: Vector3 = bounds.get_center() + Vector3(0.0, bounds.size.y * 0.5 + SIGN_GAP_METERS, 0.0)
+	for side: float in [1.0, -1.0]:
+		var plaque: Node3D = _make_plaque()
+		plaque.name = "Sign" if side > 0.0 else "SignBack"
+		door_root.add_child(plaque)
+		plaque.position = top + normal * side * (depth * 0.5 + 0.03)
+		plaque.look_at(door_root.to_global(plaque.position + normal * side), Vector3.UP)
+		plaque.rotate_object_local(Vector3.UP, PI) # Label3D faces +Z.
+
+
+const SIGN_GAP_METERS: float = 0.12
+## Interior walls are about this thick; a plaque must sit proud of one.
+const MIN_WALL_DEPTH_METERS: float = 0.24
+const SIGN_HEIGHT_METERS: float = 0.16
+
+
+func _make_plaque() -> Node3D:
+	var plaque: Node3D = Node3D.new()
+	var label: Label3D = Label3D.new()
+	label.name = "Label"
+	label.text = sign_text
+	label.font_size = 56
+	label.pixel_size = 0.0022
+	label.outline_size = 0
+	label.modulate = Color(0.95, 0.95, 0.92)
+	label.double_sided = false
+	label.position.z = 0.006
+	plaque.add_child(label)
+	var plate: MeshInstance3D = MeshInstance3D.new()
+	plate.name = "Plate"
+	var box: BoxMesh = BoxMesh.new()
+	var width: float = maxf(0.4, sign_text.length() * 0.085 + 0.16)
+	box.size = Vector3(width, SIGN_HEIGHT_METERS, 0.01)
+	var material: StandardMaterial3D = StandardMaterial3D.new()
+	material.albedo_color = Color(0.13, 0.22, 0.32)
+	material.roughness = 0.6
+	box.material = material
+	plate.mesh = box
+	plate.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	plaque.add_child(plate)
+	return plaque
 
 
 func _add_leaf(leaf: Node3D) -> void:
