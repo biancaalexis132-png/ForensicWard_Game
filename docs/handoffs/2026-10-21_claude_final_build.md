@@ -35,3 +35,10 @@ Bi's approvals on 2026-10-21 (00:25 and 00:26, recorded word for word in `docs/c
 1. `git fetch origin --prune`; read the newest `docs/AI_HANDOFF.md` entry.
 2. After Bi grants the two permissions, start Remote Control on the Mac, clone fresh into `~/Developer/` (never run git on the SSK drive), check out `claude/final-build-approvals`, import, and follow `docs/MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md`.
 3. Record PASS, FAIL or NOT TESTED per item, with the exact commit.
+
+## Mac second pass, after Screen Recording was granted (2026-10-21, still on `1a498dc`)
+
+- Cast capture on Metal, exit 0: all seven cast members load their real models (Bennett v07, Voss, Rahman, Hale, Elias, Mara, facilities tech v01 drafts); no DEV ERROR capsules. Files in `work/mac-acceptance/cast_metal/` on the Mac (not committed).
+- 107 s in the clinical wing, exit 0, no ERROR lines: peak footprint 926 MB, peak RSS 341 MB; unpaused p95 frame interval median 24.9 ms (worst 31.2 ms), paused 19.6 ms; worst single frame 361 ms.
+- Seen: the "New objective" banner covers the character name label; the current objective shows twice (checklist top left and "Objective:" line bottom left); small dark marks at Elias's shoulder seams.
+- NOT TESTED: input-driven items (title buttons, dialogue, EHR Orders, objective-complete banner, pause, journal, map, save/load, floor round trips). Input injection through osascript was not permitted. Options for Bi: play `docs/MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md` §2 by hand, or grant osascript Accessibility so the Mac session can drive the game.
