@@ -70,7 +70,12 @@ func _add_signs(door_root: Node3D) -> void:
 		bounds = placed if index == 0 else bounds.merge(placed)
 	# The door faces along its thinner horizontal axis.
 	var normal: Vector3 = Vector3.FORWARD if bounds.size.z <= bounds.size.x else Vector3.RIGHT
-	var depth: float = minf(bounds.size.z, bounds.size.x)
+	# Clear the frame (and the wall it is set in), not just the leaf.
+	var depth: float = maxf(minf(bounds.size.z, bounds.size.x), MIN_WALL_DEPTH_METERS)
+	for mesh: Node in door_root.find_children("*", "MeshInstance3D", true, false):
+		var frame_box: AABB = door_root.global_transform.affine_inverse() * (mesh as MeshInstance3D).global_transform \
+				* (mesh as MeshInstance3D).get_aabb()
+		depth = maxf(depth, absf(frame_box.size.dot(normal)))
 	var top: Vector3 = bounds.get_center() + Vector3(0.0, bounds.size.y * 0.5 + SIGN_GAP_METERS, 0.0)
 	for side: float in [1.0, -1.0]:
 		var plaque: Node3D = _make_plaque()
@@ -82,6 +87,8 @@ func _add_signs(door_root: Node3D) -> void:
 
 
 const SIGN_GAP_METERS: float = 0.12
+## Interior walls are about this thick; a plaque must sit proud of one.
+const MIN_WALL_DEPTH_METERS: float = 0.24
 const SIGN_HEIGHT_METERS: float = 0.16
 
 
@@ -100,7 +107,7 @@ func _make_plaque() -> Node3D:
 	var plate: MeshInstance3D = MeshInstance3D.new()
 	plate.name = "Plate"
 	var box: BoxMesh = BoxMesh.new()
-	var width: float = maxf(0.4, sign_text.length() * 0.075 + 0.12)
+	var width: float = maxf(0.4, sign_text.length() * 0.085 + 0.16)
 	box.size = Vector3(width, SIGN_HEIGHT_METERS, 0.01)
 	var material: StandardMaterial3D = StandardMaterial3D.new()
 	material.albedo_color = Color(0.13, 0.22, 0.32)
