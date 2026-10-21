@@ -216,14 +216,6 @@
 				"volume_db": -4.0
 			}
 		],
-		"ward_underscore_night": [
-			{
-				"cue": "mus_compassion",
-				"min_intensity": 0.0,
-				"underscore": true,
-				"volume_db": -9.0
-			}
-		],
 		"hospital_ordinary": [
 			{
 				"cue": "mus_waiting_room",
@@ -297,8 +289,7 @@
 			"night": {
 				"ambience": "amb_corridor_day",
 				"volume_db": -5.0,
-				"lowpass_hz": 2200.0,
-				"music_state": "ward_underscore_night"
+				"lowpass_hz": 2200.0
 			},
 			"reverb": {
 				"room_size": 0.6,
@@ -320,8 +311,7 @@
 				"volume_db": -10.0,
 				"lowpass_hz": 1800.0,
 				"detail": "amb_distant_staff",
-				"detail_volume_db": -12.0,
-				"music_state": "ward_underscore_night"
+				"detail_volume_db": -12.0
 			},
 			"reverb": {
 				"room_size": 0.35,
