@@ -1590,6 +1590,22 @@
 			"text": "Welcome to the ward, Doctor. Orientation continues tomorrow."
 		},
 		{
+			"file": "audio/voice/ch1/ch1_v_3b9374571e.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.709,
+			"ids": [
+				"ch1_v_3b9374571e"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH1 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "00b8c5cc43301b2481f399609cafb8aacd305e393fecd16231b609322dec1077",
+			"source": "Kokoro TTS voice 'af_sarah' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_bennett",
+			"text": "Here's the archive badge for the transfer paperwork."
+		},
+		{
 			"file": "audio/voice/ch1/ch1_v_3fbdfea147.ogg",
 			"category": "dialogue",
 			"duration_seconds": 3.01,
@@ -1652,22 +1668,6 @@
 			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
 			"speaker": "narrator",
 			"text": "The patient remains silent. Nursing reports reduced intake; intake chart review is available."
-		},
-		{
-			"file": "audio/voice/ch1/ch1_v_8f8a358493.ogg",
-			"category": "dialogue",
-			"duration_seconds": 6.272,
-			"ids": [
-				"ch1_v_8f8a358493"
-			],
-			"integration_status": "integrated",
-			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
-			"location": "CH1 in-game panels and interviews",
-			"review_status": "pending_listening_review",
-			"sha256": "5d1f49ea68f97bc6f62fd3acf29aa7faf912809f4edabecd244e7a1a763d7455",
-			"source": "Kokoro TTS voice 'af_sarah' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
-			"speaker": "staff_bennett",
-			"text": "You're the new attending? Elias Ward is in the interview room. Here's the archive badge for the transfer paperwork."
 		},
 		{
 			"file": "audio/voice/ch1/ch1_v_956fe95776.ogg",

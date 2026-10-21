@@ -9,7 +9,8 @@ extends CanvasLayer
 ## descriptive text by the narrator. `voice_speaker` names the default voice
 ## (a staff member's id for their own lines); otherwise the narrator. Space or
 ## Enter skips a line; closing the panel stops its voice. The text stays on
-## screen either way, so nothing depends on audio.
+## screen either way, so nothing depends on audio. `"voiced": false` shows the
+## text without playing it (a line the player has already heard).
 
 const PANEL_ID: String = "info"
 
@@ -80,7 +81,7 @@ func open(data: Dictionary) -> void:
 	if not blocking:
 		_close_button.grab_focus()
 	var parts: Array[Dictionary] = voice_segments(data)
-	if VoiceScript.has_voice(parts):
+	if bool(data.get("voiced", true)) and VoiceScript.has_voice(parts):
 		_conversation.play(parts)
 	else:
 		_conversation.cancel()

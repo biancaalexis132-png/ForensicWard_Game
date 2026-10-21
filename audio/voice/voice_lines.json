@@ -135,6 +135,14 @@
 		"fx": "dialogue",
 		"source_hash": "e742b29a2dec0545dea1fc678faf64d3547729ad"
 	},
+	"ch1_v_3b9374571e": {
+		"path": "audio/voice/ch1/ch1_v_3b9374571e.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "d971382cbd184d7e3ba8eb9fd194f39293ccf922"
+	},
 	"ch1_v_3fbdfea147": {
 		"path": "audio/voice/ch1/ch1_v_3fbdfea147.ogg",
 		"speaker": "staff_hale",
@@ -166,14 +174,6 @@
 		"speed": 0.92,
 		"fx": "narration",
 		"source_hash": "2c064d1dfc11ce5df04943e3653e92ba683625b5"
-	},
-	"ch1_v_8f8a358493": {
-		"path": "audio/voice/ch1/ch1_v_8f8a358493.ogg",
-		"speaker": "staff_bennett",
-		"voice": "af_sarah",
-		"speed": 1.0,
-		"fx": "dialogue",
-		"source_hash": "0003a22b50908682a90e94c0fcd42e99a27de398"
 	},
 	"ch1_v_956fe95776": {
 		"path": "audio/voice/ch1/ch1_v_956fe95776.ogg",
