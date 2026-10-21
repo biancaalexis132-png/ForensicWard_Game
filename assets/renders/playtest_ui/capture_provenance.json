@@ -1,0 +1,9 @@
+{
+	"_note": "Review screenshots of the playtest UI pass (EHR Next step bar, Orders cards, order confirmation, document viewer). Not Mac acceptance: Linux Mesa llvmpipe, Compatibility renderer, Xvfb, shadows off.",
+	"tool": "res://tools/godot/CapturePlaytestUI.tscn (tools/godot/capture_playtest_ui.gd)",
+	"engine": "Godot 4.7 stable, Linux",
+	"command": "xvfb-run -a -s '-screen 0 1920x1200x24' Godot --path . --rendering-method gl_compatibility --audio-driver Dummy --resolution <WxH> res://tools/godot/CapturePlaytestUI.tscn -- --output-dir=<abs dir> --label=<WxH>",
+	"resolutions": ["1440x900", "1280x800"],
+	"state": "Chapter 1 at objective obj_act: Bennett met, obs_mutism recorded, one note saved; then the transfer summary picked up.",
+	"review_status": "PENDING_OWNER_REVIEW"
+}
