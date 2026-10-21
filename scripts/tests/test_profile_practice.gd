@@ -75,8 +75,11 @@ func _approved_fixture() -> Dictionary:
 	return definition
 
 func test_practice_five_encounters_followup_and_handoff_across_variants() -> void:
-	var pending: PracticeCase = PracticeCase.new(ContinuingPractice.get_definition("cp_001"))
-	check(not pending.accept(true), "shipped pending case cannot become clinical play")
+	var pending_definition: Dictionary = _approved_fixture()
+	pending_definition["clinical_review_status"] = "PENDING"
+	var pending: PracticeCase = PracticeCase.new(pending_definition)
+	check(not pending.accept(true), "a pending case cannot become clinical play")
+	check(PracticeCase.new(ContinuingPractice.get_definition("cp_001")).ready_for_play(), "shipped case is owner approved")
 	var case: PracticeCase = PracticeCase.new(_approved_fixture())
 	check(not case.accept(false), "post-campaign only")
 	check(case.accept(true), "reviewed post-campaign case accepted")

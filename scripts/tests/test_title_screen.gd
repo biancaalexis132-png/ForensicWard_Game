@@ -37,7 +37,12 @@ func test_new_game_starts_play() -> void:
 	title.new_game()
 	check(not title.is_open, "New Game closes the title")
 	check(not runner.get_tree().paused, "the game runs again")
+	var cutscene: CutsceneDirector = main.get_node("CutsceneDirector")
+	check(cutscene.is_open and not player.input_enabled, "the approved prologue plays first")
+	cutscene.skip()
 	check(player.input_enabled, "the player can move")
+	AudioDirector.stop_music(0.01)
+	await runner.get_tree().create_timer(0.3).timeout  # Lets the skipped prologue's audio release.
 
 
 func test_continue_needs_a_save_and_loads_it() -> void:

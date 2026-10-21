@@ -1,6 +1,6 @@
 # CP-001 activation review
 
-**Review candidate, not activated.** Owner confirmed on 2026-10-20 that Jordan is the same patient as the provisional Chapter 1 Scene 07 Jordan. That scene is not currently active in the campaign; no prior encounter is invented in existing saves. The stable identity is `pt_cp001_jordan_vale`.
+**Owner approved and activated on 2026-10-21** ("I also approve Jordan clinicals"; they/them). See `clinical_review_log.md`. Owner confirmed on 2026-10-20 that Jordan is the same patient as the provisional Chapter 1 Scene 07 Jordan. That scene is not currently active in the campaign; no prior encounter is invented in existing saves. The stable identity is `pt_cp001_jordan_vale`.
 
 ## Proposed scope
 

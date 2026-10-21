@@ -1,5 +1,5 @@
 extends TestCase
-## Split-screen milestones: valid data, review-only until approved, shown
+## Split-screen milestones: valid data, played only when approved, shown
 ## once after their objective and only when nothing else is open, skip,
 ## pause and replay, no story or evidence state written, and saves that
 ## remember a milestone was shown without replaying it.
@@ -24,15 +24,16 @@ func after_each() -> void:
 	super.after_each()
 
 
-func test_shipped_milestones_are_valid_and_review_only() -> void:
+func test_shipped_milestones_are_valid_and_owner_approved() -> void:
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(MilestonePresenter.DATA_PATH))
 	for entry: Dictionary in data["milestones"]:
 		check_eq(MilestonePresenter.validate(entry), [] as Array[String], "valid: " + entry["id"])
-		check(not entry["approved"], "review-only until the owner approves: " + entry["id"])
+		check(entry["approved"], "owner approved 2026-10-21: " + entry["id"])
 	check_contains(MilestonePresenter.validate({"id": "x", "after_objective": "obj_nope"}), "must start with ms_", "id prefix")
 
 
 func test_unapproved_milestone_never_plays_in_the_campaign() -> void:
+	_presenter().get_milestone(MILESTONE)["approved"] = false  # The shipped one is approved.
 	await _complete_obj_act()
 	check(not _presenter().is_open, "not shown")
 	check(not _presenter().has_shown(MILESTONE), "not recorded")

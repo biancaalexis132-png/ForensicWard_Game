@@ -204,14 +204,14 @@ def preview(root,name):
 
 records=[]
 for name,builder in [('CampusGrounds',campus),('HospitalExterior',facade),('Apartment',apartment)]:
-    L.reset_scene();coll=L.collection(name);root=L.empty('ENV_'+name,coll,props={'category':'environment','display_name':name,'approval_status':'PENDING_OWNER_VISUAL_REVIEW'})
+    L.reset_scene();coll=L.collection(name);root=L.empty('ENV_'+name,coll,props={'category':'environment','display_name':name,'approval_status':'OWNER_APPROVED_2026-10-21'})
     builder(root,coll)
     eye,target=((10,-35,1.7),(0,-12,1.6)) if name=='CampusGrounds' else (((12,-8,1.7),(0,8,2.0)) if name=='HospitalExterior' else ((-3.9,-2.9,1.7),(1.6,1.5,1.1)))
     L.camera_marker('CAM_'+name+'_Review',coll,root,eye,target)
     uv_and_pack(root)
     blend=os.path.join(SRC,'FW_'+name+'.blend');glb=os.path.join(OUT,'ENV_'+name+'.glb')
     L.save_blend(blend);L.export_glb(root,glb)
-    rec=L.asset_record(root,blend,glb,name,True,'Original procedural Stage 7 candidate. Surface UV and nonoverlapping secondary UV included.','PENDING_OWNER_VISUAL_REVIEW',ROOT)
+    rec=L.asset_record(root,blend,glb,name,True,'Original procedural Stage 7 candidate. Surface UV and nonoverlapping secondary UV included.','OWNER_APPROVED_2026-10-21',ROOT)
     rec.update({'authoring_tool':'Blender '+bpy.app.version_string,'generator':'tools/blender/build_stage7_exterior.py','seed':70620,'license':'Original project asset; rights retained by project owner','third_party_art_inputs':[],'sha256':hashlib.sha256(open(glb,'rb').read()).hexdigest()})
     rec['collision']='Box collider proxies (-colonly)'
     records.append(rec)

@@ -3,11 +3,11 @@
   "cutscene_id": "cs_ch01_prologue",
   "chapter_id": "ch1",
   "source_scene_id": "CH01_SCENE_01_NEW_BADGE",
-  "source": "New Game prologue: five plates from the review-only Chapter 1 pilot (assets/cutscenes/ch01_pilot, unchanged; the unapproved Naomi likeness and the records shelf are left out) with narrator lines from data/narrative/prologue_ch1.json. Arrival only: it does not repeat the Chapter 1 recap or show Ward Zero. Review-only until the owner approves the plates and the narration; then set mode campaign, approved true and trigger new_game, and add it to OWNER_APPROVED_CAMPAIGN in tests/qa/test_cutscenes.py.",
-  "mode": "review_only",
-  "approved": false,
+  "source": "New Game prologue: five plates from the review-only Chapter 1 pilot (assets/cutscenes/ch01_pilot, unchanged; the unapproved Naomi likeness and the records shelf are left out) with narrator lines from data/narrative/prologue_ch1.json. Arrival only: it does not repeat the Chapter 1 recap or show Ward Zero. Owner approved the plates and narration on 2026-10-21; plays once on New Game.",
+  "mode": "campaign",
+  "approved": true,
   "trigger": {
-    "kind": "manual_preview"
+    "kind": "new_game"
   },
   "fallback_action": "restore_world",
   "music": {

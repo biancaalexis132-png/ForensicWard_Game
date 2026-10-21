@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code final build approvals — 2026-10-21
+
+- `claude/final-build-approvals` at `88460d6` (draft PR to main, on Codex's `1a498dc`, which Bi merged as #111). Bi's approvals switched on: prologue, milestone, voice, return and order wording, title, environment art, Jordan CP-001. Full QA passed: game 348/0, audio 1622/0, QA 19/0/0, GLB 171/0, Chapter 1 sequence done. Mac automated QA passed on `1a498dc`; visual, controls and listening not tested. Next: Bi merges; grants Screen Recording and Accessibility; Mac pass on this branch. See `docs/handoffs/2026-10-21_claude_final_build.md`. Last updated 2026-10-21.
+
 ## Claude Code player experience overhaul — 2026-10-20
 
 - Stacked draft PRs to main: #102 `claude/player-experience-overhaul` `1168f49`, #105 `-dialogue` `837b4ff`, #106 `-ehr-orders` `3abc0dc`, #107 `-objectives` `d077457`, #108 `-title-prologue` `d8f8c03`. Full headless QA: B all executed checks passed: game 308/0, audio 1612/0, QA 19/0/0, GLB 168/0, Chapter 1 sequence done; stack tip all executed checks passed: game 331/0, audio 1622/0, QA 19/0/0, GLB 168/0, Chapter 1 sequence done (705 s). Mac not run. Next: Bi reviews in order, gives the approvals listed in `docs/handoffs/2026-10-20_claude_player_experience.md`, and runs `docs/MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md`. Last updated 2026-10-20.

@@ -29,3 +29,18 @@ Every clinical rule or model that affects gameplay needs a recorded review by th
 ## 2026-10-20 · Jordan identity continuity (owner decision)
 
 Owner explicitly answered **“Same patient; preserve continuity”** to whether CP-001 Jordan is distinct from Chapter 1’s provisional Jordan. Reserve `pt_cp001_jordan_vale` for that same person in both contexts; no prior clinical encounter is inferred for saves where Scene 07 never ran. This resolves the identity-link decision only. Age/pronoun consistency, dossier, legal/consent/safety content and the five encounters remain pending explicit review in `docs/CP001_ACTIVATION_REVIEW.md`. No medical rule or case dialogue is marked approved by the agent.
+
+## 2026-10-21 · Owner approvals for the final build
+
+Bi (owner, executive producer, physician) in the Forensics Game project thread, 2026-10-21. Applied on `claude/final-build-approvals`.
+
+| Date | Item | File | Status | Reviewer | Notes |
+|---|---|---|---|---|---|
+| 2026-10-21 | CP-001 Jordan Vale: case, patient record and the five encounters' dialogue | `data/continuing_practice/cp001.json`, `docs/CP001_ACTIVATION_REVIEW.md` | **Approved** | Owner (executive producer, physician) | "I also approve Jordan clinicals" (00:26 UTC). Every `clinical_review_status` in the case is now APPROVED, so the optional post-campaign worklist can play it. Same patient as Chapter 1 (2026-10-20 decision). Pronouns: they/them, as in the dossier; the agent applied the card's recommended option because the message did not choose, and asked the owner to say if he/him is wanted instead. The shipped case text uses no gendered pronouns. Legal status, medications, labs and unavailable sources stay recorded as unknown; no finding, diagnosis or treatment effect is generated. |
+| 2026-10-21 | Prologue `cs_ch01_prologue` plates and narration | `data/cutscenes/cs_ch01_prologue.json`, `data/narrative/prologue_ch1.json` | **Approved** | Owner | "i approve prologue, milestone, voice, return wording, order wording title and background and environment art" (00:25 UTC). Now campaign mode with the `new_game` trigger. |
+| 2026-10-21 | Milestone `ms_ch1_first_assessment` | `data/milestones.json` | **Approved** | Owner | Same message. `approved` is true; it plays once after "Choose a clinical action". |
+| 2026-10-21 | Voice profiles, narration text and spoken Elias interview questions | `audio/voice_profiles.json`, `data/narrative/voice_ch1..5.json`, `data/narrative/interview_ch1.json` | **Approved** | Owner | Same message ("voice"). |
+| 2026-10-21 | Elias interview "return" response | `data/dialogue.json` | **Approved** | Owner | Same message ("return wording"). Completes the 2026-10-19 pending row. |
+| 2026-10-21 | EHR order catalog wording | `data/order_catalog.json` | **Approved** | Owner | Same message ("order wording"). Completes the 2026-10-19 pending row. Medication and laboratory orders stay unavailable. |
+| 2026-10-21 | Title background (Chapter 1 recap page 1, dimmed) | `scripts/ui/TitleScreen.gd` | **Approved** | Owner | Same message ("title and background"). |
+| 2026-10-21 | Stage 7 environment art (campus, apartment, facade) | `assets/asset_manifest/stage7_environment_manifest.json` | **Approved** | Owner | Same message ("environment art"). Manifest status set to OWNER_APPROVED_2026-10-21. Mac performance is checked separately. |

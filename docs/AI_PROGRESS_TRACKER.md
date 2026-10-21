@@ -1,5 +1,15 @@
 # AI progress tracker
 
+## Final build approvals — Claude Code (cloud), 2026-10-21
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Full QA on the final build | Done | `1a498dc` | `tests/qa/run.py` | All executed checks passed, 744 s | None |
+| Switch on owner approvals (prologue, milestone, wording, art, Jordan CP-001) | Done, draft PR | Bi's messages 2026-10-21 | see `docs/handoffs/2026-10-21_claude_final_build.md` | Full QA on `88460d6` passed, 684 s | Owner merges |
+| Mac automated QA and idle memory | Done on `1a498dc` | Remote Control | `tools/qa/mac_acceptance.py` | Exit 0; peak 976 MB | Rerun on this branch |
+| Mac visual and controls | Blocked | Screen Recording and Accessibility permission | `docs/MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md` | Not tested | Bi grants permissions |
+| Mac listening | Pending | Bi | `docs/presentation_review.html` | Not tested | Bi listens |
+
 ## Player experience overhaul — Claude Code (cloud), 2026-10-20
 
 | Task | State | Dependencies | Paths | Validation | Next action |
