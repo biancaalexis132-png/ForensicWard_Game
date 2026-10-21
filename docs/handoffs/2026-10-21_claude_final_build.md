@@ -42,3 +42,8 @@ Bi's approvals on 2026-10-21 (00:25 and 00:26, recorded word for word in `docs/c
 - 107 s in the clinical wing, exit 0, no ERROR lines: peak footprint 926 MB, peak RSS 341 MB; unpaused p95 frame interval median 24.9 ms (worst 31.2 ms), paused 19.6 ms; worst single frame 361 ms.
 - Seen: the "New objective" banner covers the character name label; the current objective shows twice (checklist top left and "Objective:" line bottom left); small dark marks at Elias's shoulder seams.
 - NOT TESTED: input-driven items (title buttons, dialogue, EHR Orders, objective-complete banner, pause, journal, map, save/load, floor round trips). Input injection through osascript was not permitted. Options for Bi: play `docs/MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md` §2 by hand, or grant osascript Accessibility so the Mac session can drive the game.
+
+## Mac third pass (2026-10-21, `1a498dc`)
+
+- Title screen captured as a window-only image: Chapter 1 artwork, title and hospital name, New Game, Customize new psychiatrist, Continue (disabled, no save), Settings, Quit, "Ready." and the fiction disclaimer all readable. Thin dark strip at the left and right edges of the artwork. Launch and quit exit 0, no ERROR lines, peak footprint 918 MB.
+- Clicks and key presses were refused by the Mac session's safety check, so the input-driven items stay NOT TESTED. The remaining controls pass is for Bi to play by hand (`docs/MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md` §2), together with the listening check.
