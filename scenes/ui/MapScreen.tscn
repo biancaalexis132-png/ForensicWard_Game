@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/MapScreen.gd" id="1_map"]
+
+[ext_resource type="Script" path="res://scripts/ui/SpatialMap.gd" id="2_map"]
 
 [node name="MapScreen" type="CanvasLayer"]
 script = ExtResource("1_map")
@@ -48,8 +50,14 @@ layout_mode = 2
 [node name="Title" type="Label" parent="Root/Panel/Margin/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
-text = "Floor Directory"
+text = "Floor Map"
 horizontal_alignment = 1
+
+[node name="Map" type="Control" parent="Root/Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 390)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_map")
 
 [node name="Text" type="RichTextLabel" parent="Root/Panel/Margin/VBox"]
 layout_mode = 2

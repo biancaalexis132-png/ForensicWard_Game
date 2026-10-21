@@ -217,6 +217,7 @@ func _refresh() -> void:
 	_banner.text = _banner_text()
 	_header.text = "[b]%s[/b]   %d   ·   %s   ·   Location: %s" % [definition["name"], definition["age"],
 			UIStyle.humanize(definition["legal_status"]), UIStyle.humanize(state["location"])]
+	_header.append_text("\nSigned in: " + ProtagonistProfile.display_name().replace("[", "[lb]"))
 	_summary.text = _summary_text(definition, state)
 	_observations.text = _observations_text(definition, state)
 	_notes_list.text = _notes_text(state)
@@ -293,6 +294,7 @@ func _notes_text(state: Dictionary) -> String:
 	for note: Dictionary in state["notes"]:
 		lines.append("[b]%s[/b]  ·  %s shift  ·  %s" % [TimeManager.format_minutes(int(note["at_minutes"])),
 				str(note["shift"]).capitalize(), note["id"]])
+		lines.append("  Author: " + str(note.get("author_name", "Player psychiatrist")).replace("[", "[lb]"))
 		if not note["findings"].is_empty():
 			lines.append("  Findings: " + ", ".join(Array(note["findings"]).map(
 					func(f: String) -> String: return UIStyle.humanize(f.trim_prefix("obs_")))))

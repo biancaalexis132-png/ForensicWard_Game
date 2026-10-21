@@ -84,6 +84,11 @@ func _ready() -> void:
 	_place_at_spawn()
 	_zones.setup(_world, _player)
 	_zones.transition_finished.connect(_update_input_mode)
+	var campus: CampusBackdrop = CampusBackdrop.new()
+	campus.name = "CampusBackdrop"
+	add_child(campus)
+	if "--acceptance-perf" in OS.get_cmdline_user_args():
+		add_child(AcceptancePerformance.new())
 	($AudioZoneTracker as AudioZoneTracker).target = _player
 	get_tree().auto_accept_quit = false  # Quit via _quit_gracefully (audio first).
 
@@ -182,6 +187,10 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 			_ehr.open(data)
 		EvidenceBoard.PANEL_ID:
 			_evidence.open(data)
+		ProtagonistScreen.PANEL_ID:
+			_open_optional_panel("ProtagonistScreen", "res://scenes/ui/ProtagonistScreen.tscn", data)
+		PracticeScreen.PANEL_ID:
+			_open_optional_panel("PracticeScreen", "res://scenes/ui/PracticeScreen.tscn", data)
 		CaseJournalScreen.PANEL_ID:
 			_open_optional_panel("CaseJournalScreen", "res://scenes/ui/CaseJournalScreen.tscn", data)
 		MapScreen.PANEL_ID:
@@ -206,7 +215,7 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 				return
 		InterviewScreen.PANEL_ID:
 			var with_world: Dictionary = data.duplicate()
-			with_world["world"] = _world
+			with_world["world"] = null if bool(data.get("text_only", false)) else _world
 			_interview.open(with_world)
 		_:
 			push_warning("Main: unknown panel '%s'" % panel_id)

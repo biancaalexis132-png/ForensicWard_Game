@@ -1,0 +1,48 @@
+{
+	"schema_version": 1,
+	"professional_interests": {
+		"none": "Prefer not to specify",
+		"general_adult": "General adult psychiatry",
+		"academic": "Academic psychiatry",
+		"community": "Community psychiatry",
+		"consultation_liaison": "Consultation-liaison psychiatry",
+		"forensic": "Forensic psychiatry",
+		"emergency": "Emergency psychiatry"
+	},
+	"acceptance_reasons": {
+		"none": "Prefer not to specify",
+		"opportunity": "Professional opportunity",
+		"forensic_interest": "Forensic interest",
+		"complex_care": "Complex care",
+		"geography": "Location",
+		"fresh_start": "A fresh start"
+	},
+	"relationships": {
+		"none": "Prefer not to specify",
+		"independent": "Independent life",
+		"partner": "Partner",
+		"friend": "Friend",
+		"family": "Family"
+	},
+	"skin_tones": {
+		"light": "#e7ba99",
+		"medium": "#bd8863",
+		"deep": "#684734"
+	},
+	"hair_colors": {
+		"black": "#252220",
+		"brown": "#60432e",
+		"grey": "#acaaa4",
+		"blond": "#c9ab68"
+	},
+	"outfits": {
+		"navy": "#263d56",
+		"teal": "#2e6568",
+		"charcoal": "#474c51"
+	},
+	"hair_styles": {
+		"short": "Short",
+		"long": "Long",
+		"none": "No hair"
+	}
+}

@@ -228,3 +228,8 @@ signal settings_changed(key: String, value: Variant)
 ## A displayed authored story option was selected (not a clinical action).
 @warning_ignore("unused_signal")
 signal story_option_selected(interaction_id: String, option_id: String)
+
+@warning_ignore("unused_signal")
+signal protagonist_profile_changed
+@warning_ignore("unused_signal")
+signal story_choice_committed(chapter_id: String, interaction_id: String, option_id: String)

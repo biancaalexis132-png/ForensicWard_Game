@@ -1,5 +1,13 @@
 # Remaining build review — 2026-10-20
 
+## Implementation update — completion candidate
+
+`codex/environment-finish` now contains `codex/gameplay-completion` and current main's PR #110 documentation. Candidate runtime `ca8789395834ee647fda6bae4cf9246f7375232c` implements the chart-backed journal, current-floor spatial map, optional protagonist profile/save v4, Continuing Practice lifecycle and UI, Stage 7 environment candidates and an initial architectural finish pass. The original missing-build review below is a historical baseline, not a claim that those systems remain unbuilt.
+
+Jordan is the **same patient** as provisional Chapter 1 Scene 07, as explicitly confirmed by the owner. No unimplemented earlier visit or clinical finding is added to existing saves. CP-001's exact 19 dialogue pairs and linked case material remain PENDING clinical activation; the worklist is review-only until explicit approval.
+
+Remaining acceptance is concrete: [clinical activation packet](CP001_ACTIVATION_REVIEW.md), [presentation decisions and screenshots](PRESENTATION_APPROVAL_PACKET.md), and [target-Mac checks and collector](MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md). Full test evidence is recorded in the latest handoff/status entry when complete. Actual Mac acceptance, full-body/hands protagonist assets, Jordan voice/model, a full Stage 1–6 trim-sheet/UV rebake, and reviewed medication/laboratory simulation are not claimed by this candidate. See [implemented scope](GAMEPLAY_BUILD_REPORT.md).
+
 ## Verified scope
 
 Reviewed GitHub main `1afd31183e7bc9c98f9df7ca85c879ec1e2ca5d1` and PR #104 head `24fc99366d161e66b7a8c6b73efe1734a4c00d55`. The Mac QA branch exists at `057c1f50ae3b1ca1fa0d56d65135d5bb36161410`; PR #103 was merged into main at `477fed42c15cbd813f3ae6378224d0b8e358fa65`. At initial inspection, PR #104 was the only open PR returned by the connected repository search. Historical status tables retain obsolete “not merged” and “planned” entries; current GitHub history takes precedence.

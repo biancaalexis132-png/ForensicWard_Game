@@ -26,6 +26,7 @@ const SHOT_ESTABLISHING: String = "CAM_IR_Establishing"
 const SHOT_ON_PATIENT: String = "CAM_IR_OTS_OnPatient"
 const DEV_FREE_TEXT_ARG: String = "--dev-free-text"
 
+var _text_backdrop: ColorRect
 var is_open: bool = false
 var patient_id: String = ""
 var current_shot: String = ""
@@ -65,6 +66,7 @@ static func free_text_enabled() -> bool:
 func open(data: Dictionary) -> void:
 	patient_id = str(data.get("patient_id", ""))
 	_world = data.get("world", null)
+	_text_backdrop.visible = bool(data.get("text_only", false))
 	if not DialogueManager.start_dialogue(patient_id):
 		EventBus.notification_requested.emit("No interview is authored for this patient yet.")
 		EventBus.ui_panel_closed.emit(PANEL_ID)
@@ -258,6 +260,11 @@ func _append_line(speaker: String, text: String) -> void:
 
 func _build() -> void:
 	var root: Control = UIStyle.make_root(self, 0.0)
+	_text_backdrop = ColorRect.new()
+	_text_backdrop.color = Color("142029")
+	_text_backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_text_backdrop.visible = false
+	root.add_child(_text_backdrop)
 	_name_label = UIStyle.label("", 20)
 	_name_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

@@ -211,6 +211,7 @@ func _build() -> void:
 	gap.custom_minimum_size = Vector2(0, 36)
 	column.add_child(gap)
 	_new_button = _button(column, "New Game", new_game)
+	_button(column, "Customize new psychiatrist", func() -> void: EventBus.ui_panel_requested.emit("protagonist", {}))
 	_continue_button = _button(column, "Continue", continue_game)
 	_settings_button = _button(column, "Settings", func() -> void: settings_requested.emit())
 	_button(column, "Quit", func() -> void:

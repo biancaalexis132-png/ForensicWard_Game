@@ -266,7 +266,7 @@ func test_version2_save_from_main_migrates_doors_into_zones() -> void:
 	check(_player().global_position.distance_to(Vector3(-0.5, 0.0, -12.0)) < 0.01, "position kept")
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "re-save")
 	var saved: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SaveManager.get_slot_path(TEST_SAVE_SLOT)))
-	check_eq(int(saved["save_version"]), 3, "re-saved as version 3")
+	check_eq(int(saved["save_version"]), 4, "re-saved as version 4")
 	check(not saved["state"]["world"].has("objects"), "doors no longer saved under world")
 	check(saved["state"]["zones"]["objects"][CLINICAL]["door:door_office"]["open"], "doors saved per zone")
 

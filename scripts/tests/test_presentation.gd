@@ -36,7 +36,7 @@ func _on_state(state: String) -> void:
 func test_title_buttons_order_and_background_art() -> void:
 	var title: TitleScreen = _main.get_node("TitleScreen")
 	var labels: Array = title.find_children("*", "Button", true, false).map(func(b: Button) -> String: return b.text)
-	check_eq(labels, ["New Game", "Continue", "Settings", "Quit"], "menu order")
+	check_eq(labels, ["New Game", "Customize new psychiatrist", "Continue", "Settings", "Quit"], "menu order including optional new-game customization")
 	var art: TextureRect = title.find_child("BackgroundArt", true, false)
 	check(art != null and art.texture != null, "approved Chapter 1 art behind the menu")
 
@@ -67,12 +67,12 @@ func test_settings_from_title_stays_paused_and_hides_in_game_rows() -> void:
 	title.settings_requested.emit()
 	check(pause.is_open and pause.from_title, "settings open over the title")
 	check(pause.layer > title.layer, "drawn above the title")
-	check(not pause.get_node("Root/Panel/Margin/VBox/Save").visible, "no Save from the title")
+	check(not pause.get_node("Root/Panel/Scroll/Margin/VBox/Save").visible, "no Save from the title")
 	pause.close()
 	check(runner.get_tree().paused, "back at the title, the game stays paused")
 	check(title.is_open, "title still open")
 	pause.open()
-	check(pause.get_node("Root/Panel/Margin/VBox/Save").visible, "in-game pause menu shows Save again")
+	check(pause.get_node("Root/Panel/Scroll/Margin/VBox/Save").visible, "in-game pause menu shows Save again")
 	pause.close()
 	title.close()
 

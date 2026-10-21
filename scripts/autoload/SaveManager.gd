@@ -16,12 +16,13 @@ extends Node
 ##   1  Sprints 1-3: one chapter; the "chapter" provider is flat.
 ##   2  F1 campaign: the "chapter" provider keeps state per chapter id.
 ##   3  F2 zones: door state moves from "world" to "zones", per zone id.
-const SAVE_VERSION: int = 3
+##   4  Protagonist profile and Continuing Practice; legacy campaign state unchanged.
+const SAVE_VERSION: int = 4
 const SAVE_DIR: String = "user://saves"
 ## Older save versions migrate forward one step at a time:
 ## version N -> _migrate_from_N(data) -> data at version N + 1.
 ## The checksum is verified on the file as written, before any migration.
-const MIGRATIONS: Dictionary = {1: "_migrate_from_1", 2: "_migrate_from_2"}
+const MIGRATIONS: Dictionary = {1: "_migrate_from_1", 2: "_migrate_from_2", 3: "_migrate_from_3"}
 ## Every version 1 save was made in Chapter 1.
 const V1_CHAPTER_ID: String = "ch1"
 ## Every version 1 and 2 save was made in the clinical wing, the only zone then.
@@ -129,6 +130,11 @@ func load_game(slot: int = 1) -> Error:
 		version += 1
 
 	var state: Dictionary = document["state"]
+	# Preflight optional provider contracts before changing any live state or seed.
+	for key: String in _sorted_keys():
+		if state.has(key) and _providers[key].has_method("validate_save_data"):
+			if not _providers[key].call("validate_save_data", state[key]):
+				return _fail(slot, "invalid saved %s data" % key, ERR_INVALID_DATA)
 
 	run_seed = int(document.get("seed", run_seed))
 	for key: String in _sorted_keys():
@@ -182,3 +188,14 @@ func _fail(slot: int, reason: String, error: Error = FAILED) -> Error:
 	push_warning("SaveManager: slot %d: %s" % [slot, reason])
 	EventBus.save_failed.emit(slot, reason)
 	return error
+
+
+func _migrate_from_3(document: Dictionary) -> Dictionary:
+	var migrated: Dictionary = document.duplicate(true)
+	var state: Dictionary = migrated["state"]
+	if not state.has("protagonist"):
+		state["protagonist"] = ProtagonistProfile.default_data()
+	if not state.has("continuing_practice"):
+		state["continuing_practice"] = ContinuingPractice.default_data()
+	migrated["save_version"] = 4
+	return migrated

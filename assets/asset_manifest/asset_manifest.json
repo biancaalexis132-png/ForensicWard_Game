@@ -5215,6 +5215,121 @@
         "visemes",
         "draft"
       ]
+    },
+    "ENV_CampusGrounds": {
+      "asset_id": "ENV_CampusGrounds",
+      "asset_name": "CampusGrounds",
+      "category": "environment",
+      "source_file": "assets/blender/exterior/FW_CampusGrounds.blend",
+      "export_file": "assets/exports/exterior/ENV_CampusGrounds.glb",
+      "dimensions_m": [
+        104.0,
+        126.0,
+        7.54
+      ],
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "intended_location": "CampusGrounds",
+      "collision": "Box collider proxies (-colonly)",
+      "materials": [
+        "M_Finish_Asphalt",
+        "M_Finish_Bark",
+        "M_Finish_Brick",
+        "M_Finish_CarBlue",
+        "M_Finish_CarRed",
+        "M_Finish_Glass",
+        "M_Finish_Grass",
+        "M_Finish_Lamp",
+        "M_Finish_Leaves",
+        "M_Finish_Metal",
+        "M_Finish_Paint",
+        "M_Finish_Rubber",
+        "M_Finish_Stone"
+      ],
+      "triangles_base": 7116,
+      "markers": [
+        "CAM_CampusGrounds_Review",
+        "MARK_Campus_Entry"
+      ],
+      "implementation_notes": "Original procedural Stage 7 candidate. Surface UV and nonoverlapping secondary UV included.",
+      "status": "PENDING_OWNER_VISUAL_REVIEW",
+      "authoring_tool": "Blender 4.3.2",
+      "generator": "tools/blender/build_stage7_exterior.py",
+      "seed": 70620,
+      "license": "Original project asset; rights retained by project owner",
+      "third_party_art_inputs": [],
+      "sha256": "d761c8fb51b339b841a6957578b0f3f34ace398befb0297277b2591a9c606737"
+    },
+    "ENV_HospitalExterior": {
+      "asset_id": "ENV_HospitalExterior",
+      "asset_name": "HospitalExterior",
+      "category": "environment",
+      "source_file": "assets/blender/exterior/FW_HospitalExterior.blend",
+      "export_file": "assets/exports/exterior/ENV_HospitalExterior.glb",
+      "dimensions_m": [
+        15.0,
+        49.7,
+        8.26
+      ],
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "intended_location": "HospitalExterior",
+      "collision": "Box collider proxies (-colonly)",
+      "materials": [
+        "M_Finish_Brick",
+        "M_Finish_Glass",
+        "M_Finish_Metal",
+        "M_Finish_Stone"
+      ],
+      "triangles_base": 2788,
+      "markers": [
+        "CAM_HospitalExterior_Review",
+        "MARK_Hospital_Entrance"
+      ],
+      "implementation_notes": "Original procedural Stage 7 candidate. Surface UV and nonoverlapping secondary UV included.",
+      "status": "PENDING_OWNER_VISUAL_REVIEW",
+      "authoring_tool": "Blender 4.3.2",
+      "generator": "tools/blender/build_stage7_exterior.py",
+      "seed": 70620,
+      "license": "Original project asset; rights retained by project owner",
+      "third_party_art_inputs": [],
+      "sha256": "706fd79b41ce86c99677900ba2c141f24ca879a45362e6bc59872fdedc266bed"
+    },
+    "ENV_Apartment": {
+      "asset_id": "ENV_Apartment",
+      "asset_name": "Apartment",
+      "category": "environment",
+      "source_file": "assets/blender/exterior/FW_Apartment.blend",
+      "export_file": "assets/exports/exterior/ENV_Apartment.glb",
+      "dimensions_m": [
+        10.18,
+        8.18,
+        3.355
+      ],
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "intended_location": "Apartment",
+      "collision": "Box collider proxies (-colonly)",
+      "materials": [
+        "M_Finish_Brick",
+        "M_Finish_Glass",
+        "M_Finish_Metal",
+        "M_Finish_Plaster",
+        "M_Finish_Sofa",
+        "M_Finish_Stone",
+        "M_Finish_Wood"
+      ],
+      "triangles_base": 704,
+      "markers": [
+        "CAM_Apartment_Review",
+        "LIGHTMARK_Apartment_Ceiling",
+        "MARK_Apartment_Entry"
+      ],
+      "implementation_notes": "Original procedural Stage 7 candidate. Surface UV and nonoverlapping secondary UV included.",
+      "status": "PENDING_OWNER_VISUAL_REVIEW",
+      "authoring_tool": "Blender 4.3.2",
+      "generator": "tools/blender/build_stage7_exterior.py",
+      "seed": 70620,
+      "license": "Original project asset; rights retained by project owner",
+      "third_party_art_inputs": [],
+      "sha256": "fd40a05e3da87c86087317583a093b62fe711c667e3b7cfa76eb341c43941cd7"
     }
   },
   "schema_version": "1.0"
