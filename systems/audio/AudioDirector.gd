@@ -61,6 +61,9 @@ const SETTING_DEFAULTS: Dictionary = {
 	"volume_voice": 1.0,
 	"reduce_startling_audio": false,
 	"music_intensity_cap": 1.0,
+	## Quiet music under the ward ambience during play (music states marked
+	## "underscore"), relative to its authored level. 0 turns it off.
+	"volume_play_music": 0.6,
 }
 const VOLUME_BUSES: Dictionary = {
 	"volume_master": "Master", "volume_music": "Music", "volume_ambient": "Ambient",
@@ -179,6 +182,8 @@ func _apply_setting(key: String) -> void:
 		AudioServer.set_bus_mute(bus, volume <= 0.0)
 	elif key == "music_intensity_cap":
 		set_music_intensity(_music_intensity)
+	elif key == "volume_play_music" and _current_variant().get("underscore", false):
+		_crossfade(_music_players, "music", _variant_for_intensity(), _variant_db(), 1.0)
 
 
 func _load_settings() -> void:
@@ -296,7 +301,7 @@ func set_music_state(state_id: String, fade_seconds: float = 4.0) -> void:
 		return
 	_music_state = state_id
 	_music_from_location = false
-	_crossfade(_music_players, "music", _variant_for_intensity(), 0.0, fade_seconds)
+	_crossfade(_music_players, "music", _variant_for_intensity(), _variant_db(), fade_seconds)
 
 
 func get_music_state() -> String:
@@ -430,12 +435,33 @@ func register_cue(cue_id: String, cue: Dictionary) -> void:
 
 
 func _variant_for_intensity() -> String:
+	var variant: Dictionary = _current_variant()
+	if variant.get("underscore", false) and float(get_setting("volume_play_music")) <= 0.0:
+		return "" # Music during play switched off: ambience only.
+	return str(variant.get("cue", ""))
+
+
+func _current_variant() -> Dictionary:
 	var effective: float = minf(_music_intensity, float(get_setting("music_intensity_cap")))
-	var chosen: String = ""
+	var chosen: Dictionary = {}
 	for variant: Dictionary in _music_states.get(_music_state, []):
 		if effective + 0.0001 >= float(variant.get("min_intensity", 0.0)):
-			chosen = variant["cue"]
+			chosen = variant
 	return chosen
+
+
+## Extra level for the state's variant: an underscore sits its own
+## "volume_db" below the cue, scaled by the music-during-play setting.
+func _variant_db() -> float:
+	var variant: Dictionary = _current_variant()
+	if not variant.get("underscore", false):
+		return 0.0
+	return float(variant.get("volume_db", 0.0)) + linear_to_db(maxf(float(get_setting("volume_play_music")), 0.0001))
+
+
+## True when the music playing now is a quiet underscore under play.
+func is_underscore_playing() -> bool:
+	return bool(_current_variant().get("underscore", false)) and not _music_cue.is_empty()
 
 
 func get_active_music() -> AudioStreamPlayer:
@@ -450,7 +476,7 @@ func set_music_intensity(value: float, fade_seconds: float = 2.0) -> void:
 	if _music_lowpass != null:
 		_tween(_music_lowpass, "cutoff_hz", cutoff, fade_seconds)
 	if not _music_state.is_empty():
-		_crossfade(_music_players, "music", _variant_for_intensity(), 0.0, MUSIC_VARIANT_FADE)
+		_crossfade(_music_players, "music", _variant_for_intensity(), _variant_db(), MUSIC_VARIANT_FADE)
 
 
 ## One-shot musical transition on the Music bus, layered over any music bed.

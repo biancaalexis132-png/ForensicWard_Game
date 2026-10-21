@@ -9,6 +9,9 @@ extends Node3D
 
 enum Kind { STAFF, PATIENT }
 
+## Every character in the world, for ConversationRange.
+const GROUP: String = "ward_characters"
+
 @export var kind: Kind = Kind.STAFF
 ## staff id (data/staff.json) or patient id (data/patients.json).
 @export var character_id: String = ""
@@ -41,6 +44,7 @@ static var _announced_errors: Dictionary = {}
 
 
 func _ready() -> void:
+	add_to_group(GROUP)
 	_visual_slot_ready = true
 	if seated:
 		# The legacy capsule is shortened; imported humanoid scenes stay unscaled.
