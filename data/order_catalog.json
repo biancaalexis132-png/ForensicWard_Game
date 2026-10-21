@@ -1,6 +1,6 @@
 {
 	"schema_version": "0.1",
-	"_note": "EHR order catalog. Each order wraps a clinical action in clinical_rules.json; outcomes come only from ClinicalRules. Orders add no result, story flag or treatment effect. Indication and detail wording is pending the owner's narrative check (docs/clinical_review_log.md).",
+	"_note": "EHR order catalog. Each order wraps a clinical action in clinical_rules.json; outcomes come only from ClinicalRules. Orders add no result, story flag or treatment effect. Indication and detail wording approved by the owner on 2026-10-21 (docs/clinical_review_log.md).",
 	"orders": [
 		{
 			"id": "ord_catatonia_assessment",

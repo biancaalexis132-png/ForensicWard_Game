@@ -1,5 +1,7 @@
 # Presentation decisions — 2026-10-20 candidate
 
+**Decision, 2026-10-21:** the owner approved every row below ("i approve prologue, milestone, voice, return wording, order wording title and background and environment art"). The prologue and milestone now play in the campaign. See `clinical_review_log.md`.
+
 This packet collects concrete candidates for owner review. No approval is inferred from implementation, a successful test, prior campaign approval or this document. Clinical approval is recorded separately in `clinical_review_log.md`.
 
 Open [presentation_review.html](presentation_review.html) locally in a browser after checking out `codex/environment-finish`. It includes the exact five prologue plates and narration clips, both milestone plates, and all newer chapter voice lines with their exact wording. It uses existing offline media and sends nothing to an external service. To view transitions/timing, use the commands in [the Mac checklist](MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md).

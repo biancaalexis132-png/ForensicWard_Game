@@ -149,6 +149,15 @@ func _update_buttons() -> void:
 func _exit_tree() -> void:
 	if is_open:
 		get_tree().paused = false
+	_finish_preload()
+
+
+## Collects any background load still in flight, so none is left orphaned when
+## the title closes early (tests, quitting) or the scene is freed.
+func _finish_preload() -> void:
+	for path: String in _preloading:
+		ResourceLoader.load_threaded_get(path)
+	_preloading.clear()
 
 
 func close() -> void:
@@ -156,6 +165,7 @@ func close() -> void:
 		return
 	visible = false
 	is_open = false
+	_finish_preload()
 	get_tree().paused = false
 	closed.emit()
 
@@ -163,9 +173,11 @@ func close() -> void:
 func new_game() -> void:
 	if not is_open:
 		return
+	# Announce first, so a prologue opens behind the title and the screen goes
+	# straight from the title to it, and the preloaded plates are still cached.
+	new_game_started.emit()
 	close()
 	_preloaded.clear()
-	new_game_started.emit()
 
 
 func continue_game() -> void:

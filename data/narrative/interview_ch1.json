@@ -1,9 +1,9 @@
 {
 	"schema_version": "0.1",
 	"chapter": "ch1",
-	"provisional": true,
-	"_note": "Spoken versions of the psychiatrist's Elias Ward interview topics (data/dialogue.json labels are topics, not speech). Presentation only: each line asks what its approved topic already covers and adds no finding. Pending owner narrative review. Line IDs are stable: never reuse an ID for different wording.",
-	"clinical_review_status": "PENDING",
+	"provisional": false,
+	"_note": "Spoken versions of the psychiatrist's Elias Ward interview topics (data/dialogue.json labels are topics, not speech). Presentation only: each line asks what its approved topic already covers and adds no finding. Owner approved 2026-10-21. Line IDs are stable: never reuse an ID for different wording.",
+	"clinical_review_status": "APPROVED",
 	"speakers": {
 		"player": "You"
 	},

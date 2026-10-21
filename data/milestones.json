@@ -1,11 +1,11 @@
 {
 	"schema_version": "0.1",
-	"_note": "Split-screen milestone moments. Each plays once, after its objective is done, only when approved is true (otherwise only with -- --milestone-preview=<id>). Captions name existing objective text; panels reuse existing plates. A milestone writes no story, clinical, evidence or save state beyond remembering that it was shown. The example below is review-only: its plates are the review-only Chapter 1 pilot art, so it needs the owner's approval before it can play.",
+	"_note": "Split-screen milestone moments. Each plays once, after its objective is done, only when approved is true (otherwise only with -- --milestone-preview=<id>). Captions name existing objective text; panels reuse existing plates. A milestone writes no story, clinical, evidence or save state beyond remembering that it was shown. The owner approved ms_ch1_first_assessment on 2026-10-21.",
 	"milestones": [
 		{
 			"id": "ms_ch1_first_assessment",
 			"chapter_id": "ch1",
-			"approved": false,
+			"approved": true,
 			"after_objective": "obj_act",
 			"duration_seconds": 7.0,
 			"left": {"texture": "res://assets/cutscenes/ch01_pilot/p03_office_desk.png", "caption_objective": "obj_document"},

@@ -2,11 +2,11 @@
 	"schema_version": 1,
 	"id": "cp_001",
 	"title": "The Follow-Up Visit — Schizophrenia and Longitudinal Recovery",
-	"clinical_review_status": "PENDING",
+	"clinical_review_status": "APPROVED",
 	"patient": {
 		"id": "pt_cp001_jordan_vale",
 		"name": "Jordan Vale",
-		"clinical_review_status": "PENDING",
+		"clinical_review_status": "APPROVED",
 		"continuity": "Same patient as Chapter 1 Scene 07; owner confirmed 2026-10-20. No earlier clinical findings or encounter are inferred.",
 		"schema_version": "0.1",
 		"age": 36,
@@ -26,7 +26,7 @@
 		{
 			"id": "cp001_encounter_1",
 			"title": "Establishing Trust",
-			"clinical_review_status": "PENDING",
+			"clinical_review_status": "APPROVED",
 			"requires": [
 				"interview",
 				"signed_note"
@@ -98,13 +98,13 @@
 					}
 				],
 				"fallback_response": "Please use the authored conversation choices.",
-				"clinical_review_status": "PENDING"
+				"clinical_review_status": "APPROVED"
 			}
 		},
 		{
 			"id": "cp001_encounter_2",
 			"title": "A Difficult Morning",
-			"clinical_review_status": "PENDING",
+			"clinical_review_status": "APPROVED",
 			"requires": [
 				"interview",
 				"signed_note"
@@ -176,13 +176,13 @@
 					}
 				],
 				"fallback_response": "Please use the authored conversation choices.",
-				"clinical_review_status": "PENDING"
+				"clinical_review_status": "APPROVED"
 			}
 		},
 		{
 			"id": "cp001_encounter_3",
 			"title": "The Treatment Conversation",
-			"clinical_review_status": "PENDING",
+			"clinical_review_status": "APPROVED",
 			"requires": [
 				"interview",
 				"signed_note"
@@ -254,13 +254,13 @@
 					}
 				],
 				"fallback_response": "Please use the authored conversation choices.",
-				"clinical_review_status": "PENDING"
+				"clinical_review_status": "APPROVED"
 			}
 		},
 		{
 			"id": "cp001_encounter_4",
 			"title": "A Setback, Not a Failure",
-			"clinical_review_status": "PENDING",
+			"clinical_review_status": "APPROVED",
 			"requires": [
 				"interview",
 				"signed_note"
@@ -318,13 +318,13 @@
 					}
 				],
 				"fallback_response": "Please use the authored conversation choices.",
-				"clinical_review_status": "PENDING"
+				"clinical_review_status": "APPROVED"
 			}
 		},
 		{
 			"id": "cp001_encounter_5",
 			"title": "A Plan That Belongs to Jordan",
-			"clinical_review_status": "PENDING",
+			"clinical_review_status": "APPROVED",
 			"requires": [
 				"interview",
 				"signed_note"
@@ -396,7 +396,7 @@
 					}
 				],
 				"fallback_response": "Please use the authored conversation choices.",
-				"clinical_review_status": "PENDING"
+				"clinical_review_status": "APPROVED"
 			}
 		}
 	],

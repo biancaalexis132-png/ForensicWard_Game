@@ -1,9 +1,9 @@
 {
 	"schema_version": "0.1",
 	"chapter": "ch1",
-	"provisional": true,
-	"_note": "Narration for the review-only prologue cs_ch01_prologue (plays on New Game only once the owner approves it). Arrival only: it does not repeat the Chapter 1 recap, name any patient, or mention Ward Zero or anything unexplained. Pending owner narrative review. Line IDs are stable: never reuse an ID for different wording.",
-	"clinical_review_status": "PENDING",
+	"provisional": false,
+	"_note": "Narration for the prologue cs_ch01_prologue (plays once on New Game). Arrival only: it does not repeat the Chapter 1 recap, name any patient, or mention Ward Zero or anything unexplained. Owner approved 2026-10-21. Line IDs are stable: never reuse an ID for different wording.",
+	"clinical_review_status": "APPROVED",
 	"speakers": {
 		"narrator": ""
 	},
