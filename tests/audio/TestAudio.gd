@@ -532,13 +532,13 @@ func test_pause_menu_audio_settings() -> void:
 	add_child(menu)
 	AudioDirector.set_setting("volume_music", 0.6)
 	menu.open()
-	var music_slider := menu.get_node("Root/Panel/Margin/VBox/Audio/Music") as HSlider
+	var music_slider := menu.get_node("Root/Panel/Scroll/Margin/VBox/Audio/Music") as HSlider
 	check(is_equal_approx(music_slider.value, 0.6), "pause menu shows the current music volume")
 	music_slider.value = 0.3
 	check(is_equal_approx(AudioDirector.get_setting("volume_music"), 0.3), "music slider changes the music volume setting")
-	(menu.get_node("Root/Panel/Margin/VBox/Audio/Voice") as HSlider).value = 0.8
+	(menu.get_node("Root/Panel/Scroll/Margin/VBox/Audio/Voice") as HSlider).value = 0.8
 	check(is_equal_approx(AudioDirector.get_setting("volume_voice"), 0.8), "dialogue slider changes the voice volume setting")
-	(menu.get_node("Root/Panel/Margin/VBox/Accessibility/ReduceStartlingAudio") as CheckBox).button_pressed = true
+	(menu.get_node("Root/Panel/Scroll/Margin/VBox/Accessibility/ReduceStartlingAudio") as CheckBox).button_pressed = true
 	check(AudioDirector.get_setting("reduce_startling_audio") == true, "pause menu toggles reduce startling audio")
 	menu.close()
 	menu.queue_free()
