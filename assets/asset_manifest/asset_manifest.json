@@ -5330,6 +5330,54 @@
       "license": "Original project asset; rights retained by project owner",
       "third_party_art_inputs": [],
       "sha256": "fd40a05e3da87c86087317583a093b62fe711c667e3b7cfa76eb341c43941cd7"
+    },
+    "Daniel_Ortiz_v01_draft": {
+      "path": "res://assets/exports/characters/Daniel_Ortiz_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "ortiz",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Priya_Natarajan_v01_draft": {
+      "path": "res://assets/exports/characters/Priya_Natarajan_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "natarajan",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Owen_Hughes_v01_draft": {
+      "path": "res://assets/exports/characters/Owen_Hughes_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "hughes",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Lucia_Morales_v01_draft": {
+      "path": "res://assets/exports/characters/Lucia_Morales_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "morales",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
     }
   },
   "schema_version": "1.0"
