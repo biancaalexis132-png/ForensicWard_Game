@@ -55,7 +55,8 @@ var _attention_until: float = 0.0
 var _greeted: bool = false
 var _walking: bool = false
 var _arm_swing_stopping: bool = false
-var _home_yaw: float = 0.0
+## Captured on the first frame: AuthoredWorld places the actor after _ready.
+var _home_yaw: float = NAN
 var _turn_target: float = NAN
 var _until_idle_swap: float = 0.0
 var _idle_index: int = 0
@@ -81,7 +82,6 @@ static func attach(character: WardCharacter, model: Node3D, player: AnimationPla
 func _ready() -> void:
 	_rng.seed = hash(actor.character_id if actor != null else name)
 	_until_idle_swap = _rng.randf_range(IDLE_SWAP_SECONDS.x, IDLE_SWAP_SECONDS.y)
-	_home_yaw = actor.rotation.y if actor != null else 0.0
 	EventBus.subtitle_shown.connect(_on_subtitle_shown)
 	EventBus.dialogue_line_finished.connect(_on_line_finished)
 	EventBus.ui_panel_closed.connect(_on_panel_closed)
@@ -292,6 +292,8 @@ func _update_arm_swing_stop() -> void:
 func _update_turn(delta: float) -> void:
 	if actor == null or seated or _walking:
 		return
+	if is_nan(_home_yaw):
+		_home_yaw = actor.rotation.y
 	var target: float = _home_yaw
 	if _engaged:
 		var camera: Camera3D = get_viewport().get_camera_3d() if is_inside_tree() else null

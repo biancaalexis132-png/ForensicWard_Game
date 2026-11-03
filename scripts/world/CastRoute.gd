@@ -28,6 +28,8 @@ var points: Array[Vector3] = []
 var pause_seconds: Vector2 = Vector2(6.0, 11.0)
 ## Metres per step, from the motion build's report (data/character_visuals.json).
 var step_m: float = DEFAULT_STEP_M
+## Review captures set this to 0 to film from close by.
+var player_clearance_m: float = PLAYER_CLEARANCE_M
 ## The marker's authored facing, restored whenever the character is back home.
 var home_yaw: float = 0.0
 
@@ -160,7 +162,7 @@ func _blocked() -> bool:
 		return false
 	var flat: Vector3 = camera.global_position - actor.global_position
 	flat.y = 0.0
-	return flat.length() < PLAYER_CLEARANCE_M
+	return flat.length() < player_clearance_m
 
 
 func _on_game_loaded() -> void:

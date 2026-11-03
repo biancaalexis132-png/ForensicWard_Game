@@ -53,6 +53,15 @@ func test_draft_models_carry_the_motion_clips_on_the_right_players() -> void:
 		check_eq(character.performer.can_walk(), id in STANDING, "%s can walk only when standing" % id)
 
 
+func test_idle_characters_keep_the_facing_they_are_placed_with() -> void:
+	# AuthoredWorld turns the actor to its marker after adding it to the tree.
+	var voss: WardCharacter = _spawn("staff_voss", false)
+	voss.rotation.y = deg_to_rad(150.0)
+	for i: int in 30:
+		voss.performer._process(0.05)
+	check(absf(rad_to_deg(voss.rotation.y) - 150.0) < 0.01, "an idle character stays facing its marker")
+
+
 func test_naomi_keeps_her_own_acting_controller() -> void:
 	var naomi: WardCharacter = _spawn("staff_bennett", false)
 	check(naomi.performer == null, "Naomi is driven by NaomiActingController, not CastPerformer")
