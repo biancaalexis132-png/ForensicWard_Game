@@ -28,7 +28,7 @@ func _data() -> Dictionary:
 ## Labs and plan built from the answer key: one item per requires_one_of
 ## group, every required option, the labs those need, and a preferred or
 ## acceptable action for every current medication.
-func _solve(case: Dictionary) -> Dictionary:
+static func _solve(case: Dictionary) -> Dictionary:
 	var plan: Array = []
 	for group: Array in case.get("requires_one_of", []):
 		if not group[0] in plan:

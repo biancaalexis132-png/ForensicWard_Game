@@ -5,9 +5,10 @@ extends Node3D
 ##
 ## Staff: shows their authored intro line and grants any authored access
 ## (once, via TrustManager); the ChapterDirector may supply a situational
-## line. Patients: opens the cinematic InterviewScreen.
+## line. Patients: opens the cinematic InterviewScreen. Ward-round patients
+## (WardRoundBedside): opens the ward-round screen on their case.
 
-enum Kind { STAFF, PATIENT }
+enum Kind { STAFF, PATIENT, WARD_ROUND }
 
 ## Every character in the world, for ConversationRange.
 const GROUP: String = "ward_characters"
@@ -26,6 +27,8 @@ var visual_placement: Transform3D = Transform3D.IDENTITY
 ## solid and interactable) while it holds. Re-checked whenever the objective
 ## changes, which includes every load.
 var present_when: Dictionary = {}
+## Kind.WARD_ROUND only: the data/ward_rounds.json case this patient is.
+var ward_round_case_id: String = ""
 
 @onready var _interactable: Interactable = $Interactable
 @onready var _name_label: Label3D = $NameLabel
@@ -65,6 +68,8 @@ func _ready() -> void:
 	var display_name: String = _display_name()
 	_name_label.text = display_name
 	_interactable.prompt = ("Talk to " if kind == Kind.STAFF else "Approach ") + display_name
+	if kind == Kind.WARD_ROUND:
+		_interactable.prompt = "See %s (ward round)" % display_name
 	if visual_scene != null:
 		if not set_visual_scene(visual_scene):
 			mark_visual_missing("model could not be attached")
@@ -186,6 +191,8 @@ func _update_presence() -> void:
 
 
 func _display_name() -> String:
+	if kind == Kind.WARD_ROUND:
+		return str(WardRounds.get_case(ward_round_case_id).get("patient", {}).get("name", character_id))
 	var data: Dictionary = ContentRegistry.get_staff(character_id) if kind == Kind.STAFF \
 			else ContentRegistry.get_patient(character_id)
 	return data.get("name", character_id)
@@ -201,7 +208,10 @@ func _on_interacted(_interactor: Node) -> void:
 	else:
 		if is_instance_valid(performer):
 			performer.begin_conversation()
-		_approach_patient()
+		if kind == Kind.WARD_ROUND:
+			EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": ward_round_case_id})
+		else:
+			_approach_patient()
 
 
 func _talk_to_staff() -> void:

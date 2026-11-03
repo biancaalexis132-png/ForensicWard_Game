@@ -90,6 +90,46 @@
         0.0
       ],
       "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_ortiz": {
+      "scene": "res://assets/exports/characters/Daniel_Ortiz_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_natarajan": {
+      "scene": "res://assets/exports/characters/Priya_Natarajan_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_hughes": {
+      "scene": "res://assets/exports/characters/Owen_Hughes_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_morales": {
+      "scene": "res://assets/exports/characters/Lucia_Morales_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
     }
   }
 }
