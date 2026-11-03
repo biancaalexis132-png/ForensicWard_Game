@@ -3,7 +3,9 @@ extends CanvasLayer
 ## WardRoundScreen: the ward round in the EHR (opened from its Ward round
 ## button). Left: the patients admitted so far, with their status. Right, in
 ## tabs, for the selected patient:
-##   Chart   presentation, history, mental state, vitals, current medications
+##   Bedside how you open the conversation, then questions; answers fill the chart
+##   Chart   presentation, then history, mental state and vitals once heard at
+##           the bedside, current medications
 ##   Labs    the lab catalog by category; Order shows the result at once
 ##   Plan    an action for each current medication, medications to start and
 ##           interventions
@@ -15,7 +17,7 @@ extends CanvasLayer
 ## Button handlers are public so tests drive the same paths a player does.
 
 const PANEL_ID: String = "ward_round"
-const TABS: Array[String] = ["Chart", "Labs", "Plan", "Debrief"]
+const TABS: Array[String] = ["Bedside", "Chart", "Labs", "Plan", "Debrief"]
 const SIZE_TITLE: int = 32
 const SIZE_HEADING: int = 25
 const SIZE_BODY: int = 22
@@ -30,7 +32,10 @@ var _drafts: Dictionary = {}
 var _census: ItemList
 var _badge: Label
 var _tabs: TabContainer
+var _bedside: VBoxContainer
 var _chart: VBoxContainer
+## Bedside replies this visit, shown under the questions: case id -> [String].
+var _transcript: Dictionary = {}
 var _labs: VBoxContainer
 var _plan: VBoxContainer
 var _debrief: VBoxContainer
@@ -80,11 +85,45 @@ func select_case(id: String) -> void:
 		if _census.get_item_metadata(i) == id:
 			_census.select(i)
 	_badge.visible = WardRounds.is_draft(id)
+	_build_bedside()
 	_build_chart()
 	_build_labs()
 	_build_plan()
 	_build_debrief()
 	_show_review(WardRounds.last_review(id))
+	# A patient not yet spoken to opens at the bedside; otherwise at the chart.
+	var fresh: bool = not WardRounds.bedside().is_empty() and WardRounds.bedside_opening(id).is_empty() \
+			and WardRounds.is_editable(id)
+	show_tab("Bedside" if fresh else "Chart")
+
+
+## Bedside actions (buttons call these; so do tests).
+func open_bedside(opening_id: String) -> String:
+	var text: String = WardRounds.open_bedside(case_id, opening_id)
+	_after_bedside(text)
+	return text
+
+
+func ask(question_id: String) -> String:
+	var text: String = WardRounds.ask_bedside(case_id, question_id)
+	_after_bedside(text)
+	return text
+
+
+func repair() -> String:
+	var text: String = WardRounds.repair_bedside(case_id)
+	_after_bedside(text)
+	return text
+
+
+func _after_bedside(text: String) -> void:
+	if text.is_empty():
+		return
+	if not _transcript.has(case_id):
+		_transcript[case_id] = []
+	_transcript[case_id].append(text)
+	_build_bedside()
+	_build_chart()
 
 
 func show_tab(tab_name: String) -> void:
@@ -128,6 +167,7 @@ func replay() -> bool:
 	if not WardRounds.replay_case(case_id):
 		return false
 	_drafts.erase(case_id)
+	_transcript.erase(case_id)
 	select_case(case_id)
 	return true
 
@@ -175,13 +215,63 @@ func _build_chart() -> void:
 		referral = "[b]Referred as[/b]  \"%s\"\n\n" % presentation["triage_label"]
 	_chart.add_child(_card("%s, %d" % [patient["name"], int(patient["age"])],
 			"%s[b]Reason for review[/b]\n%s" % [referral, presentation["reason"]], UIStyle.ACCENT))
-	_chart.add_child(_card("History", presentation["history"]))
-	_chart.add_child(_card("Mental state", presentation["mental_status"]))
-	_chart.add_child(_card("Vitals and examination", presentation["vitals"]))
+	for row: Array in [["History", "history"], ["Mental state", "mental_status"], ["Vitals and examination", "vitals"]]:
+		if WardRounds.is_revealed(case_id, row[1]):
+			_chart.add_child(_card(row[0], presentation[row[1]]))
+		else:
+			_chart.add_child(_card(row[0], "[color=#%s]Not yet heard. Ask at the bedside (Bedside tab).[/color]" % UIStyle.MUTED.to_html(false)))
 	var meds: Array[String] = []
 	for med: Dictionary in presentation["current_medications"]:
 		meds.append("• " + str(med["label"]))
 	_chart.add_child(_card("Current medications", "\n".join(meds) if not meds.is_empty() else "None"))
+
+
+func _build_bedside() -> void:
+	_clear(_bedside)
+	var case: Dictionary = WardRounds.get_case(case_id)
+	var block: Dictionary = WardRounds.bedside()
+	if case.is_empty() or block.is_empty():
+		_bedside.add_child(UIStyle.label("No bedside conversation for this patient.", SIZE_BODY, UIStyle.MUTED))
+		return
+	var editable: bool = WardRounds.is_editable(case_id)
+	var opening: String = WardRounds.bedside_opening(case_id)
+	_bedside.add_child(UIStyle.label("At the bedside with %s" % case["patient"]["name"], SIZE_HEADING, UIStyle.ACCENT.lightened(0.2)))
+	if opening.is_empty():
+		_bedside.add_child(UIStyle.label("How do you open the conversation? It sets how much they are willing to tell you, and the debrief counts it.", SIZE_SMALL, UIStyle.MUTED))
+		for entry: Dictionary in block["openings"]:
+			var button: Button = _choice_button(entry["label"], "Open_" + str(entry["id"]))
+			button.disabled = not editable
+			button.pressed.connect(func() -> void: open_bedside(entry["id"]))
+			_bedside.add_child(button)
+	else:
+		var asked: Array = WardRounds.bedside_asked(case_id)
+		for entry: Dictionary in block["questions"]:
+			var revealed: bool = WardRounds.is_revealed(case_id, entry["field"])
+			var button: Button = _choice_button(("✓ " if revealed else "") + str(entry["label"]), "Ask_" + str(entry["id"]))
+			button.disabled = not editable or revealed
+			button.pressed.connect(func() -> void: ask(entry["id"]))
+			_bedside.add_child(button)
+		if WardRounds.bedside_trust(case_id) < 1 and not asked.is_empty():
+			var mend: Button = _choice_button(block["repair"]["label"], "Repair")
+			mend.disabled = not editable
+			mend.pressed.connect(repair)
+			_bedside.add_child(mend)
+	var lines: Array = _transcript.get(case_id, [])
+	if not lines.is_empty():
+		var card: PanelContainer = _card("What you learn", "\n\n".join(lines.map(func(line: String) -> String: return "• " + line)))
+		card.find_children("*", "RichTextLabel", true, false)[0].name = "BedsideReplies"
+		_bedside.add_child(card)
+	if not opening.is_empty() and editable:
+		_bedside.add_child(UIStyle.label("Answers are added to the Chart tab.", SIZE_SMALL, UIStyle.MUTED))
+
+
+func _choice_button(text: String, node_name: String) -> Button:
+	var button: Button = UIStyle.secondary_button(text, SIZE_BODY)
+	button.name = node_name
+	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	return button
 
 
 func _build_labs() -> void:
@@ -459,7 +549,7 @@ func _build() -> void:
 	_close_button.pressed.connect(close)
 	top.add_child(_close_button)
 	column.add_child(top)
-	column.add_child(UIStyle.label("Each chapter admits new patients. Read the chart, order the labs the presentation needs, then submit a medication plan. The chapter cannot close until each of its patients has an accepted plan.", SIZE_SMALL, UIStyle.MUTED))
+	column.add_child(UIStyle.label("Each chapter admits new patients. Talk with them at the bedside, read the chart, order the tests the presentation needs, then submit a medication plan. The chapter cannot close until each of its patients has an accepted plan.", SIZE_SMALL, UIStyle.MUTED))
 
 	var split: HSplitContainer = HSplitContainer.new()
 	split.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -484,6 +574,7 @@ func _build() -> void:
 	_tabs.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_tabs.add_theme_font_size_override("font_size", SIZE_BODY)
 	right.add_child(_tabs)
+	_bedside = _scroll_tab("Bedside")
 	_chart = _scroll_tab("Chart")
 	_labs = _scroll_tab("Labs")
 	_plan = _scroll_tab("Plan")

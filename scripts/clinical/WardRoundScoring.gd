@@ -18,7 +18,13 @@ extends RefCounted
 ## points, but a test can always be ordered, so a required test is never locked.
 ##
 ## history: one entry per submission, oldest first, {"labs": [lab ids ordered
-## when it was sent], "plan": [plan item keys]}. The last entry is the accepted plan.
+## when it was sent], "plan": [plan item keys], "revealed": [bedside questions
+## answered by then]}. The last entry is the accepted plan.
+##
+## bedside (optional, {} when the catalog has no bedside block):
+## {"opening": the chosen opening entry, "repaired": bool}. A rushed opening
+## costs rapport (less if repaired); a direct one costs a little; a plan sent
+## before the history and mental state were heard costs reasoning.
 
 const WEIGHTS: Dictionary = {"safety": 0.40, "reasoning": 0.25, "rapport": 0.20, "resources": 0.15}
 const LABELS: Dictionary = {"safety": "Patient safety", "reasoning": "Diagnostic reasoning",
@@ -32,6 +38,12 @@ const MISSED_REQUIRED_PENALTY: int = 25
 const NOT_INDICATED_PENALTY: int = 15
 const EXTRA_ATTEMPT_PENALTY: int = 10
 const EXTRA_ATTEMPT_CAP: int = 30
+const HARMFUL_OPENING_PENALTY: int = 40
+const REPAIRED_OPENING_PENALTY: int = 20
+const DIRECT_OPENING_PENALTY: int = 10
+const UNHEARD_PENALTY: int = 15
+## Bedside questions that should be heard before a plan goes in.
+const HEAR_BEFORE_PLAN: Dictionary = {"history": "the history", "mental_state": "the mental state"}
 const DISMISSIVE_PENALTY: int = 50
 const NO_EXPLANATION_PENALTY: int = 30
 const WASTED_TEST_PENALTY: int = 20
@@ -70,7 +82,8 @@ static func dismissive_items(intervention_catalog: Array) -> Array[String]:
 ## Scores a case from its submission history. Returns {} if there is none.
 ## {total: int, grade: String, capped: bool, areas: {area: int},
 ##  findings: [{area, text, good: bool}], budget: int, tests: int}
-static func score(case: Dictionary, history: Array, intervention_catalog: Array, labels: Dictionary = {}) -> Dictionary:
+static func score(case: Dictionary, history: Array, intervention_catalog: Array, labels: Dictionary = {},
+		bedside: Dictionary = {}) -> Dictionary:
 	if history.is_empty():
 		return {}
 	var dismissive: Array[String] = dismissive_items(intervention_catalog)
@@ -135,6 +148,12 @@ static func score(case: Dictionary, history: Array, intervention_catalog: Array,
 	for item: String in not_indicated:
 		reasoning -= NOT_INDICATED_PENALTY
 		findings.append({"area": "reasoning", "good": false, "text": "Not indicated for this patient: %s." % WardRoundCatalog.describe_item(item, labels)})
+	if not bedside.is_empty():
+		var heard: Array = history[0].get("revealed", [])
+		for question: String in HEAR_BEFORE_PLAN:
+			if not question in heard:
+				reasoning -= UNHEARD_PENALTY
+				findings.append({"area": "reasoning", "good": false, "text": "The first plan went in before you had heard %s at the bedside." % HEAR_BEFORE_PLAN[question]})
 	var extra: int = history.size() - 1
 	if extra > 0:
 		reasoning -= mini(extra * EXTRA_ATTEMPT_PENALTY, EXTRA_ATTEMPT_CAP)
@@ -152,6 +171,21 @@ static func score(case: Dictionary, history: Array, intervention_catalog: Array,
 	else:
 		rapport -= NO_EXPLANATION_PENALTY
 		findings.append({"area": "rapport", "good": false, "text": "The plan did not include explaining it to the patient."})
+
+	if not bedside.is_empty():
+		var opening: Dictionary = bedside.get("opening", {})
+		if str(opening.get("rapport", "")) == "harms":
+			if bool(bedside.get("repaired", false)):
+				rapport -= REPAIRED_OPENING_PENALTY
+				findings.append({"area": "rapport", "good": false, "text": "A rushed opening, though you slowed down and rebuilt some trust."})
+			else:
+				rapport -= HARMFUL_OPENING_PENALTY
+				findings.append({"area": "rapport", "good": false, "text": "A rushed opening cost the patient's trust."})
+		elif int(opening.get("trust", 0)) >= 2:
+			findings.append({"area": "rapport", "good": true, "text": "You introduced yourself and explained why you were there."})
+		elif not opening.is_empty():
+			rapport -= DIRECT_OPENING_PENALTY
+			findings.append({"area": "rapport", "good": false, "text": "You went straight to questions without explaining why you were there."})
 
 	# Appropriate resource use.
 	var allowed: int = budget(case)

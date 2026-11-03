@@ -3475,5 +3475,55 @@
 				"Kaplan & Sadock's Synopsis 12th ed.: psychiatric differential of medical illness"
 			]
 		}
-	]
+	],
+	"bedside": {
+		"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+		"_note": "Bedside conversation before the chart: the opening sets the patient's trust; history and mental state need some trust; observations do not. Generic communication wording by Claude Code, pending the owner's review. Answers are each case's own chart text; nothing new is said about any patient.",
+		"openings": [
+			{
+				"id": "warm",
+				"label": "Introduce yourself, explain why you are here and ask how they are",
+				"trust": 2,
+				"response": "{name} relaxes a little and agrees to talk."
+			},
+			{
+				"id": "direct",
+				"label": "Introduce yourself and go straight to your questions",
+				"trust": 1,
+				"response": "{name} answers, though warily."
+			},
+			{
+				"id": "rushed",
+				"label": "Say you only have a few minutes and need quick answers",
+				"trust": 0,
+				"response": "{name} looks away and gives short answers.",
+				"rapport": "harms"
+			}
+		],
+		"questions": [
+			{
+				"id": "history",
+				"label": "Ask what has been happening, in their own words",
+				"field": "history",
+				"needs_trust": true
+			},
+			{
+				"id": "mental_state",
+				"label": "Explore how they are feeling and thinking",
+				"field": "mental_status",
+				"needs_trust": true
+			},
+			{
+				"id": "observations",
+				"label": "Check their observations and examine them",
+				"field": "vitals",
+				"needs_trust": false
+			}
+		],
+		"repair": {
+			"label": "Slow down and acknowledge how they are feeling",
+			"response": "{name} looks back at you and seems ready to talk."
+		},
+		"low_trust_response": "{name} gives a short answer and little else. Building some trust first may help."
+	}
 }

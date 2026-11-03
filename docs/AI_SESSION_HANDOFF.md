@@ -2,6 +2,7 @@
 
 ## Claude Code ward-round patients on the ward — 2026-11-03
 
+- Most recent: `claude/ward-round-bedside-talk` (draft PR on #119): bedside conversation. Full QA passed: game 406/0, exit 0. Next: Bi reviews; case-specific voiced lines would need reviewed writing. See `docs/handoffs/2026-11-03_claude_ward_round_bedside_talk.md`.
 - Newest: `claude/patient-hair-cards` (draft PR on #118): hair cards on 23 patients. Full QA passed: game 401/0, GLB 199/0, exit 0. Next: story/interactivity (bedside conversation proposed to Bi). See `docs/handoffs/2026-11-03_claude_patient_hair_cards.md`.
 - Latest: `claude/patient-model-ageing` (draft PR on #117): 15 patients rebuilt older/greying/heavier via new opt-in builder options. Full QA passed: game 401/0, GLB 199/0, exit 0. Next: Bi looks at the before/after sheet; real hair cards would be the next model step. See `docs/handoffs/2026-11-03_claude_patient_model_ageing.md`.
 - Later: `claude/ward-round-scoring` (draft PR on #116): debrief score, soft tests budget, Debrief tab, Replay case; Plan tab overflow fixed. Full QA passed: game 401/0, audio 1720/0, QA 19/0/0, GLB 199/0, exit 0. Next: Bi reviews scoring; then patient model improvements (hair, ageing, body variety). See `docs/handoffs/2026-11-03_claude_ward_round_scoring.md`.

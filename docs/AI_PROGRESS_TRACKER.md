@@ -6,6 +6,7 @@
 |---|---|---|---|---|---|
 | Patients seated in Rooms 01/02, approach opens case, next patient arrives | Done, draft PR | #115, #114 | `scripts/world/WardRoundBedside.gd`, `data/ward_round_bedside.json` | `test_ward_round_bedside` (7), captures | Bi plays on the Mac |
 | Patient models for all 28 ward-round cases | Draft, pending owner look | cast pipeline | `tools/blender/characters/cast/pt_wr_*.json`, `assets/exports/characters/*_v01_draft.glb` | GLB 199/0; captures ch1 to ch5 | Bi reviews the look |
+| Bedside conversation (opening sets trust, questions fill the chart, debrief counts it) | Done, draft PR | #119 | `WardRounds.gd`, `WardRoundScreen.gd`, `data/ward_rounds.json` `bedside` | `test_ward_round_conversation` (5), captures | Bi reviews wording; case-specific lines next |
 | Hair cards on 23 patients (strand strips over the cap) | Done, draft PR | #118 | `build_cast_member.py` `hair.cards` | GLB 199/0, in-game capture | Bi looks at the hair |
 | Older/greying/heavier patient looks (age marks, grey hair, receding temples, weight at any age); 15 rebuilt | Done, draft PR | #117 | `build_cast_member.py`, `pt_wr_*.json` | GLB 199/0, before/after sheet | Bi looks at the faces |
 | Case bible third wave (8 cases, referral labels, bedside assessments, wrong-for-everyone choices) | Done on #115, pending Bi's clinical review | #115 | `data/ward_rounds.json`, `WardRoundCatalog.gd` | `test_ward_rounds` | Bi reviews in the review doc |
