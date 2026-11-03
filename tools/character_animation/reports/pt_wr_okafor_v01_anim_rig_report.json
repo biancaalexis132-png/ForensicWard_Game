@@ -94,8 +94,8 @@
         -0.04230000078678131,
         1.2963999509811401
       ],
-      "weighted_vertices": 6392,
-      "centroid_to_bone_m": 0.0312,
+      "weighted_vertices": 10092,
+      "centroid_to_bone_m": 0.0145,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -254,6 +254,12 @@
     },
     {
       "name": "Okafor_Hair",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Okafor_Hair_Cards",
       "armature_modifier": true,
       "vertex_groups": 1,
       "shape_keys": []
@@ -637,5 +643,5 @@
       }
     ]
   },
-  "triangles": 29017
+  "triangles": 32143
 }

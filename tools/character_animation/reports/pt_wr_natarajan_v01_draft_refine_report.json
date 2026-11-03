@@ -4,7 +4,7 @@
   "profile_sha256": "9f2b7ee1b4ab3d0b3b086af7469b825ca1fe5f67d831735b43e65de775b63971",
   "source": {
     "path": "build/cast/Priya_Natarajan_v01_face.blend",
-    "sha256": "5a49bee48d3961909182389949b0ec5a525499d1549c39f9971da497acc78363"
+    "sha256": "d72950f408875ec5967127ddfeca82a12d4453e661971ee90c8b58af20b98766"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 29116
+  "triangles": 32158
 }

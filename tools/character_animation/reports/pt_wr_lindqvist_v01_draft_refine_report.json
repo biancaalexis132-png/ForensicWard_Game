@@ -4,7 +4,7 @@
   "profile_sha256": "4da9f3a6b7ba41ed9e9a2dbd781dbcf0d7565511bc397a2f462e5ee488ea73bf",
   "source": {
     "path": "build/cast/Grace_Lindqvist_v01_face.blend",
-    "sha256": "081ea5f23fd118c384e6c9814a15827a58273d84b780bb2f5489c227fcac020a"
+    "sha256": "80c15af5e51c925240caecfe1f1005246ca413c1c84da95f662fad3b2cac6b48"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 29398
+  "triangles": 32368
 }

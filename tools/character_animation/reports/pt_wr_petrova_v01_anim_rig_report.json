@@ -94,8 +94,8 @@
         -0.03909999877214432,
         1.315500020980835
       ],
-      "weighted_vertices": 6443,
-      "centroid_to_bone_m": 0.032,
+      "weighted_vertices": 9979,
+      "centroid_to_bone_m": 0.0104,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -248,6 +248,12 @@
     },
     {
       "name": "Petrova_Hair",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Petrova_Hair_Cards",
       "armature_modifier": true,
       "vertex_groups": 1,
       "shape_keys": []
@@ -637,5 +643,5 @@
       }
     ]
   },
-  "triangles": 28966
+  "triangles": 31936
 }

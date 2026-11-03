@@ -94,8 +94,8 @@
         -0.042399998754262924,
         1.399899959564209
       ],
-      "weighted_vertices": 5834,
-      "centroid_to_bone_m": 0.0435,
+      "weighted_vertices": 11682,
+      "centroid_to_bone_m": 0.0082,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -248,6 +248,12 @@
     },
     {
       "name": "Kowalczyk_Hair",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Kowalczyk_Hair_Cards",
       "armature_modifier": true,
       "vertex_groups": 1,
       "shape_keys": []
@@ -625,5 +631,5 @@
       }
     ]
   },
-  "triangles": 28330
+  "triangles": 33306
 }

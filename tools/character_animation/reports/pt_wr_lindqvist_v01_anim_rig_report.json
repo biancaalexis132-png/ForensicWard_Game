@@ -94,8 +94,8 @@
         -0.03959999978542328,
         1.3317999839782715
       ],
-      "weighted_vertices": 6443,
-      "centroid_to_bone_m": 0.0324,
+      "weighted_vertices": 9979,
+      "centroid_to_bone_m": 0.0106,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -248,6 +248,12 @@
     },
     {
       "name": "Lindqvist_Hair",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Lindqvist_Hair_Cards",
       "armature_modifier": true,
       "vertex_groups": 1,
       "shape_keys": []
@@ -637,5 +643,5 @@
       }
     ]
   },
-  "triangles": 29398
+  "triangles": 32368
 }

@@ -11,7 +11,8 @@
     "canon_basis": "data/ward_rounds.json case chart (name, age, sex only); appearance is a draft choice; ordinary own clothes; no symptom movement without clinical review",
     "draft_choices": [
       "Skin tone, face, build and height are draft choices; the chart gives only name, age and sex.",
-      "Seated rest pose for sitting on the bed in a patient room; only the shared neutral clips, no symptom-related movement."
+      "Seated rest pose for sitting on the bed in a patient room; only the shared neutral clips, no symptom-related movement.",
+      "Hair cards (alpha-clipped strand strips over the cap) are a draft choice."
     ]
   },
   "source": {
@@ -83,7 +84,16 @@
     "ear_top_z_m": 0.025,
     "volume_top_m": 0.006,
     "volume_side_m": 0.002,
-    "fringe_m": 0.004
+    "fringe_m": 0.004,
+    "cards": {
+      "count": 420,
+      "length_m": [
+        0.025,
+        0.045
+      ],
+      "width_m": 0.009
+    },
+    "temple_recede_m": 0.007
   },
   "garments": [
     {

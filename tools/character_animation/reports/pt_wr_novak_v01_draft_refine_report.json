@@ -4,7 +4,7 @@
   "profile_sha256": "4ff70dd1da47ca231fe9ca5a16c33ea511efd287589c8fd452d8b66b8cb5b474",
   "source": {
     "path": "build/cast/Luka_Novak_v01_face.blend",
-    "sha256": "452e9e67f17b0d7606e4277f117aa66afd2e89806941b279bdc5a0059d62f77f"
+    "sha256": "81647eeab740f6a26a9ba7281203fb87b72f6696af4ced65d830008e7f040464"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28817
+  "triangles": 33793
 }

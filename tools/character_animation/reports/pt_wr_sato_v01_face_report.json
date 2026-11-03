@@ -4,7 +4,7 @@
   "profile_sha256": "548001924602e96242d4e3104660016ee5ea50410aa4ce77493164384f404ff3",
   "source": {
     "path": "build/cast/Kenji_Sato_v01_anim.blend",
-    "sha256": "02a32e566b8c59c4930580dc80cba2c920c0a3945f0f16999f69ba3c7dbba200"
+    "sha256": "c2fc6cfba9e8ef643376480ffc7f7de38256fa7e922271d32ec16b5a01e480d8"
   },
   "face_source": {
     "path": "assets/blender/characters/Naomi_Bennett_v07.blend",

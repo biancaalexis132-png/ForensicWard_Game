@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Daniel_Ortiz_v01_draft.blend",
-    "sha256": "60c5649a2ae5130e3952f1f116a3ff21930383ffdfb8cef2c6b929a7733b8f05",
+    "sha256": "ba444e20358870b4dee61d854e6dd383dfc789c6af9340d0dda995349d65f6cd",
     "modified": false
   },
   "library": {
@@ -96,7 +96,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Daniel_Ortiz_v01_draft.glb",
-    "sha256": "6d75d0f1c964a98926eda755fbe5560982800111b684ca5dc822724fb2b52262",
+    "sha256": "e379f579861abc8b88d9d040c11f461dcf4d339f0884a6a439b85f5c54517037",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

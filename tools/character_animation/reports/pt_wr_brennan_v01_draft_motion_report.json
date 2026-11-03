@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Agnes_Brennan_v01_draft.blend",
-    "sha256": "892f264f00b1e90044edea370992da628d1ff3ce27c3cdc85bf1a081342559d3",
+    "sha256": "ce488239bcb617dea3a22aef1543fc7cb6cc2eb9b355b4d3a79d1e197620611d",
     "modified": false
   },
   "library": {
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Agnes_Brennan_v01_draft.glb",
-    "sha256": "1bdba9432310b8e5939852c5ebfdd2118a5bc42895125c8a51dc0061bc68fc08",
+    "sha256": "eb2647a20ad8de85d3fcf016170babc0f726dcc158de59c232776822895c3949",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

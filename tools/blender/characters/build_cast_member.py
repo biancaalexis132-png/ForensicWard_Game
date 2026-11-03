@@ -1223,6 +1223,119 @@ def paint_hairline(body, cap, image: bpy.types.Image, spec: dict) -> int:
     return painted
 
 
+def hair_card_material(spec: dict) -> bpy.types.Material:
+    """Alpha-clipped strand strips for hair cards: strands run along V (root at
+    0, tip at 1), each with its own length, so tips break up into single hairs."""
+    w, h = 256, 512
+    rng = np.random.default_rng(23)
+    base = np.array(hex_rgb(spec["srgb_hex"]))
+    grey = np.array(hex_rgb(spec.get("grey_srgb_hex", "#9a958f")))
+    share = float(spec.get("grey_fraction", 0.0))
+    tint = base * (1.0 - 0.55 * share) + grey * (0.55 * share)
+    img = np.zeros((h, w, 4))
+    yy = np.arange(h)[:, None] / h
+    x = 0
+    while x < w:
+        width = int(rng.integers(1, 3))
+        length = rng.uniform(0.55, 1.0)
+        start = rng.uniform(0.0, 0.12)
+        colour = (grey if rng.random() < share else tint) * rng.uniform(0.9, 1.06)
+        shade = (0.86 + 0.14 * np.clip(yy / max(length, 1e-3), 0, 1))  # darker roots
+        cover = ((yy >= start) & (yy <= length)).astype(float)
+        cover = cover * np.clip((length - yy) / 0.08, 0, 1)  # thin to a point at the tip
+        cover = cover * np.clip((yy - start) / 0.05, 0, 1)  # soft root
+        img[:, x:x + width, :3] = np.clip(colour[None, :] * shade, 0, 1)[:, None, :]
+        img[:, x:x + width, 3] = np.maximum(img[:, x:x + width, 3], cover * rng.uniform(0.85, 1.0))
+        x += width + int(rng.integers(0, 2))
+    image = v3.make_image(PREFIX + "Hair_Cards", img)
+    image.alpha_mode = "STRAIGHT"
+    mat = bpy.data.materials.new(PREFIX + "Hair_Cards")
+    mat.use_nodes = True
+    nodes = mat.node_tree.nodes
+    bsdf = nodes["Principled BSDF"]
+    bsdf.inputs["Roughness"].default_value = float(spec.get("roughness", 0.62))
+    bsdf.inputs["Specular IOR Level"].default_value = float(spec.get("specular", 0.22))
+    tex = nodes.new("ShaderNodeTexImage")
+    tex.image = image
+    mat.node_tree.links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
+    # A Round node is how the glTF exporter marks alpha clip (alphaMode MASK).
+    clip = nodes.new("ShaderNodeMath")
+    clip.operation = "ROUND"
+    mat.node_tree.links.new(tex.outputs["Alpha"], clip.inputs[0])
+    mat.node_tree.links.new(clip.outputs[0], bsdf.inputs["Alpha"])
+    mat.use_backface_culling = False
+    return mat
+
+
+def hair_cards(cap, centre: Vector, top_z: float, spec: dict, tie: Vector | None) -> bpy.types.Object:
+    """Strips of strand texture laid over the cap, flowing toward the tie (tied
+    hair) or away from the crown (short hair). They break the cap's hard outline
+    and solid surface into layered strands; tips fade out past the hairline."""
+    cfg = spec["cards"]
+    rng = np.random.default_rng(int(cfg.get("seed", 7)))
+    tree = BVHTree.FromObject(cap, bpy.context.evaluated_depsgraph_get())
+    verts = [v.co.copy() for v in cap.data.vertices]
+    crown = Vector((centre.x, centre.y + float(cfg.get("crown_back_m", 0.035)), top_z - 0.01))
+    lo, hi = cfg.get("length_m", [0.035, 0.06])
+    width = float(cfg.get("width_m", 0.012))
+    lift = float(cfg.get("lift_m", 0.0015))
+    segments = int(cfg.get("segments", 6))
+    bm = bmesh.new()
+    uv_layer = bm.loops.layers.uv.new("UVMap")
+    count = int(cfg.get("count", 240))
+    for k in range(count):
+        p = verts[int(rng.integers(len(verts)))]
+        loc, nrm, _i, _d = tree.find_nearest(p)
+        if loc is None:
+            continue
+        length = rng.uniform(lo, hi)
+        step = length / segments
+        layer = lift * (1.0 + float(cfg.get("lift_spread", 0.6)) * rng.random())
+        pts, sides = [], []
+        for j in range(segments + 1):
+            target = (tie - loc) if tie is not None else (loc - crown)
+            if tie is None:
+                target.z -= 0.25 * target.length  # short hair falls a little
+            d = target - nrm * target.dot(nrm)
+            if d.length < 1e-6:
+                break
+            d.normalize()
+            side = nrm.cross(d).normalized()
+            pts.append(loc + nrm * layer)
+            sides.append(side)
+            nxt, nrm2, _i, _d = tree.find_nearest(loc + d * step)
+            if nxt is None:
+                break
+            if tie is not None and (nxt - tie).length < 0.02:
+                break
+            loc, nrm = nxt, nrm2
+        if len(pts) < 3:
+            continue
+        twist = rng.uniform(-0.25, 0.25)
+        rows = []
+        for j, (pt, side) in enumerate(zip(pts, sides)):
+            t = j / (len(pts) - 1)
+            half = width * 0.5 * (1.0 - 0.45 * t)
+            off = side * half
+            rows.append((bm.verts.new(pt - off), bm.verts.new(pt + off), t))
+        u0 = rng.uniform(0.0, 0.6)
+        for j in range(len(rows) - 1):
+            a, b, ta = rows[j]
+            c, d2, tb = rows[j + 1]
+            face = bm.faces.new((a, b, d2, c))
+            for loop, uv in zip(face.loops, ((u0, ta), (u0 + 0.4, ta), (u0 + 0.4, tb), (u0, tb))):
+                loop[uv_layer].uv = uv
+    mesh = bpy.data.meshes.new(PREFIX + "Hair_Cards")
+    bm.to_mesh(mesh)
+    bm.free()
+    mesh.materials.append(hair_card_material(spec))
+    for poly in mesh.polygons:
+        poly.use_smooth = True
+    obj = bpy.data.objects.new(PREFIX + "Hair_Cards", mesh)
+    bpy.context.scene.collection.objects.link(obj)
+    return obj
+
+
 def build_hair(body, rig, mats) -> list[bpy.types.Object]:
     spec = CFG["hair"]
     centre, head_w, top_z = head_frame(body)
@@ -1243,10 +1356,12 @@ def build_hair(body, rig, mats) -> list[bpy.types.Object]:
     print("  hairline texels painted:", paint_hairline(body, cap, mats["skin"].node_tree.nodes["Image Texture"].image, spec))
     objs = [cap]
     style = spec["style"]
+    tie_point = None
     if style in ("chignon", "ponytail"):
         d = Vector(spec.get("tie_direction", (0.0, 1.0, -0.42))).normalized()
         hit, normal, _i, _dd = tree.ray_cast(centre + d * 0.3, -d)
         tie = hit + normal * (vol_side + 0.002)
+        tie_point = tie
         if style == "chignon":
             r = spec["bun_radii_m"]
             bm = bmesh.new()
@@ -1294,6 +1409,8 @@ def build_hair(body, rig, mats) -> list[bpy.types.Object]:
                                                        for a in np.linspace(0, math.tau, 13)[:-1]]],
                                 0.0025, mats["hair"], closed=[True])
             objs.append(band)
+    if spec.get("cards"):
+        objs.append(hair_cards(cap, centre, top_z, spec, tie_point))
     for obj in objs:
         v3.rigid_weight(obj, "head")
         v3.parent_to_rig(obj, rig)

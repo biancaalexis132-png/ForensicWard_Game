@@ -12,7 +12,8 @@
     "draft_choices": [
       "Skin tone, face, build and height are draft choices; the chart gives only name, age and sex.",
       "Seated rest pose for sitting on the bed in a patient room; only the shared neutral clips, no symptom-related movement.",
-      "v01 rebuild: painted signs of age, grey mixed through the hair, and build varied by weight are draft choices."
+      "v01 rebuild: painted signs of age, grey mixed through the hair, and build varied by weight are draft choices.",
+      "Hair cards (alpha-clipped strand strips over the cap) are a draft choice."
     ]
   },
   "source": {
@@ -90,7 +91,15 @@
       0.018,
       0.008
     ],
-    "grey_srgb_hex": "#D0CCC6"
+    "grey_srgb_hex": "#D0CCC6",
+    "cards": {
+      "count": 320,
+      "length_m": [
+        0.06,
+        0.12
+      ],
+      "width_m": 0.014
+    }
   },
   "garments": [
     {

@@ -4,7 +4,7 @@
   "profile_sha256": "b0f1f5f5165a4316096195792849fdd6fa8fce7edcbf5ef7ca4136286f3f9236",
   "source": {
     "path": "build/cast/Marguerite_Lebel_v01_face.blend",
-    "sha256": "dfa5c22179ac38c4cf612b3e3e6467280944a6f085bf309f0ac12f31b358df6e"
+    "sha256": "e2612ef555cb6d7a6504bb4fd2228ceeeb683a5515d23bb6da74de17419ec1cb"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 29401
+  "triangles": 32369
 }
