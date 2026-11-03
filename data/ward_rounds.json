@@ -1,7 +1,7 @@
 {
 	"schema_version": 1,
-	"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
-	"_note": "Ward rounds: per-chapter patients the player assesses in the EHR by ordering labs and building a medication plan. Draft teaching cases written by Claude Code on 2026-11-03 from standard teaching points; no doses, no invented thresholds. Every case and answer key is PENDING_PSYCHIATRIST_REVIEW until the owner approves it in docs/clinical_review_log.md. Results are qualitative. Verdicts: labs required/helpful/not_needed; plan options preferred/acceptable/required (must be chosen)/not_indicated/unsafe. Unlisted labs read 'Within normal limits' and count as not needed; unlisted start options are not indicated; unlisted interventions are not needed.",
+	"clinical_review_status": "APPROVED",
+	"_note": "Ward rounds: per-chapter patients the player assesses in the EHR by ordering labs and building a medication plan. Teaching cases written by Claude Code; no doses, no invented thresholds; results are qualitative. The first ten cases (wr_ch1_ortiz, wr_ch1_natarajan, wr_ch2_kim, wr_ch2_lebel, wr_ch3_wrobel, wr_ch3_adeyemi, wr_ch4_petrova, wr_ch4_okafor, wr_ch5_delaney, wr_ch5_lindqvist) were approved by the owner on 2026-11-03 (docs/clinical_review_log.md). Later cases stay PENDING_PSYCHIATRIST_REVIEW until the owner approves them. Verdicts: labs required/helpful/not_needed; plan options preferred/acceptable/required (must be chosen)/not_indicated/unsafe. Unlisted labs read 'Within normal limits.' and count as not needed; unlisted start options are not indicated; unlisted interventions are not needed. `references` name textbook chapters for review; they are not shown in the game.",
 	"lab_catalog": [
 		{
 			"id": "cbc",
@@ -72,6 +72,26 @@
 			"id": "clozapine_level",
 			"label": "Clozapine and norclozapine levels",
 			"category": "Drug levels"
+		},
+		{
+			"id": "ammonia",
+			"label": "Serum ammonia",
+			"category": "Chemistry"
+		},
+		{
+			"id": "troponin_crp",
+			"label": "Troponin and C-reactive protein",
+			"category": "Chemistry"
+		},
+		{
+			"id": "urinalysis",
+			"label": "Urinalysis and urine culture",
+			"category": "Microbiology"
+		},
+		{
+			"id": "abdominal_xray",
+			"label": "Abdominal X-ray",
+			"category": "Imaging"
 		}
 	],
 	"medication_catalog": [
@@ -188,7 +208,7 @@
 		{
 			"id": "wr_ch1_ortiz",
 			"chapter": "ch1",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Daniel Ortiz",
 				"age": 22,
@@ -301,7 +321,7 @@
 		{
 			"id": "wr_ch1_natarajan",
 			"chapter": "ch1",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Priya Natarajan",
 				"age": 31,
@@ -443,7 +463,7 @@
 		{
 			"id": "wr_ch2_kim",
 			"chapter": "ch2",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Harold Kim",
 				"age": 58,
@@ -538,7 +558,7 @@
 		{
 			"id": "wr_ch2_lebel",
 			"chapter": "ch2",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Marguerite Lebel",
 				"age": 66,
@@ -653,7 +673,7 @@
 		{
 			"id": "wr_ch3_wrobel",
 			"chapter": "ch3",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Tomasz Wróbel",
 				"age": 44,
@@ -749,7 +769,7 @@
 		{
 			"id": "wr_ch3_adeyemi",
 			"chapter": "ch3",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Samuel Adeyemi",
 				"age": 27,
@@ -863,7 +883,7 @@
 		{
 			"id": "wr_ch4_petrova",
 			"chapter": "ch4",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Elena Petrova",
 				"age": 39,
@@ -979,7 +999,7 @@
 		{
 			"id": "wr_ch4_okafor",
 			"chapter": "ch4",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Ruth Okafor",
 				"age": 50,
@@ -1080,7 +1100,7 @@
 		{
 			"id": "wr_ch5_delaney",
 			"chapter": "ch5",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Frank Delaney",
 				"age": 52,
@@ -1173,7 +1193,7 @@
 		{
 			"id": "wr_ch5_lindqvist",
 			"chapter": "ch5",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Grace Lindqvist",
 				"age": 63,
@@ -1315,6 +1335,1148 @@
 				]
 			],
 			"teaching": "Drug-induced QTc prolongation: remove QTc-prolonging drugs, correct potassium and magnesium, and monitor the heart."
+		},
+		{
+			"id": "wr_ch1_hughes",
+			"chapter": "ch1",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Owen Hughes",
+				"age": 19,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Neck twisted to one side and eyes rolling upward, starting this morning.",
+				"history": "First episode of psychosis; haloperidol was started yesterday evening. No previous antipsychotic exposure. No other medications.",
+				"mental_status": "Frightened and distressed by the movements. Still reports voices, unchanged from yesterday. Oriented.",
+				"vitals": "BP 128/76, HR 96, temperature 36.8 °C. Sustained neck turning to the right and upward eye deviation; speech slightly slurred by jaw tightness. Breathing unlaboured.",
+				"current_medications": [
+					{
+						"id": "haloperidol",
+						"label": "Haloperidol (started yesterday)"
+					}
+				]
+			},
+			"labs": {
+				"ck": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal",
+					"teaching": "A normal CK and temperature help separate dystonia from NMS."
+				},
+				"bmp": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"cbc": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"start:benztropine": {
+					"verdict": "preferred",
+					"feedback": "An anticholinergic given promptly relieves acute dystonia."
+				},
+				"start:lorazepam": {
+					"verdict": "acceptable",
+					"feedback": "A benzodiazepine can help when an anticholinergic is not enough."
+				},
+				"int:close_observation": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable while the dystonia settles; watch for laryngeal involvement."
+				},
+				"start:propranolol": {
+					"verdict": "not_indicated",
+					"feedback": "Propranolol treats akathisia, not dystonia."
+				},
+				"start:aripiprazole": {
+					"verdict": "not_indicated",
+					"feedback": "Switch only after the dystonia is treated and the plan reviewed; do not add a second antipsychotic now."
+				},
+				"start:olanzapine": {
+					"verdict": "not_indicated",
+					"feedback": "Do not add a second antipsychotic while treating dystonia."
+				},
+				"start:risperidone": {
+					"verdict": "not_indicated",
+					"feedback": "Do not add a second antipsychotic while treating dystonia."
+				},
+				"continue:haloperidol": {
+					"verdict": "not_indicated",
+					"feedback": "Continuing the same dose unchanged invites further dystonia; review it."
+				},
+				"reduce:haloperidol": {
+					"verdict": "preferred",
+					"feedback": "Lowering the dose reduces the risk of recurrence."
+				},
+				"hold:haloperidol": {
+					"verdict": "preferred",
+					"feedback": "Holding it while the dystonia is treated is reasonable; plan a gentler alternative."
+				},
+				"stop:haloperidol": {
+					"verdict": "acceptable",
+					"feedback": "Stopping is reasonable; switch to an antipsychotic with lower dystonia risk once settled."
+				}
+			},
+			"requires_one_of": [
+				[
+					"start:benztropine",
+					"start:lorazepam"
+				],
+				[
+					"reduce:haloperidol",
+					"hold:haloperidol",
+					"stop:haloperidol"
+				]
+			],
+			"teaching": "Acute dystonia in the first days of a high-potency antipsychotic, especially in young men. Treat with an anticholinergic and review the antipsychotic and its dose.",
+			"references": [
+				"Maudsley Prescribing Guidelines 15th ed.: antipsychotic-induced extrapyramidal side effects",
+				"Stahl's Prescriber's Guide: haloperidol, benztropine"
+			]
+		},
+		{
+			"id": "wr_ch1_morales",
+			"chapter": "ch1",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Lucia Morales",
+				"age": 34,
+				"sex": "female"
+			},
+			"presentation": {
+				"reason": "Nursing staff report escalating agitation: she cannot stay seated and paces the corridor.",
+				"history": "Schizophrenia. Aripiprazole was started ten days ago and increased four days ago. Her psychotic symptoms are improving.",
+				"mental_status": "Describes an unbearable inner restlessness, especially in her legs. No new paranoid content. Calm in speech; not threatening.",
+				"vitals": "BP 118/74, HR 84, temperature 36.7 °C. Shifts weight from foot to foot while standing; crosses and uncrosses her legs when seated. No rigidity.",
+				"current_medications": [
+					{
+						"id": "aripiprazole",
+						"label": "Aripiprazole (increased 4 days ago)"
+					}
+				]
+			},
+			"labs": {
+				"ck": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"tsh": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal",
+					"teaching": "Thyroid disease can also cause restlessness."
+				},
+				"uds": {
+					"verdict": "helpful",
+					"result": "Negative for all substances screened.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"start:propranolol": {
+					"verdict": "preferred",
+					"feedback": "A low-dose beta-blocker is a first-line treatment for akathisia."
+				},
+				"start:lorazepam": {
+					"verdict": "acceptable",
+					"feedback": "Short-term benzodiazepine use can ease akathisia."
+				},
+				"start:benztropine": {
+					"verdict": "not_indicated",
+					"feedback": "Anticholinergics help little in akathisia; they suit dystonia and parkinsonism."
+				},
+				"start:haloperidol": {
+					"verdict": "unsafe",
+					"feedback": "Akathisia is not psychotic agitation; another antipsychotic would worsen it."
+				},
+				"start:olanzapine": {
+					"verdict": "not_indicated",
+					"feedback": "Adding an antipsychotic treats the wrong problem."
+				},
+				"int:close_observation": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable; akathisia raises distress and impulsive risk."
+				},
+				"continue:aripiprazole": {
+					"verdict": "acceptable",
+					"feedback": "Acceptable if you treat the akathisia directly; her psychosis is responding."
+				},
+				"reduce:aripiprazole": {
+					"verdict": "preferred",
+					"feedback": "Returning to the earlier dose often settles akathisia."
+				},
+				"hold:aripiprazole": {
+					"verdict": "not_indicated",
+					"feedback": "Her psychosis is responding; holding it risks relapse when reduction would do."
+				},
+				"stop:aripiprazole": {
+					"verdict": "not_indicated",
+					"feedback": "Her psychosis is responding; stopping risks relapse when reduction would do."
+				}
+			},
+			"requires_one_of": [
+				[
+					"start:propranolol",
+					"reduce:aripiprazole",
+					"start:lorazepam"
+				]
+			],
+			"teaching": "Akathisia after an antipsychotic increase looks like agitation. Recognise it, reduce the dose if you can, and treat with a beta-blocker; do not add more antipsychotic.",
+			"references": [
+				"Maudsley Prescribing Guidelines 15th ed.: akathisia",
+				"Sims' Symptoms in the Mind: motor symptoms"
+			]
+		},
+		{
+			"id": "wr_ch2_brennan",
+			"chapter": "ch2",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Agnes Brennan",
+				"age": 79,
+				"sex": "female"
+			},
+			"presentation": {
+				"reason": "New confusion, nausea and an unsteady fall over two days.",
+				"history": "Depression; sertraline started two weeks ago. Also takes a thiazide diuretic for blood pressure. Lives alone.",
+				"mental_status": "Drowsy, inattentive, disoriented to place. Mood difficult to assess. No psychotic features.",
+				"vitals": "BP 132/78, HR 76, temperature 36.6 °C. No focal neurological signs. Not clinically dehydrated.",
+				"current_medications": [
+					{
+						"id": "sertraline",
+						"label": "Sertraline (started 2 weeks ago)"
+					},
+					{
+						"id": "thiazide",
+						"label": "Thiazide diuretic (long-term)"
+					}
+				]
+			},
+			"labs": {
+				"bmp": {
+					"verdict": "required",
+					"result": "Sodium markedly low; potassium low-normal; renal function normal.",
+					"flag": "critical",
+					"teaching": "SSRIs can cause hyponatraemia (SIADH), especially in older people and with diuretics."
+				},
+				"tsh": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"cbc": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"glucose_lipids": {
+					"verdict": "not_needed",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"int:medical_transfer": {
+					"verdict": "required",
+					"feedback": "Marked hyponatraemia with confusion needs medical management."
+				},
+				"int:electrolyte_replacement": {
+					"verdict": "acceptable",
+					"feedback": "Correction must be gradual and led by the medical team."
+				},
+				"start:fluoxetine": {
+					"verdict": "unsafe",
+					"feedback": "Another SSRI carries the same hyponatraemia risk."
+				},
+				"start:citalopram": {
+					"verdict": "unsafe",
+					"feedback": "Another SSRI carries the same hyponatraemia risk."
+				},
+				"start:haloperidol": {
+					"verdict": "not_indicated",
+					"feedback": "Confusion here is metabolic; treat the cause."
+				},
+				"start:lorazepam": {
+					"verdict": "not_indicated",
+					"feedback": "Sedation adds to the confusion and fall risk."
+				},
+				"continue:sertraline": {
+					"verdict": "unsafe",
+					"feedback": "Continuing the SSRI sustains the hyponatraemia."
+				},
+				"reduce:sertraline": {
+					"verdict": "not_indicated",
+					"feedback": "Any SSRI exposure keeps the risk; hold or stop it."
+				},
+				"hold:sertraline": {
+					"verdict": "preferred",
+					"feedback": "Hold it while sodium recovers."
+				},
+				"stop:sertraline": {
+					"verdict": "preferred",
+					"feedback": "Stopping is reasonable; choose another antidepressant later."
+				},
+				"continue:thiazide": {
+					"verdict": "not_indicated",
+					"feedback": "Thiazides add to hyponatraemia; ask the medical team to hold it."
+				},
+				"reduce:thiazide": {
+					"verdict": "not_indicated",
+					"feedback": "Hold it rather than reduce it while sodium is low."
+				},
+				"hold:thiazide": {
+					"verdict": "preferred",
+					"feedback": "Hold the thiazide and ask the medical team for an alternative."
+				},
+				"stop:thiazide": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable; the medical team chooses another antihypertensive."
+				}
+			},
+			"requires_one_of": [
+				[
+					"hold:sertraline",
+					"stop:sertraline"
+				],
+				[
+					"hold:thiazide",
+					"stop:thiazide"
+				]
+			],
+			"teaching": "SSRI-associated hyponatraemia: older age and a thiazide add to the risk. Check sodium in new confusion, hold the SSRI and diuretic, and correct slowly with the medical team.",
+			"references": [
+				"Maudsley Prescribing Guidelines 15th ed.: antidepressant-induced hyponatraemia",
+				"Stahl's Prescriber's Guide: sertraline"
+			]
+		},
+		{
+			"id": "wr_ch2_kowalczyk",
+			"chapter": "ch2",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Jan Kowalczyk",
+				"age": 41,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Increasingly sleepy and confused over three days; vomited twice.",
+				"history": "Bipolar disorder; valproate was started eight days ago for mania. No alcohol. No previous liver disease.",
+				"mental_status": "Lethargic, slow to respond, disoriented. Mood symptoms improving before this.",
+				"vitals": "BP 124/80, HR 82, temperature 36.9 °C. Coarse flapping tremor of the outstretched hands. No neck stiffness.",
+				"current_medications": [
+					{
+						"id": "valproate",
+						"label": "Valproate (started 8 days ago)"
+					}
+				]
+			},
+			"labs": {
+				"ammonia": {
+					"verdict": "required",
+					"result": "Raised.",
+					"flag": "critical",
+					"teaching": "Valproate can raise ammonia even when liver tests are normal."
+				},
+				"lft": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal",
+					"teaching": "Normal liver tests do not exclude valproate-related hyperammonaemia."
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"cbc": {
+					"verdict": "helpful",
+					"result": "Platelets low-normal.",
+					"flag": "normal"
+				},
+				"glucose_lipids": {
+					"verdict": "not_needed",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"int:medical_transfer": {
+					"verdict": "required",
+					"feedback": "Hyperammonaemic encephalopathy needs medical management."
+				},
+				"start:lithium": {
+					"verdict": "not_indicated",
+					"feedback": "Choose the next mood stabilizer after he recovers."
+				},
+				"start:olanzapine": {
+					"verdict": "not_indicated",
+					"feedback": "Address the encephalopathy first; mania is improving."
+				},
+				"start:haloperidol": {
+					"verdict": "not_indicated",
+					"feedback": "Sedating him further would mask the encephalopathy."
+				},
+				"start:lorazepam": {
+					"verdict": "unsafe",
+					"feedback": "Sedation worsens the encephalopathy."
+				},
+				"continue:valproate": {
+					"verdict": "unsafe",
+					"feedback": "Continuing valproate sustains the hyperammonaemia."
+				},
+				"reduce:valproate": {
+					"verdict": "unsafe",
+					"feedback": "Any valproate keeps the ammonia raised; hold it."
+				},
+				"hold:valproate": {
+					"verdict": "preferred",
+					"feedback": "Hold it while the ammonia and mental state recover."
+				},
+				"stop:valproate": {
+					"verdict": "preferred",
+					"feedback": "Stopping is reasonable; choose another mood stabilizer afterwards."
+				}
+			},
+			"requires_one_of": [
+				[
+					"hold:valproate",
+					"stop:valproate"
+				]
+			],
+			"requires_labs_for": {
+				"hold:valproate": [
+					"ammonia"
+				],
+				"stop:valproate": [
+					"ammonia"
+				]
+			},
+			"teaching": "Valproate-induced hyperammonaemic encephalopathy: confusion and asterixis with normal liver tests. Measure ammonia, hold valproate and involve the medical team.",
+			"references": [
+				"Maudsley Prescribing Guidelines 15th ed.: valproate",
+				"Stahl's Prescriber's Guide: valproate",
+				"Kaufman's Clinical Neurology for Psychiatrists: metabolic encephalopathy"
+			]
+		},
+		{
+			"id": "wr_ch3_achebe",
+			"chapter": "ch3",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Chidi Achebe",
+				"age": 26,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Fever, a racing heart and feeling unwell in the third week of clozapine titration.",
+				"history": "Treatment-resistant schizophrenia; clozapine started 18 days ago and is being increased. Routine blood counts normal so far.",
+				"mental_status": "Tired, mildly breathless on walking. Psychosis slowly improving. No confusion.",
+				"vitals": "Temperature 38.2 °C, HR 124 at rest, BP 104/66, respiratory rate 22. No rigidity. Chest clear.",
+				"current_medications": [
+					{
+						"id": "clozapine",
+						"label": "Clozapine (titration, week 3)"
+					}
+				]
+			},
+			"labs": {
+				"troponin_crp": {
+					"verdict": "required",
+					"result": "Troponin raised; CRP markedly raised.",
+					"flag": "critical",
+					"teaching": "Myocarditis is most likely in the first weeks of clozapine; check troponin and CRP."
+				},
+				"ecg": {
+					"verdict": "required",
+					"result": "Sinus tachycardia; non-specific ST changes.",
+					"flag": "abnormal"
+				},
+				"cbc": {
+					"verdict": "required",
+					"result": "Eosinophils raised; ANC normal.",
+					"flag": "abnormal"
+				},
+				"ck": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal",
+					"teaching": "A normal CK points away from NMS."
+				},
+				"clozapine_level": {
+					"verdict": "helpful",
+					"result": "Within the usual range.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"int:medical_transfer": {
+					"verdict": "required",
+					"feedback": "Suspected myocarditis needs urgent cardiology and medical care."
+				},
+				"int:cardiac_monitoring": {
+					"verdict": "acceptable",
+					"feedback": "Monitor the heart while transfer is arranged."
+				},
+				"start:propranolol": {
+					"verdict": "unsafe",
+					"feedback": "Slowing the heart masks a sign of myocarditis; leave to cardiology."
+				},
+				"start:haloperidol": {
+					"verdict": "not_indicated",
+					"feedback": "Do not add an antipsychotic during an acute cardiac complication."
+				},
+				"start:olanzapine": {
+					"verdict": "not_indicated",
+					"feedback": "Do not switch antipsychotic during the acute illness; plan with the team afterwards."
+				},
+				"continue:clozapine": {
+					"verdict": "unsafe",
+					"feedback": "Continuing clozapine in suspected myocarditis can be fatal."
+				},
+				"reduce:clozapine": {
+					"verdict": "unsafe",
+					"feedback": "Any further clozapine is unsafe while myocarditis is suspected."
+				},
+				"hold:clozapine": {
+					"verdict": "acceptable",
+					"feedback": "Holding it stops exposure; it should not restart without cardiology advice."
+				},
+				"stop:clozapine": {
+					"verdict": "preferred",
+					"feedback": "Stop clozapine in suspected myocarditis."
+				}
+			},
+			"requires_one_of": [
+				[
+					"stop:clozapine",
+					"hold:clozapine"
+				]
+			],
+			"requires_labs_for": {
+				"stop:clozapine": [
+					"troponin_crp"
+				],
+				"hold:clozapine": [
+					"troponin_crp"
+				]
+			},
+			"teaching": "Clozapine myocarditis: fever, tachycardia and raised troponin and CRP in the first weeks. Stop clozapine and transfer; do not rechallenge without specialist advice.",
+			"references": [
+				"The Clozapine Handbook (Stahl & Meyer): myocarditis and cardiomyopathy",
+				"Maudsley Prescribing Guidelines 15th ed.: clozapine adverse effects"
+			]
+		},
+		{
+			"id": "wr_ch3_sato",
+			"chapter": "ch3",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Kenji Sato",
+				"age": 37,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Routine monitoring bloods flagged by the lab; he reports a sore throat since yesterday.",
+				"history": "Treatment-resistant schizophrenia, on clozapine for five months with stable counts until now. No new medications.",
+				"mental_status": "Settled; psychosis well controlled on clozapine. Worried about the blood result.",
+				"vitals": "Temperature 37.9 °C, HR 98, BP 122/78. Red throat; no other source found.",
+				"current_medications": [
+					{
+						"id": "clozapine",
+						"label": "Clozapine (5 months)"
+					}
+				]
+			},
+			"labs": {
+				"cbc": {
+					"verdict": "required",
+					"result": "Severe neutropenia: ANC far below the safe range.",
+					"flag": "critical",
+					"teaching": "Severe neutropenia on clozapine means stopping it and treating infection risk urgently."
+				},
+				"troponin_crp": {
+					"verdict": "helpful",
+					"result": "Troponin normal; CRP raised.",
+					"flag": "abnormal"
+				},
+				"lft": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"bmp": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"int:medical_transfer": {
+					"verdict": "required",
+					"feedback": "Fever with severe neutropenia needs urgent medical care."
+				},
+				"int:close_observation": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable while transfer is arranged; watch for relapse after stopping."
+				},
+				"start:haloperidol": {
+					"verdict": "not_indicated",
+					"feedback": "Plan any replacement antipsychotic with the team once the count recovers."
+				},
+				"start:olanzapine": {
+					"verdict": "not_indicated",
+					"feedback": "Plan any replacement antipsychotic with the team once the count recovers."
+				},
+				"start:lorazepam": {
+					"verdict": "acceptable",
+					"feedback": "Short-term use for distress is reasonable."
+				},
+				"continue:clozapine": {
+					"verdict": "unsafe",
+					"feedback": "Continuing clozapine with severe neutropenia risks life-threatening infection."
+				},
+				"reduce:clozapine": {
+					"verdict": "unsafe",
+					"feedback": "Any clozapine exposure is unsafe with severe neutropenia."
+				},
+				"hold:clozapine": {
+					"verdict": "unsafe",
+					"feedback": "Severe neutropenia means stopping clozapine, not a temporary hold."
+				},
+				"stop:clozapine": {
+					"verdict": "preferred",
+					"feedback": "Stop clozapine with severe neutropenia."
+				}
+			},
+			"requires_one_of": [
+				[
+					"stop:clozapine"
+				]
+			],
+			"requires_labs_for": {
+				"stop:clozapine": [
+					"cbc"
+				]
+			},
+			"teaching": "Severe neutropenia on clozapine with fever: stop clozapine, transfer for urgent medical care, and record it so he is not rechallenged without specialist review.",
+			"references": [
+				"The Clozapine Handbook (Stahl & Meyer): neutropenia and monitoring",
+				"Maudsley Prescribing Guidelines 15th ed.: clozapine haematological monitoring"
+			]
+		},
+		{
+			"id": "wr_ch4_whitaker",
+			"chapter": "ch4",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Harold Whitaker",
+				"age": 84,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Referred as 'new psychosis': seeing people in his room at night and shouting at staff.",
+				"history": "Mild memory problems for two years; no psychiatric history. Became muddled three days ago. Passing urine more often.",
+				"mental_status": "Attention fluctuates through the interview; cannot keep months in reverse order. Visual hallucinations worse in the evening. Lucid this morning according to nurses.",
+				"vitals": "Temperature 37.9 °C, HR 102, BP 138/82. Mildly dehydrated. Suprapubic tenderness.",
+				"current_medications": []
+			},
+			"labs": {
+				"urinalysis": {
+					"verdict": "required",
+					"result": "Nitrites and white cells present; culture sent.",
+					"flag": "abnormal",
+					"teaching": "Look for the medical cause of a delirium."
+				},
+				"cbc": {
+					"verdict": "required",
+					"result": "White cell count raised.",
+					"flag": "abnormal"
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Urea raised; sodium normal.",
+					"flag": "abnormal"
+				},
+				"glucose_lipids": {
+					"verdict": "helpful",
+					"result": "Glucose normal.",
+					"flag": "normal"
+				},
+				"tsh": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"b12_folate": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"int:medical_transfer": {
+					"verdict": "required",
+					"feedback": "Treat the infection and dehydration that are driving the delirium."
+				},
+				"int:nutrition_hydration": {
+					"verdict": "preferred",
+					"feedback": "Fluids and nutrition support recovery."
+				},
+				"int:close_observation": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable for safety; use calm, familiar orientation."
+				},
+				"start:haloperidol": {
+					"verdict": "acceptable",
+					"feedback": "Only for severe distress or danger, briefly and at the lowest dose; it does not treat the cause."
+				},
+				"start:risperidone": {
+					"verdict": "not_indicated",
+					"feedback": "Antipsychotics do not treat delirium; reserve one for severe distress."
+				},
+				"start:olanzapine": {
+					"verdict": "not_indicated",
+					"feedback": "Antipsychotics do not treat delirium; reserve one for severe distress."
+				},
+				"start:quetiapine": {
+					"verdict": "not_indicated",
+					"feedback": "Antipsychotics do not treat delirium; reserve one for severe distress."
+				},
+				"start:lorazepam": {
+					"verdict": "unsafe",
+					"feedback": "Benzodiazepines worsen delirium in older people (alcohol withdrawal aside)."
+				},
+				"start:benztropine": {
+					"verdict": "unsafe",
+					"feedback": "Anticholinergics worsen delirium."
+				}
+			},
+			"requires_one_of": [
+				[
+					"int:medical_transfer"
+				]
+			],
+			"teaching": "Delirium, not new psychosis: fluctuating attention and evening hallucinations with an infection. Find and treat the cause; avoid benzodiazepines and anticholinergics.",
+			"references": [
+				"Kaufman's Clinical Neurology for Psychiatrists: delirium",
+				"Sims' Symptoms in the Mind: disorders of consciousness",
+				"Kaplan & Sadock's Synopsis 12th ed.: delirium"
+			]
+		},
+		{
+			"id": "wr_ch4_quinn",
+			"chapter": "ch4",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Maeve Quinn",
+				"age": 58,
+				"sex": "female"
+			},
+			"presentation": {
+				"reason": "Agitated, picking at the air and not making sense since the evening medication round.",
+				"history": "Depression treated with amitriptyline; quetiapine added for sleep; benztropine started last week for a tremor by another prescriber.",
+				"mental_status": "Disoriented, mumbling, plucking at bedclothes, seeing insects on the wall.",
+				"vitals": "Temperature 38.0 °C, HR 126, BP 146/90. Dilated pupils, dry flushed skin, dry mouth, palpable bladder. Bowel sounds reduced. No rigidity or clonus.",
+				"current_medications": [
+					{
+						"id": "amitriptyline",
+						"label": "Amitriptyline (long-term)"
+					},
+					{
+						"id": "quetiapine",
+						"label": "Quetiapine (for sleep)"
+					},
+					{
+						"id": "benztropine",
+						"label": "Benztropine (started last week)"
+					}
+				]
+			},
+			"labs": {
+				"ecg": {
+					"verdict": "required",
+					"result": "Sinus tachycardia; QRS widened.",
+					"flag": "critical",
+					"teaching": "Tricyclics widen the QRS; the ECG guides urgency."
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"ck": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal",
+					"teaching": "A normal CK and no rigidity point away from NMS."
+				},
+				"cbc": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"uds": {
+					"verdict": "helpful",
+					"result": "Positive for tricyclics only.",
+					"flag": "abnormal"
+				}
+			},
+			"options": {
+				"int:medical_transfer": {
+					"verdict": "required",
+					"feedback": "Anticholinergic toxicity with a widened QRS needs medical care."
+				},
+				"int:cardiac_monitoring": {
+					"verdict": "preferred",
+					"feedback": "Monitor the heart: the QRS is widened."
+				},
+				"start:haloperidol": {
+					"verdict": "unsafe",
+					"feedback": "Adds QTc risk and does not treat the toxicity."
+				},
+				"start:olanzapine": {
+					"verdict": "unsafe",
+					"feedback": "Olanzapine is itself anticholinergic."
+				},
+				"start:lorazepam": {
+					"verdict": "acceptable",
+					"feedback": "A benzodiazepine can help severe agitation in anticholinergic toxicity."
+				},
+				"start:propranolol": {
+					"verdict": "not_indicated",
+					"feedback": "Leave rate control to the medical team."
+				},
+				"continue:benztropine": {
+					"verdict": "unsafe",
+					"feedback": "Continuing benztropine sustains the toxicity."
+				},
+				"reduce:benztropine": {
+					"verdict": "unsafe",
+					"feedback": "Any further benztropine adds to the toxicity; stop it."
+				},
+				"hold:benztropine": {
+					"verdict": "acceptable",
+					"feedback": "Holding it removes one anticholinergic."
+				},
+				"stop:benztropine": {
+					"verdict": "preferred",
+					"feedback": "Stop it: it added to the anticholinergic load and was not needed for her tremor."
+				},
+				"continue:amitriptyline": {
+					"verdict": "unsafe",
+					"feedback": "The tricyclic is the main anticholinergic and widens the QRS."
+				},
+				"reduce:amitriptyline": {
+					"verdict": "unsafe",
+					"feedback": "Hold it entirely while the QRS is widened."
+				},
+				"hold:amitriptyline": {
+					"verdict": "preferred",
+					"feedback": "Hold it; choose a safer antidepressant once she recovers."
+				},
+				"stop:amitriptyline": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable; switch to a less anticholinergic antidepressant later."
+				},
+				"continue:quetiapine": {
+					"verdict": "unsafe",
+					"feedback": "Quetiapine adds to the anticholinergic load."
+				},
+				"reduce:quetiapine": {
+					"verdict": "not_indicated",
+					"feedback": "Hold it rather than reduce it while she is toxic."
+				},
+				"hold:quetiapine": {
+					"verdict": "preferred",
+					"feedback": "Hold it; it was for sleep and adds anticholinergic load."
+				},
+				"stop:quetiapine": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable; it adds anticholinergic load without a strong indication."
+				}
+			},
+			"requires_one_of": [
+				[
+					"stop:benztropine",
+					"hold:benztropine"
+				],
+				[
+					"hold:amitriptyline",
+					"stop:amitriptyline"
+				],
+				[
+					"hold:quetiapine",
+					"stop:quetiapine"
+				],
+				[
+					"int:cardiac_monitoring"
+				]
+			],
+			"teaching": "Anticholinergic toxicity from stacked anticholinergic drugs: hot, dry, flushed, dilated pupils, urinary retention, delirium. Stop the culprits, check the ECG and transfer.",
+			"references": [
+				"Maudsley Prescribing Guidelines 15th ed.: anticholinergic burden",
+				"Stahl's Prescriber's Guide: amitriptyline, benztropine"
+			]
+		},
+		{
+			"id": "wr_ch5_osei",
+			"chapter": "ch5",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Kwame Osei",
+				"age": 45,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Abdominal pain, a swollen abdomen and vomiting since last night.",
+				"history": "Treatment-resistant schizophrenia on clozapine for six years. Bowels opened once in the last six days. Started on oxybutynin by his GP for urinary frequency two weeks ago.",
+				"mental_status": "In pain, speaking little. No change in psychosis.",
+				"vitals": "Temperature 37.4 °C, HR 110, BP 112/70. Distended, tender abdomen; quiet bowel sounds.",
+				"current_medications": [
+					{
+						"id": "clozapine",
+						"label": "Clozapine (6 years)"
+					},
+					{
+						"id": "oxybutynin",
+						"label": "Oxybutynin (started 2 weeks ago)"
+					}
+				]
+			},
+			"labs": {
+				"abdominal_xray": {
+					"verdict": "required",
+					"result": "Dilated bowel loops with faecal loading.",
+					"flag": "critical",
+					"teaching": "Clozapine slows gut transit; anticholinergics make it worse."
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Potassium low; urea raised.",
+					"flag": "abnormal"
+				},
+				"cbc": {
+					"verdict": "required",
+					"result": "White cell count raised; ANC normal.",
+					"flag": "abnormal"
+				},
+				"lft": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"clozapine_level": {
+					"verdict": "helpful",
+					"result": "Higher than his usual level.",
+					"flag": "abnormal"
+				}
+			},
+			"options": {
+				"int:medical_transfer": {
+					"verdict": "required",
+					"feedback": "Suspected clozapine-induced ileus is a surgical and medical emergency."
+				},
+				"int:nutrition_hydration": {
+					"verdict": "acceptable",
+					"feedback": "Nil by mouth and fluids are for the medical team to direct."
+				},
+				"int:electrolyte_replacement": {
+					"verdict": "acceptable",
+					"feedback": "Correct potassium with the medical team."
+				},
+				"start:benztropine": {
+					"verdict": "unsafe",
+					"feedback": "Another anticholinergic would worsen the ileus."
+				},
+				"start:haloperidol": {
+					"verdict": "not_indicated",
+					"feedback": "No indication."
+				},
+				"start:lorazepam": {
+					"verdict": "not_indicated",
+					"feedback": "No indication; it may mask deterioration."
+				},
+				"continue:clozapine": {
+					"verdict": "unsafe",
+					"feedback": "Continuing clozapine during ileus risks perforation."
+				},
+				"reduce:clozapine": {
+					"verdict": "unsafe",
+					"feedback": "Hold it entirely while the bowel recovers."
+				},
+				"hold:clozapine": {
+					"verdict": "preferred",
+					"feedback": "Hold clozapine; restart planning needs the medical team and a bowel regimen, with no long gap that requires re-titration unplanned."
+				},
+				"stop:clozapine": {
+					"verdict": "not_indicated",
+					"feedback": "Stopping permanently loses a treatment that works for him; hold and plan with the team."
+				},
+				"continue:oxybutynin": {
+					"verdict": "unsafe",
+					"feedback": "An anticholinergic for the bladder adds to the gut slowing."
+				},
+				"reduce:oxybutynin": {
+					"verdict": "not_indicated",
+					"feedback": "Any anticholinergic adds to the ileus; stop it."
+				},
+				"hold:oxybutynin": {
+					"verdict": "acceptable",
+					"feedback": "Holding it removes the added anticholinergic."
+				},
+				"stop:oxybutynin": {
+					"verdict": "preferred",
+					"feedback": "Stop it and ask the GP for a non-anticholinergic alternative."
+				}
+			},
+			"requires_one_of": [
+				[
+					"hold:clozapine"
+				],
+				[
+					"stop:oxybutynin",
+					"hold:oxybutynin"
+				]
+			],
+			"teaching": "Clozapine-induced gastrointestinal hypomotility can progress to ileus and is often fatal. Ask about bowels at every review, avoid added anticholinergics, hold clozapine and transfer urgently.",
+			"references": [
+				"The Clozapine Handbook (Stahl & Meyer): constipation and ileus",
+				"Maudsley Prescribing Guidelines 15th ed.: clozapine and constipation"
+			]
+		},
+		{
+			"id": "wr_ch5_farah",
+			"chapter": "ch5",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Amina Farah",
+				"age": 29,
+				"sex": "female"
+			},
+			"presentation": {
+				"reason": "Persistent voices and paranoid beliefs despite two antipsychotic trials; admitted after a relapse.",
+				"history": "Schizophrenia for six years. Olanzapine for an adequate trial without response; now risperidone for an adequate trial, taken reliably (supervised on the ward). Uses contraception. Non-smoker.",
+				"mental_status": "Hears several voices daily, believes neighbours are poisoning her food. Engages well. No thoughts of harm.",
+				"vitals": "BP 116/72, HR 78, temperature 36.7 °C, BMI raised.",
+				"current_medications": [
+					{
+						"id": "risperidone",
+						"label": "Risperidone (adequate trial, supervised)"
+					}
+				]
+			},
+			"labs": {
+				"cbc": {
+					"verdict": "required",
+					"result": "ANC within the normal range.",
+					"flag": "normal",
+					"teaching": "A baseline ANC is needed before clozapine starts."
+				},
+				"ecg": {
+					"verdict": "required",
+					"result": "Sinus rhythm, QTc normal.",
+					"flag": "normal"
+				},
+				"troponin_crp": {
+					"verdict": "required",
+					"result": "Baseline troponin and CRP normal.",
+					"flag": "normal",
+					"teaching": "Baselines make early myocarditis easier to spot."
+				},
+				"glucose_lipids": {
+					"verdict": "required",
+					"result": "HbA1c at the upper limit of normal; triglycerides raised.",
+					"flag": "abnormal"
+				},
+				"lft": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"bmp": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"hcg": {
+					"verdict": "helpful",
+					"result": "Negative.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"start:clozapine": {
+					"verdict": "preferred",
+					"feedback": "After two adequate trials, clozapine is the treatment of choice for treatment-resistant schizophrenia."
+				},
+				"start:olanzapine": {
+					"verdict": "not_indicated",
+					"feedback": "Olanzapine has already failed an adequate trial."
+				},
+				"start:haloperidol": {
+					"verdict": "not_indicated",
+					"feedback": "A third non-clozapine trial delays the most effective treatment."
+				},
+				"start:aripiprazole": {
+					"verdict": "not_indicated",
+					"feedback": "A third non-clozapine trial delays the most effective treatment."
+				},
+				"start:quetiapine": {
+					"verdict": "not_indicated",
+					"feedback": "A third non-clozapine trial delays the most effective treatment."
+				},
+				"start:lithium": {
+					"verdict": "not_indicated",
+					"feedback": "Augmentation is not the next step before clozapine."
+				},
+				"int:close_observation": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable during the early titration."
+				},
+				"continue:risperidone": {
+					"verdict": "not_indicated",
+					"feedback": "She has not responded; plan to taper it as clozapine starts."
+				},
+				"reduce:risperidone": {
+					"verdict": "preferred",
+					"feedback": "Taper risperidone as clozapine is introduced."
+				},
+				"hold:risperidone": {
+					"verdict": "not_indicated",
+					"feedback": "An abrupt gap risks a worse relapse; taper it as clozapine starts."
+				},
+				"stop:risperidone": {
+					"verdict": "acceptable",
+					"feedback": "Acceptable; a cross-taper is usually smoother."
+				}
+			},
+			"requires_one_of": [
+				[
+					"start:clozapine"
+				],
+				[
+					"reduce:risperidone",
+					"stop:risperidone"
+				]
+			],
+			"requires_labs_for": {
+				"start:clozapine": [
+					"cbc",
+					"ecg",
+					"troponin_crp",
+					"glucose_lipids"
+				]
+			},
+			"teaching": "Treatment-resistant schizophrenia: confirm two adequate trials and adherence, take baselines (ANC, ECG, troponin and CRP, metabolic), then start clozapine and taper the current antipsychotic.",
+			"references": [
+				"The Clozapine Handbook (Stahl & Meyer): starting clozapine and baseline monitoring",
+				"Maudsley Prescribing Guidelines 15th ed.: treatment-resistant schizophrenia"
+			]
 		}
 	]
 }

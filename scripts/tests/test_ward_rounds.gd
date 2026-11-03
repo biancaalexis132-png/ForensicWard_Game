@@ -68,16 +68,22 @@ func _start_main(chapter_id: String) -> ChapterDirector:
 	return director
 
 
-func test_catalog_is_valid_and_every_case_is_pending_review() -> void:
+## The owner approved these ten on 2026-11-03 (docs/clinical_review_log.md);
+## every later case stays pending until the owner approves it there.
+const OWNER_APPROVED: Array[String] = ["wr_ch1_ortiz", "wr_ch1_natarajan", "wr_ch2_kim", "wr_ch2_lebel",
+		"wr_ch3_wrobel", "wr_ch3_adeyemi", "wr_ch4_petrova", "wr_ch4_okafor", "wr_ch5_delaney", "wr_ch5_lindqvist"]
+
+
+func test_catalog_is_valid_and_only_owner_approved_cases_are_approved() -> void:
 	var data: Dictionary = _data()
 	check_eq(WardRoundCatalog.validate(data, ContentRegistry.get_chapter_ids()), [] as Array[String], "catalog validates")
-	check_eq(data["clinical_review_status"], "PENDING_PSYCHIATRIST_REVIEW", "catalog is pending review")
 	var per_chapter: Dictionary = {}
 	for case: Dictionary in data["cases"]:
-		check_eq(case["clinical_review_status"], "PENDING_PSYCHIATRIST_REVIEW", "%s is pending review" % case["id"])
+		var expected: String = "APPROVED" if case["id"] in OWNER_APPROVED else "PENDING_PSYCHIATRIST_REVIEW"
+		check_eq(case["clinical_review_status"], expected, "%s review status" % case["id"])
 		per_chapter[case["chapter"]] = int(per_chapter.get(case["chapter"], 0)) + 1
 	for chapter_id: String in ContentRegistry.get_chapter_ids():
-		check_eq(per_chapter.get(chapter_id, 0), 2, "%s admits two patients" % chapter_id)
+		check_eq(per_chapter.get(chapter_id, 0), 4, "%s admits four patients" % chapter_id)
 	var text: String = FileAccess.get_file_as_string(DATA)
 	check(not RegEx.create_from_string("\\d+(\\.\\d+)?\\s*(mg|mcg|microgram|g/day|mmol)").search(text), "no doses or numeric thresholds in the cases")
 
@@ -132,7 +138,7 @@ func test_validator_names_broken_cases() -> void:
 
 func test_patients_admit_with_their_chapter_and_gate_its_close() -> void:
 	var director: ChapterDirector = _start_main("ch1")
-	check_eq(WardRounds.admitted_case_ids(), ["wr_ch1_ortiz", "wr_ch1_natarajan"] as Array[String], "chapter 1 admits its two patients")
+	check_eq(WardRounds.admitted_case_ids(), ["wr_ch1_ortiz", "wr_ch1_natarajan", "wr_ch1_hughes", "wr_ch1_morales"] as Array[String], "chapter 1 admits its four patients")
 	check(not WardRounds.can_close_chapter("ch1"), "chapter 1 cannot close with open cases")
 	check(not director.sign_out().is_empty(), "day hand-over is not gated")
 	check_eq(TimeManager.get_shift(), "night", "night shift started")
@@ -142,18 +148,20 @@ func test_patients_admit_with_their_chapter_and_gate_its_close() -> void:
 	for id: String in WardRounds.admitted_case_ids():
 		var solved: Dictionary = _solve(WardRounds.get_case(id))
 		check(not WardRounds.submit_plan(id, solved["plan"]).is_empty(), "submission accepted for judging")
-		check_eq(WardRounds.status(id), "open", "%s: plan without labs is sent back" % id)
+		if not solved["labs"].is_empty():
+			check_eq(WardRounds.status(id), "open", "%s: plan without its required labs is sent back" % id)
 		for lab_id: String in solved["labs"]:
 			check(WardRounds.order_lab(id, lab_id), "lab ordered: " + lab_id)
-		check_eq(WardRounds.submit_plan(id, solved["plan"])["outcome"], "accepted", "%s accepted after the labs" % id)
-		check_eq(WardRounds.attempts(id), 2, "two submissions counted")
+		if WardRounds.status(id) != "accepted":
+			check_eq(WardRounds.submit_plan(id, solved["plan"])["outcome"], "accepted", "%s accepted after the labs" % id)
+			check_eq(WardRounds.attempts(id), 2, "two submissions counted")
 		check(not WardRounds.order_lab(id, "cbc"), "accepted case is locked")
 	check(WardRounds.can_close_chapter("ch1"), "chapter can close")
 	check(not director.sign_out().is_empty(), "night sign-out completes")
 	check(director.has_completed("ch1"), "chapter 1 complete")
 	director.start_chapter("ch2")
-	check_eq(WardRounds.admitted_case_ids().size(), 4, "chapter 2 adds two more, chapter 1's stay on the ward")
-	check_eq(WardRounds.open_case_ids("ch2").size(), 2, "chapter 2's patients are open")
+	check_eq(WardRounds.admitted_case_ids().size(), 8, "chapter 2 adds four more, chapter 1's stay on the ward")
+	check_eq(WardRounds.open_case_ids("ch2").size(), 4, "chapter 2's patients are open")
 
 
 func test_story_choice_that_completes_a_chapter_is_gated() -> void:
@@ -192,12 +200,13 @@ func test_progress_saves_and_loads() -> void:
 	check(not WardRounds.validate_save_data({"cases": {"wr_ch2_kim": {"labs": [], "plan": [], "status": "approved", "attempts": 1}}}), "bad status rejected")
 
 
-func test_validated_build_hides_pending_cases_and_never_gates() -> void:
+func test_validated_build_plays_only_approved_cases() -> void:
 	_start_main("ch1")
 	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
-	check_eq(WardRounds.admitted_case_ids(), [] as Array[String], "pending cases do not play in the validated build")
-	check(WardRounds.can_close_chapter("ch1"), "pending cases never gate the validated build")
-	check(not WardRounds.order_lab("wr_ch1_ortiz", "cbc"), "no orders on a hidden case")
+	check_eq(WardRounds.admitted_case_ids(), ["wr_ch1_ortiz", "wr_ch1_natarajan"] as Array[String], "only owner-approved cases play in the validated build")
+	check_eq(WardRounds.open_case_ids("ch1"), ["wr_ch1_ortiz", "wr_ch1_natarajan"] as Array[String], "pending cases never gate the validated build")
+	check(not WardRounds.order_lab("wr_ch1_hughes", "ck"), "no orders on a hidden pending case")
+	check(WardRounds.order_lab("wr_ch1_ortiz", "cbc"), "orders on an approved case")
 
 
 func test_screen_orders_labs_and_submits_through_the_ehr() -> void:
@@ -208,12 +217,15 @@ func test_screen_orders_labs_and_submits_through_the_ehr() -> void:
 	EventBus.ui_panel_requested.emit("ehr", {})
 	var ehr: EHRScreen = _main.get_node("EHRScreen") if _main.has_node("EHRScreen") else _main.find_children("*", "EHRScreen", true, false)[0]
 	var button: Button = ehr.find_child("WardRound", true, false)
-	check(button.visible and button.text.contains("2 to review"), "EHR shows the ward round with two to review")
+	check(button.visible and button.text.contains("4 to review"), "EHR shows the ward round with four to review")
 	ehr.open_ward_round()
 	var screen: WardRoundScreen = _main.get_node("WardRoundScreen")
 	check(screen.is_open and not ehr.is_open, "ward round replaces the chart")
 	check_eq(screen.case_id, "wr_ch1_ortiz", "first open patient selected")
-	check(screen.find_child("DraftBadge", true, false).visible, "draft badge shown")
+	check(not screen.find_child("DraftBadge", true, false).visible, "no draft badge on an owner-approved case")
+	screen.select_case("wr_ch1_hughes")
+	check(screen.find_child("DraftBadge", true, false).visible, "draft badge on a case pending review")
+	screen.select_case("wr_ch1_ortiz")
 	var case: Dictionary = WardRounds.get_case("wr_ch1_ortiz")
 	var solved: Dictionary = _solve(case)
 	for lab_id: String in solved["labs"]:
@@ -234,8 +246,10 @@ func test_screen_orders_labs_and_submits_through_the_ehr() -> void:
 	screen.select_case("wr_ch1_ortiz")
 	check((screen.find_child("Review", true, false) as RichTextLabel).get_parsed_text().contains("plan accepted"), "reply shown again when the patient is reopened")
 	check((screen.find_child("Submit", true, false) as Button).disabled, "accepted plan is locked")
-	check("ward_round_draft" in flagged, "draft submission flagged for clinical review")
+	check(not "ward_round_draft" in flagged, "an approved case is not flagged")
+	WardRounds.submit_plan("wr_ch1_hughes", [])
+	check("ward_round_draft" in flagged, "a pending case's submission is flagged for clinical review")
 	EventBus.clinical_review_flagged.disconnect(on_flag)
 	screen.close()
 	EventBus.ui_panel_requested.emit("ehr", {})
-	check(button.text.contains("1 to review"), "EHR count drops")
+	check(button.text.contains("3 to review"), "EHR count drops")
