@@ -58,7 +58,7 @@ func load_catalog(path: String) -> Array[String]:
 		for entry: Dictionary in _data[field]:
 			_labels[entry["id"]] = entry["label"]
 	for case: Dictionary in _data["cases"]:
-		_cases[case["id"]] = case
+		_cases[case["id"]] = WardRoundCatalog.with_defaults(case, _data["intervention_catalog"])
 		_order.append(case["id"])
 	return errors
 
