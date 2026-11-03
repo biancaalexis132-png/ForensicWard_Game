@@ -6,6 +6,10 @@
 
 - `claude/ward-rounds` at `6bef53d` (draft PR to `claude/playtest-fixes`). Ten draft ward-round patients (two per chapter): order labs, submit a medication plan, attending accepts or sends back; chapters close only after their patients' plans are accepted. Pending psychiatrist review; prototype build only. Full QA passed: game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0. Mac not run. Next: Bi reviews the answer keys. See `docs/handoffs/2026-11-03_claude_ward_rounds.md`.
 
+## Claude Code cast animation — 2026-11-03
+
+- `claude/cast-animation` at `584d864` (draft PR #114 to `claude/playtest-fixes`). Walk and six talk gestures on the six draft cast models; all of them now act in conversation (talk, listen, gestures, turn to the player); the technician and Hale walk short routes. Full QA passed: game 377/0, audio 1720/0, QA 19/0/0, GLB 171/0. Mac not run. Next: Bi watches the cast in game on the Mac. See `docs/handoffs/2026-11-03_claude_cast_animation.md`.
+
 ## Claude Code owner playtest fixes — 2026-10-21
 
 - `claude/playtest-fixes` (draft PR to main, on `8755ec9`). Naomi's repeat trimmed, door signs, document images, female/male psychiatrist voice, quiet day underscore, walk-away stops conversations, clearer EHR with a Next step bar. Full QA: see AI_HANDOFF.md. Waiting on Bi: listening (female voice, music level), document images, meds/labs decision, Mac replay. See `docs/handoffs/2026-10-21_claude_playtest_fixes.md`. Last updated 2026-10-21.
