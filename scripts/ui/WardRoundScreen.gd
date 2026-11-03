@@ -147,8 +147,12 @@ func _build_chart() -> void:
 		return
 	var patient: Dictionary = case["patient"]
 	var presentation: Dictionary = case["presentation"]
+	var referral: String = ""
+	if presentation.has("triage_label"):
+		# The referral's working label; it can be incomplete or wrong.
+		referral = "[b]Referred as[/b]  \"%s\"\n\n" % presentation["triage_label"]
 	_chart.add_child(_card("%s, %d" % [patient["name"], int(patient["age"])],
-			"[b]Reason for review[/b]\n%s" % presentation["reason"], UIStyle.ACCENT))
+			"%s[b]Reason for review[/b]\n%s" % [referral, presentation["reason"]], UIStyle.ACCENT))
 	_chart.add_child(_card("History", presentation["history"]))
 	_chart.add_child(_card("Mental state", presentation["mental_status"]))
 	_chart.add_child(_card("Vitals and examination", presentation["vitals"]))

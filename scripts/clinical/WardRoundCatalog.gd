@@ -20,12 +20,19 @@ extends RefCounted
 ##
 ## Defaults for unlisted items: an unlisted lab reads "Within normal limits."
 ## and counts as not needed; an unlisted start is not indicated; an unlisted
-## intervention is not needed (noted, not a reason to revise).
+## intervention is not needed (noted, not a reason to revise), unless the
+## intervention catalog gives it a default_verdict (not_indicated or unsafe)
+## and default_feedback, as for dismissive choices that are wrong for anyone.
+##
+## A presentation may carry a triage_label: the referral's working label,
+## which can be incomplete or misleading. It is shown, never judged.
 
 const SCHEMA_VERSION: int = 1
 const LAB_VERDICTS: Array[String] = ["required", "helpful", "not_needed"]
 const LAB_FLAGS: Array[String] = ["normal", "abnormal", "critical"]
 const OPTION_VERDICTS: Array[String] = ["preferred", "acceptable", "required", "not_indicated", "unsafe"]
+## Catalog default verdicts may only send a plan back, never require an item everywhere.
+const DEFAULT_VERDICTS: Array[String] = ["not_indicated", "unsafe"]
 const MED_ACTIONS: Array[String] = ["continue", "reduce", "hold", "stop"]
 const REVIEW_STATUSES: Array[String] = ["PENDING_PSYCHIATRIST_REVIEW", "APPROVED", "REJECTED"]
 const NORMAL_RESULT: String = "Within normal limits."
@@ -47,6 +54,10 @@ static func validate(data: Variant, chapter_ids: Array = []) -> Array[String]:
 	var labs: Dictionary = _catalog(data, "lab_catalog", errors)
 	var meds: Dictionary = _catalog(data, "medication_catalog", errors)
 	var interventions: Dictionary = _catalog(data, "intervention_catalog", errors)
+	for entry: Dictionary in interventions.values():
+		if entry.has("default_verdict") and (not str(entry["default_verdict"]) in DEFAULT_VERDICTS
+				or not entry.get("default_feedback") is String or str(entry["default_feedback"]).is_empty()):
+			errors.append("ward_rounds.intervention_catalog.%s: default_verdict must be one of %s, with default_feedback" % [entry["id"], str(DEFAULT_VERDICTS)])
 	if not data.get("cases") is Array or (data["cases"] as Array).is_empty():
 		errors.append("ward_rounds: cases must be a non-empty array")
 		return errors
@@ -80,6 +91,8 @@ static func validate(data: Variant, chapter_ids: Array = []) -> Array[String]:
 			for field: String in ["reason", "history", "mental_status", "vitals"]:
 				if not presentation.get(field) is String or str(presentation[field]).is_empty():
 					errors.append(path + ".presentation: %s must be text" % field)
+			if presentation.has("triage_label") and (not presentation["triage_label"] is String or str(presentation["triage_label"]).is_empty()):
+				errors.append(path + ".presentation: triage_label must be text when present")
 			if not presentation.get("current_medications") is Array:
 				errors.append(path + ".presentation: current_medications must be an array")
 			else:
@@ -151,6 +164,17 @@ static func lab_result(case: Dictionary, lab_id: String) -> Dictionary:
 
 
 ## Verdict and feedback for one plan item, with the defaults for unlisted items.
+## The case with the intervention catalog's default verdicts filled in for
+## interventions the case does not judge itself. The case data is not changed.
+static func with_defaults(case: Dictionary, intervention_catalog: Array) -> Dictionary:
+	var result: Dictionary = case.duplicate(true)
+	for entry: Dictionary in intervention_catalog:
+		var key: String = "int:" + str(entry["id"])
+		if entry.has("default_verdict") and not result["options"].has(key):
+			result["options"][key] = {"verdict": entry["default_verdict"], "feedback": entry["default_feedback"]}
+	return result
+
+
 static func option_verdict(case: Dictionary, key: String) -> Dictionary:
 	var option: Dictionary = case.get("options", {}).get(key, {})
 	if not option.is_empty():

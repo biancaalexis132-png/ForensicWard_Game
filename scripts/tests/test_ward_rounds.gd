@@ -82,8 +82,10 @@ func test_catalog_is_valid_and_only_owner_approved_cases_are_approved() -> void:
 		var expected: String = "APPROVED" if case["id"] in OWNER_APPROVED else "PENDING_PSYCHIATRIST_REVIEW"
 		check_eq(case["clinical_review_status"], expected, "%s review status" % case["id"])
 		per_chapter[case["chapter"]] = int(per_chapter.get(case["chapter"], 0)) + 1
+	# Two first-wave, two second-wave and one or two third-wave (case bible) patients.
+	var expected_counts: Dictionary = {"ch1": 5, "ch2": 6, "ch3": 6, "ch4": 6, "ch5": 5}
 	for chapter_id: String in ContentRegistry.get_chapter_ids():
-		check_eq(per_chapter.get(chapter_id, 0), 4, "%s admits four patients" % chapter_id)
+		check_eq(per_chapter.get(chapter_id, 0), expected_counts.get(chapter_id, 0), "%s admits its patients" % chapter_id)
 	var text: String = FileAccess.get_file_as_string(DATA)
 	check(not RegEx.create_from_string("\\d+(\\.\\d+)?\\s*(mg|mcg|microgram|g/day|mmol)").search(text), "no doses or numeric thresholds in the cases")
 
@@ -138,7 +140,7 @@ func test_validator_names_broken_cases() -> void:
 
 func test_patients_admit_with_their_chapter_and_gate_its_close() -> void:
 	var director: ChapterDirector = _start_main("ch1")
-	check_eq(WardRounds.admitted_case_ids(), ["wr_ch1_ortiz", "wr_ch1_natarajan", "wr_ch1_hughes", "wr_ch1_morales"] as Array[String], "chapter 1 admits its four patients")
+	check_eq(WardRounds.admitted_case_ids(), ["wr_ch1_ortiz", "wr_ch1_natarajan", "wr_ch1_hughes", "wr_ch1_morales", "wr_ch1_haddad"] as Array[String], "chapter 1 admits its five patients")
 	check(not WardRounds.can_close_chapter("ch1"), "chapter 1 cannot close with open cases")
 	check(not director.sign_out().is_empty(), "day hand-over is not gated")
 	check_eq(TimeManager.get_shift(), "night", "night shift started")
@@ -160,8 +162,8 @@ func test_patients_admit_with_their_chapter_and_gate_its_close() -> void:
 	check(not director.sign_out().is_empty(), "night sign-out completes")
 	check(director.has_completed("ch1"), "chapter 1 complete")
 	director.start_chapter("ch2")
-	check_eq(WardRounds.admitted_case_ids().size(), 8, "chapter 2 adds four more, chapter 1's stay on the ward")
-	check_eq(WardRounds.open_case_ids("ch2").size(), 4, "chapter 2's patients are open")
+	check_eq(WardRounds.admitted_case_ids().size(), 11, "chapter 2 adds six more, chapter 1's stay on the ward")
+	check_eq(WardRounds.open_case_ids("ch2").size(), 6, "chapter 2's patients are open")
 
 
 func test_story_choice_that_completes_a_chapter_is_gated() -> void:
@@ -217,7 +219,7 @@ func test_screen_orders_labs_and_submits_through_the_ehr() -> void:
 	EventBus.ui_panel_requested.emit("ehr", {})
 	var ehr: EHRScreen = _main.get_node("EHRScreen") if _main.has_node("EHRScreen") else _main.find_children("*", "EHRScreen", true, false)[0]
 	var button: Button = ehr.find_child("WardRound", true, false)
-	check(button.visible and button.text.contains("4 to review"), "EHR shows the ward round with four to review")
+	check(button.visible and button.text.contains("5 to review"), "EHR shows the ward round with five to review")
 	ehr.open_ward_round()
 	var screen: WardRoundScreen = _main.get_node("WardRoundScreen")
 	check(screen.is_open and not ehr.is_open, "ward round replaces the chart")
@@ -252,4 +254,33 @@ func test_screen_orders_labs_and_submits_through_the_ehr() -> void:
 	EventBus.clinical_review_flagged.disconnect(on_flag)
 	screen.close()
 	EventBus.ui_panel_requested.emit("ehr", {})
-	check(button.text.contains("3 to review"), "EHR count drops")
+	check(button.text.contains("4 to review"), "EHR count drops")
+
+
+func test_case_bible_adaptation_referral_labels_and_respectful_choices() -> void:
+	# The referral's working label shows on the chart and is never judged.
+	_start_main("ch1")
+	var screen_data: Dictionary = WardRounds.get_case("wr_ch1_haddad")
+	check_eq(screen_data["presentation"]["triage_label"], "Possible psychotic relapse", "referral label kept")
+	EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": "wr_ch1_haddad"})
+	var screen: WardRoundScreen = _main.get_node("WardRoundScreen")
+	var chart_text: String = ""
+	for label: Node in screen.find_children("*", "RichTextLabel", true, false):
+		chart_text += (label as RichTextLabel).get_parsed_text()
+	check(chart_text.contains("Referred as") and chart_text.contains("Possible psychotic relapse"), "chart shows the referral label")
+	screen.close()
+	# Dismissive choices are wrong for every patient, approved ones included.
+	for id: String in ["wr_ch1_ortiz", "wr_ch4_reyes"]:
+		var case: Dictionary = WardRounds.get_case(id)
+		var solved: Dictionary = _solve(case)
+		var plan: Array = solved["plan"].duplicate()
+		plan.append("int:dismiss_as_feigned")
+		var review: Dictionary = WardRoundCatalog.evaluate(case, solved["labs"], plan)
+		check_eq(review["outcome"], "revise", id + ": recording symptoms as put on sends the plan back")
+		check(not WardRoundCatalog.evaluate(case, solved["labs"], solved["plan"])["outcome"] == "revise", id + ": the plan without it is accepted")
+	var bad: Dictionary = _data()
+	bad["intervention_catalog"].append({"id": "x_required_everywhere", "label": "X", "default_verdict": "required", "default_feedback": "X"})
+	bad["cases"][0]["presentation"]["triage_label"] = ""
+	var errors: Array[String] = WardRoundCatalog.validate(bad, ContentRegistry.get_chapter_ids())
+	check_contains(errors, "default_verdict must be one of", "a catalog default can only send a plan back")
+	check_contains(errors, "triage_label must be text", "empty referral label named")
