@@ -1,0 +1,641 @@
+{
+  "rig": "Nadia_Haddad_Rig",
+  "bone_count": 53,
+  "roles": {
+    "pelvis": {
+      "bone": "pelvis",
+      "head": [
+        -9.999999747378752e-05,
+        -0.013199999928474426,
+        0.5016999840736389
+      ],
+      "tail": [
+        -9.999999747378752e-05,
+        0.02329999953508377,
+        0.5741999745368958
+      ],
+      "weighted_vertices": 1203,
+      "centroid_to_bone_m": 0.005,
+      "bone_inside_weighted_volume": true
+    },
+    "spine_lower": {
+      "bone": "spine_01",
+      "head": [
+        -9.999999747378752e-05,
+        0.02329999953508377,
+        0.5741999745368958
+      ],
+      "tail": [
+        -9.999999747378752e-05,
+        0.007499999832361937,
+        0.6395999789237976
+      ],
+      "weighted_vertices": 684,
+      "centroid_to_bone_m": 0.0616,
+      "bone_inside_weighted_volume": true
+    },
+    "spine_mid": {
+      "bone": "spine_02",
+      "head": [
+        -9.999999747378752e-05,
+        0.007499999832361937,
+        0.6395999789237976
+      ],
+      "tail": [
+        0.0,
+        0.00570000009611249,
+        0.7135999798774719
+      ],
+      "weighted_vertices": 526,
+      "centroid_to_bone_m": 0.032,
+      "bone_inside_weighted_volume": true
+    },
+    "chest": {
+      "bone": "spine_03",
+      "head": [
+        0.0,
+        0.00570000009611249,
+        0.7135999798774719
+      ],
+      "tail": [
+        -9.999999747378752e-05,
+        0.01940000057220459,
+        0.8522999882698059
+      ],
+      "weighted_vertices": 1182,
+      "centroid_to_bone_m": 0.0769,
+      "bone_inside_weighted_volume": true
+    },
+    "neck": {
+      "bone": "neck_01",
+      "head": [
+        -0.0,
+        -0.00019999999494757503,
+        1.024999976158142
+      ],
+      "tail": [
+        -0.0,
+        -0.03790000081062317,
+        1.122499942779541
+      ],
+      "weighted_vertices": 360,
+      "centroid_to_bone_m": 0.0136,
+      "bone_inside_weighted_volume": true
+    },
+    "head": {
+      "bone": "head",
+      "head": [
+        -0.0,
+        -0.03790000081062317,
+        1.122499942779541
+      ],
+      "tail": [
+        -0.0,
+        -0.03869999945163727,
+        1.2696000337600708
+      ],
+      "weighted_vertices": 6404,
+      "centroid_to_bone_m": 0.0315,
+      "bone_inside_weighted_volume": true
+    },
+    "clavicle_l": {
+      "bone": "clavicle_l",
+      "head": [
+        0.02070000022649765,
+        -0.014000000432133675,
+        0.9562000036239624
+      ],
+      "tail": [
+        0.1671999990940094,
+        -0.012000000104308128,
+        0.9325000047683716
+      ],
+      "weighted_vertices": 232,
+      "centroid_to_bone_m": 0.056,
+      "bone_inside_weighted_volume": true
+    },
+    "clavicle_r": {
+      "bone": "clavicle_r",
+      "head": [
+        -0.02070000022649765,
+        -0.014000000432133675,
+        0.9562000036239624
+      ],
+      "tail": [
+        -0.1671999990940094,
+        -0.012000000104308128,
+        0.9325000047683716
+      ],
+      "weighted_vertices": 227,
+      "centroid_to_bone_m": 0.0572,
+      "bone_inside_weighted_volume": true
+    },
+    "upperarm_l": {
+      "bone": "upperarm_l",
+      "head": [
+        0.1671999990940094,
+        -0.012000000104308128,
+        0.9325000047683716
+      ],
+      "tail": [
+        0.20489999651908875,
+        -0.033399999141693115,
+        0.7276999950408936
+      ],
+      "weighted_vertices": 466,
+      "centroid_to_bone_m": 0.0087,
+      "bone_inside_weighted_volume": true
+    },
+    "upperarm_r": {
+      "bone": "upperarm_r",
+      "head": [
+        -0.1671999990940094,
+        -0.012000000104308128,
+        0.9325000047683716
+      ],
+      "tail": [
+        -0.20489999651908875,
+        -0.033399999141693115,
+        0.7276999950408936
+      ],
+      "weighted_vertices": 467,
+      "centroid_to_bone_m": 0.009,
+      "bone_inside_weighted_volume": true
+    },
+    "lowerarm_l": {
+      "bone": "lowerarm_l",
+      "head": [
+        0.20489999651908875,
+        -0.033399999141693115,
+        0.7276999950408936
+      ],
+      "tail": [
+        0.21639999747276306,
+        -0.08869999647140503,
+        0.5060999989509583
+      ],
+      "weighted_vertices": 341,
+      "centroid_to_bone_m": 0.0076,
+      "bone_inside_weighted_volume": true
+    },
+    "lowerarm_r": {
+      "bone": "lowerarm_r",
+      "head": [
+        -0.20489999651908875,
+        -0.033399999141693115,
+        0.7276999950408936
+      ],
+      "tail": [
+        -0.21639999747276306,
+        -0.08879999816417694,
+        0.5058000087738037
+      ],
+      "weighted_vertices": 351,
+      "centroid_to_bone_m": 0.0067,
+      "bone_inside_weighted_volume": true
+    },
+    "hand_l": {
+      "bone": "hand_l",
+      "head": [
+        0.21639999747276306,
+        -0.08869999647140503,
+        0.5060999989509583
+      ],
+      "tail": [
+        0.21330000460147858,
+        -0.09619999676942825,
+        0.47609999775886536
+      ],
+      "weighted_vertices": 129,
+      "centroid_to_bone_m": 0.005,
+      "bone_inside_weighted_volume": true
+    },
+    "hand_r": {
+      "bone": "hand_r",
+      "head": [
+        -0.21639999747276306,
+        -0.08879999816417694,
+        0.5058000087738037
+      ],
+      "tail": [
+        -0.21330000460147858,
+        -0.09619999676942825,
+        0.4758000075817108
+      ],
+      "weighted_vertices": 140,
+      "centroid_to_bone_m": 0.0043,
+      "bone_inside_weighted_volume": true
+    }
+  },
+  "meshes": [
+    {
+      "name": "Nadia_Haddad_Body",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    },
+    {
+      "name": "Haddad_Eye_L",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Haddad_Eye_R",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Haddad_Hair",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Haddad_Hair_Ponytail",
+      "armature_modifier": true,
+      "vertex_groups": 2,
+      "shape_keys": []
+    },
+    {
+      "name": "Haddad_Hair_Tie",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Haddad_Slip_Ons",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    },
+    {
+      "name": "Haddad_Soft_Trousers",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    },
+    {
+      "name": "Haddad_Top",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    }
+  ],
+  "failures": [],
+  "reskinned_dominant_bones": {},
+  "blender_version": "5.2.2 LTS",
+  "profile": "tools/character_animation/profiles/pt_wr_haddad_v01_anim.json",
+  "profile_sha256": "ebafe9719859c2ac52d6ffc084e009d90a446adc1bce95a2d469d63fc9260519",
+  "face_details": {
+    "lash_faces": 38,
+    "brow_faces": 0,
+    "skin": {
+      "texture_size": 2048,
+      "brow_texels": 1926,
+      "roughness": 0.58,
+      "roughness_variation": 0.05,
+      "specular": 0.35,
+      "detail_size": 1024
+    },
+    "eye_bones": {
+      "Haddad_Eye_L": "eye_l",
+      "Haddad_Eye_R": "eye_r"
+    },
+    "shoes": {
+      "left": 126,
+      "right": 130,
+      "vertices": 3076
+    }
+  },
+  "morph_targets": [
+    "blink_L",
+    "blink_R",
+    "blink",
+    "attentive",
+    "warm_subtle",
+    "concerned_restrained",
+    "professionally_serious",
+    "focused",
+    "calm_professional",
+    "mouth_open"
+  ],
+  "clips": [
+    {
+      "name": "idle_neutral",
+      "player": "body",
+      "loop": true,
+      "seconds": 8.0,
+      "frames": 240,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "pelvis",
+        "spine_01",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Relaxed professional standing: breathing, slight weight shift, slow head drift.",
+      "glb_channels": 7,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "pelvis",
+        "spine_01",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "idle_breathing",
+      "player": "body",
+      "loop": true,
+      "seconds": 4.0,
+      "frames": 120,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Breathing only: chest and shoulders rise and settle, head stays level.",
+      "glb_channels": 5,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "listen_neutral",
+      "player": "body",
+      "loop": true,
+      "seconds": 6.0,
+      "frames": 180,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_03"
+      ],
+      "description": "Attentive listening: slight lean in, small head tilt, breathing.",
+      "glb_channels": 4,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "stand_conversational",
+      "player": "body",
+      "loop": true,
+      "seconds": 6.0,
+      "frames": 180,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Speaking: small emphatic head movements and a slight torso turn, breathing.",
+      "glb_channels": 5,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "turn_from_workstation",
+      "player": "body",
+      "loop": false,
+      "seconds": 1.2,
+      "frames": 36,
+      "bones": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Turns from the workstation (her right, looking down) to face the player.",
+      "glb_channels": 3,
+      "glb_nodes": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "return_to_workstation",
+      "player": "body",
+      "loop": false,
+      "seconds": 1.2,
+      "frames": 36,
+      "bones": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Turns back to the workstation and holds there.",
+      "glb_channels": 3,
+      "glb_nodes": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "small_greeting_nod",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 1.2,
+      "frames": 36,
+      "bones": [
+        "neck_01"
+      ],
+      "description": "One small nod with a slight tilt.",
+      "glb_channels": 1,
+      "glb_nodes": [
+        "neck_01"
+      ]
+    },
+    {
+      "name": "small_acknowledgement_nod",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 0.9,
+      "frames": 27,
+      "bones": [
+        "neck_01"
+      ],
+      "description": "Brief acknowledging nod.",
+      "glb_channels": 1,
+      "glb_nodes": [
+        "neck_01"
+      ]
+    },
+    {
+      "name": "restrained_chart_indication",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 2.0,
+      "frames": 60,
+      "bones": [
+        "lowerarm_r",
+        "neck_01",
+        "upperarm_r"
+      ],
+      "description": "Right forearm lifts slightly toward the desk, then settles; head follows.",
+      "glb_channels": 3,
+      "glb_nodes": [
+        "lowerarm_r",
+        "neck_01",
+        "upperarm_r"
+      ]
+    },
+    {
+      "name": "subtle_workstation_indication",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 1.6,
+      "frames": 48,
+      "bones": [
+        "lowerarm_r",
+        "neck_01"
+      ],
+      "description": "Small glance and open-hand indication toward the workstation.",
+      "glb_channels": 2,
+      "glb_nodes": [
+        "lowerarm_r",
+        "neck_01"
+      ]
+    }
+  ],
+  "glb": {
+    "skins": 1,
+    "animations": [
+      {
+        "name": "idle_breathing",
+        "channels": 5,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "idle_neutral",
+        "channels": 7,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "pelvis",
+          "spine_01",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "listen_neutral",
+        "channels": 4,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "restrained_chart_indication",
+        "channels": 3,
+        "nodes": [
+          "lowerarm_r",
+          "neck_01",
+          "upperarm_r"
+        ]
+      },
+      {
+        "name": "return_to_workstation",
+        "channels": 3,
+        "nodes": [
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "small_acknowledgement_nod",
+        "channels": 1,
+        "nodes": [
+          "neck_01"
+        ]
+      },
+      {
+        "name": "small_greeting_nod",
+        "channels": 1,
+        "nodes": [
+          "neck_01"
+        ]
+      },
+      {
+        "name": "stand_conversational",
+        "channels": 5,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "subtle_workstation_indication",
+        "channels": 2,
+        "nodes": [
+          "lowerarm_r",
+          "neck_01"
+        ]
+      },
+      {
+        "name": "turn_from_workstation",
+        "channels": 3,
+        "nodes": [
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      }
+    ],
+    "morph_targets": [
+      {
+        "mesh": "Nadia_Haddad_Body",
+        "targets": [
+          "blink_L",
+          "blink_R",
+          "blink",
+          "attentive",
+          "warm_subtle",
+          "concerned_restrained",
+          "professionally_serious",
+          "focused",
+          "calm_professional",
+          "mouth_open"
+        ]
+      }
+    ]
+  },
+  "triangles": 28863
+}
