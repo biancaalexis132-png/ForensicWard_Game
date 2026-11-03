@@ -49,5 +49,6 @@ Full headless QA on `a8c8850`: game 392/0 (376 + 10 cast motion from #114 + 6 ne
 - Limits seen in the sheets: hair is still a painted cap (grey hair shows as stripes), older faces do not age much (MPFB macros only), and everyone shares the base body shape per sex. These are the cast pipeline's limits, not new faults.
 - Repository size: each patient adds about 20 MB (GLB, textures, .blend).
 - Captures: `assets/renders/characters/ward_bedside_v1/ch{1..5}_*`.
-- Full QA on `c96daa3`: game 394/0, audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0.
+- Full QA on `99655fb`: game 394/0, audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0.
 - Resume: wait for Bi's review of the models and the third wave; scoring and an action budget from the bible are not built.
+- The tested tip `c96daa3` was too large to push in one go (about 700 MB), so it was split into five asset commits plus `99655fb`; the tree of `99655fb` is identical to `c96daa3`, so the QA counts above apply to it.
