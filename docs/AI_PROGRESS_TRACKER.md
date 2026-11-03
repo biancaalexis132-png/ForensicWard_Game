@@ -4,10 +4,10 @@
 
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Patients seated in Rooms 01/02, approach opens case, next patient arrives | Done, draft PR | #115, #114 | `scripts/world/WardRoundBedside.gd`, `data/ward_round_bedside.json` | `test_ward_round_bedside` (6), captures | Bi plays on the Mac |
-| Chapter 1 patient models (4) | Draft, pending owner look | cast pipeline | `assets/exports/characters/{Daniel_Ortiz,Priya_Natarajan,Owen_Hughes,Lucia_Morales}_v01_draft.glb` | GLB 175/0 | Bi reviews the look |
-| Chapter 2 patient models (4) | Configs written, not built | | `tools/blender/characters/cast/pt_wr_{kim,lebel,brennan,kowalczyk}.json` | | Build, stage, test |
-| Chapters 3 to 5 patient models (12) | Not started | | | | After Chapter 2 |
+| Patients seated in Rooms 01/02, approach opens case, next patient arrives | Done, draft PR | #115, #114 | `scripts/world/WardRoundBedside.gd`, `data/ward_round_bedside.json` | `test_ward_round_bedside` (7), captures | Bi plays on the Mac |
+| Patient models for all 28 ward-round cases | Draft, pending owner look | cast pipeline | `tools/blender/characters/cast/pt_wr_*.json`, `assets/exports/characters/*_v01_draft.glb` | GLB 199/0; captures ch1 to ch5 | Bi reviews the look |
+| Case bible third wave (8 cases, referral labels, bedside assessments, wrong-for-everyone choices) | Done on #115, pending Bi's clinical review | #115 | `data/ward_rounds.json`, `WardRoundCatalog.gd` | `test_ward_rounds` | Bi reviews in the review doc |
+| Scoring and action budget from the case bible | Not started | Bi's review | | | Ask Bi after review |
 
 ## Ward rounds — Claude Code (cloud), 2026-11-03
 

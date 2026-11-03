@@ -28,6 +28,14 @@ func _start_main(chapter_id: String) -> WardRoundBedside:
 	return bedside
 
 
+func _all_case_ids() -> Array[String]:
+	var ids: Array[String] = []
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(WardRounds.DATA_PATH))
+	for case: Dictionary in data["cases"]:
+		ids.append(str(case["id"]))
+	return ids
+
+
 func _accept(case_id: String) -> void:
 	var solved: Dictionary = WardRoundTests._solve(WardRounds.get_case(case_id))
 	for lab_id: String in solved["labs"]:
@@ -45,9 +53,9 @@ func test_staging_data_is_valid_and_every_patient_has_a_model() -> void:
 		var character_id: String = data["patients"][case_id]
 		check(visuals.has(character_id), "model catalogued for " + character_id)
 		check(ResourceLoader.exists(str(visuals.get(character_id, {}).get("scene", ""))), "model file exists for " + character_id)
-	for case_id: String in ["wr_ch1_ortiz", "wr_ch1_natarajan", "wr_ch1_hughes", "wr_ch1_morales",
-			"wr_ch2_kim", "wr_ch2_lebel", "wr_ch2_brennan", "wr_ch2_kowalczyk"]:
-		check(data["patients"].has(case_id), "chapter 1 and 2 patient is staged: " + case_id)
+	# Every ward-round patient has a model on the ward.
+	for case_id: String in _all_case_ids():
+		check(data["patients"].has(case_id), "patient is staged: " + case_id)
 	var broken: Dictionary = data.duplicate(true)
 	broken["slots"] = [{"id": "room_01", "label": "", "position": [0, 0], "yaw_degrees": "east"}]
 	broken["patients"] = {"wr_ch1_ortiz": ""}
@@ -100,7 +108,9 @@ func test_next_patient_takes_the_room_when_a_plan_is_accepted() -> void:
 	_accept("wr_ch1_natarajan")
 	check_eq(bedside.occupancy(), {"room_01": "wr_ch1_hughes", "room_02": "wr_ch1_morales"}, "Morales takes Room 02")
 	_accept("wr_ch1_hughes")
+	check_eq(bedside.occupancy(), {"room_01": "wr_ch1_haddad", "room_02": "wr_ch1_morales"}, "Haddad takes Room 01")
 	_accept("wr_ch1_morales")
+	_accept("wr_ch1_haddad")
 	EventBus.notification_requested.disconnect(record)
 	check(bedside.occupancy().is_empty(), "rooms empty once every plan is accepted")
 
@@ -128,7 +138,7 @@ func test_validated_build_seats_only_approved_patients() -> void:
 
 func test_chapter_two_patients_follow_once_chapter_one_is_done() -> void:
 	var bedside: WardRoundBedside = _start_main("ch2")
-	for case_id: String in ["wr_ch1_ortiz", "wr_ch1_natarajan", "wr_ch1_hughes", "wr_ch1_morales"]:
+	for case_id: String in WardRounds.open_case_ids("ch1"):
 		_accept(case_id)
 	check_eq(bedside.occupancy(), {"room_01": "wr_ch2_kim", "room_02": "wr_ch2_lebel"}, "chapter 2's first two take the rooms")
 	_accept("wr_ch2_kim")

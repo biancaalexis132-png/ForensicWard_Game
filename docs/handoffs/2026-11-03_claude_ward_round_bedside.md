@@ -40,3 +40,14 @@ Four Chapter 1 patient drafts built with the existing cast pipeline (`build_cast
 ## Tests
 
 Full headless QA on `a8c8850`: game 392/0 (376 + 10 cast motion from #114 + 6 new), audio 1720/0, QA 19/0/0, GLB 175/0, CH1_SEQUENCE_DONE, no ERROR lines, exit 0. The first run failed GLB validation because the four models were missing from `asset_manifest.json`; fixed in `a8c8850`.
+
+## Update, 2026-11-03 evening: every patient on the ward, and the case bible
+
+- `claude/ward-rounds` (#115) gained the third wave adapted from Bi's case bible (eight new cases, referral labels, bedside assessments, two choices wrong for every patient); merged into this branch at `bdd36b9`.
+- Models for all 28 ward-round patients (24 new since the first four), seated, staged in `data/ward_round_bedside.json` in case order. Rooms 01 and 02 take the oldest waiting patients; arrivals are announced in one notice.
+- The hair builder divides by `fringe_m`, so close crops use 0.002 instead of 0 (Achebe, Adeyemi, Osei, Whitaker, Brooks, Doyle).
+- Limits seen in the sheets: hair is still a painted cap (grey hair shows as stripes), older faces do not age much (MPFB macros only), and everyone shares the base body shape per sex. These are the cast pipeline's limits, not new faults.
+- Repository size: each patient adds about 20 MB (GLB, textures, .blend).
+- Captures: `assets/renders/characters/ward_bedside_v1/ch{1..5}_*`.
+- Full QA on `c96daa3`: game 394/0, audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0.
+- Resume: wait for Bi's review of the models and the third wave; scoring and an action budget from the bible are not built.

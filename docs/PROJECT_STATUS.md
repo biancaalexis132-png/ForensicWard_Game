@@ -1,6 +1,6 @@
 # Project status
 
-**Ward-round patients on the ward (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-bedside` at `a8c8850`, on #115 with #114 merged in. Chapter 1's four ward-round patients wait on the beds in Rooms 01 and 02 as animated 3D drafts; walking up to one opens their case, and the next patient takes the room once a plan is accepted. Models pending owner look; no symptom movement. Full QA passed (game 392/0). Not tested on the Mac.
+**Ward-round patients on the ward (Claude Code, 2026-11-03; draft PR #116, not merged):** `claude/ward-round-bedside` at `c96daa3`, on #115 (now including the case-bible third wave, 28 cases) with #114 merged in. All 28 ward-round patients have animated 3D draft models and wait in Rooms 01 and 02, oldest admission first; walking up to one opens their case, and the next patient takes the room once a plan is accepted. Models pending owner look; third-wave cases pending Bi's clinical review; no symptom movement. Full QA passed (game 394/0, GLB 199/0). Not tested on the Mac.
 
 **Ward rounds (Claude Code, 2026-11-03; draft PR #115, not merged):** `claude/ward-rounds` at `5d5bf6a`, on #113. Each chapter admits four patients the player works up in the EHR (labs, then a medication plan judged by the attending); a chapter closes only once its patients' plans are accepted. The first ten cases are approved by Bi; ten harder second-wave cases are pending psychiatrist review and play in the prototype build only. Full QA passed (game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0). Not tested on the Mac.
 
