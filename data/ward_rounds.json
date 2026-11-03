@@ -1748,14 +1748,6 @@
 					"stop:valproate"
 				]
 			],
-			"requires_labs_for": {
-				"hold:valproate": [
-					"ammonia"
-				],
-				"stop:valproate": [
-					"ammonia"
-				]
-			},
 			"teaching": "Valproate-induced hyperammonaemic encephalopathy: confusion and asterixis with normal liver tests. Measure ammonia, hold valproate and involve the medical team.",
 			"references": [
 				"Maudsley Prescribing Guidelines 15th ed.: valproate",
@@ -1857,14 +1849,6 @@
 					"hold:clozapine"
 				]
 			],
-			"requires_labs_for": {
-				"stop:clozapine": [
-					"troponin_crp"
-				],
-				"hold:clozapine": [
-					"troponin_crp"
-				]
-			},
 			"teaching": "Clozapine myocarditis: fever, tachycardia and raised troponin and CRP in the first weeks. Stop clozapine and transfer; do not rechallenge without specialist advice.",
 			"references": [
 				"The Clozapine Handbook (Stahl & Meyer): myocarditis and cardiomyopathy",
@@ -1958,11 +1942,6 @@
 					"stop:clozapine"
 				]
 			],
-			"requires_labs_for": {
-				"stop:clozapine": [
-					"cbc"
-				]
-			},
 			"teaching": "Severe neutropenia on clozapine with fever: stop clozapine, transfer for urgent medical care, and record it so he is not rechallenged without specialist review.",
 			"references": [
 				"The Clozapine Handbook (Stahl & Meyer): neutropenia and monitoring",
