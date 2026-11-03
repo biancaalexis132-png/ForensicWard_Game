@@ -222,14 +222,17 @@ func test_screen_orders_labs_and_submits_through_the_ehr() -> void:
 	for key: String in solved["plan"]:
 		var parts: PackedStringArray = key.split(":")
 		if parts[0] == "start":
-			(screen.find_child("Start_" + parts[1], true, false) as CheckBox).button_pressed = true
+			(screen.find_child("Start_" + parts[1], true, false) as BaseButton).button_pressed = true
 		elif parts[0] == "int":
-			(screen.find_child("Int_" + parts[1], true, false) as CheckBox).button_pressed = true
+			(screen.find_child("Int_" + parts[1], true, false) as BaseButton).button_pressed = true
 		else:
 			screen.set_med_action(parts[1], parts[0])
 	(screen.find_child("Submit", true, false) as Button).pressed.emit()
 	check_eq(WardRounds.status("wr_ch1_ortiz"), "accepted", "accepted from the screen")
 	check((screen.find_child("Review", true, false) as RichTextLabel).get_parsed_text().contains("plan accepted"), "attending reply shown")
+	screen.select_case("wr_ch1_natarajan")
+	screen.select_case("wr_ch1_ortiz")
+	check((screen.find_child("Review", true, false) as RichTextLabel).get_parsed_text().contains("plan accepted"), "reply shown again when the patient is reopened")
 	check((screen.find_child("Submit", true, false) as Button).disabled, "accepted plan is locked")
 	check("ward_round_draft" in flagged, "draft submission flagged for clinical review")
 	EventBus.clinical_review_flagged.disconnect(on_flag)

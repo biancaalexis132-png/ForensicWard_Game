@@ -6,7 +6,8 @@ extends CanvasLayer
 ##   Chart   presentation, history, mental state, vitals, current medications
 ##   Labs    the lab catalog by category; Order shows the result at once
 ##   Plan    an action for each current medication, medications to start and
-##           interventions; Submit to attending shows the reply below it
+##           interventions
+## Below the tabs, always in view: the attending's reply and Submit to attending.
 ## The screen owns only the unsent plan; everything else is in WardRounds.
 ## Button handlers are public so tests drive the same paths a player does.
 
@@ -229,22 +230,41 @@ func _build_plan() -> void:
 func _check_grid(entries: Array, chosen: Array, prefix: String, locked: bool, setter: Callable) -> GridContainer:
 	var grid: GridContainer = GridContainer.new()
 	grid.columns = 3
-	grid.add_theme_constant_override("h_separation", 24)
+	grid.add_theme_constant_override("h_separation", 12)
+	grid.add_theme_constant_override("v_separation", 8)
 	for entry: Dictionary in entries:
-		var box: CheckBox = CheckBox.new()
-		box.name = prefix + str(entry["id"])
-		box.text = entry["label"]
-		box.tooltip_text = str(entry.get("class", ""))
-		box.add_theme_font_size_override("font_size", SIZE_SMALL)
-		box.button_pressed = entry["id"] in chosen
-		box.disabled = locked
-		box.toggled.connect(func(on: bool) -> void: setter.call(entry["id"], on))
-		grid.add_child(box)
+		var toggle: Button = _toggle_button(entry["label"])
+		toggle.name = prefix + str(entry["id"])
+		toggle.tooltip_text = str(entry.get("class", ""))
+		toggle.button_pressed = entry["id"] in chosen
+		toggle.disabled = locked
+		if locked and toggle.button_pressed:
+			# An accepted plan keeps showing what was chosen.
+			toggle.add_theme_stylebox_override("disabled", toggle.get_theme_stylebox("pressed"))
+			toggle.add_theme_color_override("font_disabled_color", Color.WHITE)
+		toggle.toggled.connect(func(on: bool) -> void: setter.call(entry["id"], on))
+		grid.add_child(toggle)
 	return grid
 
 
+## A chip-like toggle: outlined when off, filled teal when chosen.
+func _toggle_button(text: String) -> Button:
+	var toggle: Button = UIStyle.secondary_button(text, SIZE_SMALL)
+	toggle.toggle_mode = true
+	toggle.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	toggle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var on: StyleBoxFlat = (toggle.get_theme_stylebox("normal") as StyleBoxFlat).duplicate()
+	on.bg_color = Color(0.16, 0.42, 0.36)
+	on.border_color = UIStyle.ACCENT
+	toggle.add_theme_stylebox_override("pressed", on)
+	toggle.add_theme_stylebox_override("hover_pressed", on)
+	toggle.add_theme_color_override("font_pressed_color", Color.WHITE)
+	toggle.add_theme_color_override("font_hover_pressed_color", Color.WHITE)
+	return toggle
+
+
 func _show_review(review: Dictionary) -> void:
-	_review.clear()
+	# Only assign text: clear() followed by the same text again leaves it blank.
 	if review.is_empty():
 		_review.text = "[color=#%s]Submit the plan when you are ready. The attending replies straight away; you can revise and resubmit as often as you need.[/color]" % UIStyle.MUTED.to_html(false)
 		return
@@ -352,6 +372,7 @@ func _build() -> void:
 	var top: HBoxContainer = HBoxContainer.new()
 	top.add_theme_constant_override("separation", 16)
 	var title: Label = UIStyle.label("Ward round", SIZE_TITLE)
+	title.autowrap_mode = TextServer.AUTOWRAP_OFF
 	top.add_child(title)
 	_badge = UIStyle.label("DRAFT TEACHING CASE · pending psychiatrist review", SIZE_SMALL, UIStyle.WARNING)
 	_badge.name = "DraftBadge"
@@ -379,22 +400,32 @@ func _build() -> void:
 	left.add_child(_census)
 	split.add_child(left)
 
+	var right: VBoxContainer = VBoxContainer.new()
+	right.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	right.add_theme_constant_override("separation", 10)
+	split.add_child(right)
 	_tabs = TabContainer.new()
-	_tabs.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_tabs.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_tabs.add_theme_font_size_override("font_size", SIZE_BODY)
-	split.add_child(_tabs)
+	right.add_child(_tabs)
 	_chart = _scroll_tab("Chart")
 	_labs = _scroll_tab("Labs")
-	var plan_scroll: VBoxContainer = _scroll_tab("Plan")
-	_plan = VBoxContainer.new()
-	_plan.add_theme_constant_override("separation", 8)
-	plan_scroll.add_child(_plan)
+	_plan = _scroll_tab("Plan")
+	# The attending's reply and the submit button stay in view on every tab.
+	var reply: HBoxContainer = HBoxContainer.new()
+	reply.add_theme_constant_override("separation", 16)
+	_review = _rich(false)
+	_review.name = "Review"
+	_review.custom_minimum_size.y = 230
+	_review.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var card: PanelContainer = PanelContainer.new()
+	card.add_theme_stylebox_override("panel", UIStyle.card_style(UIStyle.ACCENT))
+	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	card.add_child(_review)
+	reply.add_child(card)
 	_submit = UIStyle.primary_button("Submit to attending", SIZE_BODY)
 	_submit.name = "Submit"
-	_submit.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	_submit.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	_submit.pressed.connect(submit)
-	plan_scroll.add_child(_submit)
-	_review = _rich(true)
-	_review.name = "Review"
-	plan_scroll.add_child(_review)
+	reply.add_child(_submit)
+	right.add_child(reply)
