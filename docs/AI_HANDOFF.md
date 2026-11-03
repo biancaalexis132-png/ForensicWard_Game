@@ -20,6 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Patient hair cards | `claude/patient-hair-cards` (draft PR to `claude/patient-model-ageing`) | Claude Code (cloud) | last commit on the branch | `build_cast_member.py` (`hair.cards`), 23 `pt_wr_*` configs and outputs | Full QA passed; waiting on Bi's look |
 | Patient looks: age, grey hair, weight | `claude/patient-model-ageing` (draft PR to `claude/ward-round-scoring`) | Claude Code (cloud) | see Log | `tools/blender/characters/build_cast_member.py` (opt-in options), 15 `pt_wr_*` configs and their outputs | Full QA passed; waiting on Bi's look |
 | Ward-round scoring and debrief | `claude/ward-round-scoring` (draft PR to `claude/ward-round-bedside`) | Claude Code (cloud) | `4b72789` | `scripts/clinical/WardRoundScoring.gd`, `WardRounds.gd` (history, replay, best), `WardRoundCatalog.gd` (rapport tags), `WardRoundScreen.gd` (Debrief tab, budget, replay, chip wrap), `data/ward_rounds.json` intervention catalog, `test_ward_round_scoring.gd`, capture tool | Full QA passed; waiting on Bi |
 | Ward-round patients on the ward in 3D | `claude/ward-round-bedside` (draft PR #116 to `claude/ward-rounds`) | Claude Code (cloud) | `99655fb` | `data/ward_round_bedside.json`, `scripts/world/WardRoundBedside.gd`, `Character.gd` (`Kind.WARD_ROUND`), one line in `AuthoredWorld.gd`, `test_ward_round_bedside.gd`, patient model configs/outputs `pt_wr_*`, 28 `asset_manifest.json` and `character_visuals.json` entries | All 28 patients modelled and staged; full QA passed; models pending owner look |
@@ -583,6 +584,12 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-11-03 night — Claude Code — hair cards for ward-round patients
+
+- Branch `claude/patient-hair-cards` (draft PR to `claude/patient-model-ageing`), pushed as asset commits plus a final code/config/docs commit.
+- Opt-in `hair.cards` in the cast builder; 23 patients rebuilt. Tests: full headless QA: game 401/0, audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0. Mac not run.
+- Resume: `docs/handoffs/2026-11-03_claude_patient_hair_cards.md`.
 
 ### 2026-11-03 late — Claude Code — older, greying and heavier patient models
 

@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Patrick_Doyle_v01_face.blend",
-      "sha256": "bfce3109329b84291035b90d1cbd5ea4b1b6cc2880a12fd965ebf7987db18002",
+      "sha256": "c5b8a26f14139eac970b146fcfcc3890b058188e4c5a8b1a975bff8b56cef866",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],

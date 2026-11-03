@@ -4,7 +4,7 @@
   "profile_sha256": "9f6edc35ca70031db820a98c49e54edcd2cead52bb10d67ed5b43d3ad7f4bc8b",
   "source": {
     "path": "build/cast/Agnes_Brennan_v01_face.blend",
-    "sha256": "f8a0e5063891365f723aa500dd2fd40c67d008cbe140f7d4df2010d4128bd146"
+    "sha256": "c1c34ecb1f9ce35b4726bfaf42d9881e3323a656f324cd6d75e35267562e4c64"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28872
+  "triangles": 31842
 }

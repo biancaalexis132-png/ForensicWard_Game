@@ -94,8 +94,8 @@
         -0.03629999980330467,
         1.2209999561309814
       ],
-      "weighted_vertices": 6443,
-      "centroid_to_bone_m": 0.0297,
+      "weighted_vertices": 9979,
+      "centroid_to_bone_m": 0.0097,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -254,6 +254,12 @@
     },
     {
       "name": "Brennan_Hair",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Brennan_Hair_Cards",
       "armature_modifier": true,
       "vertex_groups": 1,
       "shape_keys": []
@@ -637,5 +643,5 @@
       }
     ]
   },
-  "triangles": 28872
+  "triangles": 31842
 }

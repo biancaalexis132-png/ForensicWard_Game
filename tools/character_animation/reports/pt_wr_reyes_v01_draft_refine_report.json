@@ -4,7 +4,7 @@
   "profile_sha256": "7ce2600f96be48c83df3624f8413f2a9d992eb9db5833f4cf1d20c45322cd8f8",
   "source": {
     "path": "build/cast/Tomas_Reyes_v01_face.blend",
-    "sha256": "071dd3aea16e806e3d9e801d1b1bab307adbf1cc10d82d852db0f15ef4b9c8c0"
+    "sha256": "7bcf93cdb8333d663b53744de4c13475b27f268829ce695b8d9b5634e0cef611"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 27952
+  "triangles": 32928
 }

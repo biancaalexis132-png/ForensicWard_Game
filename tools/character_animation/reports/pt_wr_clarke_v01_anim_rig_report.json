@@ -94,8 +94,8 @@
         -0.03889999911189079,
         1.30840003490448
       ],
-      "weighted_vertices": 6443,
-      "centroid_to_bone_m": 0.0318,
+      "weighted_vertices": 9979,
+      "centroid_to_bone_m": 0.0103,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -248,6 +248,12 @@
     },
     {
       "name": "Clarke_Hair",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Clarke_Hair_Cards",
       "armature_modifier": true,
       "vertex_groups": 1,
       "shape_keys": []
@@ -637,5 +643,5 @@
       }
     ]
   },
-  "triangles": 29206
+  "triangles": 32176
 }

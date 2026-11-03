@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Imogen_Clarke_v01_face.blend",
-      "sha256": "298c03bb8f258754e0d29b9d7388747260f34f39b7c7c14fb19e1f7dc96f9097",
+      "sha256": "a0cb47b106e8dff87e94db8471ccd9ff4667d9619ea6fcbca3aa56c5d7306538",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 29206,
+  "triangle_count": 32176,
   "clips": [
     "idle_breathing",
     "idle_neutral",

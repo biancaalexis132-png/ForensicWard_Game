@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Nadia_Haddad_v01_draft.blend",
-    "sha256": "0be9898e246ce26de2f49c09afda6863aa2f28082642db203717db4edc5dc41c",
+    "sha256": "e0a1ce2f5c1ee925582211cc4c4f1cabef6e40a07fa6b5cd5b978f9f451eafe1",
     "modified": false
   },
   "library": {
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Nadia_Haddad_v01_draft.glb",
-    "sha256": "6307fd72e655d1cd25bfbc0a5b3a43ac9516c6d6da1fde11790df2b3f93041c5",
+    "sha256": "37c117bbabace05f486dd3a2af93e9a68f0bb9ebf0b5f58c307420563cf9be50",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

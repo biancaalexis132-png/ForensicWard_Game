@@ -94,8 +94,8 @@
         -0.03720000013709068,
         1.2919000387191772
       ],
-      "weighted_vertices": 6427,
-      "centroid_to_bone_m": 0.0313,
+      "weighted_vertices": 9839,
+      "centroid_to_bone_m": 0.0123,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -248,6 +248,12 @@
     },
     {
       "name": "Bell_Hair",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Bell_Hair_Cards",
       "armature_modifier": true,
       "vertex_groups": 1,
       "shape_keys": []
@@ -637,5 +643,5 @@
       }
     ]
   },
-  "triangles": 29382
+  "triangles": 32262
 }

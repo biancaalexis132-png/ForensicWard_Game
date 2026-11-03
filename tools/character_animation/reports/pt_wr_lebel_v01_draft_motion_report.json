@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Marguerite_Lebel_v01_draft.blend",
-    "sha256": "f0292658619d24b8c13b702dd8a5294318aacd5636bc4b393452946959b9ea07",
+    "sha256": "a2f5a2e10f27d4fb806230d2454c19a8c2ea9c4c8eae445bd4348354513edc95",
     "modified": false
   },
   "library": {
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Marguerite_Lebel_v01_draft.glb",
-    "sha256": "d124d627e3bbe475afc5976e5ca9f28b9f09715ac8ae37b0d988e9b32d61e59c",
+    "sha256": "22f7f04653f64631c78b929d9bfb602c8804138f5b3bb0d3aebeb440cd2c115a",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

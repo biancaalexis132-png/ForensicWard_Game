@@ -4,7 +4,7 @@
   "profile_sha256": "d5eaeb52b72ae30ad4d0eb155f8413a9d0b8865e3b24247acc21dd87df8eb100",
   "source": {
     "path": "build/cast/Maeve_Quinn_v01_face.blend",
-    "sha256": "fbe6dccba580a72c0c29e0cd9fe938112d36c873a95fa11c9353e1f30323047b"
+    "sha256": "818cc454d14c2b4d6c22bda6efdc5f16bace02dc2d6621f4132e3c4ca2452df7"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 29064
+  "triangles": 32034
 }

@@ -4,7 +4,7 @@
   "profile_sha256": "2a0a788028c3460a86f83c05fc6ed5a7a6bd70107c118116b087026e312d4c19",
   "source": {
     "path": "build/cast/Owen_Hughes_v01_face.blend",
-    "sha256": "adbc76c584023bcf4bab7fa4673188338d01da542ed0c43ce9f5af72f9e5c265"
+    "sha256": "b0ea25294f4bbeb62a521faf167521d8402b60b7d6338567e3d352a1aed1f7dc"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28197
+  "triangles": 33173
 }

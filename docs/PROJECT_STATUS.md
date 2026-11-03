@@ -1,3 +1,5 @@
+**Patient hair (Claude Code, 2026-11-03; draft PR, not merged):** `claude/patient-hair-cards` on #118. 23 ward-round patients now have strand hair cards over the scalp cap (ponytails read from the side; short hair shows strands instead of a solid cap). Full QA passed (game 401/0, GLB 199/0). Not tested on the Mac.
+
 **Patient looks (Claude Code, 2026-11-03; draft PR, not merged):** `claude/patient-model-ageing` on #117. Fifteen ward-round patients rebuilt with painted signs of age, grey mixed through the hair instead of stripes, receding temples on some older men, and heavier builds for some. Full QA passed (game 401/0, GLB 199/0). Not tested on the Mac.
 
 **Ward-round scoring (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-scoring` on #116. Accepted plans get a debrief scored as the case bible says (safety 40, reasoning 25, rapport 20, resources 15; unsafe or dismissive choices cap the grade), a soft tests budget, and Replay case for a better score. Full QA passed (game 401/0). Not tested on the Mac.

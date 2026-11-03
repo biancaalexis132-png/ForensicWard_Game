@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Kenji_Sato_v01_face.blend",
-      "sha256": "9bc35aec8ae8b737343dce9e73c345f3fdfa4982754019f79e9e6a2d383272f2",
+      "sha256": "e666ea887f820376580dc5a601122c320ca5b0128e093758344fc3e567af276c",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 28232,
+  "triangle_count": 33240,
   "clips": [
     "idle_breathing",
     "idle_neutral",

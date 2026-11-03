@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Harold_Kim_v01_face.blend",
-      "sha256": "8e2a6985901ea7970441e01e6ee731c4726412245d091f752bbc0496266d905a",
+      "sha256": "056925b6fc4d3ff4769294927ee6891299cb5a7e22cb01a30ae94de92a4ed360",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 28282,
+  "triangle_count": 33322,
   "clips": [
     "idle_breathing",
     "idle_neutral",
