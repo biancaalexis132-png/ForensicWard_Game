@@ -1,0 +1,1320 @@
+{
+	"schema_version": 1,
+	"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+	"_note": "Ward rounds: per-chapter patients the player assesses in the EHR by ordering labs and building a medication plan. Draft teaching cases written by Claude Code on 2026-11-03 from standard teaching points; no doses, no invented thresholds. Every case and answer key is PENDING_PSYCHIATRIST_REVIEW until the owner approves it in docs/clinical_review_log.md. Results are qualitative. Verdicts: labs required/helpful/not_needed; plan options preferred/acceptable/required (must be chosen)/not_indicated/unsafe. Unlisted labs read 'Within normal limits' and count as not needed; unlisted start options are not indicated; unlisted interventions are not needed.",
+	"lab_catalog": [
+		{
+			"id": "cbc",
+			"label": "Complete blood count with differential (includes ANC)",
+			"category": "Haematology"
+		},
+		{
+			"id": "bmp",
+			"label": "Basic metabolic panel (sodium, potassium, renal function, glucose)",
+			"category": "Chemistry"
+		},
+		{
+			"id": "lft",
+			"label": "Liver function tests",
+			"category": "Chemistry"
+		},
+		{
+			"id": "magnesium",
+			"label": "Serum magnesium",
+			"category": "Chemistry"
+		},
+		{
+			"id": "tsh",
+			"label": "Thyroid-stimulating hormone",
+			"category": "Endocrine"
+		},
+		{
+			"id": "glucose_lipids",
+			"label": "Fasting glucose, HbA1c and lipids (metabolic baseline)",
+			"category": "Chemistry"
+		},
+		{
+			"id": "b12_folate",
+			"label": "Vitamin B12 and folate",
+			"category": "Chemistry"
+		},
+		{
+			"id": "ck",
+			"label": "Creatine kinase",
+			"category": "Chemistry"
+		},
+		{
+			"id": "uds",
+			"label": "Urine drug screen",
+			"category": "Toxicology"
+		},
+		{
+			"id": "ethanol",
+			"label": "Blood alcohol level",
+			"category": "Toxicology"
+		},
+		{
+			"id": "hcg",
+			"label": "Pregnancy test (hCG)",
+			"category": "Endocrine"
+		},
+		{
+			"id": "ecg",
+			"label": "12-lead ECG (QTc)",
+			"category": "Cardiac"
+		},
+		{
+			"id": "lithium_level",
+			"label": "Serum lithium level",
+			"category": "Drug levels"
+		},
+		{
+			"id": "clozapine_level",
+			"label": "Clozapine and norclozapine levels",
+			"category": "Drug levels"
+		}
+	],
+	"medication_catalog": [
+		{
+			"id": "haloperidol",
+			"label": "Haloperidol",
+			"class": "First-generation antipsychotic"
+		},
+		{
+			"id": "risperidone",
+			"label": "Risperidone",
+			"class": "Second-generation antipsychotic"
+		},
+		{
+			"id": "aripiprazole",
+			"label": "Aripiprazole",
+			"class": "Second-generation antipsychotic"
+		},
+		{
+			"id": "olanzapine",
+			"label": "Olanzapine",
+			"class": "Second-generation antipsychotic"
+		},
+		{
+			"id": "quetiapine",
+			"label": "Quetiapine",
+			"class": "Second-generation antipsychotic"
+		},
+		{
+			"id": "clozapine",
+			"label": "Clozapine",
+			"class": "Second-generation antipsychotic (treatment-resistant schizophrenia)"
+		},
+		{
+			"id": "lithium",
+			"label": "Lithium",
+			"class": "Mood stabilizer"
+		},
+		{
+			"id": "sertraline",
+			"label": "Sertraline",
+			"class": "SSRI antidepressant"
+		},
+		{
+			"id": "fluoxetine",
+			"label": "Fluoxetine",
+			"class": "SSRI antidepressant"
+		},
+		{
+			"id": "citalopram",
+			"label": "Citalopram",
+			"class": "SSRI antidepressant"
+		},
+		{
+			"id": "lorazepam",
+			"label": "Lorazepam",
+			"class": "Benzodiazepine"
+		},
+		{
+			"id": "benztropine",
+			"label": "Benztropine",
+			"class": "Anticholinergic"
+		},
+		{
+			"id": "propranolol",
+			"label": "Propranolol",
+			"class": "Beta-blocker"
+		},
+		{
+			"id": "thiamine",
+			"label": "Thiamine",
+			"class": "Vitamin B1"
+		}
+	],
+	"intervention_catalog": [
+		{
+			"id": "medical_transfer",
+			"label": "Urgent review and transfer to the medical team"
+		},
+		{
+			"id": "close_observation",
+			"label": "Increase the level of nursing observation"
+		},
+		{
+			"id": "safety_plan",
+			"label": "Suicide risk assessment and safety plan"
+		},
+		{
+			"id": "withdrawal_monitoring",
+			"label": "Structured withdrawal monitoring (CIWA-Ar)"
+		},
+		{
+			"id": "electrolyte_replacement",
+			"label": "Ask the medical team to correct electrolytes"
+		},
+		{
+			"id": "cardiac_monitoring",
+			"label": "Cardiac monitoring"
+		},
+		{
+			"id": "nutrition_hydration",
+			"label": "Fluid and nutrition support with the medical team"
+		},
+		{
+			"id": "ect_referral",
+			"label": "Referral for ECT assessment"
+		},
+		{
+			"id": "nicotine_replacement",
+			"label": "Offer nicotine replacement"
+		}
+	],
+	"cases": [
+		{
+			"id": "wr_ch1_ortiz",
+			"chapter": "ch1",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Daniel Ortiz",
+				"age": 22,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Brought in by family after three weeks of hearing voices and withdrawing from friends.",
+				"history": "No previous psychiatric contact or treatment. Family report no alcohol or drug use; Daniel is unsure. Not sleeping more than three or four hours. No medical history.",
+				"mental_status": "Guarded, distracted, appears to respond to voices. Describes a voice commenting on his actions. Believes neighbours are monitoring him. No thoughts of harming himself or others. Oriented.",
+				"vitals": "BP 124/78, HR 84, temperature 36.8 °C, SpO2 99%.",
+				"current_medications": []
+			},
+			"labs": {
+				"cbc": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"tsh": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"uds": {
+					"verdict": "required",
+					"result": "Negative for all substances screened.",
+					"flag": "normal",
+					"teaching": "A first episode needs substance-induced psychosis considered before treatment."
+				},
+				"lft": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"glucose_lipids": {
+					"verdict": "helpful",
+					"result": "Within normal limits. Baseline recorded for antipsychotic monitoring.",
+					"flag": "normal"
+				},
+				"ecg": {
+					"verdict": "helpful",
+					"result": "Sinus rhythm, QTc normal.",
+					"flag": "normal"
+				},
+				"b12_folate": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"hcg": {
+					"verdict": "not_needed",
+					"result": "Not applicable.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"start:risperidone": {
+					"verdict": "preferred",
+					"feedback": "A second-generation antipsychotic at a low starting dose is a reasonable first-line choice for first-episode psychosis."
+				},
+				"start:aripiprazole": {
+					"verdict": "preferred",
+					"feedback": "A reasonable first-line choice with a lower metabolic burden."
+				},
+				"start:olanzapine": {
+					"verdict": "acceptable",
+					"feedback": "Effective, but weight gain and metabolic effects weigh against it as a first choice in a young patient."
+				},
+				"start:quetiapine": {
+					"verdict": "acceptable",
+					"feedback": "Acceptable, though sedation and metabolic effects are notable."
+				},
+				"start:haloperidol": {
+					"verdict": "acceptable",
+					"feedback": "Effective, but people in a first episode are especially sensitive to extrapyramidal effects."
+				},
+				"start:clozapine": {
+					"verdict": "not_indicated",
+					"feedback": "Clozapine is reserved for psychosis that has not responded to two adequate antipsychotic trials, and needs blood monitoring."
+				},
+				"start:lorazepam": {
+					"verdict": "acceptable",
+					"feedback": "Short-term use for agitation or sleep is acceptable alongside an antipsychotic."
+				},
+				"start:benztropine": {
+					"verdict": "not_indicated",
+					"feedback": "Prophylactic anticholinergics are not routinely needed; treat extrapyramidal effects if they appear."
+				},
+				"int:close_observation": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable while the assessment is completed."
+				}
+			},
+			"requires_one_of": [
+				[
+					"start:risperidone",
+					"start:aripiprazole",
+					"start:olanzapine",
+					"start:quetiapine",
+					"start:haloperidol"
+				]
+			],
+			"teaching": "First-episode psychosis: rule out medical and substance causes, record a metabolic baseline, and start a single antipsychotic at a low dose."
+		},
+		{
+			"id": "wr_ch1_natarajan",
+			"chapter": "ch1",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Priya Natarajan",
+				"age": 31,
+				"sex": "female"
+			},
+			"presentation": {
+				"reason": "Five days of very little sleep, rapid speech and spending well beyond her means.",
+				"history": "Treated for depression by her family doctor; sertraline was started three weeks ago. No previous episodes of elevated mood recorded. Sexually active; not using contraception reliably.",
+				"mental_status": "Pressured speech, flight of ideas, expansive mood, believes she is about to launch a company that will 'fix medicine'. Limited insight. No psychotic features beyond grandiosity. Denies thoughts of harm.",
+				"vitals": "BP 128/80, HR 96, temperature 36.9 °C.",
+				"current_medications": [
+					{
+						"id": "sertraline",
+						"label": "Sertraline (started 3 weeks ago)"
+					}
+				]
+			},
+			"labs": {
+				"bmp": {
+					"verdict": "required",
+					"result": "Renal function and electrolytes within normal limits.",
+					"flag": "normal",
+					"teaching": "Lithium is cleared by the kidney: check renal function before starting it."
+				},
+				"tsh": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal",
+					"teaching": "Lithium can cause hypothyroidism: record a baseline."
+				},
+				"hcg": {
+					"verdict": "required",
+					"result": "Negative.",
+					"flag": "normal",
+					"teaching": "Check pregnancy status before choosing a mood stabilizer."
+				},
+				"uds": {
+					"verdict": "required",
+					"result": "Negative for all substances screened.",
+					"flag": "normal"
+				},
+				"cbc": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"ecg": {
+					"verdict": "helpful",
+					"result": "Sinus rhythm, QTc normal.",
+					"flag": "normal"
+				},
+				"glucose_lipids": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"stop:sertraline": {
+					"verdict": "preferred",
+					"feedback": "Antidepressants can drive mania; stopping it is the first step."
+				},
+				"hold:sertraline": {
+					"verdict": "acceptable",
+					"feedback": "Holding it removes the drive for now; plan to stop it."
+				},
+				"continue:sertraline": {
+					"verdict": "unsafe",
+					"feedback": "Continuing an antidepressant during a manic episode can worsen and prolong it."
+				},
+				"reduce:sertraline": {
+					"verdict": "not_indicated",
+					"feedback": "A lower dose still exposes her to the antidepressant during mania; stop or hold it."
+				},
+				"start:lithium": {
+					"verdict": "preferred",
+					"feedback": "Lithium is a first-line treatment for mania once renal, thyroid and pregnancy checks are done."
+				},
+				"start:olanzapine": {
+					"verdict": "acceptable",
+					"feedback": "An antipsychotic is an effective first-line treatment for acute mania."
+				},
+				"start:quetiapine": {
+					"verdict": "acceptable",
+					"feedback": "An antipsychotic is an effective first-line treatment for acute mania."
+				},
+				"start:risperidone": {
+					"verdict": "acceptable",
+					"feedback": "An antipsychotic is an effective first-line treatment for acute mania."
+				},
+				"start:aripiprazole": {
+					"verdict": "acceptable",
+					"feedback": "An antipsychotic is an effective first-line treatment for acute mania."
+				},
+				"start:haloperidol": {
+					"verdict": "acceptable",
+					"feedback": "Effective for acute mania, with a higher risk of extrapyramidal effects."
+				},
+				"start:lorazepam": {
+					"verdict": "acceptable",
+					"feedback": "Short-term use for sleep and agitation is acceptable alongside a mood stabilizer or antipsychotic."
+				},
+				"start:fluoxetine": {
+					"verdict": "unsafe",
+					"feedback": "Another antidepressant would worsen the mania."
+				},
+				"start:citalopram": {
+					"verdict": "unsafe",
+					"feedback": "Another antidepressant would worsen the mania."
+				},
+				"start:clozapine": {
+					"verdict": "not_indicated",
+					"feedback": "Not a first-line treatment for mania."
+				}
+			},
+			"requires_one_of": [
+				[
+					"stop:sertraline",
+					"hold:sertraline"
+				],
+				[
+					"start:lithium",
+					"start:olanzapine",
+					"start:quetiapine",
+					"start:risperidone",
+					"start:aripiprazole",
+					"start:haloperidol"
+				]
+			],
+			"requires_labs_for": {
+				"start:lithium": [
+					"bmp",
+					"tsh",
+					"hcg"
+				]
+			},
+			"teaching": "Antidepressant-associated mania: stop the antidepressant, start a mood stabilizer or antipsychotic, and do renal, thyroid and pregnancy checks before lithium."
+		},
+		{
+			"id": "wr_ch2_kim",
+			"chapter": "ch2",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Harold Kim",
+				"age": 58,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Two months of low mood, early waking and weight loss after retiring.",
+				"history": "No previous episodes. No medications. Drinks two glasses of wine a week. Lives with his wife.",
+				"mental_status": "Low mood, slowed speech, reduced interest, guilt about 'being a burden'. Reports passive thoughts that he would not mind not waking up; no plan or intent. No psychotic features.",
+				"vitals": "BP 132/84, HR 70, weight down 5 kg in two months.",
+				"current_medications": []
+			},
+			"labs": {
+				"tsh": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal",
+					"teaching": "Hypothyroidism can present as depression."
+				},
+				"cbc": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"b12_folate": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"lft": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"ecg": {
+					"verdict": "helpful",
+					"result": "Sinus rhythm, QTc normal.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"start:sertraline": {
+					"verdict": "preferred",
+					"feedback": "An SSRI is a first-line treatment for a major depressive episode."
+				},
+				"start:fluoxetine": {
+					"verdict": "acceptable",
+					"feedback": "An SSRI is a first-line treatment; note its long half-life and interactions."
+				},
+				"start:citalopram": {
+					"verdict": "acceptable",
+					"feedback": "Acceptable; check the ECG, as citalopram prolongs the QTc in a dose-dependent way."
+				},
+				"start:lithium": {
+					"verdict": "not_indicated",
+					"feedback": "Lithium is not a first-line treatment for a first depressive episode."
+				},
+				"start:lorazepam": {
+					"verdict": "not_indicated",
+					"feedback": "Benzodiazepines do not treat depression and carry dependence risk."
+				},
+				"start:quetiapine": {
+					"verdict": "not_indicated",
+					"feedback": "Not a first-line treatment for depression without psychotic features."
+				},
+				"int:safety_plan": {
+					"verdict": "preferred",
+					"feedback": "Passive death wishes call for a structured risk assessment and safety plan."
+				},
+				"int:close_observation": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable while risk is assessed."
+				}
+			},
+			"requires_one_of": [
+				[
+					"start:sertraline",
+					"start:fluoxetine",
+					"start:citalopram"
+				],
+				[
+					"int:safety_plan"
+				]
+			],
+			"teaching": "Late-onset depression: exclude thyroid and other medical causes, assess suicide risk, and start an SSRI."
+		},
+		{
+			"id": "wr_ch2_lebel",
+			"chapter": "ch2",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Marguerite Lebel",
+				"age": 66,
+				"sex": "female"
+			},
+			"presentation": {
+				"reason": "Two days of vomiting, diarrhoea, a coarse tremor and new confusion.",
+				"history": "Bipolar disorder, stable on lithium for twelve years. Her GP started ibuprofen for knee pain eight days ago. Drinking less than usual because of the nausea.",
+				"mental_status": "Drowsy, disoriented to date, slurred speech. No mood symptoms evident.",
+				"vitals": "BP 108/64, HR 98, temperature 36.7 °C. Unsteady when standing; coarse tremor of both hands.",
+				"current_medications": [
+					{
+						"id": "lithium",
+						"label": "Lithium (long-term)"
+					},
+					{
+						"id": "ibuprofen",
+						"label": "Ibuprofen (started 8 days ago)"
+					}
+				]
+			},
+			"labs": {
+				"lithium_level": {
+					"verdict": "required",
+					"result": "Above the therapeutic range: toxic.",
+					"flag": "critical",
+					"teaching": "NSAIDs and dehydration both reduce lithium clearance."
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Creatinine raised from her baseline; sodium low-normal.",
+					"flag": "abnormal",
+					"teaching": "Kidney function drives lithium levels."
+				},
+				"ecg": {
+					"verdict": "helpful",
+					"result": "Sinus rhythm; T-wave flattening.",
+					"flag": "normal"
+				},
+				"cbc": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"tsh": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"hold:lithium": {
+					"verdict": "preferred",
+					"feedback": "Hold lithium immediately in suspected toxicity."
+				},
+				"stop:lithium": {
+					"verdict": "acceptable",
+					"feedback": "Stopping is reasonable now; whether to restart is decided once she has recovered."
+				},
+				"continue:lithium": {
+					"verdict": "unsafe",
+					"feedback": "Continuing lithium at a toxic level risks seizures, arrhythmia and permanent neurological damage."
+				},
+				"reduce:lithium": {
+					"verdict": "unsafe",
+					"feedback": "Any further lithium while the level is toxic is unsafe; hold it."
+				},
+				"stop:ibuprofen": {
+					"verdict": "preferred",
+					"feedback": "The NSAID reduced lithium clearance; stop it and ask for another analgesic."
+				},
+				"hold:ibuprofen": {
+					"verdict": "acceptable",
+					"feedback": "Holding it removes the interaction."
+				},
+				"continue:ibuprofen": {
+					"verdict": "unsafe",
+					"feedback": "The NSAID keeps lithium clearance down."
+				},
+				"reduce:ibuprofen": {
+					"verdict": "not_indicated",
+					"feedback": "Any NSAID dose reduces lithium clearance; stop it."
+				},
+				"int:medical_transfer": {
+					"verdict": "required",
+					"feedback": "Lithium toxicity with confusion needs urgent medical management."
+				},
+				"start:haloperidol": {
+					"verdict": "not_indicated",
+					"feedback": "No indication; it would add sedation to the confusion."
+				},
+				"start:lorazepam": {
+					"verdict": "not_indicated",
+					"feedback": "No indication; it would add sedation to the confusion."
+				}
+			},
+			"requires_one_of": [
+				[
+					"hold:lithium",
+					"stop:lithium"
+				],
+				[
+					"stop:ibuprofen",
+					"hold:ibuprofen"
+				],
+				[
+					"int:medical_transfer"
+				]
+			],
+			"teaching": "Lithium toxicity: an NSAID plus dehydration cut renal clearance. Hold lithium, stop the NSAID, check the level and renal function, and involve the medical team."
+		},
+		{
+			"id": "wr_ch3_wrobel",
+			"chapter": "ch3",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Tomasz Wróbel",
+				"age": 44,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Increasingly drowsy and dizzy on standing since admission six days ago.",
+				"history": "Treatment-resistant schizophrenia, stable on clozapine for four years. Smoked 30 cigarettes a day until admission to this smoke-free ward. No dose change. Bloods for clozapine monitoring are up to date.",
+				"mental_status": "Sedated, slow to answer, but no return of psychotic symptoms. Drooling more than usual.",
+				"vitals": "BP lying 118/76, standing 96/60. HR 104. Temperature 36.9 °C.",
+				"current_medications": [
+					{
+						"id": "clozapine",
+						"label": "Clozapine (stable dose)"
+					}
+				]
+			},
+			"labs": {
+				"clozapine_level": {
+					"verdict": "required",
+					"result": "Well above his usual level.",
+					"flag": "abnormal",
+					"teaching": "Tobacco smoke induces CYP1A2; stopping smoking raises clozapine levels within days."
+				},
+				"cbc": {
+					"verdict": "required",
+					"result": "Within normal limits; ANC normal.",
+					"flag": "normal",
+					"teaching": "Clozapine needs ANC monitoring whatever the reason for review."
+				},
+				"ecg": {
+					"verdict": "helpful",
+					"result": "Sinus tachycardia; QTc normal.",
+					"flag": "normal"
+				},
+				"bmp": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"glucose_lipids": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"reduce:clozapine": {
+					"verdict": "preferred",
+					"feedback": "Reduce the dose and recheck the level: the smoke-induced enzyme activity is wearing off."
+				},
+				"hold:clozapine": {
+					"verdict": "acceptable",
+					"feedback": "Holding a dose while he is very sedated is reasonable; restart at a lower dose."
+				},
+				"continue:clozapine": {
+					"verdict": "unsafe",
+					"feedback": "Levels will keep rising for days at the same dose."
+				},
+				"stop:clozapine": {
+					"verdict": "not_indicated",
+					"feedback": "He is otherwise well on clozapine; stopping abruptly risks relapse and rebound effects."
+				},
+				"int:nicotine_replacement": {
+					"verdict": "acceptable",
+					"feedback": "Helpful for withdrawal, but nicotine does not induce CYP1A2: it does not lower the clozapine level."
+				},
+				"start:benztropine": {
+					"verdict": "not_indicated",
+					"feedback": "Not indicated; hypersalivation here comes from a high level."
+				},
+				"start:haloperidol": {
+					"verdict": "unsafe",
+					"feedback": "Adding a second antipsychotic adds sedation and risk with no indication."
+				}
+			},
+			"requires_one_of": [
+				[
+					"reduce:clozapine",
+					"hold:clozapine"
+				]
+			],
+			"requires_labs_for": {
+				"reduce:clozapine": [
+					"clozapine_level"
+				],
+				"hold:clozapine": [
+					"clozapine_level"
+				]
+			},
+			"teaching": "Stopping smoking removes CYP1A2 induction, so clozapine levels rise. Check the level and reduce the dose; nicotine replacement does not prevent this."
+		},
+		{
+			"id": "wr_ch3_adeyemi",
+			"chapter": "ch3",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Samuel Adeyemi",
+				"age": 27,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Fever, stiffness and confusion four days after starting haloperidol.",
+				"history": "Admitted with acute psychosis; haloperidol started four days ago and increased yesterday. No other medications.",
+				"mental_status": "Confused, mute at times, staring. Unable to give a history.",
+				"vitals": "Temperature 39.4 °C, HR 122, BP fluctuating between 150/95 and 110/70, sweating heavily. Generalized lead-pipe rigidity.",
+				"current_medications": [
+					{
+						"id": "haloperidol",
+						"label": "Haloperidol (started 4 days ago)"
+					}
+				]
+			},
+			"labs": {
+				"ck": {
+					"verdict": "required",
+					"result": "Markedly raised.",
+					"flag": "critical",
+					"teaching": "Muscle breakdown: a raised CK supports NMS and risks kidney injury."
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Creatinine raised.",
+					"flag": "abnormal"
+				},
+				"cbc": {
+					"verdict": "required",
+					"result": "White cell count raised.",
+					"flag": "abnormal"
+				},
+				"lft": {
+					"verdict": "helpful",
+					"result": "Transaminases mildly raised.",
+					"flag": "normal"
+				},
+				"uds": {
+					"verdict": "helpful",
+					"result": "Negative for all substances screened.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"stop:haloperidol": {
+					"verdict": "preferred",
+					"feedback": "Stop the antipsychotic immediately in suspected neuroleptic malignant syndrome."
+				},
+				"hold:haloperidol": {
+					"verdict": "acceptable",
+					"feedback": "Holding it stops further exposure; it should not be restarted while NMS is suspected."
+				},
+				"continue:haloperidol": {
+					"verdict": "unsafe",
+					"feedback": "Continuing the antipsychotic in NMS can be fatal."
+				},
+				"reduce:haloperidol": {
+					"verdict": "unsafe",
+					"feedback": "Any further antipsychotic exposure is unsafe in NMS."
+				},
+				"int:medical_transfer": {
+					"verdict": "required",
+					"feedback": "NMS is a medical emergency needing medical team care."
+				},
+				"start:lorazepam": {
+					"verdict": "acceptable",
+					"feedback": "Benzodiazepines are used as supportive treatment in NMS."
+				},
+				"start:olanzapine": {
+					"verdict": "unsafe",
+					"feedback": "Switching to another antipsychotic during NMS is unsafe."
+				},
+				"start:risperidone": {
+					"verdict": "unsafe",
+					"feedback": "Switching to another antipsychotic during NMS is unsafe."
+				},
+				"start:quetiapine": {
+					"verdict": "unsafe",
+					"feedback": "Switching to another antipsychotic during NMS is unsafe."
+				},
+				"start:aripiprazole": {
+					"verdict": "unsafe",
+					"feedback": "Switching to another antipsychotic during NMS is unsafe."
+				},
+				"start:clozapine": {
+					"verdict": "unsafe",
+					"feedback": "Switching to another antipsychotic during NMS is unsafe."
+				},
+				"start:benztropine": {
+					"verdict": "not_indicated",
+					"feedback": "Anticholinergics do not treat NMS and impair heat loss."
+				},
+				"start:propranolol": {
+					"verdict": "not_indicated",
+					"feedback": "Leave autonomic instability to the medical team."
+				}
+			},
+			"requires_one_of": [
+				[
+					"stop:haloperidol",
+					"hold:haloperidol"
+				],
+				[
+					"int:medical_transfer"
+				]
+			],
+			"teaching": "Neuroleptic malignant syndrome: fever, rigidity, confusion and autonomic instability after an antipsychotic. Stop it, check CK and renal function, and transfer for medical care."
+		},
+		{
+			"id": "wr_ch4_petrova",
+			"chapter": "ch4",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Elena Petrova",
+				"age": 39,
+				"sex": "female"
+			},
+			"presentation": {
+				"reason": "Restless, tremulous and sweating since yesterday evening.",
+				"history": "Depression, stable on sertraline for a year. The medical team started linezolid two days ago for a skin infection.",
+				"mental_status": "Agitated, anxious, cannot sit still. Oriented.",
+				"vitals": "Temperature 38.4 °C, HR 118, BP 150/92. Tremor, brisk reflexes, inducible clonus at both ankles, diarrhoea, dilated pupils.",
+				"current_medications": [
+					{
+						"id": "sertraline",
+						"label": "Sertraline (long-term)"
+					},
+					{
+						"id": "linezolid",
+						"label": "Linezolid (started 2 days ago, medical team)"
+					}
+				]
+			},
+			"labs": {
+				"ck": {
+					"verdict": "required",
+					"result": "Mildly raised.",
+					"flag": "abnormal"
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"cbc": {
+					"verdict": "helpful",
+					"result": "White cell count mildly raised (known infection).",
+					"flag": "normal"
+				},
+				"ecg": {
+					"verdict": "helpful",
+					"result": "Sinus tachycardia.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"stop:sertraline": {
+					"verdict": "preferred",
+					"feedback": "Stop the serotonergic drug: this is serotonin toxicity."
+				},
+				"hold:sertraline": {
+					"verdict": "acceptable",
+					"feedback": "Holding it removes the serotonergic load."
+				},
+				"continue:sertraline": {
+					"verdict": "unsafe",
+					"feedback": "Continuing the SSRI with linezolid (a MAO inhibitor) sustains serotonin toxicity."
+				},
+				"reduce:sertraline": {
+					"verdict": "unsafe",
+					"feedback": "Any SSRI with linezolid sustains serotonin toxicity; stop it."
+				},
+				"stop:linezolid": {
+					"verdict": "acceptable",
+					"feedback": "Ask the medical team for an alternative antibiotic."
+				},
+				"hold:linezolid": {
+					"verdict": "acceptable",
+					"feedback": "Hold and ask the medical team for an alternative antibiotic."
+				},
+				"continue:linezolid": {
+					"verdict": "not_indicated",
+					"feedback": "Linezolid inhibits MAO; ask the medical team to choose another antibiotic."
+				},
+				"reduce:linezolid": {
+					"verdict": "not_indicated",
+					"feedback": "Antibiotic dosing is the medical team's decision; ask for an alternative agent."
+				},
+				"int:medical_transfer": {
+					"verdict": "required",
+					"feedback": "Moderate serotonin toxicity with fever needs medical care."
+				},
+				"start:lorazepam": {
+					"verdict": "acceptable",
+					"feedback": "Benzodiazepines help agitation and muscle activity in serotonin toxicity."
+				},
+				"start:fluoxetine": {
+					"verdict": "unsafe",
+					"feedback": "Another serotonergic drug worsens the toxicity."
+				},
+				"start:citalopram": {
+					"verdict": "unsafe",
+					"feedback": "Another serotonergic drug worsens the toxicity."
+				},
+				"start:haloperidol": {
+					"verdict": "not_indicated",
+					"feedback": "Antipsychotics are not the treatment for serotonin toxicity."
+				},
+				"start:propranolol": {
+					"verdict": "not_indicated",
+					"feedback": "Can mask tachycardia; leave to the medical team."
+				}
+			},
+			"requires_one_of": [
+				[
+					"stop:sertraline",
+					"hold:sertraline"
+				],
+				[
+					"int:medical_transfer"
+				]
+			],
+			"teaching": "Serotonin toxicity: an SSRI plus linezolid (an MAO inhibitor). Clonus, hyperreflexia and fever. Stop serotonergic drugs and involve the medical team."
+		},
+		{
+			"id": "wr_ch4_okafor",
+			"chapter": "ch4",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Ruth Okafor",
+				"age": 50,
+				"sex": "female"
+			},
+			"presentation": {
+				"reason": "Mute and motionless for two days; not eating or drinking.",
+				"history": "Bipolar disorder; stopped her medication several months ago. No new medications.",
+				"mental_status": "Mute, staring, holds odd postures against gravity, resists passive movement, does not follow commands.",
+				"vitals": "Temperature 37.1 °C, HR 92, BP 126/80. Dry mucous membranes.",
+				"current_medications": []
+			},
+			"labs": {
+				"ck": {
+					"verdict": "required",
+					"result": "Mildly raised.",
+					"flag": "abnormal",
+					"teaching": "Check CK in catatonia: it helps separate it from, and watch for, malignant catatonia and NMS."
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Urea raised; consistent with dehydration.",
+					"flag": "abnormal"
+				},
+				"cbc": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"tsh": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"lft": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"uds": {
+					"verdict": "helpful",
+					"result": "Negative for all substances screened.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"start:lorazepam": {
+					"verdict": "preferred",
+					"feedback": "A lorazepam challenge is first-line for catatonia and often helps quickly."
+				},
+				"start:haloperidol": {
+					"verdict": "unsafe",
+					"feedback": "High-potency antipsychotics can worsen catatonia and raise the risk of NMS."
+				},
+				"start:risperidone": {
+					"verdict": "not_indicated",
+					"feedback": "Defer antipsychotics until the catatonia is treated."
+				},
+				"start:olanzapine": {
+					"verdict": "not_indicated",
+					"feedback": "Defer antipsychotics until the catatonia is treated."
+				},
+				"start:quetiapine": {
+					"verdict": "not_indicated",
+					"feedback": "Defer antipsychotics until the catatonia is treated."
+				},
+				"start:aripiprazole": {
+					"verdict": "not_indicated",
+					"feedback": "Defer antipsychotics until the catatonia is treated."
+				},
+				"start:lithium": {
+					"verdict": "not_indicated",
+					"feedback": "Not while she cannot eat or drink."
+				},
+				"int:nutrition_hydration": {
+					"verdict": "required",
+					"feedback": "Two days without food or fluid needs medical support."
+				},
+				"int:ect_referral": {
+					"verdict": "acceptable",
+					"feedback": "Appropriate if lorazepam does not work, or sooner if catatonia becomes malignant."
+				},
+				"int:close_observation": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable for safety and fluid monitoring."
+				}
+			},
+			"requires_one_of": [
+				[
+					"start:lorazepam"
+				],
+				[
+					"int:nutrition_hydration"
+				]
+			],
+			"teaching": "Catatonia: start a lorazepam challenge, avoid high-potency antipsychotics, check CK and hydration, and keep ECT available."
+		},
+		{
+			"id": "wr_ch5_delaney",
+			"chapter": "ch5",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Frank Delaney",
+				"age": 52,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Shaky, sweating and anxious 30 hours after his last drink.",
+				"history": "Drinks about a bottle of spirits a day for years. Had a withdrawal seizure two years ago. Poor diet.",
+				"mental_status": "Anxious, tremulous, oriented. No hallucinations at present.",
+				"vitals": "BP 158/96, HR 112, temperature 37.6 °C. Coarse tremor, sweating.",
+				"current_medications": []
+			},
+			"labs": {
+				"bmp": {
+					"verdict": "required",
+					"result": "Potassium low-normal; glucose normal.",
+					"flag": "normal"
+				},
+				"magnesium": {
+					"verdict": "required",
+					"result": "Low.",
+					"flag": "abnormal",
+					"teaching": "Low magnesium is common and lowers the seizure threshold."
+				},
+				"lft": {
+					"verdict": "required",
+					"result": "Transaminases raised; bilirubin normal.",
+					"flag": "abnormal",
+					"teaching": "Liver function guides the choice of benzodiazepine."
+				},
+				"cbc": {
+					"verdict": "helpful",
+					"result": "Macrocytosis.",
+					"flag": "normal"
+				},
+				"ethanol": {
+					"verdict": "not_needed",
+					"result": "Zero.",
+					"flag": "normal"
+				},
+				"uds": {
+					"verdict": "helpful",
+					"result": "Negative for all substances screened.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"start:lorazepam": {
+					"verdict": "preferred",
+					"feedback": "A benzodiazepine treats withdrawal and prevents seizures; lorazepam suits impaired liver function."
+				},
+				"start:thiamine": {
+					"verdict": "required",
+					"feedback": "Give thiamine before glucose to prevent Wernicke's encephalopathy."
+				},
+				"start:haloperidol": {
+					"verdict": "not_indicated",
+					"feedback": "Antipsychotics do not treat withdrawal and lower the seizure threshold."
+				},
+				"start:propranolol": {
+					"verdict": "not_indicated",
+					"feedback": "Masks withdrawal signs without preventing seizures."
+				},
+				"int:withdrawal_monitoring": {
+					"verdict": "required",
+					"feedback": "Structured monitoring guides symptom-triggered dosing."
+				},
+				"int:electrolyte_replacement": {
+					"verdict": "acceptable",
+					"feedback": "Correcting magnesium helps; arrange with the medical team."
+				},
+				"int:medical_transfer": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable given his seizure history; essential if delirium develops."
+				}
+			},
+			"requires_one_of": [
+				[
+					"start:lorazepam"
+				],
+				[
+					"start:thiamine"
+				],
+				[
+					"int:withdrawal_monitoring"
+				]
+			],
+			"teaching": "Alcohol withdrawal with a seizure history: benzodiazepine, thiamine before glucose, structured monitoring, and electrolytes."
+		},
+		{
+			"id": "wr_ch5_lindqvist",
+			"chapter": "ch5",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Grace Lindqvist",
+				"age": 63,
+				"sex": "female"
+			},
+			"presentation": {
+				"reason": "Palpitations and two near-faints today.",
+				"history": "Depression on citalopram; quetiapine at night for sleep; a diuretic for hypertension. Ciprofloxacin started three days ago for a urinary infection.",
+				"mental_status": "Mood stable. Anxious about the palpitations.",
+				"vitals": "BP 112/70, HR 58 and irregular at times.",
+				"current_medications": [
+					{
+						"id": "citalopram",
+						"label": "Citalopram"
+					},
+					{
+						"id": "quetiapine",
+						"label": "Quetiapine (for sleep)"
+					},
+					{
+						"id": "ciprofloxacin",
+						"label": "Ciprofloxacin (started 3 days ago)"
+					}
+				]
+			},
+			"labs": {
+				"ecg": {
+					"verdict": "required",
+					"result": "QTc markedly prolonged; occasional ectopic beats.",
+					"flag": "critical",
+					"teaching": "Several QTc-prolonging drugs plus low potassium and magnesium add up."
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Potassium low.",
+					"flag": "abnormal"
+				},
+				"magnesium": {
+					"verdict": "required",
+					"result": "Low.",
+					"flag": "abnormal"
+				},
+				"cbc": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"tsh": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				}
+			},
+			"options": {
+				"stop:citalopram": {
+					"verdict": "preferred",
+					"feedback": "Stop citalopram, which prolongs the QTc in a dose-dependent way, and switch."
+				},
+				"hold:citalopram": {
+					"verdict": "acceptable",
+					"feedback": "Holding it removes one QTc-prolonging drug."
+				},
+				"reduce:citalopram": {
+					"verdict": "not_indicated",
+					"feedback": "With a markedly prolonged QTc, remove it rather than reduce it."
+				},
+				"continue:citalopram": {
+					"verdict": "unsafe",
+					"feedback": "Continuing three QTc-prolonging drugs with low potassium risks torsades de pointes."
+				},
+				"stop:quetiapine": {
+					"verdict": "preferred",
+					"feedback": "Quetiapine for sleep adds QTc risk without a strong indication."
+				},
+				"hold:quetiapine": {
+					"verdict": "acceptable",
+					"feedback": "Holding it removes one QTc-prolonging drug."
+				},
+				"reduce:quetiapine": {
+					"verdict": "not_indicated",
+					"feedback": "Remove rather than reduce while the QTc is prolonged."
+				},
+				"continue:quetiapine": {
+					"verdict": "unsafe",
+					"feedback": "Continuing it adds to the QTc risk."
+				},
+				"stop:ciprofloxacin": {
+					"verdict": "acceptable",
+					"feedback": "Ask the medical team for an antibiotic without QTc effects."
+				},
+				"hold:ciprofloxacin": {
+					"verdict": "acceptable",
+					"feedback": "Ask the medical team for an antibiotic without QTc effects."
+				},
+				"continue:ciprofloxacin": {
+					"verdict": "not_indicated",
+					"feedback": "Fluoroquinolones prolong the QTc; ask for an alternative."
+				},
+				"reduce:ciprofloxacin": {
+					"verdict": "not_indicated",
+					"feedback": "Antibiotic dosing is the medical team's decision; ask for an alternative agent."
+				},
+				"start:sertraline": {
+					"verdict": "acceptable",
+					"feedback": "Sertraline has less QTc effect; a reasonable switch once the QTc is recovering."
+				},
+				"start:haloperidol": {
+					"verdict": "unsafe",
+					"feedback": "Another QTc-prolonging drug."
+				},
+				"int:cardiac_monitoring": {
+					"verdict": "required",
+					"feedback": "A markedly prolonged QTc with ectopics needs monitoring."
+				},
+				"int:electrolyte_replacement": {
+					"verdict": "required",
+					"feedback": "Correct potassium and magnesium."
+				},
+				"int:medical_transfer": {
+					"verdict": "acceptable",
+					"feedback": "Appropriate for cardiac monitoring and electrolyte replacement."
+				}
+			},
+			"requires_one_of": [
+				[
+					"stop:citalopram",
+					"hold:citalopram"
+				],
+				[
+					"stop:quetiapine",
+					"hold:quetiapine"
+				],
+				[
+					"int:cardiac_monitoring",
+					"int:medical_transfer"
+				],
+				[
+					"int:electrolyte_replacement"
+				]
+			],
+			"teaching": "Drug-induced QTc prolongation: remove QTc-prolonging drugs, correct potassium and magnesium, and monitor the heart."
+		}
+	]
+}
