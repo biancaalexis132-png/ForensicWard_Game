@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Gerald_Brooks_v01_face.blend",
-      "sha256": "00f7211dc5aa4182f58e2b754a29c8c290e3dd4a91f17b087f1ac212677012ba",
+      "sha256": "c6b5845edaa1b08d73771d294c946230d47a945d221ba800c88c6e1c6fa6863a",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 28266,
+  "triangle_count": 28154,
   "clips": [
     "idle_breathing",
     "idle_neutral",

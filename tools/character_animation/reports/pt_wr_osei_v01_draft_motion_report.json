@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Kwame_Osei_v01_draft.blend",
-    "sha256": "15953d04023e67be4a75f86f777f79f8bc1374d557b36685211935fa5e50648c",
+    "sha256": "10cb234263bd926682c9a97d81ea8f7af345fb8e4698bb4ae4e6e171b88a0c08",
     "modified": false
   },
   "library": {
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Kwame_Osei_v01_draft.glb",
-    "sha256": "0939e5de46cf8db204ef436faa397b82cd75712bfe095405797cb0fdee3ded63",
+    "sha256": "73fdaecfeada39ee792f9d01cddd78fe5adfd648725098e1cd9ac286b5a90377",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

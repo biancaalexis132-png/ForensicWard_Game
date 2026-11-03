@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Tomasz_Wrobel_v01_face.blend",
-      "sha256": "ec5f87110bd56c8c37ebdd9f0adca5bd36edd656d50178183d556e2bcbccd746",
+      "sha256": "996f1dc9de52cee947b325ccb1ea79af433b3c6ebee0eff2ed72ade9c1d48658",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 28624,
+  "triangle_count": 28776,
   "clips": [
     "idle_breathing",
     "idle_neutral",

@@ -4,7 +4,7 @@
   "profile_sha256": "2ea3c410eb1d26860ce36c3924837a5a8de2618caae876236ad99291a151c4fc",
   "source": {
     "path": "build/cast/Harold_Kim_v01_face.blend",
-    "sha256": "03abe9a5c37ab807245aeda227ffb231b97db5b54b0b858b383d2e17081c0245"
+    "sha256": "8e2a6985901ea7970441e01e6ee731c4726412245d091f752bbc0496266d905a"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28362
+  "triangles": 28282
 }

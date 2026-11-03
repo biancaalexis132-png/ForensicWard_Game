@@ -4,7 +4,7 @@
   "profile_sha256": "d827effb09b40985cf3907bcfc5c11a8437ae39f1c08fd971a1548ae71004379",
   "source": {
     "path": "build/cast/Jan_Kowalczyk_v01_face.blend",
-    "sha256": "cd66d7f00f2364098c42ada177336958a7742de884b919c38efa39be351b9e5f"
+    "sha256": "7612c423146e69c8e91034c48a553bf6caca4a9c7b42fdc359f6e76f525069be"
   },
   "refinements": {
     "lids": {
@@ -23,7 +23,7 @@
       }
     },
     "shoes": {
-      "vertices_relaxed": 3298,
+      "vertices_relaxed": 3329,
       "iterations": 30
     }
   },
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28275
+  "triangles": 28330
 }

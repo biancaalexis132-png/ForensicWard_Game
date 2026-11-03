@@ -11,7 +11,8 @@
     "canon_basis": "data/ward_rounds.json case chart (name, age, sex only); appearance is a draft choice; ordinary own clothes; no symptom movement without clinical review",
     "draft_choices": [
       "Skin tone, face, build and height are draft choices; the chart gives only name, age and sex.",
-      "Seated rest pose for sitting on the bed in a patient room; only the shared neutral clips, no symptom-related movement."
+      "Seated rest pose for sitting on the bed in a patient room; only the shared neutral clips, no symptom-related movement.",
+      "v01 rebuild: painted signs of age, grey mixed through the hair, and build varied by weight are draft choices."
     ]
   },
   "source": {
@@ -25,7 +26,8 @@
       "caucasian": 1.0
     },
     "min_muscle": 0.03,
-    "max_weight": 0.06
+    "max_weight": 0.22,
+    "weight_any_age": true
   },
   "pose": {
     "upperarm_down_degrees": 62.0,
@@ -53,6 +55,9 @@
     "beard_shadow": {
       "srgb_hex": "#B0ACA6",
       "strength": 0.12
+    },
+    "age_marks": {
+      "strength": 0.82
     }
   },
   "eyes": {
@@ -82,7 +87,8 @@
     "volume_top_m": 0.002,
     "volume_side_m": 0.002,
     "fringe_m": 0.002,
-    "grey_srgb_hex": "#DAD6D0"
+    "grey_srgb_hex": "#DAD6D0",
+    "temple_recede_m": 0.018
   },
   "garments": [
     {

@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Nadia_Haddad_v01_face.blend",
-      "sha256": "08234764fee63238a08c9f0bdb02ab768126b696219a2b9d806cfe59fa70f279",
+      "sha256": "c66e90dda7f4ed96c45976d7581e26f3049c64db6528b1bfef6f43bb86e61c82",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],

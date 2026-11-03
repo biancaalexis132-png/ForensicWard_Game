@@ -20,6 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Patient looks: age, grey hair, weight | `claude/patient-model-ageing` (draft PR to `claude/ward-round-scoring`) | Claude Code (cloud) | see Log | `tools/blender/characters/build_cast_member.py` (opt-in options), 15 `pt_wr_*` configs and their outputs | Full QA passed; waiting on Bi's look |
 | Ward-round scoring and debrief | `claude/ward-round-scoring` (draft PR to `claude/ward-round-bedside`) | Claude Code (cloud) | `4b72789` | `scripts/clinical/WardRoundScoring.gd`, `WardRounds.gd` (history, replay, best), `WardRoundCatalog.gd` (rapport tags), `WardRoundScreen.gd` (Debrief tab, budget, replay, chip wrap), `data/ward_rounds.json` intervention catalog, `test_ward_round_scoring.gd`, capture tool | Full QA passed; waiting on Bi |
 | Ward-round patients on the ward in 3D | `claude/ward-round-bedside` (draft PR #116 to `claude/ward-rounds`) | Claude Code (cloud) | `99655fb` | `data/ward_round_bedside.json`, `scripts/world/WardRoundBedside.gd`, `Character.gd` (`Kind.WARD_ROUND`), one line in `AuthoredWorld.gd`, `test_ward_round_bedside.gd`, patient model configs/outputs `pt_wr_*`, 28 `asset_manifest.json` and `character_visuals.json` entries | All 28 patients modelled and staged; full QA passed; models pending owner look |
 | Ward rounds (labs and medication plans gate each chapter) | `claude/ward-rounds` (draft PR to `claude/playtest-fixes`) | Claude Code (cloud) | `8cc1120` | `data/ward_rounds.json`, `scripts/clinical/{WardRounds,WardRoundCatalog}.gd`, `scripts/ui/WardRoundScreen.gd`, `scenes/ui/WardRoundScreen.tscn`, one autoload line in `project.godot`, small edits to `ChapterDirector.gd`, `Main.gd`, `EHRScreen.gd`, `TestCase.gd`, `test_ward_rounds.gd`, capture tool, `docs/clinical_review_log.md` | First ten cases approved by Bi; second wave (10) and case-bible third wave (8) pending Bi's review; full QA passed on the merged bedside branch |
@@ -582,6 +583,13 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-11-03 late — Claude Code — older, greying and heavier patient models
+
+- Branch `claude/patient-model-ageing` (draft PR to `claude/ward-round-scoring`), pushed in several asset commits; the last commit on the branch carries the code, configs and docs.
+- Builder: `skin.age_marks`, `hair.temple_recede_m`, `macro.weight_any_age` (all opt-in); hair texture blends grey through the colour. 15 patients rebuilt through all five stages.
+- Tests: full headless QA: game 401/0, audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0. Mac not run.
+- Resume: `docs/handoffs/2026-11-03_claude_patient_model_ageing.md`.
 
 ### 2026-11-03 night — Claude Code — ward-round scoring, budget, debrief, replay
 

@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Gerald_Brooks_v01_draft.blend",
-    "sha256": "0bd6c9ad605147df0e49c72698b3ea68dcdbf6f10fede6b57d1584c049b6881f",
+    "sha256": "b7d85b462d72660154333ce7c7fb9eb67646762761a8d79937b86e55aa4a1454",
     "modified": false
   },
   "library": {
@@ -91,7 +91,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Gerald_Brooks_v01_draft.glb",
-    "sha256": "b91c22bc1ce3ff9a1ef6e09dcc064abad58aa81468b5f8f429476f918363dbe5",
+    "sha256": "91dd8e1b47e1dbcf5aa53185c4fdb6c1b897b01d2122f5c2887fb239383e37c9",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",
