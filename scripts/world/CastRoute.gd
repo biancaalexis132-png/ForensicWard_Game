@@ -39,6 +39,7 @@ var _direction: int = 1
 var _wait: float = 0.0
 var _resume_at: float = 0.0
 var _clock: float = 0.0
+var _reset_pending: bool = false
 
 
 ## Validates a route entry from world data. Returns the problems found.
@@ -95,6 +96,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_clock += delta
+	if _reset_pending:
+		_reset_to_marker()
 	if performer == null:
 		performer = actor.get_node_or_null("VisualRoot").find_child("CastPerformer", true, false) as CastPerformer \
 				if actor.get_node_or_null("VisualRoot") != null else null
@@ -166,6 +169,15 @@ func _blocked() -> bool:
 
 
 func _on_game_loaded() -> void:
+	if not actor.is_inside_tree():
+		# The zone is unloaded; put the character back when it is in the world again.
+		_reset_pending = true
+		return
+	_reset_to_marker()
+
+
+func _reset_to_marker() -> void:
+	_reset_pending = false
 	_stop_walking()
 	actor.global_position = points[0]
 	_index = 0
