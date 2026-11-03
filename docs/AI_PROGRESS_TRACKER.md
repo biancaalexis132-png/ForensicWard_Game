@@ -1,5 +1,14 @@
 # AI progress tracker
 
+## Ward-round patients on the ward — Claude Code (cloud), 2026-11-03
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Patients seated in Rooms 01/02, approach opens case, next patient arrives | Done, draft PR | #115, #114 | `scripts/world/WardRoundBedside.gd`, `data/ward_round_bedside.json` | `test_ward_round_bedside` (6), captures | Bi plays on the Mac |
+| Chapter 1 patient models (4) | Draft, pending owner look | cast pipeline | `assets/exports/characters/{Daniel_Ortiz,Priya_Natarajan,Owen_Hughes,Lucia_Morales}_v01_draft.glb` | GLB 175/0 | Bi reviews the look |
+| Chapter 2 patient models (4) | Configs written, not built | | `tools/blender/characters/cast/pt_wr_{kim,lebel,brennan,kowalczyk}.json` | | Build, stage, test |
+| Chapters 3 to 5 patient models (12) | Not started | | | | After Chapter 2 |
+
 ## Ward rounds — Claude Code (cloud), 2026-11-03
 
 | Task | State | Dependencies | Paths | Validation | Next action |

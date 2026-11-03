@@ -36,3 +36,7 @@ Four Chapter 1 patient drafts built with the existing cast pipeline (`build_cast
 
 1. `git fetch origin --prune`; read the newest `docs/AI_HANDOFF.md` entry.
 2. Next models: Chapter 2's four (Kim, Lebel, Brennan, Kowalczyk), same steps.
+
+## Tests
+
+Full headless QA on `a8c8850`: game 392/0 (376 + 10 cast motion from #114 + 6 new), audio 1720/0, QA 19/0/0, GLB 175/0, CH1_SEQUENCE_DONE, no ERROR lines, exit 0. The first run failed GLB validation because the four models were missing from `asset_manifest.json`; fixed in `a8c8850`.

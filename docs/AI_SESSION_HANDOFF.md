@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code ward-round patients on the ward — 2026-11-03
+
+- `claude/ward-round-bedside` at `a8c8850` (draft PR to `claude/ward-rounds`). Chapter 1's four ward-round patients sit in Rooms 01 and 02 as animated 3D drafts; approaching one opens their case; the next takes the room when a plan is accepted. Full QA passed: game 392/0, audio 1720/0, QA 19/0/0, GLB 175/0. Mac not run. Next: build Chapter 2's four patients (configs written). See `docs/handoffs/2026-11-03_claude_ward_round_bedside.md`.
+
 ## Claude Code ward rounds — 2026-11-03
 
 - Afternoon: `claude/ward-rounds` at `5d5bf6a` (PR #115). Bi approved the first ten cases (now `APPROVED`). Ten harder second-wave cases added, two per chapter, pending Bi's review in the same review document; built from Bi's Drive textbooks (only The Clozapine Handbook was readable). Full QA passed (game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0). Next: Bi reviews the second wave.

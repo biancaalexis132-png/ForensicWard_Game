@@ -1,5 +1,7 @@
 # Project status
 
+**Ward-round patients on the ward (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-bedside` at `a8c8850`, on #115 with #114 merged in. Chapter 1's four ward-round patients wait on the beds in Rooms 01 and 02 as animated 3D drafts; walking up to one opens their case, and the next patient takes the room once a plan is accepted. Models pending owner look; no symptom movement. Full QA passed (game 392/0). Not tested on the Mac.
+
 **Ward rounds (Claude Code, 2026-11-03; draft PR #115, not merged):** `claude/ward-rounds` at `5d5bf6a`, on #113. Each chapter admits four patients the player works up in the EHR (labs, then a medication plan judged by the attending); a chapter closes only once its patients' plans are accepted. The first ten cases are approved by Bi; ten harder second-wave cases are pending psychiatrist review and play in the prototype build only. Full QA passed (game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0). Not tested on the Mac.
 
 **Cast animation (Claude Code, 2026-11-03; draft PR #114, not merged):** `claude/cast-animation` at `584d864`, on #113. The six draft cast models gain a walk and six talk gestures; every cast member except Naomi now acts in conversation (talks, listens, gestures, turns to the player) and idles with variety; the facilities technician and Hale walk short routes. Full QA passed (game 377/0). Not tested on the Mac.
