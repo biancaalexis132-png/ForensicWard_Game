@@ -163,6 +163,7 @@
 			"marker": "MARK_Standing_Staff_Door",
 			"kind": "staff",
 			"character_id": "staff_facilities_tech",
+			"route": {"points": [[1.4, -1.4]], "pause_seconds": [6.0, 10.0]},
 			"present_when": {
 				"any": [
 					{

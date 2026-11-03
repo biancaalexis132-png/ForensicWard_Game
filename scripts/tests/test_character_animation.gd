@@ -6,6 +6,7 @@ extends TestCase
 
 const CHARACTER_SCENE: PackedScene = preload("res://scenes/props/Character.tscn")
 const CLIP_LIBRARY: String = "res://tools/character_animation/clip_library.json"
+const MOTION_LIBRARY: String = "res://tools/character_animation/clip_library_motion.json"
 const VERSION: String = "v05"
 const GREETING_ID: String = "ch1_b2_bennett_001"
 
@@ -27,7 +28,8 @@ func test_runtime_clip_lists_match_the_clip_library() -> void:
 	var loops: PackedStringArray = []
 	var one_shots: PackedStringArray = []
 	var gestures: PackedStringArray = []
-	for clip: Dictionary in library["clips"]:
+	var motion: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(MOTION_LIBRARY))
+	for clip: Dictionary in library["clips"] + motion["clips"]:
 		if clip["player"] == "gesture":
 			gestures.append(clip["name"])
 		elif clip["loop"]:
@@ -55,7 +57,9 @@ func test_clips_import_with_keys_and_split_by_player() -> void:
 	check(gesture != null, "GestureAnimationPlayer created next to it")
 	if body == null or gesture == null:
 		return
-	for clip: String in CharacterAnimationRig.BODY_LOOP_CLIPS + CharacterAnimationRig.BODY_ONE_SHOT_CLIPS:
+	# Naomi's model carries the ten base clips; the motion clips are on the cast drafts
+	# (test_cast_motion.gd).
+	for clip: String in _base_clips(CharacterAnimationRig.BODY_LOOP_CLIPS + CharacterAnimationRig.BODY_ONE_SHOT_CLIPS):
 		check(body.has_animation(clip), "body clip imported: " + clip)
 		if body.has_animation(clip):
 			var animation: Animation = body.get_animation(clip)
@@ -63,7 +67,7 @@ func test_clips_import_with_keys_and_split_by_player() -> void:
 					"body clip has keyed tracks: " + clip)
 			var loops: bool = clip in CharacterAnimationRig.BODY_LOOP_CLIPS
 			check_eq(animation.loop_mode == Animation.LOOP_LINEAR, loops, "loop mode is right: " + clip)
-	for clip: String in CharacterAnimationRig.GESTURE_CLIPS:
+	for clip: String in _base_clips(CharacterAnimationRig.GESTURE_CLIPS):
 		check(gesture.has_animation(clip) and not body.has_animation(clip), "gesture clip moved: " + clip)
 		if gesture.has_animation(clip):
 			for track: int in gesture.get_animation(clip).get_track_count():
@@ -100,7 +104,7 @@ func test_acting_cues_drive_body_gesture_and_face() -> void:
 	var adapter: CharacterActingAdapter = controller.get_adapter()
 	for clip: String in ["idle_neutral", "listen_neutral", "stand_conversational", "turn_from_workstation"]:
 		check(adapter.has_capability("body", clip), "adapter finds body clip " + clip)
-	for clip: String in CharacterAnimationRig.GESTURE_CLIPS:
+	for clip: String in _base_clips(CharacterAnimationRig.GESTURE_CLIPS):
 		check(adapter.has_capability("gesture", clip), "adapter finds gesture " + clip)
 	check(adapter.has_capability("face", "warm_subtle"), "adapter finds the warm_subtle morph")
 	var cue: Dictionary = NaomiActingController.cue_for_line(NaomiActingController.load_cue_data(), GREETING_ID)
@@ -255,6 +259,19 @@ func _spawn_preview_bennett() -> WardCharacter:
 	runner.add_child(character)
 	_characters.append(character)
 	return character
+
+
+## Drops the clips that clip_library_motion.json adds, which Naomi's model does not have.
+func _base_clips(clips: PackedStringArray) -> Array[String]:
+	var motion: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(MOTION_LIBRARY))
+	var added: Array[String] = []
+	for clip: Dictionary in motion["clips"]:
+		added.append(str(clip["name"]))
+	var kept: Array[String] = []
+	for clip: String in clips:
+		if not clip in added:
+			kept.append(clip)
+	return kept
 
 
 func _player(model: Node, gesture: bool) -> AnimationPlayer:

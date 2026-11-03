@@ -21,7 +21,8 @@
         0.0,
         0.0
       ],
-      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "walk_step_m": 0.65
     },
     "staff_hale": {
       "scene": "res://assets/exports/characters/Marcus_Hale_v01_draft.glb",
@@ -38,7 +39,8 @@
           0.0,
           0.0
         ]
-      }
+      },
+      "walk_step_m": 0.75
     },
     "staff_rahman": {
       "scene": "res://assets/exports/characters/Leila_Rahman_v01_draft.glb",
@@ -55,7 +57,8 @@
           0.0,
           0.0
         ]
-      }
+      },
+      "walk_step_m": 0.63
     },
     "staff_facilities_tech": {
       "scene": "res://assets/exports/characters/Facilities_Tech_v01_draft.glb",
@@ -65,7 +68,8 @@
         0.0,
         0.0
       ],
-      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "walk_step_m": 0.71
     },
     "pt_elias_ward": {
       "scene": "res://assets/exports/characters/Elias_Ward_v01_draft.glb",

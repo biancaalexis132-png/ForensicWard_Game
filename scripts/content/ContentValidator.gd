@@ -209,6 +209,11 @@ static func check_references(documents: Dictionary) -> Array[String]:
 						valid = valid and is_finite(value) and (value > 0.0 and value <= 2.0 if field == "size" else absf(value) <= 100.0)
 					if not valid:
 						errors.append("[%s] characters[%d].interaction_box.%s: expected three finite coordinates (size > 0 and <= 2 m; center within 100 m)." % [file, i, field])
+			if character.has("route"):
+				if bool(character.get("seated", false)):
+					errors.append("[%s] characters[%d].route: a seated character cannot walk a route." % [file, i])
+				for problem: String in CastRoute.validate(character["route"]):
+					errors.append("[%s] characters[%d].route: %s." % [file, i, problem])
 			var known: Dictionary = staff_ids if character["kind"] == "staff" else patient_ids
 			_require_known(character["character_id"], known, character["kind"], file,
 					"characters[%d].character_id" % i, errors)
