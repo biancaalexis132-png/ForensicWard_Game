@@ -45,8 +45,9 @@ func test_staging_data_is_valid_and_every_patient_has_a_model() -> void:
 		var character_id: String = data["patients"][case_id]
 		check(visuals.has(character_id), "model catalogued for " + character_id)
 		check(ResourceLoader.exists(str(visuals.get(character_id, {}).get("scene", ""))), "model file exists for " + character_id)
-	for case_id: String in ["wr_ch1_ortiz", "wr_ch1_natarajan", "wr_ch1_hughes", "wr_ch1_morales"]:
-		check(data["patients"].has(case_id), "chapter 1 patient is staged: " + case_id)
+	for case_id: String in ["wr_ch1_ortiz", "wr_ch1_natarajan", "wr_ch1_hughes", "wr_ch1_morales",
+			"wr_ch2_kim", "wr_ch2_lebel", "wr_ch2_brennan", "wr_ch2_kowalczyk"]:
+		check(data["patients"].has(case_id), "chapter 1 and 2 patient is staged: " + case_id)
 	var broken: Dictionary = data.duplicate(true)
 	broken["slots"] = [{"id": "room_01", "label": "", "position": [0, 0], "yaw_degrees": "east"}]
 	broken["patients"] = {"wr_ch1_ortiz": ""}
@@ -123,3 +124,15 @@ func test_validated_build_seats_only_approved_patients() -> void:
 	_accept("wr_ch1_ortiz")
 	check_eq(bedside.occupancy(), {"room_02": "wr_ch1_natarajan"}, "draft cases never come to the ward in the validated build")
 	ClinicalRules.build_mode = ClinicalRules.MODE_PROTOTYPE
+
+
+func test_chapter_two_patients_follow_once_chapter_one_is_done() -> void:
+	var bedside: WardRoundBedside = _start_main("ch2")
+	for case_id: String in ["wr_ch1_ortiz", "wr_ch1_natarajan", "wr_ch1_hughes", "wr_ch1_morales"]:
+		_accept(case_id)
+	check_eq(bedside.occupancy(), {"room_01": "wr_ch2_kim", "room_02": "wr_ch2_lebel"}, "chapter 2's first two take the rooms")
+	_accept("wr_ch2_kim")
+	_accept("wr_ch2_lebel")
+	check_eq(bedside.occupancy(), {"room_01": "wr_ch2_brennan", "room_02": "wr_ch2_kowalczyk"}, "then Brennan and Kowalczyk")
+	for slot_id: String in ["room_01", "room_02"]:
+		check(bedside.occupant(slot_id).visual_error.is_empty(), slot_id + ": model loaded")

@@ -131,6 +131,7 @@ func refresh(announce: bool = false) -> Dictionary:
 		return {}
 	var waiting: Array[String] = waiting_case_ids()
 	var arrivals: Dictionary = {}
+	var notes: Array[String] = []
 	# Patients who no longer wait (plan accepted, or a load) leave first.
 	for slot_id: String in _occupants.keys():
 		var character: WardCharacter = occupant(slot_id)
@@ -148,9 +149,10 @@ func refresh(announce: bool = false) -> Dictionary:
 		var case_id: String = queue.pop_front()
 		_seat(slot, case_id)
 		arrivals[slot_id] = case_id
-		if announce:
-			EventBus.notification_requested.emit("Ward round: %s is waiting in %s." % [
-					WardRounds.get_case(case_id)["patient"]["name"], slot["label"]])
+		notes.append("%s is waiting in %s" % [WardRounds.get_case(case_id)["patient"]["name"], slot["label"]])
+	# One notice for everyone who arrived, so notices do not stack.
+	if announce and not notes.is_empty():
+		EventBus.notification_requested.emit("Ward round: %s." % "; ".join(notes))
 	return arrivals
 
 

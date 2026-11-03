@@ -130,6 +130,46 @@
         0.0
       ],
       "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_kim": {
+      "scene": "res://assets/exports/characters/Harold_Kim_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_lebel": {
+      "scene": "res://assets/exports/characters/Marguerite_Lebel_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_brennan": {
+      "scene": "res://assets/exports/characters/Agnes_Brennan_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_kowalczyk": {
+      "scene": "res://assets/exports/characters/Jan_Kowalczyk_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
     }
   }
 }

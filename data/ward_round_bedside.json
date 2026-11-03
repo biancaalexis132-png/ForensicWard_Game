@@ -4,13 +4,35 @@
 	"notes": "Where ward-round patients wait on the ward, and which 3D model plays each one. Staging only: no clinical, story or save data. Patients still needing a plan sit on the bed in the patient rooms, oldest admission first; when a plan is accepted the next patient takes the room. Positions are zone coordinates (metres); yaw turns the actor's -Z facing (90 faces the room door, -X). A case without a model here is seen in the EHR only.",
 	"zone": "zone_clinical_wing",
 	"slots": [
-		{"id": "room_01", "label": "Room 01", "position": [3.72, 0.0, -4.7], "yaw_degrees": 90.0},
-		{"id": "room_02", "label": "Room 02", "position": [3.72, 0.0, -8.7], "yaw_degrees": 90.0}
+		{
+			"id": "room_01",
+			"label": "Room 01",
+			"position": [
+				3.72,
+				0.0,
+				-4.7
+			],
+			"yaw_degrees": 90.0
+		},
+		{
+			"id": "room_02",
+			"label": "Room 02",
+			"position": [
+				3.72,
+				0.0,
+				-8.7
+			],
+			"yaw_degrees": 90.0
+		}
 	],
 	"patients": {
 		"wr_ch1_ortiz": "pt_wr_ortiz",
 		"wr_ch1_natarajan": "pt_wr_natarajan",
 		"wr_ch1_hughes": "pt_wr_hughes",
-		"wr_ch1_morales": "pt_wr_morales"
+		"wr_ch1_morales": "pt_wr_morales",
+		"wr_ch2_kim": "pt_wr_kim",
+		"wr_ch2_lebel": "pt_wr_lebel",
+		"wr_ch2_brennan": "pt_wr_brennan",
+		"wr_ch2_kowalczyk": "pt_wr_kowalczyk"
 	}
 }

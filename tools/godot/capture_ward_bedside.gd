@@ -17,9 +17,12 @@ func _ready() -> void:
 
 func _run() -> void:
 	var output: String = "user://ward_bedside_review"
+	var chapter: String = "ch1"
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--output-dir="):
 			output = argument.trim_prefix("--output-dir=")
+		if argument.begins_with("--chapter="):
+			chapter = argument.trim_prefix("--chapter=")
 	DirAccess.make_dir_recursive_absolute(output)
 	CharacterVisualPreview.set_requests({})
 	WardRounds.reset_state()
@@ -27,6 +30,13 @@ func _run() -> void:
 	add_child(main)
 	var world: AuthoredWorld = main.get_node("World")
 	await get_tree().process_frame
+	if chapter != "ch1":
+		# Earlier chapters' patients are seen first; accept theirs so this chapter's come in.
+		(main.get_node("ChapterDirector") as ChapterDirector).load_save_data({"current": chapter, "chapters": {}})
+		await get_tree().process_frame
+		for id: String in WardRounds.admitted_case_ids():
+			if WardRounds.get_case(id)["chapter"] != chapter:
+				_accept(id)
 	var bedside: WardRoundBedside = world.find_child(WardRoundBedside.NODE_NAME, true, false)
 	bedside.refresh()
 	var camera: Camera3D = Camera3D.new()
@@ -39,23 +49,26 @@ func _run() -> void:
 		camera.global_position = Vector3(1.85, 1.6, patient.global_position.z + 1.6)
 		camera.look_at(patient.global_position + Vector3.UP * 0.8)
 		await _wait_seconds(1.0)
-		_save(output, "%s_doorway.png" % slot_id)
+		_save(output, "%s_%s_doorway.png" % [chapter, slot_id])
 		_frame(camera, patient, 1.3)
 		patient.performer.begin_conversation()
 		await _wait_seconds(1.2)
-		_save(output, "%s_close.png" % slot_id)
-	var ortiz: String = bedside.occupancy()["room_01"]
-	var solved: Dictionary = WardRoundTests._solve(WardRounds.get_case(ortiz))
-	for lab_id: String in solved["labs"]:
-		WardRounds.order_lab(ortiz, lab_id)
-	WardRounds.submit_plan(ortiz, solved["plan"])
+		_save(output, "%s_%s_close.png" % [chapter, slot_id])
+	_accept(bedside.occupancy()["room_01"])
 	var next: WardCharacter = bedside.occupant("room_01")
 	camera.global_position = Vector3(1.85, 1.6, next.global_position.z + 1.6)
 	camera.look_at(next.global_position + Vector3.UP * 0.8)
 	await _wait_seconds(1.0)
-	_save(output, "room_01_next_patient.png")
+	_save(output, chapter + "_room_01_next_patient.png")
 	print("WARD_BEDSIDE_CAPTURE done next=", next.ward_round_case_id)
 	get_tree().quit()
+
+
+func _accept(case_id: String) -> void:
+	var solved: Dictionary = WardRoundTests._solve(WardRounds.get_case(case_id))
+	for lab_id: String in solved["labs"]:
+		WardRounds.order_lab(case_id, lab_id)
+	WardRounds.submit_plan(case_id, solved["plan"])
 
 
 func _frame(camera: Camera3D, actor: WardCharacter, distance: float) -> void:

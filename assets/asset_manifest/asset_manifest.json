@@ -5378,6 +5378,54 @@
         "draft",
         "ward_round"
       ]
+    },
+    "Harold_Kim_v01_draft": {
+      "path": "res://assets/exports/characters/Harold_Kim_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "kim",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Marguerite_Lebel_v01_draft": {
+      "path": "res://assets/exports/characters/Marguerite_Lebel_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "lebel",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Agnes_Brennan_v01_draft": {
+      "path": "res://assets/exports/characters/Agnes_Brennan_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "brennan",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Jan_Kowalczyk_v01_draft": {
+      "path": "res://assets/exports/characters/Jan_Kowalczyk_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "kowalczyk",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
     }
   },
   "schema_version": "1.0"
