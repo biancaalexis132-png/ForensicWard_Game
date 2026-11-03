@@ -2290,7 +2290,7 @@
 				},
 				"hold:clozapine": {
 					"verdict": "preferred",
-					"feedback": "Hold clozapine; restart planning needs the medical team and a bowel regimen, with no long gap that requires re-titration unplanned."
+					"feedback": "Hold clozapine. Plan the restart with the medical team, with a bowel regimen; a long gap means titrating again from the start."
 				},
 				"stop:clozapine": {
 					"verdict": "not_indicated",
