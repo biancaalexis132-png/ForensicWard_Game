@@ -1,3 +1,5 @@
+**Bedside conversation (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-bedside-talk` on #119. Ward-round patients are now met at the bedside first: how you open the conversation sets their trust, your questions fill in the chart, and the debrief counts both. Full QA passed (game 406/0). Not tested on the Mac.
+
 **Patient hair (Claude Code, 2026-11-03; draft PR, not merged):** `claude/patient-hair-cards` on #118. 23 ward-round patients now have strand hair cards over the scalp cap (ponytails read from the side; short hair shows strands instead of a solid cap). Full QA passed (game 401/0, GLB 199/0). Not tested on the Mac.
 
 **Patient looks (Claude Code, 2026-11-03; draft PR, not merged):** `claude/patient-model-ageing` on #117. Fifteen ward-round patients rebuilt with painted signs of age, grey mixed through the hair instead of stripes, receding temples on some older men, and heavier builds for some. Full QA passed (game 401/0, GLB 199/0). Not tested on the Mac.
