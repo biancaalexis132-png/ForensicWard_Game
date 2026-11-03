@@ -52,6 +52,22 @@ func _run() -> void:
 	screen.show_tab("Plan")
 	await _frames(5)
 	_save(output, "plan_accepted.png")
+	screen.show_tab("Debrief")
+	await _frames(5)
+	_save(output, "debrief.png")
+	# Replay with every useful test and an explanation for a better score.
+	screen.replay()
+	var case: Dictionary = WardRounds.get_case(CASE_ID)
+	for lab_id: String in case["labs"]:
+		if case["labs"][lab_id]["verdict"] in ["required", "helpful"]:
+			screen.order_lab(lab_id)
+	screen.set_med_action("lithium", "hold")
+	screen.set_med_action("ibuprofen", "stop")
+	screen.set_intervention("medical_transfer", true)
+	screen.set_intervention("explain_plan", true)
+	screen.submit()
+	await _frames(5)
+	_save(output, "debrief_replay.png")
 	print("WARD_ROUND_CAPTURE done")
 	get_tree().quit()
 

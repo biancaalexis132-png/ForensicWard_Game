@@ -262,19 +262,24 @@
 		},
 		{
 			"id": "explain_plan",
-			"label": "Explain the working diagnosis and plan to the patient"
+			"label": "Explain the working diagnosis and plan to the patient",
+			"rapport": "builds",
+			"default_verdict": "acceptable",
+			"default_feedback": "Telling the patient what you think is happening and what comes next builds trust."
 		},
 		{
 			"id": "dismiss_as_feigned",
 			"label": "Record the symptoms as put on and stop investigating",
 			"default_verdict": "unsafe",
-			"default_feedback": "Calling symptoms put on closes the assessment and the patient's trust. Keep investigating and say what you found."
+			"default_feedback": "Calling symptoms put on closes the assessment and the patient's trust. Keep investigating and say what you found.",
+			"rapport": "harms"
 		},
 		{
 			"id": "challenge_beliefs",
 			"label": "Argue the patient out of what they are experiencing",
 			"default_verdict": "not_indicated",
-			"default_feedback": "Arguing shuts the conversation down. Explore what the experience is like and what it means to them."
+			"default_feedback": "Arguing shuts the conversation down. Explore what the experience is like and what it means to them.",
+			"rapport": "harms"
 		}
 	],
 	"cases": [
