@@ -7,7 +7,8 @@
 | Ward-round catalog and judging | Done, draft PR | Bi's request | `data/ward_rounds.json`, `scripts/clinical/WardRoundCatalog.gd` | `test_ward_rounds` | Bi reviews |
 | Ward-round screen from the EHR | Done, draft PR | | `scripts/ui/WardRoundScreen.gd`, `EHRScreen.gd`, `Main.gd` | `test_ward_rounds`, captures | Bi plays |
 | Chapter gate, save/load | Done, draft PR | | `scripts/clinical/WardRounds.gd`, `ChapterDirector.gd` | `test_ward_rounds` | None |
-| Ten draft cases and answer keys | Pending clinical review | Bi | `data/ward_rounds.json`, review doc | | Bi approves or corrects |
+| First ten cases and answer keys | Approved by Bi 2026-11-03 | Bi | `data/ward_rounds.json`, `docs/clinical_review_log.md` | `test_ward_rounds` | None |
+| Ten harder second-wave cases | Pending clinical review | Bi | `data/ward_rounds.json`, review doc (Second wave) | `test_ward_rounds` | Bi approves or corrects |
 | Full QA | Done on `6bef53d` | | `tests/qa/run.py` | game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0 | None |
 
 ## Owner playtest fixes — Claude Code (cloud), 2026-10-21

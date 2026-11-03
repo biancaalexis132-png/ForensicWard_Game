@@ -2,6 +2,8 @@
 
 ## Claude Code ward rounds — 2026-11-03
 
+- Afternoon: `claude/ward-rounds` at `5d5bf6a` (PR #115). Bi approved the first ten cases (now `APPROVED`). Ten harder second-wave cases added, two per chapter, pending Bi's review in the same review document; built from Bi's Drive textbooks (only The Clozapine Handbook was readable). Full QA passed (game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0). Next: Bi reviews the second wave.
+
 - `claude/ward-rounds` at `6bef53d` (draft PR to `claude/playtest-fixes`). Ten draft ward-round patients (two per chapter): order labs, submit a medication plan, attending accepts or sends back; chapters close only after their patients' plans are accepted. Pending psychiatrist review; prototype build only. Full QA passed: game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0. Mac not run. Next: Bi reviews the answer keys. See `docs/handoffs/2026-11-03_claude_ward_rounds.md`.
 
 ## Claude Code owner playtest fixes — 2026-10-21

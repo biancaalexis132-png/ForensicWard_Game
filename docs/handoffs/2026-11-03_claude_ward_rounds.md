@@ -42,3 +42,12 @@ Branch `claude/ward-rounds`, started from `claude/playtest-fixes` (draft PR #113
 
 1. `git fetch origin --prune`; read the newest `docs/AI_HANDOFF.md` entry.
 2. Corrections from Bi go in `data/ward_rounds.json`; `test_ward_rounds.gd` checks every case still has an accepted answer and every wrong choice is sent back. Record any approval in `docs/clinical_review_log.md` and set that case's `clinical_review_status` to `APPROVED` only on Bi's explicit word.
+
+## Update, 2026-11-03 afternoon: approval and second wave
+
+- Bi approved the first ten cases ("continue build the cases so far I approve of"), logged in `docs/clinical_review_log.md`; those ten are `APPROVED` and play in the validated build too. The Lindqvist question was not answered, so cardiac monitoring stays required.
+- Bi asked for progressively more complex cases using the textbooks in their Google Drive. Ten second-wave cases added, two per chapter (each chapter now admits four): Hughes (acute dystonia), Morales (akathisia), Brennan (SSRI hyponatraemia), Kowalczyk (valproate hyperammonaemia), Achebe (clozapine myocarditis), Sato (clozapine severe neutropenia), Whitaker (delirium presenting as psychosis), Quinn (anticholinergic toxicity), Osei (clozapine ileus), Farah (starting clozapine). Four new labs: ammonia, troponin and CRP, urinalysis, abdominal X-ray. All `PENDING_PSYCHIATRIST_REVIEW`.
+- Sources: the Drive connector reaches Bi's textbooks (Maudsley 15th, Stahl's Prescriber's Guide, The Clozapine Handbook, Kaplan & Sadock Synopsis, Kaufman neurology, Sims). Only The Clozapine Handbook could be read (as text, searched for myocarditis, neutropenia and ileus); the others are too large for the connector. Each case's `references` names chapters for Bi to check; nothing is quoted.
+- Review document updated with a Second wave section (same link).
+- Tests: full headless QA on `70fa448`: game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0, CH1_SEQUENCE_DONE, exit 0. `5d5bf6a` changes one feedback sentence (Osei, holding clozapine); `test_ward_rounds` 9/0 on it.
+- Next: Bi reviews the second wave in the review document; corrections go in `data/ward_rounds.json`.

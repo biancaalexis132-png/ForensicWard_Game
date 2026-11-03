@@ -1,6 +1,6 @@
 # Project status
 
-**Ward rounds (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-rounds` at `6bef53d`, on #113. Each chapter admits two patients the player works up in the EHR (labs, then a medication plan judged by the attending); a chapter closes only once its patients' plans are accepted. All ten cases pending psychiatrist review; prototype build only. Full QA passed (game 376/0). Not tested on the Mac.
+**Ward rounds (Claude Code, 2026-11-03; draft PR #115, not merged):** `claude/ward-rounds` at `5d5bf6a`, on #113. Each chapter admits four patients the player works up in the EHR (labs, then a medication plan judged by the attending); a chapter closes only once its patients' plans are accepted. The first ten cases are approved by Bi; ten harder second-wave cases are pending psychiatrist review and play in the prototype build only. Full QA passed (game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0). Not tested on the Mac.
 
 **Owner playtest fixes (Claude Code, 2026-10-21; draft PR, not merged):** `claude/playtest-fixes`. From Bi's Mac playtest: Naomi no longer repeats her opening, doors carry room signs, picked-up documents show as paper images, the psychiatrist can be female (af_heart voice) or male, a quiet approved song plays under the ward ambience by day, walking away ends a conversation, and the EHR shows the next step clearly. Medication and lab orders stay off pending Bi's clinical decision. Not yet checked on the Mac. See `docs/handoffs/2026-10-21_claude_playtest_fixes.md`.
 
