@@ -1,7 +1,9 @@
 extends Node
 ## Review captures of the ward-round patients waiting in the patient rooms
 ## (Chapter 1): each room from its doorway, each patient close up while they
-## turn to the conversation, and Room 01 after the next patient arrives.
+## turn to the conversation, and Room 01 after the next patient arrives. From
+## Chapter 2 on, also the check-in chairs by the ward entrance, before and after
+## a check-in.
 ## Desktop review only; on Linux this is the Compatibility renderer on
 ## llvmpipe, not Mac/Metal evidence.
 ##
@@ -54,6 +56,22 @@ func _run() -> void:
 		patient.performer.begin_conversation()
 		await _wait_seconds(1.2)
 		_save(output, "%s_%s_close.png" % [chapter, slot_id])
+	if not bedside.check_in_occupancy().is_empty():
+		# Earlier chapters' patients on the chairs by the ward entrance.
+		camera.global_position = Vector3(-0.9, 1.6, -14.4)
+		camera.look_at(Vector3(1.1, 0.7, -17.5))
+		await _wait_seconds(1.0)
+		_save(output, chapter + "_check_in_seats.png")
+		var seated: WardCharacter = bedside.occupant("seat_01")
+		_frame(camera, seated, 1.3)
+		seated.performer.begin_conversation()
+		await _wait_seconds(1.2)
+		_save(output, chapter + "_check_in_close.png")
+		WardRounds.follow_up(seated.ward_round_case_id)
+		camera.global_position = Vector3(-0.9, 1.6, -14.4)
+		camera.look_at(Vector3(1.1, 0.7, -17.5))
+		await _wait_seconds(1.0)
+		_save(output, chapter + "_check_in_next.png")
 	_accept(bedside.occupancy()["room_01"])
 	var next: WardCharacter = bedside.occupant("room_01")
 	camera.global_position = Vector3(1.85, 1.6, next.global_position.z + 1.6)

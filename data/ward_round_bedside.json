@@ -1,7 +1,7 @@
 {
 	"schema_version": 1,
 	"review_status": "PENDING_OWNER_VISUAL_REVIEW",
-	"notes": "Where ward-round patients wait on the ward, and which 3D model plays each one. Staging only: no clinical, story or save data. Patients still needing a plan sit on the bed in the patient rooms, oldest admission first; when a plan is accepted the next patient takes the room. Positions are zone coordinates (metres); yaw turns the actor's -Z facing (90 faces the room door, -X). A case without a model here is seen in the EHR only.",
+	"notes": "Where ward-round patients wait on the ward, and which 3D model plays each one. Staging only: no clinical, story or save data. Patients still needing a plan sit on the bed in the patient rooms, oldest admission first; when a plan is accepted the next patient takes the room. Positions are zone coordinates (metres); yaw turns the actor's -Z facing (90 faces the room door, -X). A case without a model here is seen in the EHR only. Patients whose plan was accepted in an earlier chapter, and who are due a check-in, sit on the visitor chairs in check_in.slots (oldest admission first) until you check in on them; chairs stand there whether or not anyone is sitting.",
 	"zone": "zone_clinical_wing",
 	"slots": [
 		{
@@ -25,6 +25,42 @@
 			"yaw_degrees": 90.0
 		}
 	],
+	"check_in": {
+		"chair_scene": "res://assets/exports/clinical/props/PROP_Chair_Visitor.glb",
+		"chair_yaw_degrees": -90.0,
+		"slots": [
+			{
+				"id": "seat_01",
+				"label": "the seats by the ward entrance",
+				"position": [
+					1.15,
+					0.0,
+					-16.4
+				],
+				"yaw_degrees": 90.0
+			},
+			{
+				"id": "seat_02",
+				"label": "the seats by the ward entrance",
+				"position": [
+					1.15,
+					0.0,
+					-17.45
+				],
+				"yaw_degrees": 90.0
+			},
+			{
+				"id": "seat_03",
+				"label": "the seats by the ward entrance",
+				"position": [
+					1.15,
+					0.0,
+					-18.5
+				],
+				"yaw_degrees": 90.0
+			}
+		]
+	},
 	"patients": {
 		"wr_ch1_ortiz": "pt_wr_ortiz",
 		"wr_ch1_natarajan": "pt_wr_natarajan",
