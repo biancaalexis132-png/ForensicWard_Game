@@ -4,7 +4,7 @@
   "profile_sha256": "2a62f3b15afe8d384c055117537e3572c3dd2d2bab7ccda1b2957fbaffdae78a",
   "source": {
     "path": "build/cast/Amina_Farah_v01_face.blend",
-    "sha256": "9368c5f1fc99867eb16600aaa729a6f94e681c0c177f6f2ec8b9b0bc797e7229"
+    "sha256": "6512071a0f59d9475c69b8089759a7c1c509d8bd276eb0dea8a4c4ff5a977e66"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 31565
+  "triangles": 34633
 }
