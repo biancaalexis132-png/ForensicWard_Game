@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Grace_Lindqvist_v01_draft.blend",
-    "sha256": "08527d4c041ed4807f8ed7f0f44f78265c9d0084ed5e6323181698258364626d",
+    "sha256": "f4410f9d52051fc1ba965cc008a3aff8ac13c734bbb7efd2e1e1669bd9fb937b",
     "modified": false
   },
   "library": {
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Grace_Lindqvist_v01_draft.glb",
-    "sha256": "a90049e4640096a169f0117c3f741935451a7240db6e904ddff914f29c05406b",
+    "sha256": "ccedf27e9640f7d62d8f8cbc7a8bf1ff8aef9a63fffadcf8220b45cce2d50dd2",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

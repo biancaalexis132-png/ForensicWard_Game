@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Jan_Kowalczyk_v01_draft.blend",
-    "sha256": "08f225e076d29928c2d25d386372c7913de62615e7be726d107bf5e1693c546a",
+    "sha256": "ebf34aa7fe1853f502111546a40c8e7417b09016080b763a5c68bdf9e486da3a",
     "modified": false
   },
   "library": {
@@ -91,7 +91,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Jan_Kowalczyk_v01_draft.glb",
-    "sha256": "1db34cf735989e30352db46af1611b901732f8ad99495008ee1bbe00125a6a4b",
+    "sha256": "23303d4d6bb772d30c30538d81660a8c6d1d3aa6ed16c4bdaca639dd661ca814",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

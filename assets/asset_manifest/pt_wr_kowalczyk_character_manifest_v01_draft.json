@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Jan_Kowalczyk_v01_face.blend",
-      "sha256": "93232206d8ddf6588f9cd9099204d235cef608a8f7dd5ca0ede7651f4999f6b8",
+      "sha256": "78a07b94adeb074178cfe7b11c1138d0564ef4a442c32905e52e1f7f96ce084c",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 33306,
+  "triangle_count": 34866,
   "clips": [
     "idle_breathing",
     "idle_neutral",

@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Abena_Mensah_v01_face.blend",
-      "sha256": "76be16b9ecd56e718419adce5bf5213f05578e4e92c2737fc164137389505f6f",
+      "sha256": "640472ac9461410ea17473aaefdabba763f7357d99a265df390c9a081c5148d8",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 32153,
+  "triangle_count": 34863,
   "clips": [
     "idle_breathing",
     "idle_neutral",
