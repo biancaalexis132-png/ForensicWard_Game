@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Nadia_Haddad_v01_face.blend",
-      "sha256": "c66e90dda7f4ed96c45976d7581e26f3049c64db6528b1bfef6f43bb86e61c82",
+      "sha256": "fcc96caf5943b11c87dd979667424177f08ba256829196c4c6c5e1e266d75054",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 28863,
+  "triangle_count": 35089,
   "clips": [
     "idle_breathing",
     "idle_neutral",

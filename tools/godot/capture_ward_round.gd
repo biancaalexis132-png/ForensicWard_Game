@@ -31,6 +31,13 @@ func _run() -> void:
 	main.get_node("EHRScreen").open_ward_round()
 	var screen: WardRoundScreen = main.get_node("WardRoundScreen")
 	screen.select_case(CASE_ID)
+	await _frames(5)
+	_save(output, "bedside_open.png")
+	screen.open_bedside("warm")
+	for question: String in ["history", "mental_state", "observations"]:
+		screen.ask(question)
+	await _frames(5)
+	_save(output, "bedside_answers.png")
 	screen.show_tab("Chart")
 	await _frames(5)
 	_save(output, "chart.png")

@@ -143,6 +143,115 @@ func submitted_plan(case_id: String) -> Array:
 	return _state.get(case_id, {}).get("plan", []).duplicate()
 
 
+# --- Bedside conversation (data/ward_rounds.json "bedside"; optional) -----------
+
+## The bedside block, or {} when the catalog has none (then the chart shows everything).
+func bedside() -> Dictionary:
+	return _data.get("bedside", {})
+
+
+func bedside_opening(case_id: String) -> String:
+	return str(_state.get(case_id, {}).get("opening", ""))
+
+
+func bedside_asked(case_id: String) -> Array:
+	return _state.get(case_id, {}).get("asked", []).duplicate()
+
+
+## 0 to 2: set by the opening, raised to 1 by repairing after a poor opening.
+func bedside_trust(case_id: String) -> int:
+	var opening: Dictionary = _bedside_entry("openings", bedside_opening(case_id))
+	var trust: int = int(opening.get("trust", 0))
+	if bool(_state.get(case_id, {}).get("repaired", false)):
+		trust = maxi(trust, 1)
+	return trust
+
+
+func bedside_repaired(case_id: String) -> bool:
+	return bool(_state.get(case_id, {}).get("repaired", false))
+
+
+## True when a chart field is known: there is no bedside block, or the
+## question that reveals it was asked with enough trust.
+func is_revealed(case_id: String, field: String) -> bool:
+	if bedside().is_empty():
+		return true
+	for question: Dictionary in bedside()["questions"]:
+		if question["field"] == field and question["id"] in _state.get(case_id, {}).get("revealed", []):
+			return true
+	return false
+
+
+## Chooses how to open the conversation (once per run).
+func open_bedside(case_id: String, opening_id: String) -> String:
+	if bedside().is_empty() or not case_id in admitted_case_ids() or not is_editable(case_id):
+		return ""
+	var opening: Dictionary = _bedside_entry("openings", opening_id)
+	if opening.is_empty() or not bedside_opening(case_id).is_empty():
+		return ""
+	_entry(case_id)["opening"] = opening_id
+	case_changed.emit(case_id)
+	return _bedside_text(opening["response"], case_id)
+
+
+## Asks a question. Returns the patient's spoken answer (bedside_line), or the
+## chart text when the case has no line ("" if not allowed). With too
+## little trust, a question that needs it gets a short reply and reveals nothing.
+func ask_bedside(case_id: String, question_id: String) -> String:
+	if bedside_opening(case_id).is_empty() or not is_editable(case_id):
+		return ""
+	var question: Dictionary = _bedside_entry("questions", question_id)
+	if question.is_empty():
+		return ""
+	var entry: Dictionary = _entry(case_id)
+	if not question_id in entry["asked"]:
+		entry["asked"].append(question_id)
+	var text: String
+	if bool(question["needs_trust"]) and bedside_trust(case_id) < 1:
+		text = _bedside_text(bedside()["low_trust_response"], case_id)
+	else:
+		if not question_id in entry["revealed"]:
+			entry["revealed"].append(question_id)
+		text = bedside_line(case_id, question_id)
+		if text.is_empty():
+			text = str(get_case(case_id)["presentation"][question["field"]])
+	case_changed.emit(case_id)
+	return text
+
+
+## The patient's own spoken answer to a question, as "Name: “line”", or "" when
+## the case has none (the answer is then the chart text). A line in brackets
+## describes what you see instead, so it is shown without quotation marks.
+func bedside_line(case_id: String, question_id: String) -> String:
+	var line: String = str(get_case(case_id).get("bedside_lines", {}).get(question_id, ""))
+	if line.is_empty():
+		return ""
+	if line.begins_with("("):
+		return line
+	var name: String = str(get_case(case_id).get("patient", {}).get("name", "The patient"))
+	return "%s: “%s”" % [name.get_slice(" ", 0), line]
+
+
+## Slows down after a poor opening; trust rises to 1.
+func repair_bedside(case_id: String) -> String:
+	if bedside_opening(case_id).is_empty() or bedside_trust(case_id) >= 1 or not is_editable(case_id):
+		return ""
+	_entry(case_id)["repaired"] = true
+	case_changed.emit(case_id)
+	return _bedside_text(bedside()["repair"]["response"], case_id)
+
+
+func _bedside_entry(field: String, id: String) -> Dictionary:
+	for entry: Dictionary in bedside().get(field, []):
+		if entry["id"] == id:
+			return entry
+	return {}
+
+
+func _bedside_text(template: String, case_id: String) -> String:
+	return template.replace("{name}", str(get_case(case_id).get("patient", {}).get("name", "The patient")))
+
+
 ## True while the player can still order tests and submit: an open case, or
 ## an accepted one being replayed.
 func is_editable(case_id: String) -> bool:
@@ -164,7 +273,16 @@ func score(case_id: String) -> Dictionary:
 	if status(case_id) != STATUS_ACCEPTED or is_replaying(case_id):
 		return {}
 	return WardRoundScoring.score(_cases[case_id], _state[case_id].get("history", []),
-			_data["intervention_catalog"], _labels)
+			_data["intervention_catalog"], _labels, _bedside_record(case_id))
+
+
+## What the debrief needs from the bedside conversation ({} without a bedside block).
+func _bedside_record(case_id: String) -> Dictionary:
+	if bedside().is_empty():
+		return {}
+	var entry: Dictionary = _state.get(case_id, {})
+	return {"opening": _bedside_entry("openings", str(entry.get("opening", ""))),
+			"repaired": bool(entry.get("repaired", false))}
 
 
 ## The best total across runs of an accepted case (-1 if none).
@@ -182,6 +300,10 @@ func replay_case(case_id: String) -> bool:
 	entry["plan"] = []
 	entry["attempts"] = 0
 	entry["history"] = []
+	entry["opening"] = ""
+	entry["asked"] = []
+	entry["revealed"] = []
+	entry["repaired"] = false
 	entry["replaying"] = true
 	case_changed.emit(case_id)
 	return true
@@ -229,12 +351,14 @@ func submit_plan(case_id: String, plan: Array) -> Dictionary:
 			clean.append(key)
 	entry["plan"] = clean
 	entry["attempts"] = int(entry["attempts"]) + 1
-	entry["history"].append({"labs": entry["labs"].duplicate(), "plan": clean.duplicate()})
+	entry["history"].append({"labs": entry["labs"].duplicate(), "plan": clean.duplicate(),
+			"revealed": entry["revealed"].duplicate()})
 	var review: Dictionary = WardRoundCatalog.evaluate(_cases[case_id], entry["labs"], clean, _labels)
 	if review["outcome"] == WardRoundCatalog.ACCEPTED:
 		entry["status"] = STATUS_ACCEPTED
 		entry["replaying"] = false
-		var scored: Dictionary = WardRoundScoring.score(_cases[case_id], entry["history"], _data["intervention_catalog"], _labels)
+		var scored: Dictionary = WardRoundScoring.score(_cases[case_id], entry["history"], _data["intervention_catalog"],
+				_labels, _bedside_record(case_id))
 		entry["best"] = maxi(int(entry.get("best", -1)), int(scored.get("total", -1)))
 	if is_draft(case_id):
 		EventBus.clinical_review_flagged.emit("ward_round_draft",
@@ -266,6 +390,11 @@ func validate_save_data(data: Variant) -> bool:
 		for submission: Variant in entry.get("history", []):
 			if not submission is Dictionary or not submission.get("labs") is Array or not submission.get("plan") is Array:
 				return false
+		for field: String in ["asked", "revealed"]:
+			if entry.has(field) and not entry[field] is Array:
+				return false
+		if entry.has("opening") and not entry["opening"] is String:
+			return false
 	return true
 
 
@@ -280,7 +409,9 @@ func load_save_data(data: Dictionary) -> void:
 		_state[id] = {"labs": entry["labs"].filter(func(lab: Variant) -> bool: return _labels.has(str(lab))),
 				"plan": entry["plan"].duplicate(), "status": entry["status"], "attempts": int(entry["attempts"]),
 				"history": entry.get("history", []).duplicate(true), "replaying": bool(entry.get("replaying", false)),
-				"best": int(entry.get("best", -1))}
+				"best": int(entry.get("best", -1)), "opening": str(entry.get("opening", "")),
+				"asked": entry.get("asked", []).duplicate(), "revealed": entry.get("revealed", []).duplicate(),
+				"repaired": bool(entry.get("repaired", false))}
 
 
 func reset_state() -> void:
@@ -292,7 +423,8 @@ func reset_state() -> void:
 func _entry(case_id: String) -> Dictionary:
 	if not _state.has(case_id):
 		_state[case_id] = {"labs": [], "plan": [], "status": STATUS_OPEN, "attempts": 0,
-				"history": [], "replaying": false, "best": -1}
+				"history": [], "replaying": false, "best": -1,
+				"opening": "", "asked": [], "revealed": [], "repaired": false}
 	return _state[case_id]
 
 

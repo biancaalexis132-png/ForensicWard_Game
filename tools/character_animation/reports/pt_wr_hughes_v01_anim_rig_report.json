@@ -94,8 +94,8 @@
         -0.04190000146627426,
         1.384600043296814
       ],
-      "weighted_vertices": 5834,
-      "centroid_to_bone_m": 0.043,
+      "weighted_vertices": 13554,
+      "centroid_to_bone_m": 0.0087,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -248,6 +248,18 @@
     },
     {
       "name": "Hughes_Hair",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Hughes_Hair_Cards",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Hughes_Hair_EdgeCards",
       "armature_modifier": true,
       "vertex_groups": 1,
       "shape_keys": []
@@ -625,5 +637,5 @@
       }
     ]
   },
-  "triangles": 28197
+  "triangles": 34733
 }

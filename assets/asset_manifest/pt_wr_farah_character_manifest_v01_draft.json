@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Amina_Farah_v01_face.blend",
-      "sha256": "a9bfa1af5128b097bb4175493c130806aa18ac80be4afe7c49695038776d7ca2",
+      "sha256": "6512071a0f59d9475c69b8089759a7c1c509d8bd276eb0dea8a4c4ff5a977e66",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 28589,
+  "triangle_count": 34633,
   "clips": [
     "idle_breathing",
     "idle_neutral",

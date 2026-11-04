@@ -1,3 +1,11 @@
+**Patient ponytails and hairlines (Claude Code, 2026-11-04; draft PR, not merged):** `claude/patient-hair-tails` on #121. Ponytails on 14 patients are now strand cards that spread at the ends, and 22 patients' hairlines break into fine wisps instead of a hard edge. Not tested on the Mac.
+
+**Patients' own words at the bedside (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-patient-voices` on #120. Each ward-round patient now answers bedside questions in their own voice (lines approved by Bi on 2026-11-04); the chart still records the clinician's full account. Not tested on the Mac.
+
+**Bedside conversation (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-bedside-talk` on #119. Ward-round patients are now met at the bedside first: how you open the conversation sets their trust, your questions fill in the chart, and the debrief counts both. Full QA passed (game 406/0). Not tested on the Mac.
+
+**Patient hair (Claude Code, 2026-11-03; draft PR, not merged):** `claude/patient-hair-cards` on #118. 23 ward-round patients now have strand hair cards over the scalp cap (ponytails read from the side; short hair shows strands instead of a solid cap). Full QA passed (game 401/0, GLB 199/0). Not tested on the Mac.
+
 **Patient looks (Claude Code, 2026-11-03; draft PR, not merged):** `claude/patient-model-ageing` on #117. Fifteen ward-round patients rebuilt with painted signs of age, grey mixed through the hair instead of stripes, receding temples on some older men, and heavier builds for some. Full QA passed (game 401/0, GLB 199/0). Not tested on the Mac.
 
 **Ward-round scoring (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-scoring` on #116. Accepted plans get a debrief scored as the case bible says (safety 40, reasoning 25, rapport 20, resources 15; unsafe or dismissive choices cap the grade), a soft tests budget, and Replay case for a better score. Full QA passed (game 401/0). Not tested on the Mac.

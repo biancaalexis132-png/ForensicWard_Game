@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Frank_Delaney_v01_face.blend",
-      "sha256": "7555e731267e31a339a3ad8b9aa3828a193f7b4c381a088eabda322970d7b4f4",
+      "sha256": "bc2aa3f7f52289ad580e5d35299e3d1ae6329bc0ec4b938ced2375339058ee16",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 27959,
+  "triangle_count": 34559,
   "clips": [
     "idle_breathing",
     "idle_neutral",

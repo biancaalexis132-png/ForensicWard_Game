@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Amina_Farah_v01_draft.blend",
-    "sha256": "92b6331c1d7543fd55e60ebdc2ec256cfe4e5e92b0738513216405342a337bf4",
+    "sha256": "8c5fb658defbc3e6d95bf837e1eb9b80a6298d1cf6255248d845bcfb43666def",
     "modified": false
   },
   "library": {
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Amina_Farah_v01_draft.glb",
-    "sha256": "9a6f122c8613543f00fa8c657c85ef9c7181f95b927060bbf0dc4cbd4689252e",
+    "sha256": "27688e3eb0ec6875b71510fdeb98942c03cb6933be297a9f36e553b723182ea5",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Abena_Mensah_v01_draft.blend",
-    "sha256": "36dcf6b4cfe2fde7457d623463b2331fad7093c1baebe9aa26f3f6a3528a411b",
+    "sha256": "ae5a9f4907ce60be6bc4b6f03e204c001e70c3144a2373f94bd47daac16f73ba",
     "modified": false
   },
   "library": {
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Abena_Mensah_v01_draft.glb",
-    "sha256": "8c94f6d6770831eaa669383d47dc5b6c13343fcc026e5181f47def00eedc150a",
+    "sha256": "c3bef98da085eae5d59046423bdc8a5f367c6e8115ae35e180e6baa62ba0708f",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",
