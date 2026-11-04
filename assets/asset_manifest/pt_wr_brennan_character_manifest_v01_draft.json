@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Agnes_Brennan_v01_face.blend",
-      "sha256": "c1c34ecb1f9ce35b4726bfaf42d9881e3323a656f324cd6d75e35267562e4c64",
+      "sha256": "4f6192257192ab935a4665a58ecfdcb89b36cf189b5d7b768a6ebcda75d3dd07",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 31842,
+  "triangle_count": 34892,
   "clips": [
     "idle_breathing",
     "idle_neutral",

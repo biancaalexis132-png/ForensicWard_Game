@@ -94,8 +94,8 @@
         -0.042500000447034836,
         1.3847999572753906
       ],
-      "weighted_vertices": 11666,
-      "centroid_to_bone_m": 0.0064,
+      "weighted_vertices": 13538,
+      "centroid_to_bone_m": 0.0072,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -254,6 +254,12 @@
     },
     {
       "name": "Delaney_Hair_Cards",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Delaney_Hair_EdgeCards",
       "armature_modifier": true,
       "vertex_groups": 1,
       "shape_keys": []
@@ -631,5 +637,5 @@
       }
     ]
   },
-  "triangles": 32999
+  "triangles": 34559
 }
