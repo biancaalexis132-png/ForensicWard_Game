@@ -20,6 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Patients react to the bedside opening | `claude/ward-round-opening-reactions` (draft PR) | Claude Code (cloud) | last commit on the branch | `data/ward_rounds.json` `opening_reactions`, `WardRounds.gd`, `WardRoundCatalog.gd`, `test_ward_round_conversation.gd` | Full QA; lines pending Bi's review |
 | Ward round in the day handover | `claude/ward-round-handover` (PR #125, merged by Bi into `claude/ward-round-check-ins`; now part of #124) | Claude Code (cloud) | last commit on the branch | `WardRounds.gd` (`handover_lines`), `ChapterDirector.gd` (`_hand_over`, four lines), `test_ward_rounds.gd` | Full QA; waiting on Bi |
 | Check-ins on earlier patients | `claude/ward-round-check-ins` (draft PR to `claude/ward-round-plan-response`) | Claude Code (cloud) | last commit on the branch | `data/ward_rounds.json` `follow_up`, `WardRounds.gd`, `WardRoundCatalog.gd`, `WardRoundScreen.gd`, `test_ward_round_conversation.gd`, capture tool | Full QA; lines approved by Bi 2026-11-04 |
 | Patient answers the explained plan | `claude/ward-round-plan-response` (draft PR to `claude/patient-hair-tails`) | Claude Code (cloud) | last commit on the branch | `data/ward_rounds.json` `plan_response`, `WardRounds.gd`, `WardRoundCatalog.gd`, `WardRoundScreen.gd`, `test_ward_round_conversation.gd` | Full QA; lines approved by Bi 2026-11-04 |

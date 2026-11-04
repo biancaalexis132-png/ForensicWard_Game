@@ -93,6 +93,8 @@ static func validate(data: Variant, chapter_ids: Array = []) -> Array[String]:
 				if not spoken is Dictionary or not str(spoken.get("review_status", "")) in REVIEW_STATUSES \
 						or not spoken.get("line") is String or str(spoken["line"]).strip_edges().is_empty():
 					errors.append("%s.%s: needs a review_status and a non-empty line" % [path, field])
+		if case.has("opening_reactions"):
+			errors.append_array(validate_opening_reactions(case["opening_reactions"], data.get("bedside", {}), path))
 		if case.has("bedside_lines"):
 			errors.append_array(validate_bedside_lines(case["bedside_lines"], data.get("bedside", {}), path))
 		if not chapter_ids.is_empty() and not case.get("chapter") in chapter_ids:
@@ -235,6 +237,27 @@ static func validate_bedside_lines(lines: Variant, bedside: Variant, case_path: 
 		if not key in question_ids:
 			errors.append("%s.%s: not a bedside question (%s)" % [path, key, ", ".join(question_ids)])
 		elif not lines[key] is String or str(lines[key]).strip_edges().is_empty():
+			errors.append("%s.%s: expected a non-empty line" % [path, key])
+	return errors
+
+
+## Problems in a case's own reactions to the bedside openings ([] when valid).
+static func validate_opening_reactions(reactions: Variant, bedside: Variant, case_path: String) -> Array[String]:
+	var path: String = case_path + ".opening_reactions"
+	if not reactions is Dictionary:
+		return [path + ": expected an object"] as Array[String]
+	if not bedside is Dictionary or not bedside.get("openings") is Array:
+		return [path + ": needs the catalog's bedside block"] as Array[String]
+	var errors: Array[String] = []
+	if not str(reactions.get("review_status", "")) in REVIEW_STATUSES:
+		errors.append(path + ": review_status must be one of %s" % str(REVIEW_STATUSES))
+	var opening_ids: Array = (bedside["openings"] as Array).map(func(o: Variant) -> String: return str(o.get("id", "")) if o is Dictionary else "")
+	for key: Variant in reactions:
+		if key == "review_status":
+			continue
+		if not key in opening_ids:
+			errors.append("%s.%s: not a bedside opening (%s)" % [path, key, ", ".join(opening_ids)])
+		elif not reactions[key] is String or str(reactions[key]).strip_edges().is_empty():
 			errors.append("%s.%s: expected a non-empty line" % [path, key])
 	return errors
 
