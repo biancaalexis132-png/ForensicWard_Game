@@ -1,3 +1,5 @@
+**Patients answer your explanation (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-plan-response` on #122. When you explain the plan, the patient now replies in their own words, shown with the attending's reply and in the debrief (lines pending Bi's review). Not tested on the Mac.
+
 **Patient ponytails and hairlines (Claude Code, 2026-11-04; draft PR, not merged):** `claude/patient-hair-tails` on #121. Ponytails on 14 patients are now strand cards that spread at the ends, and 22 patients' hairlines break into fine wisps instead of a hard edge. Not tested on the Mac.
 
 **Patients' own words at the bedside (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-patient-voices` on #120. Each ward-round patient now answers bedside questions in their own voice (lines approved by Bi on 2026-11-04); the chart still records the clinician's full account. Not tested on the Mac.
