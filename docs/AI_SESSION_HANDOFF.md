@@ -2,7 +2,7 @@
 
 ## Claude Code ward-round patients on the ward — 2026-11-03
 
-- Top of the stack (2026-11-04, evening): `claude/ward-round-handover` (draft PR stacked on #124): the day shift handover lists the chapter's ward-round patients with their debriefs and the check-ins. See `docs/handoffs/2026-11-04_claude_ward_round_handover.md`.
+- Top of the stack (2026-11-04, evening): `claude/ward-round-handover` (PR #125, merged by Bi on 2026-11-04 into `claude/ward-round-check-ins`, so it now rides on #124): the day shift handover lists the chapter's ward-round patients with their debriefs and the check-ins. See `docs/handoffs/2026-11-04_claude_ward_round_handover.md`.
 - Top of the stack (2026-11-04, later): `claude/ward-round-check-ins` (draft PR stacked on #123): in a later chapter you can check in on patients you treated earlier and hear how they are getting on (lines approved by Bi 2026-11-04). See `docs/handoffs/2026-11-04_claude_ward_round_check_ins.md`.
 - Top of the stack (2026-11-04): `claude/ward-round-plan-response` (draft PR stacked on #122): when the accepted plan includes explaining it, the patient answers in their own words (approved by Bi 2026-11-04). See `docs/handoffs/2026-11-04_claude_ward_round_plan_response.md`.
 - Newest of all (2026-11-04): `claude/patient-hair-tails` (draft PR stacked on #121): ponytails are strand cards over a slimmer core and hairlines break into wisps, on 22 patients. Next: Bi looks at the before/after; then the next story/interactivity step. See `docs/handoffs/2026-11-04_claude_patient_hair_tails.md`.
