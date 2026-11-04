@@ -4,7 +4,7 @@
   "profile_sha256": "348b65de2b906895ad80547765d1233b593b130a0c75c8c282999c72dbfc7e97",
   "source": {
     "path": "build/cast/Imogen_Clarke_v01_face.blend",
-    "sha256": "a0cb47b106e8dff87e94db8471ccd9ff4667d9619ea6fcbca3aa56c5d7306538"
+    "sha256": "3f720455e8497b655812e63b32ae3bc6eca285ba3bdea609b374f43570f125a8"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 32176
+  "triangles": 35582
 }

@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Chloe_Bell_v01_face.blend",
-      "sha256": "e04c6896d6b9532c24b44b17b310c93ced2e5b7207ba8439ffee76cd5b25c5a7",
+      "sha256": "d02254fbb8b98420f1ef29ed980e08addcf7476d40e95ceb8b08240c64419567",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 32262,
+  "triangle_count": 35526,
   "clips": [
     "idle_breathing",
     "idle_neutral",
