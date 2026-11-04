@@ -2,6 +2,7 @@
 
 ## Claude Code ward-round patients on the ward — 2026-11-03
 
+- Top of the stack (2026-11-04): `claude/ward-round-plan-response` (draft PR stacked on #122): when the accepted plan includes explaining it, the patient answers in their own words (pending Bi's review). See `docs/handoffs/2026-11-04_claude_ward_round_plan_response.md`.
 - Newest of all (2026-11-04): `claude/patient-hair-tails` (draft PR stacked on #121): ponytails are strand cards over a slimmer core and hairlines break into wisps, on 22 patients. Next: Bi looks at the before/after; then the next story/interactivity step. See `docs/handoffs/2026-11-04_claude_patient_hair_tails.md`.
 - Newest of all: `claude/ward-round-patient-voices` (draft PR stacked on #120): each patient answers bedside questions in their own words (`cases[].bedside_lines`, approved by Bi 2026-11-04); the chart keeps the clinician's text. Full QA passed: game 408/0, audio 1720/0, QA 19/0/0, GLB 199/0, exit 0. Next: Bi reviews the lines (`/mnt/project-files/ward_round/bedside_lines_review.md`). See `docs/handoffs/2026-11-03_claude_ward_round_patient_voices.md`.
 - Most recent: `claude/ward-round-bedside-talk` (draft PR #120, stacked on #119): bedside conversation. Full QA passed: game 406/0, exit 0. Next: Bi reviews; case-specific voiced lines would need reviewed writing. See `docs/handoffs/2026-11-03_claude_ward_round_bedside_talk.md`.
