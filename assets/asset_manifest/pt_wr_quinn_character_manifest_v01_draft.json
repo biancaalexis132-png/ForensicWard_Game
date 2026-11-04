@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Maeve_Quinn_v01_face.blend",
-      "sha256": "818cc454d14c2b4d6c22bda6efdc5f16bace02dc2d6621f4132e3c4ca2452df7",
+      "sha256": "24840997f66fa47acf576a7904fd3a540dac85cef4378b9cc3a586e2de35d2d9",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 32034,
+  "triangle_count": 35084,
   "clips": [
     "idle_breathing",
     "idle_neutral",

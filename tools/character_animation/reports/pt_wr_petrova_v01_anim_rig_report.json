@@ -62,8 +62,8 @@
         0.0210999995470047,
         0.8817999958992004
       ],
-      "weighted_vertices": 1189,
-      "centroid_to_bone_m": 0.0756,
+      "weighted_vertices": 2193,
+      "centroid_to_bone_m": 0.1122,
       "bone_inside_weighted_volume": true
     },
     "neck": {
@@ -94,8 +94,8 @@
         -0.03909999877214432,
         1.315500020980835
       ],
-      "weighted_vertices": 9979,
-      "centroid_to_bone_m": 0.0104,
+      "weighted_vertices": 13919,
+      "centroid_to_bone_m": 0.0011,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -259,7 +259,19 @@
       "shape_keys": []
     },
     {
+      "name": "Petrova_Hair_EdgeCards",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
       "name": "Petrova_Hair_Ponytail",
+      "armature_modifier": true,
+      "vertex_groups": 2,
+      "shape_keys": []
+    },
+    {
+      "name": "Petrova_Hair_TailCards",
       "armature_modifier": true,
       "vertex_groups": 2,
       "shape_keys": []
@@ -643,5 +655,5 @@
       }
     ]
   },
-  "triangles": 31936
+  "triangles": 35344
 }
