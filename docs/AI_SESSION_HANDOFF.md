@@ -9,6 +9,8 @@
 
 ## Claude Code ward-round patients on the ward — 2026-11-03
 
+- 2026-11-04 night: Bi merged #129 (opening reactions, approved). New work: `claude/ward-round-check-in-seats` (draft PR to `main`): from Chapter 2 on, patients due a check-in sit on three visitor chairs by the ward entrance, oldest first; walking up opens their case, and once checked in the next one takes the chair. Staging only, no new lines. See `docs/handoffs/2026-11-04_claude_ward_round_check_in_seats.md`.
+- 2026-11-04 evening: Bi merged the stack; #127 carried #117–#125 into `claude/playtest-fixes`, and #128 merged it into `main`. New work: `claude/ward-round-opening-reactions` (each patient reacts to the bedside opening in their own words, approved by Bi 2026-11-04 19:31 UTC). See `docs/handoffs/2026-11-04_claude_ward_round_opening_reactions.md`.
 - Top of the stack (2026-11-04, evening): `claude/ward-round-handover` (PR #125, merged by Bi on 2026-11-04 into `claude/ward-round-check-ins`, so it now rides on #124): the day shift handover lists the chapter's ward-round patients with their debriefs and the check-ins. See `docs/handoffs/2026-11-04_claude_ward_round_handover.md`.
 - Top of the stack (2026-11-04, later): `claude/ward-round-check-ins` (draft PR stacked on #123): in a later chapter you can check in on patients you treated earlier and hear how they are getting on (lines approved by Bi 2026-11-04). See `docs/handoffs/2026-11-04_claude_ward_round_check_ins.md`.
 - Top of the stack (2026-11-04): `claude/ward-round-plan-response` (draft PR stacked on #122): when the accepted plan includes explaining it, the patient answers in their own words (approved by Bi 2026-11-04). See `docs/handoffs/2026-11-04_claude_ward_round_plan_response.md`.
