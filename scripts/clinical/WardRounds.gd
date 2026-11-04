@@ -234,6 +234,34 @@ func plan_response(case_id: String) -> String:
 	return _spoken(case_id, str(get_case(case_id).get("plan_response", {}).get("line", "")))
 
 
+## True when the player can check in on a patient treated in an earlier
+## chapter: their plan was accepted, a later chapter has begun, and the case has
+## a follow-up line.
+func can_follow_up(case_id: String) -> bool:
+	if status(case_id) != STATUS_ACCEPTED or is_replaying(case_id):
+		return false
+	if str(get_case(case_id).get("follow_up", {}).get("line", "")).is_empty():
+		return false
+	var started: Array[String] = _started_chapters()
+	return not started.is_empty() and started[started.size() - 1] != str(_cases[case_id]["chapter"])
+
+
+## Checks in on an earlier patient. Returns what they say ("" if not allowed).
+func follow_up(case_id: String) -> String:
+	if not can_follow_up(case_id):
+		return ""
+	_entry(case_id)["followed_up"] = true
+	case_changed.emit(case_id)
+	return followed_up_line(case_id)
+
+
+## The follow-up line once the player has checked in, else "".
+func followed_up_line(case_id: String) -> String:
+	if not bool(_state.get(case_id, {}).get("followed_up", false)):
+		return ""
+	return _spoken(case_id, str(get_case(case_id).get("follow_up", {}).get("line", "")))
+
+
 func _spoken(case_id: String, line: String) -> String:
 	if line.is_empty():
 		return ""
@@ -406,6 +434,8 @@ func validate_save_data(data: Variant) -> bool:
 				return false
 		if entry.has("opening") and not entry["opening"] is String:
 			return false
+		if entry.has("followed_up") and not entry["followed_up"] is bool:
+			return false
 	return true
 
 
@@ -422,7 +452,8 @@ func load_save_data(data: Dictionary) -> void:
 				"history": entry.get("history", []).duplicate(true), "replaying": bool(entry.get("replaying", false)),
 				"best": int(entry.get("best", -1)), "opening": str(entry.get("opening", "")),
 				"asked": entry.get("asked", []).duplicate(), "revealed": entry.get("revealed", []).duplicate(),
-				"repaired": bool(entry.get("repaired", false))}
+				"repaired": bool(entry.get("repaired", false)),
+				"followed_up": bool(entry.get("followed_up", false))}
 
 
 func reset_state() -> void:
@@ -435,7 +466,7 @@ func _entry(case_id: String) -> Dictionary:
 	if not _state.has(case_id):
 		_state[case_id] = {"labs": [], "plan": [], "status": STATUS_OPEN, "attempts": 0,
 				"history": [], "replaying": false, "best": -1,
-				"opening": "", "asked": [], "revealed": [], "repaired": false}
+				"opening": "", "asked": [], "revealed": [], "repaired": false, "followed_up": false}
 	return _state[case_id]
 
 
