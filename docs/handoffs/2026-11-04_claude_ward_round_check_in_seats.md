@@ -11,6 +11,7 @@
   - Walking up to a seated patient opens the ward-round screen on their case. That screen already opens on the Bedside tab with the check-in. Once checked in (`WardRounds.follow_up`), the patient leaves and the next one sits down, with a notice.
 - No new lines and no clinical change. The patients say only Bi's approved check-in lines. The staging (seat placement, chairs) is pending Bi's look.
 - Tests: `test_ward_round_bedside.gd` adds three tests: chairs and check-in flow, loaded game, validation. Ward-round filter 37/0.
+- Full QA on this branch: game 415/0, audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0.
 - Capture: `CaptureWardBedside.tscn -- --chapter=ch2` now also saves `ch2_check_in_seats.png`, `ch2_check_in_close.png` and `ch2_check_in_next.png`.
 - Note: after `ChapterDirector.start_chapter` the zone's staging node can leave the tree, so tests use `load_save_data` (as the existing ch2 test does) instead of holding the old node.
 - Next: Bi looks at the seats; then the next story/case work on a fresh branch from `main`.
