@@ -146,7 +146,7 @@ func test_every_patient_answers_in_their_own_words() -> void:
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(WardRounds.DATA_PATH))
 	for case: Dictionary in data["cases"]:
 		var lines: Dictionary = case.get("bedside_lines", {})
-		check_eq(str(lines.get("review_status", "")), "PENDING_PSYCHIATRIST_REVIEW", "%s lines are pending review" % case["id"])
+		check_eq(str(lines.get("review_status", "")), "APPROVED", "%s lines approved by Bi" % case["id"])
 		for question: String in ["history", "mental_state"]:
 			check(not str(lines.get(question, "")).is_empty(), "%s has a %s line" % [case["id"], question])
 	var bedside: Dictionary = data["bedside"]

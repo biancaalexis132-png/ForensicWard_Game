@@ -20,7 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Ward-round patient voices | `claude/ward-round-patient-voices` (draft PR to `claude/ward-round-bedside-talk`) | Claude Code (cloud) | last commit on the branch | `data/ward_rounds.json` `bedside_lines`, `WardRounds.gd`, `WardRoundCatalog.gd`, `test_ward_round_conversation.gd` | Full QA passed; lines pending Bi's review |
+| Ward-round patient voices | `claude/ward-round-patient-voices` (draft PR to `claude/ward-round-bedside-talk`) | Claude Code (cloud) | last commit on the branch | `data/ward_rounds.json` `bedside_lines`, `WardRounds.gd`, `WardRoundCatalog.gd`, `test_ward_round_conversation.gd` | Full QA passed; lines approved by Bi 2026-11-04 |
 | Ward-round bedside conversation | `claude/ward-round-bedside-talk` (draft PR to `claude/patient-hair-cards`) | Claude Code (cloud) | last commit on the branch | `WardRounds.gd`, `WardRoundCatalog.gd`, `WardRoundScoring.gd`, `WardRoundScreen.gd`, `data/ward_rounds.json` `bedside`, `test_ward_round_conversation.gd`, capture tool | Full QA passed; waiting on Bi |
 | Patient hair cards | `claude/patient-hair-cards` (draft PR to `claude/patient-model-ageing`) | Claude Code (cloud) | last commit on the branch | `build_cast_member.py` (`hair.cards`), 23 `pt_wr_*` configs and outputs | Full QA passed; waiting on Bi's look |
 | Patient looks: age, grey hair, weight | `claude/patient-model-ageing` (draft PR to `claude/ward-round-scoring`) | Claude Code (cloud) | see Log | `tools/blender/characters/build_cast_member.py` (opt-in options), 15 `pt_wr_*` configs and their outputs | Full QA passed; waiting on Bi's look |
