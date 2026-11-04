@@ -405,7 +405,7 @@ const WORLD_FILE: Dictionary = {
 			"values": {
 				"type": "object",
 				"required": {"display_name": _STRING},
-				"optional": {"open_angle_degrees": {"type": "number"}, "locked_message": _STRING, "zone": _ID},
+				"optional": {"open_angle_degrees": {"type": "number"}, "locked_message": _STRING, "zone": _ID, "sign": {"type": "string"}},
 			},
 		},
 		"interactables": {

@@ -27,6 +27,7 @@
 		},
 		"door_interview": {
 			"display_name": "Interview room door",
+			"sign": "Interview Room A",
 			"open_angle_degrees": -100
 		},
 		"door_ward_entry": {

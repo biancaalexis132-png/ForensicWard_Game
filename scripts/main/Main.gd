@@ -84,6 +84,10 @@ func _ready() -> void:
 	_place_at_spawn()
 	_zones.setup(_world, _player)
 	_zones.transition_finished.connect(_update_input_mode)
+	var conversation_range: ConversationRange = ConversationRange.new()
+	conversation_range.name = "ConversationRange"
+	conversation_range.target = _player
+	add_child(conversation_range)
 	var campus: CampusBackdrop = CampusBackdrop.new()
 	campus.name = "CampusBackdrop"
 	add_child(campus)

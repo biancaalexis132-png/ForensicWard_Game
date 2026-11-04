@@ -17,7 +17,7 @@ import sys
 
 import soundfile as sf
 
-from generate_voice import INDEX_PATH, PROFILES_PATH, line_hash, load_json, narrative_lines
+from generate_voice import INDEX_PATH, PROFILES_PATH, VOICE_VARIANTS, line_hash, load_json, narrative_lines
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST_PATH = ROOT / "audio/manifest.json"
@@ -34,6 +34,8 @@ VOICE_LICENSE = ("Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro
 NARRATOR_LICENSE = ("LJ Speech dataset: public domain (upstream MODEL_CARD); Piper vits-piper-en_US-ljspeech-high "
                     "model source attribution retained; Sherpa-ONNX runtime Apache-2.0. The owner-approved recap "
                     "narrator voice; no voice cloning.")
+# Variant voice clips (e.g. the female player voice) wait for the owner's listening review.
+VARIANT_REVIEW_STATUS = "PENDING_OWNER_LISTENING"
 REQUIRED = ("file", "ids", "category", "source", "license", "location", "duration_seconds",
             "integration_status", "review_status")
 
@@ -117,6 +119,15 @@ def build():
             chapter, line = lines[line_id]
             profile = profiles[line["speaker"]]
             record = voice_index.get(line_id, {})
+            variant = path.parent.name if path.parent.name != chapter else None
+            if variant is not None:
+                if variant not in VOICE_VARIANTS.get(line["speaker"], {}):
+                    problems.append(f"{relative}: '{variant}' is not a voice variant of '{line['speaker']}'")
+                    continue
+                profile = profiles[VOICE_VARIANTS[line["speaker"]][variant]]
+                record = record.get("variants", {}).get(variant, {})
+                entry["variant"] = variant
+                entry.setdefault("review_status", VARIANT_REVIEW_STATUS)
             if record.get("source_hash") != line_hash(line, profile):
                 problems.append(f"{relative}: stale; text or voice profile changed (run generate_voice.py)")
             entry.update({

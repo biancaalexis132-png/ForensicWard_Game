@@ -35,7 +35,10 @@ const VOLUMES: Dictionary = {
 	"Voice": "volume_voice",
 	"Effects": "volume_sfx",
 	"Ambience": "volume_ambient",
+	"PlayMusic": "volume_play_music",
 }
+## Labels for volume sliders built in code rather than in the scene.
+const EXTRA_VOLUME_LABELS: Dictionary = {"PlayMusic": "Music during play"}
 
 @onready var _status: Label = $Root/Panel/Scroll/Margin/VBox/Status
 @onready var _toggles: VBoxContainer = $Root/Panel/Scroll/Margin/VBox/Accessibility
@@ -125,6 +128,19 @@ func _ready() -> void:
 	size_row.add_child(_subtitle_size)
 	_toggles.add_child(size_row)
 	_sensitivity.value_changed.connect(func(value: float) -> void: Settings.set_value("mouse_sensitivity", value))
+	for node_name: String in EXTRA_VOLUME_LABELS:
+		var volume_label: Label = Label.new()
+		volume_label.name = node_name + "Label"
+		volume_label.text = EXTRA_VOLUME_LABELS[node_name]
+		volume_label.add_theme_font_size_override("font_size", 20)
+		_volumes.add_child(volume_label)
+		var volume_slider: HSlider = HSlider.new()
+		volume_slider.name = node_name
+		volume_slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		volume_slider.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		volume_slider.max_value = 1.0
+		volume_slider.step = 0.05
+		_volumes.add_child(volume_slider)
 	# Audio settings belong to AudioDirector, which applies and saves them.
 	for node_name: String in VOLUMES:
 		var key: String = VOLUMES[node_name]

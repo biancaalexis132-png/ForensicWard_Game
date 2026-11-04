@@ -1,5 +1,9 @@
 # AI session handoff
 
+## Claude Code owner playtest fixes — 2026-10-21
+
+- `claude/playtest-fixes` (draft PR to main, on `8755ec9`). Naomi's repeat trimmed, door signs, document images, female/male psychiatrist voice, quiet day underscore, walk-away stops conversations, clearer EHR with a Next step bar. Full QA: see AI_HANDOFF.md. Waiting on Bi: listening (female voice, music level), document images, meds/labs decision, Mac replay. See `docs/handoffs/2026-10-21_claude_playtest_fixes.md`. Last updated 2026-10-21.
+
 ## Claude Code final build approvals — 2026-10-21
 
 - `claude/final-build-approvals` at `88460d6` (draft PR to main, on Codex's `1a498dc`, which Bi merged as #111). Bi's approvals switched on: prologue, milestone, voice, return and order wording, title, environment art, Jordan CP-001. Full QA passed: game 348/0, audio 1622/0, QA 19/0/0, GLB 171/0, Chapter 1 sequence done. Mac automated QA passed on `1a498dc`; visual, controls and listening not tested. Next: Bi merges; grants Screen Recording and Accessibility; Mac pass on this branch. See `docs/handoffs/2026-10-21_claude_final_build.md`. Last updated 2026-10-21.

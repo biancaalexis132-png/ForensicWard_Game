@@ -55,7 +55,8 @@ func _ready() -> void:
 		_fields[field] = edit
 		edit.text_changed.connect(func(value: String) -> void: _draft[field] = value)
 	_name_field = _fields["name"]
-	var catalog_fields: Dictionary = {"professional_interest": "professional_interests", "acceptance_reason": "acceptance_reasons", "relationship": "relationships", "skin_tone": "skin_tones", "hair_color": "hair_colors", "hair_style": "hair_styles", "outfit": "outfits"}
+	# Gender sets the psychiatrist's voice; free-text pronouns stay a separate field.
+	var catalog_fields: Dictionary = {"gender": "genders", "professional_interest": "professional_interests", "acceptance_reason": "acceptance_reasons", "relationship": "relationships", "skin_tone": "skin_tones", "hair_color": "hair_colors", "hair_style": "hair_styles", "outfit": "outfits"}
 	for field: String in catalog_fields:
 		var label: Label = Label.new()
 		label.text = field.capitalize()

@@ -310,8 +310,9 @@ func test_soundtrack() -> void:
 	var music_duck := AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"), 1) as AudioEffectAmplify
 
 	# Narrative exploration, per the bible's Chapter 1 cue table: the records
-	# archive by day only. Handover and assessment rooms have no foreground
-	# music; Ward Zero and night stay without score.
+	# archive by day only. Handover rooms have no foreground music, only the
+	# quiet underscore the owner asked for after the 2026-10-21 playtest;
+	# Ward Zero and night stay without score.
 	AudioDirector.stop_music(0.01)
 	GameState.start_shift(1, "day")
 	AudioDirector.set_location("ward_zero", 0.2)
@@ -325,7 +326,10 @@ func test_soundtrack() -> void:
 	for room: String in ["corridor", "nursing_station"]:
 		AudioDirector.set_location(room, 0.2)
 		await wait(3.3)
-		check(not narrative.playing and AudioDirector.get_music_cue() == "", room + " by day has no foreground music")
+		var underscore: AudioStreamPlayer = AudioDirector.get_active_music()
+		check(not narrative.playing and AudioDirector.get_music_state() == "ward_underscore"
+				and AudioDirector.is_underscore_playing(), room + " by day has no foreground music, only the underscore")
+		check(underscore.playing and underscore.volume_db < -11.8 - 6.0, room + " underscore sits well below the song's cue level")
 		AudioDirector.set_location("records_archive", 0.2)
 		await wait(3.3)
 		narrative = AudioDirector.get_active_music()

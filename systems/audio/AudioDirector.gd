@@ -29,6 +29,10 @@ const CUES_PATH: String = "res://audio/cues.json"
 const AI_MUSIC_CUES_PATH: String = "res://audio/music_ai/music_cues.json"
 const NARRATIVE_DIR: String = "res://data/narrative"
 const VOICE_DIR: String = "res://audio/voice"
+## Alternative voices a speaker can use: speaker -> variant names. A variant clip
+## lives at audio/voice/<chapter>/<variant>/<line_id>.ogg. Keep in step with
+## VOICE_VARIANTS in tools/audio/generate_voice.py.
+const VOICE_VARIANTS: Dictionary = {"player": ["female"]}
 const SETTINGS_PATH: String = "user://audio_settings.cfg"
 const SETTINGS_SECTION: String = "audio"
 
@@ -61,6 +65,9 @@ const SETTING_DEFAULTS: Dictionary = {
 	"volume_voice": 1.0,
 	"reduce_startling_audio": false,
 	"music_intensity_cap": 1.0,
+	## Quiet music under the ward ambience during play (music states marked
+	## "underscore"), relative to its authored level. 0 turns it off.
+	"volume_play_music": 0.6,
 }
 const VOLUME_BUSES: Dictionary = {
 	"volume_master": "Master", "volume_music": "Music", "volume_ambient": "Ambient",
@@ -112,6 +119,8 @@ var _tweens: Dictionary = {} ## Object -> Tween, so a new fade replaces the old 
 var _current_line_id: String = ""
 var _current_line_token: int = 0
 var _current_voice: Node = null
+## speaker -> the VOICE_VARIANTS entry it uses now; absent = main voice.
+var _voice_variants: Dictionary = {}
 ## Bumped whenever dialogue is started or stopped, so a scene notices interruptions.
 var _dialogue_token: int = 0
 ## Recap narration shares speech ducking but never enters gameplay dialogue.
@@ -142,6 +151,7 @@ func _ready() -> void:
 	EventBus.shift_started.connect(_on_shift_started)
 	EventBus.narrative_event_fired.connect(_on_narrative_event_fired)
 	EventBus.game_loaded.connect(func(_slot: int) -> void: cancel_pending_events())
+	EventBus.protagonist_profile_changed.connect(_on_protagonist_profile_changed)
 
 
 func _process(_delta: float) -> void:
@@ -179,6 +189,8 @@ func _apply_setting(key: String) -> void:
 		AudioServer.set_bus_mute(bus, volume <= 0.0)
 	elif key == "music_intensity_cap":
 		set_music_intensity(_music_intensity)
+	elif key == "volume_play_music" and _current_variant().get("underscore", false):
+		_crossfade(_music_players, "music", _variant_for_intensity(), _variant_db(), 1.0)
 
 
 func _load_settings() -> void:
@@ -296,7 +308,7 @@ func set_music_state(state_id: String, fade_seconds: float = 4.0) -> void:
 		return
 	_music_state = state_id
 	_music_from_location = false
-	_crossfade(_music_players, "music", _variant_for_intensity(), 0.0, fade_seconds)
+	_crossfade(_music_players, "music", _variant_for_intensity(), _variant_db(), fade_seconds)
 
 
 func get_music_state() -> String:
@@ -430,12 +442,33 @@ func register_cue(cue_id: String, cue: Dictionary) -> void:
 
 
 func _variant_for_intensity() -> String:
+	var variant: Dictionary = _current_variant()
+	if variant.get("underscore", false) and float(get_setting("volume_play_music")) <= 0.0:
+		return "" # Music during play switched off: ambience only.
+	return str(variant.get("cue", ""))
+
+
+func _current_variant() -> Dictionary:
 	var effective: float = minf(_music_intensity, float(get_setting("music_intensity_cap")))
-	var chosen: String = ""
+	var chosen: Dictionary = {}
 	for variant: Dictionary in _music_states.get(_music_state, []):
 		if effective + 0.0001 >= float(variant.get("min_intensity", 0.0)):
-			chosen = variant["cue"]
+			chosen = variant
 	return chosen
+
+
+## Extra level for the state's variant: an underscore sits its own
+## "volume_db" below the cue, scaled by the music-during-play setting.
+func _variant_db() -> float:
+	var variant: Dictionary = _current_variant()
+	if not variant.get("underscore", false):
+		return 0.0
+	return float(variant.get("volume_db", 0.0)) + linear_to_db(maxf(float(get_setting("volume_play_music")), 0.0001))
+
+
+## True when the music playing now is a quiet underscore under play.
+func is_underscore_playing() -> bool:
+	return bool(_current_variant().get("underscore", false)) and not _music_cue.is_empty()
 
 
 func get_active_music() -> AudioStreamPlayer:
@@ -450,7 +483,7 @@ func set_music_intensity(value: float, fade_seconds: float = 2.0) -> void:
 	if _music_lowpass != null:
 		_tween(_music_lowpass, "cutoff_hz", cutoff, fade_seconds)
 	if not _music_state.is_empty():
-		_crossfade(_music_players, "music", _variant_for_intensity(), 0.0, MUSIC_VARIANT_FADE)
+		_crossfade(_music_players, "music", _variant_for_intensity(), _variant_db(), MUSIC_VARIANT_FADE)
 
 
 ## One-shot musical transition on the Music bus, layered over any music bed.
@@ -540,13 +573,43 @@ func get_scene_lines(scene_id: String) -> Array:
 	return _scenes.get(scene_id, []).duplicate()
 
 
-## Voice clip for a line, or null if it has not been generated yet.
+## Voice clip for a line, or null if it has not been generated yet. When the
+## speaker uses a voice variant (the female player voice), that clip plays,
+## falling back to the main clip if the variant was not generated.
 func get_voice_stream(line_id: String) -> AudioStream:
+	var path: String = get_voice_path(line_id)
+	return load(path) if not path.is_empty() else null
+
+
+## The res:// path of the clip get_voice_stream() plays for a line, or "".
+func get_voice_path(line_id: String) -> String:
 	var line: Dictionary = _lines.get(line_id, {})
 	if line.is_empty():
-		return null
+		return ""
+	var variant: String = str(_voice_variants.get(line["speaker"], ""))
+	if not variant.is_empty():
+		var variant_path: String = "%s/%s/%s/%s.ogg" % [VOICE_DIR, line["chapter"], variant, line_id]
+		if ResourceLoader.exists(variant_path):
+			return variant_path
 	var path: String = "%s/%s/%s.ogg" % [VOICE_DIR, line["chapter"], line_id]
-	return load(path) if ResourceLoader.exists(path) else null
+	return path if ResourceLoader.exists(path) else ""
+
+
+## Makes a speaker use one of its VOICE_VARIANTS ("" for the main voice).
+func set_voice_variant(speaker: String, variant: String) -> void:
+	if variant.is_empty() or not variant in VOICE_VARIANTS.get(speaker, []):
+		_voice_variants.erase(speaker)
+	else:
+		_voice_variants[speaker] = variant
+
+
+func get_voice_variant(speaker: String) -> String:
+	return str(_voice_variants.get(speaker, ""))
+
+
+func _on_protagonist_profile_changed() -> void:
+	# The profile's female/male choice picks the psychiatrist's voice.
+	set_voice_variant("player", "female" if ProtagonistProfile.gender() == "female" else "")
 
 
 ## Plays one line and shows its subtitle for exactly as long as the clip plays.

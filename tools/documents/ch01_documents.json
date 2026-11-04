@@ -1,0 +1,28 @@
+{
+	"_note": "Paper document images for Chapter 1 clues. Every word printed on a document comes from data/clues.json (title, source, provenance, verified, description), except the generic form labels listed here, which carry no clinical or story fact and are left blank. Regenerate with: python3 tools/documents/render_documents.py tools/documents/ch01_documents.json",
+	"chapter": "ch1",
+	"seed": 1968,
+	"size": [1024, 1325],
+	"output_dir": "assets/documents",
+	"manifest": "assets/asset_manifest/document_images_manifest.json",
+	"letterhead": "Ashcroft State Forensic Hospital",
+	"documents": [
+		{
+			"clue_id": "clue_transfer",
+			"style": "form",
+			"blank_fields": ["Patient name", "Date", "Signature"]
+		},
+		{
+			"clue_id": "clue_roster",
+			"style": "typewritten",
+			"table_columns": ["No.", "Name", "Ward", "Remarks"],
+			"table_rows": 9
+		},
+		{
+			"clue_id": "clue_access",
+			"style": "printout",
+			"table_columns": ["Time", "Door", "Credential", "Event"],
+			"table_rows": 7
+		}
+	]
+}

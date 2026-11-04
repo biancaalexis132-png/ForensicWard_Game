@@ -10,7 +10,7 @@
 		"door_archive": {"display_name": "Records archive door", "locked_message": "Records Archive: badge access required. Ask the charge nurse."},
 		"door_patient_01": {"display_name": "Room 01 door", "open_angle_degrees": -100, "locked_message": "Room 01: a patient's bedroom. Locked."},
 		"door_patient_02": {"display_name": "Room 02 door", "open_angle_degrees": -100, "locked_message": "Room 02: a patient's bedroom. Locked."},
-		"door_interview": {"display_name": "Interview room door", "open_angle_degrees": -100},
+		"door_interview": {"display_name": "Interview room door", "sign": "Interview Room A", "open_angle_degrees": -100},
 		"door_ward_entry": {"display_name": "Ward entry doors", "locked_message": "Ward entry: controlled access. Not your route today."},
 		"door_w0b": {"display_name": "W0-B door", "locked_message": "W0-B: sealed. Your badge is not recognised."}
 	},
