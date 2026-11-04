@@ -234,6 +234,27 @@ func plan_response(case_id: String) -> String:
 	return _spoken(case_id, str(get_case(case_id).get("plan_response", {}).get("line", "")))
 
 
+## Lines for the day shift handover: each of the chapter's ward-round patients
+## with their plan status and best debrief, and any earlier patients checked in
+## on. Empty when the chapter has none. Uses no clinical wording.
+func handover_lines(chapter_id: String) -> PackedStringArray:
+	var lines: PackedStringArray = []
+	for id: String in admitted_case_ids():
+		var name: String = str(_cases[id]["patient"]["name"])
+		if _cases[id]["chapter"] == chapter_id:
+			if status(id) == STATUS_ACCEPTED:
+				var best: int = best_score(id)
+				var graded: String = " (debrief %d, %s)" % [best, WardRoundScoring.grade_for(best)] if best >= 0 else ""
+				lines.append("%s: plan accepted%s." % [name, graded])
+			else:
+				lines.append("%s: no accepted plan yet." % name)
+		elif not followed_up_line(id).is_empty():
+			lines.append("%s: you checked in on them." % name)
+	if not lines.is_empty():
+		lines.insert(0, "[b]Ward round[/b]")
+	return lines
+
+
 ## True when the player can check in on a patient treated in an earlier
 ## chapter: their plan was accepted, a later chapter has begun, and the case has
 ## a follow-up line.

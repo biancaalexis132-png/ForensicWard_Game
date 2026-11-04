@@ -1,3 +1,5 @@
+**Ward round in the day handover (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-handover` on #124. The day shift handover now lists the chapter's ward-round patients (accepted with their debrief, or still open) and the earlier patients you checked in on. Not tested on the Mac.
+
 **Checking in on earlier patients (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-check-ins` on #123. Once a later chapter begins, the player can check in on patients treated earlier and hear how they are getting on (lines approved by Bi on 2026-11-04). Not tested on the Mac.
 
 **Patients answer your explanation (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-plan-response` on #122. When you explain the plan, the patient now replies in their own words, shown with the attending's reply and in the debrief (lines approved by Bi on 2026-11-04). Not tested on the Mac.
