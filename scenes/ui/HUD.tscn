@@ -61,9 +61,13 @@ theme_override_font_sizes/font_size = 22
 horizontal_alignment = 2
 
 [node name="Toasts" type="VBoxContainer" parent="Root"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 20.0
-offset_right = 824.0
-offset_bottom = 220.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -824.0
+offset_top = 204.0
+offset_right = -24.0
+offset_bottom = 404.0
+grow_horizontal = 0
 mouse_filter = 2

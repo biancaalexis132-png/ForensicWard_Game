@@ -6,7 +6,6 @@
 # Exports
 /build/
 /export/
-export_presets.cfg
 
 # OS / editor junk
 Thumbs.db

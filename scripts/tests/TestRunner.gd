@@ -31,9 +31,11 @@ func _ready() -> void:
 func _test_files() -> Array[String]:
 	var files: Array[String] = []
 	for file_name: String in DirAccess.get_files_at(TEST_DIR):
-		# Exported/imported projects may list .gd.remap; only plain scripts here.
-		if file_name.begins_with("test_") and file_name.ends_with(".gd"):
-			files.append(file_name)
+		# An exported pack lists compiled scripts as test_x.gd.remap; load() follows
+		# the remap from the plain name, so the export QA run finds the same tests.
+		var script_name: String = file_name.trim_suffix(".remap")
+		if script_name.begins_with("test_") and script_name.ends_with(".gd") and not script_name in files:
+			files.append(script_name)
 	# Development shortcut: FW_TEST_FILTER=voiced runs only matching files. QA never sets it.
 	var only: String = OS.get_environment("FW_TEST_FILTER")
 	if not only.is_empty():
