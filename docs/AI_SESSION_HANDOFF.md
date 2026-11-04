@@ -1,5 +1,12 @@
 # AI session handoff
 
+## Claude Code Mac release polish — 2026-11-04
+
+- Objective: finish the five-chapter game for a Mac release (Bi's checklist). Branch `claude/mac-release-polish` at `7e59789` (draft PR to `main`), from `main` `f031e55`.
+- Done: objective banner/toasts top right, objective shown once, Elias shoulder seams fixed (neckline tuck), voice/cutscene warnings traced to tests, Mac export presets and `tools/release/export_macos.sh`. Full QA passed on `7e59789`: game 413/0, audio 1720/0, QA 19/0/0, GLB 199/0, exit 0. macOS app exports (652 MB zip), not run.
+- Pending Bi: hands-on Mac pass of the packaged app (`docs/MAC_RELEASE_BUILD.md` §3), listening. Not started: environment art pass; larger features (meds/labs, customization, Jordan voice/model) only if Bi asks.
+- Next exact step: on the Mac, fresh clone in `~/Developer/forensicward-release` (never git on the SSK drive), checkout this branch, `tools/release/export_macos.sh`, then the §3 table. See `docs/handoffs/2026-11-04_claude_mac_release_polish.md`. Last updated 2026-11-04.
+
 ## Claude Code ward-round patients on the ward — 2026-11-03
 
 - Top of the stack (2026-11-04, evening): `claude/ward-round-handover` (PR #125, merged by Bi on 2026-11-04 into `claude/ward-round-check-ins`, so it now rides on #124): the day shift handover lists the chapter's ward-round patients with their debriefs and the check-ins. See `docs/handoffs/2026-11-04_claude_ward_round_handover.md`.
