@@ -92,7 +92,19 @@
       ],
       "width_m": 0.009
     },
-    "temple_recede_m": 0.007
+    "temple_recede_m": 0.007,
+    "hairline_cards": {
+      "length_m": [
+        0.012,
+        0.02
+      ],
+      "width_m": 0.008,
+      "outside_share": 0.4,
+      "v_scale": 0.7,
+      "every": 1,
+      "seed": 13
+    },
+    "hairline_taper_m": 0.035
   },
   "garments": [
     {
