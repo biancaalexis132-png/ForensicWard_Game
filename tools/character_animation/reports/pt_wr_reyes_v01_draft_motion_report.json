@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Tomas_Reyes_v01_draft.blend",
-    "sha256": "1641bfd8fcd00c1421e3c15559a1dc22939f04f2aaaea1688bb420ac30ab6213",
+    "sha256": "65b64c08f94d8aad81e97ae0d6d52a228b2eb6a2a845774501fc51ecd8dd442a",
     "modified": false
   },
   "library": {
@@ -96,7 +96,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Tomas_Reyes_v01_draft.glb",
-    "sha256": "aa83346d480144db76c3e3cc8e095e22d31653965a88abcd42844393e9b69c6e",
+    "sha256": "98e4cc3f166675f692f9b8052bbf65e82eda26f3bba3c695f9e5df76e8fb875a",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

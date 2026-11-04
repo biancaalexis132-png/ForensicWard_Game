@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Tomas_Reyes_v01_face.blend",
-      "sha256": "7bcf93cdb8333d663b53744de4c13475b27f268829ce695b8d9b5634e0cef611",
+      "sha256": "363a74ccd7402fe74e02161a6cbbc3185ebc104a2d7a6dba713de74be3cffffe",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 32928,
+  "triangle_count": 34368,
   "clips": [
     "idle_breathing",
     "idle_neutral",

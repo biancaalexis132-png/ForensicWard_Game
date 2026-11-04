@@ -4,7 +4,7 @@
   "profile_sha256": "93b5c3b0b72f243c8e560fa917bcbc61c1f0dcb7aae7e15cef5465a1294da662",
   "source": {
     "path": "build/cast/Elena_Petrova_v01_face.blend",
-    "sha256": "5d14f1b65721553c968c124d6c45ff0e5271391d39b61878233924501e7c10a1"
+    "sha256": "09a87e1519a3746c74bf00179b4e04aaef6689d638e1c7bfd3700f26754a7da8"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 31936
+  "triangles": 35344
 }

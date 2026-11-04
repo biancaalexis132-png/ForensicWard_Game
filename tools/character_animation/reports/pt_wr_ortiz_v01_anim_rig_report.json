@@ -94,8 +94,8 @@
         -0.03799999877810478,
         1.3487999439239502
       ],
-      "weighted_vertices": 11628,
-      "centroid_to_bone_m": 0.0076,
+      "weighted_vertices": 13356,
+      "centroid_to_bone_m": 0.008,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -254,6 +254,12 @@
     },
     {
       "name": "Ortiz_Hair_Cards",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Ortiz_Hair_EdgeCards",
       "armature_modifier": true,
       "vertex_groups": 1,
       "shape_keys": []
@@ -631,5 +637,5 @@
       }
     ]
   },
-  "triangles": 33242
+  "triangles": 34682
 }

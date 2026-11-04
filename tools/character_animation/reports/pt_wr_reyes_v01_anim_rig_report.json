@@ -94,8 +94,8 @@
         -0.037300001829862595,
         1.3344999551773071
       ],
-      "weighted_vertices": 11628,
-      "centroid_to_bone_m": 0.0075,
+      "weighted_vertices": 13356,
+      "centroid_to_bone_m": 0.0079,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -254,6 +254,12 @@
     },
     {
       "name": "Reyes_Hair_Cards",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Reyes_Hair_EdgeCards",
       "armature_modifier": true,
       "vertex_groups": 1,
       "shape_keys": []
@@ -631,5 +637,5 @@
       }
     ]
   },
-  "triangles": 32928
+  "triangles": 34368
 }
