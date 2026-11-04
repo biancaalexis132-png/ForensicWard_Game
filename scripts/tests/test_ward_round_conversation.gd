@@ -205,7 +205,7 @@ func test_the_patient_answers_when_you_explain_the_plan() -> void:
 func test_checking_in_on_a_patient_from_an_earlier_chapter() -> void:
 	var screen: WardRoundScreen = _screen()
 	var case: Dictionary = WardRounds.get_case(CASE_ID)
-	check_eq(case["follow_up"]["review_status"], "PENDING_PSYCHIATRIST_REVIEW", "follow-up lines are pending review")
+	check_eq(case["follow_up"]["review_status"], "APPROVED", "follow-up lines approved by Bi")
 	screen.open_bedside("warm")
 	check_eq(_submit_solved(screen)["outcome"], "accepted", "accepted")
 	check(not WardRounds.can_follow_up(CASE_ID), "no check-in in the same chapter")

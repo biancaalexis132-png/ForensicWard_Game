@@ -10,3 +10,4 @@
 - Clinical: pending Bi's review (row in `docs/clinical_review_log.md`); sheet `/mnt/project-files/ward_round/check_ins_review.md`.
 - Next: Bi reviews the lines.
 - Bedside tab no longer shows the opening choices on an accepted case that had no conversation. Full QA passed (game 410/0, audio 1720/0, QA 19/0/0, GLB 199/0, Chapter 1 sequence done, exit 0). Not tested on the Mac.
+- 2026-11-04 18:28 UTC: Bi approved the lines ("approved continue"); review_status set to APPROVED and logged.
