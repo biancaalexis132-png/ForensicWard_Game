@@ -62,8 +62,8 @@
         0.020800000056624413,
         0.8730999827384949
       ],
-      "weighted_vertices": 1187,
-      "centroid_to_bone_m": 0.0746,
+      "weighted_vertices": 2186,
+      "centroid_to_bone_m": 0.1104,
       "bone_inside_weighted_volume": true
     },
     "neck": {
@@ -94,8 +94,8 @@
         -0.03229999914765358,
         1.3011000156402588
       ],
-      "weighted_vertices": 9920,
-      "centroid_to_bone_m": 0.0132,
+      "weighted_vertices": 13452,
+      "centroid_to_bone_m": 0.0032,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -259,7 +259,19 @@
       "shape_keys": []
     },
     {
+      "name": "Farah_Hair_EdgeCards",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
       "name": "Farah_Hair_Ponytail",
+      "armature_modifier": true,
+      "vertex_groups": 2,
+      "shape_keys": []
+    },
+    {
+      "name": "Farah_Hair_TailCards",
       "armature_modifier": true,
       "vertex_groups": 2,
       "shape_keys": []
@@ -643,5 +655,5 @@
       }
     ]
   },
-  "triangles": 31565
+  "triangles": 34633
 }

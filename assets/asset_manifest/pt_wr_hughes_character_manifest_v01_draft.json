@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Owen_Hughes_v01_face.blend",
-      "sha256": "b0ea25294f4bbeb62a521faf167521d8402b60b7d6338567e3d352a1aed1f7dc",
+      "sha256": "b78291997325fe95408095fc8ab3c6a76a03bf8a28d0111e2d93538b4ce30e59",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 33173,
+  "triangle_count": 34733,
   "clips": [
     "idle_breathing",
     "idle_neutral",

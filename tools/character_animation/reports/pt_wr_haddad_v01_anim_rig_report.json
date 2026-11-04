@@ -62,8 +62,8 @@
         0.01940000057220459,
         0.8522999882698059
       ],
-      "weighted_vertices": 1182,
-      "centroid_to_bone_m": 0.0769,
+      "weighted_vertices": 2091,
+      "centroid_to_bone_m": 0.123,
       "bone_inside_weighted_volume": true
     },
     "neck": {
@@ -94,8 +94,8 @@
         -0.03869999945163727,
         1.2696000337600708
       ],
-      "weighted_vertices": 10044,
-      "centroid_to_bone_m": 0.0128,
+      "weighted_vertices": 13676,
+      "centroid_to_bone_m": 0.0023,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -259,7 +259,19 @@
       "shape_keys": []
     },
     {
+      "name": "Haddad_Hair_EdgeCards",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
       "name": "Haddad_Hair_Ponytail",
+      "armature_modifier": true,
+      "vertex_groups": 2,
+      "shape_keys": []
+    },
+    {
+      "name": "Haddad_Hair_TailCards",
       "armature_modifier": true,
       "vertex_groups": 2,
       "shape_keys": []
@@ -643,5 +655,5 @@
       }
     ]
   },
-  "triangles": 31937
+  "triangles": 35089
 }

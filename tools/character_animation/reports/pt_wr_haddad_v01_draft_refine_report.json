@@ -4,7 +4,7 @@
   "profile_sha256": "215ab291a45cb2dc8db98dc8f3bf767196770ebb1950031f10c11fe5f81182b5",
   "source": {
     "path": "build/cast/Nadia_Haddad_v01_face.blend",
-    "sha256": "07c35268f4a399ad944aa31fa5cf352e4998d4a1cf63738a3a6622c189d61868"
+    "sha256": "fcc96caf5943b11c87dd979667424177f08ba256829196c4c6c5e1e266d75054"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 31937
+  "triangles": 35089
 }
