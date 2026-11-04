@@ -2,6 +2,8 @@
 
 ## Claude Code Mac release polish — 2026-11-04
 
+- Update (evening): PR #131 merged by Bi into `main` (`144e609`). Mac run 2026-11-04 (Bi's MacBook Air M1, Godot 4.7.2.stable.official.ed1daf0bf, fresh clone `~/Developer/forensicward-release` at `c96f5f2`, same code as `main` `144e609`; nothing on the SSK drive): `tools/release/export_macos.sh` PASS (4.7.2 templates SHA-512 OK, ad-hoc signature valid, app 741 MB, LAUNCH_CHECK PASS, 0 ERROR lines); `tools/qa/mac_acceptance.py` exit 0 (QA 19/0/0, GLB 199/0, game 417/0, audio 1720/0, pharmacology 0 failures, Python tests passed, Chapter 1 sequence done); the packaged app opened from Finder-equivalent `open` and showed the title screen (New Game, Customize, Continue greyed, Settings, Quit, Ready.). App at `/Users/bi/Developer/forensicward-release/build/macos/The Forensic Ward.app`. Hands-on playthrough, endings and listening: NOT TESTED, waiting on Bi.
+
 - Objective: finish the five-chapter game for a Mac release (Bi's checklist). Branch `claude/mac-release-polish` at `7e59789` (draft PR to `main`), from `main` `f031e55`.
 - Done: objective banner/toasts top right, objective shown once, Elias shoulder seams fixed (neckline tuck), voice/cutscene warnings traced to tests, Mac export presets and `tools/release/export_macos.sh`. Full QA passed on `7e59789`: game 413/0, audio 1720/0, QA 19/0/0, GLB 199/0, exit 0. macOS app exports (652 MB zip), not run.
 - Pending Bi: hands-on Mac pass of the packaged app (`docs/MAC_RELEASE_BUILD.md` §3), listening. Not started: environment art pass; larger features (meds/labs, customization, Jordan voice/model) only if Bi asks.
