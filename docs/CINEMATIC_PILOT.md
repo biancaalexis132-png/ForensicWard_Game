@@ -27,3 +27,12 @@ Next production work:
 The owner requested moving game files to SSK to free laptop space. Finder confirms a volume named `SSK Drive` is connected to the Mac, but this cloud session cannot access it or control Finder. No transfer or deletion was performed. The last recorded Mac checkout is `~/Developer/forensicward-release`; inspect it and the destination before copying, preserve any uncommitted work and saves, verify the external copy before removing the internal one, then resume this branch. Do not interpret the request as permission to move unrelated personal files.
 
 The new local session should read `AGENTS.md`, current status and the latest handoff, then fetch and inspect `codex/cinematic-naomi-pilot` / draft PR #133. Review the cinematic on Metal before campaign integration.
+
+The owner also requested updating and opening the installed Mac application. This was not possible from the cloud. After inspecting local changes and fetching the cinematic branch, run the QA and export procedure in `docs/MAC_RELEASE_BUILD.md`, then open the built app:
+
+```sh
+tools/release/export_macos.sh
+open "build/macos/The Forensic Ward.app"
+```
+
+The existing export script explicitly refuses `/Volumes/` working copies. A local session must account for that when honoring the owner's SSK storage request (review an external-build adjustment or use temporary internal build staging and move the verified app). Do not claim the app is updated until it has been built and launched locally. This branch's cinematic remains a separately runnable preview; rebuilding the app alone does not add a campaign trigger.

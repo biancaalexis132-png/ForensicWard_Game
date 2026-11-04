@@ -2159,3 +2159,7 @@ The findings and approval gates in the preceding review entry remain current. Ow
 **Notes for the other agent**
 - No `CLAUDE.md` or `AGENTS.md` existed on any branch before this; established decisions were taken from `README.md`, `docs/TESTING.md`, `docs/SPRINT_01.md`, `docs/design/*`, `docs/clinical_review_log.md` and `staging/README.md`, which are unchanged.
 - The owner merges to `main`. Do not merge, push to `main` or enable auto-merge.
+
+### Cinematic immediate-push follow-up
+
+The owner requested "just push changes to github", then asked for the laptop application to be updated and opened. Source/review checkpoint `edbf2e7b0411b072419ff32982c7966331748928` was pushed and verified. Full QA and refined video rendering were stopped for the immediate-push handoff; partial results above are not a full pass. Mac update/open and SSK transfer remain unperformed because no local Mac tool is exposed. The existing release exporter rejects `/Volumes/` paths; local continuation must reconcile that with the owner's explicit external-storage request. See the final section of `docs/CINEMATIC_PILOT.md`.
