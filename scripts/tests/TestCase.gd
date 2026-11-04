@@ -16,6 +16,8 @@ var _failures: Array[String] = []
 func before_each() -> void:
 	Settings.persist = false
 	ClinicalRules.build_mode = ClinicalRules.MODE_PROTOTYPE
+	# Story tests drive chapters without ward rounds; test_ward_rounds turns the gate on.
+	WardRounds.enforce_gate = false
 	SaveManager.reset_all()
 
 

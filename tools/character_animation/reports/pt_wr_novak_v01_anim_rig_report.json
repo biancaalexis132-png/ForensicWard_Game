@@ -1,0 +1,629 @@
+{
+  "rig": "Luka_Novak_Rig",
+  "bone_count": 53,
+  "roles": {
+    "pelvis": {
+      "bone": "pelvis",
+      "head": [
+        -0.0,
+        -0.01360000018030405,
+        0.6043000221252441
+      ],
+      "tail": [
+        -9.999999747378752e-05,
+        0.025100000202655792,
+        0.6833000183105469
+      ],
+      "weighted_vertices": 1184,
+      "centroid_to_bone_m": 0.0041,
+      "bone_inside_weighted_volume": true
+    },
+    "spine_lower": {
+      "bone": "spine_01",
+      "head": [
+        -9.999999747378752e-05,
+        0.025100000202655792,
+        0.6833000183105469
+      ],
+      "tail": [
+        -0.0,
+        0.007000000216066837,
+        0.7529000043869019
+      ],
+      "weighted_vertices": 650,
+      "centroid_to_bone_m": 0.0493,
+      "bone_inside_weighted_volume": true
+    },
+    "spine_mid": {
+      "bone": "spine_02",
+      "head": [
+        -0.0,
+        0.007000000216066837,
+        0.7529000043869019
+      ],
+      "tail": [
+        -0.0,
+        0.0031999999191612005,
+        0.8288000226020813
+      ],
+      "weighted_vertices": 478,
+      "centroid_to_bone_m": 0.0159,
+      "bone_inside_weighted_volume": true
+    },
+    "chest": {
+      "bone": "spine_03",
+      "head": [
+        -0.0,
+        0.0031999999191612005,
+        0.8288000226020813
+      ],
+      "tail": [
+        -0.0,
+        0.01140000019222498,
+        0.9721999764442444
+      ],
+      "weighted_vertices": 928,
+      "centroid_to_bone_m": 0.0725,
+      "bone_inside_weighted_volume": true
+    },
+    "neck": {
+      "bone": "neck_01",
+      "head": [
+        -0.0,
+        -0.005900000222027302,
+        1.1505999565124512
+      ],
+      "tail": [
+        0.0,
+        -0.04960000142455101,
+        1.2545000314712524
+      ],
+      "weighted_vertices": 289,
+      "centroid_to_bone_m": 0.0046,
+      "bone_inside_weighted_volume": true
+    },
+    "head": {
+      "bone": "head",
+      "head": [
+        0.0,
+        -0.04960000142455101,
+        1.2545000314712524
+      ],
+      "tail": [
+        0.0,
+        -0.04320000112056732,
+        1.4077999591827393
+      ],
+      "weighted_vertices": 5834,
+      "centroid_to_bone_m": 0.0435,
+      "bone_inside_weighted_volume": true
+    },
+    "clavicle_l": {
+      "bone": "clavicle_l",
+      "head": [
+        0.02280000038444996,
+        -0.02160000056028366,
+        1.0812000036239624
+      ],
+      "tail": [
+        0.1673000007867813,
+        -0.01979999989271164,
+        1.0654000043869019
+      ],
+      "weighted_vertices": 243,
+      "centroid_to_bone_m": 0.0792,
+      "bone_inside_weighted_volume": true
+    },
+    "clavicle_r": {
+      "bone": "clavicle_r",
+      "head": [
+        -0.02280000038444996,
+        -0.02160000056028366,
+        1.0812000036239624
+      ],
+      "tail": [
+        -0.1673000007867813,
+        -0.01979999989271164,
+        1.0654000043869019
+      ],
+      "weighted_vertices": 248,
+      "centroid_to_bone_m": 0.0781,
+      "bone_inside_weighted_volume": true
+    },
+    "upperarm_l": {
+      "bone": "upperarm_l",
+      "head": [
+        0.1673000007867813,
+        -0.01979999989271164,
+        1.0654000043869019
+      ],
+      "tail": [
+        0.2126999944448471,
+        -0.04390000179409981,
+        0.8352000117301941
+      ],
+      "weighted_vertices": 503,
+      "centroid_to_bone_m": 0.0331,
+      "bone_inside_weighted_volume": true
+    },
+    "upperarm_r": {
+      "bone": "upperarm_r",
+      "head": [
+        -0.1673000007867813,
+        -0.01979999989271164,
+        1.0654000043869019
+      ],
+      "tail": [
+        -0.2126999944448471,
+        -0.04390000179409981,
+        0.8352000117301941
+      ],
+      "weighted_vertices": 516,
+      "centroid_to_bone_m": 0.0322,
+      "bone_inside_weighted_volume": true
+    },
+    "lowerarm_l": {
+      "bone": "lowerarm_l",
+      "head": [
+        0.2126999944448471,
+        -0.04390000179409981,
+        0.8352000117301941
+      ],
+      "tail": [
+        0.22699999809265137,
+        -0.10320000350475311,
+        0.5562999844551086
+      ],
+      "weighted_vertices": 381,
+      "centroid_to_bone_m": 0.0107,
+      "bone_inside_weighted_volume": true
+    },
+    "lowerarm_r": {
+      "bone": "lowerarm_r",
+      "head": [
+        -0.2126999944448471,
+        -0.04390000179409981,
+        0.8352000117301941
+      ],
+      "tail": [
+        -0.22699999809265137,
+        -0.10329999774694443,
+        0.555899977684021
+      ],
+      "weighted_vertices": 374,
+      "centroid_to_bone_m": 0.0116,
+      "bone_inside_weighted_volume": true
+    },
+    "hand_l": {
+      "bone": "hand_l",
+      "head": [
+        0.22699999809265137,
+        -0.10320000350475311,
+        0.5562999844551086
+      ],
+      "tail": [
+        0.22360000014305115,
+        -0.11020000278949738,
+        0.5234000086784363
+      ],
+      "weighted_vertices": 135,
+      "centroid_to_bone_m": 0.0185,
+      "bone_inside_weighted_volume": true
+    },
+    "hand_r": {
+      "bone": "hand_r",
+      "head": [
+        -0.22699999809265137,
+        -0.10329999774694443,
+        0.555899977684021
+      ],
+      "tail": [
+        -0.22360000014305115,
+        -0.11029999703168869,
+        0.5230000019073486
+      ],
+      "weighted_vertices": 141,
+      "centroid_to_bone_m": 0.019,
+      "bone_inside_weighted_volume": true
+    }
+  },
+  "meshes": [
+    {
+      "name": "Luka_Novak_Body",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    },
+    {
+      "name": "Novak_Eye_L",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Novak_Eye_R",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Novak_Hair",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Novak_Joggers",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    },
+    {
+      "name": "Novak_Slip_Ons",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    },
+    {
+      "name": "Novak_Sweatshirt",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    }
+  ],
+  "failures": [],
+  "reskinned_dominant_bones": {},
+  "blender_version": "5.2.2 LTS",
+  "profile": "tools/character_animation/profiles/pt_wr_novak_v01_anim.json",
+  "profile_sha256": "493c7332558ffccfc8928748767285c951a7619aacc900d310103337b0132f79",
+  "face_details": {
+    "lash_faces": 38,
+    "brow_faces": 0,
+    "skin": {
+      "texture_size": 2048,
+      "brow_texels": 2047,
+      "roughness": 0.58,
+      "roughness_variation": 0.05,
+      "specular": 0.35,
+      "detail_size": 1024
+    },
+    "eye_bones": {
+      "Novak_Eye_L": "eye_l",
+      "Novak_Eye_R": "eye_r"
+    },
+    "shoes": {
+      "left": 160,
+      "right": 142,
+      "vertices": 3628
+    }
+  },
+  "morph_targets": [
+    "blink_L",
+    "blink_R",
+    "blink",
+    "attentive",
+    "warm_subtle",
+    "concerned_restrained",
+    "professionally_serious",
+    "focused",
+    "calm_professional",
+    "mouth_open"
+  ],
+  "clips": [
+    {
+      "name": "idle_neutral",
+      "player": "body",
+      "loop": true,
+      "seconds": 8.0,
+      "frames": 240,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "pelvis",
+        "spine_01",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Relaxed professional standing: breathing, slight weight shift, slow head drift.",
+      "glb_channels": 7,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "pelvis",
+        "spine_01",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "idle_breathing",
+      "player": "body",
+      "loop": true,
+      "seconds": 4.0,
+      "frames": 120,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Breathing only: chest and shoulders rise and settle, head stays level.",
+      "glb_channels": 5,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "listen_neutral",
+      "player": "body",
+      "loop": true,
+      "seconds": 6.0,
+      "frames": 180,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_03"
+      ],
+      "description": "Attentive listening: slight lean in, small head tilt, breathing.",
+      "glb_channels": 4,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "stand_conversational",
+      "player": "body",
+      "loop": true,
+      "seconds": 6.0,
+      "frames": 180,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Speaking: small emphatic head movements and a slight torso turn, breathing.",
+      "glb_channels": 5,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "turn_from_workstation",
+      "player": "body",
+      "loop": false,
+      "seconds": 1.2,
+      "frames": 36,
+      "bones": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Turns from the workstation (her right, looking down) to face the player.",
+      "glb_channels": 3,
+      "glb_nodes": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "return_to_workstation",
+      "player": "body",
+      "loop": false,
+      "seconds": 1.2,
+      "frames": 36,
+      "bones": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Turns back to the workstation and holds there.",
+      "glb_channels": 3,
+      "glb_nodes": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "small_greeting_nod",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 1.2,
+      "frames": 36,
+      "bones": [
+        "neck_01"
+      ],
+      "description": "One small nod with a slight tilt.",
+      "glb_channels": 1,
+      "glb_nodes": [
+        "neck_01"
+      ]
+    },
+    {
+      "name": "small_acknowledgement_nod",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 0.9,
+      "frames": 27,
+      "bones": [
+        "neck_01"
+      ],
+      "description": "Brief acknowledging nod.",
+      "glb_channels": 1,
+      "glb_nodes": [
+        "neck_01"
+      ]
+    },
+    {
+      "name": "restrained_chart_indication",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 2.0,
+      "frames": 60,
+      "bones": [
+        "lowerarm_r",
+        "neck_01",
+        "upperarm_r"
+      ],
+      "description": "Right forearm lifts slightly toward the desk, then settles; head follows.",
+      "glb_channels": 3,
+      "glb_nodes": [
+        "lowerarm_r",
+        "neck_01",
+        "upperarm_r"
+      ]
+    },
+    {
+      "name": "subtle_workstation_indication",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 1.6,
+      "frames": 48,
+      "bones": [
+        "lowerarm_r",
+        "neck_01"
+      ],
+      "description": "Small glance and open-hand indication toward the workstation.",
+      "glb_channels": 2,
+      "glb_nodes": [
+        "lowerarm_r",
+        "neck_01"
+      ]
+    }
+  ],
+  "glb": {
+    "skins": 1,
+    "animations": [
+      {
+        "name": "idle_breathing",
+        "channels": 5,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "idle_neutral",
+        "channels": 7,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "pelvis",
+          "spine_01",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "listen_neutral",
+        "channels": 4,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "restrained_chart_indication",
+        "channels": 3,
+        "nodes": [
+          "lowerarm_r",
+          "neck_01",
+          "upperarm_r"
+        ]
+      },
+      {
+        "name": "return_to_workstation",
+        "channels": 3,
+        "nodes": [
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "small_acknowledgement_nod",
+        "channels": 1,
+        "nodes": [
+          "neck_01"
+        ]
+      },
+      {
+        "name": "small_greeting_nod",
+        "channels": 1,
+        "nodes": [
+          "neck_01"
+        ]
+      },
+      {
+        "name": "stand_conversational",
+        "channels": 5,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "subtle_workstation_indication",
+        "channels": 2,
+        "nodes": [
+          "lowerarm_r",
+          "neck_01"
+        ]
+      },
+      {
+        "name": "turn_from_workstation",
+        "channels": 3,
+        "nodes": [
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      }
+    ],
+    "morph_targets": [
+      {
+        "mesh": "Luka_Novak_Body",
+        "targets": [
+          "blink_L",
+          "blink_R",
+          "blink",
+          "attentive",
+          "warm_subtle",
+          "concerned_restrained",
+          "professionally_serious",
+          "focused",
+          "calm_professional",
+          "mouth_open"
+        ]
+      }
+    ]
+  },
+  "triangles": 28817
+}
