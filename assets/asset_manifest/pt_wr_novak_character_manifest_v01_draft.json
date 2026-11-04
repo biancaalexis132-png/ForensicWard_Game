@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Luka_Novak_v01_face.blend",
-      "sha256": "81647eeab740f6a26a9ba7281203fb87b72f6696af4ced65d830008e7f040464",
+      "sha256": "efe59fcae3b126a5ff5d789d569e1976b7121688d0068a6301db2f6aa10fe94c",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 33793,
+  "triangle_count": 35353,
   "clips": [
     "idle_breathing",
     "idle_neutral",

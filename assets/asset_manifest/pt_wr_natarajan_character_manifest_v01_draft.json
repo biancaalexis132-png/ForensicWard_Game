@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Priya_Natarajan_v01_face.blend",
-      "sha256": "d72950f408875ec5967127ddfeca82a12d4453e661971ee90c8b58af20b98766",
+      "sha256": "d7d1df43dd6cca1ba30a2afcb27450e5020ceadd8bd009483261a92c10f6ace6",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 32158,
+  "triangle_count": 35388,
   "clips": [
     "idle_breathing",
     "idle_neutral",

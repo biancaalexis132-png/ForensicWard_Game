@@ -4,7 +4,7 @@
   "profile_sha256": "efd47c5c903e3404a2544943edd9de22aee490402498d78f3a7975a06ed36cd7",
   "source": {
     "path": "build/cast/Ruth_Okafor_v01_face.blend",
-    "sha256": "1d8bbac92a47d6ac2939308ebaea9e75b7f453aeb4036874c1c57ee46a0abdb7"
+    "sha256": "4287502f519e2d758f3f25c781740f7171194e07e7f5989a4c6743b5da727cb4"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 32143
+  "triangles": 34853
 }

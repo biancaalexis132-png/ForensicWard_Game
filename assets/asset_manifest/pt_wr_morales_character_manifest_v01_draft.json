@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Lucia_Morales_v01_face.blend",
-      "sha256": "ae0b228c81275afa153f471cf592b4ee13dfb006d9d393754f950ad5d3f5d16e",
+      "sha256": "4786bfda6382e5aa043694876207f933cb82d5e84c941fb85042d0df29ce9d94",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 31891,
+  "triangle_count": 35039,
   "clips": [
     "idle_breathing",
     "idle_neutral",
