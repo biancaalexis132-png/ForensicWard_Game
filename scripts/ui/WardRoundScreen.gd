@@ -94,7 +94,9 @@ func select_case(id: String) -> void:
 	# A patient not yet spoken to opens at the bedside; otherwise at the chart.
 	var fresh: bool = not WardRounds.bedside().is_empty() and WardRounds.bedside_opening(id).is_empty() \
 			and WardRounds.is_editable(id)
-	show_tab("Bedside" if fresh else "Chart")
+	# A patient from an earlier chapter waiting for a check-in also opens at the bedside.
+	var check_in: bool = WardRounds.can_follow_up(id) and WardRounds.followed_up_line(id).is_empty()
+	show_tab("Bedside" if fresh or check_in else "Chart")
 
 
 ## Bedside actions (buttons call these; so do tests).
@@ -194,6 +196,8 @@ func _refresh_census() -> void:
 		var mark: String = "↻" if WardRounds.is_replaying(id) else ("✓" if done else "•")
 		var best: int = WardRounds.best_score(id)
 		var suffix: String = "  ·  %d" % best if best >= 0 else ""
+		if WardRounds.can_follow_up(id) and WardRounds.followed_up_line(id).is_empty():
+			suffix += "  ·  check in"
 		_census.add_item("%s %s%s" % [mark, case["patient"]["name"], suffix])
 		_census.set_item_metadata(_census.item_count - 1, id)
 		_census.set_item_custom_fg_color(_census.item_count - 1, UIStyle.GOOD if done else UIStyle.TEXT)
@@ -236,7 +240,10 @@ func _build_bedside() -> void:
 	var editable: bool = WardRounds.is_editable(case_id)
 	var opening: String = WardRounds.bedside_opening(case_id)
 	_bedside.add_child(UIStyle.label("At the bedside with %s" % case["patient"]["name"], SIZE_HEADING, UIStyle.ACCENT.lightened(0.2)))
-	if opening.is_empty():
+	_build_follow_up(case)
+	if opening.is_empty() and not editable:
+		pass  # Accepted without a bedside conversation: nothing left to open.
+	elif opening.is_empty():
 		_bedside.add_child(UIStyle.label("How do you open the conversation? It sets how much they are willing to tell you, and the debrief counts it.", SIZE_SMALL, UIStyle.MUTED))
 		for entry: Dictionary in block["openings"]:
 			var button: Button = _choice_button(entry["label"], "Open_" + str(entry["id"]))
@@ -263,6 +270,29 @@ func _build_bedside() -> void:
 		_bedside.add_child(card)
 	if not opening.is_empty() and editable:
 		_bedside.add_child(UIStyle.label("Answers are added to the Chart tab.", SIZE_SMALL, UIStyle.MUTED))
+
+
+## Checking in on a patient treated in an earlier chapter.
+func _build_follow_up(case: Dictionary) -> void:
+	var said: String = WardRounds.followed_up_line(case_id)
+	if not said.is_empty():
+		var card: PanelContainer = _card("Checking in", said)
+		card.find_children("*", "RichTextLabel", true, false)[0].name = "FollowUpLine"
+		_bedside.add_child(card)
+	elif WardRounds.can_follow_up(case_id):
+		_bedside.add_child(UIStyle.label("Some time has passed since you treated %s." % case["patient"]["name"].get_slice(" ", 0), SIZE_SMALL, UIStyle.MUTED))
+		var button: Button = _choice_button("Check in and ask how they are getting on", "FollowUp")
+		button.pressed.connect(follow_up)
+		_bedside.add_child(button)
+
+
+## Checks in on an earlier patient (the button calls this; so do tests).
+func follow_up() -> String:
+	var text: String = WardRounds.follow_up(case_id)
+	if not text.is_empty():
+		_build_bedside()
+		_refresh_census()
+	return text
 
 
 func _choice_button(text: String, node_name: String) -> Button:
