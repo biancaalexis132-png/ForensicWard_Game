@@ -21,7 +21,8 @@
         0.0,
         0.0
       ],
-      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "walk_step_m": 0.65
     },
     "staff_hale": {
       "scene": "res://assets/exports/characters/Marcus_Hale_v01_draft.glb",
@@ -38,7 +39,8 @@
           0.0,
           0.0
         ]
-      }
+      },
+      "walk_step_m": 0.75
     },
     "staff_rahman": {
       "scene": "res://assets/exports/characters/Leila_Rahman_v01_draft.glb",
@@ -55,7 +57,8 @@
           0.0,
           0.0
         ]
-      }
+      },
+      "walk_step_m": 0.63
     },
     "staff_facilities_tech": {
       "scene": "res://assets/exports/characters/Facilities_Tech_v01_draft.glb",
@@ -65,7 +68,8 @@
         0.0,
         0.0
       ],
-      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "walk_step_m": 0.71
     },
     "pt_elias_ward": {
       "scene": "res://assets/exports/characters/Elias_Ward_v01_draft.glb",
@@ -79,6 +83,286 @@
     },
     "pt_mara_ellis": {
       "scene": "res://assets/exports/characters/Mara_Ellis_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_ortiz": {
+      "scene": "res://assets/exports/characters/Daniel_Ortiz_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_natarajan": {
+      "scene": "res://assets/exports/characters/Priya_Natarajan_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_hughes": {
+      "scene": "res://assets/exports/characters/Owen_Hughes_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_morales": {
+      "scene": "res://assets/exports/characters/Lucia_Morales_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_kim": {
+      "scene": "res://assets/exports/characters/Harold_Kim_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_lebel": {
+      "scene": "res://assets/exports/characters/Marguerite_Lebel_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_brennan": {
+      "scene": "res://assets/exports/characters/Agnes_Brennan_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_kowalczyk": {
+      "scene": "res://assets/exports/characters/Jan_Kowalczyk_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_achebe": {
+      "scene": "res://assets/exports/characters/Chidi_Achebe_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_adeyemi": {
+      "scene": "res://assets/exports/characters/Samuel_Adeyemi_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_bell": {
+      "scene": "res://assets/exports/characters/Chloe_Bell_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_brooks": {
+      "scene": "res://assets/exports/characters/Gerald_Brooks_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_clarke": {
+      "scene": "res://assets/exports/characters/Imogen_Clarke_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_delaney": {
+      "scene": "res://assets/exports/characters/Frank_Delaney_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_doyle": {
+      "scene": "res://assets/exports/characters/Patrick_Doyle_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_farah": {
+      "scene": "res://assets/exports/characters/Amina_Farah_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_haddad": {
+      "scene": "res://assets/exports/characters/Nadia_Haddad_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_lindqvist": {
+      "scene": "res://assets/exports/characters/Grace_Lindqvist_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_mensah": {
+      "scene": "res://assets/exports/characters/Abena_Mensah_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_novak": {
+      "scene": "res://assets/exports/characters/Luka_Novak_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_okafor": {
+      "scene": "res://assets/exports/characters/Ruth_Okafor_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_osei": {
+      "scene": "res://assets/exports/characters/Kwame_Osei_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_petrova": {
+      "scene": "res://assets/exports/characters/Elena_Petrova_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_quinn": {
+      "scene": "res://assets/exports/characters/Maeve_Quinn_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_reyes": {
+      "scene": "res://assets/exports/characters/Tomas_Reyes_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_sato": {
+      "scene": "res://assets/exports/characters/Kenji_Sato_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_whitaker": {
+      "scene": "res://assets/exports/characters/Harold_Whitaker_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "pt_wr_wrobel": {
+      "scene": "res://assets/exports/characters/Tomasz_Wrobel_v01_draft.glb",
       "model_yaw_degrees": 180.0,
       "marker_offset": [
         0.0,

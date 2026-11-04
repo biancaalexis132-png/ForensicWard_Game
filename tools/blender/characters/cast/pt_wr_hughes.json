@@ -1,0 +1,142 @@
+{
+  "character": {
+    "name": "Owen Hughes",
+    "character_id": "pt_wr_hughes",
+    "file_stem": "Owen_Hughes",
+    "prefix": "Hughes_",
+    "role": "Patient (ward round)",
+    "asset_version": "v01",
+    "height_m": 1.8,
+    "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+    "canon_basis": "data/ward_rounds.json case chart (name, age, sex only); appearance is a draft choice; ordinary own clothes; no symptom movement without clinical review",
+    "draft_choices": [
+      "Skin tone, face, build and height are draft choices; the chart gives only name, age and sex.",
+      "Seated rest pose for sitting on the bed in a patient room; only the shared neutral clips, no symptom-related movement."
+    ]
+  },
+  "source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v01.blend",
+    "body": "Naomi_Bennett_Body",
+    "rig": "Naomi_Bennett_Rig"
+  },
+  "macro": {
+    "age_years": 19,
+    "ethnicity": {
+      "caucasian": 0.95,
+      "asian": 0.05
+    },
+    "min_muscle": 0.18,
+    "max_weight": 0.0
+  },
+  "pose": {
+    "upperarm_down_degrees": 62.0,
+    "upperarm_forward_degrees": 6.0,
+    "elbow_bend_degrees": 12.0
+  },
+  "seated": {
+    "thigh_drop_deg": 6.0,
+    "knee_spread": 0.08,
+    "shin_back_deg": 4.0
+  },
+  "skin": {
+    "base_srgb_hex": "#D0A086",
+    "shadow_srgb_hex": "#AC7C64",
+    "warm_srgb_hex": "#D49480",
+    "lip_srgb_hex": "#B07068",
+    "brow_srgb_hex": "#5A3E28",
+    "nail_srgb_hex": "#DCBCAA",
+    "texture_size": 2048,
+    "roughness": 0.56,
+    "lid_shadow": 0.22,
+    "cheek_warmth": 0.18,
+    "brow_strength": 0.8,
+    "lip_strength": 0.4,
+    "beard_shadow": {
+      "srgb_hex": "#6A4A30",
+      "strength": 0.03
+    }
+  },
+  "eyes": {
+    "sclera_srgb_hex": "#E3DACE",
+    "iris_srgb_hex": "#4E6A78",
+    "limbal_srgb_hex": "#1E1610",
+    "helper_radius_scale": 0.93
+  },
+  "face": {
+    "lash_srgb_hex": "#16100C",
+    "lash_length_m": 0.004,
+    "brow_srgb_hex": "#5A3E28",
+    "brows": {
+      "inner_half_m": 0.0038,
+      "tail_half_m": 0.0013,
+      "fill": 0.5,
+      "hairs": 480
+    }
+  },
+  "hair": {
+    "style": "crop",
+    "srgb_hex": "#5E4028",
+    "grey_fraction": 0.0,
+    "front_z_m": 0.058,
+    "nape_z_m": -0.06,
+    "ear_top_z_m": 0.025,
+    "volume_top_m": 0.005,
+    "volume_side_m": 0.002,
+    "fringe_m": 0.004
+  },
+  "garments": [
+    {
+      "kind": "top",
+      "name": "T_Shirt",
+      "srgb_hex": "#5E6B4E",
+      "sleeves": "short",
+      "neckline": {
+        "type": "crew",
+        "depth_m": 0.02,
+        "half_width_m": 0.06
+      },
+      "hem_z_m": 0.86,
+      "offset_m": 0.012,
+      "drape": {
+        "from_z_m": 1.12,
+        "per_m": 0.04
+      },
+      "thickness_m": 0.003,
+      "texture": {
+        "period": 150,
+        "roughness": 0.92,
+        "rib": 0.2,
+        "specular": 0.2
+      }
+    },
+    {
+      "kind": "trousers",
+      "name": "Joggers",
+      "srgb_hex": "#3A4250",
+      "offset_m": 0.013,
+      "texture": {
+        "period": 110,
+        "roughness": 0.9,
+        "rib": 0.3
+      }
+    },
+    {
+      "kind": "shoes",
+      "name": "Slip_Ons",
+      "srgb_hex": "#2A2A2E",
+      "roughness": 0.7
+    }
+  ],
+  "mesh": {
+    "triangle_budget": 60000,
+    "body_ratio": 0.6,
+    "clothing_ratio": 0.55,
+    "shoe_ratio": 0.25
+  },
+  "known_limitations": [
+    "Draft model for owner review; appearance is not canon.",
+    "Hair is a scalp shell with a strand texture, not groomed strands.",
+    "Not measured on the target Mac.",
+    "Seated rest pose bent by skinning only: hips and knees have no corrective shapes."
+  ]
+}

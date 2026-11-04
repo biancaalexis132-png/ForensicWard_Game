@@ -1,5 +1,14 @@
 # AI progress tracker
 
+## Ward-round patients on the ward — Claude Code (cloud), 2026-11-03
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Patients seated in Rooms 01/02, approach opens case, next patient arrives | Done, draft PR | #115, #114 | `scripts/world/WardRoundBedside.gd`, `data/ward_round_bedside.json` | `test_ward_round_bedside` (7), captures | Bi plays on the Mac |
+| Patient models for all 28 ward-round cases | Draft, pending owner look | cast pipeline | `tools/blender/characters/cast/pt_wr_*.json`, `assets/exports/characters/*_v01_draft.glb` | GLB 199/0; captures ch1 to ch5 | Bi reviews the look |
+| Case bible third wave (8 cases, referral labels, bedside assessments, wrong-for-everyone choices) | Done on #115, pending Bi's clinical review | #115 | `data/ward_rounds.json`, `WardRoundCatalog.gd` | `test_ward_rounds` | Bi reviews in the review doc |
+| Scoring and action budget from the case bible | Not started | Bi's review | | | Ask Bi after review |
+
 ## Ward rounds — Claude Code (cloud), 2026-11-03
 
 | Task | State | Dependencies | Paths | Validation | Next action |
@@ -10,6 +19,16 @@
 | First ten cases and answer keys | Approved by Bi 2026-11-03 | Bi | `data/ward_rounds.json`, `docs/clinical_review_log.md` | `test_ward_rounds` | None |
 | Ten harder second-wave cases | Pending clinical review | Bi | `data/ward_rounds.json`, review doc (Second wave) | `test_ward_rounds` | Bi approves or corrects |
 | Full QA | Done on `6bef53d` | | `tests/qa/run.py` | game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0 | None |
+
+## Cast animation — Claude Code (cloud), 2026-11-03
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Walk and talk-gesture clips on six draft models | Done, draft PR #114 | Cast v01 drafts | `tools/character_animation/`, `assets/exports/characters/*_v01_draft.glb` | `test_cast_motion`, review sheets | Bi looks on Mac |
+| Shared acting (CastPerformer) | Done, draft PR #114 | | `scripts/world/CastPerformer.gd`, `Character.gd` | `test_cast_motion` | Bi plays |
+| Walking routes (technician Ch2, Hale Ch4/Ch5) | Done, draft PR #114 | | `scripts/world/CastRoute.gd`, `data/world_chapter{2,4,5}.json` | route clearance test | Bi decides on more routes |
+| Full QA | Done on `584d864` | | `tests/qa/run.py` | game 377/0, audio 1720/0, QA 19/0/0, GLB 171/0 | None |
+| Mac look and frame time | Not tested | Bi's Mac | | | Bi replays |
 
 ## Owner playtest fixes — Claude Code (cloud), 2026-10-21
 
