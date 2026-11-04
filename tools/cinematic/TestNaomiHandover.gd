@@ -27,5 +27,6 @@ func _ready() -> void:
 		return
 	pilot.queue_free()
 	await get_tree().process_frame
+	await get_tree().create_timer(0.25).timeout
 	print("CINEMATIC_CANCEL_TEST: 3 passed / 0 failed")
 	get_tree().quit()

@@ -141,6 +141,8 @@ func _finish() -> void:
 	_caption.text = "End of cinematic preview"
 	print("CINEMATIC_PREVIEW_DONE")
 	if _exit_when_done:
+		# Let the audio mix thread release a just-stopped voice before shutdown.
+		await get_tree().create_timer(0.25).timeout
 		get_tree().quit()
 
 func _fail(message: String) -> void:
