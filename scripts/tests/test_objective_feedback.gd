@@ -82,6 +82,26 @@ func test_settings_turn_parts_off() -> void:
 	check_eq(_tracker().banner_log.size(), 3, "still recorded once, so turning banners on later repeats nothing")
 
 
+func test_current_objective_shows_once_on_screen() -> void:
+	await _settle()
+	var hud: HUD = _main.get_node("HUD")
+	check("Report to the charge nurse" in _tracker().get_checklist_text(), "checklist shows the current objective")
+	check_eq(hud.get_objective_line(), "", "no second 'Objective:' line while the checklist is on")
+	Settings.set_value("objective_checklist", false)
+	check_eq(hud.get_objective_line(), "Objective: Report to the charge nurse at the nursing station.",
+			"the bottom line takes over when the checklist is hidden")
+	Settings.set_value("objective_checklist", true)
+	check_eq(hud.get_objective_line(), "", "and hides again when the checklist returns")
+
+
+func test_banner_stays_clear_of_the_centre_name_tags() -> void:
+	await _settle()
+	var rect: Rect2 = _tracker().get_banner_rect()
+	var size: Vector2 = runner.get_viewport().get_visible_rect().size
+	check(rect.position.x > size.x * 0.5, "banner sits in the right half, away from centred name tags")
+	check(rect.position.y >= 56.0, "banner sits below the clock")
+
+
 ## Lets the director announce the opening objective (TestRunner does not await before_each).
 func _settle() -> void:
 	await runner.get_tree().process_frame

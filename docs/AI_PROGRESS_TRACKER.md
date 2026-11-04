@@ -1,5 +1,18 @@
 # AI progress tracker
 
+## Mac release polish — Claude Code (cloud), 2026-11-04
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Objective banner off name tags; toasts off checklist | Done, draft PR | | `ObjectiveTracker.gd`, `HUD.gd`, `HUD.tscn` | `test_objective_feedback` (7), HUD captures | Bi checks on the Mac |
+| Objective shown once | Done, draft PR | | `HUD.gd` | `test_objective_feedback` | Bi checks on the Mac |
+| Elias shoulder seams | Done, draft PR | bpy 5.2.2 | `tuck_neckline.py`, Elias blend/GLB | GLB 199/0, before/after capture | Bi looks on the Mac |
+| Missing voice clip / cutscene overlap warnings | Investigated: test-only | | test logs | all 619 voice files present | None |
+| Standalone Mac export | Preset and script done; app built in container | Export templates | `export_presets.cfg`, `tools/release/export_macos.sh`, `docs/MAC_RELEASE_BUILD.md` | Linux pack boots; suite from pack 408/5 (harness-only) | Build and play on the Mac |
+| Hands-on Mac playthrough, listening | Not started | Bi's Mac | `docs/MAC_RELEASE_BUILD.md` §3 | | Bi or Remote Control |
+| Environment art pass | Not started | | | | After the Mac pass |
+
+
 ## Ward-round patients on the ward — Claude Code (cloud), 2026-11-03
 
 | Task | State | Depends on | Paths | Validation | Next action |

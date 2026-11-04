@@ -22,6 +22,8 @@
 
 # Project status
 
+**Mac release polish (Claude Code, 2026-11-04; draft PR, not merged):** `claude/mac-release-polish` at `7e59789`, from `main`. The objective banner no longer covers character name tags, the current objective shows once, Elias's shoulder seams are closed, and the repository can now build a standalone macOS app (`tools/release/export_macos.sh`, `docs/MAC_RELEASE_BUILD.md`). Full QA passed (game 413/0, audio 1720/0). The Mac app was built in the container but has not been run on a Mac.
+
 **Ward-round patients on the ward (Claude Code, 2026-11-03; draft PR #116, not merged):** `claude/ward-round-bedside` at `99655fb`, on #115 (now including the case-bible third wave, 28 cases) with #114 merged in. All 28 ward-round patients have animated 3D draft models and wait in Rooms 01 and 02, oldest admission first; walking up to one opens their case, and the next patient takes the room once a plan is accepted. Models pending owner look; third-wave cases pending Bi's clinical review; no symptom movement. Full QA passed (game 394/0, GLB 199/0). Not tested on the Mac.
 
 **Ward rounds (Claude Code, 2026-11-03; draft PR #115, not merged):** `claude/ward-rounds` at `5d5bf6a`, on #113. Each chapter admits four patients the player works up in the EHR (labs, then a medication plan judged by the attending); a chapter closes only once its patients' plans are accepted. The first ten cases are approved by Bi; ten harder second-wave cases are pending psychiatrist review and play in the prototype build only. Full QA passed (game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0). Not tested on the Mac.
@@ -236,6 +238,7 @@ Headless checks do not cover these. They stay here until the owner confirms them
 - Naomi base likeness, hair silhouette, scrub fit/deformation and acting quality; the 30 FPS / p95 33.3 ms budget has not been measured in the Chapter 1 scene
 - Accessibility toggles in play (reduce motion, flicker off)
 - Clinical correctness of anything marked pending
+- The packaged macOS app (`docs/MAC_RELEASE_BUILD.md`): launch outside the editor, full playthrough, three endings
 
 ## Naomi Chapter 1 acting-cue workstream (merged in PR #35)
 

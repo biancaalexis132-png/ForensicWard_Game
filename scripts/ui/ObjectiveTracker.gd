@@ -16,6 +16,10 @@ const PROVIDER_KEY: String = "objective_feedback"
 const BANNER_SECONDS: float = 3.2
 const FADE_SECONDS: float = 0.35
 const COMPLETE_CUE: String = "sfx_ui_terminal_open"
+const BANNER_WIDTH: float = 460.0
+const BANNER_MARGIN: float = 24.0
+## Below the HUD clock (top 20 to 56 px).
+const BANNER_TOP: float = 68.0
 
 ## Banner texts shown so far this session, oldest first (tests and QA read it).
 var banner_log: Array[String] = []
@@ -57,6 +61,11 @@ func get_checklist_text() -> String:
 
 func is_banner_showing() -> bool:
 	return _showing
+
+
+## The banner's on-screen rectangle (tests check it stays clear of the centre).
+func get_banner_rect() -> Rect2:
+	return _banner.get_global_rect()
 
 
 func refresh() -> void:
@@ -183,11 +192,13 @@ func _build() -> void:
 	_banner = PanelContainer.new()
 	_banner.name = "Banner"
 	_banner.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_banner.anchor_left = 0.5
-	_banner.anchor_right = 0.5
-	_banner.offset_left = -300
-	_banner.offset_right = 300
-	_banner.offset_top = 90
+	# Top right, under the HUD clock: the centre of the screen is where a
+	# character's floating name tag sits, and the banner used to cover it.
+	_banner.anchor_left = 1.0
+	_banner.anchor_right = 1.0
+	_banner.offset_left = -BANNER_WIDTH - BANNER_MARGIN
+	_banner.offset_right = -BANNER_MARGIN
+	_banner.offset_top = BANNER_TOP
 	var style: StyleBoxFlat = StyleBoxFlat.new()
 	style.bg_color = Color(0.03, 0.06, 0.06, 0.82)
 	style.border_color = Color(0.55, 0.7, 0.66, 0.6)

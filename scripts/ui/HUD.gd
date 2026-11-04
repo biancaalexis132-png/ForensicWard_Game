@@ -54,7 +54,9 @@ func _ready() -> void:
 	_subtitle_box.set_corner_radius_all(4)
 	EventBus.settings_changed.connect(func(key: String, _value: Variant) -> void:
 		if key.begins_with("subtitle"):
-			_set_subtitle(_subtitle_speaker, _subtitle_line))
+			_set_subtitle(_subtitle_speaker, _subtitle_line)
+		elif key == "objective_checklist":
+			_update_objective_line())
 	_prompt.text = ""
 	_update_clock()
 
@@ -72,6 +74,8 @@ func show_toast(text: String) -> void:
 	label.add_theme_color_override("font_color", Color(0.85, 0.95, 0.9))
 	label.add_theme_color_override("font_outline_color", Color.BLACK)
 	label.add_theme_constant_override("outline_size", 6)
+	# Top right under the objective banner: the top left is the objective checklist's.
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_toasts.add_child(label)
 	while _toasts.get_child_count() > MAX_TOASTS:
 		_toasts.get_child(0).free()
@@ -96,8 +100,20 @@ func _overlay_label(size: int, alignment: HorizontalAlignment) -> Label:
 
 func _on_objective_changed(_objective_id: String, text: String) -> void:
 	objective_text = text
-	_objective.text = "" if text.is_empty() else "Objective: " + text
+	_update_objective_line()
 	# Completion and new-objective banners are ObjectiveTracker's, once per save.
+
+
+## The bottom-left "Objective:" line is only a fallback for players who hide
+## ObjectiveTracker's checklist, so the current objective never shows twice.
+func _update_objective_line() -> void:
+	var shown: bool = not objective_text.is_empty() and not Settings.get_value("objective_checklist")
+	_objective.text = "Objective: " + objective_text if shown else ""
+
+
+## Text of the bottom-left objective line as shown ("" when hidden), for tests.
+func get_objective_line() -> String:
+	return _objective.text
 
 
 func _on_subtitle_shown(_line_id: String, speaker: String, text: String, _duration: float) -> void:

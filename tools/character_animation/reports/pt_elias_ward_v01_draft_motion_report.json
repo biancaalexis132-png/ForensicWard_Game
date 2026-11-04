@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Elias_Ward_v01_draft.blend",
-    "sha256": "9af76d2247e829ede0dc9a43af24e1ebc2755b5cb7907f09e1457203f2ede9ee",
+    "sha256": "27b749c93c39f4df7d7956db108824e1edc4ddc7950ce40c046696e5fbb41a7c",
     "modified": false
   },
   "library": {
@@ -91,7 +91,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Elias_Ward_v01_draft.glb",
-    "sha256": "edc563d886c33c79c8fe4645b41ad4f93756bc81262b347e51edcda74a1f3967",
+    "sha256": "5ec0d378ced95213c97134ebf928b3a43ccafb9adf4ec727475631553d93efa5",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",
