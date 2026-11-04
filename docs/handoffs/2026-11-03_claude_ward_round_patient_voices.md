@@ -9,3 +9,4 @@
 - Clinical: pending Bi's review (row in `docs/clinical_review_log.md`). Approved cases' answer keys are unchanged.
 - Next: Bi reviews the lines; revise wording from her notes.
 - Tests: full QA passed (game 408/0, audio 1720/0, QA 19/0/0, GLB 199/0, Chapter 1 sequence done, exit 0). Not tested on the Mac. The capture tool timed out after the bedside screens under software rendering; only bedside_answers.png was refreshed.
+- 2026-11-04: Bi approved the lines ("i apprve the bedside lines so far"); review_status set to APPROVED and logged. Generic openings and deductions stay pending.
