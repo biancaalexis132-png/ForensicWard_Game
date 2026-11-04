@@ -45,12 +45,27 @@ func _build_stage() -> void:
 	environment.environment.background_color = Color(0.08, 0.11, 0.12)
 	environment.environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	environment.environment.ambient_light_color = Color(0.68, 0.76, 0.8)
-	environment.environment.ambient_light_energy = 0.65
+	environment.environment.ambient_light_energy = 0.3
 	add_child(environment)
 	var light: DirectionalLight3D = DirectionalLight3D.new()
 	light.rotation_degrees = Vector3(-40, -35, 0)
-	light.light_energy = 1.1
+	light.light_energy = 0.65
 	add_child(light)
+	var key: SpotLight3D = SpotLight3D.new()
+	key.position = Vector3(1.4, 2.4, 1.8)
+	key.light_color = Color(1.0, 0.92, 0.84)
+	key.light_energy = 1.8
+	key.spot_range = 6.0
+	key.spot_angle = 48.0
+	key.shadow_enabled = true
+	add_child(key)
+	key.look_at(Vector3(0.0, 1.35, 0.0))
+	var fill: OmniLight3D = OmniLight3D.new()
+	fill.position = Vector3(-1.0, 1.8, 1.2)
+	fill.light_color = Color(0.75, 0.85, 1.0)
+	fill.light_energy = 0.45
+	fill.omni_range = 4.0
+	add_child(fill)
 	var station: PackedScene = load("res://assets/exports/clinical/env/ENV_NursingStation.glb") as PackedScene
 	if station != null:
 		var room: Node3D = station.instantiate() as Node3D
@@ -66,30 +81,33 @@ func _build_stage() -> void:
 	_camera = Camera3D.new()
 	add_child(_camera)
 	_camera.make_current()
+	var ui_scale: float = maxf(get_viewport().get_visible_rect().size.y / 1080.0, 0.5)
+	var subtitle_height: float = maxf(100.0 * ui_scale, 80.0)
 	var overlay: CanvasLayer = CanvasLayer.new()
 	add_child(overlay)
 	for bottom: bool in [false, true]:
 		var bar: ColorRect = ColorRect.new()
 		bar.color = Color.BLACK
 		bar.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE if bottom else Control.PRESET_TOP_WIDE)
-		bar.offset_top = -100 if bottom else 0
-		bar.offset_bottom = 0 if bottom else 65
+		bar.offset_top = -subtitle_height if bottom else 0
+		bar.offset_bottom = 0 if bottom else 65.0 * ui_scale
 		bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		overlay.add_child(bar)
 	_caption = Label.new()
 	_caption.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
-	_caption.offset_top = -94
+	_caption.offset_top = -subtitle_height + 6.0
 	_caption.offset_bottom = -8
-	_caption.offset_left = 60
-	_caption.offset_right = -60
+	_caption.offset_left = 60.0 * ui_scale
+	_caption.offset_right = -60.0 * ui_scale
 	_caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_caption.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_caption.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_caption.add_theme_font_size_override("font_size", 22)
+	_caption.add_theme_font_size_override("font_size", maxi(14, roundi(22.0 * ui_scale)))
 	overlay.add_child(_caption)
 	var hint: Label = Label.new()
 	hint.text = "CINEMATIC BLOCKING PREVIEW     Esc: finish"
-	hint.position = Vector2(24, 18)
+	hint.position = Vector2(24, 18) * ui_scale
+	hint.add_theme_font_size_override("font_size", maxi(12, roundi(16.0 * ui_scale)))
 	overlay.add_child(hint)
 
 func _frame_shot(shot: Dictionary) -> void:
