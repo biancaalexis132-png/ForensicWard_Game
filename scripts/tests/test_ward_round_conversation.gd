@@ -83,7 +83,7 @@ func test_a_warm_opening_lets_answers_fill_the_chart() -> void:
 	check(WardRounds.bedside_trust(CASE_ID) == 2, "warm opening gives full trust")
 	(screen.find_child("Ask_history", true, false) as Button).pressed.emit()
 	check(_chart_text(screen).contains(case["presentation"]["history"]), "history added to the chart")
-	check((screen.find_child("BedsideReplies", true, false) as RichTextLabel).get_parsed_text().contains("relaxes a little"), "the patient's response is shown")
+	check((screen.find_child("BedsideReplies", true, false) as RichTextLabel).get_parsed_text().contains(case["opening_reactions"]["warm"]), "the patient's own reaction is shown")
 	check((screen.find_child("Ask_history", true, false) as Button).disabled, "a question is asked once")
 	check(screen.open_bedside("rushed").is_empty(), "the opening cannot be changed")
 	screen.select_case("wr_ch1_natarajan")
@@ -232,4 +232,22 @@ func test_checking_in_on_a_patient_from_an_earlier_chapter() -> void:
 		check(not str(entry.get("follow_up", {}).get("line", "")).is_empty(), "%s has a follow-up line" % entry["id"])
 	data["cases"][0]["follow_up"] = {"review_status": "maybe", "line": "x"}
 	check("\n".join(WardRoundCatalog.validate(data)).contains("follow_up: needs a review_status and a non-empty line"), "a bad follow-up is refused")
+	screen.close()
+
+
+func test_each_patient_reacts_to_the_opening_in_their_own_way() -> void:
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(WardRounds.DATA_PATH))
+	for entry: Dictionary in data["cases"]:
+		var reactions: Dictionary = entry.get("opening_reactions", {})
+		check_eq(str(reactions.get("review_status", "")), "APPROVED", "%s reactions approved by Bi" % entry["id"])
+		for opening: String in ["warm", "direct", "rushed"]:
+			check(not str(reactions.get(opening, "")).is_empty(), "%s reacts to %s" % [entry["id"], opening])
+	var errors: String = "\n".join(WardRoundCatalog.validate_opening_reactions({"review_status": "APPROVED", "friendly": "x", "warm": ""}, data["bedside"], "c"))
+	check(errors.contains("c.opening_reactions.friendly: not a bedside opening"), "unknown opening named")
+	check(errors.contains("c.opening_reactions.warm: expected a non-empty line"), "blank reaction named")
+	var screen: WardRoundScreen = _screen()
+	var case: Dictionary = WardRounds.get_case(CASE_ID)
+	check_eq(screen.open_bedside("rushed"), "(He glances at the window and folds his arms.) Then don't waste your time on me.", "a reaction starting with a description keeps its own wording")
+	check_eq(WardRounds.bedside_trust(CASE_ID), 0, "trust still comes from the opening")
+	check_eq(WardRounds.bedside_line(CASE_ID, "history").get_slice(":", 0), "Daniel", "spoken lines still name the patient")
 	screen.close()

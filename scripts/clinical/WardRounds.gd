@@ -191,7 +191,8 @@ func open_bedside(case_id: String, opening_id: String) -> String:
 		return ""
 	_entry(case_id)["opening"] = opening_id
 	case_changed.emit(case_id)
-	return _bedside_text(opening["response"], case_id)
+	var reaction: String = _spoken(case_id, str(get_case(case_id).get("opening_reactions", {}).get(opening_id, "")))
+	return reaction if not reaction.is_empty() else _bedside_text(opening["response"], case_id)
 
 
 ## Asks a question. Returns the patient's spoken answer (bedside_line), or the
