@@ -146,3 +146,63 @@ func test_chapter_two_patients_follow_once_chapter_one_is_done() -> void:
 	check_eq(bedside.occupancy(), {"room_01": "wr_ch2_brennan", "room_02": "wr_ch2_kowalczyk"}, "then Brennan and Kowalczyk")
 	for slot_id: String in ["room_01", "room_02"]:
 		check(bedside.occupant(slot_id).visual_error.is_empty(), slot_id + ": model loaded")
+
+
+func test_earlier_patients_wait_on_the_chairs_for_a_check_in() -> void:
+	var bedside: WardRoundBedside = _start_main("ch1")
+	_accept("wr_ch1_ortiz")
+	check(bedside.check_in_occupancy().is_empty(), "nobody is due a check-in in their own chapter")
+	for slot_id: String in ["seat_01", "seat_02", "seat_03"]:
+		check(bedside.find_child("CheckInChair_" + slot_id, false, false) != null, slot_id + ": chair stands by the ward entrance")
+	_main.free()
+	WardRounds.reset_state()
+	bedside = _start_main("ch2")
+	for case_id: String in WardRounds.open_case_ids("ch1"):
+		_accept(case_id)
+	check_eq(bedside.check_in_occupancy(), {"seat_01": "wr_ch1_ortiz", "seat_02": "wr_ch1_natarajan", "seat_03": "wr_ch1_hughes"},
+			"in chapter 2 the first three chapter 1 patients take the chairs, oldest first")
+	check_eq(bedside.occupancy(), {"room_01": "wr_ch2_kim", "room_02": "wr_ch2_lebel"}, "the rooms still hold chapter 2's admissions")
+	var patient: WardCharacter = bedside.occupant("seat_01")
+	check(patient.seated and patient.visual_error.is_empty(), "Ortiz sits on the chair with his model")
+	var requests: Array = []
+	var record: Callable = func(panel_id: String, data: Dictionary) -> void: requests.append([panel_id, data])
+	EventBus.ui_panel_requested.connect(record)
+	patient.get_node("Interactable").interacted.emit(null)
+	EventBus.ui_panel_requested.disconnect(record)
+	check_eq(requests, [[WardRoundScreen.PANEL_ID, {"case_id": "wr_ch1_ortiz"}]], "approaching him opens his case")
+	var notices: Array[String] = []
+	var note: Callable = func(text: String) -> void: notices.append(text)
+	EventBus.notification_requested.connect(note)
+	check(not WardRounds.follow_up("wr_ch1_ortiz").is_empty(), "checking in on Ortiz")
+	EventBus.notification_requested.disconnect(note)
+	check_eq(bedside.check_in_occupancy(), {"seat_01": "wr_ch1_morales", "seat_02": "wr_ch1_natarajan", "seat_03": "wr_ch1_hughes"},
+			"once checked in he leaves and the next patient takes the chair")
+	check_contains(notices, "Lucia Morales is waiting in the seats by the ward entrance", "arrival announced")
+
+
+func test_check_in_chairs_follow_a_loaded_game() -> void:
+	var bedside: WardRoundBedside = _start_main("ch2")
+	for case_id: String in WardRounds.open_case_ids("ch1"):
+		_accept(case_id)
+	for case_id: String in ["wr_ch1_ortiz", "wr_ch1_natarajan", "wr_ch1_hughes", "wr_ch1_morales"]:
+		WardRounds.follow_up(case_id)
+	check_eq(bedside.check_in_occupancy().values(), ["wr_ch1_haddad"], "only Haddad is still due, and keeps her chair")
+	var saved: Dictionary = WardRounds.to_save_data()
+	WardRounds.reset_state()
+	bedside.refresh()
+	check(bedside.check_in_occupancy().is_empty(), "fresh state: nobody accepted, so nobody on the chairs")
+	WardRounds.load_save_data(saved)
+	bedside.refresh()
+	check_eq(bedside.check_in_occupancy(), {"seat_01": "wr_ch1_haddad"}, "loaded: Haddad is back on a chair")
+
+
+func test_check_in_staging_is_validated() -> void:
+	var data: Dictionary = WardRoundBedside.load_data()
+	var broken: Dictionary = data.duplicate(true)
+	broken["check_in"]["chair_scene"] = "res://missing_chair.glb"
+	broken["check_in"]["slots"].append({"id": "room_01", "label": "x", "position": [0, 0, 0], "yaw_degrees": 0})
+	var errors: Array[String] = WardRoundBedside.validate(broken)
+	check_contains(errors, "check_in.chair_scene must name a scene that exists", "missing chair named")
+	check_contains(errors, "slot ids must be unique", "a chair cannot reuse a room's id")
+	broken["check_in"] = []
+	check_contains(WardRoundBedside.validate(broken), "check_in must be an object", "bad check_in named")
