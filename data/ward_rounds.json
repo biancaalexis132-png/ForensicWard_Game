@@ -405,7 +405,7 @@
 				"line": "So you think it's an illness, not the neighbours? I don't know. But I'll try what you're saying."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I'm sleeping more. The voice is still there sometimes, but quieter. My mum visited. That was good."
 			}
 		},
@@ -560,7 +560,7 @@
 				"line": "You're slowing me down right when everything's taking off. Fine. Fine. But I want it written down that I disagree."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I've slept properly for the first time in ages. Some of those plans seem a bit much now, looking back."
 			}
 		},
@@ -668,7 +668,7 @@
 				"line": "My wife has been saying I should talk to someone. Thank you for not making me feel foolish."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "Still slow in the mornings. But my wife says I laughed at the television last night. I'd forgotten I could."
 			}
 		},
@@ -796,7 +796,7 @@
 				"line": "The tablets, together? I didn't know. Will you tell my family?"
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I feel like myself again. I'm going to be very careful about painkillers from now on."
 			}
 		},
@@ -905,7 +905,7 @@
 				"line": "Because I stopped smoking? Nobody told me that could matter. Thank you."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I'm more awake now. I still miss the cigarettes, mind you."
 			}
 		},
@@ -1032,7 +1032,7 @@
 				"line": "(He turns his eyes toward you for a moment while you speak.)"
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I don't remember much of the last few days. They tell me I was very unwell. Thank you for noticing."
 			}
 		},
@@ -1161,7 +1161,7 @@
 				"line": "So it was the two medicines together. I thought I was going mad. Thank you for explaining."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "The shaking's gone. I can sit still again. You don't know what a relief that is."
 			}
 		},
@@ -1275,7 +1275,7 @@
 				"line": "(She gives no sign that she has heard, but her eyes follow you to the door.)"
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I could hear everything, I just couldn't move or speak. Thank you for being patient with me."
 			}
 		},
@@ -1381,7 +1381,7 @@
 				"line": "I'm frightened of having another fit. If you're keeping an eye on me, I'll stay."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "Worst few days of my life, but I got through them. I want to talk about what happens when I leave."
 			}
 		},
@@ -1540,7 +1540,7 @@
 				"line": "I had no idea the new antibiotic could do that. I'm glad someone looked at all of them together."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "No more funny turns. They've put a note on my file about that antibiotic."
 			}
 		},
@@ -1655,7 +1655,7 @@
 				"line": "So it's the medicine, not me getting worse? Okay. Okay. Please make it stop."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "My neck's normal again. I was so scared. Will it happen again?"
 			}
 		},
@@ -1763,7 +1763,7 @@
 				"line": "I thought I was just being difficult. It helps to know there's a reason."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I can sit through a whole meal now. I didn't realise how bad it had got."
 			}
 		},
@@ -1898,7 +1898,7 @@
 				"line": "I'm sorry, love, I didn't follow all of that. But you'll look after me, won't you?"
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I know where I am now, love. Hospital. I had a fall, didn't I?"
 			}
 		},
@@ -2012,7 +2012,7 @@
 				"line": "Sorry. Can you tell me again later? I'm so tired."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "My head's clearer. I'm sorry if I didn't make sense before."
 			}
 		},
@@ -2125,7 +2125,7 @@
 				"line": "My heart? But my head was finally getting clearer. Will I be able to go back on it?"
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I'm less out of breath now. I'm worried the voices will come back without the clozapine."
 			}
 		},
@@ -2231,7 +2231,7 @@
 				"line": "I was worried it was something like this. Thank you for being straight with me."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "They kept me in a side room for a while. My throat's better. I'm just waiting to hear what happens next."
 			}
 		},
@@ -2357,7 +2357,7 @@
 				"line": "So I'm not losing my mind? Tell my daughter, would you."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "Were there really people in my room? The nurses say I was very muddled. I feel much more like me."
 			}
 		},
@@ -2525,7 +2525,7 @@
 				"line": "(She stops picking at the sheets for a moment and looks at your face.)"
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I don't remember seeing any insects. The nurses say I was very confused. I'm still a bit foggy."
 			}
 		},
@@ -2664,7 +2664,7 @@
 				"line": "It hurts so much. Yes. Whatever you need to do."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "The pain's eased. I'm eating a little now. I'll tell them sooner next time."
 			}
 		},
@@ -2806,7 +2806,7 @@
 				"line": "Another medicine. I've been let down twice. But you listened, so I'll hear you out."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "It's early days. The voices aren't gone, but you listened to me. That counts for something."
 			}
 		},
@@ -2934,7 +2934,7 @@
 				"line": "So you don't think I'm psychotic. Thank you. I was so frightened you'd say I was."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I still hear her sometimes, falling asleep. I've stopped being frightened of it."
 			}
 		},
@@ -3043,7 +3043,7 @@
 				"line": "You don't think I'm a bad person for having the thoughts? I've never told anyone before."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I've started the therapy. It's hard. But I sat in the day room for ten minutes yesterday."
 			}
 		},
@@ -3185,7 +3185,7 @@
 				"line": "So it might come back? I'd like that. I'd like to know who I am."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "Bits are coming back. A street I lived on. A song. It's strange, but it's mine."
 			}
 		},
@@ -3315,7 +3315,7 @@
 				"line": "So it's the medicine slowing me down, not old age. That's a relief, honestly."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I'm a bit quicker on my feet. Not there yet, but better."
 			}
 		},
@@ -3438,7 +3438,7 @@
 				"line": "I... yes. All right. Will you stay while they take me?"
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I don't remember saying no to the scan. I'm glad you didn't leave it there."
 			}
 		},
@@ -3589,7 +3589,7 @@
 				"line": "My wife always said those dreams were something. Will you tell her what you told me?"
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "Still see the children now and then. They don't bother me. My legs are less stiff."
 			}
 		},
@@ -3711,7 +3711,7 @@
 				"line": "You believe me? Everyone here thinks I'm putting it on. Thank you."
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "Fewer spells this week. The staff are kinder now. I think that helps."
 			}
 		},
@@ -3835,7 +3835,7 @@
 				"line": "Why are you telling me this? ... Is something wrong with my brain?"
 			},
 			"follow_up": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I don't remember a lot of last week. They said my brain was inflamed. I'm scared, but I'm less confused."
 			}
 		}
