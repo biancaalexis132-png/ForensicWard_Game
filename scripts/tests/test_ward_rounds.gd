@@ -284,3 +284,22 @@ func test_case_bible_adaptation_referral_labels_and_respectful_choices() -> void
 	var errors: Array[String] = WardRoundCatalog.validate(bad, ContentRegistry.get_chapter_ids())
 	check_contains(errors, "default_verdict must be one of", "a catalog default can only send a plan back")
 	check_contains(errors, "triage_label must be text", "empty referral label named")
+
+
+func test_day_handover_lists_the_ward_round() -> void:
+	var director: ChapterDirector = _start_main("ch1")
+	var id: String = "wr_ch1_ortiz"
+	var solved: Dictionary = _solve(WardRounds.get_case(id))
+	for lab_id: String in solved["labs"]:
+		WardRounds.order_lab(id, lab_id)
+	check_eq(WardRounds.submit_plan(id, solved["plan"])["outcome"], "accepted", "Ortiz accepted")
+	var body: String = director.sign_out()
+	check(body.contains("Ward round"), "handover has a ward round section")
+	check(body.contains("Daniel Ortiz: plan accepted (debrief %d" % WardRounds.best_score(id)), "accepted patient with the debrief")
+	check(body.contains("Priya Natarajan: no accepted plan yet."), "open patient named")
+	director.load_save_data({"current": "ch2", "chapters": {}})
+	check(not WardRounds.follow_up(id).is_empty(), "checked in on Ortiz in chapter 2")
+	var lines: String = "\n".join(WardRounds.handover_lines("ch2"))
+	check(lines.contains("Daniel Ortiz: you checked in on them."), "check-in listed")
+	check(not lines.contains("Priya Natarajan"), "an earlier open patient is not repeated")
+	check(lines.contains("Harold Kim: no accepted plan yet."), "this chapter's patients listed")
