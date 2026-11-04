@@ -175,7 +175,7 @@ func test_spoken_lines_are_quoted_and_the_chart_keeps_its_text() -> void:
 func test_the_patient_answers_when_you_explain_the_plan() -> void:
 	var screen: WardRoundScreen = _screen()
 	var case: Dictionary = WardRounds.get_case(CASE_ID)
-	check_eq(case["plan_response"]["review_status"], "PENDING_PSYCHIATRIST_REVIEW", "plan responses are pending review")
+	check_eq(case["plan_response"]["review_status"], "APPROVED", "plan responses approved by Bi")
 	screen.open_bedside("warm")
 	check_eq(_submit_solved(screen)["outcome"], "accepted", "accepted without an explanation")
 	check_eq(WardRounds.plan_response(CASE_ID), "", "no response when the plan was not explained")

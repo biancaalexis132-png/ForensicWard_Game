@@ -401,7 +401,7 @@
 				"mental_state": "There's a voice. It talks about what I'm doing, all the time. And the neighbours, they're watching me. I'm not going to hurt anyone. Or me."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "So you think it's an illness, not the neighbours? I don't know. But I'll try what you're saying."
 			}
 		},
@@ -552,7 +552,7 @@
 				"mental_state": "I'm launching a company, it's going to fix medicine, I don't need sleep, I've got the whole thing mapped out, I can't stop now. No, I don't want to hurt anybody."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "You're slowing me down right when everything's taking off. Fine. Fine. But I want it written down that I disagree."
 			}
 		},
@@ -656,7 +656,7 @@
 				"mental_state": "I'm a burden to her now. Some nights I think I wouldn't mind not waking up. No, I haven't planned anything. I wouldn't do anything."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "My wife has been saying I should talk to someone. Thank you for not making me feel foolish."
 			}
 		},
@@ -780,7 +780,7 @@
 				"mental_state": "What day is it? I'm sorry. I'm so tired."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "The tablets, together? I didn't know. Will you tell my family?"
 			}
 		},
@@ -885,7 +885,7 @@
 				"mental_state": "I just want to sleep. The voices haven't come back. I keep drooling. Sorry."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "Because I stopped smoking? Nobody told me that could matter. Thank you."
 			}
 		},
@@ -1008,7 +1008,7 @@
 				"mental_state": "(He stares, and says nothing for a long while.)"
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "(He turns his eyes toward you for a moment while you speak.)"
 			}
 		},
@@ -1133,7 +1133,7 @@
 				"mental_state": "I can't sit still. I'm sorry, I can't. I know where I am, I just feel awful."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "So it was the two medicines together. I thought I was going mad. Thank you for explaining."
 			}
 		},
@@ -1243,7 +1243,7 @@
 				"mental_state": "(She stays silent and holds the same posture.)"
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "(She gives no sign that she has heard, but her eyes follow you to the door.)"
 			}
 		},
@@ -1345,7 +1345,7 @@
 				"mental_state": "I'm shaking and I'm scared. I'm not seeing anything, if that's what you're asking."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I'm frightened of having another fit. If you're keeping an eye on me, I'll stay."
 			}
 		},
@@ -1500,7 +1500,7 @@
 				"mental_state": "My mood's been fine. It's my heart. It keeps racing and I nearly fainted twice."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I had no idea the new antibiotic could do that. I'm glad someone looked at all of them together."
 			}
 		},
@@ -1611,7 +1611,7 @@
 				"mental_state": "Why is my neck doing this? My eyes keep going up. The voices are the same as yesterday."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "So it's the medicine, not me getting worse? Okay. Okay. Please make it stop."
 			}
 		},
@@ -1715,7 +1715,7 @@
 				"mental_state": "It's my legs. I can't keep still, it's unbearable. I'm not angry, I just have to move."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I thought I was just being difficult. It helps to know there's a reason."
 			}
 		},
@@ -1846,7 +1846,7 @@
 				"mental_state": "Where am I? I feel sick. I'm sorry, love, I'm muddled."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I'm sorry, love, I didn't follow all of that. But you'll look after me, won't you?"
 			}
 		},
@@ -1956,7 +1956,7 @@
 				"mental_state": "I'm so sleepy. Where... sorry, what were you asking?"
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "Sorry. Can you tell me again later? I'm so tired."
 			}
 		},
@@ -2065,7 +2065,7 @@
 				"mental_state": "I'm tired, and I get out of breath walking. My head's clearer than it was."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "My heart? But my head was finally getting clearer. Will I be able to go back on it?"
 			}
 		},
@@ -2167,7 +2167,7 @@
 				"mental_state": "I'm doing well, really. But my throat's been sore since yesterday, and now the blood result. Is it bad?"
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I was worried it was something like this. Thank you for being straight with me."
 			}
 		},
@@ -2289,7 +2289,7 @@
 				"mental_state": "There are people in my room at night. December, November... I've lost it. Where was I?"
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "So I'm not losing my mind? Tell my daughter, would you."
 			}
 		},
@@ -2453,7 +2453,7 @@
 				"mental_state": "There are insects on the wall. Can't you see them? Get them off."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "(She stops picking at the sheets for a moment and looks at your face.)"
 			}
 		},
@@ -2588,7 +2588,7 @@
 				"mental_state": "It hurts. My stomach. Please."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "It hurts so much. Yes. Whatever you need to do."
 			}
 		},
@@ -2726,7 +2726,7 @@
 				"mental_state": "There are voices, several, every day. The neighbours are poisoning my food. I'm glad someone is listening. I'm not going to hurt anyone."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "Another medicine. I've been let down twice. But you listened, so I'll hear you out."
 			}
 		},
@@ -2850,7 +2850,7 @@
 				"mental_state": "When I'm falling asleep I hear her calling my name. I know she's gone. It comforts me. Please don't write that I'm psychotic."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "So you don't think I'm psychotic. Thank you. I was so frightened you'd say I was."
 			}
 		},
@@ -2955,7 +2955,7 @@
 				"mental_state": "I get pictures in my head of contaminating my little sister. I hate them. I know it's too much, the washing. It just stops the fear for a while."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "You don't think I'm a bad person for having the thoughts? I've never told anyone before."
 			}
 		},
@@ -3093,7 +3093,7 @@
 				"mental_state": "I know my way round, and I remember talking to the nurse this morning. But my name... my family... nothing."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "So it might come back? I'd like that. I'd like to know who I am."
 			}
 		},
@@ -3219,7 +3219,7 @@
 				"mental_state": "Everything's so slow. I'm not down, just fed up with it."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "So it's the medicine slowing me down, not old age. That's a relief, honestly."
 			}
 		},
@@ -3338,7 +3338,7 @@
 				"mental_state": "I understand, I do. I'll stay in my room, because... the scan is... what were we talking about?"
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "I... yes. All right. Will you stay while they take me?"
 			}
 		},
@@ -3485,7 +3485,7 @@
 				"mental_state": "There are children standing in the corridor. They don't bother me. What time is it? I'm better in the mornings."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "My wife always said those dreams were something. Will you tell her what you told me?"
 			}
 		},
@@ -3603,7 +3603,7 @@
 				"mental_state": "The spells frighten me. I remember bits of them. People think I'm putting it on. I'm so embarrassed."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "You believe me? Everyone here thinks I'm putting it on. Thank you."
 			}
 		},
@@ -3723,7 +3723,7 @@
 				"mental_state": "Why are you asking me that? I... I forget things. I don't know."
 			},
 			"plan_response": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"line": "Why are you telling me this? ... Is something wrong with my brain?"
 			}
 		}

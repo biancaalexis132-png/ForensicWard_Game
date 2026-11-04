@@ -10,3 +10,4 @@
 - Clinical: pending Bi's review (row in `docs/clinical_review_log.md`); review sheet `/mnt/project-files/ward_round/plan_responses_review.md`.
 - Next: Bi reviews the lines.
 - Tests: full QA passed (game 409/0, audio 1720/0, QA 19/0/0, GLB 199/0, Chapter 1 sequence done, exit 0). Not tested on the Mac.
+- 2026-11-04 15:40 UTC: Bi approved the lines ("CONTINUE responses approved"); review_status set to APPROVED and logged.
