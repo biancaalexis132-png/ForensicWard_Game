@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Tomasz_Wrobel_v01_draft.blend",
-    "sha256": "a94954dcf478e07b0a8a5b2beef945243e249007e2b8adba515513360892165a",
+    "sha256": "64c65177bd5f58aaf8233abd7f7ce0f43ad7c11a2108fd6e9e9368bfab69b893",
     "modified": false
   },
   "library": {
@@ -91,7 +91,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Tomasz_Wrobel_v01_draft.glb",
-    "sha256": "4308ad5cfe11ebd498fa3925a444ffc7a0fd56ceaac834758c359ec53a780841",
+    "sha256": "a060b8c70e7612260c21a2709734d0e8480006be0c51dd85ff9365b9be098e76",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",
