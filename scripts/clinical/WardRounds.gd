@@ -223,7 +223,18 @@ func ask_bedside(case_id: String, question_id: String) -> String:
 ## the case has none (the answer is then the chart text). A line in brackets
 ## describes what you see instead, so it is shown without quotation marks.
 func bedside_line(case_id: String, question_id: String) -> String:
-	var line: String = str(get_case(case_id).get("bedside_lines", {}).get(question_id, ""))
+	return _spoken(case_id, str(get_case(case_id).get("bedside_lines", {}).get(question_id, "")))
+
+
+## What the patient says when the accepted plan included explaining it to them,
+## formatted like bedside_line; "" otherwise or when the case has no line.
+func plan_response(case_id: String) -> String:
+	if status(case_id) != STATUS_ACCEPTED or not WardRoundScoring.EXPLAIN_ITEM in submitted_plan(case_id):
+		return ""
+	return _spoken(case_id, str(get_case(case_id).get("plan_response", {}).get("line", "")))
+
+
+func _spoken(case_id: String, line: String) -> String:
 	if line.is_empty():
 		return ""
 	if line.begins_with("("):

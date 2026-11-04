@@ -401,6 +401,9 @@ func _show_review(review: Dictionary) -> void:
 	var lines: Array[String] = []
 	if review["outcome"] == WardRoundCatalog.ACCEPTED:
 		lines.append("[color=#%s][b]Attending: plan accepted.[/b][/color]" % UIStyle.GOOD.to_html(false))
+		var response: String = WardRounds.plan_response(case_id)
+		if not response.is_empty():
+			lines.append("[i]You explain the plan. %s[/i]" % response)
 	else:
 		lines.append("[color=#%s][b]Attending: revise the plan.[/b][/color]" % UIStyle.WARNING.to_html(false))
 		for problem: Dictionary in review["problems"]:
@@ -441,6 +444,9 @@ func _debrief_lines(scored: Dictionary) -> Array[String]:
 	lines.append("\n[color=#%s][b]Debrief: %d / 100 · %s[/b][/color]" % [colour.to_html(false), scored["total"], scored["grade"]])
 	if scored["capped"]:
 		lines.append("[color=#%s]An unsafe or dismissive choice caps the grade, however good the rest of the plan.[/color]" % UIStyle.WARNING.to_html(false))
+	var response: String = WardRounds.plan_response(case_id)
+	if not response.is_empty():
+		lines.append("[i]When you explained the plan: %s[/i]" % response)
 	var best: int = WardRounds.best_score(case_id)
 	if best > int(scored["total"]):
 		lines.append("[color=#%s]Your best on this patient: %d.[/color]" % [UIStyle.MUTED.to_html(false), best])

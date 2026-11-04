@@ -20,6 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Patient answers the explained plan | `claude/ward-round-plan-response` (draft PR to `claude/patient-hair-tails`) | Claude Code (cloud) | last commit on the branch | `data/ward_rounds.json` `plan_response`, `WardRounds.gd`, `WardRoundCatalog.gd`, `WardRoundScreen.gd`, `test_ward_round_conversation.gd` | Full QA; lines approved by Bi 2026-11-04 |
 | Patient ponytails and hairlines | `claude/patient-hair-tails` (draft PR to `claude/ward-round-patient-voices`) | Claude Code (cloud) | last commit on the branch | `tools/blender/characters/build_cast_member.py`, `tools/blender/characters/cast/pt_wr_*.json`, rebuilt patient assets | Full QA; waiting on Bi's look |
 | Ward-round patient voices | `claude/ward-round-patient-voices` (draft PR to `claude/ward-round-bedside-talk`) | Claude Code (cloud) | last commit on the branch | `data/ward_rounds.json` `bedside_lines`, `WardRounds.gd`, `WardRoundCatalog.gd`, `test_ward_round_conversation.gd` | Full QA passed; lines approved by Bi 2026-11-04 |
 | Ward-round bedside conversation | `claude/ward-round-bedside-talk` (draft PR to `claude/patient-hair-cards`) | Claude Code (cloud) | last commit on the branch | `WardRounds.gd`, `WardRoundCatalog.gd`, `WardRoundScoring.gd`, `WardRoundScreen.gd`, `data/ward_rounds.json` `bedside`, `test_ward_round_conversation.gd`, capture tool | Full QA passed; waiting on Bi |

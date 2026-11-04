@@ -87,6 +87,11 @@ static func validate(data: Variant, chapter_ids: Array = []) -> Array[String]:
 			errors.append(path + ": id '%s' must start with 'wr_' and be unique" % id)
 		ids[id] = true
 		path = "ward_rounds.%s" % id
+		if case.has("plan_response"):
+			var response: Variant = case["plan_response"]
+			if not response is Dictionary or not str(response.get("review_status", "")) in REVIEW_STATUSES \
+					or not response.get("line") is String or str(response["line"]).strip_edges().is_empty():
+				errors.append(path + ".plan_response: needs a review_status and a non-empty line")
 		if case.has("bedside_lines"):
 			errors.append_array(validate_bedside_lines(case["bedside_lines"], data.get("bedside", {}), path))
 		if not chapter_ids.is_empty() and not case.get("chapter") in chapter_ids:

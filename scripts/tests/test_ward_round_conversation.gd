@@ -170,3 +170,26 @@ func test_spoken_lines_are_quoted_and_the_chart_keeps_its_text() -> void:
 	check(str(silent["bedside_lines"]["history"]).begins_with("("), "a patient who cannot answer has a described response")
 	check_eq(WardRounds.bedside_line("wr_ch3_adeyemi", "history"), silent["bedside_lines"]["history"], "described responses have no quotes")
 	check_eq(WardRounds.bedside_line(CASE_ID, "observations"), "", "no line for observations")
+
+
+func test_the_patient_answers_when_you_explain_the_plan() -> void:
+	var screen: WardRoundScreen = _screen()
+	var case: Dictionary = WardRounds.get_case(CASE_ID)
+	check_eq(case["plan_response"]["review_status"], "APPROVED", "plan responses approved by Bi")
+	screen.open_bedside("warm")
+	check_eq(_submit_solved(screen)["outcome"], "accepted", "accepted without an explanation")
+	check_eq(WardRounds.plan_response(CASE_ID), "", "no response when the plan was not explained")
+	check(screen.replay(), "replay")
+	screen.open_bedside("warm")
+	screen.set_intervention("explain_plan", true)
+	check_eq(_submit_solved(screen)["outcome"], "accepted", "accepted with an explanation")
+	var expected: String = "Daniel: “%s”" % case["plan_response"]["line"]
+	check_eq(WardRounds.plan_response(CASE_ID), expected, "the patient answers in their own words")
+	check(screen._review.get_parsed_text().contains(expected), "shown with the attending's reply")
+	check((screen.find_child("DebriefText", true, false) as RichTextLabel).get_parsed_text().contains(expected), "shown in the debrief")
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(WardRounds.DATA_PATH))
+	for entry: Dictionary in data["cases"]:
+		check(not str(entry.get("plan_response", {}).get("line", "")).is_empty(), "%s has a plan response" % entry["id"])
+	data["cases"][0]["plan_response"] = {"review_status": "PENDING_PSYCHIATRIST_REVIEW", "line": ""}
+	check("\n".join(WardRoundCatalog.validate(data)).contains("plan_response: needs a review_status and a non-empty line"), "a blank response is refused")
+	screen.close()
