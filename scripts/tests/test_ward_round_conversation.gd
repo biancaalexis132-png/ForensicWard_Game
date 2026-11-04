@@ -239,7 +239,7 @@ func test_each_patient_reacts_to_the_opening_in_their_own_way() -> void:
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(WardRounds.DATA_PATH))
 	for entry: Dictionary in data["cases"]:
 		var reactions: Dictionary = entry.get("opening_reactions", {})
-		check_eq(str(reactions.get("review_status", "")), "PENDING_PSYCHIATRIST_REVIEW", "%s reactions pending review" % entry["id"])
+		check_eq(str(reactions.get("review_status", "")), "APPROVED", "%s reactions approved by Bi" % entry["id"])
 		for opening: String in ["warm", "direct", "rushed"]:
 			check(not str(reactions.get(opening, "")).is_empty(), "%s reacts to %s" % [entry["id"], opening])
 	var errors: String = "\n".join(WardRoundCatalog.validate_opening_reactions({"review_status": "APPROVED", "friendly": "x", "warm": ""}, data["bedside"], "c"))

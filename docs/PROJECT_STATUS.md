@@ -1,4 +1,4 @@
-**Patients react to your bedside opening (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-opening-reactions`. Each ward-round patient now answers a warm, direct or rushed opening in their own words (pending Bi's review). The ward-round stack #114–#127 is on `claude/playtest-fixes` and #128 merged it into `main`. Not tested on the Mac.
+**Patients react to your bedside opening (Claude Code, 2026-11-04; draft PR #129, not merged):** `claude/ward-round-opening-reactions`. Each ward-round patient now answers a warm, direct or rushed opening in their own words (approved by Bi on 2026-11-04). The ward-round stack #114–#127 is on `claude/playtest-fixes` and #128 merged it into `main`. Not tested on the Mac.
 
 **Ward round in the day handover (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-handover`, PR #125 merged by Bi into the #124 branch. The day shift handover now lists the chapter's ward-round patients (accepted with their debrief, or still open) and the earlier patients you checked in on. Not tested on the Mac.
 

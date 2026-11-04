@@ -409,7 +409,7 @@
 				"line": "I'm sleeping more. The voice is still there sometimes, but quieter. My mum visited. That was good."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Okay. My family made me come. I'll talk to you, I suppose.",
 				"direct": "...Fine. What do you want to know?",
 				"rushed": "(He glances at the window and folds his arms.) Then don't waste your time on me."
@@ -570,7 +570,7 @@
 				"line": "I've slept properly for the first time in ages. Some of those plans seem a bit much now, looking back."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Oh, finally, someone who wants to listen! Sit, sit, I have so much to tell you.",
 				"direct": "Questions, great, I love questions, go, go, go.",
 				"rushed": "A few minutes? I don't have a few minutes either, I've got things to do."
@@ -684,7 +684,7 @@
 				"line": "Still slow in the mornings. But my wife says I laughed at the television last night. I'd forgotten I could."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "That's kind of you. I'm sorry to take up your time.",
 				"direct": "Of course. Ask what you need to.",
 				"rushed": "(He nods slowly.) I won't keep you, then."
@@ -818,7 +818,7 @@
 				"line": "I feel like myself again. I'm going to be very careful about painkillers from now on."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Thank you, dear. I'm not feeling right at all.",
 				"direct": "Yes... what was the question?",
 				"rushed": "(She closes her eyes.) I'm so tired."
@@ -933,7 +933,7 @@
 				"line": "I'm more awake now. I still miss the cigarettes, mind you."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Hello. Sorry, I keep nodding off.",
 				"direct": "Mm. Go on.",
 				"rushed": "(He yawns and turns his face to the wall.)"
@@ -1066,7 +1066,7 @@
 				"line": "I don't remember much of the last few days. They tell me I was very unwell. Thank you for noticing."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "(His eyes move toward you, but he does not speak.)",
 				"direct": "(He stares past you without answering.)",
 				"rushed": "(He stays rigid and silent.)"
@@ -1201,7 +1201,7 @@
 				"line": "The shaking's gone. I can sit still again. You don't know what a relief that is."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Thank you for coming. I can't keep still, I'm sorry.",
 				"direct": "Yes, yes. Please, I feel awful.",
 				"rushed": "(She shifts on the bed, sweating.) Just help me, please."
@@ -1321,7 +1321,7 @@
 				"line": "I could hear everything, I just couldn't move or speak. Thank you for being patient with me."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "(She does not move, but her eyes settle on you.)",
 				"direct": "(She does not respond.)",
 				"rushed": "(She stays motionless and silent.)"
@@ -1433,7 +1433,7 @@
 				"line": "Worst few days of my life, but I got through them. I want to talk about what happens when I leave."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Thanks. I know why I'm here. I want to do this properly.",
 				"direct": "Go on, then.",
 				"rushed": "(His hands shake as he looks away.) Right. Course you are."
@@ -1598,7 +1598,7 @@
 				"line": "No more funny turns. They've put a note on my file about that antibiotic."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Thank you. I've been so frightened by these turns.",
 				"direct": "Of course, ask away.",
 				"rushed": "Oh. All right. I'll be quick."
@@ -1719,7 +1719,7 @@
 				"line": "My neck's normal again. I was so scared. Will it happen again?"
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Please, my neck, it won't stop. I'll tell you anything.",
 				"direct": "Yes. Okay. Please hurry.",
 				"rushed": "(His eyes roll upward and he groans.) Help me."
@@ -1833,7 +1833,7 @@
 				"line": "I can sit through a whole meal now. I didn't realise how bad it had got."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Thank you. Sorry, I have to keep standing.",
 				"direct": "Okay. I'll try to keep still.",
 				"rushed": "(She paces to the door and back.) Fine. Quickly, then."
@@ -1974,7 +1974,7 @@
 				"line": "I know where I am now, love. Hospital. I had a fall, didn't I?"
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Hello, love. Are you a doctor? You've a kind face.",
 				"direct": "Pardon? Yes, go on.",
 				"rushed": "(She looks confused.) Where's the nurse?"
@@ -2094,7 +2094,7 @@
 				"line": "My head's clearer. I'm sorry if I didn't make sense before."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Mm... hello. Sorry, I'm so sleepy.",
 				"direct": "...What?",
 				"rushed": "(He doesn't open his eyes.)"
@@ -2213,7 +2213,7 @@
 				"line": "I'm less out of breath now. I'm worried the voices will come back without the clozapine."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Hi. Thanks. I'm just really tired.",
 				"direct": "Sure. Go ahead.",
 				"rushed": "Okay. (He leans back, breathing hard.)"
@@ -2325,7 +2325,7 @@
 				"line": "They kept me in a side room for a while. My throat's better. I'm just waiting to hear what happens next."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Thank you. They said there was something in my bloods?",
 				"direct": "Yes. What do you need to know?",
 				"rushed": "So it's bad, then? You're in a hurry."
@@ -2457,7 +2457,7 @@
 				"line": "Were there really people in my room? The nurses say I was very muddled. I feel much more like me."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Oh, hello. Have you come about the people in my room?",
 				"direct": "Questions? Right you are.",
 				"rushed": "(He frowns.) Who are you? Nurse! Who is this?"
@@ -2631,7 +2631,7 @@
 				"line": "I don't remember seeing any insects. The nurses say I was very confused. I'm still a bit foggy."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "(She looks at you for a moment, then back at the wall.)",
 				"direct": "(She mumbles and keeps plucking at the sheet.)",
 				"rushed": "(She swats at the air and doesn't look at you.)"
@@ -2776,7 +2776,7 @@
 				"line": "The pain's eased. I'm eating a little now. I'll tell them sooner next time."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Thank you. It hurts. My stomach.",
 				"direct": "...Yes.",
 				"rushed": "(He curls on his side and says nothing.)"
@@ -2924,7 +2924,7 @@
 				"line": "It's early days. The voices aren't gone, but you listened to me. That counts for something."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Thank you. Most people don't bother to explain.",
 				"direct": "All right. Ask.",
 				"rushed": "Another doctor in a rush. Go on, then."
@@ -3058,7 +3058,7 @@
 				"line": "I still hear her sometimes, falling asleep. I've stopped being frightened of it."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Thank you. I was worried what the night staff would say.",
 				"direct": "Yes, all right.",
 				"rushed": "(She wipes her eyes.) It doesn't matter. It's fine."
@@ -3173,7 +3173,7 @@
 				"line": "I've started the therapy. It's hard. But I sat in the day room for ten minutes yesterday."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Okay. Please don't sit too close. Sorry.",
 				"direct": "...Okay.",
 				"rushed": "(He keeps his eyes on his hands.) I'm fine. Really."
@@ -3321,7 +3321,7 @@
 				"line": "Bits are coming back. A street I lived on. A song. It's strange, but it's mine."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Hello. I wish I could tell you who I am.",
 				"direct": "I'll try. I don't know much.",
 				"rushed": "(She looks lost.) I'm sorry. I don't know."
@@ -3457,7 +3457,7 @@
 				"line": "I'm a bit quicker on my feet. Not there yet, but better."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Hello, doctor. Sorry, I'm slow these days.",
 				"direct": "Yes. Go on.",
 				"rushed": "(He sighs.) I can't do anything quickly any more."
@@ -3586,7 +3586,7 @@
 				"line": "I don't remember saying no to the scan. I'm glad you didn't leave it there."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Hello. Is this about the scan?",
 				"direct": "Yes? What is it?",
 				"rushed": "I've already said no. I'm staying here."
@@ -3743,7 +3743,7 @@
 				"line": "Still see the children now and then. They don't bother me. My legs are less stiff."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Hello there! Come in, come in.",
 				"direct": "Fire away.",
 				"rushed": "(He blinks.) Have we met? You're in a hurry."
@@ -3871,7 +3871,7 @@
 				"line": "Fewer spells this week. The staff are kinder now. I think that helps."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "Thank you. Everyone else just tells me to stop it.",
 				"direct": "Okay.",
 				"rushed": "(He looks down.) You think I'm faking too."
@@ -4001,7 +4001,7 @@
 				"line": "I don't remember a lot of last week. They said my brain was inflamed. I'm scared, but I'm less confused."
 			},
 			"opening_reactions": {
-				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"review_status": "APPROVED",
 				"warm": "(She watches you warily.) Who sent you?",
 				"direct": "Why do you want to know?",
 				"rushed": "(She pulls the blanket up and turns away.) Leave me alone."
