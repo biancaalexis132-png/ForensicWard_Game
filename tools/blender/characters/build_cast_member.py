@@ -101,6 +101,10 @@ def macro_weights(base_keys: list[str], macro: dict) -> dict[str, float]:
     e = {k: v / total for k, v in eth.items()}
     m_min = float(macro.get("min_muscle", 0.075))
     w_max = float(macro.get("max_weight", 0.035))
+    # The base has a max-weight key only for the young body. With weight_any_age
+    # the weight share comes off the average-muscle keys at every age, so older
+    # characters can be heavier too (opt in; earlier builds are unchanged).
+    any_age = bool(macro.get("weight_any_age", False))
     weights = {}
     for name in base_keys:
         if name == "Basis":
@@ -109,13 +113,13 @@ def macro_weights(base_keys: list[str], macro: dict) -> dict[str, float]:
             if "-$yn-min$mu" in name:
                 weights[name] = young * m_min
             elif "-$yn-$av$mu-max$wg" in name:
-                weights[name] = young * w_max
+                weights[name] = w_max if any_age else young * w_max
             elif "-$yn-$av$mu" in name:
                 weights[name] = young * (1.0 - m_min - w_max)
             elif "-old-min$mu" in name:
                 weights[name] = old * m_min
             elif "-old-$av$mu" in name:
-                weights[name] = old * (1.0 - m_min)
+                weights[name] = old * (1.0 - m_min - (w_max if any_age else 0.0))
         elif "-$af-" in name:
             weights[name] = e.get("african", 0.0) * (old if name.endswith("old") else young)
         elif "-$ca-" in name:
@@ -422,6 +426,9 @@ def bake_skin(body: bpy.types.Object, eye_data: list) -> bpy.types.Image:
         w = (jaw & cheek_line) * fade * speck * (1 - np.clip(lips_w * 2, 0, 1)) * float(beard["strength"])
         bc = np.array(hex_rgb(beard["srgb_hex"]))
         col = col * (1 - w[:, None]) + bc[None, :] * w[:, None]
+    age = sk.get("age_marks")
+    if age:
+        col = age_marks(col, co, mid, eye_l, eye_r, weights, names, shadow, float(age["strength"]))
     w = np.clip(lips_w * 1.2, 0, 1)[:, None] * float(sk.get("lip_strength", 0.85))
     col = col * (1 - w) + lip[None, :] * w
     for g in ("fingernails", "toenails"):
@@ -459,6 +466,62 @@ def bake_skin(body: bpy.types.Object, eye_data: list) -> bpy.types.Image:
     return image
 
 
+def _segment_distance(p: np.ndarray, a: np.ndarray, b: np.ndarray) -> np.ndarray:
+    ab = b - a
+    t = np.clip(((p - a) @ ab) / float(ab @ ab), 0, 1)
+    return np.linalg.norm(p - (a + t[:, None] * ab), axis=1)
+
+
+def age_marks(col, co, mid, eye_l, eye_r, weights, names, shadow, strength: float) -> np.ndarray:
+    """Painted signs of age on the face and hands (opt in with skin.age_marks).
+
+    Forehead lines, nasolabial and marionette folds, crow's feet, hollows under
+    the eyes, a few age spots and slightly duller skin. Colour only, so it adds
+    no geometry; strength 0 to 1 (about 0.5 at sixty, 1 at eighty-five).
+    """
+    head_w = weights[:, names.index("head")]
+    front = (co[:, 1] - mid[1]) < 0.0
+    rel = co - mid
+    dark = np.zeros(len(co))
+    # Forehead: three soft horizontal lines that fade toward the temples.
+    fz = rel[:, 2] - 0.032
+    lines = np.clip(np.cos(fz / 0.0105 * math.pi * 2), 0, 1) ** 10
+    band = (fz > -0.004) & (fz < 0.034) & (np.abs(rel[:, 0]) < 0.05) & front
+    dark += band * lines * np.clip(1 - np.abs(rel[:, 0]) / 0.05, 0, 1) * 0.7
+    for side in (1, -1):
+        # Nasolabial fold from beside the nostril to past the mouth corner, then marionette line.
+        for a, b, width, amt in (((0.016, -0.040), (0.030, -0.074), 0.0045, 0.55),
+                                 ((0.029, -0.078), (0.031, -0.100), 0.0035, 0.35)):
+            pa = np.array([mid[0] + side * a[0], 0.0, mid[2] + a[1]])
+            pb = np.array([mid[0] + side * b[0], 0.0, mid[2] + b[1]])
+            flat = co.copy()
+            flat[:, 1] = 0.0
+            d = _segment_distance(flat, pa, pb)
+            dark += front * np.clip(1 - d / width, 0, 1) ** 2 * amt
+        eye = np.array((eye_l if side * eye_l.x > 0 else eye_r)[:])
+        er = co - eye
+        bx = er[:, 0] * side
+        # Hollow under the eye.
+        hollow = np.sqrt((bx / 0.017) ** 2 + ((er[:, 2] + 0.017) / 0.0065) ** 2)
+        dark += front * np.clip(1 - hollow, 0, 1) * 0.5
+        # Crow's feet: a short fan from the outer corner.
+        for angle in (-0.45, -0.1, 0.25):
+            corner = np.array([0.021, 0.0, 0.0])
+            tip = corner + np.array([math.cos(angle), 0.0, math.sin(angle)]) * 0.013
+            p = np.stack([bx, np.zeros(len(co)), er[:, 2]], axis=1)
+            d = _segment_distance(p, corner, tip)
+            dark += (np.abs(er[:, 1]) < 0.03) * np.clip(1 - d / 0.0011, 0, 1) * 0.5
+    w = np.clip(dark * strength, 0, 0.6)[:, None] * np.clip(head_w * 1.5, 0, 1)[:, None]
+    col = col * (1 - w) + (shadow * 0.85)[None, :] * w
+    # Age spots on the face and the backs of the hands.
+    spots_at = np.clip(head_w + weights[:, names.index("hand_l")] + weights[:, names.index("hand_r")], 0, 1)
+    spot = np.clip((v3.smooth_noise(co, 0.004, 21) - 0.62) / 0.12, 0, 1) * spots_at * strength * 0.22
+    col = col * (1 - spot[:, None]) + (shadow * np.array([1.0, 0.86, 0.72]))[None, :] * spot[:, None]
+    # Slightly duller, less even tone.
+    grey = col.mean(axis=1, keepdims=True)
+    return col * (1 - 0.12 * strength) + grey * (0.12 * strength)
+
+
 def fabric_textures(color_hex: str, name: str, size: int, period: float, rib: float) -> tuple:
     """Twill (rib 0) or knit rib (rib > 0) colour and normal maps."""
     base = np.array(hex_rgb(color_hex))
@@ -484,21 +547,29 @@ def fabric_textures(color_hex: str, name: str, size: int, period: float, rib: fl
 
 
 def hair_textures(hair: dict) -> tuple:
-    """Strand streaks along V, with a share of grey strands."""
+    """Fine strands along V. Grey is mixed through the whole colour as salt and
+    pepper (one-texel strands over a base already blended toward grey), so
+    greying hair reads as silver instead of light and dark stripes."""
     base = np.array(hex_rgb(hair["srgb_hex"]))
     grey = np.array(hex_rgb(hair.get("grey_srgb_hex", "#9a958f")))
-    size = 512
+    share = float(hair.get("grey_fraction", 0.0))
+    size = 1024
     yy, xx = np.mgrid[0:size, 0:size].astype(np.float64)
     rng = np.random.default_rng(11)
-    wave = np.sin(yy / 23.0) * 2.5
-    fibres = 0.9 + 0.1 * np.sin((xx + wave) / 1.7) * np.sin((xx + wave) / 5.3 + 1.1)
-    strand = ((xx + wave).astype(int) // 2) % size
-    is_grey = rng.random(size) < float(hair.get("grey_fraction", 0.0))
+    wave = np.sin(yy / 41.0) * 3.0 + np.sin(yy / 13.0 + xx / 97.0) * 1.2
+    strand = (xx + wave).astype(int) % size
+    fibres = 0.93 + 0.07 * np.sin((xx + wave) / 1.3) * np.sin((xx + wave) / 4.1 + 1.1)
+    # Broad, soft clumps so the strands do not line up in an even comb pattern.
+    clumps = 0.95 + 0.05 * np.sin(strand / 37.0) * np.sin(strand / 11.0 + 0.7)
+    is_grey = rng.random(size) < share
+    tint = base * (1.0 - 0.55 * share) + grey * (0.55 * share)
     g = is_grey[strand][..., None]
-    tone = rng.uniform(0.88, 1.06, size)[strand][..., None]
-    colour = np.where(g, grey[None, None, :], base[None, None, :]) * tone
+    tone = rng.uniform(0.94, 1.04, size)[strand][..., None]
+    colour = np.where(g, grey[None, None, :], tint[None, None, :]) * tone
+    # Roots a touch darker than the lengths.
+    root = (0.94 + 0.06 * np.clip(yy / size, 0, 1))[..., None]
     col = np.ones((size, size, 4))
-    col[..., :3] = np.clip(colour * fibres[..., None] * 1.08, 0, 1)
+    col[..., :3] = np.clip(colour * (fibres * clumps)[..., None] * root * 1.06, 0, 1)
     gx = np.roll(fibres, -1, 1) - np.roll(fibres, 1, 1)
     nrm = np.ones((size, size, 4))
     nrm[..., 0] = 0.5 - gx * 0.8
@@ -1016,6 +1087,10 @@ def hairline_mask(body, centre: Vector, head_w: np.ndarray, spec: dict) -> np.nd
     front, nape = float(spec["front_z_m"]), float(spec["nape_z_m"])
     t = np.clip((np.abs(ang) - float(spec.get("temple_deg", 40))) / float(spec.get("drop_deg", 110)), 0, 1)
     line = front + (nape - front) * t * t * (3 - 2 * t)
+    # Optional receding temples (an M-shaped hairline) for older characters.
+    recede = float(spec.get("temple_recede_m", 0.0))
+    if recede:
+        line = line + recede * np.exp(-((np.abs(ang) - float(spec.get("recede_deg", 34))) / 20.0) ** 2)
     ears = (np.abs(ang) > 68) & (np.abs(ang) < 122) & (rel[:, 2] < float(spec.get("ear_top_z_m", 0.02)))
     return head_faces & (rel[:, 2] > line) & ~ears
 

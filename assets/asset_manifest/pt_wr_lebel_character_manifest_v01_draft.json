@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Marguerite_Lebel_v01_face.blend",
-      "sha256": "ed1d79023020140e33e412939e250eb702b267a022bb95fd1b5aa33e6eed3c31",
+      "sha256": "dfa5c22179ac38c4cf612b3e3e6467280944a6f085bf309f0ac12f31b358df6e",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],

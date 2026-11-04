@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Abena_Mensah_v01_draft.blend",
-    "sha256": "f36cf6b79ba3ca87ad725f0ab9d0473a51c3b7a1bc5dc59cc431e4ce55abd39a",
+    "sha256": "36dcf6b4cfe2fde7457d623463b2331fad7093c1baebe9aa26f3f6a3528a411b",
     "modified": false
   },
   "library": {
@@ -14,12 +14,12 @@
   "profile": "tools/character_animation/profiles/pt_wr_mensah_v01_draft.json",
   "garment_weight_fix": {
     "Mensah_Soft_Trousers": {
-      "sleeve_vertices": 21,
-      "detached_vertices": 11
+      "sleeve_vertices": 35,
+      "detached_vertices": 9
     },
     "Mensah_Top": {
-      "sleeve_vertices": 681,
-      "detached_vertices": 8
+      "sleeve_vertices": 682,
+      "detached_vertices": 7
     }
   },
   "added_clips": [
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Abena_Mensah_v01_draft.glb",
-    "sha256": "18c297e84979dd3ce369c6601db9694ffb857ef09587e28451abb81922479fc9",
+    "sha256": "8c94f6d6770831eaa669383d47dc5b6c13343fcc026e5181f47def00eedc150a",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

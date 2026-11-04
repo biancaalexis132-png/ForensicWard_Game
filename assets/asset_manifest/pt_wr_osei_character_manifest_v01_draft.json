@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Kwame_Osei_v01_face.blend",
-      "sha256": "5675cd816b0dfd2034f68764243bb5016e4de700445acd3ab02e98427a1e6b9f",
+      "sha256": "ac17a94db20ffcada394f991398b479e589f0d57f827699fdea21edbf1f33a1c",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],

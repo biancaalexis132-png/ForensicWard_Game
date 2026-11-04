@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Patrick_Doyle_v01_draft.blend",
-    "sha256": "c4eac718d2e54ac74d66ae8000e8a01efd75735996417d3c88a5037ca28894c3",
+    "sha256": "79977e038b2c867e6d388bfb9cd371d936788dea3d8bb51389b423a90cec48f6",
     "modified": false
   },
   "library": {
@@ -91,7 +91,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Patrick_Doyle_v01_draft.glb",
-    "sha256": "af8b38cc5d364bced9051a84a33cc57b5ddea270e94d7de7eeb30959c37f0ede",
+    "sha256": "3edb057c60296e62306654b8298904b9c038f9a7f88e442051c08e6f60dc56fc",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

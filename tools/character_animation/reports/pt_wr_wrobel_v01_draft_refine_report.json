@@ -4,7 +4,7 @@
   "profile_sha256": "7e3c5bf17c7a7b3bf86c340203e7d313c2ab701ab29db0bad6e3f720666e4769",
   "source": {
     "path": "build/cast/Tomasz_Wrobel_v01_face.blend",
-    "sha256": "ec5f87110bd56c8c37ebdd9f0adca5bd36edd656d50178183d556e2bcbccd746"
+    "sha256": "996f1dc9de52cee947b325ccb1ea79af433b3c6ebee0eff2ed72ade9c1d48658"
   },
   "refinements": {
     "lids": {
@@ -23,7 +23,7 @@
       }
     },
     "shoes": {
-      "vertices_relaxed": 3455,
+      "vertices_relaxed": 3546,
       "iterations": 30
     }
   },
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28624
+  "triangles": 28776
 }

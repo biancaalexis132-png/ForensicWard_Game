@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Maeve_Quinn_v01_draft.blend",
-    "sha256": "cd4250f42ba27570b003327eaee9787d31948d6fecaf4632cf3f58e9ae890090",
+    "sha256": "8c9dbbfb76fc7e20537abd1e721655c100b0c40de25bc7db95b38d56ea3302d6",
     "modified": false
   },
   "library": {
@@ -14,12 +14,12 @@
   "profile": "tools/character_animation/profiles/pt_wr_quinn_v01_draft.json",
   "garment_weight_fix": {
     "Quinn_Cardigan": {
-      "sleeve_vertices": 665,
+      "sleeve_vertices": 670,
       "detached_vertices": 4
     },
     "Quinn_Soft_Trousers": {
-      "sleeve_vertices": 16,
-      "detached_vertices": 10
+      "sleeve_vertices": 10,
+      "detached_vertices": 12
     }
   },
   "added_clips": [
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Maeve_Quinn_v01_draft.glb",
-    "sha256": "35194fe3868a803b8d83631bc121e1f9117e9b231769258a5cb3e09bc358c119",
+    "sha256": "6164ca5ddf575f2afbe2de0e816180773149370e56127916bcf19c5574e221f3",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",
