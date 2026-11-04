@@ -4,7 +4,7 @@
   "profile_sha256": "77dd04ab635c40abe98e174cb5b86c5a74a07ffececaf344a92273f64886b573",
   "source": {
     "path": "build/cast/Lucia_Morales_v01_face.blend",
-    "sha256": "423d91b961c3c5b443af44ec6bc5df0b4e027900dbe86fddf09afe16a9fe8233"
+    "sha256": "4786bfda6382e5aa043694876207f933cb82d5e84c941fb85042d0df29ce9d94"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28917
+  "triangles": 35039
 }

@@ -4,7 +4,7 @@
   "profile_sha256": "2b0d9be8357d7fd91355baea81b37c7f9222ea54d6cc45f9fb4dac939b916d87",
   "source": {
     "path": "build/cast/Chloe_Bell_v01_face.blend",
-    "sha256": "246f97b3a3db964086c4d98b93f53e97b11327b4f7c6f39890df8e0bd9c262d5"
+    "sha256": "d02254fbb8b98420f1ef29ed980e08addcf7476d40e95ceb8b08240c64419567"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 29382
+  "triangles": 35526
 }

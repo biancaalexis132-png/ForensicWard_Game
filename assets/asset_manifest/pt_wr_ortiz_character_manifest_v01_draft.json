@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Daniel_Ortiz_v01_face.blend",
-      "sha256": "23c4172f1ee1b79a1a61ce9f665f6839c8ad8de97dcaf2dbad0ca4f5619801e9",
+      "sha256": "1d9814933d7571d9cbd47729b1409c7fdb35d20c064030a02c6739a3eb9437a6",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 28266,
+  "triangle_count": 34682,
   "clips": [
     "idle_breathing",
     "idle_neutral",

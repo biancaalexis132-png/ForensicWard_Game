@@ -1,3 +1,21 @@
+**Ward round in the day handover (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-handover`, PR #125 merged by Bi into the #124 branch. The day shift handover now lists the chapter's ward-round patients (accepted with their debrief, or still open) and the earlier patients you checked in on. Not tested on the Mac.
+
+**Checking in on earlier patients (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-check-ins` on #123. Once a later chapter begins, the player can check in on patients treated earlier and hear how they are getting on (lines approved by Bi on 2026-11-04). Not tested on the Mac.
+
+**Patients answer your explanation (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-plan-response` on #122. When you explain the plan, the patient now replies in their own words, shown with the attending's reply and in the debrief (lines approved by Bi on 2026-11-04). Not tested on the Mac.
+
+**Patient ponytails and hairlines (Claude Code, 2026-11-04; draft PR, not merged):** `claude/patient-hair-tails` on #121. Ponytails on 14 patients are now strand cards that spread at the ends, and 22 patients' hairlines break into fine wisps instead of a hard edge. Not tested on the Mac.
+
+**Patients' own words at the bedside (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-patient-voices` on #120. Each ward-round patient now answers bedside questions in their own voice (lines approved by Bi on 2026-11-04); the chart still records the clinician's full account. Not tested on the Mac.
+
+**Bedside conversation (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-bedside-talk` on #119. Ward-round patients are now met at the bedside first: how you open the conversation sets their trust, your questions fill in the chart, and the debrief counts both. Full QA passed (game 406/0). Not tested on the Mac.
+
+**Patient hair (Claude Code, 2026-11-03; draft PR, not merged):** `claude/patient-hair-cards` on #118. 23 ward-round patients now have strand hair cards over the scalp cap (ponytails read from the side; short hair shows strands instead of a solid cap). Full QA passed (game 401/0, GLB 199/0). Not tested on the Mac.
+
+**Patient looks (Claude Code, 2026-11-03; draft PR, not merged):** `claude/patient-model-ageing` on #117. Fifteen ward-round patients rebuilt with painted signs of age, grey mixed through the hair instead of stripes, receding temples on some older men, and heavier builds for some. Full QA passed (game 401/0, GLB 199/0). Not tested on the Mac.
+
+**Ward-round scoring (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-scoring` on #116. Accepted plans get a debrief scored as the case bible says (safety 40, reasoning 25, rapport 20, resources 15; unsafe or dismissive choices cap the grade), a soft tests budget, and Replay case for a better score. Full QA passed (game 401/0). Not tested on the Mac.
+
 # Project status
 
 **Ward-round patients on the ward (Claude Code, 2026-11-03; draft PR #116, not merged):** `claude/ward-round-bedside` at `99655fb`, on #115 (now including the case-bible third wave, 28 cases) with #114 merged in. All 28 ward-round patients have animated 3D draft models and wait in Rooms 01 and 02, oldest admission first; walking up to one opens their case, and the next patient takes the room once a plan is accepted. Models pending owner look; third-wave cases pending Bi's clinical review; no symptom movement. Full QA passed (game 394/0, GLB 199/0). Not tested on the Mac.

@@ -4,7 +4,7 @@
   "profile_sha256": "e6580e34bbeb0537f3e31b4b520b77185a7c097a7b015c9f6d3d5986cd480ef7",
   "source": {
     "path": "build/cast/Gerald_Brooks_v01_face.blend",
-    "sha256": "00f7211dc5aa4182f58e2b754a29c8c290e3dd4a91f17b087f1ac212677012ba"
+    "sha256": "c6b5845edaa1b08d73771d294c946230d47a945d221ba800c88c6e1c6fa6863a"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28266
+  "triangles": 28154
 }

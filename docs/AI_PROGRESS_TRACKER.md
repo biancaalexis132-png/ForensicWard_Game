@@ -6,8 +6,16 @@
 |---|---|---|---|---|---|
 | Patients seated in Rooms 01/02, approach opens case, next patient arrives | Done, draft PR | #115, #114 | `scripts/world/WardRoundBedside.gd`, `data/ward_round_bedside.json` | `test_ward_round_bedside` (7), captures | Bi plays on the Mac |
 | Patient models for all 28 ward-round cases | Draft, pending owner look | cast pipeline | `tools/blender/characters/cast/pt_wr_*.json`, `assets/exports/characters/*_v01_draft.glb` | GLB 199/0; captures ch1 to ch5 | Bi reviews the look |
+| Bedside conversation (opening sets trust, questions fill the chart, debrief counts it) | Done, draft PR #120 | #119 | `WardRounds.gd`, `WardRoundScreen.gd`, `data/ward_rounds.json` `bedside` | `test_ward_round_conversation` (5), captures | Bi reviews wording; case-specific lines next |
+| Patients answer in their own words (28 cases × history and mental-state lines) | Done, draft PR #121, lines approved by Bi 2026-11-04 | #120 | `data/ward_rounds.json` `bedside_lines`, `WardRounds.bedside_line`, `WardRoundCatalog.validate_bedside_lines` | `test_ward_round_conversation` (7) | Bi reviews the lines |
+| Ponytail strand cards and hairline wisps (22 patients rebuilt) | Done, draft PR | #121 | `build_cast_member.py` (`tail_cards`, `hairline_cards`), `pt_wr_*.json`, patient GLBs | full QA, in-game capture | Bi looks at the hair |
+| Patient answers when you explain the plan (28 lines) | Done, draft PR #123, approved by Bi 2026-11-04 | #122 | `data/ward_rounds.json` `plan_response`, `WardRounds.plan_response`, `WardRoundScreen.gd` | `test_ward_round_conversation` (8) | Bi reviews the lines |
+| Check in on earlier patients in a later chapter (28 lines) | Done, draft PR #124, approved by Bi 2026-11-04 | #123 | `data/ward_rounds.json` `follow_up`, `WardRounds.follow_up`, `WardRoundScreen.gd` | `test_ward_round_conversation` (9) | Bi reviews the lines |
+| Ward round section in the day shift handover | Done, PR #125 merged into #124 branch | #124 | `WardRounds.handover_lines`, `ChapterDirector._hand_over` | `test_ward_rounds` (handover test), full QA | Bi plays a handover |
+| Hair cards on 23 patients (strand strips over the cap) | Done, draft PR | #118 | `build_cast_member.py` `hair.cards` | GLB 199/0, in-game capture | Bi looks at the hair |
+| Older/greying/heavier patient looks (age marks, grey hair, receding temples, weight at any age); 15 rebuilt | Done, draft PR | #117 | `build_cast_member.py`, `pt_wr_*.json` | GLB 199/0, before/after sheet | Bi looks at the faces |
 | Case bible third wave (8 cases, referral labels, bedside assessments, wrong-for-everyone choices) | Done on #115, pending Bi's clinical review | #115 | `data/ward_rounds.json`, `WardRoundCatalog.gd` | `test_ward_rounds` | Bi reviews in the review doc |
-| Scoring and action budget from the case bible | Not started | Bi's review | | | Ask Bi after review |
+| Scoring, soft tests budget, debrief tab, replay (case bible) | Done, draft PR | #116 | `scripts/clinical/WardRoundScoring.gd`, `WardRoundScreen.gd` | `test_ward_round_scoring` (7), captures `assets/renders/ui/ward_round_v1/debrief*.png` | Bi tunes deductions, approves explain-plan default |
 
 ## Ward rounds — Claude Code (cloud), 2026-11-03
 

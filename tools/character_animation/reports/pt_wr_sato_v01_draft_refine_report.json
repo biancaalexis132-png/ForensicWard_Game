@@ -4,7 +4,7 @@
   "profile_sha256": "ee2ac91a944cba3446bebfb7c2035edfbf3a9912fb4dc7453d70cef0616df8ee",
   "source": {
     "path": "build/cast/Kenji_Sato_v01_face.blend",
-    "sha256": "9bc35aec8ae8b737343dce9e73c345f3fdfa4982754019f79e9e6a2d383272f2"
+    "sha256": "3b19f58fe49b59fbcd3d90894b37c65dd459d5a6e35c8e3e2ffc5c329a468396"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28232
+  "triangles": 34680
 }

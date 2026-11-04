@@ -4,7 +4,7 @@
   "profile_sha256": "a1e82fe377c2a74e032b729bcaeb242bda2cd136fc00fa2bb1537d8022f0a7ea",
   "source": {
     "path": "build/cast/Abena_Mensah_v01_face.blend",
-    "sha256": "7b45448d6e89bf0a960b8eab30569244b975384e2ed1d676e0ca2bbd546d20df"
+    "sha256": "640472ac9461410ea17473aaefdabba763f7357d99a265df390c9a081c5148d8"
   },
   "refinements": {
     "lids": {
@@ -23,7 +23,7 @@
       }
     },
     "shoes": {
-      "vertices_relaxed": 3003,
+      "vertices_relaxed": 3095,
       "iterations": 30
     }
   },
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28774
+  "triangles": 34863
 }

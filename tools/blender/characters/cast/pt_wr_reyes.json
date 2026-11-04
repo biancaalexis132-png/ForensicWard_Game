@@ -1,6 +1,6 @@
 {
   "character": {
-    "name": "Tomás Reyes",
+    "name": "Tom\u00e1s Reyes",
     "character_id": "pt_wr_reyes",
     "file_stem": "Tomas_Reyes",
     "prefix": "Reyes_",
@@ -11,7 +11,8 @@
     "canon_basis": "data/ward_rounds.json case chart (name, age, sex only); appearance is a draft choice; ordinary own clothes; no symptom movement without clinical review",
     "draft_choices": [
       "Skin tone, face, build and height are draft choices; the chart gives only name, age and sex.",
-      "Seated rest pose for sitting on the bed in a patient room; only the shared neutral clips, no symptom-related movement."
+      "Seated rest pose for sitting on the bed in a patient room; only the shared neutral clips, no symptom-related movement.",
+      "Hair cards (alpha-clipped strand strips over the cap) are a draft choice."
     ]
   },
   "source": {
@@ -83,7 +84,28 @@
     "ear_top_z_m": 0.025,
     "volume_top_m": 0.007,
     "volume_side_m": 0.002,
-    "fringe_m": 0.006
+    "fringe_m": 0.006,
+    "cards": {
+      "count": 420,
+      "length_m": [
+        0.025,
+        0.045
+      ],
+      "width_m": 0.009
+    },
+    "temple_recede_m": 0.007,
+    "hairline_cards": {
+      "length_m": [
+        0.012,
+        0.02
+      ],
+      "width_m": 0.008,
+      "outside_share": 0.4,
+      "v_scale": 0.7,
+      "every": 1,
+      "seed": 13
+    },
+    "hairline_taper_m": 0.035
   },
   "garments": [
     {

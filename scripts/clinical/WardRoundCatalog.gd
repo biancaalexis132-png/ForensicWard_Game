@@ -31,8 +31,12 @@ const SCHEMA_VERSION: int = 1
 const LAB_VERDICTS: Array[String] = ["required", "helpful", "not_needed"]
 const LAB_FLAGS: Array[String] = ["normal", "abnormal", "critical"]
 const OPTION_VERDICTS: Array[String] = ["preferred", "acceptable", "required", "not_indicated", "unsafe"]
-## Catalog default verdicts may only send a plan back, never require an item everywhere.
+## Catalog default verdicts may only send a plan back, never require an item
+## everywhere; "acceptable" is allowed only for an item that builds rapport.
 const DEFAULT_VERDICTS: Array[String] = ["not_indicated", "unsafe"]
+## rapport: "builds" (explaining the plan) or "harms" (dismissive choices),
+## used by WardRoundScoring. A harmful item must carry a default verdict.
+const RAPPORT_VALUES: Array[String] = ["builds", "harms"]
 const MED_ACTIONS: Array[String] = ["continue", "reduce", "hold", "stop"]
 const REVIEW_STATUSES: Array[String] = ["PENDING_PSYCHIATRIST_REVIEW", "APPROVED", "REJECTED"]
 const NORMAL_RESULT: String = "Within normal limits."
@@ -55,9 +59,19 @@ static func validate(data: Variant, chapter_ids: Array = []) -> Array[String]:
 	var meds: Dictionary = _catalog(data, "medication_catalog", errors)
 	var interventions: Dictionary = _catalog(data, "intervention_catalog", errors)
 	for entry: Dictionary in interventions.values():
-		if entry.has("default_verdict") and (not str(entry["default_verdict"]) in DEFAULT_VERDICTS
+		var rapport: String = str(entry.get("rapport", ""))
+		if entry.has("rapport") and not rapport in RAPPORT_VALUES:
+			errors.append("ward_rounds.intervention_catalog.%s: rapport must be one of %s" % [entry["id"], str(RAPPORT_VALUES)])
+		var allowed: Array[String] = DEFAULT_VERDICTS.duplicate()
+		if rapport == "builds":
+			allowed.append("acceptable")
+		if entry.has("default_verdict") and (not str(entry["default_verdict"]) in allowed
 				or not entry.get("default_feedback") is String or str(entry["default_feedback"]).is_empty()):
-			errors.append("ward_rounds.intervention_catalog.%s: default_verdict must be one of %s, with default_feedback" % [entry["id"], str(DEFAULT_VERDICTS)])
+			errors.append("ward_rounds.intervention_catalog.%s: default_verdict must be one of %s, with default_feedback" % [entry["id"], str(allowed)])
+		if rapport == "harms" and not entry.has("default_verdict"):
+			errors.append("ward_rounds.intervention_catalog.%s: a harmful item needs a default_verdict" % entry["id"])
+	if data.has("bedside"):
+		errors.append_array(validate_bedside(data["bedside"]))
 	if not data.get("cases") is Array or (data["cases"] as Array).is_empty():
 		errors.append("ward_rounds: cases must be a non-empty array")
 		return errors
@@ -73,6 +87,14 @@ static func validate(data: Variant, chapter_ids: Array = []) -> Array[String]:
 			errors.append(path + ": id '%s' must start with 'wr_' and be unique" % id)
 		ids[id] = true
 		path = "ward_rounds.%s" % id
+		for field: String in ["plan_response", "follow_up"]:
+			if case.has(field):
+				var spoken: Variant = case[field]
+				if not spoken is Dictionary or not str(spoken.get("review_status", "")) in REVIEW_STATUSES \
+						or not spoken.get("line") is String or str(spoken["line"]).strip_edges().is_empty():
+					errors.append("%s.%s: needs a review_status and a non-empty line" % [path, field])
+		if case.has("bedside_lines"):
+			errors.append_array(validate_bedside_lines(case["bedside_lines"], data.get("bedside", {}), path))
 		if not chapter_ids.is_empty() and not case.get("chapter") in chapter_ids:
 			errors.append(path + ": unknown chapter '%s'" % str(case.get("chapter")))
 		if not str(case.get("clinical_review_status", "")) in REVIEW_STATUSES:
@@ -155,6 +177,68 @@ static func validate(data: Variant, chapter_ids: Array = []) -> Array[String]:
 
 
 ## Lab result text and flag for a case ({result, flag, verdict, teaching}).
+## Fields of a case's presentation a bedside question can reveal.
+const BEDSIDE_FIELDS: Array[String] = ["history", "mental_status", "vitals"]
+
+
+## Problems in the optional bedside conversation block ([] when valid).
+static func validate_bedside(bedside: Variant) -> Array[String]:
+	var errors: Array[String] = []
+	var path: String = "ward_rounds.bedside"
+	if not bedside is Dictionary:
+		return [path + ": expected an object"] as Array[String]
+	if not str(bedside.get("review_status", "")) in REVIEW_STATUSES:
+		errors.append(path + ": review_status must be one of %s" % str(REVIEW_STATUSES))
+	for field: String in ["openings", "questions"]:
+		if not bedside.get(field) is Array or (bedside[field] as Array).is_empty():
+			errors.append("%s.%s: expected a non-empty array" % [path, field])
+			return errors
+	var seen: Dictionary = {}
+	for entry: Variant in bedside["openings"]:
+		if not entry is Dictionary or not entry.get("id") is String or seen.has(entry["id"]) \
+				or not entry.get("label") is String or not entry.get("response") is String \
+				or not (entry.get("trust") is int or entry.get("trust") is float) or int(entry["trust"]) < 0 or int(entry["trust"]) > 2 \
+				or (entry.has("rapport") and not str(entry["rapport"]) in RAPPORT_VALUES):
+			errors.append("%s.openings: each needs a unique id, label, response, trust 0 to 2 and an optional rapport" % path)
+			continue
+		seen[entry["id"]] = true
+	for entry: Variant in bedside["questions"]:
+		if not entry is Dictionary or not entry.get("id") is String or seen.has(entry["id"]) \
+				or not entry.get("label") is String or not str(entry.get("field", "")) in BEDSIDE_FIELDS \
+				or not entry.get("needs_trust") is bool:
+			errors.append("%s.questions: each needs a unique id, label, field (%s) and needs_trust" % [path, ", ".join(BEDSIDE_FIELDS)])
+			continue
+		seen[entry["id"]] = true
+	if not bedside.get("repair") is Dictionary or not bedside["repair"].get("label") is String \
+			or not bedside["repair"].get("response") is String:
+		errors.append(path + ".repair: needs a label and a response")
+	if not bedside.get("low_trust_response") is String:
+		errors.append(path + ": low_trust_response must be a string")
+	return errors
+
+
+## Problems in a case's own spoken bedside answers ([] when valid): a review
+## status, then non-empty lines keyed by the bedside block's question ids.
+static func validate_bedside_lines(lines: Variant, bedside: Variant, case_path: String) -> Array[String]:
+	var path: String = case_path + ".bedside_lines"
+	if not lines is Dictionary:
+		return [path + ": expected an object"] as Array[String]
+	if not bedside is Dictionary or not bedside.get("questions") is Array:
+		return [path + ": needs the catalog's bedside block"] as Array[String]
+	var errors: Array[String] = []
+	if not str(lines.get("review_status", "")) in REVIEW_STATUSES:
+		errors.append(path + ": review_status must be one of %s" % str(REVIEW_STATUSES))
+	var question_ids: Array = (bedside["questions"] as Array).map(func(q: Variant) -> String: return str(q.get("id", "")) if q is Dictionary else "")
+	for key: Variant in lines:
+		if key == "review_status":
+			continue
+		if not key in question_ids:
+			errors.append("%s.%s: not a bedside question (%s)" % [path, key, ", ".join(question_ids)])
+		elif not lines[key] is String or str(lines[key]).strip_edges().is_empty():
+			errors.append("%s.%s: expected a non-empty line" % [path, key])
+	return errors
+
+
 static func lab_result(case: Dictionary, lab_id: String) -> Dictionary:
 	var lab: Dictionary = case.get("labs", {}).get(lab_id, {})
 	if lab.is_empty():

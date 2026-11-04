@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Priya_Natarajan_v01_draft.blend",
-    "sha256": "7b3e3bb02df1b613800b3fda2f2b9ff13d539d29f91c8f6678c26fbcdf4ae3ca",
+    "sha256": "abe0a171b467add761b3be296b6e00b4ed0cb101407b4a31a5786d1c59761aa9",
     "modified": false
   },
   "library": {
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Priya_Natarajan_v01_draft.glb",
-    "sha256": "07154d5f45e076c98a4df34ea90dc34f203eb98731f43b08033fee9c771fa78c",
+    "sha256": "b8f8671a1637ae93ad22bd84acbe2bd7ae59a66e73d4cca7e44abf90a67ba22b",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

@@ -4,7 +4,7 @@
   "profile_sha256": "9deb3cdc35c0597d1a20f997124e27808541c18316c91ec81df02d0d7e9d0b52",
   "source": {
     "path": "build/cast/Harold_Whitaker_v01_face.blend",
-    "sha256": "2410f297cf955b57b0d4044284121f72375de0d4b72064fb9983b90d1755ef9a"
+    "sha256": "064db5d4725ccd90870bcf67f3af7cdac9c03dfbd5c35f08b27d27e60e4d10f8"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28278
+  "triangles": 28086
 }

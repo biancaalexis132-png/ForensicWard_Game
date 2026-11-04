@@ -262,19 +262,24 @@
 		},
 		{
 			"id": "explain_plan",
-			"label": "Explain the working diagnosis and plan to the patient"
+			"label": "Explain the working diagnosis and plan to the patient",
+			"rapport": "builds",
+			"default_verdict": "acceptable",
+			"default_feedback": "Telling the patient what you think is happening and what comes next builds trust."
 		},
 		{
 			"id": "dismiss_as_feigned",
 			"label": "Record the symptoms as put on and stop investigating",
 			"default_verdict": "unsafe",
-			"default_feedback": "Calling symptoms put on closes the assessment and the patient's trust. Keep investigating and say what you found."
+			"default_feedback": "Calling symptoms put on closes the assessment and the patient's trust. Keep investigating and say what you found.",
+			"rapport": "harms"
 		},
 		{
 			"id": "challenge_beliefs",
 			"label": "Argue the patient out of what they are experiencing",
 			"default_verdict": "not_indicated",
-			"default_feedback": "Arguing shuts the conversation down. Explore what the experience is like and what it means to them."
+			"default_feedback": "Arguing shuts the conversation down. Explore what the experience is like and what it means to them.",
+			"rapport": "harms"
 		}
 	],
 	"cases": [
@@ -389,7 +394,20 @@
 					"start:haloperidol"
 				]
 			],
-			"teaching": "First-episode psychosis: rule out medical and substance causes, record a metabolic baseline, and start a single antipsychotic at a low dose."
+			"teaching": "First-episode psychosis: rule out medical and substance causes, record a metabolic baseline, and start a single antipsychotic at a low dose.",
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "I've never seen a psychiatrist before. Drugs? My family say no. I'm... not sure. I don't sleep much. Three, four hours maybe.",
+				"mental_state": "There's a voice. It talks about what I'm doing, all the time. And the neighbours, they're watching me. I'm not going to hurt anyone. Or me."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "So you think it's an illness, not the neighbours? I don't know. But I'll try what you're saying."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I'm sleeping more. The voice is still there sometimes, but quieter. My mum visited. That was good."
+			}
 		},
 		{
 			"id": "wr_ch1_natarajan",
@@ -531,7 +549,20 @@
 					"hcg"
 				]
 			},
-			"teaching": "Antidepressant-associated mania: stop the antidepressant, start a mood stabilizer or antipsychotic, and do renal, thyroid and pregnancy checks before lithium."
+			"teaching": "Antidepressant-associated mania: stop the antidepressant, start a mood stabilizer or antipsychotic, and do renal, thyroid and pregnancy checks before lithium.",
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "My doctor started me on sertraline for depression three weeks ago. I've never felt like this before. Like this! Contraception? Sometimes. It's fine.",
+				"mental_state": "I'm launching a company, it's going to fix medicine, I don't need sleep, I've got the whole thing mapped out, I can't stop now. No, I don't want to hurt anybody."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "You're slowing me down right when everything's taking off. Fine. Fine. But I want it written down that I disagree."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I've slept properly for the first time in ages. Some of those plans seem a bit much now, looking back."
+			}
 		},
 		{
 			"id": "wr_ch2_kim",
@@ -626,7 +657,20 @@
 					"int:safety_plan"
 				]
 			],
-			"teaching": "Late-onset depression: exclude thyroid and other medical causes, assess suicide risk, and start an SSRI."
+			"teaching": "Late-onset depression: exclude thyroid and other medical causes, assess suicide risk, and start an SSRI.",
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Nothing like this before. I don't take any tablets. A glass or two of wine a week, that's all. My wife's at home with me.",
+				"mental_state": "I'm a burden to her now. Some nights I think I wouldn't mind not waking up. No, I haven't planned anything. I wouldn't do anything."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "My wife has been saying I should talk to someone. Thank you for not making me feel foolish."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "Still slow in the mornings. But my wife says I laughed at the television last night. I'd forgotten I could."
+			}
 		},
 		{
 			"id": "wr_ch2_lebel",
@@ -741,7 +785,20 @@
 					"int:medical_transfer"
 				]
 			],
-			"teaching": "Lithium toxicity: an NSAID plus dehydration cut renal clearance. Hold lithium, stop the NSAID, check the level and renal function, and involve the medical team."
+			"teaching": "Lithium toxicity: an NSAID plus dehydration cut renal clearance. Hold lithium, stop the NSAID, check the level and renal function, and involve the medical team.",
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Lithium... twelve years. My knee. The GP gave me ibuprofen. I can't keep much down.",
+				"mental_state": "What day is it? I'm sorry. I'm so tired."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "The tablets, together? I didn't know. Will you tell my family?"
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I feel like myself again. I'm going to be very careful about painkillers from now on."
+			}
 		},
 		{
 			"id": "wr_ch3_wrobel",
@@ -837,7 +894,20 @@
 					"clozapine_level"
 				]
 			},
-			"teaching": "Stopping smoking removes CYP1A2 induction, so clozapine levels rise. Check the level and reduce the dose; nicotine replacement does not prevent this."
+			"teaching": "Stopping smoking removes CYP1A2 induction, so clozapine levels rise. Check the level and reduce the dose; nicotine replacement does not prevent this.",
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Clozapine, four years now. I smoked thirty a day before I came here. You can't smoke on this ward.",
+				"mental_state": "I just want to sleep. The voices haven't come back. I keep drooling. Sorry."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "Because I stopped smoking? Nobody told me that could matter. Thank you."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I'm more awake now. I still miss the cigarettes, mind you."
+			}
 		},
 		{
 			"id": "wr_ch3_adeyemi",
@@ -951,7 +1021,20 @@
 					"int:medical_transfer"
 				]
 			],
-			"teaching": "Neuroleptic malignant syndrome: fever, rigidity, confusion and autonomic instability after an antipsychotic. Stop it, check CK and renal function, and transfer for medical care."
+			"teaching": "Neuroleptic malignant syndrome: fever, rigidity, confusion and autonomic instability after an antipsychotic. Stop it, check CK and renal function, and transfer for medical care.",
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "(He looks past you and does not answer.)",
+				"mental_state": "(He stares, and says nothing for a long while.)"
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "(He turns his eyes toward you for a moment while you speak.)"
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I don't remember much of the last few days. They tell me I was very unwell. Thank you for noticing."
+			}
 		},
 		{
 			"id": "wr_ch4_petrova",
@@ -1067,7 +1150,20 @@
 					"int:medical_transfer"
 				]
 			],
-			"teaching": "Serotonin toxicity: an SSRI plus linezolid (an MAO inhibitor). Clonus, hyperreflexia and fever. Stop serotonergic drugs and involve the medical team."
+			"teaching": "Serotonin toxicity: an SSRI plus linezolid (an MAO inhibitor). Clonus, hyperreflexia and fever. Stop serotonergic drugs and involve the medical team.",
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Sertraline, for a year, and it's been fine. They started an antibiotic two days ago for my skin. Linezolid, I think.",
+				"mental_state": "I can't sit still. I'm sorry, I can't. I know where I am, I just feel awful."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "So it was the two medicines together. I thought I was going mad. Thank you for explaining."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "The shaking's gone. I can sit still again. You don't know what a relief that is."
+			}
 		},
 		{
 			"id": "wr_ch4_okafor",
@@ -1168,7 +1264,20 @@
 					"int:nutrition_hydration"
 				]
 			],
-			"teaching": "Catatonia: start a lorazepam challenge, avoid high-potency antipsychotics, check CK and hydration, and keep ECT available."
+			"teaching": "Catatonia: start a lorazepam challenge, avoid high-potency antipsychotics, check CK and hydration, and keep ECT available.",
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "(She does not answer or move.)",
+				"mental_state": "(She stays silent and holds the same posture.)"
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "(She gives no sign that she has heard, but her eyes follow you to the door.)"
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I could hear everything, I just couldn't move or speak. Thank you for being patient with me."
+			}
 		},
 		{
 			"id": "wr_ch5_delaney",
@@ -1261,7 +1370,20 @@
 					"int:withdrawal_monitoring"
 				]
 			],
-			"teaching": "Alcohol withdrawal with a seizure history: benzodiazepine, thiamine before glucose, structured monitoring, and electrolytes."
+			"teaching": "Alcohol withdrawal with a seizure history: benzodiazepine, thiamine before glucose, structured monitoring, and electrolytes.",
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "About a bottle a day. Spirits. For years. I had a fit when I stopped, two years ago. I don't eat properly.",
+				"mental_state": "I'm shaking and I'm scared. I'm not seeing anything, if that's what you're asking."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "I'm frightened of having another fit. If you're keeping an eye on me, I'll stay."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "Worst few days of my life, but I got through them. I want to talk about what happens when I leave."
+			}
 		},
 		{
 			"id": "wr_ch5_lindqvist",
@@ -1407,7 +1529,20 @@
 					"int:electrolyte_replacement"
 				]
 			],
-			"teaching": "Drug-induced QTc prolongation: remove QTc-prolonging drugs, correct potassium and magnesium, and monitor the heart."
+			"teaching": "Drug-induced QTc prolongation: remove QTc-prolonging drugs, correct potassium and magnesium, and monitor the heart.",
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Citalopram for my mood, quetiapine at night to sleep, a water tablet for my blood pressure. And an antibiotic for a water infection, three days ago.",
+				"mental_state": "My mood's been fine. It's my heart. It keeps racing and I nearly fainted twice."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "I had no idea the new antibiotic could do that. I'm glad someone looked at all of them together."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "No more funny turns. They've put a note on my file about that antibiotic."
+			}
 		},
 		{
 			"id": "wr_ch1_hughes",
@@ -1509,7 +1644,20 @@
 			"references": [
 				"Maudsley Prescribing Guidelines 15th ed.: antipsychotic-induced extrapyramidal side effects",
 				"Stahl's Prescriber's Guide: haloperidol, benztropine"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "They gave me haloperidol last night. First time. I don't take anything else.",
+				"mental_state": "Why is my neck doing this? My eyes keep going up. The voices are the same as yesterday."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "So it's the medicine, not me getting worse? Okay. Okay. Please make it stop."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "My neck's normal again. I was so scared. Will it happen again?"
+			}
 		},
 		{
 			"id": "wr_ch1_morales",
@@ -1604,7 +1752,20 @@
 			"references": [
 				"Maudsley Prescribing Guidelines 15th ed.: akathisia",
 				"Sims' Symptoms in the Mind: motor symptoms"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "I've had schizophrenia for a while. They started aripiprazole ten days ago and put it up four days ago. My thoughts are clearer.",
+				"mental_state": "It's my legs. I can't keep still, it's unbearable. I'm not angry, I just have to move."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "I thought I was just being difficult. It helps to know there's a reason."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I can sit through a whole meal now. I didn't realise how bad it had got."
+			}
 		},
 		{
 			"id": "wr_ch2_brennan",
@@ -1726,7 +1887,20 @@
 			"references": [
 				"Maudsley Prescribing Guidelines 15th ed.: antidepressant-induced hyponatraemia",
 				"Stahl's Prescriber's Guide: sertraline"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Sertraline, a couple of weeks. And my blood pressure tablet. I live on my own.",
+				"mental_state": "Where am I? I feel sick. I'm sorry, love, I'm muddled."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "I'm sorry, love, I didn't follow all of that. But you'll look after me, won't you?"
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I know where I am now, love. Hospital. I had a fall, didn't I?"
+			}
 		},
 		{
 			"id": "wr_ch2_kowalczyk",
@@ -1827,7 +2001,20 @@
 				"Maudsley Prescribing Guidelines 15th ed.: valproate",
 				"Stahl's Prescriber's Guide: valproate",
 				"Kaufman's Clinical Neurology for Psychiatrists: metabolic encephalopathy"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Valproate... about a week. I don't drink.",
+				"mental_state": "I'm so sleepy. Where... sorry, what were you asking?"
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "Sorry. Can you tell me again later? I'm so tired."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "My head's clearer. I'm sorry if I didn't make sense before."
+			}
 		},
 		{
 			"id": "wr_ch3_achebe",
@@ -1927,7 +2114,20 @@
 			"references": [
 				"The Clozapine Handbook (Stahl & Meyer): myocarditis and cardiomyopathy",
 				"Maudsley Prescribing Guidelines 15th ed.: clozapine adverse effects"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Clozapine, about eighteen days. They keep putting it up. The blood tests have been fine.",
+				"mental_state": "I'm tired, and I get out of breath walking. My head's clearer than it was."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "My heart? But my head was finally getting clearer. Will I be able to go back on it?"
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I'm less out of breath now. I'm worried the voices will come back without the clozapine."
+			}
 		},
 		{
 			"id": "wr_ch3_sato",
@@ -2020,7 +2220,20 @@
 			"references": [
 				"The Clozapine Handbook (Stahl & Meyer): neutropenia and monitoring",
 				"Maudsley Prescribing Guidelines 15th ed.: clozapine haematological monitoring"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Clozapine, five months. My bloods have been fine until now. Nothing new.",
+				"mental_state": "I'm doing well, really. But my throat's been sore since yesterday, and now the blood result. Is it bad?"
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "I was worried it was something like this. Thank you for being straight with me."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "They kept me in a side room for a while. My throat's better. I'm just waiting to hear what happens next."
+			}
 		},
 		{
 			"id": "wr_ch4_whitaker",
@@ -2133,7 +2346,20 @@
 				"Sims' Symptoms in the Mind: disorders of consciousness",
 				"Kaplan & Sadock's Synopsis 12th ed.: delirium",
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 02"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "My memory's not been right for a couple of years. These last few days I've been muddled. I keep needing the toilet.",
+				"mental_state": "There are people in my room at night. December, November... I've lost it. Where was I?"
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "So I'm not losing my mind? Tell my daughter, would you."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "Were there really people in my room? The nurses say I was very muddled. I feel much more like me."
+			}
 		},
 		{
 			"id": "wr_ch4_quinn",
@@ -2288,7 +2514,20 @@
 			"references": [
 				"Maudsley Prescribing Guidelines 15th ed.: anticholinergic burden",
 				"Stahl's Prescriber's Guide: amitriptyline, benztropine"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "(She mumbles something you cannot follow.)",
+				"mental_state": "There are insects on the wall. Can't you see them? Get them off."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "(She stops picking at the sheets for a moment and looks at your face.)"
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I don't remember seeing any insects. The nurses say I was very confused. I'm still a bit foggy."
+			}
 		},
 		{
 			"id": "wr_ch5_osei",
@@ -2414,7 +2653,20 @@
 			"references": [
 				"The Clozapine Handbook (Stahl & Meyer): constipation and ileus",
 				"Maudsley Prescribing Guidelines 15th ed.: clozapine and constipation"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Clozapine, six years. I've only been to the toilet once this week. My GP gave me something for my bladder.",
+				"mental_state": "It hurts. My stomach. Please."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "It hurts so much. Yes. Whatever you need to do."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "The pain's eased. I'm eating a little now. I'll tell them sooner next time."
+			}
 		},
 		{
 			"id": "wr_ch5_farah",
@@ -2543,7 +2795,20 @@
 			"references": [
 				"The Clozapine Handbook (Stahl & Meyer): starting clozapine and baseline monitoring",
 				"Maudsley Prescribing Guidelines 15th ed.: treatment-resistant schizophrenia"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Six years. Olanzapine didn't work. Now risperidone, and the nurses watch me take it. I use contraception. I don't smoke.",
+				"mental_state": "There are voices, several, every day. The neighbours are poisoning my food. I'm glad someone is listening. I'm not going to hurt anyone."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "Another medicine. I've been let down twice. But you listened, so I'll hear you out."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "It's early days. The voices aren't gone, but you listened to me. That counts for something."
+			}
 		},
 		{
 			"id": "wr_ch1_haddad",
@@ -2658,7 +2923,20 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 10",
 				"Sims' Symptoms in the Mind: hallucinations and pseudo-hallucinations",
 				"Kaplan & Sadock's Synopsis 12th ed.: grief and cultural formulation"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "My mother died three weeks ago. I've been well on sertraline for two years. I've never heard things before.",
+				"mental_state": "When I'm falling asleep I hear her calling my name. I know she's gone. It comforts me. Please don't write that I'm psychotic."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "So you don't think I'm psychotic. Thank you. I was so frightened you'd say I was."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I still hear her sometimes, falling asleep. I've stopped being frightened of it."
+			}
 		},
 		{
 			"id": "wr_ch2_novak",
@@ -2754,7 +3032,20 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 12",
 				"Kaplan & Sadock's Synopsis 12th ed.: obsessive-compulsive disorder",
 				"Sims' Symptoms in the Mind: obsessions and compulsions"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "It started two years ago and it keeps getting worse. I've never seen anyone about it.",
+				"mental_state": "I get pictures in my head of contaminating my little sister. I hate them. I know it's too much, the washing. It just stops the fear for a while."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "You don't think I'm a bad person for having the thoughts? I've never told anyone before."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I've started the therapy. It's hard. But I sat in the day room for ten minutes yesterday."
+			}
 		},
 		{
 			"id": "wr_ch2_clarke",
@@ -2883,7 +3174,20 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 06",
 				"Sims' Symptoms in the Mind: disorders of memory",
 				"Kaplan & Sadock's Synopsis 12th ed.: dissociative disorders"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "I don't know. I'm sorry. I don't know who I am, or why I'm here.",
+				"mental_state": "I know my way round, and I remember talking to the nurse this morning. But my name... my family... nothing."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "So it might come back? I'd like that. I'd like to know who I am."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "Bits are coming back. A street I lived on. A song. It's strange, but it's mine."
+			}
 		},
 		{
 			"id": "wr_ch3_brooks",
@@ -3000,7 +3304,20 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 08",
 				"Kaufman's Clinical Neurology for Psychiatrists: movement disorders",
 				"Maudsley Prescribing Guidelines 15th ed.: extrapyramidal side effects"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "I've been well for years. They put my haloperidol up about six weeks ago. Nothing else.",
+				"mental_state": "Everything's so slow. I'm not down, just fed up with it."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "So it's the medicine slowing me down, not old age. That's a relief, honestly."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I'm a bit quicker on my feet. Not there yet, but better."
+			}
 		},
 		{
 			"id": "wr_ch3_mensah",
@@ -3110,7 +3427,20 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 11",
 				"Kaplan & Sadock's Synopsis 12th ed.: consultation-liaison psychiatry and ethics",
 				"Sims' Symptoms in the Mind: insight and judgement"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "Lithium, years now. My stomach has hurt for two days, and I've had a fever.",
+				"mental_state": "I understand, I do. I'll stay in my room, because... the scan is... what were we talking about?"
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "I... yes. All right. Will you stay while they take me?"
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I don't remember saying no to the scan. I'm glad you didn't leave it there."
+			}
 		},
 		{
 			"id": "wr_ch4_doyle",
@@ -3248,7 +3578,20 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 14",
 				"Kaufman's Clinical Neurology for Psychiatrists: dementias and movement disorders",
 				"Maudsley Prescribing Guidelines 15th ed.: dementia and older adults"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "My memory's been going for a couple of years. My wife says I act out my dreams. They gave me something to calm me down, twice.",
+				"mental_state": "There are children standing in the corridor. They don't bother me. What time is it? I'm better in the mornings."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "My wife always said those dreams were something. Will you tell her what you told me?"
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "Still see the children now and then. They don't bother me. My legs are less stiff."
+			}
 		},
 		{
 			"id": "wr_ch4_reyes",
@@ -3357,7 +3700,20 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 05",
 				"Kaufman's Clinical Neurology for Psychiatrists: seizures and functional neurological disorder",
 				"Kaplan & Sadock's Synopsis 12th ed.: somatic symptom and related disorders"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "I've been depressed. They did a brain test once, between the spells; it didn't show anything. I've never hit my head.",
+				"mental_state": "The spells frighten me. I remember bits of them. People think I'm putting it on. I'm so embarrassed."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "You believe me? Everyone here thinks I'm putting it on. Thank you."
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "Fewer spells this week. The staff are kinder now. I think that helps."
+			}
 		},
 		{
 			"id": "wr_ch5_bell",
@@ -3468,7 +3824,70 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 13",
 				"Kaufman's Clinical Neurology for Psychiatrists: encephalitis and seizures",
 				"Kaplan & Sadock's Synopsis 12th ed.: psychiatric differential of medical illness"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "APPROVED",
+				"history": "I've never been ill like this before. I had flu a couple of weeks ago. They started risperidone.",
+				"mental_state": "Why are you asking me that? I... I forget things. I don't know."
+			},
+			"plan_response": {
+				"review_status": "APPROVED",
+				"line": "Why are you telling me this? ... Is something wrong with my brain?"
+			},
+			"follow_up": {
+				"review_status": "APPROVED",
+				"line": "I don't remember a lot of last week. They said my brain was inflamed. I'm scared, but I'm less confused."
+			}
 		}
-	]
+	],
+	"bedside": {
+		"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+		"_note": "Bedside conversation before the chart: the opening sets the patient's trust; history and mental state need some trust; observations do not. Generic communication wording by Claude Code, pending the owner's review. Answers are each case's own chart text; nothing new is said about any patient.",
+		"openings": [
+			{
+				"id": "warm",
+				"label": "Introduce yourself, explain why you are here and ask how they are",
+				"trust": 2,
+				"response": "{name} relaxes a little and agrees to talk."
+			},
+			{
+				"id": "direct",
+				"label": "Introduce yourself and go straight to your questions",
+				"trust": 1,
+				"response": "{name} answers, though warily."
+			},
+			{
+				"id": "rushed",
+				"label": "Say you only have a few minutes and need quick answers",
+				"trust": 0,
+				"response": "{name} looks away and gives short answers.",
+				"rapport": "harms"
+			}
+		],
+		"questions": [
+			{
+				"id": "history",
+				"label": "Ask what has been happening, in their own words",
+				"field": "history",
+				"needs_trust": true
+			},
+			{
+				"id": "mental_state",
+				"label": "Explore how they are feeling and thinking",
+				"field": "mental_status",
+				"needs_trust": true
+			},
+			{
+				"id": "observations",
+				"label": "Check their observations and examine them",
+				"field": "vitals",
+				"needs_trust": false
+			}
+		],
+		"repair": {
+			"label": "Slow down and acknowledge how they are feeling",
+			"response": "{name} looks back at you and seems ready to talk."
+		},
+		"low_trust_response": "{name} gives a short answer and little else. Building some trust first may help."
+	}
 }

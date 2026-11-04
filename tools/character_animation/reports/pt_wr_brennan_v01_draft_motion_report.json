@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Agnes_Brennan_v01_draft.blend",
-    "sha256": "e4ea6307c77f9b7d268e24881f0a953ff1c3f86585ea9463295ecbf7fa5e287f",
+    "sha256": "f18674860fb7b56845b733000aeb342f0f456e8ad78726b5ba27662b65cb2c49",
     "modified": false
   },
   "library": {
@@ -14,12 +14,12 @@
   "profile": "tools/character_animation/profiles/pt_wr_brennan_v01_draft.json",
   "garment_weight_fix": {
     "Brennan_Cardigan": {
-      "sleeve_vertices": 672,
+      "sleeve_vertices": 682,
       "detached_vertices": 4
     },
     "Brennan_Soft_Trousers": {
-      "sleeve_vertices": 16,
-      "detached_vertices": 7
+      "sleeve_vertices": 10,
+      "detached_vertices": 13
     }
   },
   "added_clips": [
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Agnes_Brennan_v01_draft.glb",
-    "sha256": "e60dbe6088b0d9201787affdbedc9ed4b9171294dd147c8e06424e6ea4858a63",
+    "sha256": "6209b67f488ae90e1c43b3f199df4072275691327c69a0e4e09db8310255f7d5",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

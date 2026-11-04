@@ -1,6 +1,7 @@
 extends Node
 ## Review captures of the ward round screen: Lebel's chart, her labs after
-## ordering, a plan the attending sends back, then the accepted plan.
+## ordering, a plan the attending sends back, the accepted plan, then a
+## check-in on her in a later chapter.
 ## Desktop review only (Compatibility renderer on Linux, not Mac evidence).
 ##
 ##   xvfb-run -s "-screen 0 1920x1080x24" Godot --rendering-driver opengl3 --path . \
@@ -31,6 +32,13 @@ func _run() -> void:
 	main.get_node("EHRScreen").open_ward_round()
 	var screen: WardRoundScreen = main.get_node("WardRoundScreen")
 	screen.select_case(CASE_ID)
+	await _frames(5)
+	_save(output, "bedside_open.png")
+	screen.open_bedside("warm")
+	for question: String in ["history", "mental_state", "observations"]:
+		screen.ask(question)
+	await _frames(5)
+	_save(output, "bedside_answers.png")
 	screen.show_tab("Chart")
 	await _frames(5)
 	_save(output, "chart.png")
@@ -52,6 +60,31 @@ func _run() -> void:
 	screen.show_tab("Plan")
 	await _frames(5)
 	_save(output, "plan_accepted.png")
+	screen.show_tab("Debrief")
+	await _frames(5)
+	_save(output, "debrief.png")
+	# Replay with every useful test and an explanation for a better score.
+	screen.replay()
+	var case: Dictionary = WardRounds.get_case(CASE_ID)
+	for lab_id: String in case["labs"]:
+		if case["labs"][lab_id]["verdict"] in ["required", "helpful"]:
+			screen.order_lab(lab_id)
+	screen.set_med_action("lithium", "hold")
+	screen.set_med_action("ibuprofen", "stop")
+	screen.set_intervention("medical_transfer", true)
+	screen.set_intervention("explain_plan", true)
+	screen.submit()
+	await _frames(5)
+	_save(output, "debrief_replay.png")
+	# A later chapter: check in on her.
+	director.load_save_data({"current": "ch3", "chapters": {}})
+	screen.close()
+	EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": CASE_ID})
+	await _frames(5)
+	_save(output, "follow_up_offer.png")
+	screen.follow_up()
+	await _frames(5)
+	_save(output, "follow_up.png")
 	print("WARD_ROUND_CAPTURE done")
 	get_tree().quit()
 

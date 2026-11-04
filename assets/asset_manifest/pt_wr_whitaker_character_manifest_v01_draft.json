@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Harold_Whitaker_v01_face.blend",
-      "sha256": "2410f297cf955b57b0d4044284121f72375de0d4b72064fb9983b90d1755ef9a",
+      "sha256": "064db5d4725ccd90870bcf67f3af7cdac9c03dfbd5c35f08b27d27e60e4d10f8",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 28278,
+  "triangle_count": 28086,
   "clips": [
     "idle_breathing",
     "idle_neutral",

@@ -4,7 +4,7 @@
   "profile_sha256": "a58155ed8f6439e765c4fe00f67d44b996c60b0ff70d256d934b28503a45eab5",
   "source": {
     "path": "build/cast/Frank_Delaney_v01_face.blend",
-    "sha256": "e1a0019430a86cbd0286af39ef6260bb0a38ba847d7d23fa2e751934cb02ce43"
+    "sha256": "bc2aa3f7f52289ad580e5d35299e3d1ae6329bc0ec4b938ced2375339058ee16"
   },
   "refinements": {
     "lids": {
@@ -23,7 +23,7 @@
       }
     },
     "shoes": {
-      "vertices_relaxed": 3438,
+      "vertices_relaxed": 3145,
       "iterations": 30
     }
   },
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28524
+  "triangles": 34559
 }

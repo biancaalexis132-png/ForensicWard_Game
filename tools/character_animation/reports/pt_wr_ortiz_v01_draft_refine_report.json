@@ -4,7 +4,7 @@
   "profile_sha256": "a8585ffbc72d7dbd2978ace849213ff4a625762da3100603779f9a5839fb068e",
   "source": {
     "path": "build/cast/Daniel_Ortiz_v01_face.blend",
-    "sha256": "23c4172f1ee1b79a1a61ce9f665f6839c8ad8de97dcaf2dbad0ca4f5619801e9"
+    "sha256": "1d9814933d7571d9cbd47729b1409c7fdb35d20c064030a02c6739a3eb9437a6"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 28266
+  "triangles": 34682
 }
