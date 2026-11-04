@@ -194,7 +194,8 @@ func open_bedside(case_id: String, opening_id: String) -> String:
 	return _bedside_text(opening["response"], case_id)
 
 
-## Asks a question. Returns the answer text ("" if not allowed). With too
+## Asks a question. Returns the patient's spoken answer (bedside_line), or the
+## chart text when the case has no line ("" if not allowed). With too
 ## little trust, a question that needs it gets a short reply and reveals nothing.
 func ask_bedside(case_id: String, question_id: String) -> String:
 	if bedside_opening(case_id).is_empty() or not is_editable(case_id):
@@ -211,9 +212,24 @@ func ask_bedside(case_id: String, question_id: String) -> String:
 	else:
 		if not question_id in entry["revealed"]:
 			entry["revealed"].append(question_id)
-		text = str(get_case(case_id)["presentation"][question["field"]])
+		text = bedside_line(case_id, question_id)
+		if text.is_empty():
+			text = str(get_case(case_id)["presentation"][question["field"]])
 	case_changed.emit(case_id)
 	return text
+
+
+## The patient's own spoken answer to a question, as "Name: “line”", or "" when
+## the case has none (the answer is then the chart text). A line in brackets
+## describes what you see instead, so it is shown without quotation marks.
+func bedside_line(case_id: String, question_id: String) -> String:
+	var line: String = str(get_case(case_id).get("bedside_lines", {}).get(question_id, ""))
+	if line.is_empty():
+		return ""
+	if line.begins_with("("):
+		return line
+	var name: String = str(get_case(case_id).get("patient", {}).get("name", "The patient"))
+	return "%s: “%s”" % [name.get_slice(" ", 0), line]
 
 
 ## Slows down after a poor opening; trust rises to 1.
