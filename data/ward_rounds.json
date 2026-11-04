@@ -394,7 +394,12 @@
 					"start:haloperidol"
 				]
 			],
-			"teaching": "First-episode psychosis: rule out medical and substance causes, record a metabolic baseline, and start a single antipsychotic at a low dose."
+			"teaching": "First-episode psychosis: rule out medical and substance causes, record a metabolic baseline, and start a single antipsychotic at a low dose.",
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "I've never seen a psychiatrist before. Drugs? My family say no. I'm... not sure. I don't sleep much. Three, four hours maybe.",
+				"mental_state": "There's a voice. It talks about what I'm doing, all the time. And the neighbours, they're watching me. I'm not going to hurt anyone. Or me."
+			}
 		},
 		{
 			"id": "wr_ch1_natarajan",
@@ -536,7 +541,12 @@
 					"hcg"
 				]
 			},
-			"teaching": "Antidepressant-associated mania: stop the antidepressant, start a mood stabilizer or antipsychotic, and do renal, thyroid and pregnancy checks before lithium."
+			"teaching": "Antidepressant-associated mania: stop the antidepressant, start a mood stabilizer or antipsychotic, and do renal, thyroid and pregnancy checks before lithium.",
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "My doctor started me on sertraline for depression three weeks ago. I've never felt like this before. Like this! Contraception? Sometimes. It's fine.",
+				"mental_state": "I'm launching a company, it's going to fix medicine, I don't need sleep, I've got the whole thing mapped out, I can't stop now. No, I don't want to hurt anybody."
+			}
 		},
 		{
 			"id": "wr_ch2_kim",
@@ -631,7 +641,12 @@
 					"int:safety_plan"
 				]
 			],
-			"teaching": "Late-onset depression: exclude thyroid and other medical causes, assess suicide risk, and start an SSRI."
+			"teaching": "Late-onset depression: exclude thyroid and other medical causes, assess suicide risk, and start an SSRI.",
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Nothing like this before. I don't take any tablets. A glass or two of wine a week, that's all. My wife's at home with me.",
+				"mental_state": "I'm a burden to her now. Some nights I think I wouldn't mind not waking up. No, I haven't planned anything. I wouldn't do anything."
+			}
 		},
 		{
 			"id": "wr_ch2_lebel",
@@ -746,7 +761,12 @@
 					"int:medical_transfer"
 				]
 			],
-			"teaching": "Lithium toxicity: an NSAID plus dehydration cut renal clearance. Hold lithium, stop the NSAID, check the level and renal function, and involve the medical team."
+			"teaching": "Lithium toxicity: an NSAID plus dehydration cut renal clearance. Hold lithium, stop the NSAID, check the level and renal function, and involve the medical team.",
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Lithium... twelve years. My knee. The GP gave me ibuprofen. I can't keep much down.",
+				"mental_state": "What day is it? I'm sorry. I'm so tired."
+			}
 		},
 		{
 			"id": "wr_ch3_wrobel",
@@ -842,7 +862,12 @@
 					"clozapine_level"
 				]
 			},
-			"teaching": "Stopping smoking removes CYP1A2 induction, so clozapine levels rise. Check the level and reduce the dose; nicotine replacement does not prevent this."
+			"teaching": "Stopping smoking removes CYP1A2 induction, so clozapine levels rise. Check the level and reduce the dose; nicotine replacement does not prevent this.",
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Clozapine, four years now. I smoked thirty a day before I came here. You can't smoke on this ward.",
+				"mental_state": "I just want to sleep. The voices haven't come back. I keep drooling. Sorry."
+			}
 		},
 		{
 			"id": "wr_ch3_adeyemi",
@@ -956,7 +981,12 @@
 					"int:medical_transfer"
 				]
 			],
-			"teaching": "Neuroleptic malignant syndrome: fever, rigidity, confusion and autonomic instability after an antipsychotic. Stop it, check CK and renal function, and transfer for medical care."
+			"teaching": "Neuroleptic malignant syndrome: fever, rigidity, confusion and autonomic instability after an antipsychotic. Stop it, check CK and renal function, and transfer for medical care.",
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "(He looks past you and does not answer.)",
+				"mental_state": "(He stares, and says nothing for a long while.)"
+			}
 		},
 		{
 			"id": "wr_ch4_petrova",
@@ -1072,7 +1102,12 @@
 					"int:medical_transfer"
 				]
 			],
-			"teaching": "Serotonin toxicity: an SSRI plus linezolid (an MAO inhibitor). Clonus, hyperreflexia and fever. Stop serotonergic drugs and involve the medical team."
+			"teaching": "Serotonin toxicity: an SSRI plus linezolid (an MAO inhibitor). Clonus, hyperreflexia and fever. Stop serotonergic drugs and involve the medical team.",
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Sertraline, for a year, and it's been fine. They started an antibiotic two days ago for my skin. Linezolid, I think.",
+				"mental_state": "I can't sit still. I'm sorry, I can't. I know where I am, I just feel awful."
+			}
 		},
 		{
 			"id": "wr_ch4_okafor",
@@ -1173,7 +1208,12 @@
 					"int:nutrition_hydration"
 				]
 			],
-			"teaching": "Catatonia: start a lorazepam challenge, avoid high-potency antipsychotics, check CK and hydration, and keep ECT available."
+			"teaching": "Catatonia: start a lorazepam challenge, avoid high-potency antipsychotics, check CK and hydration, and keep ECT available.",
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "(She does not answer or move.)",
+				"mental_state": "(She stays silent and holds the same posture.)"
+			}
 		},
 		{
 			"id": "wr_ch5_delaney",
@@ -1266,7 +1306,12 @@
 					"int:withdrawal_monitoring"
 				]
 			],
-			"teaching": "Alcohol withdrawal with a seizure history: benzodiazepine, thiamine before glucose, structured monitoring, and electrolytes."
+			"teaching": "Alcohol withdrawal with a seizure history: benzodiazepine, thiamine before glucose, structured monitoring, and electrolytes.",
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "About a bottle a day. Spirits. For years. I had a fit when I stopped, two years ago. I don't eat properly.",
+				"mental_state": "I'm shaking and I'm scared. I'm not seeing anything, if that's what you're asking."
+			}
 		},
 		{
 			"id": "wr_ch5_lindqvist",
@@ -1412,7 +1457,12 @@
 					"int:electrolyte_replacement"
 				]
 			],
-			"teaching": "Drug-induced QTc prolongation: remove QTc-prolonging drugs, correct potassium and magnesium, and monitor the heart."
+			"teaching": "Drug-induced QTc prolongation: remove QTc-prolonging drugs, correct potassium and magnesium, and monitor the heart.",
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Citalopram for my mood, quetiapine at night to sleep, a water tablet for my blood pressure. And an antibiotic for a water infection, three days ago.",
+				"mental_state": "My mood's been fine. It's my heart. It keeps racing and I nearly fainted twice."
+			}
 		},
 		{
 			"id": "wr_ch1_hughes",
@@ -1514,7 +1564,12 @@
 			"references": [
 				"Maudsley Prescribing Guidelines 15th ed.: antipsychotic-induced extrapyramidal side effects",
 				"Stahl's Prescriber's Guide: haloperidol, benztropine"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "They gave me haloperidol last night. First time. I don't take anything else.",
+				"mental_state": "Why is my neck doing this? My eyes keep going up. The voices are the same as yesterday."
+			}
 		},
 		{
 			"id": "wr_ch1_morales",
@@ -1609,7 +1664,12 @@
 			"references": [
 				"Maudsley Prescribing Guidelines 15th ed.: akathisia",
 				"Sims' Symptoms in the Mind: motor symptoms"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "I've had schizophrenia for a while. They started aripiprazole ten days ago and put it up four days ago. My thoughts are clearer.",
+				"mental_state": "It's my legs. I can't keep still, it's unbearable. I'm not angry, I just have to move."
+			}
 		},
 		{
 			"id": "wr_ch2_brennan",
@@ -1731,7 +1791,12 @@
 			"references": [
 				"Maudsley Prescribing Guidelines 15th ed.: antidepressant-induced hyponatraemia",
 				"Stahl's Prescriber's Guide: sertraline"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Sertraline, a couple of weeks. And my blood pressure tablet. I live on my own.",
+				"mental_state": "Where am I? I feel sick. I'm sorry, love, I'm muddled."
+			}
 		},
 		{
 			"id": "wr_ch2_kowalczyk",
@@ -1832,7 +1897,12 @@
 				"Maudsley Prescribing Guidelines 15th ed.: valproate",
 				"Stahl's Prescriber's Guide: valproate",
 				"Kaufman's Clinical Neurology for Psychiatrists: metabolic encephalopathy"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Valproate... about a week. I don't drink.",
+				"mental_state": "I'm so sleepy. Where... sorry, what were you asking?"
+			}
 		},
 		{
 			"id": "wr_ch3_achebe",
@@ -1932,7 +2002,12 @@
 			"references": [
 				"The Clozapine Handbook (Stahl & Meyer): myocarditis and cardiomyopathy",
 				"Maudsley Prescribing Guidelines 15th ed.: clozapine adverse effects"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Clozapine, about eighteen days. They keep putting it up. The blood tests have been fine.",
+				"mental_state": "I'm tired, and I get out of breath walking. My head's clearer than it was."
+			}
 		},
 		{
 			"id": "wr_ch3_sato",
@@ -2025,7 +2100,12 @@
 			"references": [
 				"The Clozapine Handbook (Stahl & Meyer): neutropenia and monitoring",
 				"Maudsley Prescribing Guidelines 15th ed.: clozapine haematological monitoring"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Clozapine, five months. My bloods have been fine until now. Nothing new.",
+				"mental_state": "I'm doing well, really. But my throat's been sore since yesterday, and now the blood result. Is it bad?"
+			}
 		},
 		{
 			"id": "wr_ch4_whitaker",
@@ -2138,7 +2218,12 @@
 				"Sims' Symptoms in the Mind: disorders of consciousness",
 				"Kaplan & Sadock's Synopsis 12th ed.: delirium",
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 02"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "My memory's not been right for a couple of years. These last few days I've been muddled. I keep needing the toilet.",
+				"mental_state": "There are people in my room at night. December, November... I've lost it. Where was I?"
+			}
 		},
 		{
 			"id": "wr_ch4_quinn",
@@ -2293,7 +2378,12 @@
 			"references": [
 				"Maudsley Prescribing Guidelines 15th ed.: anticholinergic burden",
 				"Stahl's Prescriber's Guide: amitriptyline, benztropine"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "(She mumbles something you cannot follow.)",
+				"mental_state": "There are insects on the wall. Can't you see them? Get them off."
+			}
 		},
 		{
 			"id": "wr_ch5_osei",
@@ -2419,7 +2509,12 @@
 			"references": [
 				"The Clozapine Handbook (Stahl & Meyer): constipation and ileus",
 				"Maudsley Prescribing Guidelines 15th ed.: clozapine and constipation"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Clozapine, six years. I've only been to the toilet once this week. My GP gave me something for my bladder.",
+				"mental_state": "It hurts. My stomach. Please."
+			}
 		},
 		{
 			"id": "wr_ch5_farah",
@@ -2548,7 +2643,12 @@
 			"references": [
 				"The Clozapine Handbook (Stahl & Meyer): starting clozapine and baseline monitoring",
 				"Maudsley Prescribing Guidelines 15th ed.: treatment-resistant schizophrenia"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Six years. Olanzapine didn't work. Now risperidone, and the nurses watch me take it. I use contraception. I don't smoke.",
+				"mental_state": "There are voices, several, every day. The neighbours are poisoning my food. I'm glad someone is listening. I'm not going to hurt anyone."
+			}
 		},
 		{
 			"id": "wr_ch1_haddad",
@@ -2663,7 +2763,12 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 10",
 				"Sims' Symptoms in the Mind: hallucinations and pseudo-hallucinations",
 				"Kaplan & Sadock's Synopsis 12th ed.: grief and cultural formulation"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "My mother died three weeks ago. I've been well on sertraline for two years. I've never heard things before.",
+				"mental_state": "When I'm falling asleep I hear her calling my name. I know she's gone. It comforts me. Please don't write that I'm psychotic."
+			}
 		},
 		{
 			"id": "wr_ch2_novak",
@@ -2759,7 +2864,12 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 12",
 				"Kaplan & Sadock's Synopsis 12th ed.: obsessive-compulsive disorder",
 				"Sims' Symptoms in the Mind: obsessions and compulsions"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "It started two years ago and it keeps getting worse. I've never seen anyone about it.",
+				"mental_state": "I get pictures in my head of contaminating my little sister. I hate them. I know it's too much, the washing. It just stops the fear for a while."
+			}
 		},
 		{
 			"id": "wr_ch2_clarke",
@@ -2888,7 +2998,12 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 06",
 				"Sims' Symptoms in the Mind: disorders of memory",
 				"Kaplan & Sadock's Synopsis 12th ed.: dissociative disorders"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "I don't know. I'm sorry. I don't know who I am, or why I'm here.",
+				"mental_state": "I know my way round, and I remember talking to the nurse this morning. But my name... my family... nothing."
+			}
 		},
 		{
 			"id": "wr_ch3_brooks",
@@ -3005,7 +3120,12 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 08",
 				"Kaufman's Clinical Neurology for Psychiatrists: movement disorders",
 				"Maudsley Prescribing Guidelines 15th ed.: extrapyramidal side effects"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "I've been well for years. They put my haloperidol up about six weeks ago. Nothing else.",
+				"mental_state": "Everything's so slow. I'm not down, just fed up with it."
+			}
 		},
 		{
 			"id": "wr_ch3_mensah",
@@ -3115,7 +3235,12 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 11",
 				"Kaplan & Sadock's Synopsis 12th ed.: consultation-liaison psychiatry and ethics",
 				"Sims' Symptoms in the Mind: insight and judgement"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "Lithium, years now. My stomach has hurt for two days, and I've had a fever.",
+				"mental_state": "I understand, I do. I'll stay in my room, because... the scan is... what were we talking about?"
+			}
 		},
 		{
 			"id": "wr_ch4_doyle",
@@ -3253,7 +3378,12 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 14",
 				"Kaufman's Clinical Neurology for Psychiatrists: dementias and movement disorders",
 				"Maudsley Prescribing Guidelines 15th ed.: dementia and older adults"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "My memory's been going for a couple of years. My wife says I act out my dreams. They gave me something to calm me down, twice.",
+				"mental_state": "There are children standing in the corridor. They don't bother me. What time is it? I'm better in the mornings."
+			}
 		},
 		{
 			"id": "wr_ch4_reyes",
@@ -3362,7 +3492,12 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 05",
 				"Kaufman's Clinical Neurology for Psychiatrists: seizures and functional neurological disorder",
 				"Kaplan & Sadock's Synopsis 12th ed.: somatic symptom and related disorders"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "I've been depressed. They did a brain test once, between the spells; it didn't show anything. I've never hit my head.",
+				"mental_state": "The spells frighten me. I remember bits of them. People think I'm putting it on. I'm so embarrassed."
+			}
 		},
 		{
 			"id": "wr_ch5_bell",
@@ -3473,7 +3608,12 @@
 				"Owner's case bible (Psychiatry Case Files Vol. 1, 2026-11-03), case 13",
 				"Kaufman's Clinical Neurology for Psychiatrists: encephalitis and seizures",
 				"Kaplan & Sadock's Synopsis 12th ed.: psychiatric differential of medical illness"
-			]
+			],
+			"bedside_lines": {
+				"review_status": "PENDING_PSYCHIATRIST_REVIEW",
+				"history": "I've never been ill like this before. I had flu a couple of weeks ago. They started risperidone.",
+				"mental_state": "Why are you asking me that? I... I forget things. I don't know."
+			}
 		}
 	],
 	"bedside": {

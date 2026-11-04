@@ -87,6 +87,8 @@ static func validate(data: Variant, chapter_ids: Array = []) -> Array[String]:
 			errors.append(path + ": id '%s' must start with 'wr_' and be unique" % id)
 		ids[id] = true
 		path = "ward_rounds.%s" % id
+		if case.has("bedside_lines"):
+			errors.append_array(validate_bedside_lines(case["bedside_lines"], data.get("bedside", {}), path))
 		if not chapter_ids.is_empty() and not case.get("chapter") in chapter_ids:
 			errors.append(path + ": unknown chapter '%s'" % str(case.get("chapter")))
 		if not str(case.get("clinical_review_status", "")) in REVIEW_STATUSES:
@@ -206,6 +208,28 @@ static func validate_bedside(bedside: Variant) -> Array[String]:
 		errors.append(path + ".repair: needs a label and a response")
 	if not bedside.get("low_trust_response") is String:
 		errors.append(path + ": low_trust_response must be a string")
+	return errors
+
+
+## Problems in a case's own spoken bedside answers ([] when valid): a review
+## status, then non-empty lines keyed by the bedside block's question ids.
+static func validate_bedside_lines(lines: Variant, bedside: Variant, case_path: String) -> Array[String]:
+	var path: String = case_path + ".bedside_lines"
+	if not lines is Dictionary:
+		return [path + ": expected an object"] as Array[String]
+	if not bedside is Dictionary or not bedside.get("questions") is Array:
+		return [path + ": needs the catalog's bedside block"] as Array[String]
+	var errors: Array[String] = []
+	if not str(lines.get("review_status", "")) in REVIEW_STATUSES:
+		errors.append(path + ": review_status must be one of %s" % str(REVIEW_STATUSES))
+	var question_ids: Array = (bedside["questions"] as Array).map(func(q: Variant) -> String: return str(q.get("id", "")) if q is Dictionary else "")
+	for key: Variant in lines:
+		if key == "review_status":
+			continue
+		if not key in question_ids:
+			errors.append("%s.%s: not a bedside question (%s)" % [path, key, ", ".join(question_ids)])
+		elif not lines[key] is String or str(lines[key]).strip_edges().is_empty():
+			errors.append("%s.%s: expected a non-empty line" % [path, key])
 	return errors
 
 

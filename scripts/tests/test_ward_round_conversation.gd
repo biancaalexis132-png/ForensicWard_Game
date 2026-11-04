@@ -1,7 +1,8 @@
 extends TestCase
 ## Ward-round bedside conversation: the opening sets trust, history and mental
 ## state need some trust, answers fill the chart, and the debrief counts it.
-## Answers are each case's own chart text; nothing here approves any wording.
+## Answers are each case's own draft lines (or its chart text); nothing here
+## approves any wording.
 
 const SOLVER = preload("res://scripts/tests/test_ward_rounds.gd")
 const CASE_ID: String = "wr_ch1_ortiz"
@@ -94,7 +95,8 @@ func test_a_rushed_opening_holds_back_answers_until_repaired() -> void:
 	check(mend != null, "repair offered after a short reply")
 	mend.pressed.emit()
 	check_eq(WardRounds.bedside_trust(CASE_ID), 1, "repair raises trust")
-	check(screen.ask("history") == case["presentation"]["history"], "history after repairing")
+	check(screen.ask("history").contains(case["bedside_lines"]["history"]), "history in the patient's words after repairing")
+	check(_chart_text(screen).contains(case["presentation"]["history"]), "the chart gets the full history")
 	check(screen.find_child("Repair", true, false) == null, "no repair once trust is back")
 
 
@@ -138,3 +140,33 @@ func test_conversation_saves_and_loads() -> void:
 	check(not WardRounds.is_revealed(CASE_ID, "history"), "unasked stays unasked")
 	check(not WardRounds.validate_save_data({"cases": {CASE_ID: {"labs": [], "plan": [], "status": "open", "attempts": 0, "asked": "x"}}}), "a broken conversation is rejected")
 	screen.close()
+
+
+func test_every_patient_answers_in_their_own_words() -> void:
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(WardRounds.DATA_PATH))
+	for case: Dictionary in data["cases"]:
+		var lines: Dictionary = case.get("bedside_lines", {})
+		check_eq(str(lines.get("review_status", "")), "PENDING_PSYCHIATRIST_REVIEW", "%s lines are pending review" % case["id"])
+		for question: String in ["history", "mental_state"]:
+			check(not str(lines.get(question, "")).is_empty(), "%s has a %s line" % [case["id"], question])
+	var bedside: Dictionary = data["bedside"]
+	var errors: String = "\n".join(WardRoundCatalog.validate_bedside_lines({"review_status": "maybe", "diagnosis": "x", "history": " "}, bedside, "c"))
+	check(errors.contains("review_status must be one of"), "bad status named")
+	check(errors.contains("c.bedside_lines.diagnosis: not a bedside question"), "unknown question named")
+	check(errors.contains("c.bedside_lines.history: expected a non-empty line"), "blank line named")
+	check(not WardRoundCatalog.validate_bedside_lines({"review_status": "APPROVED"}, {}, "c").is_empty(), "lines need the bedside block")
+
+
+func test_spoken_lines_are_quoted_and_the_chart_keeps_its_text() -> void:
+	var screen: WardRoundScreen = _screen()
+	var case: Dictionary = WardRounds.get_case(CASE_ID)
+	screen.open_bedside("warm")
+	var reply: String = screen.ask("mental_state")
+	check_eq(reply, "Daniel: “%s”" % case["bedside_lines"]["mental_state"], "spoken line, first name and quotes")
+	check(_chart_text(screen).contains(case["presentation"]["mental_status"]), "the chart keeps the clinician's account")
+	check_eq(screen.ask("observations"), case["presentation"]["vitals"], "no line, so the chart text")
+	screen.close()
+	var silent: Dictionary = WardRounds.get_case("wr_ch3_adeyemi")
+	check(str(silent["bedside_lines"]["history"]).begins_with("("), "a patient who cannot answer has a described response")
+	check_eq(WardRounds.bedside_line("wr_ch3_adeyemi", "history"), silent["bedside_lines"]["history"], "described responses have no quotes")
+	check_eq(WardRounds.bedside_line(CASE_ID, "observations"), "", "no line for observations")
