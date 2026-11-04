@@ -12,6 +12,7 @@ extends Node3D
 ##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
 ##   "ehr"        EHRScreen (also opened with J)
 ##   "evidence"   EvidenceBoard (also opened with Tab)
+##   "ward_round" WardRoundScreen (from the EHR's Ward round button)
 ##   "milestone"  MilestonePresenter (split-screen moment after an objective;
 ##                waits until nothing else is open)
 ##   "cutscene"   CutsceneDirector (graphic-novel cutscene: approved chapter title
@@ -199,6 +200,8 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 			_open_optional_panel("CaseJournalScreen", "res://scenes/ui/CaseJournalScreen.tscn", data)
 		MapScreen.PANEL_ID:
 			_open_optional_panel("MapScreen", "res://scenes/ui/MapScreen.tscn", data)
+		WardRoundScreen.PANEL_ID:
+			_open_optional_panel("WardRoundScreen", "res://scenes/ui/WardRoundScreen.tscn", data)
 		CutsceneDirector.PANEL_ID:
 			var recap_data: Dictionary = data.duplicate()
 			var chapter: ChapterDirector = $ChapterDirector

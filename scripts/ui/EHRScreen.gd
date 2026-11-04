@@ -20,6 +20,8 @@ extends CanvasLayer
 ##                 placing asks for confirmation. Unavailable orders are
 ##                 listed apart with the reason. Outcomes come from ClinicalRules.
 ##   Audit         every chart event with time and rule ids
+## The top bar's Ward round button opens WardRoundScreen (labs and medication
+## plans for the patients each chapter admits; see WardRounds).
 ## The screen owns no state: it reads PatientManager/ContentRegistry (and the
 ## ChapterDirector's current objective) and calls their commands. The button
 ## handlers are public so tests drive the same paths a player does.
@@ -63,6 +65,7 @@ var _selected_order: String = ""
 var _confirming: bool = false
 var _audit: RichTextLabel
 var _close_button: Button
+var _ward_round_button: Button
 var _tab_marker: Texture2D
 
 
@@ -95,7 +98,22 @@ func open(data: Dictionary) -> void:
 	if wanted.is_empty() or not wanted in ids:
 		wanted = ids[0] if not ids.is_empty() else ""
 	select_patient(wanted)
+	_update_ward_round_button()
 	_close_button.grab_focus()
+
+
+## Leaves the chart for the ward round (patients admitted with the chapters).
+func open_ward_round() -> void:
+	close()
+	EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {})
+
+
+func _update_ward_round_button() -> void:
+	var admitted: Array[String] = WardRounds.admitted_case_ids()
+	var open_count: int = admitted.filter(func(id: String) -> bool:
+		return WardRounds.status(id) != WardRounds.STATUS_ACCEPTED).size()
+	_ward_round_button.visible = not admitted.is_empty()
+	_ward_round_button.text = "Ward round  (%d to review)" % open_count if open_count > 0 else "Ward round  (all plans accepted)"
 
 
 func close() -> void:
@@ -682,6 +700,10 @@ func _build() -> void:
 	_title = UIStyle.label("Electronic Health Record", SIZE_TITLE)
 	_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(_title)
+	_ward_round_button = UIStyle.primary_button("Ward round", SIZE_BODY)
+	_ward_round_button.name = "WardRound"
+	_ward_round_button.pressed.connect(open_ward_round)
+	top.add_child(_ward_round_button)
 	_close_button = UIStyle.secondary_button("Close  (Esc)", SIZE_BODY)
 	_close_button.pressed.connect(close)
 	top.add_child(_close_button)

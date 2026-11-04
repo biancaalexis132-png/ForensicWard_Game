@@ -20,6 +20,18 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Ward round in the day handover | `claude/ward-round-handover` (PR #125, merged by Bi into `claude/ward-round-check-ins`; now part of #124) | Claude Code (cloud) | last commit on the branch | `WardRounds.gd` (`handover_lines`), `ChapterDirector.gd` (`_hand_over`, four lines), `test_ward_rounds.gd` | Full QA; waiting on Bi |
+| Check-ins on earlier patients | `claude/ward-round-check-ins` (draft PR to `claude/ward-round-plan-response`) | Claude Code (cloud) | last commit on the branch | `data/ward_rounds.json` `follow_up`, `WardRounds.gd`, `WardRoundCatalog.gd`, `WardRoundScreen.gd`, `test_ward_round_conversation.gd`, capture tool | Full QA; lines approved by Bi 2026-11-04 |
+| Patient answers the explained plan | `claude/ward-round-plan-response` (draft PR to `claude/patient-hair-tails`) | Claude Code (cloud) | last commit on the branch | `data/ward_rounds.json` `plan_response`, `WardRounds.gd`, `WardRoundCatalog.gd`, `WardRoundScreen.gd`, `test_ward_round_conversation.gd` | Full QA; lines approved by Bi 2026-11-04 |
+| Patient ponytails and hairlines | `claude/patient-hair-tails` (draft PR to `claude/ward-round-patient-voices`) | Claude Code (cloud) | last commit on the branch | `tools/blender/characters/build_cast_member.py`, `tools/blender/characters/cast/pt_wr_*.json`, rebuilt patient assets | Full QA; waiting on Bi's look |
+| Ward-round patient voices | `claude/ward-round-patient-voices` (draft PR to `claude/ward-round-bedside-talk`) | Claude Code (cloud) | last commit on the branch | `data/ward_rounds.json` `bedside_lines`, `WardRounds.gd`, `WardRoundCatalog.gd`, `test_ward_round_conversation.gd` | Full QA passed; lines approved by Bi 2026-11-04 |
+| Ward-round bedside conversation | `claude/ward-round-bedside-talk` (draft PR to `claude/patient-hair-cards`) | Claude Code (cloud) | last commit on the branch | `WardRounds.gd`, `WardRoundCatalog.gd`, `WardRoundScoring.gd`, `WardRoundScreen.gd`, `data/ward_rounds.json` `bedside`, `test_ward_round_conversation.gd`, capture tool | Full QA passed; waiting on Bi |
+| Patient hair cards | `claude/patient-hair-cards` (draft PR to `claude/patient-model-ageing`) | Claude Code (cloud) | last commit on the branch | `build_cast_member.py` (`hair.cards`), 23 `pt_wr_*` configs and outputs | Full QA passed; waiting on Bi's look |
+| Patient looks: age, grey hair, weight | `claude/patient-model-ageing` (draft PR to `claude/ward-round-scoring`) | Claude Code (cloud) | see Log | `tools/blender/characters/build_cast_member.py` (opt-in options), 15 `pt_wr_*` configs and their outputs | Full QA passed; waiting on Bi's look |
+| Ward-round scoring and debrief | `claude/ward-round-scoring` (draft PR to `claude/ward-round-bedside`) | Claude Code (cloud) | `4b72789` | `scripts/clinical/WardRoundScoring.gd`, `WardRounds.gd` (history, replay, best), `WardRoundCatalog.gd` (rapport tags), `WardRoundScreen.gd` (Debrief tab, budget, replay, chip wrap), `data/ward_rounds.json` intervention catalog, `test_ward_round_scoring.gd`, capture tool | Full QA passed; waiting on Bi |
+| Ward-round patients on the ward in 3D | `claude/ward-round-bedside` (draft PR #116 to `claude/ward-rounds`) | Claude Code (cloud) | `99655fb` | `data/ward_round_bedside.json`, `scripts/world/WardRoundBedside.gd`, `Character.gd` (`Kind.WARD_ROUND`), one line in `AuthoredWorld.gd`, `test_ward_round_bedside.gd`, patient model configs/outputs `pt_wr_*`, 28 `asset_manifest.json` and `character_visuals.json` entries | All 28 patients modelled and staged; full QA passed; models pending owner look |
+| Ward rounds (labs and medication plans gate each chapter) | `claude/ward-rounds` (draft PR to `claude/playtest-fixes`) | Claude Code (cloud) | `8cc1120` | `data/ward_rounds.json`, `scripts/clinical/{WardRounds,WardRoundCatalog}.gd`, `scripts/ui/WardRoundScreen.gd`, `scenes/ui/WardRoundScreen.tscn`, one autoload line in `project.godot`, small edits to `ChapterDirector.gd`, `Main.gd`, `EHRScreen.gd`, `TestCase.gd`, `test_ward_rounds.gd`, capture tool, `docs/clinical_review_log.md` | First ten cases approved by Bi; second wave (10) and case-bible third wave (8) pending Bi's review; full QA passed on the merged bedside branch |
+| Cast animation (walk, gestures, shared acting) | `claude/cast-animation` (draft PR #114 to `claude/playtest-fixes`) | Claude Code (cloud) | `584d864` | `tools/character_animation/{clip_library_motion.json,add_motion_clips.py,review_motion_clips.py}`, six `assets/exports/characters/*_v01_draft.glb`, `scripts/world/{CastPerformer,CastRoute,CharacterAnimationRig,Character,AuthoredWorld,CampaignCastVisuals}.gd`, content schema/validator route fields, `data/world_chapter{2,4,5}.json`, `data/character_visuals.json`, `test_cast_motion.gd`, capture tool | Full QA passed; waiting on Bi's Mac look |
 | Owner playtest fixes | `claude/playtest-fixes` (draft PR to main) | Claude Code (cloud) | `ec7a6e8` | `ConversationRange.gd`, `ImportedDoor.gd`, `DocumentViewer.gd`, `EHRScreen.gd`, `InfoPanel.gd`, `EvidenceBoard.gd`, `Character.gd`, `ProtagonistProfile.gd`, `ProtagonistScreen.gd`, `AudioDirector.gd`, `PauseMenu.gd`, `audio/cues.json`, `audio/voice/**/female/`, `data/staff.json`, `data/world_chapter*.json`, `assets/documents/` | Full QA passed; waiting on Bi's listening, image review, meds/labs decision and Mac replay |
 | Final build owner approvals | `claude/final-build-approvals` (draft PR to main) | Claude Code (cloud) | `88460d6` | `data/continuing_practice/cp001.json`, `data/cutscenes/cs_ch01_prologue.json`, `data/milestones.json`, `data/narrative/{prologue,interview}_ch1.json`, `data/order_catalog.json`, stage 7 manifest and builder status, `scripts/ui/TitleScreen.gd`, five test files, `docs/clinical_review_log.md` | Full QA passed; Mac automated QA passed on `1a498dc`; Mac visual, controls and listening pending permissions and Bi |
 | CaseJournal and directory repair / remaining-build review | `codex/chapter1-vertical-slice-cont-1` (#109 merged; documentation follow-up) | Codex | `ed43cefff6e3a12c0de0b3dd81e7fa727b649de1` | #104 journal/map scripts and scenes, small Main/PauseMenu integration, journal tests, directory JSON, Mac checklist and continuity docs | Repairs merged externally in #109 at `6cf4656`; final validation/review docs follow separately. See newest entry for evidence and remaining gaps. |
@@ -44,6 +56,40 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 2 opening | `codex/chapter2-opening` | Codex cloud | `d4fead70db995b21d2de921d222d51eccd75ac72` | `data/story_chapter2.json`, `world_chapter2.json`, campaign/continuation; ChapterDirector, InfoPanel, schemas/validator, AuthoredWorld, ImportedInteractable, small Main/EventBus changes; opening tests and dedicated handoff | First playable slice complete; full QA passed. Narrative/clinical review pending; no Mara/early reveal. |
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
+
+### 2026-11-03 (evening) · Claude Code · Ward-round patients on the ward in 3D
+
+- Branch `claude/ward-round-bedside`, latest verified commit `a8c8850`, from `claude/ward-rounds` with `claude/cast-animation` merged in. Draft PR to `claude/ward-rounds`; no agent merge.
+- From Bi's request to make the game and characters playable and interactive at the highest fidelity. Patients still needing a plan sit on the beds in Rooms 01 and 02, oldest admission first; approaching one opens the ward-round screen on their case and they turn to greet you. When a plan is accepted the next patient takes the room, with a notice.
+- Four Chapter 1 patient drafts (Ortiz, Natarajan, Hughes, Morales) built with the cast pipeline, seated, with the shared clips, face morphs and motion clips. `PENDING_OWNER_VISUAL_REVIEW`. No symptom movement.
+- Tests: full headless QA on `a8c8850`: game **392/0** (376 + 10 cast motion from #114 + 6 new), audio **1720/0**, QA **19/0/0**, GLB **175/0**, CH1_SEQUENCE_DONE, no ERROR lines, exit 0.
+- NOT TESTED on the Mac. Chapter 2 configs written (`pt_wr_{kim,lebel,brennan,kowalczyk}.json`), not built. Details: `docs/handoffs/2026-11-03_claude_ward_round_bedside.md`.
+
+### 2026-11-03 (afternoon) · Claude Code · Ward rounds: first ten approved, ten harder cases added
+
+- Branch `claude/ward-rounds`, latest verified commit `5d5bf6a` (draft PR #115 to `claude/playtest-fixes`); no agent merge.
+- Bi approved the first ten cases ("continue build the cases so far I approve of"), logged in `docs/clinical_review_log.md`; they are `APPROVED` and play in the validated build. Lindqvist question unanswered, so cardiac monitoring stays required.
+- Ten harder second-wave cases (two per chapter; each chapter now admits four): acute dystonia, akathisia, SSRI hyponatraemia, valproate hyperammonaemia, clozapine myocarditis, clozapine severe neutropenia, delirium presenting as psychosis, anticholinergic toxicity, clozapine ileus, starting clozapine. New labs: ammonia, troponin/CRP, urinalysis, abdominal X-ray. All `PENDING_PSYCHIATRIST_REVIEW`; prototype build only with the draft badge. Review document (Second wave section): https://claude.ai/artifact/8RohfXYScnpVj4pfMkedXR.
+- Sources: Bi's Drive textbooks. Only The Clozapine Handbook was readable through the connector; other books are cited by chapter in each case's `references` for Bi to check. Nothing quoted; no doses or thresholds.
+- Tests: Full headless QA on `70fa448`: game **376/0**, audio **1720/0**, QA **19/0/0**, GLB **171/0**, CH1_SEQUENCE_DONE, no ERROR lines, exit 0. `5d5bf6a` changes one feedback sentence; `test_ward_rounds` 9/0 on it.
+- NOT TESTED on the Mac. Pending owner: review the ten new cases. Details: `docs/handoffs/2026-11-03_claude_ward_rounds.md`.
+
+### 2026-11-03 · Claude Code · Ward rounds: labs and medication plans gate each chapter
+
+- Branch `claude/ward-rounds`, latest verified commit `6bef53d`, on `claude/playtest-fixes` (#113, unmerged). Draft PR to `claude/playtest-fixes`; no agent merge. Independent of #114.
+- Answers #113's medication/lab orders decision with Bi's request: each chapter admits two ward-round patients (ten in all). In the EHR's Ward round screen the player reads the chart, orders labs (qualitative results at once) and submits a plan; the attending accepts it or sends it back with a reason per item. Night sign-out and chapter-completing story choices wait until the chapter's patients have accepted plans.
+- Governance: all ten cases and the catalog are `PENDING_PSYCHIATRIST_REVIEW`, logged pending; no doses or thresholds. Prototype build only with a draft badge; hidden and never gating in the validated build. Review document: https://claude.ai/artifact/8RohfXYScnpVj4pfMkedXR.
+- Test seam: `TestCase.before_each` sets `WardRounds.enforce_gate = false` (documented in `docs/TESTING.md`).
+- Tests: full headless QA on `6bef53d`: game **376/0** (367 + 9 new), audio **1720/0**, QA **19/0/0**, GLB **171/0**, CH1_SEQUENCE_DONE, no ERROR lines, exit 0.
+- NOT TESTED on the Mac. Pending owner: approve or correct the ten answer keys; play it. Details: `docs/handoffs/2026-11-03_claude_ward_rounds.md`.
+
+### 2026-11-03 · Claude Code · Cast animation: walking, gestures, shared acting
+
+- Branch `claude/cast-animation`, latest verified commit `584d864`, on `claude/playtest-fixes` (#113, unmerged). Draft PR #114 to `claude/playtest-fixes`; no agent merge.
+- Eight motion clips (walk, arm swing, six talk gestures) built onto the six v01 draft cast models and re-exported (staff 18 clips, patients 15). `CastPerformer` gives every animated cast member except Naomi talk/listen/greet acting, seeded talk gestures, idle variety and turning to the player. `CastRoute` walks the facilities technician (Ch2) and Hale (Ch4, Ch5) on short authored routes that stop for conversation or a nearby player.
+- Fixed during QA: idle characters swung to face north (home facing read before placement); a load reset before the zone was in the tree logged `!is_inside_tree()`.
+- Tests: full headless QA on `584d864`: game **377/0**, audio **1720/0**, QA **19/0/0**, GLB **171/0**, CH1_SEQUENCE_DONE, no ERROR lines, exit 0.
+- NOT TESTED on the Mac. Pending owner: watch walk and gestures in game; decide on more routes (Voss). Details: `docs/handoffs/2026-11-03_claude_cast_animation.md`.
 
 ### 2026-10-21 · Claude Code · Owner playtest fixes
 
@@ -544,6 +590,40 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-11-03 night — Claude Code — ward-round bedside conversation
+
+- Branch `claude/ward-round-bedside-talk` (draft PR to `claude/patient-hair-cards`); one commit carries code, tests, captures and docs.
+- Bedside tab: opening sets trust, questions reveal chart sections, repair after a rushed start; debrief counts it. Pending clinical review (logged).
+- Tests: full headless QA: game 406/0 (5 new), audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0. Mac not run.
+- Resume: `docs/handoffs/2026-11-03_claude_ward_round_bedside_talk.md`.
+
+### 2026-11-03 night — Claude Code — hair cards for ward-round patients
+
+- Branch `claude/patient-hair-cards` (draft PR to `claude/patient-model-ageing`), pushed as asset commits plus a final code/config/docs commit.
+- Opt-in `hair.cards` in the cast builder; 23 patients rebuilt. Tests: full headless QA: game 401/0, audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0. Mac not run.
+- Resume: `docs/handoffs/2026-11-03_claude_patient_hair_cards.md`.
+
+### 2026-11-03 late — Claude Code — older, greying and heavier patient models
+
+- Branch `claude/patient-model-ageing` (draft PR to `claude/ward-round-scoring`), pushed in several asset commits; the last commit on the branch carries the code, configs and docs.
+- Builder: `skin.age_marks`, `hair.temple_recede_m`, `macro.weight_any_age` (all opt-in); hair texture blends grey through the colour. 15 patients rebuilt through all five stages.
+- Tests: full headless QA: game 401/0, audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0. Mac not run.
+- Resume: `docs/handoffs/2026-11-03_claude_patient_model_ageing.md`.
+
+### 2026-11-03 night — Claude Code — ward-round scoring, budget, debrief, replay
+
+- Branch `claude/ward-round-scoring` (draft PR to `claude/ward-round-bedside`). Latest verified commit: `4b72789` (code and these docs in one commit).
+- Case bible scoring framework: safety 40, reasoning 25, rapport 20, resources 15; unsafe/dismissive caps the grade. Soft tests budget. Debrief tab, Replay case with best score saved. `explain_plan` welcomed on every case (pending review). Plan tab chips wrap (third-wave labels had pushed the screen off the right edge).
+- Tests: full headless QA: game 401/0 (7 new), audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0. Mac not run.
+- Resume: `docs/handoffs/2026-11-03_claude_ward_round_scoring.md`.
+
+### 2026-11-03 evening — Claude Code — every ward-round patient on the ward; case bible third wave
+
+- Branches: `claude/ward-rounds` at `8cc1120` (PR #115): eight new cases adapted from Bi's case bible, referral labels, bedside assessments (collateral, neuro/cognitive/physical exam, capacity), imaging/EEG/CSF, and two choices wrong for every patient (`dismiss_as_feigned` unsafe, `challenge_beliefs` not indicated) added by `WardRoundCatalog.with_defaults`. Approved answer keys unchanged. `claude/ward-round-bedside` at `99655fb` (PR #116): models for all 28 patients, staged in case order.
+- Tests: full headless QA on `99655fb`: game 394/0, audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0. `claude/ward-rounds` alone was not run separately; its tests run inside the merged bedside branch.
+- Not done: Mac; scoring/action budget from the bible; referral labels for approved cases are proposed in the review doc, not applied.
+- Resume: read `docs/handoffs/2026-11-03_claude_ward_round_bedside.md`. Wait for Bi's review.
 
 ### 2026-10-19 · Claude Code · Owner approvals and content gaps
 

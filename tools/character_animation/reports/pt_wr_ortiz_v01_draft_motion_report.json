@@ -1,0 +1,121 @@
+{
+  "blender_version": "5.2.2 LTS",
+  "character_id": "pt_wr_ortiz",
+  "seated": true,
+  "source_blend": {
+    "path": "assets/blender/characters/Daniel_Ortiz_v01_draft.blend",
+    "sha256": "82713ef5ed41f01507d67b74ac1a4d7edf0f18701874a20d0989805a7017efa0",
+    "modified": false
+  },
+  "library": {
+    "path": "tools/character_animation/clip_library_motion.json",
+    "sha256": "50e6225dd04fd1f4ab4c3d3e470d1d26bc50f2ec77398e5501f60baee09d311c"
+  },
+  "profile": "tools/character_animation/profiles/pt_wr_ortiz_v01_draft.json",
+  "garment_weight_fix": {
+    "Ortiz_Joggers": {
+      "sleeve_vertices": 31,
+      "detached_vertices": 1
+    }
+  },
+  "added_clips": [
+    {
+      "name": "explain_open_hand",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 2.4,
+      "frames": 72,
+      "bones": [
+        "hand_r",
+        "lowerarm_r",
+        "neck_01",
+        "upperarm_r"
+      ],
+      "description": "Right forearm lifts to an open-hand explaining position, makes one small beat, then settles."
+    },
+    {
+      "name": "explain_both_hands",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 2.8,
+      "frames": 84,
+      "bones": [
+        "lowerarm_l",
+        "lowerarm_r",
+        "neck_01",
+        "upperarm_l",
+        "upperarm_r"
+      ],
+      "description": "Both forearms lift a little, as if framing a point, hold for a beat and settle."
+    },
+    {
+      "name": "small_head_shake",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 1.3,
+      "frames": 39,
+      "bones": [
+        "neck_01"
+      ],
+      "description": "Two small side-to-side head movements: a mild no, or a moment of doubt."
+    },
+    {
+      "name": "thinking_pause",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 3.0,
+      "frames": 90,
+      "bones": [
+        "lowerarm_r",
+        "neck_01",
+        "upperarm_r"
+      ],
+      "description": "Considers a question: head tilts and drops slightly, eyes stay free, right forearm lifts a little and rests."
+    },
+    {
+      "name": "small_shrug",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 1.5,
+      "frames": 45,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "lowerarm_l",
+        "lowerarm_r",
+        "neck_01"
+      ],
+      "description": "Shoulders lift briefly with both palms turning up a little: uncertainty, not dismissal."
+    }
+  ],
+  "skipped_standing_only": [
+    "walk_neutral",
+    "walk_arm_swing",
+    "point_direction"
+  ],
+  "walk_foot_travel": null,
+  "glb": {
+    "path": "assets/exports/characters/Daniel_Ortiz_v01_draft.glb",
+    "sha256": "31308baf2992ba5b1ceb0d6d181be30b91d548e440b70e190e2124be67e54153",
+    "clips": [
+      "explain_both_hands",
+      "explain_open_hand",
+      "idle_breathing",
+      "idle_neutral",
+      "listen_neutral",
+      "restrained_chart_indication",
+      "return_to_workstation",
+      "small_acknowledgement_nod",
+      "small_greeting_nod",
+      "small_head_shake",
+      "small_shrug",
+      "stand_conversational",
+      "subtle_workstation_indication",
+      "thinking_pause",
+      "turn_from_workstation"
+    ],
+    "morph_targets": 32
+  },
+  "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+  "approved": false
+}

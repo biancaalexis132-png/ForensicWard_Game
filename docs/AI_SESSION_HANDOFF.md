@@ -1,5 +1,29 @@
 # AI session handoff
 
+## Claude Code ward-round patients on the ward — 2026-11-03
+
+- Top of the stack (2026-11-04, evening): `claude/ward-round-handover` (PR #125, merged by Bi on 2026-11-04 into `claude/ward-round-check-ins`, so it now rides on #124): the day shift handover lists the chapter's ward-round patients with their debriefs and the check-ins. See `docs/handoffs/2026-11-04_claude_ward_round_handover.md`.
+- Top of the stack (2026-11-04, later): `claude/ward-round-check-ins` (draft PR stacked on #123): in a later chapter you can check in on patients you treated earlier and hear how they are getting on (lines approved by Bi 2026-11-04). See `docs/handoffs/2026-11-04_claude_ward_round_check_ins.md`.
+- Top of the stack (2026-11-04): `claude/ward-round-plan-response` (draft PR stacked on #122): when the accepted plan includes explaining it, the patient answers in their own words (approved by Bi 2026-11-04). See `docs/handoffs/2026-11-04_claude_ward_round_plan_response.md`.
+- Newest of all (2026-11-04): `claude/patient-hair-tails` (draft PR stacked on #121): ponytails are strand cards over a slimmer core and hairlines break into wisps, on 22 patients. Next: Bi looks at the before/after; then the next story/interactivity step. See `docs/handoffs/2026-11-04_claude_patient_hair_tails.md`.
+- Newest of all: `claude/ward-round-patient-voices` (draft PR stacked on #120): each patient answers bedside questions in their own words (`cases[].bedside_lines`, approved by Bi 2026-11-04); the chart keeps the clinician's text. Full QA passed: game 408/0, audio 1720/0, QA 19/0/0, GLB 199/0, exit 0. Next: Bi reviews the lines (`/mnt/project-files/ward_round/bedside_lines_review.md`). See `docs/handoffs/2026-11-03_claude_ward_round_patient_voices.md`.
+- Most recent: `claude/ward-round-bedside-talk` (draft PR #120, stacked on #119): bedside conversation. Full QA passed: game 406/0, exit 0. Next: Bi reviews; case-specific voiced lines would need reviewed writing. See `docs/handoffs/2026-11-03_claude_ward_round_bedside_talk.md`.
+- Newest: `claude/patient-hair-cards` (draft PR on #118): hair cards on 23 patients. Full QA passed: game 401/0, GLB 199/0, exit 0. Next: story/interactivity (bedside conversation proposed to Bi). See `docs/handoffs/2026-11-03_claude_patient_hair_cards.md`.
+- Latest: `claude/patient-model-ageing` (draft PR on #117): 15 patients rebuilt older/greying/heavier via new opt-in builder options. Full QA passed: game 401/0, GLB 199/0, exit 0. Next: Bi looks at the before/after sheet; real hair cards would be the next model step. See `docs/handoffs/2026-11-03_claude_patient_model_ageing.md`.
+- Later: `claude/ward-round-scoring` (draft PR on #116): debrief score, soft tests budget, Debrief tab, Replay case; Plan tab overflow fixed. Full QA passed: game 401/0, audio 1720/0, QA 19/0/0, GLB 199/0, exit 0. Next: Bi reviews scoring; then patient model improvements (hair, ageing, body variety). See `docs/handoffs/2026-11-03_claude_ward_round_scoring.md`.
+- Evening: `claude/ward-round-bedside` at `99655fb` (draft PR #116). All 28 ward-round patients have 3D draft models and wait in Rooms 01/02 by chapter; #115 (`8cc1120`) adds the case-bible third wave (eight cases pending Bi's review). Full QA passed: game 394/0, audio 1720/0, QA 19/0/0, GLB 199/0, exit 0. Mac not run. Next: Bi reviews the models and the third wave; then scoring/action budget if wanted. Last updated 2026-11-03.
+- `claude/ward-round-bedside` at `a8c8850` (draft PR to `claude/ward-rounds`). Chapter 1's four ward-round patients sit in Rooms 01 and 02 as animated 3D drafts; approaching one opens their case; the next takes the room when a plan is accepted. Full QA passed: game 392/0, audio 1720/0, QA 19/0/0, GLB 175/0. Mac not run. Next: build Chapter 2's four patients (configs written). See `docs/handoffs/2026-11-03_claude_ward_round_bedside.md`.
+
+## Claude Code ward rounds — 2026-11-03
+
+- Afternoon: `claude/ward-rounds` at `5d5bf6a` (PR #115). Bi approved the first ten cases (now `APPROVED`). Ten harder second-wave cases added, two per chapter, pending Bi's review in the same review document; built from Bi's Drive textbooks (only The Clozapine Handbook was readable). Full QA passed (game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0). Next: Bi reviews the second wave.
+
+- `claude/ward-rounds` at `6bef53d` (draft PR to `claude/playtest-fixes`). Ten draft ward-round patients (two per chapter): order labs, submit a medication plan, attending accepts or sends back; chapters close only after their patients' plans are accepted. Pending psychiatrist review; prototype build only. Full QA passed: game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0. Mac not run. Next: Bi reviews the answer keys. See `docs/handoffs/2026-11-03_claude_ward_rounds.md`.
+
+## Claude Code cast animation — 2026-11-03
+
+- `claude/cast-animation` at `584d864` (draft PR #114 to `claude/playtest-fixes`). Walk and six talk gestures on the six draft cast models; all of them now act in conversation (talk, listen, gestures, turn to the player); the technician and Hale walk short routes. Full QA passed: game 377/0, audio 1720/0, QA 19/0/0, GLB 171/0. Mac not run. Next: Bi watches the cast in game on the Mac. See `docs/handoffs/2026-11-03_claude_cast_animation.md`.
+
 ## Claude Code owner playtest fixes — 2026-10-21
 
 - `claude/playtest-fixes` (draft PR to main, on `8755ec9`). Naomi's repeat trimmed, door signs, document images, female/male psychiatrist voice, quiet day underscore, walk-away stops conversations, clearer EHR with a Next step bar. Full QA: see AI_HANDOFF.md. Waiting on Bi: listening (female voice, music level), document images, meds/labs decision, Mac replay. See `docs/handoffs/2026-10-21_claude_playtest_fixes.md`. Last updated 2026-10-21.

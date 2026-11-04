@@ -21,6 +21,37 @@ Body clips animate pelvis, spine, chest, clavicles and head only.
 
 Gestures animate only the neck and arms. `CharacterAnimationRig` moves them from the imported player to a `GestureAnimationPlayer` (the name the adapter requires), so a gesture plays over any body clip without either overriding the other.
 
+## Motion clips (clip_library_motion.json, 2026-11-03)
+
+Added on top of the ten clips above by `add_motion_clips.py`, for the six v01 draft cast models (not Naomi). Same rotation vocabulary; leg roles `thigh_*`, `calf_*`, `foot_*` are resolved from the rig's standard bone names.
+
+| Clip | Player | Loops | Length | Standing only | Use |
+|---|---|---|---|---|---|
+| `walk_neutral` | body | yes | 1.1 s | yes | Walk in place, two steps per cycle; the pelvis is keyed down each frame so the lower ankle stays on the floor. `CastRoute` moves the character. |
+| `walk_arm_swing` | gesture | yes | 1.1 s | yes | Arm swing in step with the walk. Body clips never animate arms, so it runs on the gesture player. |
+| `explain_open_hand` | gesture | no | 2.4 s | | Right forearm to an open-hand explaining position, one beat. |
+| `explain_both_hands` | gesture | no | 2.8 s | | Both forearms lift as if framing a point. |
+| `small_head_shake` | gesture | no | 1.3 s | | A mild no. Plays only when asked for, never at random. |
+| `thinking_pause` | gesture | no | 3.0 s | | Head tilts and drops, right forearm lifts a little. |
+| `small_shrug` | gesture | no | 1.5 s | | Uncertainty. Plays only when asked for. |
+| `point_direction` | gesture | no | 2.2 s | yes | Points ahead, as when giving directions. |
+
+Seated characters (cast config has a `seated` block: Elias, Mara) do not get the standing-only clips. None of these clips depicts a symptom.
+
+`add_motion_clips.py` also detaches jacket and trouser panels from the forearms: garment weights had been copied from the nearest skin, and the hanging forearms sit beside the hips, so any arm gesture dragged a flap of cloth after the hand. The fix floods out from cloth hugging each forearm through forearm-weighted vertices; anything the flood does not reach takes the weights of the nearest garment vertex without forearm weight. It is applied in memory before export; the committed `.blend` is opened, never re-saved, so the GLB is reproducible from that `.blend`, this script and the library. Each run writes `reports/<id>_v01_draft_motion_report.json` with the input and output hashes and the measured step length.
+
+```sh
+python -I tools/character_animation/add_motion_clips.py --profile tools/character_animation/profiles/staff_hale_v01_draft.json   # bpy 5.2.2 module
+python -I tools/character_animation/review_motion_clips.py --profile <same> --out assets/renders/characters/<Name>_v01_draft_motion_review.png
+```
+
+The script refuses a `.blend` that already has the motion clips, so run it on the committed v01 draft `.blend` only.
+
+### In game
+
+- `CastPerformer` (every animated cast member except Naomi, who keeps `NaomiActingController`): greeting nod on the first conversation and an acknowledgement nod after; listens (`listen_neutral`) while someone near speaks and talks (`stand_conversational`) during its own voiced lines, with talk gestures chosen from the neutral set and seeded by the line id; swaps `idle_neutral` and `idle_breathing` every 9 to 16 s; standing characters turn toward the player by up to 80° from their marker facing and turn back afterwards.
+- `CastRoute`: optional `route` on a character in `data/world_chapter*.json`, points in the marker's frame (`[x, z]`, forward is `-z`) plus `pause_seconds`. The character walks out and back at `walk_step_m / 0.55 * 0.9` m/s (step length from the motion report, stored in `data/character_visuals.json`), stops while engaged or while the player is within 1.8 m, and is not saved: a loaded game puts it back at its marker. `test_cast_motion.gd` casts rays along every authored route at three heights and three lateral offsets.
+
 ## Face morph targets (on the face mesh)
 
 | Morph | Driven by |

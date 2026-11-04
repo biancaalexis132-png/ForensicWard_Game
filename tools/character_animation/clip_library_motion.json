@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "fps": 30,
+  "extends": "clip_library.json",
+  "notes": "Cast motion clips added on top of the ten clips in clip_library.json, by add_motion_clips.py. Same rotation vocabulary (flex, turn, tilt, raise, swing; degrees in the character's own frame). Body clips never animate the neck or arms, so the arm swing of a walk is its own looping gesture clip (walk_arm_swing) that plays on the GestureAnimationPlayer while walk_neutral plays on the body player. Leg roles (thigh, calf, foot) are new and are resolved from the rig by add_motion_clips.py. Clips marked standing_only are not built for characters whose rest pose is seated. Every clip is a neutral, communicative movement; none depicts a symptom.",
+  "walk_speed_m_per_s": 1.05,
+  "clips": [
+    {
+      "name": "walk_neutral", "player": "body", "loop": true, "seconds": 1.1, "standing_only": true,
+      "description": "Unhurried professional walk in place (the game moves the character). One cycle is two steps, left leg forward first.",
+      "keys": [
+        {"role": "thigh_l", "rot": "swing", "points": [[0.0, 22.0], [0.275, 6.0], [0.55, -16.0], [0.69, -12.0], [0.825, 10.0], [1.1, 22.0]]},
+        {"role": "thigh_r", "rot": "swing", "points": [[0.0, -16.0], [0.14, -12.0], [0.275, 10.0], [0.55, 22.0], [0.825, 6.0], [1.1, -16.0]]},
+        {"role": "calf_l", "rot": "swing", "points": [[0.0, -3.0], [0.1, -14.0], [0.275, -6.0], [0.5, -10.0], [0.69, -52.0], [0.9, -30.0], [1.1, -3.0]]},
+        {"role": "calf_r", "rot": "swing", "points": [[0.0, -10.0], [0.14, -52.0], [0.35, -30.0], [0.55, -3.0], [0.65, -14.0], [0.825, -6.0], [1.05, -10.0], [1.1, -10.0]]},
+        {"role": "foot_l", "rot": "flex", "points": [[0.0, -10.0], [0.1, 3.0], [0.275, 0.0], [0.5, 12.0], [0.62, 18.0], [0.8, 0.0], [1.1, -10.0]]},
+        {"role": "foot_r", "rot": "flex", "points": [[0.0, 12.0], [0.07, 18.0], [0.25, 0.0], [0.55, -10.0], [0.65, 3.0], [0.825, 0.0], [1.05, 12.0], [1.1, 12.0]]}
+      ],
+      "waves": [
+        {"role": "pelvis", "rot": "turn", "amp": 4.0, "period": 1.1, "phase": 90},
+        {"role": "pelvis", "rot": "tilt", "amp": 2.5, "period": 1.1, "phase": 0},
+        {"role": "spine_lower", "rot": "turn", "amp": -1.5, "period": 1.1, "phase": 90},
+        {"role": "chest", "rot": "turn", "amp": -3.0, "period": 1.1, "phase": 90},
+        {"role": "spine_mid", "rot": "tilt", "amp": -1.2, "period": 1.1, "phase": 0},
+        {"role": "chest", "rot": "flex", "amp": 0.6, "period": 0.55, "phase": 0},
+        {"role": "head", "rot": "turn", "amp": 2.0, "period": 1.1, "phase": 270},
+        {"role": "clavicle_l", "rot": "raise", "amp": 0.8, "period": 1.1, "phase": 0},
+        {"role": "clavicle_r", "rot": "raise", "amp": -0.8, "period": 1.1, "phase": 0}
+      ],
+      "static": [
+        {"role": "chest", "rot": "flex", "deg": 2.0},
+        {"role": "head", "rot": "flex", "deg": -1.5}
+      ]
+    },
+    {
+      "name": "walk_arm_swing", "player": "gesture", "loop": true, "seconds": 1.1, "standing_only": true,
+      "description": "Relaxed arm swing that matches walk_neutral: each arm swings opposite its leg, elbows slightly bent.",
+      "waves": [
+        {"role": "upperarm_l", "rot": "swing", "amp": -11.0, "period": 1.1, "phase": 90},
+        {"role": "upperarm_r", "rot": "swing", "amp": 11.0, "period": 1.1, "phase": 90},
+        {"role": "lowerarm_l", "rot": "swing", "amp": -6.0, "period": 1.1, "phase": 70},
+        {"role": "lowerarm_r", "rot": "swing", "amp": 6.0, "period": 1.1, "phase": 70},
+        {"role": "neck", "rot": "flex", "amp": 0.5, "period": 0.55, "phase": 180}
+      ],
+      "static": [
+        {"role": "upperarm_l", "rot": "swing", "deg": 2.0},
+        {"role": "upperarm_r", "rot": "swing", "deg": 2.0},
+        {"role": "lowerarm_l", "rot": "swing", "deg": 12.0},
+        {"role": "lowerarm_r", "rot": "swing", "deg": 12.0}
+      ]
+    },
+    {
+      "name": "explain_open_hand", "player": "gesture", "loop": false, "seconds": 2.4,
+      "description": "Right forearm lifts to an open-hand explaining position, makes one small beat, then settles.",
+      "keys": [
+        {"role": "upperarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.5, 18.0], [1.8, 18.0], [2.4, 0.0]]},
+        {"role": "lowerarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.5, 62.0], [0.95, 52.0], [1.3, 61.0], [1.8, 60.0], [2.4, 0.0]]},
+        {"role": "hand_r", "rot": "flex", "points": [[0.0, 0.0], [0.5, -10.0], [1.8, -10.0], [2.4, 0.0]]},
+        {"role": "neck", "rot": "flex", "points": [[0.0, 0.0], [0.95, 2.5], [1.3, 0.0], [2.4, 0.0]]}
+      ]
+    },
+    {
+      "name": "explain_both_hands", "player": "gesture", "loop": false, "seconds": 2.8,
+      "description": "Both forearms lift a little, as if framing a point, hold for a beat and settle.",
+      "keys": [
+        {"role": "upperarm_l", "rot": "swing", "points": [[0.0, 0.0], [0.6, 10.0], [2.1, 10.0], [2.8, 0.0]]},
+        {"role": "upperarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.55, 11.0], [2.1, 11.0], [2.8, 0.0]]},
+        {"role": "lowerarm_l", "rot": "swing", "points": [[0.0, 0.0], [0.6, 50.0], [1.2, 44.0], [1.6, 50.0], [2.1, 49.0], [2.8, 0.0]]},
+        {"role": "lowerarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.55, 52.0], [1.2, 46.0], [1.6, 52.0], [2.1, 51.0], [2.8, 0.0]]},
+        {"role": "neck", "rot": "flex", "points": [[0.0, 0.0], [1.2, 2.0], [1.6, 0.0], [2.8, 0.0]]}
+      ]
+    },
+    {
+      "name": "small_head_shake", "player": "gesture", "loop": false, "seconds": 1.3,
+      "description": "Two small side-to-side head movements: a mild no, or a moment of doubt.",
+      "keys": [
+        {"role": "neck", "rot": "turn", "points": [[0.0, 0.0], [0.2, 6.0], [0.5, -6.0], [0.8, 4.0], [1.05, -1.5], [1.3, 0.0]]},
+        {"role": "neck", "rot": "flex", "points": [[0.0, 0.0], [0.3, 1.5], [1.3, 0.0]]}
+      ]
+    },
+    {
+      "name": "thinking_pause", "player": "gesture", "loop": false, "seconds": 3.0,
+      "description": "Considers a question: head tilts and drops slightly, eyes stay free, right forearm lifts a little and rests.",
+      "keys": [
+        {"role": "neck", "rot": "tilt", "points": [[0.0, 0.0], [0.7, 4.5], [2.3, 4.0], [3.0, 0.0]]},
+        {"role": "neck", "rot": "flex", "points": [[0.0, 0.0], [0.7, 5.0], [2.3, 4.5], [3.0, 0.0]]},
+        {"role": "neck", "rot": "turn", "points": [[0.0, 0.0], [0.8, 4.0], [2.3, 3.0], [3.0, 0.0]]},
+        {"role": "lowerarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.8, 36.0], [2.3, 36.0], [3.0, 0.0]]},
+        {"role": "upperarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.8, 5.0], [2.3, 5.0], [3.0, 0.0]]}
+      ]
+    },
+    {
+      "name": "small_shrug", "player": "gesture", "loop": false, "seconds": 1.5,
+      "description": "Shoulders lift briefly with both palms turning up a little: uncertainty, not dismissal.",
+      "keys": [
+        {"role": "clavicle_l", "rot": "raise", "points": [[0.0, 0.0], [0.4, 6.0], [0.85, 6.0], [1.5, 0.0]]},
+        {"role": "clavicle_r", "rot": "raise", "points": [[0.0, 0.0], [0.4, 6.0], [0.85, 6.0], [1.5, 0.0]]},
+        {"role": "lowerarm_l", "rot": "swing", "points": [[0.0, 0.0], [0.4, 30.0], [0.85, 30.0], [1.5, 0.0]]},
+        {"role": "lowerarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.4, 30.0], [0.85, 30.0], [1.5, 0.0]]},
+        {"role": "neck", "rot": "tilt", "points": [[0.0, 0.0], [0.45, 3.0], [1.5, 0.0]]}
+      ]
+    },
+    {
+      "name": "point_direction", "player": "gesture", "loop": false, "seconds": 2.2, "standing_only": true,
+      "description": "Points ahead with the right arm, as when giving directions, and lowers it.",
+      "keys": [
+        {"role": "upperarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.55, 55.0], [1.5, 55.0], [2.2, 0.0]]},
+        {"role": "lowerarm_r", "rot": "swing", "points": [[0.0, 0.0], [0.55, 18.0], [1.5, 18.0], [2.2, 0.0]]},
+        {"role": "neck", "rot": "turn", "points": [[0.0, 0.0], [0.5, -5.0], [1.5, -5.0], [2.2, 0.0]]}
+      ]
+    }
+  ]
+}
