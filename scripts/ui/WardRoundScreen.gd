@@ -7,12 +7,15 @@ extends CanvasLayer
 ##   Labs    the lab catalog by category; Order shows the result at once
 ##   Plan    an action for each current medication, medications to start and
 ##           interventions
+##   Debrief the score once a plan is accepted (WardRoundScoring)
 ## Below the tabs, always in view: the attending's reply and Submit to attending.
+## Once a plan is accepted the reply adds the debrief (WardRoundScoring), and
+## Replay case starts the patient again for a better score.
 ## The screen owns only the unsent plan; everything else is in WardRounds.
 ## Button handlers are public so tests drive the same paths a player does.
 
 const PANEL_ID: String = "ward_round"
-const TABS: Array[String] = ["Chart", "Labs", "Plan"]
+const TABS: Array[String] = ["Chart", "Labs", "Plan", "Debrief"]
 const SIZE_TITLE: int = 32
 const SIZE_HEADING: int = 25
 const SIZE_BODY: int = 22
@@ -30,8 +33,10 @@ var _tabs: TabContainer
 var _chart: VBoxContainer
 var _labs: VBoxContainer
 var _plan: VBoxContainer
+var _debrief: VBoxContainer
 var _review: RichTextLabel
 var _submit: Button
+var _replay: Button
 var _close_button: Button
 
 
@@ -78,6 +83,7 @@ func select_case(id: String) -> void:
 	_build_chart()
 	_build_labs()
 	_build_plan()
+	_build_debrief()
 	_show_review(WardRounds.last_review(id))
 
 
@@ -117,11 +123,24 @@ func current_plan() -> Array:
 	return plan
 
 
+## Starts an accepted case again for a better score (the chapter stays open).
+func replay() -> bool:
+	if not WardRounds.replay_case(case_id):
+		return false
+	_drafts.erase(case_id)
+	select_case(case_id)
+	return true
+
+
 func submit() -> Dictionary:
 	var review: Dictionary = WardRounds.submit_plan(case_id, current_plan())
 	if not review.is_empty():
 		_build_plan()
+		_build_debrief()
 		_show_review(review)
+		if review["outcome"] == WardRoundCatalog.ACCEPTED:
+			_refresh_census()
+			show_tab("Debrief")
 	return review
 
 
@@ -131,8 +150,11 @@ func _refresh_census() -> void:
 	_census.clear()
 	for id: String in WardRounds.admitted_case_ids():
 		var case: Dictionary = WardRounds.get_case(id)
-		var done: bool = WardRounds.status(id) == WardRounds.STATUS_ACCEPTED
-		_census.add_item("%s %s" % ["✓" if done else "•", case["patient"]["name"]])
+		var done: bool = WardRounds.status(id) == WardRounds.STATUS_ACCEPTED and not WardRounds.is_replaying(id)
+		var mark: String = "↻" if WardRounds.is_replaying(id) else ("✓" if done else "•")
+		var best: int = WardRounds.best_score(id)
+		var suffix: String = "  ·  %d" % best if best >= 0 else ""
+		_census.add_item("%s %s%s" % [mark, case["patient"]["name"], suffix])
 		_census.set_item_metadata(_census.item_count - 1, id)
 		_census.set_item_custom_fg_color(_census.item_count - 1, UIStyle.GOOD if done else UIStyle.TEXT)
 		if id == case_id:
@@ -167,8 +189,15 @@ func _build_labs() -> void:
 	if case_id.is_empty():
 		return
 	var ordered: Array = WardRounds.ordered_labs(case_id)
-	var locked: bool = WardRounds.status(case_id) == WardRounds.STATUS_ACCEPTED
+	var locked: bool = not WardRounds.is_editable(case_id)
 	_labs.add_child(UIStyle.label("Order what this presentation needs. Results come back straight away.", SIZE_SMALL, UIStyle.MUTED))
+	var budget: int = WardRounds.tests_budget(case_id)
+	var over: bool = ordered.size() > budget
+	var meter: Label = UIStyle.label("Tests ordered: %d of a budget of %d%s" % [ordered.size(), budget,
+			"  ·  over budget: each extra test costs resource points" if over else "  ·  going over costs resource points but never stops an order"],
+			SIZE_BODY, UIStyle.WARNING if over else UIStyle.TEXT)
+	meter.name = "Budget"
+	_labs.add_child(meter)
 	var category: String = ""
 	for lab: Dictionary in WardRounds.lab_catalog():
 		if lab.get("category", "") != category:
@@ -199,10 +228,12 @@ func _build_plan() -> void:
 	var case: Dictionary = WardRounds.get_case(case_id)
 	if case.is_empty():
 		_submit.disabled = true
+		_replay.visible = false
 		return
-	var locked: bool = WardRounds.status(case_id) == WardRounds.STATUS_ACCEPTED
+	var locked: bool = not WardRounds.is_editable(case_id)
 	_submit.disabled = locked
 	_submit.text = "Plan accepted" if locked else "Submit to attending"
+	_replay.visible = locked
 	var draft: Dictionary = _draft()
 	var current: Array = case["presentation"]["current_medications"]
 	var current_ids: Array = current.map(func(med: Dictionary) -> String: return med["id"])
@@ -257,6 +288,9 @@ func _toggle_button(text: String) -> Button:
 	toggle.toggle_mode = true
 	toggle.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	toggle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	# Long labels wrap inside the chip instead of widening the whole screen.
+	toggle.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	toggle.custom_minimum_size.x = 220
 	var on: StyleBoxFlat = (toggle.get_theme_stylebox("normal") as StyleBoxFlat).duplicate()
 	on.bg_color = Color(0.16, 0.42, 0.36)
 	on.border_color = UIStyle.ACCENT
@@ -270,7 +304,8 @@ func _toggle_button(text: String) -> Button:
 func _show_review(review: Dictionary) -> void:
 	# Only assign text: clear() followed by the same text again leaves it blank.
 	if review.is_empty():
-		_review.text = "[color=#%s]Submit the plan when you are ready. The attending replies straight away; you can revise and resubmit as often as you need.[/color]" % UIStyle.MUTED.to_html(false)
+		var replaying: String = "Replay: the chapter stays open and your best score is kept. " if WardRounds.is_replaying(case_id) else ""
+		_review.text = "[color=#%s]%sSubmit the plan when you are ready. The attending replies straight away; you can revise and resubmit, but the debrief counts every attempt.[/color]" % [UIStyle.MUTED.to_html(false), replaying]
 		return
 	var labels: Dictionary = WardRounds.labels()
 	var lines: Array[String] = []
@@ -288,7 +323,44 @@ func _show_review(review: Dictionary) -> void:
 				WardRoundCatalog.describe_item(note["item"], labels), note["reason"]])
 	if review["outcome"] == WardRoundCatalog.ACCEPTED:
 		lines.append("\n[b]Teaching point[/b]\n" + str(review["teaching"]))
+		var scored: Dictionary = WardRounds.score(case_id)
+		if not scored.is_empty():
+			lines.append("\n[b]Debrief: %d / 100 · %s[/b] (Debrief tab)" % [scored["total"], scored["grade"]])
 	_review.text = "\n".join(lines)
+
+
+func _build_debrief() -> void:
+	_clear(_debrief)
+	var scored: Dictionary = WardRounds.score(case_id) if not case_id.is_empty() else {}
+	if scored.is_empty():
+		_debrief.add_child(UIStyle.label("The debrief appears here once the attending accepts a plan. It scores patient safety (40%), diagnostic reasoning (25%), rapport and communication (20%) and resource use (15%), counting every attempt.", SIZE_BODY, UIStyle.MUTED))
+		return
+	var text: RichTextLabel = _rich(true)
+	text.name = "DebriefText"
+	text.text = "\n".join(_debrief_lines(scored)).strip_edges()
+	_debrief.add_child(text)
+	_debrief.add_child(UIStyle.label("Replay case starts this patient again for a better score. The chapter stays open and your best score is kept.", SIZE_SMALL, UIStyle.MUTED))
+
+
+## The debrief: total and grade, then each area with what went well or not.
+func _debrief_lines(scored: Dictionary) -> Array[String]:
+	var lines: Array[String] = []
+	if scored.is_empty():
+		return lines
+	var colour: Color = UIStyle.WARNING if scored["capped"] else UIStyle.GOOD
+	lines.append("\n[color=#%s][b]Debrief: %d / 100 · %s[/b][/color]" % [colour.to_html(false), scored["total"], scored["grade"]])
+	if scored["capped"]:
+		lines.append("[color=#%s]An unsafe or dismissive choice caps the grade, however good the rest of the plan.[/color]" % UIStyle.WARNING.to_html(false))
+	var best: int = WardRounds.best_score(case_id)
+	if best > int(scored["total"]):
+		lines.append("[color=#%s]Your best on this patient: %d.[/color]" % [UIStyle.MUTED.to_html(false), best])
+	for area: String in WardRoundScoring.AREAS:
+		lines.append("[b]%s[/b] (%d%%): %d" % [WardRoundScoring.LABELS[area], roundi(WardRoundScoring.WEIGHTS[area] * 100), scored["areas"][area]])
+		for finding: Dictionary in scored["findings"]:
+			if finding["area"] == area:
+				lines.append("[color=#%s]  %s %s[/color]" % [(UIStyle.GOOD if finding["good"] else UIStyle.WARNING).to_html(false),
+						"✓" if finding["good"] else "•", finding["text"]])
+	return lines
 
 
 # --- Helpers -------------------------------------------------------------------------
@@ -415,6 +487,7 @@ func _build() -> void:
 	_chart = _scroll_tab("Chart")
 	_labs = _scroll_tab("Labs")
 	_plan = _scroll_tab("Plan")
+	_debrief = _scroll_tab("Debrief")
 	# The attending's reply and the submit button stay in view on every tab.
 	var reply: HBoxContainer = HBoxContainer.new()
 	reply.add_theme_constant_override("separation", 16)
@@ -431,5 +504,15 @@ func _build() -> void:
 	_submit.name = "Submit"
 	_submit.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	_submit.pressed.connect(submit)
-	reply.add_child(_submit)
+	var buttons: VBoxContainer = VBoxContainer.new()
+	buttons.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	buttons.add_theme_constant_override("separation", 10)
+	buttons.add_child(_submit)
+	_replay = UIStyle.secondary_button("Replay case", SIZE_BODY)
+	_replay.name = "Replay"
+	_replay.tooltip_text = "Start this patient again for a better score. The chapter stays open."
+	_replay.visible = false
+	_replay.pressed.connect(replay)
+	buttons.add_child(_replay)
+	reply.add_child(buttons)
 	right.add_child(reply)

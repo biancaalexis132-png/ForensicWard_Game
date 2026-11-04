@@ -20,6 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Ward-round scoring and debrief | `claude/ward-round-scoring` (draft PR to `claude/ward-round-bedside`) | Claude Code (cloud) | `4b72789` | `scripts/clinical/WardRoundScoring.gd`, `WardRounds.gd` (history, replay, best), `WardRoundCatalog.gd` (rapport tags), `WardRoundScreen.gd` (Debrief tab, budget, replay, chip wrap), `data/ward_rounds.json` intervention catalog, `test_ward_round_scoring.gd`, capture tool | Full QA passed; waiting on Bi |
 | Ward-round patients on the ward in 3D | `claude/ward-round-bedside` (draft PR #116 to `claude/ward-rounds`) | Claude Code (cloud) | `99655fb` | `data/ward_round_bedside.json`, `scripts/world/WardRoundBedside.gd`, `Character.gd` (`Kind.WARD_ROUND`), one line in `AuthoredWorld.gd`, `test_ward_round_bedside.gd`, patient model configs/outputs `pt_wr_*`, 28 `asset_manifest.json` and `character_visuals.json` entries | All 28 patients modelled and staged; full QA passed; models pending owner look |
 | Ward rounds (labs and medication plans gate each chapter) | `claude/ward-rounds` (draft PR to `claude/playtest-fixes`) | Claude Code (cloud) | `8cc1120` | `data/ward_rounds.json`, `scripts/clinical/{WardRounds,WardRoundCatalog}.gd`, `scripts/ui/WardRoundScreen.gd`, `scenes/ui/WardRoundScreen.tscn`, one autoload line in `project.godot`, small edits to `ChapterDirector.gd`, `Main.gd`, `EHRScreen.gd`, `TestCase.gd`, `test_ward_rounds.gd`, capture tool, `docs/clinical_review_log.md` | First ten cases approved by Bi; second wave (10) and case-bible third wave (8) pending Bi's review; full QA passed on the merged bedside branch |
 | Cast animation (walk, gestures, shared acting) | `claude/cast-animation` (draft PR #114 to `claude/playtest-fixes`) | Claude Code (cloud) | `584d864` | `tools/character_animation/{clip_library_motion.json,add_motion_clips.py,review_motion_clips.py}`, six `assets/exports/characters/*_v01_draft.glb`, `scripts/world/{CastPerformer,CastRoute,CharacterAnimationRig,Character,AuthoredWorld,CampaignCastVisuals}.gd`, content schema/validator route fields, `data/world_chapter{2,4,5}.json`, `data/character_visuals.json`, `test_cast_motion.gd`, capture tool | Full QA passed; waiting on Bi's Mac look |
@@ -581,6 +582,13 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-11-03 night — Claude Code — ward-round scoring, budget, debrief, replay
+
+- Branch `claude/ward-round-scoring` (draft PR to `claude/ward-round-bedside`). Latest verified commit: `4b72789` (code and these docs in one commit).
+- Case bible scoring framework: safety 40, reasoning 25, rapport 20, resources 15; unsafe/dismissive caps the grade. Soft tests budget. Debrief tab, Replay case with best score saved. `explain_plan` welcomed on every case (pending review). Plan tab chips wrap (third-wave labels had pushed the screen off the right edge).
+- Tests: full headless QA: game 401/0 (7 new), audio 1720/0, QA 19/0/0, GLB 199/0, CH1_SEQUENCE_DONE, exit 0. Mac not run.
+- Resume: `docs/handoffs/2026-11-03_claude_ward_round_scoring.md`.
 
 ### 2026-11-03 evening — Claude Code — every ward-round patient on the ward; case bible third wave
 

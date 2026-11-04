@@ -31,8 +31,12 @@ const SCHEMA_VERSION: int = 1
 const LAB_VERDICTS: Array[String] = ["required", "helpful", "not_needed"]
 const LAB_FLAGS: Array[String] = ["normal", "abnormal", "critical"]
 const OPTION_VERDICTS: Array[String] = ["preferred", "acceptable", "required", "not_indicated", "unsafe"]
-## Catalog default verdicts may only send a plan back, never require an item everywhere.
+## Catalog default verdicts may only send a plan back, never require an item
+## everywhere; "acceptable" is allowed only for an item that builds rapport.
 const DEFAULT_VERDICTS: Array[String] = ["not_indicated", "unsafe"]
+## rapport: "builds" (explaining the plan) or "harms" (dismissive choices),
+## used by WardRoundScoring. A harmful item must carry a default verdict.
+const RAPPORT_VALUES: Array[String] = ["builds", "harms"]
 const MED_ACTIONS: Array[String] = ["continue", "reduce", "hold", "stop"]
 const REVIEW_STATUSES: Array[String] = ["PENDING_PSYCHIATRIST_REVIEW", "APPROVED", "REJECTED"]
 const NORMAL_RESULT: String = "Within normal limits."
@@ -55,9 +59,17 @@ static func validate(data: Variant, chapter_ids: Array = []) -> Array[String]:
 	var meds: Dictionary = _catalog(data, "medication_catalog", errors)
 	var interventions: Dictionary = _catalog(data, "intervention_catalog", errors)
 	for entry: Dictionary in interventions.values():
-		if entry.has("default_verdict") and (not str(entry["default_verdict"]) in DEFAULT_VERDICTS
+		var rapport: String = str(entry.get("rapport", ""))
+		if entry.has("rapport") and not rapport in RAPPORT_VALUES:
+			errors.append("ward_rounds.intervention_catalog.%s: rapport must be one of %s" % [entry["id"], str(RAPPORT_VALUES)])
+		var allowed: Array[String] = DEFAULT_VERDICTS.duplicate()
+		if rapport == "builds":
+			allowed.append("acceptable")
+		if entry.has("default_verdict") and (not str(entry["default_verdict"]) in allowed
 				or not entry.get("default_feedback") is String or str(entry["default_feedback"]).is_empty()):
-			errors.append("ward_rounds.intervention_catalog.%s: default_verdict must be one of %s, with default_feedback" % [entry["id"], str(DEFAULT_VERDICTS)])
+			errors.append("ward_rounds.intervention_catalog.%s: default_verdict must be one of %s, with default_feedback" % [entry["id"], str(allowed)])
+		if rapport == "harms" and not entry.has("default_verdict"):
+			errors.append("ward_rounds.intervention_catalog.%s: a harmful item needs a default_verdict" % entry["id"])
 	if not data.get("cases") is Array or (data["cases"] as Array).is_empty():
 		errors.append("ward_rounds: cases must be a non-empty array")
 		return errors

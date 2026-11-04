@@ -1,3 +1,5 @@
+**Ward-round scoring (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-scoring` on #116. Accepted plans get a debrief scored as the case bible says (safety 40, reasoning 25, rapport 20, resources 15; unsafe or dismissive choices cap the grade), a soft tests budget, and Replay case for a better score. Full QA passed (game 401/0). Not tested on the Mac.
+
 # Project status
 
 **Ward-round patients on the ward (Claude Code, 2026-11-03; draft PR #116, not merged):** `claude/ward-round-bedside` at `99655fb`, on #115 (now including the case-bible third wave, 28 cases) with #114 merged in. All 28 ward-round patients have animated 3D draft models and wait in Rooms 01 and 02, oldest admission first; walking up to one opens their case, and the next patient takes the room once a plan is accepted. Models pending owner look; third-wave cases pending Bi's clinical review; no symptom movement. Full QA passed (game 394/0, GLB 199/0). Not tested on the Mac.

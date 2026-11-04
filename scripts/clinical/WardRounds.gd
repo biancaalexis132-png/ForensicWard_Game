@@ -32,7 +32,7 @@ var _data: Dictionary = {}
 var _cases: Dictionary = {}          ## id -> case definition, in file order
 var _order: Array[String] = []
 var _labels: Dictionary = {}         ## lab / medication / intervention id -> label
-var _state: Dictionary = {}          ## id -> {labs, plan, status, attempts}
+var _state: Dictionary = {}          ## id -> {labs, plan, status, attempts, history, replaying, best}
 
 
 func _ready() -> void:
@@ -143,6 +143,50 @@ func submitted_plan(case_id: String) -> Array:
 	return _state.get(case_id, {}).get("plan", []).duplicate()
 
 
+## True while the player can still order tests and submit: an open case, or
+## an accepted one being replayed.
+func is_editable(case_id: String) -> bool:
+	return status(case_id) != STATUS_ACCEPTED or bool(_state.get(case_id, {}).get("replaying", false))
+
+
+func is_replaying(case_id: String) -> bool:
+	return bool(_state.get(case_id, {}).get("replaying", false))
+
+
+## The tests budget for this patient (WardRoundScoring; soft, never blocks).
+func tests_budget(case_id: String) -> int:
+	return WardRoundScoring.budget(_cases.get(case_id, {}))
+
+
+## The debrief score for the accepted plan in this run ({} before acceptance,
+## and while a replay is under way).
+func score(case_id: String) -> Dictionary:
+	if status(case_id) != STATUS_ACCEPTED or is_replaying(case_id):
+		return {}
+	return WardRoundScoring.score(_cases[case_id], _state[case_id].get("history", []),
+			_data["intervention_catalog"], _labels)
+
+
+## The best total across runs of an accepted case (-1 if none).
+func best_score(case_id: String) -> int:
+	return int(_state.get(case_id, {}).get("best", -1))
+
+
+## Starts the case again for a better score. The chapter stays unlocked: the
+## case keeps its accepted status, and the best total is kept.
+func replay_case(case_id: String) -> bool:
+	if status(case_id) != STATUS_ACCEPTED or is_replaying(case_id):
+		return false
+	var entry: Dictionary = _entry(case_id)
+	entry["labs"] = []
+	entry["plan"] = []
+	entry["attempts"] = 0
+	entry["history"] = []
+	entry["replaying"] = true
+	case_changed.emit(case_id)
+	return true
+
+
 func attempts(case_id: String) -> int:
 	return int(_state.get(case_id, {}).get("attempts", 0))
 
@@ -162,7 +206,7 @@ func lab_result(case_id: String, lab_id: String) -> Dictionary:
 
 ## Orders a lab; its result is available at once. False if not allowed.
 func order_lab(case_id: String, lab_id: String) -> bool:
-	if not case_id in admitted_case_ids() or status(case_id) == STATUS_ACCEPTED or not _labels.has(lab_id):
+	if not case_id in admitted_case_ids() or not is_editable(case_id) or not _labels.has(lab_id):
 		return false
 	if not lab_id in lab_catalog().map(func(entry: Dictionary) -> String: return entry["id"]):
 		return false
@@ -176,7 +220,7 @@ func order_lab(case_id: String, lab_id: String) -> bool:
 
 ## Submits a plan and returns the attending's review ({} if not allowed).
 func submit_plan(case_id: String, plan: Array) -> Dictionary:
-	if not case_id in admitted_case_ids() or status(case_id) == STATUS_ACCEPTED:
+	if not case_id in admitted_case_ids() or not is_editable(case_id):
 		return {}
 	var entry: Dictionary = _entry(case_id)
 	var clean: Array = []
@@ -185,9 +229,13 @@ func submit_plan(case_id: String, plan: Array) -> Dictionary:
 			clean.append(key)
 	entry["plan"] = clean
 	entry["attempts"] = int(entry["attempts"]) + 1
+	entry["history"].append({"labs": entry["labs"].duplicate(), "plan": clean.duplicate()})
 	var review: Dictionary = WardRoundCatalog.evaluate(_cases[case_id], entry["labs"], clean, _labels)
 	if review["outcome"] == WardRoundCatalog.ACCEPTED:
 		entry["status"] = STATUS_ACCEPTED
+		entry["replaying"] = false
+		var scored: Dictionary = WardRoundScoring.score(_cases[case_id], entry["history"], _data["intervention_catalog"], _labels)
+		entry["best"] = maxi(int(entry.get("best", -1)), int(scored.get("total", -1)))
 	if is_draft(case_id):
 		EventBus.clinical_review_flagged.emit("ward_round_draft",
 				"Ward round case %s is draft teaching content pending psychiatrist review." % case_id)
@@ -212,6 +260,12 @@ func validate_save_data(data: Variant) -> bool:
 				or not entry.get("status") in [STATUS_OPEN, STATUS_ACCEPTED] \
 				or not (entry.get("attempts") is int or entry.get("attempts") is float):
 			return false
+		# Saves from before scoring have no history; it defaults to empty.
+		if entry.has("history") and not entry["history"] is Array:
+			return false
+		for submission: Variant in entry.get("history", []):
+			if not submission is Dictionary or not submission.get("labs") is Array or not submission.get("plan") is Array:
+				return false
 	return true
 
 
@@ -224,7 +278,9 @@ func load_save_data(data: Dictionary) -> void:
 			continue  # A case removed from the catalog since the save.
 		var entry: Dictionary = data["cases"][id]
 		_state[id] = {"labs": entry["labs"].filter(func(lab: Variant) -> bool: return _labels.has(str(lab))),
-				"plan": entry["plan"].duplicate(), "status": entry["status"], "attempts": int(entry["attempts"])}
+				"plan": entry["plan"].duplicate(), "status": entry["status"], "attempts": int(entry["attempts"]),
+				"history": entry.get("history", []).duplicate(true), "replaying": bool(entry.get("replaying", false)),
+				"best": int(entry.get("best", -1))}
 
 
 func reset_state() -> void:
@@ -235,7 +291,8 @@ func reset_state() -> void:
 
 func _entry(case_id: String) -> Dictionary:
 	if not _state.has(case_id):
-		_state[case_id] = {"labs": [], "plan": [], "status": STATUS_OPEN, "attempts": 0}
+		_state[case_id] = {"labs": [], "plan": [], "status": STATUS_OPEN, "attempts": 0,
+				"history": [], "replaying": false, "best": -1}
 	return _state[case_id]
 
 

@@ -2,6 +2,7 @@
 
 ## Claude Code ward-round patients on the ward — 2026-11-03
 
+- Later: `claude/ward-round-scoring` (draft PR on #116): debrief score, soft tests budget, Debrief tab, Replay case; Plan tab overflow fixed. Full QA passed: game 401/0, audio 1720/0, QA 19/0/0, GLB 199/0, exit 0. Next: Bi reviews scoring; then patient model improvements (hair, ageing, body variety). See `docs/handoffs/2026-11-03_claude_ward_round_scoring.md`.
 - Evening: `claude/ward-round-bedside` at `99655fb` (draft PR #116). All 28 ward-round patients have 3D draft models and wait in Rooms 01/02 by chapter; #115 (`8cc1120`) adds the case-bible third wave (eight cases pending Bi's review). Full QA passed: game 394/0, audio 1720/0, QA 19/0/0, GLB 199/0, exit 0. Mac not run. Next: Bi reviews the models and the third wave; then scoring/action budget if wanted. Last updated 2026-11-03.
 - `claude/ward-round-bedside` at `a8c8850` (draft PR to `claude/ward-rounds`). Chapter 1's four ward-round patients sit in Rooms 01 and 02 as animated 3D drafts; approaching one opens their case; the next takes the room when a plan is accepted. Full QA passed: game 392/0, audio 1720/0, QA 19/0/0, GLB 175/0. Mac not run. Next: build Chapter 2's four patients (configs written). See `docs/handoffs/2026-11-03_claude_ward_round_bedside.md`.
 
