@@ -427,6 +427,12 @@ const WORLD_FILE: Dictionary = {
 					"interaction_box": {"type": "object", "required": {
 						"center": {"type": "array", "items": {"type": "number"}, "min_items": 3},
 						"size": {"type": "array", "items": {"type": "number"}, "min_items": 3},
+					}},
+					## route: a short walk from the marker and back (CastRoute), cosmetic only.
+					"route": {"type": "object", "required": {
+						"points": {"type": "array", "items": {"type": "array", "items": {"type": "number"}, "min_items": 2}, "min_items": 1},
+					}, "optional": {
+						"pause_seconds": {"type": "array", "items": {"type": "number"}, "min_items": 2},
 					}}},
 			},
 		},

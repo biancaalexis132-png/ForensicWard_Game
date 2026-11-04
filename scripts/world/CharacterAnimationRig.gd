@@ -12,13 +12,18 @@ extends RefCounted
 ## morph targets or bones are left exactly as imported.
 
 const BODY_LOOP_CLIPS: PackedStringArray = [
-	"idle_neutral", "idle_breathing", "listen_neutral", "stand_conversational",
+	"idle_neutral", "idle_breathing", "listen_neutral", "stand_conversational", "walk_neutral",
 ]
 const BODY_ONE_SHOT_CLIPS: PackedStringArray = ["turn_from_workstation", "return_to_workstation"]
 const GESTURE_CLIPS: PackedStringArray = [
 	"small_greeting_nod", "small_acknowledgement_nod",
 	"restrained_chart_indication", "subtle_workstation_indication",
+	# clip_library_motion.json (add_motion_clips.py)
+	"walk_arm_swing", "explain_open_hand", "explain_both_hands", "small_head_shake",
+	"thinking_pause", "small_shrug", "point_direction",
 ]
+## Gesture clips that loop (the walk's arm swing runs as long as the walk).
+const GESTURE_LOOP_CLIPS: PackedStringArray = ["walk_arm_swing"]
 const IDLE_CLIP: StringName = &"idle_neutral"
 const BLINK_SHAPE: StringName = &"blink"
 const SHADOW_PROXY_SUFFIX: String = "_ShadowProxy"
@@ -53,7 +58,10 @@ static func _prepare_players(body_player: AnimationPlayer) -> void:
 			if String(clip) in BODY_LOOP_CLIPS:
 				animation.loop_mode = Animation.LOOP_LINEAR
 			elif String(clip) in GESTURE_CLIPS and library_name == &"":
-				gesture_library.add_animation(clip, _without_held_tracks(animation))
+				var gesture: Animation = _without_held_tracks(animation)
+				if String(clip) in GESTURE_LOOP_CLIPS:
+					gesture.loop_mode = Animation.LOOP_LINEAR
+				gesture_library.add_animation(clip, gesture)
 	if not gesture_library.get_animation_list().is_empty():
 		# The imported library is shared by every instance of the scene: edit a copy.
 		var main_library: AnimationLibrary = body_player.get_animation_library(&"").duplicate()
