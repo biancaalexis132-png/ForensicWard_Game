@@ -4,7 +4,7 @@
   "profile_sha256": "a1e82fe377c2a74e032b729bcaeb242bda2cd136fc00fa2bb1537d8022f0a7ea",
   "source": {
     "path": "build/cast/Abena_Mensah_v01_face.blend",
-    "sha256": "76be16b9ecd56e718419adce5bf5213f05578e4e92c2737fc164137389505f6f"
+    "sha256": "640472ac9461410ea17473aaefdabba763f7357d99a265df390c9a081c5148d8"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 32153
+  "triangles": 34863
 }

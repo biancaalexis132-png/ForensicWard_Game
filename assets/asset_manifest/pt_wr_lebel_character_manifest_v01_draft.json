@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Marguerite_Lebel_v01_face.blend",
-      "sha256": "e2612ef555cb6d7a6504bb4fd2228ceeeb683a5515d23bb6da74de17419ec1cb",
+      "sha256": "69dfdbf21e8f3979a6a902f25a24142bcc493b43c9e7423ce27788b63011a813",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 32369,
+  "triangle_count": 35415,
   "clips": [
     "idle_breathing",
     "idle_neutral",
