@@ -36,6 +36,13 @@ func _chart_text(screen: WardRoundScreen) -> String:
 	return "\n".join(parts)
 
 
+func _census_text(screen: WardRoundScreen) -> String:
+	for i: int in screen._census.item_count:
+		if screen._census.get_item_metadata(i) == CASE_ID:
+			return screen._census.get_item_text(i)
+	return ""
+
+
 func _submit_solved(screen: WardRoundScreen) -> Dictionary:
 	var solved: Dictionary = SOLVER._solve(WardRounds.get_case(CASE_ID))
 	for lab_id: String in solved["labs"]:
@@ -192,4 +199,37 @@ func test_the_patient_answers_when_you_explain_the_plan() -> void:
 		check(not str(entry.get("plan_response", {}).get("line", "")).is_empty(), "%s has a plan response" % entry["id"])
 	data["cases"][0]["plan_response"] = {"review_status": "PENDING_PSYCHIATRIST_REVIEW", "line": ""}
 	check("\n".join(WardRoundCatalog.validate(data)).contains("plan_response: needs a review_status and a non-empty line"), "a blank response is refused")
+	screen.close()
+
+
+func test_checking_in_on_a_patient_from_an_earlier_chapter() -> void:
+	var screen: WardRoundScreen = _screen()
+	var case: Dictionary = WardRounds.get_case(CASE_ID)
+	check_eq(case["follow_up"]["review_status"], "APPROVED", "follow-up lines approved by Bi")
+	screen.open_bedside("warm")
+	check_eq(_submit_solved(screen)["outcome"], "accepted", "accepted")
+	check(not WardRounds.can_follow_up(CASE_ID), "no check-in in the same chapter")
+	check_eq(screen.follow_up(), "", "nothing to say yet")
+	(_main.get_node("ChapterDirector") as ChapterDirector).load_save_data({"current": "ch2", "chapters": {}})
+	check(WardRounds.can_follow_up(CASE_ID), "a later chapter has begun")
+	screen.close()
+	EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": CASE_ID})
+	check_eq(screen._tabs.current_tab, WardRoundScreen.TABS.find("Bedside"), "a patient to check in on opens at the bedside")
+	check(_census_text(screen).contains("check in"), "the census says who to check in on")
+	(screen.find_child("FollowUp", true, false) as Button).pressed.emit()
+	var expected: String = "Daniel: “%s”" % case["follow_up"]["line"]
+	check_eq((screen.find_child("FollowUpLine", true, false) as RichTextLabel).get_parsed_text(), expected, "they say how they are getting on")
+	check(screen.find_child("FollowUp", true, false) == null, "a check-in happens once")
+	check(not _census_text(screen).contains("check in"), "census mark cleared")
+	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "saved")
+	SaveManager.reset_all()
+	check_eq(WardRounds.followed_up_line(CASE_ID), "", "reset clears the check-in")
+	check_eq(SaveManager.load_game(TEST_SAVE_SLOT), OK, "loaded")
+	check_eq(WardRounds.followed_up_line(CASE_ID), expected, "check-in restored")
+	check(not WardRounds.validate_save_data({"cases": {CASE_ID: {"labs": [], "plan": [], "status": "open", "attempts": 0, "followed_up": "yes"}}}), "a broken check-in is rejected")
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(WardRounds.DATA_PATH))
+	for entry: Dictionary in data["cases"]:
+		check(not str(entry.get("follow_up", {}).get("line", "")).is_empty(), "%s has a follow-up line" % entry["id"])
+	data["cases"][0]["follow_up"] = {"review_status": "maybe", "line": "x"}
+	check("\n".join(WardRoundCatalog.validate(data)).contains("follow_up: needs a review_status and a non-empty line"), "a bad follow-up is refused")
 	screen.close()

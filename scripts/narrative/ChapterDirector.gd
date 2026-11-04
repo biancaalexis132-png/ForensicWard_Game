@@ -260,6 +260,10 @@ func _hand_over(config: Dictionary) -> String:
 	for change: Dictionary in changes:
 		TrustManager.adjust(change["staff_id"], change["axis"], float(change["delta"]), "handover")
 	var lines: PackedStringArray = ["[b]Day shift handover[/b]", "", _shift_summary(), ""]
+	var ward_round: PackedStringArray = WardRounds.handover_lines(_chapter_id)
+	if not ward_round.is_empty():
+		lines.append("\n".join(ward_round))
+		lines.append("")
 	if missing.is_empty():
 		lines.append("Handover documented for every patient on your list.")
 	else:

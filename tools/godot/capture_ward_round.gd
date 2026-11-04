@@ -1,6 +1,7 @@
 extends Node
 ## Review captures of the ward round screen: Lebel's chart, her labs after
-## ordering, a plan the attending sends back, then the accepted plan.
+## ordering, a plan the attending sends back, the accepted plan, then a
+## check-in on her in a later chapter.
 ## Desktop review only (Compatibility renderer on Linux, not Mac evidence).
 ##
 ##   xvfb-run -s "-screen 0 1920x1080x24" Godot --rendering-driver opengl3 --path . \
@@ -75,6 +76,15 @@ func _run() -> void:
 	screen.submit()
 	await _frames(5)
 	_save(output, "debrief_replay.png")
+	# A later chapter: check in on her.
+	director.load_save_data({"current": "ch3", "chapters": {}})
+	screen.close()
+	EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": CASE_ID})
+	await _frames(5)
+	_save(output, "follow_up_offer.png")
+	screen.follow_up()
+	await _frames(5)
+	_save(output, "follow_up.png")
 	print("WARD_ROUND_CAPTURE done")
 	get_tree().quit()
 

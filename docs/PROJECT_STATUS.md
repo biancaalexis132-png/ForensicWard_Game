@@ -1,3 +1,7 @@
+**Ward round in the day handover (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-handover`, PR #125 merged by Bi into the #124 branch. The day shift handover now lists the chapter's ward-round patients (accepted with their debrief, or still open) and the earlier patients you checked in on. Not tested on the Mac.
+
+**Checking in on earlier patients (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-check-ins` on #123. Once a later chapter begins, the player can check in on patients treated earlier and hear how they are getting on (lines approved by Bi on 2026-11-04). Not tested on the Mac.
+
 **Patients answer your explanation (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-plan-response` on #122. When you explain the plan, the patient now replies in their own words, shown with the attending's reply and in the debrief (lines approved by Bi on 2026-11-04). Not tested on the Mac.
 
 **Patient ponytails and hairlines (Claude Code, 2026-11-04; draft PR, not merged):** `claude/patient-hair-tails` on #121. Ponytails on 14 patients are now strand cards that spread at the ends, and 22 patients' hairlines break into fine wisps instead of a hard edge. Not tested on the Mac.
