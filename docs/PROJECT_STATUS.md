@@ -1,3 +1,5 @@
+**Patient ponytails and hairlines (Claude Code, 2026-11-04; draft PR, not merged):** `claude/patient-hair-tails` on #121. Ponytails on 14 patients are now strand cards that spread at the ends, and 22 patients' hairlines break into fine wisps instead of a hard edge. Not tested on the Mac.
+
 **Patients' own words at the bedside (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-patient-voices` on #120. Each ward-round patient now answers bedside questions in their own voice (lines approved by Bi on 2026-11-04); the chart still records the clinician's full account. Not tested on the Mac.
 
 **Bedside conversation (Claude Code, 2026-11-03; draft PR, not merged):** `claude/ward-round-bedside-talk` on #119. Ward-round patients are now met at the bedside first: how you open the conversation sets their trust, your questions fill in the chart, and the debrief counts both. Full QA passed (game 406/0). Not tested on the Mac.

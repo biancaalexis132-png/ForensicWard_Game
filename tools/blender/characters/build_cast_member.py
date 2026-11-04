@@ -1267,6 +1267,144 @@ def hair_card_material(spec: dict) -> bpy.types.Material:
     return mat
 
 
+_CARD_MATERIAL: dict = {}
+
+
+def card_material(spec: dict) -> bpy.types.Material:
+    """One shared strand-card material per character."""
+    if "mat" not in _CARD_MATERIAL:
+        _CARD_MATERIAL["mat"] = hair_card_material(spec)
+    return _CARD_MATERIAL["mat"]
+
+
+def _card_strip(bm, uv_layer, pts: list, sides: list, width: float, rng, taper: float = 0.45,
+                v_scale: float = 1.0) -> None:
+    """One strand strip along pts; sides are unit vectors across the strip.
+    v_scale < 1 uses less of each strand's length, so fewer tips end early."""
+    rows = []
+    for j, (pt, side) in enumerate(zip(pts, sides)):
+        t = j / (len(pts) - 1)
+        off = side * (width * 0.5 * (1.0 - taper * t))
+        rows.append((bm.verts.new(pt - off), bm.verts.new(pt + off), t * v_scale))
+    u0 = rng.uniform(0.0, 0.6)
+    for j in range(len(rows) - 1):
+        a, b, ta = rows[j]
+        c, d2, tb = rows[j + 1]
+        face = bm.faces.new((a, b, d2, c))
+        for loop, uv in zip(face.loops, ((u0, ta), (u0 + 0.4, ta), (u0 + 0.4, tb), (u0, tb))):
+            loop[uv_layer].uv = uv
+
+
+def _card_object(name: str, bm, spec: dict) -> bpy.types.Object:
+    mesh = bpy.data.meshes.new(name)
+    bm.to_mesh(mesh)
+    bm.free()
+    mesh.materials.append(card_material(spec))
+    for poly in mesh.polygons:
+        poly.use_smooth = True
+    obj = bpy.data.objects.new(name, mesh)
+    bpy.context.scene.collection.objects.link(obj)
+    return obj
+
+
+def tail_cards(pts: list[Vector], radii: list[float], spec: dict) -> bpy.types.Object:
+    """Strand cards wrapped round the ponytail's centreline, so the tail reads as
+    gathered hair instead of a smooth tube; the ends spread and finish at
+    different lengths. pts run from the tie down; radii are absolute (m)."""
+    cfg = spec["tail_cards"]
+    rng = np.random.default_rng(int(cfg.get("seed", 11)))
+    count = int(cfg.get("count", 56))
+    width = float(cfg.get("width_m", 0.012))
+    spread = float(cfg.get("tip_spread", 1.5))
+    bm = bmesh.new()
+    uv_layer = bm.loops.layers.uv.new("UVMap")
+    n = len(pts)
+    tangents = [(pts[min(k + 1, n - 1)] - pts[max(k - 1, 0)]).normalized() for k in range(n)]
+    for c in range(count):
+        angle = rng.uniform(0.0, math.tau)
+        shell = rng.uniform(0.75, 1.15)
+        reach = rng.uniform(0.7, 1.0)  # finishes at different lengths
+        last = max(3, int(round(reach * (n - 1))))
+        drift = rng.uniform(-0.25, 0.25)
+        row_pts, row_sides = [], []
+        for k in range(last + 1):
+            t = k / (n - 1)
+            tang = tangents[k]
+            x = Vector((1.0, 0.0, 0.0))
+            x = (x - tang * x.dot(tang)).normalized()
+            y = tang.cross(x).normalized()
+            a = angle + drift * t
+            radial = x * math.cos(a) + y * math.sin(a)
+            rad = radii[k] * shell * (1.0 + (spread - 1.0) * t ** 2)
+            row_pts.append(pts[k] + radial * rad)
+            row_sides.append(tang.cross(radial).normalized())
+        _card_strip(bm, uv_layer, row_pts, row_sides, width, rng, taper=0.3)
+    return _card_object(PREFIX + "Hair_TailCards", bm, spec)
+
+
+def hairline_cards(cap, body_tree, centre: Vector, top_z: float, spec: dict) -> bpy.types.Object | None:
+    """Wisps that start on the cap a little inside its edge and run out over the
+    rim onto the skin, so the hairline breaks into strands instead of a hard rim."""
+    cfg = spec["hairline_cards"]
+    rng = np.random.default_rng(int(cfg.get("seed", 13)))
+    lo, hi = cfg.get("length_m", [0.012, 0.022])
+    width = float(cfg.get("width_m", 0.009))
+    lift = float(cfg.get("lift_m", 0.0007))
+    outside = float(cfg.get("outside_share", 0.35))
+    every = max(1, int(cfg.get("every", 1)))
+    segments = 5
+    cap_tree = BVHTree.FromObject(cap, bpy.context.evaluated_depsgraph_get())
+    me = cap.data
+    edge_count: dict = {}
+    for poly in me.polygons:
+        for key in poly.edge_keys:
+            edge_count[key] = edge_count.get(key, 0) + 1
+    rim = sorted({i for key, c in edge_count.items() if c == 1 for i in key})
+    crown = Vector((centre.x, centre.y + 0.02, top_z))
+    bm = bmesh.new()
+    uv_layer = bm.loops.layers.uv.new("UVMap")
+    made = 0
+
+    def surface(q: Vector) -> tuple:
+        # On the cap where it covers the skin, else just above the skin.
+        loc, nrm, _i, _d = body_tree.find_nearest(q)
+        if loc is None:
+            return None, None
+        hit, _n, _i, _d = cap_tree.ray_cast(loc + nrm * 0.03, -nrm, 0.035)
+        if hit is not None:
+            return hit + nrm * lift, nrm
+        return loc + nrm * lift, nrm
+
+    for idx in rim[::every]:
+        p = me.vertices[idx].co.copy()
+        loc, nrm, _i, _d = body_tree.find_nearest(p)
+        if loc is None:
+            continue
+        away = p - crown
+        away = away - nrm * away.dot(nrm)
+        if away.length < 1e-6:
+            continue
+        away.normalize()
+        length = rng.uniform(lo, hi)
+        start = loc - away * ((1.0 - outside) * length)
+        pts, sides = [], []
+        for j in range(segments + 1):
+            q, qn = surface(start + away * (length * j / segments))
+            if q is None:
+                break
+            pts.append(q)
+            sides.append(qn.cross(away).normalized())
+        if len(pts) == segments + 1:
+            _card_strip(bm, uv_layer, pts, sides, width * rng.uniform(0.8, 1.2), rng, taper=0.6,
+                        v_scale=float(cfg.get("v_scale", 0.7)))
+            made += 1
+    print("  hairline wisps:", made)
+    if made == 0:
+        bm.free()
+        return None
+    return _card_object(PREFIX + "Hair_EdgeCards", bm, spec)
+
+
 def hair_cards(cap, centre: Vector, top_z: float, spec: dict, tie: Vector | None) -> bpy.types.Object:
     """Strips of strand texture laid over the cap, flowing toward the tie (tied
     hair) or away from the crown (short hair). They break the cap's hard outline
@@ -1328,7 +1466,7 @@ def hair_cards(cap, centre: Vector, top_z: float, spec: dict, tie: Vector | None
     mesh = bpy.data.meshes.new(PREFIX + "Hair_Cards")
     bm.to_mesh(mesh)
     bm.free()
-    mesh.materials.append(hair_card_material(spec))
+    mesh.materials.append(card_material(spec))
     for poly in mesh.polygons:
         poly.use_smooth = True
     obj = bpy.data.objects.new(PREFIX + "Hair_Cards", mesh)
@@ -1396,6 +1534,12 @@ def build_hair(body, rig, mats) -> list[bpy.types.Object]:
                     p = loc + nrm * (rad + 0.004)
                 pts.append(p)
                 radii.append(1.0 if k == 0 else rad / r0)
+            band_r = r0
+            if spec.get("tail_cards"):
+                # A slimmer core under the strand cards.
+                core = float(spec["tail_cards"].get("core_scale", 0.7))
+                tail_card_obj = tail_cards(pts, [r0 * r for r in radii], spec)
+                r0 *= core
             tail = curve_object(PREFIX + "Hair_Ponytail", [pts], r0, mats["hair"], radii=[radii], resolution=3)
             m = tail.data
             m.uv_layers.new(name="UVMap")
@@ -1404,13 +1548,19 @@ def build_hair(body, rig, mats) -> list[bpy.types.Object]:
                     p = m.vertices[m.loops[li].vertex_index].co - tie
                     m.uv_layers[0].data[li].uv = (math.atan2(p.x, p.y - 0.02) / math.tau * 3, p.z * 4)
             objs.append(tail)
-            band = curve_object(PREFIX + "Hair_Tie", [[tie + Vector((math.cos(a) * r0 * 0.75, 0.004,
-                                                                     math.sin(a) * r0 * 0.75))
+            band = curve_object(PREFIX + "Hair_Tie", [[tie + Vector((math.cos(a) * band_r * 0.75, 0.004,
+                                                                     math.sin(a) * band_r * 0.75))
                                                        for a in np.linspace(0, math.tau, 13)[:-1]]],
                                 0.0025, mats["hair"], closed=[True])
             objs.append(band)
+            if spec.get("tail_cards"):
+                objs.append(tail_card_obj)
     if spec.get("cards"):
         objs.append(hair_cards(cap, centre, top_z, spec, tie_point))
+    if spec.get("hairline_cards"):
+        edge = hairline_cards(cap, tree, centre, top_z, spec)
+        if edge is not None:
+            objs.append(edge)
     for obj in objs:
         v3.rigid_weight(obj, "head")
         v3.parent_to_rig(obj, rig)
@@ -1419,13 +1569,14 @@ def build_hair(body, rig, mats) -> list[bpy.types.Object]:
         tail = objs[1]
         zs = [v.co.z for v in tail.data.vertices]
         z_top, z_bot = max(zs), min(zs)
-        chest = tail.vertex_groups.new(name="spine_03")
-        head = tail.vertex_groups["head"]
-        for v in tail.data.vertices:
-            t = (z_top - v.co.z) / max(1e-6, z_top - z_bot)
-            w = 0.6 * max(0.0, (t - 0.3) / 0.7)
-            head.add([v.index], 1.0 - w, "REPLACE")
-            chest.add([v.index], w, "REPLACE")
+        for obj in [o for o in objs if o.name in (PREFIX + "Hair_Ponytail", PREFIX + "Hair_TailCards")]:
+            chest = obj.vertex_groups.new(name="spine_03")
+            head = obj.vertex_groups["head"]
+            for v in obj.data.vertices:
+                t = min(1.0, max(0.0, (z_top - v.co.z) / max(1e-6, z_top - z_bot)))
+                w = 0.6 * max(0.0, (t - 0.3) / 0.7)
+                head.add([v.index], 1.0 - w, "REPLACE")
+                chest.add([v.index], w, "REPLACE")
     return objs
 
 
