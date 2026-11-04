@@ -4,7 +4,7 @@
   "seated": true,
   "source_blend": {
     "path": "assets/blender/characters/Lucia_Morales_v01_draft.blend",
-    "sha256": "03df8dc011c654119a36da755677bf2ededdf9e435145ab6e0d76ecf5f4ab9df",
+    "sha256": "c0113e920398965a1d9933783447b50c84bcbfe9519cf080a7e61229ea4e1ac1",
     "modified": false
   },
   "library": {
@@ -100,7 +100,7 @@
   "walk_foot_travel": null,
   "glb": {
     "path": "assets/exports/characters/Lucia_Morales_v01_draft.glb",
-    "sha256": "fa2e72855040ec489065d59052512aa8c9a4404c9c1484683a1b3c1ddb3e010f",
+    "sha256": "e5c6552c2233c0378fe9d4b7bc92a05a84e901c2b00230b25617b468fa0ac79e",
     "clips": [
       "explain_both_hands",
       "explain_open_hand",

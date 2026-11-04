@@ -62,8 +62,8 @@
         0.020099999383091927,
         0.8567000031471252
       ],
-      "weighted_vertices": 1181,
-      "centroid_to_bone_m": 0.0763,
+      "weighted_vertices": 2096,
+      "centroid_to_bone_m": 0.12,
       "bone_inside_weighted_volume": true
     },
     "neck": {
@@ -94,8 +94,8 @@
         -0.03739999979734421,
         1.2770999670028687
       ],
-      "weighted_vertices": 9930,
-      "centroid_to_bone_m": 0.0124,
+      "weighted_vertices": 13558,
+      "centroid_to_bone_m": 0.0029,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -259,7 +259,19 @@
       "shape_keys": []
     },
     {
+      "name": "Morales_Hair_EdgeCards",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
       "name": "Morales_Hair_Ponytail",
+      "armature_modifier": true,
+      "vertex_groups": 2,
+      "shape_keys": []
+    },
+    {
+      "name": "Morales_Hair_TailCards",
       "armature_modifier": true,
       "vertex_groups": 2,
       "shape_keys": []
@@ -643,5 +655,5 @@
       }
     ]
   },
-  "triangles": 31891
+  "triangles": 35039
 }

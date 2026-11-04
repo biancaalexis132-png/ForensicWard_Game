@@ -11,7 +11,7 @@
   "inputs": [
     {
       "path": "build/cast/Ruth_Okafor_v01_face.blend",
-      "sha256": "1d8bbac92a47d6ac2939308ebaea9e75b7f453aeb4036874c1c57ee46a0abdb7",
+      "sha256": "4287502f519e2d758f3f25c781740f7171194e07e7f5989a4c6743b5da727cb4",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -21,7 +21,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 32143,
+  "triangle_count": 34853,
   "clips": [
     "idle_breathing",
     "idle_neutral",
