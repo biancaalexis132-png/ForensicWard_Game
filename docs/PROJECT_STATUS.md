@@ -22,6 +22,8 @@
 
 # Project status
 
+**Packaged Mac app (2026-11-04):** PR #131 is merged. On Bi's MacBook Air the standalone app exports, passes its launch check and the automated Mac QA (game 417/0, audio 1720/0), and opens on the title screen without the editor. The hands-on playthrough, three endings and listening pass are still with Bi (`docs/MAC_RELEASE_BUILD.md` §3).
+
 **Mac release polish (Claude Code, 2026-11-04; draft PR, not merged):** `claude/mac-release-polish` at `7e59789`, from `main`. The objective banner no longer covers character name tags, the current objective shows once, Elias's shoulder seams are closed, and the repository can now build a standalone macOS app (`tools/release/export_macos.sh`, `docs/MAC_RELEASE_BUILD.md`). Full QA passed (game 413/0, audio 1720/0). The Mac app was built in the container but has not been run on a Mac.
 
 **Ward-round patients on the ward (Claude Code, 2026-11-03; draft PR #116, not merged):** `claude/ward-round-bedside` at `99655fb`, on #115 (now including the case-bible third wave, 28 cases) with #114 merged in. All 28 ward-round patients have animated 3D draft models and wait in Rooms 01 and 02, oldest admission first; walking up to one opens their case, and the next patient takes the room once a plan is accepted. Models pending owner look; third-wave cases pending Bi's clinical review; no symptom movement. Full QA passed (game 394/0, GLB 199/0). Not tested on the Mac.
