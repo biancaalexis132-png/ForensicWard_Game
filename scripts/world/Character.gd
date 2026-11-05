@@ -282,8 +282,10 @@ func _talk_to_staff() -> void:
 	for access_id: String in staff.get("grants_access", []):
 		if TrustManager.grant_access(access_id, character_id):
 			EventBus.notification_requested.emit("Access granted: " + access_id.trim_prefix("access_").replace("_", " "))
+	# A first talk that starts a voiced scene: the scene speaks, the intro is read.
+	var scene_follows: bool = line.is_empty() and director != null and director.first_talk_plays_scene(character_id)
 	EventBus.ui_panel_requested.emit("info", {"title": staff.get("name", character_id), "body": body,
-			"voice_speaker": character_id, "voiced": not heard})
+			"voice_speaker": character_id, "voiced": not heard and not scene_follows})
 
 
 func _approach_patient() -> void:

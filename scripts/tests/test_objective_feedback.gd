@@ -119,3 +119,19 @@ func _talk_to_bennett() -> void:
 
 func _tracker() -> ObjectiveTracker:
 	return _main.get_node("ObjectiveTracker")
+
+
+func test_subtitles_drop_below_an_open_panel() -> void:
+	await _settle()
+	var hud: HUD = _main.get_node("HUD")
+	var subtitle: Label = hud.get_subtitle_label()
+	hud.set_world_hud_visible(true)
+	var play_bottom: float = subtitle.offset_bottom
+	hud.set_world_hud_visible(false)  # A panel opened (InfoPanel bottom is at 88% of the height).
+	var panel_gap: float = runner.get_viewport().get_visible_rect().size.y * 0.12
+	check(subtitle.offset_bottom > play_bottom, "the subtitle moves down while a panel is open")
+	check(-subtitle.offset_bottom + 2 * 34 + 20 <= maxf(panel_gap, 108.0),
+			"a two-line subtitle fits under the panel at 900 px tall")
+	hud.set_world_hud_visible(true)
+	check_eq(subtitle.offset_bottom, play_bottom, "and goes back in play")
+

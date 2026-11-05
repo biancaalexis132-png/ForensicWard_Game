@@ -175,10 +175,18 @@ func test_talking_to_naomi_again_does_not_replay_her_line() -> void:
 	var bennett: WardCharacter = (_main.get_node("World") as AuthoredWorld).get_character("staff_bennett")
 	var info: InfoPanel = _main.get_node("InfoPanel")
 	var intro_id: String = AudioDirector.find_line("staff_bennett", ContentRegistry.get_staff("staff_bennett")["intro_line"])
+	var director: ChapterDirector = _main.get_tree().get_first_node_in_group(ChapterDirector.GROUP)
+	check(director.first_talk_plays_scene("staff_bennett"), "her first talk starts the voiced handover")
 	(bennett.get_node("Interactable") as Interactable).interact(_main.get_node("Player"))
 	await _frames(3)
-	check(info.is_open and info.is_speaking(), "first talk: she speaks")
-	check(intro_id in _subtitles, "first talk: her intro line plays")
+	check(info.is_open, "first talk: her panel opens with the intro text")
+	# Mac playtest 2026-11-05: the voiced intro came before her greeting. The
+	# handover speaks first; the intro is read on the panel.
+	check(not intro_id in _subtitles, "first talk: the intro is not voiced ahead of the handover")
+	await runner.get_tree().create_timer(0.6).timeout
+	check(not _subtitles.is_empty() and _subtitles[0] == BENNETT_GREETING,
+			"first talk: her greeting is the first line heard (%s)" % str(_subtitles))
+	check(not director.first_talk_plays_scene("staff_bennett"), "only the first talk")
 	info.close()
 	AudioDirector.cancel_pending_events()
 	await runner.get_tree().create_timer(0.2).timeout

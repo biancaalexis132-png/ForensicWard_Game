@@ -139,6 +139,21 @@ func get_staff_line(staff_id: String) -> Dictionary:
 	return {}
 
 
+## True when the first talk to this staff member fires a beat that plays a
+## voiced scene (Chapter 1: Naomi's handover). The talk's intro line is then
+## shown but not voiced, so the scene's own first line is heard first.
+func first_talk_plays_scene(staff_id: String) -> bool:
+	if not ContentRegistry.is_valid or staff_id in _talked_to:
+		return false
+	for beat: Dictionary in _story().get("beats", []):
+		if beat["id"] in _fired or beat.get("when", {}) != {"talked_to": staff_id}:
+			continue
+		for action: Dictionary in beat.get("actions", []):
+			if action.has("audio_event") and AudioDirector.has_event(str(action["audio_event"])):
+				return true
+	return false
+
+
 ## True when a story interaction is open for this interactable right now, so a
 ## patient's story scene shows instead of a clinical interview.
 func has_open_interaction(interactable_id: String) -> bool:
