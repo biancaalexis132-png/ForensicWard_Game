@@ -28,12 +28,14 @@ func test_shipped_milestones_are_valid_and_owner_approved() -> void:
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(MilestonePresenter.DATA_PATH))
 	for entry: Dictionary in data["milestones"]:
 		check_eq(MilestonePresenter.validate(entry), [] as Array[String], "valid: " + entry["id"])
-		check(entry["approved"], "owner approved 2026-10-21: " + entry["id"])
+		# Approved 2026-10-21; the owner withdrew ms_ch1_first_assessment in the 2026-11-04
+		# playtest (the split screen after Elias's orders felt abrupt). A withdrawn entry says so.
+		check(entry["approved"] or entry.has("withdrawn"), "approved, or withdrawn by the owner: " + entry["id"])
 	check_contains(MilestonePresenter.validate({"id": "x", "after_objective": "obj_nope"}), "must start with ms_", "id prefix")
 
 
 func test_unapproved_milestone_never_plays_in_the_campaign() -> void:
-	_presenter().get_milestone(MILESTONE)["approved"] = false  # The shipped one is approved.
+	_presenter().get_milestone(MILESTONE)["approved"] = false
 	await _complete_obj_act()
 	check(not _presenter().is_open, "not shown")
 	check(not _presenter().has_shown(MILESTONE), "not recorded")

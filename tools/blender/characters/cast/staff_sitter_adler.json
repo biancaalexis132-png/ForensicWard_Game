@@ -1,0 +1,140 @@
+{
+  "character": {
+    "name": "Tom Adler",
+    "character_id": "staff_sitter_adler",
+    "file_stem": "Tom_Adler",
+    "prefix": "Adler_",
+    "role": "Mental health technician (1:1 sitter)",
+    "asset_version": "v01",
+    "height_m": 1.8,
+    "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+    "canon_basis": "Elias's 1:1 sitter in the redesigned encounter.",
+    "draft_choices": [
+      "Generic draft for the Elias encounter redesign (owner playtest 2026-11-04); appearance not canon."
+    ]
+  },
+  "source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v01.blend",
+    "body": "Naomi_Bennett_Body",
+    "rig": "Naomi_Bennett_Rig"
+  },
+  "macro": {
+    "age_years": 27,
+    "ethnicity": {
+      "asian": 0.1,
+      "caucasian": 0.7,
+      "african": 0.2
+    },
+    "min_muscle": 0.05,
+    "max_weight": 0.08
+  },
+  "pose": {
+    "upperarm_down_degrees": 62.0,
+    "upperarm_forward_degrees": 6.0,
+    "elbow_bend_degrees": 12.0
+  },
+  "skin": {
+    "base_srgb_hex": "#C8987A",
+    "shadow_srgb_hex": "#A57658",
+    "warm_srgb_hex": "#D0907E",
+    "lip_srgb_hex": "#A46C64",
+    "brow_srgb_hex": "#221A15",
+    "nail_srgb_hex": "#C9A08A",
+    "texture_size": 2048,
+    "roughness": 0.56,
+    "lid_shadow": 0.22,
+    "cheek_warmth": 0.15,
+    "brow_strength": 0.8,
+    "lip_strength": 0.4,
+    "beard_shadow": {
+      "srgb_hex": "#3A2D25",
+      "strength": 0.12
+    }
+  },
+  "eyes": {
+    "sclera_srgb_hex": "#E3DACE",
+    "iris_srgb_hex": "#3A2618",
+    "limbal_srgb_hex": "#1E1610",
+    "helper_radius_scale": 0.93
+  },
+  "face": {
+    "lash_srgb_hex": "#16100C",
+    "lash_length_m": 0.004,
+    "brow_srgb_hex": "#1E1712",
+    "brows": {
+      "inner_half_m": 0.004,
+      "tail_half_m": 0.0014,
+      "fill": 0.5,
+      "hairs": 500
+    }
+  },
+  "hair": {
+    "style": "crop",
+    "srgb_hex": "#4A3628",
+    "grey_srgb_hex": "#77726D",
+    "grey_fraction": 0.0,
+    "front_z_m": 0.052,
+    "nape_z_m": -0.06,
+    "ear_top_z_m": 0.025,
+    "volume_top_m": 0.005,
+    "volume_side_m": 0.0012,
+    "fringe_m": 0.008
+  },
+  "garments": [
+    {
+      "kind": "top",
+      "name": "Scrub_Top",
+      "srgb_hex": "#3F6E7A",
+      "sleeves": "short",
+      "neckline": {
+        "type": "v",
+        "depth_m": 0.1,
+        "slope": 1.4
+      },
+      "hem_z_m": 0.9,
+      "offset_m": 0.01,
+      "drape": {
+        "from_z_m": 1.12,
+        "per_m": 0.02
+      },
+      "texture": {
+        "period": 170,
+        "roughness": 0.75,
+        "specular": 0.3
+      }
+    },
+    {
+      "kind": "trousers",
+      "name": "Scrub_Trousers",
+      "srgb_hex": "#3F6E7A",
+      "offset_m": 0.012,
+      "hem_radius_m": 0.074,
+      "texture": {
+        "period": 140,
+        "roughness": 0.8
+      }
+    },
+    {
+      "kind": "shoes",
+      "name": "Shoes",
+      "srgb_hex": "#1E1B19",
+      "roughness": 0.4
+    }
+  ],
+  "badge": {
+    "on": "Scrub_Top",
+    "card_srgb_hex": "#ECEDEE",
+    "stripe_srgb_hex": "#3F6E7A"
+  },
+  "mesh": {
+    "triangle_budget": 60000,
+    "body_ratio": 0.6,
+    "clothing_ratio": 0.55,
+    "shoe_ratio": 0.25
+  },
+  "known_limitations": [
+    "Draft model for owner review; generic, not canon.",
+    "Hair is a scalp shell with a strand texture.",
+    "Not measured on the target Mac."
+  ]
+}

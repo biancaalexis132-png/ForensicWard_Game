@@ -63,6 +63,54 @@
 			},
 			"intro_line": "Leila Rahman. I cover the ward's consultant reviews.",
 			"grants_access": []
+		},
+		{
+			"id": "staff_sitter_adler",
+			"name": "Tom Adler",
+			"role": "Mental health technician",
+			"initial_trust": {
+				"respect": 0,
+				"trust": 0,
+				"suspicion": 0
+			},
+			"intro_line": "Morning, Doctor. I'm on Elias's one-to-one in Interview Room A.",
+			"grants_access": []
+		},
+		{
+			"id": "staff_bg_nurse_a",
+			"name": "Ward nurse",
+			"role": "Staff nurse",
+			"initial_trust": {
+				"respect": 0,
+				"trust": 0,
+				"suspicion": 0
+			},
+			"intro_line": "Morning, Doctor. Med round. I'll catch you after.",
+			"grants_access": []
+		},
+		{
+			"id": "staff_bg_nurse_b",
+			"name": "Ward nurse",
+			"role": "Staff nurse",
+			"initial_trust": {
+				"respect": 0,
+				"trust": 0,
+				"suspicion": 0
+			},
+			"intro_line": "Doctor. Just finishing the obs charts.",
+			"grants_access": []
+		},
+		{
+			"id": "staff_bg_housekeeping",
+			"name": "Housekeeping",
+			"role": "Housekeeping",
+			"initial_trust": {
+				"respect": 0,
+				"trust": 0,
+				"suspicion": 0
+			},
+			"intro_line": "Mind the floor, Doctor, it's still wet.",
+			"grants_access": []
 		}
 	]
 }
