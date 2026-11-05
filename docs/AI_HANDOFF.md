@@ -21,6 +21,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
 | Staff remember earlier choices | `claude/staff-remember-choices` (draft PR to `main`) | Claude Code (cloud) | see Log | `data/acknowledgements.json`, `scripts/narrative/Acknowledgements.gd`, `test_acknowledgements.gd`; 5 lines in `Character.gd` | Lines approved by Bi 2026-11-05 |
+| Cast v02 hair and clothing (Voss, Hale, Rahman, technician, Elias, Mara) | `claude/cast-hair-clothing` (draft PR to `main`) | Claude Code (cloud) | last commit on the branch | `tools/blender/characters/{cast_hair_cards.py,cast_garment_detail.py}`, `build_cast_member.py` (`hair.layered_cards` path only), six cast configs, `*_v02` assets/profiles/reports, `add_motion_clips.py` (version-derived names), `data/character_visuals.json` (six cast entries) | Full QA passed; approved by Bi 2026-11-05, ready for Bi to merge (PR #136) |
 | Mac playtest fixes (Naomi, voice, Voss exit, ward-round gate, title music, quit) | `claude/mac-playtest-fixes` (PR #135 to `main`) | Claude Code (cloud) | `6df47bd` | `scripts/world/{CastPerformer,CastExit,Character,AuthoredWorld,WardRoundBedside}.gd`, `scripts/ui/{ProtagonistScreen,WardRoundScreen,TitleScreen}.gd`, `scripts/clinical/WardRounds.gd`, `scripts/main/Main.gd`, `scripts/content/Content{Schemas,Validator}.gd`, `data/world_chapter1.json`, `audio/cues.json`, related tests | Full QA passed; Mac check pending |
 | Elias meds and labs draft (pending Bi's clinical review) | `claude/meds-labs-draft` (draft PR to `main`) | Claude Code (cloud) | see PR | `data/clinical_workups/*`, `scripts/clinical/ClinicalWorkup.gd`, `ClinicalOrders.result_for`, `scripts/tests/test_clinical_workup.gd` | Draft; locked in every build until approved. The "Flesh out the Elias encounter" session owns the encounter UI and `data/elias_encounter.json` |
 | Animated cinematic pilot | `codex/cinematic-naomi-pilot` (draft PR #133) | Codex | `9109088a8a1df9d917c29c5245a60fe011109ceb` | New `scripts/cinematic/`, `scenes/cinematic/`, `data/cinematics/`, `tools/cinematic/`, cinematic review docs/screenshots | Standalone voiced Naomi preview; refined framing/lighting; Mac and campaign integration pending |
@@ -633,6 +634,13 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-11-05 — Claude Code — cast v02 hair and clothing
+
+- Branch `claude/cast-hair-clothing` (draft PR to `main`), `origin/main` `b1c3e63` merged in; the last commit on the branch carries the clips, Elias neckline tuck and docs.
+- Six cast models rebuilt as v02: layered hair cards (`hair.layered_cards`, kept apart from the patients' `hair.cards`), garment trims and fold maps; walk and gesture clips added with `add_motion_clips.py`; Elias's sweatshirt neckline tucked. The game loads v02 (owner approved visual, 2026-10-19).
+- Tests: full headless QA: game 417/0, GLB 205/0, audio 1720/0, QA 19/0/0, boot OK, CH1_SEQUENCE_DONE (62.2 s), exit 0. Mac not run.
+- Resume: `docs/handoffs/2026-11-05_claude_cast_v02.md`.
 
 ### 2026-11-05 — Claude Code — Elias medication and lab work-up draft
 

@@ -386,6 +386,8 @@ def render_review(profile: dict, body: bpy.types.Object, out_dir: Path) -> list[
     scene.cycles.seed = 0
     scene.cycles.use_adaptive_sampling = False
     scene.cycles.use_denoising = True
+    # Layered alpha-clipped hair cards need more transparent bounces than the default 8.
+    scene.cycles.transparent_max_bounces = max(scene.cycles.transparent_max_bounces, 48)
     scene.render.resolution_percentage = 100
     rig = bpy.data.objects[profile["objects"]["rig"]]
     rig.animation_data.use_nla = False
@@ -496,7 +498,8 @@ def main() -> None:
         "character_id": profile["character_id"],
         "version": profile["version"],
         "production_status": profile["production_status"],
-        "approved": False,
+        "approved": bool(profile.get("approved", False)),
+        **({"approval": profile["approval"]} if profile.get("approval") else {}),
         "builder": "tools/character_animation/refine_character.py",
         "profile": provenance_path(profile_path, ROOT),
         "profile_sha256": sha256(profile_path),
