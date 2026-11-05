@@ -228,6 +228,10 @@ func test_screen_orders_labs_and_submits_through_the_ehr() -> void:
 	screen.select_case("wr_ch1_hughes")
 	check(screen.find_child("DraftBadge", true, false).visible, "draft badge on a case pending review")
 	screen.select_case("wr_ch1_ortiz")
+	check(screen._submit.disabled, "from the EHR alone, a patient on the ward is not seen yet")
+	# The player has been to the bedside.
+	WardRounds.mark_seen("wr_ch1_ortiz")
+	screen.select_case("wr_ch1_ortiz")
 	var case: Dictionary = WardRounds.get_case("wr_ch1_ortiz")
 	var solved: Dictionary = _solve(case)
 	for lab_id: String in solved["labs"]:

@@ -37,36 +37,44 @@ const CANDIDATES: Dictionary = {
 		# v06_mpfb refined: hems, shoes and closed lids fixed; same rig, clips and 32 morphs.
 		"v07": "res://assets/exports/characters/Naomi_Bennett_v07.glb",
 	},
-	# Draft cast models from tools/blender/characters/build_cast_member.py: Naomi's
-	# base mesh and rig, the shared clips and Naomi's 32 face morphs. Not canon.
+	# Cast models from tools/blender/characters/build_cast_member.py: Naomi's base
+	# mesh and rig, the shared clips and Naomi's 32 face morphs. v02 (owner-approved
+	# 2026-10-19) adds layered hair cards, garment trims and fold maps; v01_draft stays
+	# available for comparison.
 	"staff_voss": {
 		"v01_draft": "res://assets/exports/characters/Evelyn_Voss_v01_draft.glb",
+		"v02": "res://assets/exports/characters/Evelyn_Voss_v02.glb",
 	},
 	"staff_hale": {
 		"v01_draft": "res://assets/exports/characters/Marcus_Hale_v01_draft.glb",
+		"v02": "res://assets/exports/characters/Marcus_Hale_v02.glb",
 	},
 	"staff_rahman": {
 		"v01_draft": "res://assets/exports/characters/Leila_Rahman_v01_draft.glb",
+		"v02": "res://assets/exports/characters/Leila_Rahman_v02.glb",
 	},
 	"staff_facilities_tech": {
 		"v01_draft": "res://assets/exports/characters/Facilities_Tech_v01_draft.glb",
+		"v02": "res://assets/exports/characters/Facilities_Tech_v02.glb",
 	},
 	# Patients are built seated (feet on the floor) for MARK_Seat_Patient.
 	"pt_elias_ward": {
 		"v01_draft": "res://assets/exports/characters/Elias_Ward_v01_draft.glb",
+		"v02": "res://assets/exports/characters/Elias_Ward_v02.glb",
 	},
 	"pt_mara_ellis": {
 		"v01_draft": "res://assets/exports/characters/Mara_Ellis_v01_draft.glb",
+		"v02": "res://assets/exports/characters/Mara_Ellis_v02.glb",
 	},
 }
 const DEFAULT_VERSION: Dictionary = {
 	"staff_bennett": "v07",
-	"staff_voss": "v01_draft",
-	"staff_hale": "v01_draft",
-	"staff_rahman": "v01_draft",
-	"staff_facilities_tech": "v01_draft",
-	"pt_elias_ward": "v01_draft",
-	"pt_mara_ellis": "v01_draft",
+	"staff_voss": "v02",
+	"staff_hale": "v02",
+	"staff_rahman": "v02",
+	"staff_facilities_tech": "v02",
+	"pt_elias_ward": "v02",
+	"pt_mara_ellis": "v02",
 }
 ## Where the previewed model stands, relative to the character's marker. Only the
 ## model moves; the interaction box, collision and name label stay on the marker.

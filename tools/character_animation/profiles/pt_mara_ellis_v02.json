@@ -1,0 +1,72 @@
+{
+  "character_id": "pt_mara_ellis",
+  "display_name": "Mara Ellis",
+  "version": "v02",
+  "production_status": "OWNER_APPROVED",
+  "source_blend": "build/cast/Mara_Ellis_v02_face.blend",
+  "objects": {
+    "rig": "Mara_Ellis_Rig",
+    "face_mesh": "Mara_Ellis_Body",
+    "eye_l": "Mara_Eye_L",
+    "eye_r": "Mara_Eye_R"
+  },
+  "refine": {
+    "lashes": {
+      "lash_material": "Mara_Lash",
+      "shapes": [
+        "blink",
+        "blink_L",
+        "blink_R"
+      ],
+      "clearance_m": 0.0006,
+      "smoothing_iterations": 4,
+      "smoothing_factor": 0.5,
+      "push_out": false
+    },
+    "shoes": {
+      "object": "Mara_Slip_Ons",
+      "iterations": 30,
+      "factor": 0.5,
+      "keep_sole_below_m": 0.004
+    }
+  },
+  "expected": {
+    "clips": [
+      "idle_neutral",
+      "idle_breathing",
+      "listen_neutral",
+      "stand_conversational",
+      "turn_from_workstation",
+      "return_to_workstation",
+      "small_greeting_nod",
+      "small_acknowledgement_nod",
+      "restrained_chart_indication",
+      "subtle_workstation_indication"
+    ],
+    "morph_targets": 32
+  },
+  "outputs": {
+    "blend": "assets/blender/characters/Mara_Ellis_v02.blend",
+    "glb": "assets/exports/characters/Mara_Ellis_v02.glb",
+    "renders": "assets/renders/characters",
+    "manifest": "assets/asset_manifest/pt_mara_ellis_character_manifest_v02.json",
+    "report": "tools/character_animation/reports/pt_mara_ellis_v02_refine_report.json"
+  },
+  "known_limitations": [
+    "v02 approved by the owner (Bi, 2026-10-19) and used in normal gameplay; the v01 draft files are kept for comparison.",
+    "Hair is alpha-scissor cards over a darker scalp base, not groomed strands; no hair physics, and cards are rigid to the head (a ponytail bends with spine_03 only).",
+    "Clothing is an offset shell with modelled trims and buttons; folds are baked into a normal map, not simulated, and do not change with pose.",
+    "Not measured on the target Mac.",
+    "Seated rest pose bent by skinning only: hips and knees have no corrective shapes.",
+    "Cardigan is open at the front, with ribbed front bands and cuffs; no buttons."
+  ],
+  "approved": true,
+  "approval": {
+    "approved": true,
+    "by": "Bi (project owner)",
+    "date": "2026-10-19",
+    "quote": "I approve all cast models",
+    "where": "ForensicWard project thread",
+    "scope": "Likeness, body, age, colours and outfit design of the v01 draft; v02 improves hair and clothing quality only."
+  }
+}

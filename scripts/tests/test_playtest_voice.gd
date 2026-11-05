@@ -76,6 +76,26 @@ func test_profile_screen_offers_the_choice() -> void:
 	panel.free()
 
 
+func test_pronouns_pick_the_matching_voice_in_the_profile_screen() -> void:
+	var panel: ProtagonistScreen = load("res://scenes/ui/ProtagonistScreen.tscn").instantiate()
+	runner.add_child(panel)
+	panel.open()
+	var pronouns: LineEdit = panel._fields["pronouns"]
+	var select: OptionButton = panel._fields["gender"]
+	pronouns.text_changed.emit("she/her")
+	check_eq(str(select.get_item_metadata(select.selected)), "female", "she/her selects the female voice")
+	panel.confirm()
+	check_eq(ProtagonistProfile.gender(), "female", "and confirming applies it")
+	check_eq(AudioDirector.get_voice_variant("player"), "female", "so the psychiatrist speaks with the female voice")
+	panel.open()
+	pronouns.text_changed.emit("He/Him")
+	check_eq(str(select.get_item_metadata(select.selected)), "male", "he/him selects the male voice")
+	pronouns.text_changed.emit("they/them")
+	check_eq(str(select.get_item_metadata(select.selected)), "male", "other pronouns leave the voice choice as it is")
+	panel.close()
+	panel.free()
+
+
 func test_female_choice_selects_female_clip_with_male_fallback() -> void:
 	var male_path: String = "res://audio/voice/ch1/%s.ogg" % PLAYER_LINE
 	var female_path: String = "res://audio/voice/ch1/female/%s.ogg" % PLAYER_LINE

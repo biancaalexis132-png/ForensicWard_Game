@@ -11,7 +11,8 @@ extends Node3D
 ##   "info"       InfoPanel (documents, staff, notices; drawn on top)
 ##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
 ##   "ehr"        EHRScreen (also opened with J)
-##   "evidence"   EvidenceBoard (also opened with Tab)
+##   "case_file"  CaseFileScreen (opened with Tab): objective, notes, evidence
+##   "evidence"   EvidenceBoard (from the case file's Evidence board button)
 ##   "ward_round" WardRoundScreen (from the EHR's Ward round button)
 ##   "milestone"  MilestonePresenter (split-screen moment after an objective;
 ##                waits until nothing else is open)
@@ -67,6 +68,8 @@ var _chapter_complete_showing: bool = false
 
 func _ready() -> void:
 	EventBus.ui_panel_requested.connect(_on_ui_panel_requested)
+	if not EventBus.story_choice_committed.is_connected(CaseFile.on_choice_committed):
+		EventBus.story_choice_committed.connect(CaseFile.on_choice_committed)
 	EventBus.chapter_started.connect(_on_chapter_started)
 	EventBus.chapter_completed.connect(_on_chapter_completed)
 	EventBus.ui_panel_closed.connect(func(_panel_id: String) -> void: _update_input_mode())
@@ -106,16 +109,28 @@ func _ready() -> void:
 	print("[The Forensic Ward] Boot OK (content %s)" % ("valid" if ContentRegistry.is_valid else "INVALID"))
 
 
+## Frames the audio gets to release its streams before the engine shuts down.
+const QUIT_SETTLE_FRAMES: int = 3
+var _quitting: bool = false
+
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_quit_gracefully()
 
 
 ## Stops audio and lets the audio thread finish before quitting, so no
-## stream is still playing at shutdown.
+## stream is still playing at shutdown. Waits on frames, which arrive even while
+## the game is paused (title, pause menu) and whatever the time scale, rather
+## than on a timer. A second request (Cmd-Q pressed again) quits at once.
 func _quit_gracefully() -> void:
+	if _quitting:
+		get_tree().quit()
+		return
+	_quitting = true
 	_silence_audio()
-	await get_tree().create_timer(0.25, true).timeout
+	for i: int in QUIT_SETTLE_FRAMES:
+		await get_tree().process_frame
 	get_tree().quit()
 
 
@@ -154,11 +169,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		_ehr.close()
 	elif event.is_action_pressed("ehr") and not _is_ui_open():
 		_on_ui_panel_requested(EHRScreen.PANEL_ID, {})
-	elif event.is_action_pressed("journal") and _top_panel() == _evidence:
-		_evidence.close()
+	elif event.is_action_pressed("journal") and _top_panel() != null \
+			and (_top_panel() == _evidence or _top_panel().name == "CaseFileScreen"):
+		_top_panel().call("close")
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("journal") and not _is_ui_open():
-		_on_ui_panel_requested(EvidenceBoard.PANEL_ID, {})
+		# Tab opens the case file; its Evidence board button leads to the board.
+		_on_ui_panel_requested(CaseFileScreen.PANEL_ID, {})
 		get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton and event.pressed and not _is_ui_open() \
 			and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
@@ -196,6 +213,8 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 			_open_optional_panel("ProtagonistScreen", "res://scenes/ui/ProtagonistScreen.tscn", data)
 		PracticeScreen.PANEL_ID:
 			_open_optional_panel("PracticeScreen", "res://scenes/ui/PracticeScreen.tscn", data)
+		CaseFileScreen.PANEL_ID:
+			_open_optional_panel("CaseFileScreen", "res://scenes/ui/CaseFileScreen.tscn", data)
 		CaseJournalScreen.PANEL_ID:
 			_open_optional_panel("CaseJournalScreen", "res://scenes/ui/CaseJournalScreen.tscn", data)
 		MapScreen.PANEL_ID:

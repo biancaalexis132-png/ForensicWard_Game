@@ -1,5 +1,38 @@
 # AI progress tracker
 
+## Make the game more compelling (Bi's roadmap) — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Case file on Tab: objective and place, notes, evidence | Done, draft PR | | `CaseFile.gd`, `CaseFileScreen.gd`, `data/case_file.json` | `test_case_file` (7), full QA, captures | Bi looks on the Mac |
+| Map readability and objective marker | Not started | | `SpatialMap.gd`, `FloorPlan.gd`, `MapScreen.gd` | | Next PR |
+| Staff acknowledge earlier choices | Not started | Bi's approval of new lines | story staff_lines | | Review sheet to Bi |
+| Ending reflects evidence, uncertainty, care | Not started | | `campaign_end`, `ChapterDirector` | | After acknowledgements |
+| Performances, atmosphere, transitions | Not started | | | | Later PRs |
+
+## Cast v02 hair and clothing — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Layered hair cards (chignon, ponytail, crop), refined | Done, draft PR | bpy 5.2.2 | `tools/blender/characters/cast_hair_cards.py`, `build_cast_member.py` | review sheets, full QA | Bi looks |
+| Garment trims, fold maps, jacket hang, lenses | Done, draft PR | | `cast_garment_detail.py` | review sheets, full QA | Bi looks |
+| Six v02 models through all stages | Done, draft PR | | `assets/exports/characters/*_v02.glb`, `*_v02.blend`, profiles, manifests | GLB 205/0 | None |
+| Walk and gesture clips on v02 | Done, draft PR | main #114 tooling | `add_motion_clips.py` | motion reports, game 417/0 | None |
+| Elias v02 neckline tuck | Done, draft PR | main #131 tooling | `tuck_neckline.py`, Elias v02 | shoulder render | Bi checks the far shoulder |
+| Game uses v02 | Done, draft PR | Bi's approval 2026-10-19 | `data/character_visuals.json` | `test_campaign_cast`; approved by Bi 2026-11-05 | Bi merges PR #136 |
+
+## Mac playtest fixes — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Naomi faces you and moves | Done, draft PR | | `CastPerformer.gd`, `Character.gd` | `test_cast_motion` | Mac look |
+| Voice follows the character | Done, draft PR | | `ProtagonistScreen.gd` | `test_playtest_voice` | Mac listen |
+| Voss walks out after the talk | Done, draft PR (Chapter 1) | | `CastExit.gd`, `world_chapter1.json` | `test_cast_motion` (path clear, back on load) | Mac look; author other chapters if wanted |
+| Ward round only for patients seen | Done, draft PR | | `WardRounds.gd`, `WardRoundScreen.gd`, `WardRoundBedside.gd` | `test_ward_round*` | Mac check |
+| Title music; rain over music | Done, draft PR | | `TitleScreen.gd`, `audio/cues.json` | `test_title_screen`, `TestAudio` 1720/0 | Mac listen |
+| Cmd-Q | Done, draft PR; container probe only | | `Main.gd` | quit probe 10 ms while paused | Real Cmd-Q on the Mac |
+| Full QA | Passed on `6df47bd` | | | game 422/0, audio 1720/0, QA 19/0/0, GLB 199/0 | |
+
 ## Elias meds and labs draft — Claude Code (cloud), 2026-11-05
 
 | Task | State | Depends on | Paths | Validation | Next action |
