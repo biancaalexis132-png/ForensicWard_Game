@@ -1,0 +1,118 @@
+{
+	"schema_version": 1,
+	"notes": "Lived-in detail placed in a zone after it is built (SetDressing). Cosmetic only: no interaction, no wording, no story, clinical or save effect, and nothing on the floor where people walk. Wall items: their back sits on the wall at 'at' and 'facing' says which way the front points ('east' = +X, 'west' = -X, 'north' = -Z, 'south' = +Z). Ceiling items hang from 'at'.",
+	"zones": {
+		"zone_clinical_wing": [
+			{
+				"id": "gel_office",
+				"scene": "res://assets/exports/clinical/props/PROP_Dispenser_HandGel.glb",
+				"at": [
+					-1.45,
+					1.12,
+					-4.15
+				],
+				"facing": "east"
+			},
+			{
+				"id": "gel_nursing",
+				"scene": "res://assets/exports/clinical/props/PROP_Dispenser_HandGel.glb",
+				"at": [
+					-1.45,
+					1.12,
+					-8.15
+				],
+				"facing": "east"
+			},
+			{
+				"id": "gel_archive",
+				"scene": "res://assets/exports/clinical/props/PROP_Dispenser_HandGel.glb",
+				"at": [
+					-1.45,
+					1.12,
+					-16.15
+				],
+				"facing": "east"
+			},
+			{
+				"id": "gel_room_01",
+				"scene": "res://assets/exports/clinical/props/PROP_Dispenser_HandGel.glb",
+				"at": [
+					1.45,
+					1.12,
+					-2.15
+				],
+				"facing": "west"
+			},
+			{
+				"id": "gel_room_02",
+				"scene": "res://assets/exports/clinical/props/PROP_Dispenser_HandGel.glb",
+				"at": [
+					1.45,
+					1.12,
+					-6.15
+				],
+				"facing": "west"
+			},
+			{
+				"id": "gel_interview",
+				"scene": "res://assets/exports/clinical/props/PROP_Dispenser_HandGel.glb",
+				"at": [
+					1.45,
+					1.12,
+					-12.15
+				],
+				"facing": "west"
+			},
+			{
+				"id": "aed_cabinet",
+				"scene": "res://assets/exports/clinical/props/PROP_Cabinet_AED_Wall.glb",
+				"at": [
+					-1.5,
+					1.45,
+					-7.0
+				],
+				"facing": "east"
+			},
+			{
+				"id": "notice_board",
+				"scene": "res://assets/exports/clinical/props/PROP_NoticeBoard.glb",
+				"at": [
+					-1.43,
+					1.5,
+					-14.2
+				],
+				"facing": "east"
+			},
+			{
+				"id": "intercom",
+				"scene": "res://assets/exports/clinical/props/PROP_Intercom_Speaker.glb",
+				"at": [
+					-1.45,
+					2.3,
+					-1.5
+				],
+				"facing": "east"
+			},
+			{
+				"id": "camera_entry",
+				"scene": "res://assets/exports/clinical/props/PROP_Camera_Dome.glb",
+				"at": [
+					1.2,
+					2.99,
+					-2.0
+				],
+				"facing": "south"
+			},
+			{
+				"id": "camera_archive",
+				"scene": "res://assets/exports/clinical/props/PROP_Camera_Dome.glb",
+				"at": [
+					-1.2,
+					2.99,
+					-15.5
+				],
+				"facing": "south"
+			}
+		]
+	}
+}

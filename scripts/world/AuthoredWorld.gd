@@ -75,6 +75,7 @@ func build_zone(zone_id: String, scenes: Array[PackedScene]) -> Node3D:
 	_build_characters(root, zone_id, _config.get("characters", []))
 	# Ward-round patients waiting in the patient rooms (staging only).
 	WardRoundBedside.attach(root, zone_id)
+	SetDressing.attach(root, zone_id)
 	_collect_state_nodes(root)
 	_apply_states()
 	EnvironmentFinish.apply(root)
