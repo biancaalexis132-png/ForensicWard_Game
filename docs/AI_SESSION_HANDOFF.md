@@ -1,5 +1,12 @@
 # AI session handoff
 
+## Claude Code Elias bedside encounter — 2026-11-05
+
+- Objective: flesh out the Elias encounter from Bi's playtest (exam shown, full history, 1:1 sitter, orders from the encounter, background staff). Branch `claude/elias-encounter` (draft PR to `main`), from `main` `144e609`.
+- Done: encounter data, EncounterManager autoload, EncounterScreen, EncounterStage with ExamPoseModifier IK, six draft models (male/female psychiatrist, sitter, two nurses, housekeeper), background staff routes, split-screen milestone withdrawn. Test results in `docs/handoffs/2026-11-05_claude_elias_encounter.md`.
+- Pending Bi: clinical review of all encounter content (four questions in the review sheet); look at the models and poses on the Mac. Voice clips for the new lines need the local Kokoro setup.
+- Next exact step: answer review comments on the PR; after Bi's review, apply wording changes in `data/elias_encounter.json` and mark approved items. Last updated 2026-11-05.
+
 ## Claude Code Mac release polish — 2026-11-04
 
 - Objective: finish the five-chapter game for a Mac release (Bi's checklist). Branch `claude/mac-release-polish` at `7e59789` (draft PR to `main`), from `main` `f031e55`.

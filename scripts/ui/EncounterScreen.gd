@@ -153,7 +153,9 @@ func give_orders() -> Dictionary:
 	_selected_orders.clear()
 	var labels: Array[String] = []
 	for id: String in ids:
-		labels.append(str(EncounterManager.get_order_item(patient_id, id)["label"]).to_lower())
+		var label: String = str(EncounterManager.get_order_item(patient_id, id)["label"])
+		# Lower only the first letter, so abbreviations such as CK and IM keep their case.
+		labels.append(label.left(1).to_lower() + label.substr(1))
 	var sitter: String = str(EncounterManager.informant(patient_id).get("id", ""))
 	var beats: Array = [{"speaker": sitter, "text": "Got it, Doctor. I'll let the charge nurse know and get it all on the chart."}]
 	if result.get("challenge", false):

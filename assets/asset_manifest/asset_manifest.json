@@ -5666,6 +5666,80 @@
         "draft",
         "ward_round"
       ]
+    },
+    "Psychiatrist_Female_v01_draft": {
+      "path": "res://assets/exports/characters/Psychiatrist_Female_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "psychiatrist",
+        "protagonist",
+        "female",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Psychiatrist_Male_v01_draft": {
+      "path": "res://assets/exports/characters/Psychiatrist_Male_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "psychiatrist",
+        "protagonist",
+        "male",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Tom_Adler_v01_draft": {
+      "path": "res://assets/exports/characters/Tom_Adler_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "sitter",
+        "adler",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Ward_Nurse_A_v01_draft": {
+      "path": "res://assets/exports/characters/Ward_Nurse_A_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "nurse",
+        "background",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Ward_Nurse_B_v01_draft": {
+      "path": "res://assets/exports/characters/Ward_Nurse_B_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "nurse",
+        "background",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Housekeeper_v01_draft": {
+      "path": "res://assets/exports/characters/Housekeeper_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "housekeeping",
+        "background",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
     }
   },
   "schema_version": "1.0"

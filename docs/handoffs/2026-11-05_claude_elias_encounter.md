@@ -36,11 +36,15 @@ Story flags for other workstreams: `elias_history_complete`, `elias_exam_complet
 - `test_milestones.gd`: shipped milestones must be approved or carry `withdrawn`.
 - `test_campaign_cast.gd`: 11 cast members (7 story + sitter + 3 background); background staff face their own yaw.
 
+## Test results
+
+Full headless QA (`tests/qa/run.py`) on the branch tip before the docs commit: game **426/0** (417 + 9 new), audio **1720/0**, QA **19/0/0**, GLB **205/0** (six new models added to `asset_manifest.json`), CH1_SEQUENCE_DONE 61.9 s, exit 0. The only ERROR-like line is the existing missing-model test fixture. Captures at 1280x720 on llvmpipe (male psychiatrist, room only): introduction, sitter reading the packet, every exam step, orders, reassessment; copies in `/mnt/project-files/elias_encounter/screens/`.
+
 ## Known limits
 
 - Clinical content is all pending Bi's review (four questions at the end of the review sheet). Nothing is marked approved.
 - No voice clips for the new lines: they play as timed subtitles. Generating them needs the local Kokoro setup.
 - Exam poses are procedural IK over the standing clips; the psychiatrist stands (no sit clip). Ankle exam is a deep lean, not a crouch. Tuned only on Linux llvmpipe captures.
 - Protagonist recolouring multiplies the built textures; extreme choices (blond, light skin) may look flat.
-- Lab result text duplicates what the meds/labs thread may author in `order_catalog.json`; reconcile when that lands (point bedside items at the catalog ids through `ehr_order`).
+- Lab result text duplicates the meds/labs thread's work-up (`data/clinical_workups/elias_ward.json`, case `wr_ch1_elias_ward_workup`, read through `ClinicalWorkup.gd`; draft PR from "Meds and labs draft"). Its ids: labs `ck`, `bmp`, `cbc`, `uds`, `collateral` (required), `tsh`, `lft`, `neuro_exam`, `physical_exam` (helpful); plan keys `start:lorazepam`, `start:haloperidol`, `start:<antipsychotic|lithium>`, `int:nutrition_hydration`, `int:ect_referral`, `int:close_observation`. It adds no `ord_` ids. When both are merged, point the bedside items at those lab ids / plan keys and read results through `ClinicalWorkup.lab_result` (empty until approved), instead of `orders.lab_results` here.
 - Not tested on the Mac.
