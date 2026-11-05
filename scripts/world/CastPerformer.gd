@@ -50,6 +50,8 @@ var actor: WardCharacter
 var body_player: AnimationPlayer
 var gesture_player: AnimationPlayer
 var seated: bool = false
+## Face and eyes in conversation (null when the model has neither).
+var conversation: ConversationPerformance = null
 ## Returns true while another controller is acting the body (Naomi's cue lines).
 var body_busy: Callable = Callable()
 
@@ -83,6 +85,7 @@ static func attach(character: WardCharacter, model: Node3D, player: AnimationPla
 	performer.gesture_player = player.get_parent().get_node_or_null(
 			NodePath(CharacterActingAdapter.GESTURE_PLAYER_NAME)) as AnimationPlayer
 	model.add_child(performer)
+	performer.conversation = ConversationPerformance.attach(performer, model)
 	return performer
 
 

@@ -9,6 +9,8 @@ extends Node
 ##   player                   the active camera, when it is in front of her
 ##   workstation              the nearest EHR terminal, else down and to one side
 ##   workstation_then_player  the workstation briefly, then the player
+##   point                    a world point (look_at_point), such as another speaker
+##   away                     fixed angles off the listener (look_away), a glance aside
 ## Anything else, or a target behind her, returns the eyes to rest. Small
 ## fixational movements keep a held gaze from looking frozen.
 
@@ -40,6 +42,8 @@ var _angles: Vector2 = Vector2.ZERO  # x = yaw, y = pitch, degrees
 var _micro: Vector2 = Vector2.ZERO
 var _until_micro: float = 0.0
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var _point: Vector3 = Vector3.ZERO
+var _away: Vector2 = Vector2.ZERO
 
 
 ## Finds the eye bones. Returns false if the model has none.
@@ -82,6 +86,20 @@ func set_gaze_directive(directive: StringName) -> void:
 	_directive_time = 0.0
 
 
+## Looks at a world point; calling again only moves the point.
+func look_at_point(point: Vector3) -> void:
+	_point = point
+	if _directive != &"point":
+		set_gaze_directive(&"point")
+
+
+## Looks off to the side at fixed angles (degrees, x = yaw toward her left, y = pitch up).
+func look_away(angles: Vector2) -> void:
+	_away = Vector2(clampf(angles.x, -MAX_YAW_DEG, MAX_YAW_DEG), clampf(angles.y, -MAX_PITCH_DEG, MAX_PITCH_DEG))
+	if _directive != &"away":
+		set_gaze_directive(&"away")
+
+
 func get_gaze_directive() -> StringName:
 	return _directive
 
@@ -118,6 +136,10 @@ func _target_angles() -> Vector2:
 			if terminal != null:
 				return _angles_to(terminal.global_position, WORKSTATION_RANGE)
 			return WORKSTATION_FALLBACK_DEG
+		&"point":
+			return _angles_to(_point, PLAYER_RANGE)
+		&"away":
+			return _away
 	return Vector2.ZERO
 
 

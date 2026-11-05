@@ -71,8 +71,13 @@ Models carry one bone per eye, `eye_l` and `eye_r`, under the head (`eye_bones` 
 | `player` | the active camera, within 7 m and in front of her (beyond 60° to the side the eyes rest) |
 | `workstation` | the nearest EHR terminal within 4 m, else down and to her right |
 | `workstation_then_player` | the workstation for 1.2 s, then the player |
+| `point` | a world point (`look_at_point`), such as another speaker's head |
+| `away` | fixed angles off to one side (`look_away`), a glance aside |
+| `rest` | straight ahead |
 
 Small fixational movements keep a held gaze from looking frozen.
+
+For the shared cast (not Naomi), `ConversationPerformance` picks the directive and the expression morph each frame from `data/cast_performance.json`: speaking and listening faces, how often a speaker glances away, and the beat before a reply to the player's choice. Patients keep a neutral speaking face and never look away or pause.
 
 ## Shadows
 
