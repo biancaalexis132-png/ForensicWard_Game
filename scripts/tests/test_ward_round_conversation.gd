@@ -25,8 +25,35 @@ func after_each() -> void:
 func _screen() -> WardRoundScreen:
 	_main = load("res://scenes/main/Main.tscn").instantiate()
 	runner.add_child(_main)
-	EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": CASE_ID})
+	# Approached on the ward, the way a player reaches the bedside.
+	EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": CASE_ID, "at_bedside": true})
 	return _main.get_node("WardRoundScreen")
+
+
+func test_a_patient_on_the_ward_is_seen_there_before_the_plan_opens() -> void:
+	_main = load("res://scenes/main/Main.tscn").instantiate()
+	runner.add_child(_main)
+	# From the EHR, without going to the bedside.
+	EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": CASE_ID})
+	var screen: WardRoundScreen = _main.get_node("WardRoundScreen")
+	check(screen.needs_visit(CASE_ID), "a patient waiting on the ward is not seen from the EHR")
+	check(_census_text(screen).contains("not seen yet"), "the census says so")
+	check(screen._submit.disabled, "the plan cannot be sent")
+	check(not screen.order_lab("cbc"), "nor labs ordered")
+	check(screen.open_bedside("warm").is_empty(), "nor the bedside talk started from the EHR")
+	check(screen.visit_notice(CASE_ID).contains("You have not seen"), "the screen says to go and see them")
+	check(screen.submit().is_empty(), "submit does nothing")
+	screen.close()
+	# Approaching them on the ward opens the case for real.
+	EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": CASE_ID, "at_bedside": true})
+	check(not screen.needs_visit(CASE_ID), "approaching them counts as seeing them")
+	check(not screen._submit.disabled, "and the plan opens")
+	check(not _census_text(screen).contains(str(WardRounds.get_case(CASE_ID)["patient"]["name"]) + "  ·  not seen yet"),
+			"the census drops the note for them")
+	var saved: Dictionary = WardRounds.to_save_data()
+	check(WardRounds.validate_save_data(saved), "the seen mark saves")
+	WardRounds.load_save_data(saved)
+	check(WardRounds.is_seen(CASE_ID), "and loads")
 
 
 func _chart_text(screen: WardRoundScreen) -> String:

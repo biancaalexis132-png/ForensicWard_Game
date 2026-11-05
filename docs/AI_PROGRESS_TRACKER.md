@@ -11,6 +11,18 @@
 | Objective marker on the map | Not started | #137 merged | `SpatialMap.gd` | | After #137 |
 | Performances, atmosphere, transitions | Not started | | | | Later PRs |
 
+## Mac playtest fixes — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Naomi faces you and moves | Done, draft PR | | `CastPerformer.gd`, `Character.gd` | `test_cast_motion` | Mac look |
+| Voice follows the character | Done, draft PR | | `ProtagonistScreen.gd` | `test_playtest_voice` | Mac listen |
+| Voss walks out after the talk | Done, draft PR (Chapter 1) | | `CastExit.gd`, `world_chapter1.json` | `test_cast_motion` (path clear, back on load) | Mac look; author other chapters if wanted |
+| Ward round only for patients seen | Done, draft PR | | `WardRounds.gd`, `WardRoundScreen.gd`, `WardRoundBedside.gd` | `test_ward_round*` | Mac check |
+| Title music; rain over music | Done, draft PR | | `TitleScreen.gd`, `audio/cues.json` | `test_title_screen`, `TestAudio` 1720/0 | Mac listen |
+| Cmd-Q | Done, draft PR; container probe only | | `Main.gd` | quit probe 10 ms while paused | Real Cmd-Q on the Mac |
+| Full QA | Passed on `6df47bd` | | | game 422/0, audio 1720/0, QA 19/0/0, GLB 199/0 | |
+
 ## Elias meds and labs draft — Claude Code (cloud), 2026-11-05
 
 | Task | State | Depends on | Paths | Validation | Next action |

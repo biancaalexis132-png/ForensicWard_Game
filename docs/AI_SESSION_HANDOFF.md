@@ -7,6 +7,13 @@
 - Next: after #137 merges, the objective marker on the map and the ending paragraph (review sheet section D); then performances, atmosphere, transitions.
 - Constraints: no new clinical or story wording without Bi's approval; never merge; never run git on the SSK drive. Last updated 2026-11-05.
 
+## Claude Code Mac playtest fixes — 2026-11-05
+
+- Objective: fix the smaller findings from Bi's first play of the packaged Mac app. Branch `claude/mac-playtest-fixes` at `6df47bd` plus this docs commit (draft PR to `main`).
+- Done: Naomi turns and acts; pronouns pick the voice; Voss walks out after the talk (`CastExit`); ward-round patients must be seen on the ward first; title theme from launch and the corridor bed (the "rain") lowered; quit no longer timer-based. Full QA on `6df47bd` (this branch with `main` `fbd1544` merged): game **422/0**, audio **1720/0**, QA **19/0/0**, GLB **199/0**, pharmacology 0 failures, CH1_SEQUENCE_DONE 62.3 s, no ERROR lines, exit 0.
+- Pending Bi: merge; then a Mac rebuild and hand check (Remote Control or Bi). Elias redesign and background staff: separate thread.
+- Next exact step: on the Mac, `~/Developer/forensicward-release`, check out the branch (or `main`), `tools/release/export_macos.sh`, open the app, check the items in `docs/handoffs/2026-11-05_claude_mac_playtest_fixes.md`. Never git on the SSK drive. Last updated 2026-11-05.
+
 ## Claude Code Elias meds and labs draft — 2026-11-05
 
 - Objective: draft Elias's medication and lab orders for Bi's clinical sign-off, switched off until approved.

@@ -41,6 +41,7 @@ var _attached_visual: Node3D
 var _visual_slot_ready: bool = false
 ## Why a catalogued model could not be shown ("" when there is no fault).
 var visual_error: String = ""
+var _away: bool = false
 
 ## Magenta reads as "broken build" at a glance; no authored character uses it.
 const MISSING_VISUAL_COLOR: Color = Color(1.0, 0.0, 0.85)
@@ -110,8 +111,12 @@ func set_visual_scene(scene: PackedScene) -> bool:
 	_visual_root.add_child(_attached_visual)
 	_attached_visual.transform = visual_placement * _attached_visual.transform
 	var body_player: AnimationPlayer = CharacterAnimationRig.setup(_attached_visual)
-	# Naomi's own acting controller drives her clips; everyone else gets the shared one.
-	performer = null if character_id == "staff_bennett" else CastPerformer.attach(self, _attached_visual, body_player)
+	performer = CastPerformer.attach(self, _attached_visual, body_player)
+	if performer != null and character_id == "staff_bennett":
+		# Naomi's own controller acts her authored handover lines; the shared one
+		# turns her to the player and acts every other conversation.
+		performer.body_busy = func() -> bool:
+			return is_instance_valid(_naomi_acting) and not _naomi_acting.get_active_line_id().is_empty()
 	visual_scene = scene
 	visual_error = ""
 	_placeholder_mesh.material_override = null
@@ -172,6 +177,19 @@ func is_present() -> bool:
 	return visible
 
 
+## Stepped out of the scene for a while (CastExit): hidden, not solid and not
+## interactable, on top of whatever present_when says. Cosmetic, never saved.
+func set_away(away: bool) -> void:
+	if _away == away:
+		return
+	_away = away
+	_update_presence()
+
+
+func is_away() -> bool:
+	return _away
+
+
 func _on_story_option_selected(_interaction_id: String, _option_id: String) -> void:
 	# Deferred: ChapterDirector records the choice's flag in the same signal.
 	_update_presence.call_deferred()
@@ -181,10 +199,14 @@ func _update_presence() -> void:
 	if not is_inside_tree():
 		return  # Re-checked on tree_entered (unloaded zones keep their characters).
 	var director: Node = get_tree().get_first_node_in_group(ChapterDirector.GROUP)
-	var present: bool = director == null or StoryLogic.evaluate(present_when, director.get_story_context())
+	var in_story: bool = present_when.is_empty() or director == null \
+			or StoryLogic.evaluate(present_when, director.get_story_context())
+	var present: bool = in_story and not _away
 	visible = present
 	# Hidden alternate cast members must not keep evaluating skin/face/gaze rigs.
-	process_mode = Node.PROCESS_MODE_INHERIT if present else Node.PROCESS_MODE_DISABLED
+	process_mode = Node.PROCESS_MODE_INHERIT if in_story else Node.PROCESS_MODE_DISABLED
+	# A character that stepped out only rests its visuals, so its exit can bring it back.
+	_visual_root.process_mode = Node.PROCESS_MODE_DISABLED if _away else Node.PROCESS_MODE_INHERIT
 	_interactable.enabled = present
 	_interactable.collision_layer = (1 << (Interactable.INTERACTABLE_LAYER - 1)) if present else 0
 	($Body/Collision as CollisionShape3D).disabled = seated or not present
@@ -202,14 +224,14 @@ func _on_interacted(_interactor: Node) -> void:
 	if kind == Kind.STAFF:
 		if is_instance_valid(_naomi_acting):
 			_naomi_acting.begin_conversation()
-		elif is_instance_valid(performer):
+		if is_instance_valid(performer):
 			performer.begin_conversation()
 		_talk_to_staff()
 	else:
 		if is_instance_valid(performer):
 			performer.begin_conversation()
 		if kind == Kind.WARD_ROUND:
-			EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": ward_round_case_id})
+			EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": ward_round_case_id, "at_bedside": true})
 		else:
 			_approach_patient()
 
