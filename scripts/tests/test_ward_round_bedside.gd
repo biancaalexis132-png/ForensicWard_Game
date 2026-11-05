@@ -93,7 +93,7 @@ func test_approaching_a_patient_opens_their_case() -> void:
 	EventBus.ui_panel_requested.connect(record)
 	bedside.occupant("room_02").get_node("Interactable").interacted.emit(null)
 	EventBus.ui_panel_requested.disconnect(record)
-	check_eq(requests, [[WardRoundScreen.PANEL_ID, {"case_id": "wr_ch1_natarajan"}]], "ward-round screen opens on Natarajan")
+	check_eq(requests, [[WardRoundScreen.PANEL_ID, {"case_id": "wr_ch1_natarajan", "at_bedside": true}]], "ward-round screen opens on Natarajan")
 	check(bedside.occupant("room_02").performer.is_engaged(), "she turns to the conversation")
 
 
@@ -169,7 +169,7 @@ func test_earlier_patients_wait_on_the_chairs_for_a_check_in() -> void:
 	EventBus.ui_panel_requested.connect(record)
 	patient.get_node("Interactable").interacted.emit(null)
 	EventBus.ui_panel_requested.disconnect(record)
-	check_eq(requests, [[WardRoundScreen.PANEL_ID, {"case_id": "wr_ch1_ortiz"}]], "approaching him opens his case")
+	check_eq(requests, [[WardRoundScreen.PANEL_ID, {"case_id": "wr_ch1_ortiz", "at_bedside": true}]], "approaching him opens his case")
 	var notices: Array[String] = []
 	var note: Callable = func(text: String) -> void: notices.append(text)
 	EventBus.notification_requested.connect(note)

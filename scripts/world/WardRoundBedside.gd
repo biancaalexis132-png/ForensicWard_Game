@@ -160,6 +160,17 @@ func _seated_where(check_in: bool) -> Dictionary:
 	return result
 
 
+## Where this patient is waiting ("Room 01"), or "" when they have no place yet.
+func place_label_for(case_id: String) -> String:
+	for slot_id: String in _occupants:
+		var character: WardCharacter = occupant(slot_id)
+		if character != null and character.ward_round_case_id == case_id:
+			for slot: Dictionary in _data.get("slots", []) + _check_in_slots():
+				if str(slot["id"]) == slot_id:
+					return str(slot.get("label", slot_id))
+	return ""
+
+
 func occupant(slot_id: String) -> WardCharacter:
 	var character: Variant = _occupants.get(slot_id, null)
 	return character if is_instance_valid(character) else null

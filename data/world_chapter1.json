@@ -23,7 +23,7 @@
 		{"node": "NS_NoticeBoard", "type": "shift_signout", "title": "Shift handover board (sign out)"}
 	],
 	"characters": [
-		{"marker": "MARK_Character_DrVoss", "kind": "staff", "character_id": "staff_voss"},
+		{"marker": "MARK_Character_DrVoss", "kind": "staff", "character_id": "staff_voss", "exit_after_talk": {"points": [[-0.273, -0.073], [-2.092, 0.977], [-1.292, 2.362]], "door": "door_office"}},
 		{"marker": "MARK_Character_NurseBennett", "kind": "staff", "character_id": "staff_bennett", "interaction_box": {"center": [-1.25, 1.65, -11.0], "size": [0.2, 0.6, 1.4]}},
 		{"marker": "MARK_Seat_Patient", "kind": "patient", "character_id": "pt_elias_ward", "seated": true}
 	],

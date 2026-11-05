@@ -7,6 +7,13 @@
 - Approved by Bi on 2026-11-05 ("approve"); PR #136 is ready for review. Pending Bi: merge. Earlier ask was to look at the review sheets (`/mnt/project-files/cast_v02/`, `assets/renders/characters/*_v02_*.png`) and in game on the Mac; merge the PR.
 - Next exact step: none until Bi reviews. If Elias's far shoulder still shows a dark sliver, rerun `tuck_neckline.py` with a larger `--band-m`, then `add_motion_clips.py`. See `docs/handoffs/2026-11-05_claude_cast_v02.md`. Last updated 2026-11-05 01:50 UTC.
 
+## Claude Code Mac playtest fixes — 2026-11-05
+
+- Objective: fix the smaller findings from Bi's first play of the packaged Mac app. Branch `claude/mac-playtest-fixes` at `6df47bd` plus this docs commit (draft PR to `main`).
+- Done: Naomi turns and acts; pronouns pick the voice; Voss walks out after the talk (`CastExit`); ward-round patients must be seen on the ward first; title theme from launch and the corridor bed (the "rain") lowered; quit no longer timer-based. Full QA on `6df47bd` (this branch with `main` `fbd1544` merged): game **422/0**, audio **1720/0**, QA **19/0/0**, GLB **199/0**, pharmacology 0 failures, CH1_SEQUENCE_DONE 62.3 s, no ERROR lines, exit 0.
+- Pending Bi: merge; then a Mac rebuild and hand check (Remote Control or Bi). Elias redesign and background staff: separate thread.
+- Next exact step: on the Mac, `~/Developer/forensicward-release`, check out the branch (or `main`), `tools/release/export_macos.sh`, open the app, check the items in `docs/handoffs/2026-11-05_claude_mac_playtest_fixes.md`. Never git on the SSK drive. Last updated 2026-11-05.
+
 ## Claude Code Elias meds and labs draft — 2026-11-05
 
 - Objective: draft Elias's medication and lab orders for Bi's clinical sign-off, switched off until approved.
