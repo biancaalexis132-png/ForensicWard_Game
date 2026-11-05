@@ -76,6 +76,9 @@ func refresh() -> void:
 				lines.append("[color=#8fa39d][s]%s[/s][/color]" % _escape(objective["text"]))
 			"current":
 				lines.append("[b]• %s[/b]" % _escape(objective["text"]))
+				var place: String = CaseFile.objective_place(_director())
+				if not place.is_empty():
+					lines.append("[color=#9fc9bc]   %s[/color]" % _escape(place))
 	_checklist.text = "\n".join(lines)
 	_checklist.visible = Settings.get_value("objective_checklist") and not lines.is_empty()
 
@@ -129,8 +132,12 @@ func _show_next() -> void:
 	tween.tween_callback(_show_next)
 
 
+func _director() -> ChapterDirector:
+	return get_tree().get_first_node_in_group(ChapterDirector.GROUP) if is_inside_tree() else null
+
+
 func _objectives() -> Array[Dictionary]:
-	var director: ChapterDirector = get_tree().get_first_node_in_group(ChapterDirector.GROUP) if is_inside_tree() else null
+	var director: ChapterDirector = _director()
 	if director == null:
 		var none: Array[Dictionary] = []
 		return none

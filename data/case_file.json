@@ -1,0 +1,492 @@
+{
+	"schema_version": "1.0",
+	"notes": "Case file notes: which story choices appear in the case file, as established or still open. Every text is copied verbatim from that choice's approved response; ContentValidator-style checks in CaseFileCatalog enforce it.",
+	"entries": [
+		{
+			"chapter": "ch2",
+			"flag": "ch2_clinical_work_owned",
+			"status": "care",
+			"text": "You retain responsibility for the outstanding clinical review and follow-up. No clinical task is marked completed. The records discrepancy can be investigated separately."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_discrepancy_recorded",
+			"status": "open",
+			"text": "Comparison recorded as unresolved. Request the authorized source-system export and preservation of the originals before drawing conclusions."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_sources_requested",
+			"status": "open",
+			"text": "Request submitted for authorized Records review. Source access and reconciliation remain pending. The originals must be retained; no independent corroboration or loss of time is established."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_clock_reviewed",
+			"status": "open",
+			"text": "Clock review recorded: no correction can be justified yet. Raw offsets, clock authority and synchronization history remain requested. The displayed mismatch remains unresolved."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_order_reviewed",
+			"status": "open",
+			"text": "Export-order review recorded. Preserve the original representation and request its sort key, raw event sequence and transformation history. Do not reorder or overwrite the original."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_dependencies_reviewed",
+			"status": "open",
+			"text": "Dependency review recorded: source independence remains unestablished. Request original capture, clock authority, extraction history and shared dependencies before counting corroboration."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_preservation_followup",
+			"status": "open",
+			"text": "Preservation follow-up recorded. Request confirmation of original receipt, unchanged source bytes/checksum and custody history from authorized Records staff. Receipt and preservation remain unconfirmed."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_followup_clock_authority",
+			"status": "open",
+			"text": "Unresolved memo recorded with clock-authority/offset verification prioritized. Records must also address ordering, lineage, custody and preservation. Source receipt and any reconciliation remain pending. Return to Naomi to acknowledge the outstanding work."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_followup_source_lineage",
+			"status": "open",
+			"text": "Unresolved memo recorded with source-lineage/custody verification prioritized. Records must also address clock authority, offsets, ordering and preservation. Source receipt and any reconciliation remain pending. Return to Naomi to acknowledge the outstanding work."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_voss_scope_recorded",
+			"status": "established",
+			"text": "Factual scope recorded. Talk to Voss again about what the follow-up still needs."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_voss_permissions_recorded",
+			"status": "open",
+			"text": "Missing permissions recorded:\nInformation Security: audit of the inactive credential and who could use it.\nRecords: the pending preservation and source-export request, with clock and ordering metadata.\nSecurity: any question about W0-B access policy. No inspection is authorized.\nClinical follow-up stays with you and the nursing team."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_voss_followup_written_process",
+			"status": "open",
+			"text": "Follow-up recorded: written process requested. The records discrepancy and the credential audit remain unresolved."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_voss_followup_independent_review",
+			"status": "open",
+			"text": "Follow-up recorded: independent reconciliation proposed. The source request, preservation confirmation and credential audit remain pending."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_mara_records_referred",
+			"status": "open",
+			"text": "Referral sent to the authorized Records office: two copies, two dates, origin of each copy to be checked. No finding about the records is made, and nothing in Mara's clinical assessment changes. Her follow-up (sleep and function support, safety follow-up, legal-role clarification, medication reconciliation) stays with the clinical team."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_analyst_candidates_logged",
+			"status": "open",
+			"text": "Candidates logged: clock skew, migrated location codes, export sorting, identifier collision. Each may explain part of the discrepancy; none is confirmed. The discrepancy stays unresolved."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_analyst_next_source_extraction",
+			"status": "open",
+			"text": "Next check recorded: source extraction requested through Records' authorized process. It tests clock skew and export sorting once received. Nothing is received yet; every candidate stays open."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_analyst_next_identifier_crosswalk",
+			"status": "open",
+			"text": "Next check recorded: identifier crosswalk between legacy and current codes. It tests migrated location codes and identifier collision. Clock and ordering questions stay open."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_analyst_next_second_review",
+			"status": "open",
+			"text": "Next check recorded: neutral second review requested. A reviewer outside the team re-checks the candidates and the method. No candidate is confirmed in the meantime."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_hale_question_scoped",
+			"status": "established",
+			"text": "Question recorded. Ask Hale for one permitted follow-up."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_hale_clinical_risk_check",
+			"status": "open",
+			"text": "Follow-up recorded: clinical risk check requested. No patient is moved and no access changes."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_hale_report_summary",
+			"status": "open",
+			"text": "Follow-up recorded: permitted report summary requested. The credential audit stays with Information Security."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_hale_facilities_plans",
+			"status": "open",
+			"text": "Follow-up recorded: archived facilities plans requested. No route or access is authorized."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_witness_account_recorded",
+			"status": "established",
+			"text": "Recorded as reported: heard what sounded like the old lift bell during a scheduled shutdown; possibly the test cycle; did not see anyone use the lift. This is witness memory, not an observation of movement."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_witness_work_orders",
+			"status": "open",
+			"text": "Follow-up recorded: confirm scheduled work orders. The bell may match a test; nothing is concluded yet."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_witness_as_reported",
+			"status": "established",
+			"text": "Follow-up recorded: the statement stands in the technician's own words, including \"could've been the test cycle\" and \"I wouldn't say I did\". No inference is added."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_witness_timing",
+			"status": "open",
+			"text": "Follow-up recorded: timing to be checked against shift and work-order records. No time is assigned from memory."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_lobby_escort_granted",
+			"status": "established",
+			"text": "Scope recorded: lobby doors only, with an escort. Lift, service hatch and W0-B remain locked."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_lobby_state_documented",
+			"status": "established",
+			"text": "Documented: doors closed and latched at first check; ajar on return; the escort and you did not watch them continuously in between. No cause is recorded."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_lobby_area_secured",
+			"status": "open",
+			"text": "The doors are pushed shut and the latch engages. Security has the report: found ajar during an escorted check, cause unknown."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_lobby_latch_assessment",
+			"status": "open",
+			"text": "Request recorded: Facilities to check the lobby door latch and the corridor ventilation pressure. The doors were found ajar after an unwatched interval; no cause is assumed."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_wrongday_incident_record",
+			"status": "open",
+			"text": "Recorded in the incident record: two export representations disagree on the access-event date; time-zone provenance unreconciled. Mara's clinical note is unchanged and kept separate."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_wrongday_audit_escalation",
+			"status": "open",
+			"text": "Escalation requested through the audit process. Both versions stay as received; no date is chosen."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_wrongday_preserve_versions",
+			"status": "established",
+			"text": "Both versions are preserved separately with their provenance. Neither is treated as corroborating the other."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_wrongday_technical_review",
+			"status": "open",
+			"text": "Independent technical review requested. Until it reports, the date stays unresolved."
+		},
+		{
+			"chapter": "ch2",
+			"flag": "ch2_hours_report_limits",
+			"status": "open",
+			"text": "Report recorded: part of the timing mismatch is explained by clock differences; the remainder of the reported interval cannot be reconstructed from the available records. Source, preservation and audit requests remain open."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_coverage_confirmed",
+			"status": "care",
+			"text": "Clinical coverage confirmed."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_audit_summary_read",
+			"status": "open",
+			"text": "The summary lists what Chapter 2 left open: an inactive credential in the transfer-request audit, export versions that disagree on a date, an unwatched door found ajar and a witness who heard but did not see. Nothing in it is resolved."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_scope_clarified",
+			"status": "established",
+			"text": "Scope recorded: you attend for the transfer-workflow question only. The building survey belongs to Security and Facilities."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_levels_noted",
+			"status": "open",
+			"text": "Logged: current and historic level datums differ; no conclusion drawn."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_entry_maps_compared",
+			"status": "open",
+			"text": "The historic plan shows this threshold and a corridor beyond; the current map shows nothing below the sealed corridor. Logged as a plan-edition difference."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_entry_signage_checked",
+			"status": "open",
+			"text": "Stencils read LOWER LEVEL B and SERVICE B. The plate's wording matches the archival plan's room schedule. No sign uses the W0-B code itself; the designation remains the plan's."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_entry_condition_documented",
+			"status": "established",
+			"text": "Documented with the time: inner door closed, frame intact, dust undisturbed except along the team's marked line, one radiator, one lamp working."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_entry_route_verified",
+			"status": "established",
+			"text": "Hale walks it with you: threshold, opened infill, sealed corridor, mechanical corridor, stair. One route, physically continuous, marked."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_alcove_plans_compared",
+			"status": "open",
+			"text": "Two later editions agree with what is built; the oldest puts it one bay earlier. Annotated with the reference points. Cause unknown."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_alcove_survey_requested",
+			"status": "open",
+			"text": "Engineer: I'll add it to the survey request with measured reference points. Until then it's a drawing discrepancy."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_alcove_discrepancy_preserved",
+			"status": "open",
+			"text": "Logged as found: built position and one plan edition differ by one bay. Renovation and drawing error both remain possible."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_route_paused",
+			"status": "established",
+			"text": "The team holds at the authorized point. Inspection paused for a route check."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_ambiguity_recorded",
+			"status": "established",
+			"text": "One approved, physically continuous route back."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_debrief_done",
+			"status": "established",
+			"text": "Debrief recorded: similar landmarks, an uncertain plan revision, one unreconciled location note, two plan areas with the same label. Each statement under its own name."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_survey_requested",
+			"status": "open",
+			"text": "Survey request supported; repeat entry remains suspended."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_measurement_unresolved",
+			"status": "open",
+			"text": "Marked unresolved_measurement: values, instruments, reference points and times kept as taken."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_protocol_requested",
+			"status": "open",
+			"text": "Protocol requested: same reference points, calibrated instruments, logged clocks, two independent teams."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_restriction_maintained",
+			"status": "open",
+			"text": "Restricted status maintained. No entry until the protocol and safety authorization are in place."
+		},
+		{
+			"chapter": "ch3",
+			"flag": "ch3_report_submitted",
+			"status": "open",
+			"text": "Report submitted. Access remains restricted."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_meeting_transparent",
+			"status": "established",
+			"text": "Voss: Good. Both files say what was observed and what wasn't."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_meeting_restrictions",
+			"status": "established",
+			"text": "Hale: Then we agree. The restriction stays until the safety review signs off."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_meeting_outside_expertise",
+			"status": "established",
+			"text": "Voss: I'll ask for an outside reviewer. The safety review still comes first."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_summary_corrected",
+			"status": "open",
+			"text": "Official finding entered: plan editions and observations disagree; cause unresolved; independent review pending. The first draft is kept in the revision history."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_rahman_boundary",
+			"status": "established",
+			"text": "Rahman: Both are important. Different questions need different evidence."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_paper_trail_preserved",
+			"status": "open",
+			"text": "Both originals preserved. Checks listed: display-difference correction, clock-source comparison, custody trail. Independence documented per record. The time-order contradiction stands."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_repeatability_open",
+			"status": "open",
+			"text": "Recorded: controlled watch with no door movement; an authorized entry between the original checks is not excluded; logs and inspection results preserved. Repeatability open."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_disagreement_external",
+			"status": "established",
+			"text": "Voss: Agreed. An outside team with its own instruments, under Hale's restriction."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_disagreement_briefing",
+			"status": "established",
+			"text": "Voss: One briefing, three obligations: care, safety, record. I'll schedule it."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_disagreement_dissent",
+			"status": "established",
+			"text": "Voss: Noted in the record under your name. The restriction and the care plan stand."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_defect_logged",
+			"status": "established",
+			"text": "Logged twice, independently written: panel 17, diagonal crack, beside the alcove. Time noted on both sheets."
+		},
+		{
+			"chapter": "ch4",
+			"flag": "ch4_record_filed",
+			"status": "open",
+			"text": "Voss: Filed. Observed repetition, unverified. Both sheets attached as written."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_brief_preserve",
+			"status": "established",
+			"text": "Hale: Logged. New sheets, new notes, originals untouched."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_brief_coverage",
+			"status": "care",
+			"text": "Rahman: I'm covering the ward. Nobody upstairs goes without."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_room_recorded",
+			"status": "open",
+			"text": "Both recordings logged as they are, with their clock sources. The contradiction is preserved as an unresolved observation."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_records_timeline",
+			"status": "established",
+			"text": "Timeline rebuilt from authenticated entries. Unauthenticated entries listed separately."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_records_provenance",
+			"status": "open",
+			"text": "Unknown-provenance entries flagged, not removed."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_records_gaps",
+			"status": "established",
+			"text": "Archival gaps and proven misconduct filed under separate headings. Nothing moved between them without evidence."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_finding_conflict",
+			"status": "established",
+			"text": "Analyst: That's what the evidence supports."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_finding_bounded",
+			"status": "established",
+			"text": "Analyst: Agreed. Bounded, documented, stoppable."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_care_escalated",
+			"status": "care",
+			"text": "Questions answered within your role; the follow-up handed to the receiving team with a named deadline before evening handoff."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_sources_counted",
+			"status": "established",
+			"text": "Rahman: Then let's make sure that's how it's reported."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_ending_review",
+			"status": "established",
+			"text": "Voss: Then we prepare a factual referral."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_ending_restricted",
+			"status": "established",
+			"text": "Hale: That's a defensible safety position."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_ending_inquiry",
+			"status": "established",
+			"text": "Rahman: As long as patient care and access controls are protected."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_mara_answered",
+			"status": "care",
+			"text": "You: Frustration doesn't make your questions irrelevant."
+		},
+		{
+			"chapter": "ch5",
+			"flag": "ch5_mara_listened",
+			"status": "care",
+			"text": "You: Frustration doesn't make your questions irrelevant."
+		}
+	]
+}
