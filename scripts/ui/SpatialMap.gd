@@ -2,7 +2,7 @@ class_name SpatialMap
 extends Control
 ## Draws a FloorPlan snapshot: rooms named beside the plan with leader lines
 ## (rooms west of the plan's middle on the left, the rest on the right), the
-## room you are in highlighted, people as named dots, doors (green open to
+## room you are in highlighted, the current objective as a gold star, people as named dots, doors (green open to
 ## you, amber locked) and EHR workstations, with a drawn legend.
 
 const ROOM: Color = Color("2b3f4a")
@@ -14,6 +14,7 @@ const DOOR_OPEN: Color = Color("82d1a5")
 const DOOR_LOCKED: Color = Color("edb164")
 const STATION: Color = Color("91d7ee")
 const PERSON: Color = Color("f2c7e0")
+const OBJECTIVE: Color = Color("ffd36b")
 const LABEL_SIZE: int = 17
 const LABEL_GAP: float = 30.0
 const LEGEND_HEIGHT: float = 34.0
@@ -74,6 +75,9 @@ func _draw() -> void:
 		draw_circle(p, 5, PERSON)
 		draw_string_outline(font, p + Vector2(8, 5), _short_name(person["name"]), HORIZONTAL_ALIGNMENT_LEFT, -1, 14, 4, Color.BLACK)
 		draw_string(font, p + Vector2(8, 5), _short_name(person["name"]), HORIZONTAL_ALIGNMENT_LEFT, -1, 14, PERSON)
+	var objective: Dictionary = plan.get("objective", {})
+	if objective.has("position"):
+		_draw_star(_point(objective["position"]), 13.0, OBJECTIVE)
 	var me: Vector2 = _point(plan["player"])
 	var heading: Vector2 = Vector2(-sin(float(plan["yaw"])), -cos(float(plan["yaw"])))
 	var side: Vector2 = Vector2(-heading.y, heading.x)
@@ -133,7 +137,7 @@ static func _is_corridor(screen: Rect2) -> bool:
 func _draw_legend(font: Font) -> void:
 	var y: float = size.y - LEGEND_HEIGHT / 2.0
 	var x: float = 16.0
-	var items: Array = [["you", Color.WHITE], ["person", PERSON], ["open to you", DOOR_OPEN], ["locked", DOOR_LOCKED], ["EHR", STATION]]
+	var items: Array = [["you", Color.WHITE], ["objective", OBJECTIVE], ["person", PERSON], ["open to you", DOOR_OPEN], ["locked", DOOR_LOCKED], ["EHR", STATION]]
 	for item: Array in items:
 		var color: Color = item[1]
 		match item[0]:
@@ -143,12 +147,26 @@ func _draw_legend(font: Font) -> void:
 				draw_circle(Vector2(x, y), 5, color)
 				draw_line(Vector2(x - 5, y - 5), Vector2(x + 5, y + 5), color, 2.0)
 				draw_line(Vector2(x - 5, y + 5), Vector2(x + 5, y - 5), color, 2.0)
+			"objective":
+				_draw_star(Vector2(x, y), 8.0, color)
 			"EHR":
 				draw_rect(Rect2(Vector2(x - 6, y - 5), Vector2(12, 10)), color, false, 1.5)
 			_:
 				draw_circle(Vector2(x, y), 5, color)
 		draw_string(font, Vector2(x + 12, y + 5), item[0], HORIZONTAL_ALIGNMENT_LEFT, -1, 15, LABEL)
 		x += 26 + font.get_string_size(item[0], HORIZONTAL_ALIGNMENT_LEFT, -1, 15).x + 22
+
+
+## A five-pointed star with a dark outline, so it reads over rooms and dots.
+func _draw_star(center: Vector2, radius: float, color: Color) -> void:
+	var points: PackedVector2Array = []
+	for i: int in 10:
+		var r: float = radius if i % 2 == 0 else radius * 0.45
+		var angle: float = -PI / 2.0 + i * PI / 5.0
+		points.append(center + Vector2(cos(angle), sin(angle)) * r)
+	draw_colored_polygon(points, color)
+	points.append(points[0])
+	draw_polyline(points, Color.BLACK, 1.5)
 
 
 ## "Nurse Naomi Bennett" → "Naomi Bennett"; the dot label only needs the name.

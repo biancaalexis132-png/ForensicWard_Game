@@ -144,6 +144,52 @@ static func objective_place(director: ChapterDirector) -> String:
 	return _place_for(objective["complete_when"], director)
 
 
+## What the current objective points at, for the map: {"character": id},
+## {"node": interactable node name}, {"type": interactable type} (the EHR,
+## the sign-out board) or {"zone": id}; {} when the data does not say.
+## Follows the same first-unmet-condition rule as objective_place().
+static func objective_target(director: ChapterDirector) -> Dictionary:
+	if director == null:
+		return {}
+	var objective: Dictionary = director.get_current_objective()
+	if objective.is_empty():
+		return {}
+	return _target_for(objective["complete_when"], director)
+
+
+static func _target_for(condition: Dictionary, director: ChapterDirector) -> Dictionary:
+	var kind: String = condition.keys()[0]
+	var value: Variant = condition[kind]
+	match kind:
+		"all":
+			for part: Dictionary in value:
+				if not StoryLogic.evaluate(part, director.get_story_context()):
+					return _target_for(part, director)
+		"any":
+			for part: Dictionary in value:
+				var target: Dictionary = _target_for(part, director)
+				if not target.is_empty():
+					return target
+		"flag":
+			var found: Dictionary = _option_for_flag(director.get_chapter_id(), str(value))
+			if not found.is_empty():
+				var interactable_id: String = found["interaction"]["interactable_id"]
+				if interactable_id.begins_with("character:"):
+					return {"character": interactable_id.trim_prefix("character:")}
+				return {"node": interactable_id}
+		"talked_to":
+			return {"character": str(value)}
+		"zone":
+			return {"zone": str(value)}
+		"observations_recorded":
+			return {"character": str(value.get("patient_id", ""))}
+		"note_saved", "action_committed":
+			return {"type": "ehr_terminal"}
+		"shift":
+			return {"type": "shift_signout"}
+	return {}
+
+
 ## Clue and hypothesis lines for the Evidence section.
 static func evidence_summary() -> Dictionary:
 	var hypotheses: Array[Dictionary] = []

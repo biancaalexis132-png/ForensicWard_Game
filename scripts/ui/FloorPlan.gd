@@ -2,13 +2,16 @@ class_name FloorPlan
 extends RefCounted
 ## Read-only projection of the current loaded zone. Never loads or reveals another floor.
 
-static func snapshot(world: AuthoredWorld, player: Node3D, zones: ZoneDirector) -> Dictionary:
+## With a director, "objective" says where the current objective is: {"label",
+## "position", "room"} when it is on this floor, {"label", "elsewhere": true}
+## when it is not, and {} when the objective names no place.
+static func snapshot(world: AuthoredWorld, player: Node3D, zones: ZoneDirector, director: ChapterDirector = null) -> Dictionary:
 	var zone_id: String = zones.current_zone_id
 	var zone: Dictionary = ContentRegistry.get_zone(zone_id)
 	var result: Dictionary = {"zone_id": zone_id, "title": zone.get("title", ""),
 			"level": zone.get("level", ""), "floors": [], "doors": [], "stations": [],
 			"player": Vector2(player.global_position.x, player.global_position.z), "yaw": player.global_rotation.y,
-			"people": [], "here": ""}
+			"people": [], "here": "", "objective": {}}
 	var root: Node3D = world.get_zone_root(zone_id)
 	if root == null:
 		return result
@@ -54,7 +57,39 @@ static func snapshot(world: AuthoredWorld, player: Node3D, zones: ZoneDirector) 
 		if data.is_empty():
 			data = ContentRegistry.get_patient(character_id)
 		result["people"].append({"id": character_id, "name": str(data.get("name", character_id)), "position": at, "room": room})
+	result["objective"] = _objective(world, root, result, director)
 	return result
+
+
+static func _objective(world: AuthoredWorld, root: Node3D, plan: Dictionary, director: ChapterDirector) -> Dictionary:
+	var label: String = CaseFile.objective_place(director)
+	var target: Dictionary = CaseFile.objective_target(director)
+	if label.is_empty() or target.is_empty():
+		return {}
+	var points: Array[Vector2] = []
+	if target.has("character"):
+		for person: Dictionary in plan["people"]:
+			if person["id"] == target["character"]:
+				points.append(person["position"])
+	elif target.has("node"):
+		var controller: ImportedInteractable = world.get_interactable(str(target["node"]))
+		if controller != null and root.is_ancestor_of(controller):
+			var prop: Node3D = controller.get_parent() as Node3D
+			points.append(Vector2(prop.global_position.x, prop.global_position.z))
+	elif target.has("type"):
+		for controller: Node in root.find_children("InteractableController", "ImportedInteractable", true, false):
+			if (controller as ImportedInteractable).kind == target["type"]:
+				var prop: Node3D = controller.get_parent() as Node3D
+				points.append(Vector2(prop.global_position.x, prop.global_position.z))
+	elif target.has("zone") and target["zone"] == plan["zone_id"]:
+		return {"label": label, "here": true}
+	if points.is_empty():
+		return {"label": label, "elsewhere": true}
+	var nearest: Vector2 = points[0]
+	for point: Vector2 in points:
+		if point.distance_to(plan["player"]) < nearest.distance_to(plan["player"]):
+			nearest = point
+	return {"label": label, "position": nearest, "room": room_at(plan["floors"], nearest)}
 
 
 ## The smallest room containing the point ("" when none does): rooms off a

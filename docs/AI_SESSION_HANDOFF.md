@@ -5,9 +5,10 @@
 ## Claude Code "Make the game more compelling" (Bi's seven-point roadmap) — 2026-11-05
 
 - Objective: work through Bi's roadmap in small PRs from `main` (no stacking). Point 1 (Elias) and Mac presentation fixes belong to other threads.
-- Merged: #137 case file, #139 map. Open: #140 staff remember choices (17 lines approved by Bi), #142 transitions, #143 performances, #145 room sound, #147 ending record, #146 handoff docs.
+- Merged 2026-11-05: #137 case file, #139 map, #140 staff remember choices, #142 transitions, #143 performances, #145 room sound, #146 handoff docs, #147 ending record (main `b757c45`, CI green). Open: `claude/map-objective-marker` (objective star on the M map).
 - Since 2026-11-05 15:50 UTC only #146 edits the shared handoff docs (this file, AI_HANDOFF, AI_PROGRESS_TRACKER, PROJECT_STATUS, clinical_review_log); the other open PRs carry their notes here instead, so GitHub stops reporting conflicts in these files. GitHub does not apply `merge=union`.
-- Next: objective marker on the map (now that #139 is in); lighting and materials baseline.
+- Rule kept: only one open PR at a time edits the shared handoff docs; others keep their notes in `docs/handoffs/` until it merges.
+- Next: lighting and materials baseline (roadmap point 5).
 - Constraints: no new clinical or story wording without Bi's approval; patient performance must never suggest a symptom without clinical review; never merge; never run git on the SSK drive. Audio and performances untested on the Mac. Last updated 2026-11-05.
 
 ## Claude Code "Make the game more compelling" (Bi's seven-point roadmap) — 2026-11-05

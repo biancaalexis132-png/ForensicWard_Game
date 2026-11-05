@@ -165,6 +165,16 @@ func test_objective_place_follows_unmet_parts() -> void:
 	check_eq(CaseFile.objective_place(_director()), "At Stairwell fuse board (inspection log)", "then the stair")
 
 
+func test_objective_target_points_at_the_same_place() -> void:
+	await runner.get_tree().process_frame
+	check(_director().start_chapter("ch3"), "chapter 3 starts")
+	check_eq(CaseFile.objective_target(_director()), {"character": "staff_bennett"}, "the map points at Bennett")
+	for flag: String in ["ch3_coverage_confirmed", "ch3_audit_summary_read", "ch3_scope_clarified", "ch3_question_confirmed", "ch3_briefing_complete"]:
+		_director().set_flag(flag)
+	check(CaseFile.objective_target(_director()).has("node"), "then at the fuse board prop: %s" % [CaseFile.objective_target(_director())])
+	check_eq(CaseFile.objective_target(null), {}, "no director, no target")
+
+
 func test_ending_closes_with_the_players_record() -> void:
 	await runner.get_tree().process_frame
 	check_eq(CaseFile.record_summary(_director()), "", "nothing noted: no record paragraph")
