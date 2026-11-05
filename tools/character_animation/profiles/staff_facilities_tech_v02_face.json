@@ -1,0 +1,38 @@
+{
+  "character_id": "staff_facilities_tech",
+  "display_name": "Facilities Technician",
+  "version": "v02_face",
+  "production_status": "OWNER_APPROVED",
+  "source_blend": "build/cast/Facilities_Tech_v02_anim.blend",
+  "objects": {
+    "rig": "Facilities_Tech_Rig",
+    "face_mesh": "Facilities_Tech_Body",
+    "eye_l": "Tech_Eye_L",
+    "eye_r": "Tech_Eye_R"
+  },
+  "face_source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v07.blend",
+    "body": "Naomi_Bennett_Body",
+    "base_blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "base_body": "Naomi_Bennett_Body"
+  },
+  "target_base": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v01.blend",
+    "body": "Naomi_Bennett_Body",
+    "cast_config": "tools/blender/characters/cast/staff_facilities_tech.json"
+  },
+  "outputs": {
+    "blend": "build/cast/Facilities_Tech_v02_face.blend",
+    "glb": "build/cast/Facilities_Tech_v02_face.glb",
+    "report": "tools/character_animation/reports/staff_facilities_tech_v02_face_report.json"
+  },
+  "approved": true,
+  "approval": {
+    "approved": true,
+    "by": "Bi (project owner)",
+    "date": "2026-10-19",
+    "quote": "I approve all cast models",
+    "where": "ForensicWard project thread",
+    "scope": "Likeness, body, age, colours and outfit design of the v01 draft; v02 improves hair and clothing quality only."
+  }
+}

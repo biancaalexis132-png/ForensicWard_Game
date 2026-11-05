@@ -1,6 +1,6 @@
 # Campaign 3D cast integration
 
-The owner requested normal-gameplay 3D character integration after the completed narration delivery. The seven existing cast models now replace the greybox capsules wherever Chapters 1–5 already place those characters. This does not approve the draft likenesses, clothing, hair or final visual quality.
+The owner requested normal-gameplay 3D character integration after the completed narration delivery. The seven existing cast models now replace the greybox capsules wherever Chapters 1–5 already place those characters. On 2026-10-19 Bi (project owner) approved all cast models in the project thread ("I approve all cast models"); the catalogue's `review_status` is `OWNER_APPROVED_VISUAL`. This is visual approval only; no clinical approval is implied. The six non-Naomi cast members now use v02 models with layered hair cards, garment trims and baked fold maps (see `docs/handoffs/2026-10-19_claude_cast_v02.md`); the v01 draft files are kept and remain previewable with `--character-preview=<id>:v01_draft`.
 
 ## Casting and placement
 
@@ -9,12 +9,12 @@ The owner requested normal-gameplay 3D character integration after the completed
 | Character | Existing model | Integration |
 |---|---|---|
 | Naomi Bennett | `Naomi_Bennett_v07.glb` | Behind the nursing-station counter, facing the player side |
-| Evelyn Voss | `Evelyn_Voss_v01_draft.glb` | Existing office marker |
-| Marcus Hale | `Marcus_Hale_v01_draft.glb` | Existing chapter marker; standing clear of the office-chair position when using that marker |
-| Leila Rahman | `Leila_Rahman_v01_draft.glb` | Standing beside the office chair |
-| Facilities technician | `Facilities_Tech_v01_draft.glb` | Existing story-gated interview-room marker |
-| Elias Ward | `Elias_Ward_v01_draft.glb` | Seated on the existing weighted interview chair |
-| Mara Ellis | `Mara_Ellis_v01_draft.glb` | Same interview chair, only when her existing story condition is satisfied |
+| Evelyn Voss | `Evelyn_Voss_v02.glb` | Existing office marker |
+| Marcus Hale | `Marcus_Hale_v02.glb` | Existing chapter marker; standing clear of the office-chair position when using that marker |
+| Leila Rahman | `Leila_Rahman_v02.glb` | Standing beside the office chair |
+| Facilities technician | `Facilities_Tech_v02.glb` | Existing story-gated interview-room marker |
+| Elias Ward | `Elias_Ward_v02.glb` | Seated on the existing weighted interview chair |
+| Mara Ellis | `Mara_Ellis_v02.glb` | Same interview chair, only when her existing story condition is satisfied |
 
 The imported humanoids face +Z; the authored markers use -Z as forward, so the catalogue supplies a 180-degree model alignment. Cosmetic position offsets move the whole actor, including collision and interaction area, rather than leaving an invisible interaction box at the old position. Inactive alternate characters retain their authored visibility/collision rules and now stop inherited skin/face/gaze processing until shown again.
 
@@ -39,7 +39,7 @@ Godot --path . --rendering-method gl_compatibility --audio-driver Dummy \
   res://tools/characters/CaptureCampaignCast.tscn -- --output-dir=/path/to/review
 ```
 
-Existing limitations remain visible in the models: shell-based clothing/hair and provisional likenesses. Final visual acceptance, refinement and Mac frame time require owner review; integration is not a photorealism or performance certification. See the latest `docs/AI_HANDOFF.md` entry for exact executed test results and branch SHA.
+Remaining model limitations: hair cards are rigid to the head and clothing folds are baked, not simulated (v02 replaced the v01 painted hair shell and plain clothing shells). Final visual acceptance, refinement and Mac frame time require owner review; integration is not a photorealism or performance certification. See the latest `docs/AI_HANDOFF.md` entry for exact executed test results and branch SHA.
 
 ## Executed verification
 

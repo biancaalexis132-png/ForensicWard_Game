@@ -1,5 +1,12 @@
 # AI session handoff
 
+## Claude Code cast v02 hair and clothing — 2026-11-05
+
+- Objective: Bi's "Create completed cast models. Improve hair and clothing." Branch `claude/cast-hair-clothing` (draft PR to `main`), with `main` `b1c3e63` merged in.
+- Done: six v02 models (finer layered hair cards, garment trims, fold maps), main's walk and gesture clips added, Elias neckline tucked, game switched to v02. Tests: full headless QA: game 417/0, GLB 205/0, audio 1720/0, QA 19/0/0, boot OK, CH1_SEQUENCE_DONE (62.2 s), exit 0. Mac not run.
+- Approved by Bi on 2026-11-05 ("approve"); PR #136 is ready for review. Pending Bi: merge. Earlier ask was to look at the review sheets (`/mnt/project-files/cast_v02/`, `assets/renders/characters/*_v02_*.png`) and in game on the Mac; merge the PR.
+- Next exact step: none until Bi reviews. If Elias's far shoulder still shows a dark sliver, rerun `tuck_neckline.py` with a larger `--band-m`, then `add_motion_clips.py`. See `docs/handoffs/2026-11-05_claude_cast_v02.md`. Last updated 2026-11-05 01:50 UTC.
+
 ## Claude Code Mac playtest fixes — 2026-11-05
 
 - Follow-up on `claude/mac-playtest-rebuild` (PR #144), from the Mac playtest of `182f1b3` (title theme PASS by Bi's ear; Cmd-Q PASS 0.81 s; Voss walks out PASS; ward-round 'not seen yet' PASS; Naomi turn FAIL, stopped side-on at the 80° cap when spoken to from behind): staff now turn fully (`CastPerformer.MAX_TURN_DEGREES` 180); Voss waits only for a player ahead of her on the way out (`CastExit._player_too_close`); name tags show only while the player looks at the character (Bi, 2026-11-05; `EventBus.interaction_target_changed`, `WardCharacter.name_tag_suppressed`; development errors always show). Full QA on `a213f0e`: game **427/0**, audio **1720/0**, QA **19/0/0**, GLB **199/0**, CH1_SEQUENCE_DONE 62.3 s, exit 0. Not yet on the Mac. Mac disk was nearly full: about 2.2 GB of our own temporary copies removed (2.4 GB free).
