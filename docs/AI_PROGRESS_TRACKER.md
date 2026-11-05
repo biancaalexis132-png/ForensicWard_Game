@@ -6,12 +6,6 @@
 
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Case file on Tab | Draft PR #137 | | `CaseFile.gd` | full QA, CI | Bi |
-| Map readability | Draft PR #139 | | `SpatialMap.gd` | full QA, CI | Bi |
-| Staff remember earlier choices | Draft PR | | `Acknowledgements.gd` | full QA | Bi |
-| Smooth transitions | Draft PR | | `UITransition.gd`, `Main.gd`, `InfoPanel.gd`, `HUD.gd` | `test_ui_transitions` (5), full QA | Bi feels it on the Mac |
-| Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
-| Performances, atmosphere | Not started | | | | Next |
 | Case file on Tab | Done, draft PR #137 | | `CaseFile.gd`, `CaseFileScreen.gd`, `data/case_file.json` | `test_case_file` (7), full QA | Bi looks on the Mac |
 | Map readability: room names, you-are-here, people, M key | Done, draft PR | | `SpatialMap.gd`, `FloorPlan.gd`, `MapScreen.gd` | `test_map_readability` (3), full QA, before/after captures | Bi looks on the Mac |
 | Objective marker on the map | Not started | #137 merged | `SpatialMap.gd`, `CaseFile.gd` | | After #137 |

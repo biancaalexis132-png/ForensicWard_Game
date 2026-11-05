@@ -20,7 +20,6 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Smooth panel, menu and subtitle transitions | `claude/smooth-transitions` (draft PR to `main`) | Claude Code (cloud) | see Log | `scripts/ui/UITransition.gd`, `test_ui_transitions.gd`; small edits to `Main.gd` (`_open_panel` split, fade), `InfoPanel.gd`, `HUD.gd` | Full QA; waiting on Bi |
 | Map readability (labels, you-are-here, people, M key) | `claude/map-readability` (draft PR to `main`) | Claude Code (cloud) | see Log | `scripts/ui/{SpatialMap,FloorPlan,MapScreen}.gd`, `scenes/ui/MapScreen.tscn`, `test_map_readability.gd`, capture tool; small edits to `Main.gd` (M), `PauseMenu.gd` (label), `project.godot` (map action) | Full QA; waiting on Bi |
 | Elias bedside encounter (exam, full history, sitter, orders at the bedside, background staff) | `claude/elias-encounter` (draft PR to `main`) | Claude Code (cloud) | see Log | `data/elias_encounter.json`, five Elias observations in `data/patients.json`, `scripts/encounter/**`, `scripts/ui/EncounterScreen.gd`, `scenes/ui/EncounterScreen.tscn`, one autoload line in `project.godot`, one branch in `Main.gd`, `AuthoredWorld.gd`/`CastRoute.gd` (`at`, `yaw_degrees`, `pause_gestures`), content schema/validator, `data/{staff,character_visuals,world_chapter1,milestones,story_chapter1}.json`, six new cast configs and models, `tools/encounter/**`, capture tool, `test_elias_encounter.gd` and small edits to four older tests | Full QA recorded in Log; clinical content pending Bi |
 | Case file on Tab (objectives, notes, evidence) | `claude/case-file` (draft PR to `main`) | Claude Code (cloud) | see Log | `data/case_file.json`, `scripts/narrative/CaseFile.gd`, `scripts/ui/CaseFileScreen.gd`, `scenes/ui/CaseFileScreen.tscn`, `test_case_file.gd`, capture tool; small edits to `Main.gd` (Tab), `ObjectiveTracker.gd` (place line), `test_sprint3.gd` | Full QA; waiting on Bi |
@@ -68,11 +67,6 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
-### 2026-11-05 · Claude Code · Smooth dialogue, subtitle and menu transitions (roadmap point 6)
-
-- Branch `claude/smooth-transitions` from `main` `b1c3e63`. Newly opened screens and the pause menu ease in (0.16 s); an open panel fades only its new text; subtitles ease in after silence; reduce motion turns all fades off; input and visibility never wait. See `docs/handoffs/2026-11-05_claude_smooth_transitions.md`.
-- Tests: full QA passed: game tests 422/0, GLB 199/0, content and audio checks clean, Chapter 1 audio sequence done; `test_ui_transitions` 5/0.
-- Next: Bi feels it on the Mac.
 ### 2026-11-05 · Claude Code · Map readability (roadmap point 6)
 
 - Branch `claude/map-readability` from `main` `b1c3e63`. M toggles the map; rooms named beside the plan, your room highlighted, staff/story patients as named dots, drawn legend, "You are in / On this floor" line. See `docs/handoffs/2026-11-05_claude_map_readability.md`.

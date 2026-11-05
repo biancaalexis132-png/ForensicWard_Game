@@ -4,10 +4,6 @@
 
 ## Claude Code "Make the game more compelling" (Bi's seven-point roadmap) — 2026-11-05
 
-- Objective: work through Bi's roadmap in small PRs from `main` (no stacking). Point 1 (Elias) and Mac presentation fixes belong to other threads.
-- PRs: #137 case file, #139 map, `claude/staff-remember-choices`, `claude/smooth-transitions` (this branch).
-- Next: after #137 merges, the objective marker on the map and the approved ending paragraph; then performances and atmosphere.
-
 - Objective: work through Bi's roadmap in small PRs from `main` (no stacking). Point 1 (first 15 minutes, Elias) and Mac presentation fixes belong to other threads.
 - Done: `claude/case-file` (#137, Tab case file) and `claude/map-readability` (draft PR: M map with room names, you-are-here and people). See `docs/handoffs/2026-11-05_claude_*.md`.
 - Order of the remaining PRs: objective marker on the map (after #137 merges); staff acknowledge earlier choices (new lines need Bi's approval through a review sheet); ending tied to evidence kept, uncertainties and care; performances in key conversations; atmosphere baseline; dialogue/subtitle/menu transitions.
