@@ -6,6 +6,38 @@
 
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
+| Case file on Tab | Draft PR #137 | | `CaseFile.gd`, `CaseFileScreen.gd` | full QA | Bi looks on the Mac |
+| Map readability | Draft PR | | `SpatialMap.gd`, `FloorPlan.gd` | full QA | Bi looks on the Mac |
+| Staff remember earlier choices (17 lines) | Draft PR; lines approved 2026-11-05 | | `data/acknowledgements.json`, `Acknowledgements.gd` | `test_acknowledgements` (4), full QA | Bi looks on the Mac |
+| Ending paragraph from the case file | Not started | #137 merged, Bi's approval (section D) | `ChapterDirector._campaign_end_panel` | | After #137 |
+| Objective marker on the map | Not started | #137 merged | `SpatialMap.gd` | | After #137 |
+| Case file on Tab | Draft PR #137 | | `CaseFile.gd` | full QA, CI | Bi |
+| Map readability | Draft PR #139 | | `SpatialMap.gd` | full QA, CI | Bi |
+| Staff remember earlier choices | Draft PR | | `Acknowledgements.gd` | full QA | Bi |
+| Smooth transitions | Draft PR | | `UITransition.gd`, `Main.gd`, `InfoPanel.gd`, `HUD.gd` | `test_ui_transitions` (5), full QA | Bi feels it on the Mac |
+| Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
+| Performances, atmosphere | Not started | | | | Next |
+| Case file on Tab | Draft PR #137 | | `CaseFile.gd` | full QA, CI | Bi |
+| Map readability | Draft PR #139 | | `SpatialMap.gd` | full QA, CI | Bi |
+| Staff remember earlier choices | Draft PR #140 | | `Acknowledgements.gd` | full QA, CI | Bi |
+| Smooth transitions | Draft PR #142 | | `UITransition.gd` | full QA | Bi |
+| Conversation performances | Draft PR | | `ConversationPerformance.gd`, `data/cast_performance.json` | `test_conversation_performance` (8), full QA | Bi looks on the Mac |
+| Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
+| Atmosphere baseline | Not started | | | | Next |
+| Case file, map, staff remember, transitions, performances | Draft PRs #137, #139, #140, #142, #143 | | | full QA, CI | Bi |
+| Directional room sound | Draft PR | | `RoomSounds.gd`, `data/room_sounds.json` | `test_room_sounds` (3), full QA | Bi listens on the Mac |
+| Lighting and materials baseline | Not started | | | | Next |
+| Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
+| Case file on Tab | Merged (#137) | | `CaseFile.gd` | full QA, CI | |
+| Map, staff remember, transitions, performances, room sound | Draft PRs #139, #140, #142, #143, #145 | | | full QA, CI | Bi |
+| Ending paragraph (section D) | Draft PR | #137 | `CaseFile.record_summary`, `ChapterDirector._campaign_end_panel` | `test_case_file` (8), full QA | Bi reads it |
+| Objective marker on the map | Not started | #139 merged | `SpatialMap.gd` | | After #139 |
+| Lighting and materials baseline | Not started | | | | Next |
+
+## Make the game more compelling (Bi's roadmap) — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
 | Case file on Tab | Done, draft PR #137 | | `CaseFile.gd`, `CaseFileScreen.gd`, `data/case_file.json` | `test_case_file` (7), full QA | Bi looks on the Mac |
 | Map readability: room names, you-are-here, people, M key | Done, draft PR | | `SpatialMap.gd`, `FloorPlan.gd`, `MapScreen.gd` | `test_map_readability` (3), full QA, before/after captures | Bi looks on the Mac |
 | Objective marker on the map | Not started | #137 merged | `SpatialMap.gd`, `CaseFile.gd` | | After #137 |
@@ -31,6 +63,7 @@
 
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
+| Naomi faces you and moves | Mac FAIL from behind; full turn in PR #144 | | `CastPerformer.gd`, `Character.gd` | `test_cast_motion` | Mac look |
 | Psychiatrist performs the exam on screen | Done, draft PR | cast pipeline | `EncounterStage.gd`, `ExamPoseModifier.gd`, protagonist models | `test_elias_encounter`, captures | Bi looks on the Mac |
 | Full history through a 1:1 sitter | Done, draft PR; content approved 2026-11-05 | | `data/elias_encounter.json`, Tom Adler model | `test_elias_encounter` | Bi answers the review sheet |
 | Orders from the encounter; split screen withdrawn | Done, draft PR; content approved 2026-11-05 | | `EncounterManager.gd`, `EncounterScreen.gd`, `data/milestones.json` | `test_elias_encounter`, `test_milestones` | Reconcile lab text with the meds/labs thread when it lands |
@@ -43,14 +76,16 @@
 | Voss walks out after the talk | Done, draft PR (Chapter 1) | | `CastExit.gd`, `world_chapter1.json` | `test_cast_motion` (path clear, back on load) | Mac look; author other chapters if wanted |
 | Ward round only for patients seen | Done, draft PR | | `WardRounds.gd`, `WardRoundScreen.gd`, `WardRoundBedside.gd` | `test_ward_round*` | Mac check |
 | Title music; rain over music | Done, draft PR | | `TitleScreen.gd`, `audio/cues.json` | `test_title_screen`, `TestAudio` 1720/0 | Mac listen |
-| Cmd-Q | Done, draft PR; container probe only | | `Main.gd` | quit probe 10 ms while paused | Real Cmd-Q on the Mac |
+| Cmd-Q | Merged (#135); Mac quit event 0.51 s | | `Main.gd` | quit probe 10 ms while paused; Mac quit event PASS | Bi presses Cmd-Q once |
 | Full QA | Passed on `6df47bd` | | | game 422/0, audio 1720/0, QA 19/0/0, GLB 199/0 | |
+| Name tags only when looked at | Done, PR #144 | | `Character.gd`, `FirstPersonController.gd`, `EventBus.gd`, `InterviewScreen.gd` | `test_cast_motion` | Mac look |
+| Mac rebuild | Done at `182f1b3`: export PASS, 746 MB, 0 ERROR | | `build/macos/` | LAUNCH_CHECK PASS | Bi plays: title theme, Voss, Naomi, ward-round gate |
 
 ## Elias meds and labs draft — Claude Code (cloud), 2026-11-05
 
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Elias work-up (labs, medications, interventions) | Draft, pending Bi's clinical review | approved ward-round catalogs, Okafor case | `data/clinical_workups/elias_ward.json` | `test_clinical_workup` (4/0) | Bi reviews https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm |
+| Elias work-up (labs, medications, interventions) | Approved by Bi 2026-11-05; #134 merged, approval in draft PR | approved ward-round catalogs, Okafor case | `data/clinical_workups/elias_ward.json` | `test_clinical_workup` (4/0) | Bi reviews https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm |
 | Locked loader and order results | Done, draft PR | | `scripts/clinical/ClinicalWorkup.gd`, `ClinicalOrders.result_for` | `test_clinical_workup` | Encounter session wires it after approval |
 
 ## Mac release polish — Claude Code (cloud), 2026-11-04

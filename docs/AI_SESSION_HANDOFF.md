@@ -4,6 +4,14 @@
 
 ## Claude Code "Make the game more compelling" (Bi's seven-point roadmap) — 2026-11-05
 
+- Objective: work through Bi's roadmap in small PRs from `main` (no stacking). Point 1 (Elias) and Mac presentation fixes belong to other threads.
+- Merged: #137 case file, #139 map. Open: #140 staff remember choices (17 lines approved by Bi), #142 transitions, #143 performances, #145 room sound, #147 ending record, #146 handoff docs.
+- Since 2026-11-05 15:50 UTC only #146 edits the shared handoff docs (this file, AI_HANDOFF, AI_PROGRESS_TRACKER, PROJECT_STATUS, clinical_review_log); the other open PRs carry their notes here instead, so GitHub stops reporting conflicts in these files. GitHub does not apply `merge=union`.
+- Next: objective marker on the map (now that #139 is in); lighting and materials baseline.
+- Constraints: no new clinical or story wording without Bi's approval; patient performance must never suggest a symptom without clinical review; never merge; never run git on the SSK drive. Audio and performances untested on the Mac. Last updated 2026-11-05.
+
+## Claude Code "Make the game more compelling" (Bi's seven-point roadmap) — 2026-11-05
+
 - Objective: work through Bi's roadmap in small PRs from `main` (no stacking). Point 1 (first 15 minutes, Elias) and Mac presentation fixes belong to other threads.
 - Done: `claude/case-file` (#137, Tab case file) and `claude/map-readability` (draft PR: M map with room names, you-are-here and people). See `docs/handoffs/2026-11-05_claude_*.md`.
 - Order of the remaining PRs: objective marker on the map (after #137 merges); staff acknowledge earlier choices (new lines need Bi's approval through a review sheet); ending tied to evidence kept, uncertainties and care; performances in key conversations; atmosphere baseline; dialogue/subtitle/menu transitions.
@@ -21,6 +29,9 @@
 
 ## Claude Code Mac playtest fixes — 2026-11-05
 
+- PR #144 later: Mac checks on `182f1b3` also found save/load PASS (same place, objective, no repeated banners, settings kept), memory about 1 GB physical footprint and steady, journal and map open (journal empty after Naomi). Fixed: Naomi's voiced intro (archive badge) played before her handover greeting (`ChapterDirector.first_talk_plays_scene`; the intro is now read, not voiced, on that first talk); two-line subtitles hidden behind the info panel (`HUD._place_subtitle`). `test_voiced_dialogue` staff-voice check now uses Voss. Main (#136 cast v02, #137 case file) merged in. Full QA on `d377d26`: game **435/0**, audio **1720/0**, QA **19/0/0**, GLB **205/0**, exit 0. Not on the Mac yet; stutter, chapter transitions and endings by hand still open.
+- Follow-up on `claude/mac-playtest-rebuild` (PR #144), from the Mac playtest of `182f1b3` (title theme PASS by Bi's ear; Cmd-Q PASS 0.81 s; Voss walks out PASS; ward-round 'not seen yet' PASS; Naomi turn FAIL, stopped side-on at the 80° cap when spoken to from behind): staff now turn fully (`CastPerformer.MAX_TURN_DEGREES` 180); Voss waits only for a player ahead of her on the way out (`CastExit._player_too_close`); name tags show only while the player looks at the character (Bi, 2026-11-05; `EventBus.interaction_target_changed`, `WardCharacter.name_tag_suppressed`; development errors always show). Full QA on `a213f0e`: game **427/0**, audio **1720/0**, QA **19/0/0**, GLB **199/0**, CH1_SEQUENCE_DONE 62.3 s, exit 0. Not yet on the Mac. Mac disk was nearly full: about 2.2 GB of our own temporary copies removed (2.4 GB free).
+- Update: PR #135 merged. Mac rebuild 2026-11-05 (Bi's MacBook Air, `~/Developer/forensicward-release` at `182f1b3` = `main` with PR #135; nothing on the SSK drive): `tools/release/export_macos.sh` exit 0, LAUNCH_CHECK PASS, app 746 MB, ad-hoc signature valid, 0 ERROR lines (the 10 AnimationLibrary lines did not appear). Quit request on the title: process gone in 0.51 s (macOS Quit event, not the Cmd-Q keystroke). Title theme by ear, Voss exit, Naomi turning, ward-round gate: NOT TESTED (game window behind the browser; no safe way to send keys). Bi to play `build/macos/The Forensic Ward.app`.
 - Objective: flesh out the Elias encounter from Bi's playtest (exam shown, full history, 1:1 sitter, orders from the encounter, background staff). Branch `claude/elias-encounter` (draft PR to `main`), from `main` `144e609`.
 - Done: encounter data, EncounterManager autoload, EncounterScreen, EncounterStage with ExamPoseModifier IK, six draft models (male/female psychiatrist, sitter, two nurses, housekeeper), background staff routes, split-screen milestone withdrawn. Test results in `docs/handoffs/2026-11-05_claude_elias_encounter.md`.
 - Clinical content approved by Bi 2026-11-05 ("approve"; questions left as drafted). Pending Bi: look at the models and poses on the Mac; merge. Voice clips for the new lines need the local Kokoro setup.
@@ -37,7 +48,7 @@
 - Objective: draft Elias's medication and lab orders for Bi's clinical sign-off, switched off until approved.
 - Branch `claude/meds-labs-draft` from `main` `fbd1544`; draft PR to `main`.
 - Done: work-up data, locked loader `ClinicalWorkup`, `ClinicalOrders.result_for`, test `test_clinical_workup` (4/0), review log row, review doc https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm.
-- Pending Bi: approve the work-up and answer the open questions (story effect of a lorazepam response, vitals values, doses, CK level).
+- Update 2026-11-05 08:03 UTC: Bi approved ("approve") and merged #134. `claude/meds-labs-approved` marks it APPROVED. Open questions unanswered; defaults stand.
 - Next exact step: on approval, set both review statuses in `data/clinical_workups/elias_ward.json` to APPROVED, add the approved row to `docs/clinical_review_log.md`, flip the expectations in `test_clinical_workup`, and send the encounter session the go-ahead. Last updated 2026-11-05.
 
 ## Claude Code Mac release polish — 2026-11-04
