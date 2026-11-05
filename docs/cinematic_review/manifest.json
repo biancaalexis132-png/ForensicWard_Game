@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "BLOCKING_PREVIEW_NOT_FINAL",
+  "source_commit": "9109088a8a1df9d917c29c5245a60fe011109ceb",
+  "tool": "Godot 4.7 stable Movie Maker; Linux Compatibility; Mesa llvmpipe",
+  "scene": "res://scenes/cinematic/NaomiHandover.tscn",
+  "shot_data": "res://data/cinematics/naomi_handover.json",
+  "character_catalogue": "res://data/character_visuals.json",
+  "character": "staff_bennett",
+  "environment": "res://assets/exports/clinical/env/ENV_NursingStation.glb",
+  "dialogue_source": "res://data/narrative/chapter1.json",
+  "rights": "Derived from existing project assets; original provenance and licence restrictions remain applicable. Private project review; no new commercial rights asserted.",
+  "mac_review": "NOT_TESTED",
+  "assets": [
+    {
+      "path": "naomi_closeup.png",
+      "sha256": "2117a97e3f4a6b9dca0c8dfa24a7c8187806b70be9fa911c3d3ac2ef599383ab"
+    },
+    {
+      "path": "naomi_first_shot.png",
+      "sha256": "d308b4388c77d57eaaf67ac765f52bfee5fba3c75e19742002c272a2ea7334e0"
+    }
+  ],
+  "visual_render_commit": "a26a6a2"
+}

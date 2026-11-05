@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "naomi_handover",
+  "status": "production_blocking_preview",
+  "actor": "staff_bennett",
+  "shots": [
+    {
+      "line": "ch1_b2_bennett_001",
+      "camera": [
+        0.8,
+        1.65,
+        2.0
+      ],
+      "target": [
+        0,
+        1.25,
+        0
+      ],
+      "fov": 40
+    },
+    {
+      "line": "ch1_b2_player_001",
+      "camera": [
+        0.65,
+        1.58,
+        1.25
+      ],
+      "target": [
+        0,
+        1.46,
+        0
+      ],
+      "fov": 34
+    },
+    {
+      "line": "ch1_b2_bennett_002",
+      "camera": [
+        0.2,
+        1.57,
+        1.05
+      ],
+      "target": [
+        0,
+        1.49,
+        0
+      ],
+      "fov": 36
+    },
+    {
+      "line": "ch1_b2_player_002",
+      "camera": [
+        0.65,
+        1.58,
+        1.25
+      ],
+      "target": [
+        0,
+        1.46,
+        0
+      ],
+      "fov": 34
+    },
+    {
+      "line": "ch1_b2_bennett_003",
+      "camera": [
+        0.45,
+        1.6,
+        1.5
+      ],
+      "target": [
+        0,
+        1.37,
+        0
+      ],
+      "fov": 38
+    }
+  ]
+}
