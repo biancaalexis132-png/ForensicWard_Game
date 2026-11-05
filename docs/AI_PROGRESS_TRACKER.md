@@ -1,5 +1,16 @@
 # AI progress tracker
 
+## Make the game more compelling (Bi's roadmap) — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Case file on Tab | Draft PR #137 | | `CaseFile.gd` | full QA, CI | Bi |
+| Map readability | Draft PR #139 | | `SpatialMap.gd` | full QA, CI | Bi |
+| Staff remember earlier choices | Draft PR | | `Acknowledgements.gd` | full QA | Bi |
+| Smooth transitions | Draft PR | | `UITransition.gd`, `Main.gd`, `InfoPanel.gd`, `HUD.gd` | `test_ui_transitions` (5), full QA | Bi feels it on the Mac |
+| Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
+| Performances, atmosphere | Not started | | | | Next |
+
 ## Mac release polish — Claude Code (cloud), 2026-11-04
 
 | Task | State | Depends on | Paths | Validation | Next action |

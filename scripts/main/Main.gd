@@ -181,10 +181,20 @@ func _open_pause_menu() -> void:
 	if _pause_menu.is_open:
 		return
 	_pause_menu.open()
+	UITransition.fade_in_screen(_pause_menu)
 	_update_input_mode()
 
 
 func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
+	var was_open: Array[CanvasLayer] = _panels.filter(func(panel: CanvasLayer) -> bool: return panel.get("is_open"))
+	_open_panel(panel_id, data)
+	# Ease newly opened screens in; a screen already showing just updates.
+	for panel: CanvasLayer in _panels:
+		if panel.get("is_open") and not panel in was_open and panel != _cutscene and panel != _interview:
+			UITransition.fade_in_screen(panel)
+
+
+func _open_panel(panel_id: String, data: Dictionary) -> void:
 	match panel_id:
 		InfoPanel.PANEL_ID:
 			_info_panel.open(data)

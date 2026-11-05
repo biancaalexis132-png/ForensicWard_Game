@@ -79,6 +79,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func open(data: Dictionary) -> void:
+	# Already showing (a choice's response, the next scene): ease the new text in.
+	if is_open:
+		UITransition.fade_in(_body, UITransition.TEXT_SECONDS)
+		UITransition.fade_in(_options, UITransition.TEXT_SECONDS)
 	for child: Node in _options.get_children():
 		_options.remove_child(child)
 		child.queue_free()
