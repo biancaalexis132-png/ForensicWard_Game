@@ -29,6 +29,7 @@
 # Project status
 
 **Map readability (Claude Code, 2026-11-05; draft PR, not merged):** `claude/map-readability` from `main` `b1c3e63`. M opens the map; rooms are named beside the plan, your room is highlighted, staff and story patients show as named dots, with a drawn legend and a "You are in / On this floor" line. Not tested on the Mac.
+**Elias bedside encounter (Claude Code, 2026-11-05; draft PR, not merged):** `claude/elias-encounter`, from `main`. Approaching Elias opens a bedside encounter: the player's psychiatrist walks over and performs the examination, a 1:1 sitter answers a full history, and orders are given in the room (placing the real EHR orders), with Bennett challenging an antipsychotic and a lorazepam reassessment later in the shift. Background staff walk and work on the Chapter 1 ward. Bi approved the clinical content on 2026-11-05; new lines are not voiced. Not tested on the Mac.
 
 **Case file on Tab (Claude Code, 2026-11-05; draft PR, not merged):** `claude/case-file` from `main` `b1c3e63`. Tab opens a case file showing the current objective and where it happens, notes from recorded story choices marked established, still open or care (verbatim approved text), and the evidence with open alternative explanations; the HUD objective shows its place. Not tested on the Mac.
 

@@ -370,6 +370,72 @@
         0.0
       ],
       "review_status": "PENDING_OWNER_VISUAL_REVIEW"
+    },
+    "protagonist_female": {
+      "scene": "res://assets/exports/characters/Psychiatrist_Female_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "walk_step_m": 0.64
+    },
+    "protagonist_male": {
+      "scene": "res://assets/exports/characters/Psychiatrist_Male_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "walk_step_m": 0.73
+    },
+    "staff_sitter_adler": {
+      "scene": "res://assets/exports/characters/Tom_Adler_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "walk_step_m": 0.74
+    },
+    "staff_bg_nurse_a": {
+      "scene": "res://assets/exports/characters/Ward_Nurse_A_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "walk_step_m": 0.62
+    },
+    "staff_bg_nurse_b": {
+      "scene": "res://assets/exports/characters/Ward_Nurse_B_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "walk_step_m": 0.71
+    },
+    "staff_bg_housekeeping": {
+      "scene": "res://assets/exports/characters/Housekeeper_v01_draft.glb",
+      "model_yaw_degrees": 180.0,
+      "marker_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "review_status": "PENDING_OWNER_VISUAL_REVIEW",
+      "walk_step_m": 0.62
     }
   },
   "approval": {

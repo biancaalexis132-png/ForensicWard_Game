@@ -36,6 +36,7 @@ CaseJournal="*res://scripts/narrative/CaseJournal.gd"
 ProtagonistProfile="*res://scripts/protagonist/ProtagonistProfile.gd"
 ContinuingPractice="*res://scripts/practice/ContinuingPractice.gd"
 WardRounds="*res://scripts/clinical/WardRounds.gd"
+EncounterManager="*res://scripts/encounter/EncounterManager.gd"
 
 [display]
 
