@@ -54,11 +54,14 @@ func test_all_five_chapters_use_real_cast_without_preview_arguments() -> void:
 			var gestures: AnimationPlayer = model.find_child("GestureAnimationPlayer", true, false) as AnimationPlayer
 			check(gestures != null and gestures.has_animation(&"small_greeting_nod"), "shared gestures remain available")
 			var marker: Node3D = world.find_zone_node(zone, entry["marker"])
-			check(model.global_basis.z.normalized().dot(-marker.global_basis.z.normalized()) > 0.99, "model faces authored marker direction")
+			# Background staff stand at their own zone-local point and yaw; the marker only names the zone.
+			var facing: Vector3 = -(actor.global_basis.z if entry.has("at") else marker.global_basis.z).normalized()
+			check(model.global_basis.z.normalized().dot(facing) > 0.99, "model faces authored marker direction")
 			var interactable: Node3D = actor.get_node("Interactable")
 			check_eq(interactable.global_position, actor.global_transform * Vector3(0.0, 0.9, 0.0), "visible actor and interaction move together")
 		check_eq(world.unresolved, [] as Array[String], "chapter world has no missing bindings")
-	check_eq(seen.size(), 7, "all seven authored cast members covered across the five chapters")
+	# Seven story cast members, plus Elias's sitter and three background staff (2026-11-05).
+	check_eq(seen.size(), 11, "all eleven authored cast members covered across the five chapters")
 	# Return to idle before later suites register their input listeners.
 	await runner.get_tree().create_timer(0.01).timeout
 

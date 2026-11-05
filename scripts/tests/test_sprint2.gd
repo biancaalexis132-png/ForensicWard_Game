@@ -28,6 +28,9 @@ func after_each() -> void:
 # --- Interview ------------------------------------------------------------------
 
 func test_approaching_elias_opens_cinematic_interview() -> void:
+	# In the prototype build Elias opens the full bedside encounter (test_elias_encounter.gd);
+	# the cinematic interview is the validated build's path for him.
+	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
 	var player_camera: Camera3D = _main.get_viewport().get_camera_3d()
 	_approach_elias()
 	check(_interview().is_open, "interview screen open")
@@ -42,6 +45,9 @@ func test_approaching_elias_opens_cinematic_interview() -> void:
 
 
 func test_typed_question_records_finding_with_provenance() -> void:
+	# In the prototype build Elias opens the full bedside encounter (test_elias_encounter.gd);
+	# the cinematic interview is the validated build's path for him.
+	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
 	_approach_elias()
 	var minutes_before: int = TimeManager.total_minutes
 	var result: Dictionary = _interview().ask_text("Is he eating?")
@@ -55,6 +61,9 @@ func test_typed_question_records_finding_with_provenance() -> void:
 
 
 func test_unmatched_question_falls_back_without_recording() -> void:
+	# In the prototype build Elias opens the full bedside encounter (test_elias_encounter.gd);
+	# the cinematic interview is the validated build's path for him.
+	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
 	_approach_elias()
 	var result: Dictionary = _interview().ask_text("What is your favourite colour?")
 	check_eq(result["status"], "fallback", "polite fallback")

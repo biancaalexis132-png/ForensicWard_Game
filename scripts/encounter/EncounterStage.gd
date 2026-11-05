@@ -13,6 +13,7 @@ extends Node3D
 
 const CHARACTER_SCENE: PackedScene = preload("res://scenes/props/Character.tscn")
 const SHOT_ESTABLISHING: String = "CAM_IR_Establishing"
+const SHOT_ON_SITTER: String = "CAM_IR_OTS_OnPsychiatrist"
 const TALK_GESTURES: Array[StringName] = [&"explain_open_hand", &"small_acknowledgement_nod", &"thinking_pause"]
 const WALK_SPEED_M_S: float = 1.0
 ## Built model colours (tools/blender/characters/cast/protagonist_*.json).
@@ -101,8 +102,11 @@ func beat(speaker: String, act: String) -> void:
 		"arm_lower":
 			if is_instance_valid(_patient_pose):
 				_patient_pose.reach("r", null, 0.0)
-	if speaker.begins_with("staff_") and is_instance_valid(_doctor_pose) and is_instance_valid(sitter):
-		_doctor_pose.look_at_node(_markers.get("sitter_head"), 1.0)
+	if speaker.begins_with("staff_") and is_instance_valid(sitter) and speaker == str(sitter.get("character_id")):
+		# The sitter stands by the door, behind the establishing camera: turn the shot around.
+		_cut(SHOT_ON_SITTER)
+		if is_instance_valid(_doctor_pose):
+			_doctor_pose.look_at_node(_markers.get("sitter_head"), 1.0)
 	elif speaker == "pt_elias_ward" and is_instance_valid(_doctor_pose):
 		_doctor_pose.look_at_node(_markers.get("patient_head"), 1.0)
 

@@ -95,12 +95,18 @@ func test_voice_script_splits_speakers_and_stage_directions() -> void:
 # --- Interview presentation -------------------------------------------------------
 
 func test_free_text_field_is_hidden_in_normal_play() -> void:
+	# In the prototype build Elias opens the full bedside encounter (test_elias_encounter.gd);
+	# the cinematic interview is the validated build's path for him.
+	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
 	_approach_elias()
 	check(not _interview()._ask_row.visible, "no typed-question field without --dev-free-text")
 	check(not _interview().get_choice_labels().is_empty(), "authored choices offered")
 
 
 func test_choice_plays_question_then_narrated_response_and_applies_once() -> void:
+	# In the prototype build Elias opens the full bedside encounter (test_elias_encounter.gd);
+	# the cinematic interview is the validated build's path for him.
+	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
 	_approach_elias()
 	var minutes: int = TimeManager.total_minutes
 	_interview().ask_choice("ask_intake")
@@ -125,6 +131,9 @@ func test_choice_plays_question_then_narrated_response_and_applies_once() -> voi
 
 
 func test_new_choice_or_close_interrupts_without_duplicates() -> void:
+	# In the prototype build Elias opens the full bedside encounter (test_elias_encounter.gd);
+	# the cinematic interview is the validated build's path for him.
+	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
 	_approach_elias()
 	_interview().ask_choice("assess_motor")
 	_interview().ask_choice("return_to_general")  # Replaces the running presentation.

@@ -76,6 +76,7 @@ func open(data: Dictionary) -> void:
 		_stage.name = "EncounterStage"
 		_world.add_child(_stage)
 		_stage.begin(patient_id, EncounterManager.informant(patient_id).get("id", ""))
+	_set_name_tags_visible(false)
 	section = _default_section()
 	_rebuild_transcript()
 	_refresh()
@@ -96,7 +97,18 @@ func close() -> void:
 	_stage = null
 	if is_instance_valid(_previous_camera):
 		_previous_camera.make_current()
+	_set_name_tags_visible(true)
 	EventBus.ui_panel_closed.emit(PANEL_ID)
+
+
+## Floating names duplicate the title and the transcript inside the room.
+func _set_name_tags_visible(shown: bool) -> void:
+	if _world == null:
+		return
+	for id: String in [patient_id, str(EncounterManager.informant(patient_id).get("id", ""))]:
+		var actor: Node = _world.find_child("Character_" + id, true, false)
+		if actor != null and actor.has_node("NameLabel"):
+			(actor.get_node("NameLabel") as Node3D).visible = shown
 
 
 # --- Actions (buttons call these; so do tests) -----------------------------------
@@ -403,6 +415,7 @@ func _side_text() -> String:
 func _build() -> void:
 	var root: Control = UIStyle.make_root(self, 0.0)
 	_title = UIStyle.label("", 20)
+	_title.autowrap_mode = TextServer.AUTOWRAP_OFF
 	_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_title.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
 	_title.grow_horizontal = Control.GROW_DIRECTION_BOTH
@@ -419,9 +432,10 @@ func _build() -> void:
 	var panel: PanelContainer = PanelContainer.new()
 	panel.add_theme_stylebox_override("panel", UIStyle.panel_style(0.9))
 	panel.anchor_left = 0.03
-	panel.anchor_top = 0.55
+	# Above the subtitle band, which shows every spoken line at the bottom.
+	panel.anchor_top = 0.5
 	panel.anchor_right = 0.97
-	panel.anchor_bottom = 0.97
+	panel.anchor_bottom = 0.81
 	root.add_child(panel)
 	var row: HBoxContainer = HBoxContainer.new()
 	row.add_theme_constant_override("separation", 16)
