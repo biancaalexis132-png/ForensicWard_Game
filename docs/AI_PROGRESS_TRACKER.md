@@ -9,7 +9,7 @@
 | Six v02 models through all stages | Done, draft PR | | `assets/exports/characters/*_v02.glb`, `*_v02.blend`, profiles, manifests | GLB 205/0 | None |
 | Walk and gesture clips on v02 | Done, draft PR | main #114 tooling | `add_motion_clips.py` | motion reports, game 417/0 | None |
 | Elias v02 neckline tuck | Done, draft PR | main #131 tooling | `tuck_neckline.py`, Elias v02 | shoulder render | Bi checks the far shoulder |
-| Game uses v02 | Done, draft PR | Bi's approval 2026-10-19 | `data/character_visuals.json` | `test_campaign_cast` | Bi merges |
+| Game uses v02 | Done, draft PR | Bi's approval 2026-10-19 | `data/character_visuals.json` | `test_campaign_cast`; approved by Bi 2026-11-05 | Bi merges PR #136 |
 
 ## Mac release polish — Claude Code (cloud), 2026-11-04
 
