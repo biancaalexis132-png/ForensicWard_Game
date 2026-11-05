@@ -29,10 +29,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -300.0
-offset_right = 400.0
-offset_bottom = 300.0
+offset_left = -760.0
+offset_top = -480.0
+offset_right = 760.0
+offset_bottom = 480.0
 
 [node name="Margin" type="MarginContainer" parent="Root/Panel"]
 layout_mode = 1
@@ -54,14 +54,15 @@ text = "Floor Map"
 horizontal_alignment = 1
 
 [node name="Map" type="Control" parent="Root/Panel/Margin/VBox"]
-custom_minimum_size = Vector2(0, 390)
+custom_minimum_size = Vector2(0, 720)
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("2_map")
 
 [node name="Text" type="RichTextLabel" parent="Root/Panel/Margin/VBox"]
 layout_mode = 2
-size_flags_vertical = 3
+fit_content = true
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = ""
 

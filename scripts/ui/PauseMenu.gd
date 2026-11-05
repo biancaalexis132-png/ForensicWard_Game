@@ -71,7 +71,7 @@ func _ready() -> void:
 	for panel_id: String in ["case_journal", "map"]:
 		var button: Button = Button.new()
 		button.name = "CaseJournal" if panel_id == "case_journal" else "Directory"
-		button.text = "Clinical Case Journal" if panel_id == "case_journal" else "Spatial Map"
+		button.text = "Clinical Case Journal" if panel_id == "case_journal" else "Map (M)"
 		_resume_button.get_parent().add_child(button)
 		_resume_button.get_parent().move_child(button, route_index)
 		route_index += 1
