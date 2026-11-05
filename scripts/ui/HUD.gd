@@ -145,6 +145,8 @@ func _set_subtitle(speaker: String, text: String) -> void:
 	var named: bool = not speaker.is_empty() and Settings.get_value("subtitle_speaker_names")
 	subtitle_text = "%s: %s" % [speaker, text] if named else text
 	var shown: bool = Settings.get_value("subtitles") and not text.is_empty()
+	if shown and _subtitle.text.is_empty():
+		UITransition.fade_in(_subtitle, UITransition.TEXT_SECONDS)
 	_subtitle.text = subtitle_text if shown else ""
 	_subtitle.add_theme_font_size_override("font_size", roundi(SUBTITLE_FONT_SIZE * float(Settings.get_value("subtitle_scale"))))
 	if shown and Settings.get_value("subtitle_background"):
