@@ -1,5 +1,12 @@
 # AI session handoff
 
+## Claude Code "Make the game more compelling" (Bi's seven-point roadmap) — 2026-11-05
+
+- Objective: work through Bi's roadmap in small PRs from `main` (no stacking). Point 1 (Elias) and Mac presentation fixes belong to other threads.
+- PRs: `claude/case-file` (#137), `claude/map-readability`, `claude/staff-remember-choices` (this branch; 17 lines approved by Bi 2026-11-05).
+- Next: after #137 merges, the objective marker on the map and the ending paragraph (review sheet section D); then performances, atmosphere, transitions.
+- Constraints: no new clinical or story wording without Bi's approval; never merge; never run git on the SSK drive. Last updated 2026-11-05.
+
 ## Claude Code Mac release polish — 2026-11-04
 
 - Update (evening): PR #131 merged by Bi into `main` (`144e609`). Mac run 2026-11-04 (Bi's MacBook Air M1, Godot 4.7.2.stable.official.ed1daf0bf, fresh clone `~/Developer/forensicward-release` at `c96f5f2`, same code as `main` `144e609`; nothing on the SSK drive): `tools/release/export_macos.sh` PASS (4.7.2 templates SHA-512 OK, ad-hoc signature valid, app 741 MB, LAUNCH_CHECK PASS, 0 ERROR lines); `tools/qa/mac_acceptance.py` exit 0 (QA 19/0/0, GLB 199/0, game 417/0, audio 1720/0, pharmacology 0 failures, Python tests passed, Chapter 1 sequence done); the packaged app opened from Finder-equivalent `open` and showed the title screen (New Game, Customize, Continue greyed, Settings, Quit, Ready.). App at `/Users/bi/Developer/forensicward-release/build/macos/The Forensic Ward.app`. Hands-on playthrough, endings and listening: NOT TESTED, waiting on Bi.

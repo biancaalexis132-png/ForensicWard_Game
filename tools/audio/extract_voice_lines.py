@@ -8,6 +8,8 @@ The text is copied from the authored data, never written here:
                               campaign-end lines (narrator unless a known speaker
                               prefix such as "Hale:" names the voice)
   - data/staff.json           each staff member's intro line, in their own voice
+  - data/acknowledgements.json  approved lines where staff remember an earlier
+                              choice, in that staff member's voice
   - data/dialogue*.json       interview responses; spoken player questions where
                               the choice label is itself speech (Mara). Elias Ward
                               is mute, so his responses are narrated observations.
@@ -118,6 +120,11 @@ def passages():
             yield chapter, NARRATOR, end["body"]
             for line in end["lines"]:
                 yield chapter, NARRATOR, line["text"]
+    acknowledgements = DATA / "acknowledgements.json"
+    if acknowledgements.exists():
+        for line in load(acknowledgements)["acknowledgements"]:
+            if line.get("approved"):
+                yield line["chapter"], line["staff_id"], line["text"]
 
 
 def authored_keys():
