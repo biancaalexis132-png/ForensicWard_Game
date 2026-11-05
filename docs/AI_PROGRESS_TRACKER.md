@@ -12,6 +12,9 @@
 | Smooth transitions | Draft PR | | `UITransition.gd`, `Main.gd`, `InfoPanel.gd`, `HUD.gd` | `test_ui_transitions` (5), full QA | Bi feels it on the Mac |
 | Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
 | Performances, atmosphere | Not started | | | | Next |
+| Case file on Tab | Done, draft PR #137 | | `CaseFile.gd`, `CaseFileScreen.gd`, `data/case_file.json` | `test_case_file` (7), full QA | Bi looks on the Mac |
+| Map readability: room names, you-are-here, people, M key | Done, draft PR | | `SpatialMap.gd`, `FloorPlan.gd`, `MapScreen.gd` | `test_map_readability` (3), full QA, before/after captures | Bi looks on the Mac |
+| Objective marker on the map | Not started | #137 merged | `SpatialMap.gd`, `CaseFile.gd` | | After #137 |
 
 | Case file on Tab: objective and place, notes, evidence | Done, draft PR | | `CaseFile.gd`, `CaseFileScreen.gd`, `data/case_file.json` | `test_case_file` (7), full QA, captures | Bi looks on the Mac |
 | Map readability and objective marker | Not started | | `SpatialMap.gd`, `FloorPlan.gd`, `MapScreen.gd` | | Next PR |
