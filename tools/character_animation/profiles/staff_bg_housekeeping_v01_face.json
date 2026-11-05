@@ -1,0 +1,29 @@
+{
+  "character_id": "staff_bg_housekeeping",
+  "display_name": "Housekeeper",
+  "version": "v01_face",
+  "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+  "source_blend": "build/cast/Housekeeper_v01_anim.blend",
+  "objects": {
+    "rig": "Housekeeper_Rig",
+    "face_mesh": "Housekeeper_Body",
+    "eye_l": "Housek_Eye_L",
+    "eye_r": "Housek_Eye_R"
+  },
+  "face_source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v07.blend",
+    "body": "Naomi_Bennett_Body",
+    "base_blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "base_body": "Naomi_Bennett_Body"
+  },
+  "target_base": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "body": "Naomi_Bennett_Body",
+    "cast_config": "tools/blender/characters/cast/staff_bg_housekeeping.json"
+  },
+  "outputs": {
+    "blend": "build/cast/Housekeeper_v01_face.blend",
+    "glb": "build/cast/Housekeeper_v01_face.glb",
+    "report": "tools/character_animation/reports/staff_bg_housekeeping_v01_face_report.json"
+  }
+}
