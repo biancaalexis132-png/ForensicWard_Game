@@ -1,13 +1,13 @@
 {
 	"schema_version": 1,
 	"patient_id": "pt_elias_ward",
-	"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
-	"_note": "Medication and laboratory work-up for Elias Ward (Chapter 1), drafted by Claude Code on 2026-11-04 for the owner's clinical review, in the same form as a ward-round case (data/ward_rounds.json), whose lab, medication and intervention catalogs it uses. Clinical logic follows the owner-approved catatonia case wr_ch4_okafor; Elias-specific items are uds and collateral (required) and neuro_exam and physical_exam (helpful). No doses, no numeric values, qualitative results only. Stays switched off until the owner approves it and the change is recorded in docs/clinical_review_log.md. Ordering never changes Elias's story state.",
+	"clinical_review_status": "APPROVED",
+	"_note": "Medication and laboratory work-up for Elias Ward (Chapter 1), drafted by Claude Code on 2026-11-04 for the owner's clinical review, in the same form as a ward-round case (data/ward_rounds.json), whose lab, medication and intervention catalogs it uses. Clinical logic follows the owner-approved catatonia case wr_ch4_okafor; Elias-specific items are uds and collateral (required) and neuro_exam and physical_exam (helpful). No doses, no numeric values, qualitative results only. Approved by the owner on 2026-11-05 as written (docs/clinical_review_log.md). Ordering never changes Elias's story state.",
 	"cases": [
 		{
 			"id": "wr_ch1_elias_ward_workup",
 			"chapter": "ch1",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Elias Ward",
 				"age": 29,

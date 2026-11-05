@@ -20,7 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Elias meds and labs draft (pending Bi's clinical review) | `claude/meds-labs-draft` (draft PR to `main`) | Claude Code (cloud) | see PR | `data/clinical_workups/*`, `scripts/clinical/ClinicalWorkup.gd`, `ClinicalOrders.result_for`, `scripts/tests/test_clinical_workup.gd` | Draft; locked in every build until approved. The "Flesh out the Elias encounter" session owns the encounter UI and `data/elias_encounter.json` |
+| Elias meds and labs (approved by Bi 2026-11-05) | `claude/meds-labs-approved` (draft PR to `main`; #134 merged) | Claude Code (cloud) | see PR | `data/clinical_workups/*`, `scripts/clinical/ClinicalWorkup.gd`, `ClinicalOrders.result_for`, `scripts/tests/test_clinical_workup.gd` | Draft; locked in every build until approved. The "Flesh out the Elias encounter" session owns the encounter UI and `data/elias_encounter.json` |
 | Animated cinematic pilot | `codex/cinematic-naomi-pilot` (draft PR #133) | Codex | `9109088a8a1df9d917c29c5245a60fe011109ceb` | New `scripts/cinematic/`, `scenes/cinematic/`, `data/cinematics/`, `tools/cinematic/`, cinematic review docs/screenshots | Standalone voiced Naomi preview; refined framing/lighting; Mac and campaign integration pending |
 | Mac release polish (HUD layout, Elias neckline, Mac export) | `claude/mac-release-polish` (draft PR to `main`) | Claude Code (cloud) | `7e59789` | `scripts/ui/{HUD,ObjectiveTracker}.gd`, `scenes/ui/HUD.tscn`, `scripts/tests/{TestRunner,test_objective_feedback}.gd`, `export_presets.cfg`, `.gitignore`, `project.godot` (one rendering setting), Elias `.blend`/GLB and motion report, `tools/character_animation/tuck_neckline.py`, `tools/release/export_macos.sh`, `tools/godot/capture_objective_hud.gd`, `docs/MAC_RELEASE_BUILD.md` | PR #131 merged; packaged app built and launched on Bi's Mac; waiting on Bi's playthrough |
 | Earlier patients wait on chairs for a check-in | `claude/ward-round-check-in-seats` (draft PR to `main`) | Claude Code (cloud) | last commit on the branch | `scripts/world/WardRoundBedside.gd`, `data/ward_round_bedside.json` `check_in`, `test_ward_round_bedside.gd`, `tools/godot/capture_ward_bedside.gd` | Full QA; staging pending Bi's look |
@@ -619,6 +619,10 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 ```
 
 ## Log
+
+### 2026-11-05 morning — Claude Code — Elias work-up approved
+
+- Bi approved the work-up ("approve", 08:03 UTC) and merged #134. Branch `claude/meds-labs-approved` from `main` `4ff8219` sets both statuses to APPROVED, logs it, and updates `test_clinical_workup` (6/0). Open questions unanswered, so defaults stand (no story effect, no vitals values, no doses). Next: the encounter session wires bedside items to these lab ids and plan keys.
 
 ### 2026-11-05 — Claude Code — Elias medication and lab work-up draft
 
