@@ -1,5 +1,12 @@
 # AI session handoff
 
+## Claude Code cast v02 hair and clothing — 2026-11-05
+
+- Objective: Bi's "Create completed cast models. Improve hair and clothing." Branch `claude/cast-hair-clothing` (draft PR to `main`), with `main` `b1c3e63` merged in.
+- Done: six v02 models (finer layered hair cards, garment trims, fold maps), main's walk and gesture clips added, Elias neckline tucked, game switched to v02. Tests: full headless QA: game 417/0, GLB 205/0, audio 1720/0, QA 19/0/0, boot OK, CH1_SEQUENCE_DONE (62.2 s), exit 0. Mac not run.
+- Pending Bi: look at the review sheets (`/mnt/project-files/cast_v02/`, `assets/renders/characters/*_v02_*.png`) and in game on the Mac; merge the PR.
+- Next exact step: none until Bi reviews. If Elias's far shoulder still shows a dark sliver, rerun `tuck_neckline.py` with a larger `--band-m`, then `add_motion_clips.py`. See `docs/handoffs/2026-11-05_claude_cast_v02.md`. Last updated 2026-11-05 01:50 UTC.
+
 ## Claude Code Mac release polish — 2026-11-04
 
 - Update (evening): PR #131 merged by Bi into `main` (`144e609`). Mac run 2026-11-04 (Bi's MacBook Air M1, Godot 4.7.2.stable.official.ed1daf0bf, fresh clone `~/Developer/forensicward-release` at `c96f5f2`, same code as `main` `144e609`; nothing on the SSK drive): `tools/release/export_macos.sh` PASS (4.7.2 templates SHA-512 OK, ad-hoc signature valid, app 741 MB, LAUNCH_CHECK PASS, 0 ERROR lines); `tools/qa/mac_acceptance.py` exit 0 (QA 19/0/0, GLB 199/0, game 417/0, audio 1720/0, pharmacology 0 failures, Python tests passed, Chapter 1 sequence done); the packaged app opened from Finder-equivalent `open` and showed the title screen (New Game, Customize, Continue greyed, Settings, Quit, Ready.). App at `/Users/bi/Developer/forensicward-release/build/macos/The Forensic Ward.app`. Hands-on playthrough, endings and listening: NOT TESTED, waiting on Bi.
