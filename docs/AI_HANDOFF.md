@@ -620,6 +620,10 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-11-05 midday — Claude Code — Elias work-up matches the encounter
+
+- Bi: "have it agree in the most logical way". The work-up now copies the approved encounter's vitals, haloperidol history, lab results and order verdicts (`data/elias_encounter.json`, PR #138). Pushed to #141. `test_clinical_workup` checks the two agree.
+
 ### 2026-11-05 morning — Claude Code — Elias work-up approved
 
 - Bi approved the work-up ("approve", 08:03 UTC) and merged #134. Branch `claude/meds-labs-approved` from `main` `4ff8219` sets both statuses to APPROVED, logs it, and updates `test_clinical_workup` (6/0). Open questions unanswered, so defaults stand (no story effect, no vitals values, no doses). Next: the encounter session wires bedside items to these lab ids and plan keys.

@@ -1,6 +1,6 @@
 extends TestCase
 ## Elias's medication and laboratory work-up: the draft validates against the
-## ward-round catalogs, follows the approved Okafor catatonia logic, and
+## ward-round catalogs, agrees with the approved bedside encounter, and
 ## opens only when both the file and its case are APPROVED (owner
 ## approved 2026-11-05).
 
@@ -26,9 +26,9 @@ func test_approved_work_up_is_open_in_every_build() -> void:
 	for mode: String in [ClinicalRules.MODE_PROTOTYPE, ClinicalRules.MODE_VALIDATED]:
 		ClinicalRules.build_mode = mode
 		check(ClinicalWorkup.is_approved(ELIAS), "open in %s build" % mode)
-		check_eq(ClinicalWorkup.lab_result(ELIAS, "ck")["result"], "Mildly raised.", "CK result in %s build" % mode)
-		check_eq(ClinicalWorkup.evaluate(ELIAS, ["ck", "bmp", "cbc", "uds", "collateral"],
-				["start:lorazepam", "int:nutrition_hydration"])["outcome"], WardRoundCatalog.ACCEPTED, "plan judged in %s build" % mode)
+		check_eq(ClinicalWorkup.lab_result(ELIAS, "ck")["result"], "1,150 U/L (raised).", "CK result in %s build" % mode)
+		check_eq(ClinicalWorkup.evaluate(ELIAS, ["ck", "bmp", "cbc"],
+				["start:lorazepam", "int:nutrition_hydration", "int:close_observation"])["outcome"], WardRoundCatalog.ACCEPTED, "plan judged in %s build" % mode)
 
 
 func test_pending_copy_stays_locked() -> void:
@@ -49,18 +49,22 @@ func test_order_result_needs_a_placed_order() -> void:
 			"no result for an order without a lab")
 
 
-func test_draft_follows_approved_catatonia_logic() -> void:
+func test_work_up_agrees_with_the_bedside_encounter() -> void:
+	# Bi asked for the work-up and the approved bedside encounter to agree
+	# (2026-11-05). These are the encounter's facts and order verdicts.
 	var case: Dictionary = ClinicalWorkup.load_workup(ELIAS)["cases"][0]
-	var okafor: Dictionary = {}
-	var ward: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(ClinicalWorkup.WARD_ROUNDS_PATH))
-	for entry: Dictionary in ward["cases"]:
-		if entry["id"] == "wr_ch4_okafor":
-			okafor = entry
-	check_eq(okafor.get("clinical_review_status"), "APPROVED", "Okafor is the approved model")
-	for key: String in okafor["options"]:
-		check_eq(case["options"].get(key, {}).get("verdict"), okafor["options"][key]["verdict"], "%s verdict matches Okafor" % key)
-	for lab_id: String in ["ck", "bmp"]:
-		check_eq(case["labs"][lab_id]["verdict"], "required", "%s required as for Okafor" % lab_id)
+	check("T 37.6 °C, HR 108" in str(case["presentation"]["vitals"]), "vitals match the encounter")
+	check("Haloperidol" in str(case["presentation"]["history"]), "recent haloperidol is in the history")
+	var labs: Dictionary = {"ck": "required", "bmp": "required", "cbc": "required", "lft": "helpful",
+			"tsh": "helpful", "urinalysis": "helpful", "uds": "helpful", "collateral": "helpful"}
+	for lab_id: String in labs:
+		check_eq(case["labs"][lab_id]["verdict"], labs[lab_id], "%s verdict matches the encounter" % lab_id)
+	check_eq(case["labs"]["ck"]["result"], "1,150 U/L (raised).", "CK result matches the encounter")
+	var options: Dictionary = {"start:lorazepam": "preferred", "start:haloperidol": "unsafe",
+			"start:olanzapine": "unsafe", "start:risperidone": "unsafe", "start:quetiapine": "unsafe",
+			"start:aripiprazole": "unsafe", "int:nutrition_hydration": "required", "int:close_observation": "required"}
+	for key: String in options:
+		check_eq(case["options"][key]["verdict"], options[key], "%s verdict matches the encounter" % key)
 
 
 func test_approved_copy_would_judge_a_plan() -> void:
@@ -71,9 +75,9 @@ func test_approved_copy_would_judge_a_plan() -> void:
 	for lab_id: String in case["labs"]:
 		if case["labs"][lab_id]["verdict"] == "required":
 			labs.append(lab_id)
-	var plan: Array = ["start:lorazepam", "int:nutrition_hydration"]
+	var plan: Array = ["start:lorazepam", "int:nutrition_hydration", "int:close_observation"]
 	check_eq(WardRoundCatalog.evaluate(case, labs, plan)["outcome"], WardRoundCatalog.ACCEPTED, "safe plan accepted")
 	var unsafe: Dictionary = WardRoundCatalog.evaluate(case, labs, plan + ["start:haloperidol"])
 	check_eq(unsafe["outcome"], WardRoundCatalog.REVISE, "haloperidol sends the plan back")
 	check_eq(WardRoundCatalog.evaluate(case, [], plan)["outcome"], WardRoundCatalog.REVISE, "missing labs send it back")
-	check_eq(WardRoundCatalog.lab_result(case, "uds")["result"], "Negative for all substances screened.", "UDS result")
+	check_eq(WardRoundCatalog.lab_result(case, "uds")["result"], "Negative.", "UDS result")
