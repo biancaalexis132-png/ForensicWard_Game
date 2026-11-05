@@ -688,6 +688,13 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-11-05 afternoon — Claude Code — objective star on the map
+
+- All eight roadmap and helper PRs (#139 to #147) merged; main `b757c45` CI green. The handoff-doc conflicts came from every PR editing the same five docs; GitHub ignores `merge=union`. From now on only one open PR at a time edits them.
+- Branch `claude/map-objective-marker` from `main` `b757c45`: `CaseFile.objective_target` (same first-unmet-condition rule as `objective_place`), `FloorPlan.snapshot(..., director)` adds `objective` (position and room on this floor, or `elsewhere`), `SpatialMap` draws a gold star and legend entry, `MapScreen.describe` adds an "Objective" line. Display only; no state changes.
+- Tests: `test_map_readability` 5/0, `test_case_file` 9/0; full suite in the PR. Capture: `/mnt/project-files/map/map_objective_star.png`. Not on the Mac.
+- Next: lighting and materials baseline (roadmap point 5).
+
 ### 2026-11-05 midday — Claude Code — Elias work-up matches the encounter
 
 - Bi: "have it agree in the most logical way". The work-up now copies the approved encounter's vitals, haloperidol history, lab results and order verdicts (`data/elias_encounter.json`, PR #138). Pushed to #141. `test_clinical_workup` checks the two agree.

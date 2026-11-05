@@ -6,32 +6,8 @@
 
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Case file on Tab | Draft PR #137 | | `CaseFile.gd`, `CaseFileScreen.gd` | full QA | Bi looks on the Mac |
-| Map readability | Draft PR | | `SpatialMap.gd`, `FloorPlan.gd` | full QA | Bi looks on the Mac |
-| Staff remember earlier choices (17 lines) | Draft PR; lines approved 2026-11-05 | | `data/acknowledgements.json`, `Acknowledgements.gd` | `test_acknowledgements` (4), full QA | Bi looks on the Mac |
-| Ending paragraph from the case file | Not started | #137 merged, Bi's approval (section D) | `ChapterDirector._campaign_end_panel` | | After #137 |
-| Objective marker on the map | Not started | #137 merged | `SpatialMap.gd` | | After #137 |
-| Case file on Tab | Draft PR #137 | | `CaseFile.gd` | full QA, CI | Bi |
-| Map readability | Draft PR #139 | | `SpatialMap.gd` | full QA, CI | Bi |
-| Staff remember earlier choices | Draft PR | | `Acknowledgements.gd` | full QA | Bi |
-| Smooth transitions | Draft PR | | `UITransition.gd`, `Main.gd`, `InfoPanel.gd`, `HUD.gd` | `test_ui_transitions` (5), full QA | Bi feels it on the Mac |
-| Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
-| Performances, atmosphere | Not started | | | | Next |
-| Case file on Tab | Draft PR #137 | | `CaseFile.gd` | full QA, CI | Bi |
-| Map readability | Draft PR #139 | | `SpatialMap.gd` | full QA, CI | Bi |
-| Staff remember earlier choices | Draft PR #140 | | `Acknowledgements.gd` | full QA, CI | Bi |
-| Smooth transitions | Draft PR #142 | | `UITransition.gd` | full QA | Bi |
-| Conversation performances | Draft PR | | `ConversationPerformance.gd`, `data/cast_performance.json` | `test_conversation_performance` (8), full QA | Bi looks on the Mac |
-| Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
-| Atmosphere baseline | Not started | | | | Next |
-| Case file, map, staff remember, transitions, performances | Draft PRs #137, #139, #140, #142, #143 | | | full QA, CI | Bi |
-| Directional room sound | Draft PR | | `RoomSounds.gd`, `data/room_sounds.json` | `test_room_sounds` (3), full QA | Bi listens on the Mac |
-| Lighting and materials baseline | Not started | | | | Next |
-| Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
-| Case file on Tab | Merged (#137) | | `CaseFile.gd` | full QA, CI | |
-| Map, staff remember, transitions, performances, room sound | Draft PRs #139, #140, #142, #143, #145 | | | full QA, CI | Bi |
-| Ending paragraph (section D) | Draft PR | #137 | `CaseFile.record_summary`, `ChapterDirector._campaign_end_panel` | `test_case_file` (8), full QA | Bi reads it |
-| Objective marker on the map | Not started | #139 merged | `SpatialMap.gd` | | After #139 |
+| Case file, map, staff remember, transitions, performances, room sound, ending record, handoff docs | Merged (#137, #139, #140, #142, #143, #145, #146, #147) | | | full QA, CI on main `b757c45` | Bi plays on the Mac |
+| Objective marker on the map | Draft PR | | `CaseFile.objective_target`, `FloorPlan._objective`, `SpatialMap._draw_star`, `MapScreen.describe` | `test_map_readability` (5), `test_case_file` (9), full QA | Bi looks on the Mac |
 | Lighting and materials baseline | Not started | | | | Next |
 
 ## Make the game more compelling (Bi's roadmap) — Claude Code (cloud), 2026-11-05

@@ -45,7 +45,8 @@ func _refresh_map() -> void:
 	var main: Node = get_parent()
 	if main == null or not main.has_node("ZoneDirector"):
 		return
-	var plan: Dictionary = FloorPlan.snapshot(main.get_node("World"), main.get_node("Player"), main.get_node("ZoneDirector"))
+	var plan: Dictionary = FloorPlan.snapshot(main.get_node("World"), main.get_node("Player"), main.get_node("ZoneDirector"),
+			get_tree().get_first_node_in_group(ChapterDirector.GROUP) as ChapterDirector)
 	_map.show_plan(plan)
 	$Root/Panel/Margin/VBox/Title.text = "%s — %s" % [plan["title"], plan["level"]]
 	_text.text = describe(plan)
@@ -61,5 +62,13 @@ static func describe(plan: Dictionary) -> String:
 		people.append("%s (%s)" % [person["name"], person["room"]])
 	if not people.is_empty():
 		lines.append("On this floor: " + ", ".join(people))
+	var objective: Dictionary = plan.get("objective", {})
+	if objective.has("position"):
+		var room: String = str(objective.get("room", ""))
+		lines.append("[color=#ffd36b]★ Objective:[/color] %s%s" % [objective["label"], (" (%s)" % room) if not room.is_empty() else ""])
+	elif objective.has("elsewhere"):
+		lines.append("[color=#ffd36b]★ Objective:[/color] %s — not on this floor" % objective["label"])
+	elif objective.has("here"):
+		lines.append("[color=#ffd36b]★ Objective:[/color] %s — this floor" % objective["label"])
 	lines.append("[color=#9aa8a6]Current floor only. North is up. M or Esc closes the map.[/color]")
 	return "\n".join(lines)
