@@ -2,7 +2,7 @@
 	"schema_version": "0.1",
 	"patient_id": "pt_elias_ward",
 	"clinical_review_status": "APPROVED",
-	"_note": "The full Elias Ward encounter in Interview Room A (owner playtest 2026-11-04): introduction, a full history taken from Elias and, where he cannot answer, from his 1:1 sitter and the transfer packet, a physical and catatonia examination the psychiatrist performs on screen, and verbal orders given at the bedside that are logged to the EHR. Every patient fact, finding, result, verdict and outcome below is fictional. Approved by the owner (physician) on 2026-11-05 as written, including the four review-sheet answers left as drafted (rising vitals after haloperidol, lorazepam 'as per protocol' with no dose shown, Elias's 'Thank you' after lorazepam, Tom Adler as mental health technician); see docs/clinical_review_log.md. It changes no treatment effect in ClinicalRules. Elias does not speak until the lorazepam reassessment: his non-responses are shown by his model (stillness, fixed gaze), not narrated. The 'shown' text is the on-screen transcript caption only and is never voiced. Line ids are stable: never reuse an id for different wording.",
+	"_note": "The full Elias Ward encounter in Interview Room A (owner playtest 2026-11-04): introduction, a full history taken from Elias and, where he cannot answer, from his 1:1 sitter and the transfer packet, a physical and catatonia examination the psychiatrist performs on screen, and verbal orders given at the bedside that are logged to the EHR. Every patient fact, finding, result, verdict and outcome below is fictional. Approved by the owner (physician) on 2026-11-05 as written, including the four review-sheet answers left as drafted (rising vitals after haloperidol, lorazepam 'as per protocol' with no dose shown, Elias's 'Thank you' after lorazepam, Tom Adler as mental health technician); see docs/clinical_review_log.md. Aligned the same day with the approved medication and lab work-up (data/clinical_workups/elias_ward.json) at Bi's request: the jail haloperidol comes from a page the transport officer brought, not the transfer summary; CBC normal; CK mildly raised; drug screen and collateral required; olanzapine deferred. The lorazepam reassessment stays inside this encounter and changes no chapter story state. It changes no treatment effect in ClinicalRules. Elias does not speak until the lorazepam reassessment: his non-responses are shown by his model (stillness, fixed gaze), not narrated. The 'shown' text is the on-screen transcript caption only and is never voiced. Line ids are stable: never reuse an id for different wording.",
 	"source": "Original writing for The Forensic Ward. Catatonia examination steps are original summaries of the signs screened by the Bush-Francis Catatonia Rating Scale (Bush G, Fink M, Petrides G, Dowling F, Francis A. Catatonia. I. Rating scale and standardized examination. Acta Psychiatr Scand 1996;93:129-136); no scale text is reproduced. Scene structure follows docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH1_ELIAS_WARD_COMPLETE_SOURCE_DRAFT.md Scenes 6-8.",
 	"informant": {
 		"id": "staff_sitter_adler",
@@ -123,7 +123,7 @@
 			"player": "Tom, what medication has he had, here or at the jail? Anything in the last two weeks?",
 			"requires": ["open_introduce"],
 			"beats": [
-				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "Nothing since he's been here. The jail medication record shows haloperidol injections twice, six days and five days before transfer, for agitation. Five milligrams each time, it says. Nothing regular after that. No lorazepam."}
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "Nothing since he's been here. The transfer summary doesn't list any medication, but the transport officer brought a page from the jail medication record with him. It shows haloperidol injections twice, six days and five days before transfer, for agitation. Five milligrams each time, it says. Nothing regular after that. No lorazepam. Nobody's confirmed it with the jail yet."}
 			],
 			"records_facts": ["fact_haloperidol"]
 		},
@@ -344,7 +344,7 @@
 		"fact_intake": {"domain": "intake", "text": "Sips of water only when the cup is held to his lips; no food since arrival; about a quarter cup of fluid overnight.", "source": "sitter_report", "reliability": "1:1 sitter and nursing flowsheet", "verified": false},
 		"fact_output": {"domain": "intake", "text": "No urine charted since arrival; last voided yesterday afternoon per transport note. No bowel movement charted.", "source": "nursing_flowsheet", "reliability": "nursing flowsheet and transport note", "verified": false},
 		"fact_sleep": {"domain": "sleep", "text": "Lay in one position from 03:00 to 07:00 without turning; eyes open at most checks. Sleep uncertain.", "source": "sitter_report", "reliability": "night observation record", "verified": false},
-		"fact_haloperidol": {"domain": "medications", "text": "Haloperidol 5 mg intramuscular twice, six and five days before transfer, for agitation. No regular medication since. No benzodiazepine given.", "source": "transfer_packet", "reliability": "jail medication administration record", "verified": false},
+		"fact_haloperidol": {"domain": "medications", "text": "Haloperidol 5 mg intramuscular twice, six and five days before transfer, for agitation. No regular medication since. No benzodiazepine given.", "source": "transfer_packet", "reliability": "jail medication record page brought by the transport officer; not in the transfer summary; not yet confirmed with the jail", "verified": false},
 		"fact_allergies": {"domain": "medications", "text": "No known drug allergies.", "source": "transfer_packet", "reliability": "jail record and admission sheet agree", "verified": false},
 		"fact_psych_history": {"domain": "psych_history", "text": "One admission at 24 with psychosis; discharged on an antipsychotic, stopped within months. No previous episode like this recorded.", "source": "transfer_packet", "reliability": "transfer documents", "verified": false},
 		"fact_medical_history": {"domain": "medical_history", "text": "No medical history, seizures or head injury recorded. No blood tests in the packet.", "source": "transfer_packet", "reliability": "jail intake form", "verified": false},
@@ -377,25 +377,25 @@
 			{"id": "eo_pressure_care", "group": "monitoring", "label": "Pressure area care and repositioning", "verdict": "helpful", "feedback": "He did not turn over all night. Immobility brings pressure injury risk."},
 			{"id": "eo_lab_ck", "group": "tests", "label": "Creatine kinase (CK)", "verdict": "required", "lab_id": "ck", "feedback": "Needed with recent haloperidol, a rising temperature and pulse, and immobility: a raised CK supports neuroleptic malignant syndrome or muscle breakdown."},
 			{"id": "eo_lab_bmp", "group": "tests", "label": "Basic metabolic panel (sodium, potassium, renal function, glucose)", "verdict": "required", "lab_id": "bmp", "feedback": "Dehydration and poor intake: check sodium and kidney function."},
-			{"id": "eo_lab_cbc", "group": "tests", "label": "Complete blood count", "verdict": "required", "lab_id": "cbc", "feedback": "Infection and a raised white count belong in the differential of a rising temperature."},
+			{"id": "eo_lab_cbc", "group": "tests", "label": "Complete blood count", "verdict": "required", "lab_id": "cbc", "feedback": "Infection belongs in the differential of a rising temperature; a normal count makes it less likely."},
 			{"id": "eo_lab_lft", "group": "tests", "label": "Liver function tests", "verdict": "helpful", "lab_id": "lft", "feedback": "Part of a medical workup for an altered mental state."},
 			{"id": "eo_lab_tsh", "group": "tests", "label": "Thyroid-stimulating hormone", "verdict": "helpful", "lab_id": "tsh", "feedback": "A treatable medical cause to exclude."},
 			{"id": "eo_lab_ua", "group": "tests", "label": "Urinalysis", "verdict": "helpful", "lab_id": "urinalysis", "feedback": "Concentration and infection, once he passes urine."},
-			{"id": "eo_lab_uds", "group": "tests", "label": "Urine drug screen", "verdict": "helpful", "lab_id": "uds", "feedback": "Low yield after six weeks in custody, but reasonable in an unexplained change."},
+			{"id": "eo_lab_uds", "group": "tests", "label": "Urine drug screen", "verdict": "required", "lab_id": "uds", "feedback": "Required: his history is unverified and he cannot tell you what he has taken. Usually negative after weeks in custody, but it has to be excluded."},
 			{"id": "eo_lorazepam_challenge", "group": "medication", "label": "Lorazepam challenge, then re-examine", "verdict": "preferred", "medication_id": "lorazepam", "feedback": "First-line for suspected catatonia, and a good response supports the diagnosis. Re-examine afterwards with the same steps."},
 			{"id": "eo_haloperidol", "group": "medication", "label": "Haloperidol for psychosis", "verdict": "unsafe", "medication_id": "haloperidol", "feedback": "Antipsychotics can worsen catatonia and precipitate neuroleptic malignant syndrome, and he already has a rising pulse and temperature after recent haloperidol. Hold antipsychotics until catatonia and NMS are assessed."},
-			{"id": "eo_olanzapine", "group": "medication", "label": "Olanzapine for psychosis", "verdict": "unsafe", "medication_id": "olanzapine", "feedback": "The same risk as any antipsychotic here: hold until catatonia and NMS are assessed."},
+			{"id": "eo_olanzapine", "group": "medication", "label": "Olanzapine for psychosis", "verdict": "not_yet", "medication_id": "olanzapine", "feedback": "Not yet: defer antipsychotics until the catatonia is treated and neuroleptic malignant syndrome has been ruled out."},
 			{"id": "eo_medical_review", "group": "referral", "label": "Medical team review today", "verdict": "required", "ehr_order": "ord_medical_team_review", "feedback": "Rising pulse and temperature, dehydration and recent antipsychotic exposure need a medical assessment alongside yours."},
 			{"id": "eo_vte_discussion", "group": "referral", "label": "Ask the medical team about clot prevention", "verdict": "helpful", "feedback": "Immobility in catatonia raises the risk of venous thromboembolism."},
-			{"id": "eo_collateral_sister", "group": "referral", "label": "Call his sister for collateral history (with consent, or as policy allows)", "verdict": "helpful", "feedback": "She knows his baseline and the onset better than any packet."},
+			{"id": "eo_collateral_sister", "group": "referral", "label": "Call his sister for collateral history (with consent, or as policy allows)", "verdict": "required", "feedback": "Required: his medication history is unverified and he cannot give one. She knows his baseline and the onset better than any packet."},
 			{"id": "eo_ect_now", "group": "referral", "label": "Refer for ECT today", "verdict": "not_yet", "feedback": "ECT is the treatment for catatonia that does not respond to lorazepam, or for malignant catatonia. Start with a lorazepam challenge and medical workup."},
 			{"id": "eo_dismiss", "group": "referral", "label": "Record him as refusing to engage", "verdict": "unsafe", "feedback": "Silence and stillness are signs to explain, not a choice to record. Keep investigating."}
 		],
 		"catatonia_assessment_order": "ord_catatonia_assessment",
 		"lab_results": {
-			"ck": "1,150 U/L (raised).",
+			"ck": "1,150 U/L: mildly raised.",
 			"bmp": "Sodium 147 mmol/L (slightly raised), urea raised, creatinine at the upper limit of normal, potassium and glucose normal: consistent with dehydration.",
-			"cbc": "White cell count 11.2 (slightly raised); otherwise normal.",
+			"cbc": "Within normal limits.",
 			"lft": "Within normal limits.",
 			"tsh": "Within normal limits.",
 			"urinalysis": "Concentrated (high specific gravity); no infection.",
@@ -405,7 +405,7 @@
 	"consequences": {
 		"antipsychotic_hold": {
 			"speaker": "staff_bennett",
-			"text": "Doctor, before I draw this up: his temperature's thirty-seven six, pulse a hundred and eight, and the packet says he had haloperidol last week. Do you want to hold it until the medical team has seen him?",
+			"text": "Doctor, before I draw this up: his temperature's thirty-seven six, pulse a hundred and eight, and the jail page says he had haloperidol last week. Do you want to hold it until the medical team has seen him?",
 			"choices": [
 				{"id": "rescind", "label": "Hold it. Cancel the antipsychotic.", "reply": "Thank you. I'll take it off.", "trust_delta": 2},
 				{"id": "insist", "label": "Give it as ordered.", "reply": "I'm not comfortable giving it without the medical team's view. I'll document that I've held it and page them.", "trust_delta": -5, "chart_entry": "Antipsychotic order held by nursing: safety concern raised with the prescriber; medical team paged."}
