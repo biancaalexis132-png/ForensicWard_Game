@@ -27,6 +27,51 @@
 						"source": "physician_observation",
 						"timestamp": "day1_pending",
 						"text": "Possible posturing requires structured bedside examination."
+					},
+					{
+						"id": "obs_immobility",
+						"source": "physician_observation",
+						"timestamp": "day1_encounter",
+						"text": "Markedly reduced spontaneous movement; hands remain where they were placed for the whole observation.",
+						"verified": false,
+						"reliability": "clinician examination, single encounter",
+						"provenance": "Elias encounter redesign (data/elias_encounter.json), PENDING_PSYCHIATRIST_REVIEW"
+					},
+					{
+						"id": "obs_staring",
+						"source": "physician_observation",
+						"timestamp": "day1_encounter",
+						"text": "Fixed gaze on one point, with very little blinking.",
+						"verified": false,
+						"reliability": "clinician examination, single encounter",
+						"provenance": "Elias encounter redesign (data/elias_encounter.json), PENDING_PSYCHIATRIST_REVIEW"
+					},
+					{
+						"id": "obs_tachycardia",
+						"source": "physician_observation",
+						"timestamp": "day1_encounter",
+						"text": "Radial pulse about 110, regular; skin warm and slightly damp.",
+						"verified": false,
+						"reliability": "clinician examination, single encounter",
+						"provenance": "Elias encounter redesign (data/elias_encounter.json), PENDING_PSYCHIATRIST_REVIEW"
+					},
+					{
+						"id": "obs_dry_mucosa",
+						"source": "physician_observation",
+						"timestamp": "day1_encounter",
+						"text": "Cracked lips and dry oral mucosa.",
+						"verified": false,
+						"reliability": "clinician examination, single encounter",
+						"provenance": "Elias encounter redesign (data/elias_encounter.json), PENDING_PSYCHIATRIST_REVIEW"
+					},
+					{
+						"id": "obs_waxy_flexibility",
+						"source": "physician_observation",
+						"timestamp": "day1_encounter",
+						"text": "Slight, even resistance to passive movement at the elbow; the limb stays where it is placed. No lead-pipe rigidity or cogwheeling.",
+						"verified": false,
+						"reliability": "clinician examination, single encounter",
+						"provenance": "Elias encounter redesign (data/elias_encounter.json), PENDING_PSYCHIATRIST_REVIEW"
 					}
 				]
 			},

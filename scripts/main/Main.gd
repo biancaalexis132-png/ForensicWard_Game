@@ -9,7 +9,8 @@ extends Node3D
 ##
 ## Panels opened through EventBus.ui_panel_requested(panel_id, data):
 ##   "info"       InfoPanel (documents, staff, notices; drawn on top)
-##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
+##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras),
+##                or EncounterScreen when the patient has a full bedside encounter
 ##   "ehr"        EHRScreen (also opened with J)
 ##   "case_file"  CaseFileScreen (opened with Tab): objective, notes, evidence
 ##   "evidence"   EvidenceBoard (from the case file's Evidence board button)
@@ -250,7 +251,11 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 		InterviewScreen.PANEL_ID:
 			var with_world: Dictionary = data.duplicate()
 			with_world["world"] = null if bool(data.get("text_only", false)) else _world
-			_interview.open(with_world)
+			# A patient with a full bedside encounter playable in this build gets it instead.
+			if not bool(data.get("text_only", false)) and EncounterManager.is_playable(str(data.get("patient_id", ""))):
+				_open_optional_panel("EncounterScreen", "res://scenes/ui/EncounterScreen.tscn", with_world)
+			else:
+				_interview.open(with_world)
 		_:
 			push_warning("Main: unknown panel '%s'" % panel_id)
 			return

@@ -1,5 +1,7 @@
 # AI progress tracker
 
+## Elias bedside encounter — Claude Code (cloud), 2026-11-05
+
 ## Make the game more compelling (Bi's roadmap) — Claude Code (cloud), 2026-11-05
 
 | Task | State | Depends on | Paths | Validation | Next action |
@@ -30,6 +32,13 @@
 
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
+| Psychiatrist performs the exam on screen | Done, draft PR | cast pipeline | `EncounterStage.gd`, `ExamPoseModifier.gd`, protagonist models | `test_elias_encounter`, captures | Bi looks on the Mac |
+| Full history through a 1:1 sitter | Done, draft PR; content approved 2026-11-05 | | `data/elias_encounter.json`, Tom Adler model | `test_elias_encounter` | Bi answers the review sheet |
+| Orders from the encounter; split screen withdrawn | Done, draft PR; content approved 2026-11-05 | | `EncounterManager.gd`, `EncounterScreen.gd`, `data/milestones.json` | `test_elias_encounter`, `test_milestones` | Reconcile lab text with the meds/labs thread when it lands |
+| Background staff | Done, draft PR | | `data/world_chapter1.json`, `CastRoute.gd`, `AuthoredWorld.gd`, three models | `test_campaign_cast`, `test_cast_motion` | Bi looks on the Mac |
+| Voice clips for the new lines | Not started | local Kokoro | `audio/voice/**` | | After clinical approval |
+
+## Mac playtest fixes — Claude Code (cloud), 2026-11-05
 | Naomi faces you and moves | Done, draft PR | | `CastPerformer.gd`, `Character.gd` | `test_cast_motion` | Mac look |
 | Voice follows the character | Done, draft PR | | `ProtagonistScreen.gd` | `test_playtest_voice` | Mac listen |
 | Voss walks out after the talk | Done, draft PR (Chapter 1) | | `CastExit.gd`, `world_chapter1.json` | `test_cast_motion` (path clear, back on load) | Mac look; author other chapters if wanted |
