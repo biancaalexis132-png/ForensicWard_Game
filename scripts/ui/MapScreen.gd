@@ -22,12 +22,6 @@ func open(_data: Dictionary = {}) -> void:
 	visible = true
 	is_open = true
 	_refresh_map()
-	var document: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://data/ui/floor_directory.json"))
-	if document is Dictionary and document.get("body") is String:
-		_text.text = "White: you / heading · Amber: locked door · Green: accessible door · E: EHR\nCurrent floor only. Outline: open door. North is up."
-	else:
-		push_error("Floor directory requires a JSON object with a string body")
-		_text.text = "Directory unavailable."
 	if has_node("Root/Panel/Margin/VBox/Close"):
 		_close_button.grab_focus()
 
@@ -54,3 +48,18 @@ func _refresh_map() -> void:
 	var plan: Dictionary = FloorPlan.snapshot(main.get_node("World"), main.get_node("Player"), main.get_node("ZoneDirector"))
 	_map.show_plan(plan)
 	$Root/Panel/Margin/VBox/Title.text = "%s — %s" % [plan["title"], plan["level"]]
+	_text.text = describe(plan)
+
+
+## The plan in words: where you are and who is on this floor (also read by tests).
+static func describe(plan: Dictionary) -> String:
+	var lines: PackedStringArray = []
+	var here: String = str(plan.get("here", ""))
+	lines.append("You are in: [b]%s[/b]" % (here if not here.is_empty() else plan.get("title", "")))
+	var people: PackedStringArray = []
+	for person: Dictionary in plan.get("people", []):
+		people.append("%s (%s)" % [person["name"], person["room"]])
+	if not people.is_empty():
+		lines.append("On this floor: " + ", ".join(people))
+	lines.append("[color=#9aa8a6]Current floor only. North is up. M or Esc closes the map.[/color]")
+	return "\n".join(lines)
