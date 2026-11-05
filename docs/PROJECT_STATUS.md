@@ -1,3 +1,5 @@
+**Animated cinematic pilot (Codex, 2026-11-04; draft PR #133):** Standalone voiced Naomi handover now uses the actual gameplay model and acting rig, five data-authored camera shots, refined close-ups and character lighting, subtitles and letterboxing. Refined headless playback and cancellation checks pass; Linux stills are in `docs/cinematic_review/`. Full standard QA was still running at the owner's immediate-push request. Not yet campaign-integrated or Mac-accepted. See `docs/CINEMATIC_PILOT.md`. No SSK transfer occurred; this session has no Mac filesystem access.
+
 **Earlier patients wait for a check-in (Claude Code, 2026-11-04; draft PR, not merged):** `claude/ward-round-check-in-seats`, from `main` after #129. From Chapter 2 on, ward-round patients treated in an earlier chapter and due a check-in sit on three visitor chairs by the ward entrance (oldest first). Walking up to one opens their case on the check-in; once checked in they leave and the next takes the chair. Uses only Bi's approved check-in lines; staging pending Bi's look. Not tested on the Mac.
 
 **Patients react to your bedside opening (Claude Code, 2026-11-04; PR #129, merged by Bi):** `claude/ward-round-opening-reactions`. Each ward-round patient now answers a warm, direct or rushed opening in their own words (approved by Bi on 2026-11-04). The ward-round stack #114–#127 is on `claude/playtest-fixes` and #128 merged it into `main`. Not tested on the Mac.
@@ -23,6 +25,8 @@
 # Project status
 
 **Elias bedside encounter (Claude Code, 2026-11-05; draft PR, not merged):** `claude/elias-encounter`, from `main`. In the prototype build, approaching Elias opens a bedside encounter: the player's psychiatrist walks over and performs the examination, a 1:1 sitter answers a full history, and orders are given in the room (placing the real EHR orders), with Bennett challenging an antipsychotic and a lorazepam reassessment later in the shift. Background staff walk and work on the Chapter 1 ward. All new clinical content is pending Bi's review; new lines are not voiced. Not tested on the Mac.
+
+**Packaged Mac app (2026-11-04):** PR #131 is merged. On Bi's MacBook Air the standalone app exports, passes its launch check and the automated Mac QA (game 417/0, audio 1720/0), and opens on the title screen without the editor. The hands-on playthrough, three endings and listening pass are still with Bi (`docs/MAC_RELEASE_BUILD.md` §3).
 
 **Mac release polish (Claude Code, 2026-11-04; draft PR, not merged):** `claude/mac-release-polish` at `7e59789`, from `main`. The objective banner no longer covers character name tags, the current objective shows once, Elias's shoulder seams are closed, and the repository can now build a standalone macOS app (`tools/release/export_macos.sh`, `docs/MAC_RELEASE_BUILD.md`). Full QA passed (game 413/0, audio 1720/0). The Mac app was built in the container but has not been run on a Mac.
 
