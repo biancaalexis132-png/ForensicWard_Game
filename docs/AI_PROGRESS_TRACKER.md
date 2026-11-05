@@ -1,5 +1,17 @@
 # AI progress tracker
 
+## Make the game more compelling (Bi's roadmap) — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Case file on Tab | Draft PR #137 | | `CaseFile.gd` | full QA, CI | Bi |
+| Map readability | Draft PR #139 | | `SpatialMap.gd` | full QA, CI | Bi |
+| Staff remember earlier choices | Draft PR #140 | | `Acknowledgements.gd` | full QA, CI | Bi |
+| Smooth transitions | Draft PR #142 | | `UITransition.gd` | full QA | Bi |
+| Conversation performances | Draft PR | | `ConversationPerformance.gd`, `data/cast_performance.json` | `test_conversation_performance` (8), full QA | Bi looks on the Mac |
+| Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
+| Atmosphere baseline | Not started | | | | Next |
+
 ## Elias meds and labs draft — Claude Code (cloud), 2026-11-05
 
 | Task | State | Depends on | Paths | Validation | Next action |

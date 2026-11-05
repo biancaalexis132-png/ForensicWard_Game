@@ -1,0 +1,52 @@
+{
+	"schema_version": 1,
+	"notes": "How each cast member looks and holds their eyes in conversation (ConversationPerformance). Cosmetic only: no wording, story, clinical or save effect. Faces are the cast-standard expression morphs, already authored at in-game intensity. gaze_breaks: seconds between short looks away while they speak ([] for none). beat_seconds: after you make a choice, how long they look down and gather themselves before their reply (0 for none). Patients keep a neutral face while speaking and never avert their eyes or pause, so nothing reads as a symptom; Naomi is acted by NaomiActingController and is not listed.",
+	"defaults": {
+		"staff": {
+			"speaking_face": "calm_professional",
+			"listening_face": "attentive",
+			"beat_face": "focused",
+			"gaze_breaks": [4.0, 7.0],
+			"break_seconds": 0.6,
+			"beat_seconds": 0.6
+		},
+		"patient": {
+			"speaking_face": "neutral",
+			"listening_face": "attentive",
+			"beat_face": "neutral",
+			"gaze_breaks": [],
+			"break_seconds": 0.0,
+			"beat_seconds": 0.0
+		}
+	},
+	"characters": {
+		"staff_hale": {
+			"speaking_face": "professionally_serious",
+			"listening_face": "focused",
+			"gaze_breaks": [7.0, 11.0],
+			"break_seconds": 0.45,
+			"beat_seconds": 0.5
+		},
+		"staff_voss": {
+			"speaking_face": "calm_professional",
+			"listening_face": "attentive",
+			"gaze_breaks": [4.5, 7.0],
+			"break_seconds": 0.7,
+			"beat_seconds": 0.9
+		},
+		"staff_rahman": {
+			"speaking_face": "focused",
+			"listening_face": "concerned_restrained",
+			"gaze_breaks": [3.5, 6.0],
+			"break_seconds": 0.6,
+			"beat_seconds": 0.7
+		},
+		"staff_facilities_tech": {
+			"speaking_face": "warm_subtle",
+			"listening_face": "attentive",
+			"gaze_breaks": [2.5, 4.5],
+			"break_seconds": 0.6,
+			"beat_seconds": 0.4
+		}
+	}
+}

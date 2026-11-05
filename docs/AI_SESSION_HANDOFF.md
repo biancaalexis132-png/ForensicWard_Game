@@ -1,5 +1,12 @@
 # AI session handoff
 
+## Claude Code "Make the game more compelling" (Bi's seven-point roadmap) — 2026-11-05
+
+- Objective: work through Bi's roadmap in small PRs from `main` (no stacking). Point 1 (Elias) and Mac presentation fixes belong to other threads.
+- PRs: #137 case file, #139 map, #140 staff remember choices, #142 transitions, `claude/conversation-performances` (this branch).
+- Next: after #137 merges, the objective marker on the map and the approved ending paragraph; then the atmosphere baseline.
+- Constraints: no new clinical or story wording without Bi's approval; patient performance must never suggest a symptom without clinical review; never merge; never run git on the SSK drive. Last updated 2026-11-05.
+
 ## Claude Code Elias meds and labs draft — 2026-11-05
 
 - Objective: draft Elias's medication and lab orders for Bi's clinical sign-off, switched off until approved.
