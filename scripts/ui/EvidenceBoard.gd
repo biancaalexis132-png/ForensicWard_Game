@@ -2,7 +2,8 @@ class_name EvidenceBoard
 extends CanvasLayer
 ## EvidenceBoard: the investigation board (GDD §10), opened with Tab.
 ##
-## Left: every collected clue, with a pin toggle. Centre: pinned clues as
+## Left: every collected clue, with a pin toggle and a Read button that opens
+## the document (its paper image when it has one) in the InfoPanel on top. Centre: pinned clues as
 ## cards; select two and Link (or Unlink) them, and the links are drawn as
 ## strings between cards. Right: the selected clue's provenance and
 ## corroborations, and the hypotheses. Arguing a hypothesis succeeds only
@@ -30,6 +31,7 @@ var _hypotheses: VBoxContainer
 var _feedback: Label
 var _new_title: LineEdit
 var _close_button: Button
+var _view_selected: Button
 var _card_positions: Dictionary = {}  ## clue_id -> card centre (board coords)
 
 
@@ -144,6 +146,13 @@ func propose_hypothesis(title: String) -> String:
 	return hypothesis_id
 
 
+## Opens a collected clue's document over the board (InfoPanel draws above it
+## and Esc closes it first).
+func view_document(clue_id: String) -> void:
+	if EvidenceManager.has_clue(clue_id):
+		EventBus.ui_panel_requested.emit("info", ClueText.panel_data(clue_id))
+
+
 func get_feedback() -> String:
 	return _feedback.text
 
@@ -165,6 +174,7 @@ func _refresh() -> void:
 	_rebuild_board()
 	_rebuild_hypotheses()
 	_details.text = _details_text(selected[-1] if not selected.is_empty() else "")
+	_view_selected.visible = not selected.is_empty()
 
 
 func _rebuild_clue_list() -> void:
@@ -179,7 +189,15 @@ func _rebuild_clue_list() -> void:
 		pin.button_pressed = EvidenceManager.is_pinned(clue_id)
 		pin.add_theme_font_size_override("font_size", 16)
 		pin.toggled.connect(func(_on: bool) -> void: toggle_pin(clue_id))
-		_clue_list.add_child(pin)
+		pin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var row: HBoxContainer = HBoxContainer.new()
+		row.add_child(pin)
+		var read: Button = UIStyle.secondary_button("Read", 16)
+		read.name = "View_" + clue_id
+		read.tooltip_text = "Show the document"
+		read.pressed.connect(func() -> void: view_document(clue_id))
+		row.add_child(read)
+		_clue_list.add_child(row)
 
 
 func _rebuild_board() -> void:
@@ -358,6 +376,14 @@ func _build() -> void:
 	_details = UIStyle.rich_text()
 	_details.custom_minimum_size.y = 200
 	right.add_child(_details)
+	_view_selected = UIStyle.secondary_button("Read this document", 17)
+	_view_selected.name = "ViewSelected"
+	_view_selected.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	_view_selected.visible = false
+	_view_selected.pressed.connect(func() -> void:
+		if not selected.is_empty():
+			view_document(selected[-1]))
+	right.add_child(_view_selected)
 	right.add_child(UIStyle.label("Hypotheses", 18, UIStyle.MUTED))
 	var scroll: ScrollContainer = ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL

@@ -136,3 +136,11 @@ Findings for the owner (the art itself is not changed):
 ## Optional narrated chapter recaps
 
 The owner approved the narrator on 2026-10-19. The production continuation adds optional `narration_ref` panel bindings to `data/narration/recaps.json`; gameplay line IDs remain separate. See `docs/NARRATED_CUTSCENES.md` for controls, timing, save/load recovery, branch selection and current production blockers. No artwork bytes change.
+
+## New Game prologue and split-screen milestones (2026-10-20, review-only)
+
+`cs_ch01_prologue`: five plates from the review-only Chapter 1 pilot (`assets/cutscenes/ch01_pilot`, unchanged; the unapproved Naomi likeness and the records shelf are left out), 1.5 s dissolves, narrator lines `ch1_pro_01..05` in `data/narrative/prologue_ch1.json` with clips in `audio/voice/ch1/`. Arrival only: it does not repeat the Chapter 1 recap pages or mention Ward Zero. The registry now accepts a `new_game` campaign trigger (`CutsceneRegistry.new_game_cutscene()`); Main plays that cutscene when New Game is chosen on the title screen. Nothing uses it until the owner approves the prologue: then set `mode` `campaign`, `approved: true`, `trigger.kind` `new_game` and add it to `OWNER_APPROVED_CAMPAIGN` in `tests/qa/test_cutscenes.py`. Preview: `-- --cutscene-preview=cs_ch01_prologue`.
+
+Milestones (`data/milestones.json`, `scripts/ui/MilestonePresenter.gd`): two existing plates side by side, captioned with existing objective text, after a named objective is done and only when nothing else is on screen. They write no story, clinical or evidence state; the save remembers only which were shown. Esc or Enter skips, P pauses, R replays. Only `approved: true` entries play in the campaign; preview with `-- --milestone-preview=<id>`. The one example, `ms_ch1_first_assessment`, is review-only.
+
+Presentation states: Main reports one of TITLE, PROLOGUE, GAMEPLAY, MILESTONE, CHAPTER_RECAP or CHAPTER_COMPLETE (`Main.get_presentation_state()`, `EventBus.presentation_state_changed`), derived from what is open, and restores input, mouse, HUD and clock through `_update_input_mode()` whenever one ends.

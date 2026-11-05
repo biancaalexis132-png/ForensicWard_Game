@@ -27,6 +27,7 @@
 		},
 		"door_interview": {
 			"display_name": "Interview room door",
+			"sign": "Interview Room A",
 			"open_angle_degrees": -100
 		},
 		"door_ward_entry": {
@@ -162,6 +163,7 @@
 			"marker": "MARK_Standing_Staff_Door",
 			"kind": "staff",
 			"character_id": "staff_facilities_tech",
+			"route": {"points": [[1.4, -1.4]], "pause_seconds": [6.0, 10.0]},
 			"present_when": {
 				"any": [
 					{

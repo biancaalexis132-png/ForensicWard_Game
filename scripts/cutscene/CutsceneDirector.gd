@@ -119,6 +119,11 @@ func open(data: Dictionary) -> void:
 	play(str(data.get("cutscene_id", "")))
 
 
+## The playing cutscene's trigger kind ("" when idle): Main's presentation state reads it.
+func get_trigger_kind() -> String:
+	return str((_data.get("trigger", {}) as Dictionary).get("kind", "")) if is_open else ""
+
+
 ## Main's panel interface: Esc on the top panel skips.
 func close() -> void:
 	skip()

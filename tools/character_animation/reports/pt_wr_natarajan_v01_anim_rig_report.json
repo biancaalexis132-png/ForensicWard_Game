@@ -1,0 +1,659 @@
+{
+  "rig": "Priya_Natarajan_Rig",
+  "bone_count": 53,
+  "roles": {
+    "pelvis": {
+      "bone": "pelvis",
+      "head": [
+        -9.999999747378752e-05,
+        -0.014100000262260437,
+        0.4973999857902527
+      ],
+      "tail": [
+        -9.999999747378752e-05,
+        0.022600000724196434,
+        0.5665000081062317
+      ],
+      "weighted_vertices": 1201,
+      "centroid_to_bone_m": 0.0031,
+      "bone_inside_weighted_volume": true
+    },
+    "spine_lower": {
+      "bone": "spine_01",
+      "head": [
+        -9.999999747378752e-05,
+        0.022600000724196434,
+        0.5665000081062317
+      ],
+      "tail": [
+        -0.00019999999494757503,
+        0.007000000216066837,
+        0.6313999891281128
+      ],
+      "weighted_vertices": 674,
+      "centroid_to_bone_m": 0.0597,
+      "bone_inside_weighted_volume": true
+    },
+    "spine_mid": {
+      "bone": "spine_02",
+      "head": [
+        -0.00019999999494757503,
+        0.007000000216066837,
+        0.6313999891281128
+      ],
+      "tail": [
+        -0.0,
+        0.005200000014156103,
+        0.705299973487854
+      ],
+      "weighted_vertices": 525,
+      "centroid_to_bone_m": 0.0327,
+      "bone_inside_weighted_volume": true
+    },
+    "chest": {
+      "bone": "spine_03",
+      "head": [
+        -0.0,
+        0.005200000014156103,
+        0.705299973487854
+      ],
+      "tail": [
+        -0.00019999999494757503,
+        0.019099999219179153,
+        0.8418999910354614
+      ],
+      "weighted_vertices": 2185,
+      "centroid_to_bone_m": 0.1071,
+      "bone_inside_weighted_volume": true
+    },
+    "neck": {
+      "bone": "neck_01",
+      "head": [
+        -0.0,
+        0.0,
+        1.0120999813079834
+      ],
+      "tail": [
+        -0.0,
+        -0.037700001150369644,
+        1.1062999963760376
+      ],
+      "weighted_vertices": 346,
+      "centroid_to_bone_m": 0.0139,
+      "bone_inside_weighted_volume": true
+    },
+    "head": {
+      "bone": "head",
+      "head": [
+        -0.0,
+        -0.037700001150369644,
+        1.1062999963760376
+      ],
+      "tail": [
+        -0.0,
+        -0.03750000149011612,
+        1.2545000314712524
+      ],
+      "weighted_vertices": 13748,
+      "centroid_to_bone_m": 0.0031,
+      "bone_inside_weighted_volume": true
+    },
+    "clavicle_l": {
+      "bone": "clavicle_l",
+      "head": [
+        0.0203000009059906,
+        -0.011900000274181366,
+        0.944100022315979
+      ],
+      "tail": [
+        0.16459999978542328,
+        -0.010999999940395355,
+        0.9205999970436096
+      ],
+      "weighted_vertices": 228,
+      "centroid_to_bone_m": 0.0574,
+      "bone_inside_weighted_volume": true
+    },
+    "clavicle_r": {
+      "bone": "clavicle_r",
+      "head": [
+        -0.0203000009059906,
+        -0.011900000274181366,
+        0.944100022315979
+      ],
+      "tail": [
+        -0.16459999978542328,
+        -0.010999999940395355,
+        0.9205999970436096
+      ],
+      "weighted_vertices": 229,
+      "centroid_to_bone_m": 0.0578,
+      "bone_inside_weighted_volume": true
+    },
+    "upperarm_l": {
+      "bone": "upperarm_l",
+      "head": [
+        0.16459999978542328,
+        -0.010999999940395355,
+        0.9205999970436096
+      ],
+      "tail": [
+        0.20200000703334808,
+        -0.03220000118017197,
+        0.7177000045776367
+      ],
+      "weighted_vertices": 463,
+      "centroid_to_bone_m": 0.0091,
+      "bone_inside_weighted_volume": true
+    },
+    "upperarm_r": {
+      "bone": "upperarm_r",
+      "head": [
+        -0.16459999978542328,
+        -0.010999999940395355,
+        0.9205999970436096
+      ],
+      "tail": [
+        -0.20200000703334808,
+        -0.03220000118017197,
+        0.7177000045776367
+      ],
+      "weighted_vertices": 478,
+      "centroid_to_bone_m": 0.0091,
+      "bone_inside_weighted_volume": true
+    },
+    "lowerarm_l": {
+      "bone": "lowerarm_l",
+      "head": [
+        0.20200000703334808,
+        -0.03220000118017197,
+        0.7177000045776367
+      ],
+      "tail": [
+        0.21320000290870667,
+        -0.08669999986886978,
+        0.4991999864578247
+      ],
+      "weighted_vertices": 353,
+      "centroid_to_bone_m": 0.0069,
+      "bone_inside_weighted_volume": true
+    },
+    "lowerarm_r": {
+      "bone": "lowerarm_r",
+      "head": [
+        -0.20200000703334808,
+        -0.03220000118017197,
+        0.7177000045776367
+      ],
+      "tail": [
+        -0.21330000460147858,
+        -0.0868000015616417,
+        0.49889999628067017
+      ],
+      "weighted_vertices": 354,
+      "centroid_to_bone_m": 0.0073,
+      "bone_inside_weighted_volume": true
+    },
+    "hand_l": {
+      "bone": "hand_l",
+      "head": [
+        0.21320000290870667,
+        -0.08669999986886978,
+        0.4991999864578247
+      ],
+      "tail": [
+        0.2101999968290329,
+        -0.09399999678134918,
+        0.46970000863075256
+      ],
+      "weighted_vertices": 131,
+      "centroid_to_bone_m": 0.0053,
+      "bone_inside_weighted_volume": true
+    },
+    "hand_r": {
+      "bone": "hand_r",
+      "head": [
+        -0.21330000460147858,
+        -0.0868000015616417,
+        0.49889999628067017
+      ],
+      "tail": [
+        -0.2101999968290329,
+        -0.0940999984741211,
+        0.46939998865127563
+      ],
+      "weighted_vertices": 143,
+      "centroid_to_bone_m": 0.0054,
+      "bone_inside_weighted_volume": true
+    }
+  },
+  "meshes": [
+    {
+      "name": "Priya_Natarajan_Body",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    },
+    {
+      "name": "Natarajan_Eye_L",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Natarajan_Eye_R",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Natarajan_Hair",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Natarajan_Hair_Cards",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Natarajan_Hair_EdgeCards",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Natarajan_Hair_Ponytail",
+      "armature_modifier": true,
+      "vertex_groups": 2,
+      "shape_keys": []
+    },
+    {
+      "name": "Natarajan_Hair_TailCards",
+      "armature_modifier": true,
+      "vertex_groups": 2,
+      "shape_keys": []
+    },
+    {
+      "name": "Natarajan_Hair_Tie",
+      "armature_modifier": true,
+      "vertex_groups": 1,
+      "shape_keys": []
+    },
+    {
+      "name": "Natarajan_Long_Top",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    },
+    {
+      "name": "Natarajan_Slip_Ons",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    },
+    {
+      "name": "Natarajan_Soft_Trousers",
+      "armature_modifier": true,
+      "vertex_groups": 52,
+      "shape_keys": []
+    }
+  ],
+  "failures": [],
+  "reskinned_dominant_bones": {},
+  "blender_version": "5.2.2 LTS",
+  "profile": "tools/character_animation/profiles/pt_wr_natarajan_v01_anim.json",
+  "profile_sha256": "fe341cacfa575b11f3e043d6f2848b603b230ff8c465ccef557aa33ca27077f6",
+  "face_details": {
+    "lash_faces": 38,
+    "brow_faces": 0,
+    "skin": {
+      "texture_size": 2048,
+      "brow_texels": 1893,
+      "roughness": 0.58,
+      "roughness_variation": 0.05,
+      "specular": 0.35,
+      "detail_size": 1024
+    },
+    "eye_bones": {
+      "Natarajan_Eye_L": "eye_l",
+      "Natarajan_Eye_R": "eye_r"
+    },
+    "shoes": {
+      "left": 140,
+      "right": 126,
+      "vertices": 3196
+    }
+  },
+  "morph_targets": [
+    "blink_L",
+    "blink_R",
+    "blink",
+    "attentive",
+    "warm_subtle",
+    "concerned_restrained",
+    "professionally_serious",
+    "focused",
+    "calm_professional",
+    "mouth_open"
+  ],
+  "clips": [
+    {
+      "name": "idle_neutral",
+      "player": "body",
+      "loop": true,
+      "seconds": 8.0,
+      "frames": 240,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "pelvis",
+        "spine_01",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Relaxed professional standing: breathing, slight weight shift, slow head drift.",
+      "glb_channels": 7,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "pelvis",
+        "spine_01",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "idle_breathing",
+      "player": "body",
+      "loop": true,
+      "seconds": 4.0,
+      "frames": 120,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Breathing only: chest and shoulders rise and settle, head stays level.",
+      "glb_channels": 5,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "listen_neutral",
+      "player": "body",
+      "loop": true,
+      "seconds": 6.0,
+      "frames": 180,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_03"
+      ],
+      "description": "Attentive listening: slight lean in, small head tilt, breathing.",
+      "glb_channels": 4,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "stand_conversational",
+      "player": "body",
+      "loop": true,
+      "seconds": 6.0,
+      "frames": 180,
+      "bones": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Speaking: small emphatic head movements and a slight torso turn, breathing.",
+      "glb_channels": 5,
+      "glb_nodes": [
+        "clavicle_l",
+        "clavicle_r",
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "turn_from_workstation",
+      "player": "body",
+      "loop": false,
+      "seconds": 1.2,
+      "frames": 36,
+      "bones": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Turns from the workstation (her right, looking down) to face the player.",
+      "glb_channels": 3,
+      "glb_nodes": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "return_to_workstation",
+      "player": "body",
+      "loop": false,
+      "seconds": 1.2,
+      "frames": 36,
+      "bones": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ],
+      "description": "Turns back to the workstation and holds there.",
+      "glb_channels": 3,
+      "glb_nodes": [
+        "head",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "name": "small_greeting_nod",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 1.2,
+      "frames": 36,
+      "bones": [
+        "neck_01"
+      ],
+      "description": "One small nod with a slight tilt.",
+      "glb_channels": 1,
+      "glb_nodes": [
+        "neck_01"
+      ]
+    },
+    {
+      "name": "small_acknowledgement_nod",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 0.9,
+      "frames": 27,
+      "bones": [
+        "neck_01"
+      ],
+      "description": "Brief acknowledging nod.",
+      "glb_channels": 1,
+      "glb_nodes": [
+        "neck_01"
+      ]
+    },
+    {
+      "name": "restrained_chart_indication",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 2.0,
+      "frames": 60,
+      "bones": [
+        "lowerarm_r",
+        "neck_01",
+        "upperarm_r"
+      ],
+      "description": "Right forearm lifts slightly toward the desk, then settles; head follows.",
+      "glb_channels": 3,
+      "glb_nodes": [
+        "lowerarm_r",
+        "neck_01",
+        "upperarm_r"
+      ]
+    },
+    {
+      "name": "subtle_workstation_indication",
+      "player": "gesture",
+      "loop": false,
+      "seconds": 1.6,
+      "frames": 48,
+      "bones": [
+        "lowerarm_r",
+        "neck_01"
+      ],
+      "description": "Small glance and open-hand indication toward the workstation.",
+      "glb_channels": 2,
+      "glb_nodes": [
+        "lowerarm_r",
+        "neck_01"
+      ]
+    }
+  ],
+  "glb": {
+    "skins": 1,
+    "animations": [
+      {
+        "name": "idle_breathing",
+        "channels": 5,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "idle_neutral",
+        "channels": 7,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "pelvis",
+          "spine_01",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "listen_neutral",
+        "channels": 4,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "restrained_chart_indication",
+        "channels": 3,
+        "nodes": [
+          "lowerarm_r",
+          "neck_01",
+          "upperarm_r"
+        ]
+      },
+      {
+        "name": "return_to_workstation",
+        "channels": 3,
+        "nodes": [
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "small_acknowledgement_nod",
+        "channels": 1,
+        "nodes": [
+          "neck_01"
+        ]
+      },
+      {
+        "name": "small_greeting_nod",
+        "channels": 1,
+        "nodes": [
+          "neck_01"
+        ]
+      },
+      {
+        "name": "stand_conversational",
+        "channels": 5,
+        "nodes": [
+          "clavicle_l",
+          "clavicle_r",
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      },
+      {
+        "name": "subtle_workstation_indication",
+        "channels": 2,
+        "nodes": [
+          "lowerarm_r",
+          "neck_01"
+        ]
+      },
+      {
+        "name": "turn_from_workstation",
+        "channels": 3,
+        "nodes": [
+          "head",
+          "spine_02",
+          "spine_03"
+        ]
+      }
+    ],
+    "morph_targets": [
+      {
+        "mesh": "Priya_Natarajan_Body",
+        "targets": [
+          "blink_L",
+          "blink_R",
+          "blink",
+          "attentive",
+          "warm_subtle",
+          "concerned_restrained",
+          "professionally_serious",
+          "focused",
+          "calm_professional",
+          "mouth_open"
+        ]
+      }
+    ]
+  },
+  "triangles": 35388
+}

@@ -17,6 +17,11 @@ var subtitle_text: String = ""
 
 var _objective: Label
 var _subtitle: Label
+var _subtitle_box: StyleBoxFlat
+var _subtitle_speaker: String = ""
+var _subtitle_line: String = ""
+
+const SUBTITLE_FONT_SIZE: int = 24
 
 
 func _ready() -> void:
@@ -26,7 +31,7 @@ func _ready() -> void:
 	EventBus.game_loaded.connect(func(_slot: int) -> void: _update_clock())
 	EventBus.objective_changed.connect(_on_objective_changed)
 	EventBus.subtitle_shown.connect(_on_subtitle_shown)
-	EventBus.subtitle_cleared.connect(func(_line_id: String) -> void: _set_subtitle(""))
+	EventBus.subtitle_cleared.connect(func(_line_id: String) -> void: _set_subtitle("", ""))
 	_objective = _overlay_label(20, HORIZONTAL_ALIGNMENT_LEFT)
 	_objective.anchor_top = 1.0
 	_objective.anchor_bottom = 1.0
@@ -42,6 +47,16 @@ func _ready() -> void:
 	_subtitle.offset_top = -170.0
 	_subtitle.offset_bottom = -90.0
 	_subtitle.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+	_subtitle.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	_subtitle_box = StyleBoxFlat.new()
+	_subtitle_box.bg_color = Color(0.0, 0.0, 0.0, 0.62)
+	_subtitle_box.set_content_margin_all(10.0)
+	_subtitle_box.set_corner_radius_all(4)
+	EventBus.settings_changed.connect(func(key: String, _value: Variant) -> void:
+		if key.begins_with("subtitle"):
+			_set_subtitle(_subtitle_speaker, _subtitle_line)
+		elif key == "objective_checklist":
+			_update_objective_line())
 	_prompt.text = ""
 	_update_clock()
 
@@ -59,6 +74,8 @@ func show_toast(text: String) -> void:
 	label.add_theme_color_override("font_color", Color(0.85, 0.95, 0.9))
 	label.add_theme_color_override("font_outline_color", Color.BLACK)
 	label.add_theme_constant_override("outline_size", 6)
+	# Top right under the objective banner: the top left is the objective checklist's.
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_toasts.add_child(label)
 	while _toasts.get_child_count() > MAX_TOASTS:
 		_toasts.get_child(0).free()
@@ -83,18 +100,39 @@ func _overlay_label(size: int, alignment: HorizontalAlignment) -> Label:
 
 func _on_objective_changed(_objective_id: String, text: String) -> void:
 	objective_text = text
-	_objective.text = "" if text.is_empty() else "Objective: " + text
-	if not text.is_empty():
-		show_toast("New objective: " + text)
+	_update_objective_line()
+	# Completion and new-objective banners are ObjectiveTracker's, once per save.
+
+
+## The bottom-left "Objective:" line is only a fallback for players who hide
+## ObjectiveTracker's checklist, so the current objective never shows twice.
+func _update_objective_line() -> void:
+	var shown: bool = not objective_text.is_empty() and not Settings.get_value("objective_checklist")
+	_objective.text = "Objective: " + objective_text if shown else ""
+
+
+## Text of the bottom-left objective line as shown ("" when hidden), for tests.
+func get_objective_line() -> String:
+	return _objective.text
 
 
 func _on_subtitle_shown(_line_id: String, speaker: String, text: String, _duration: float) -> void:
-	_set_subtitle("%s: %s" % [speaker, text] if not speaker.is_empty() else text)
+	_set_subtitle(speaker, text)
 
 
-func _set_subtitle(text: String) -> void:
-	subtitle_text = text
-	_subtitle.text = text if Settings.get_value("subtitles") else ""
+## Applies the subtitle settings: on/off, speaker names, background and size.
+func _set_subtitle(speaker: String, text: String) -> void:
+	_subtitle_speaker = speaker
+	_subtitle_line = text
+	var named: bool = not speaker.is_empty() and Settings.get_value("subtitle_speaker_names")
+	subtitle_text = "%s: %s" % [speaker, text] if named else text
+	var shown: bool = Settings.get_value("subtitles") and not text.is_empty()
+	_subtitle.text = subtitle_text if shown else ""
+	_subtitle.add_theme_font_size_override("font_size", roundi(SUBTITLE_FONT_SIZE * float(Settings.get_value("subtitle_scale"))))
+	if shown and Settings.get_value("subtitle_background"):
+		_subtitle.add_theme_stylebox_override("normal", _subtitle_box)
+	else:
+		_subtitle.remove_theme_stylebox_override("normal")
 
 
 func _on_focus_changed(prompt: String) -> void:

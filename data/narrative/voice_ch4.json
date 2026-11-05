@@ -1,0 +1,574 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch4",
+	"generated_by": "tools/audio/extract_voice_lines.py",
+	"_note": "Generated. Do not edit: change the authored text in data/ and re-run the tool, then generate_voice.py.",
+	"speakers": {
+		"analyst": "Analyst",
+		"engineer": "Engineer",
+		"narrator": "",
+		"player": "You",
+		"pt_mara_ellis": "Mara",
+		"staff_hale": "Hale",
+		"staff_rahman": "Dr Rahman",
+		"staff_voss": "Dr Voss"
+	},
+	"scenes": [
+		{
+			"id": "voice_ch4_authored_text",
+			"location": "CH4 in-game panels and interviews",
+			"lines": [
+				{
+					"id": "ch4_v_2adc2e7bb2",
+					"speaker": "staff_hale",
+					"text": "Stop word is 'hold'. Anyone says it, everyone stops and we come out."
+				},
+				{
+					"id": "ch4_v_5b7a61f8e7",
+					"speaker": "staff_hale",
+					"text": "Lobby doors, the team, a watch that doesn't blink. That's the test."
+				},
+				{
+					"id": "ch4_v_121d46bae1",
+					"speaker": "staff_rahman",
+					"text": "Different questions, different evidence. Come and find me when it's a clinical one."
+				},
+				{
+					"id": "ch4_v_7603e8679c",
+					"speaker": "staff_hale",
+					"text": "Nobody enters pending the independent safety review."
+				},
+				{
+					"id": "ch4_v_cb1439b960",
+					"speaker": "staff_voss",
+					"text": "Two incident files. Keep them that way."
+				},
+				{
+					"id": "ch4_v_52e0cb6ec6",
+					"speaker": "staff_voss",
+					"text": "We are not here to settle a theory. We have observations we can't yet reconcile and a restricted area with possible safety implications."
+				},
+				{
+					"id": "ch4_v_bca5ffb4d4",
+					"speaker": "engineer",
+					"text": "Some old plans are incomplete. Other differences remain unexplained."
+				},
+				{
+					"id": "ch4_v_9af462f4b5",
+					"speaker": "player",
+					"text": "The inactive-credential transfer request remains an information-security question."
+				},
+				{
+					"id": "ch4_v_8a7f58f812",
+					"speaker": "staff_voss",
+					"text": "Precisely. Don't join two incomplete cases just because their labels resemble each other."
+				},
+				{
+					"id": "ch4_v_76cf142801",
+					"speaker": "staff_voss",
+					"text": "No. The transfer audit and the spatial survey are separate incident files until something other than a label connects them."
+				},
+				{
+					"id": "ch4_v_90709385e8",
+					"speaker": "staff_voss",
+					"text": "Good. Both files say what was observed and what wasn't."
+				},
+				{
+					"id": "ch4_v_662440660b",
+					"speaker": "staff_hale",
+					"text": "Then we agree. The restriction stays until the safety review signs off."
+				},
+				{
+					"id": "ch4_v_c48feb9d91",
+					"speaker": "staff_voss",
+					"text": "I'll ask for an outside reviewer. The safety review still comes first."
+				},
+				{
+					"id": "ch4_v_1ff1164139",
+					"speaker": "narrator",
+					"text": "A junior administrator's draft summary of the Chapter 3 inspection reads: \"Cause: confirmed mapping error.\" No review has established a cause. Facilities' own file says unresolved."
+				},
+				{
+					"id": "ch4_v_42c6361898",
+					"speaker": "narrator",
+					"text": "Voss (note): Then the summary is wrong. Correct it. Keep the first version in the revision history."
+				},
+				{
+					"id": "ch4_v_8e9de32577",
+					"speaker": "narrator",
+					"text": "Official finding: contradiction observed, cause unresolved. Revision history kept."
+				},
+				{
+					"id": "ch4_v_1b20db42e0",
+					"speaker": "narrator",
+					"text": "Not established. A mapping error is one candidate explanation; no review has confirmed it. The draft stays open for revision."
+				},
+				{
+					"id": "ch4_v_288bb5c5ed",
+					"speaker": "narrator",
+					"text": "Not established either. Nothing the inspection recorded supports that wording. The draft stays open for revision."
+				},
+				{
+					"id": "ch4_v_411add06ea",
+					"speaker": "narrator",
+					"text": "Official finding entered: plan editions and observations disagree; cause unresolved; independent review pending. The first draft is kept in the revision history."
+				},
+				{
+					"id": "ch4_v_f7735a96fd",
+					"speaker": "staff_rahman",
+					"text": "An unusual facilities report doesn't change the standards for evaluating a patient who is distressed or sleeping poorly."
+				},
+				{
+					"id": "ch4_v_4988fca264",
+					"speaker": "narrator",
+					"text": "Rahman is reviewing notes."
+				},
+				{
+					"id": "ch4_v_01fc5f7786",
+					"speaker": "staff_rahman",
+					"text": "No. A building report isn't a clinical finding, and a patient's distress isn't building evidence. We assess the patient."
+				},
+				{
+					"id": "ch4_v_85560df194",
+					"speaker": "staff_rahman",
+					"text": "Both are important. Different questions need different evidence."
+				},
+				{
+					"id": "ch4_v_0549b43f95",
+					"speaker": "narrator",
+					"text": "Mara is in Interview Room A for her follow-up appointment."
+				},
+				{
+					"id": "ch4_v_b9df5b109f",
+					"speaker": "pt_mara_ellis",
+					"text": "Did they decide one of the dates was wrong?"
+				},
+				{
+					"id": "ch4_v_e1f7218853",
+					"speaker": "narrator",
+					"text": "Mara is resting."
+				},
+				{
+					"id": "ch4_v_eae37d2339",
+					"speaker": "narrator",
+					"text": "You stop yourself. Nothing has established that, and giving her an answer the review doesn't have would not be honest."
+				},
+				{
+					"id": "ch4_v_5a1ff86379",
+					"speaker": "pt_mara_ellis",
+					"text": "I wish somebody had said that the first time."
+				},
+				{
+					"id": "ch4_v_f593bef6fc",
+					"speaker": "player",
+					"text": "I'd also like to talk about how the insomnia has been affecting you."
+				},
+				{
+					"id": "ch4_v_06b0b5dc84",
+					"speaker": "narrator",
+					"text": "The rest of the appointment is about her care: sleep, anxiety, how she is managing day to day, and when you will see her again. None of it goes into the incident record."
+				},
+				{
+					"id": "ch4_v_5e254efab5",
+					"speaker": "narrator",
+					"text": "The outside reviewer compared the retained originals after accounting for the known export display differences. A time-order contradiction remains. How independent the originals are is documented, not assumed."
+				},
+				{
+					"id": "ch4_v_5e4b441bd7",
+					"speaker": "analyst",
+					"text": "I can't make these versions agree without excluding one of the originals."
+				},
+				{
+					"id": "ch4_v_d5ba92ef1a",
+					"speaker": "narrator",
+					"text": "Retained originals: time-order contradiction preserved with the checks performed."
+				},
+				{
+					"id": "ch4_v_005d948389",
+					"speaker": "narrator",
+					"text": "Excluding a record to make the others agree would destroy the contradiction, not resolve it."
+				},
+				{
+					"id": "ch4_v_efe559c1a8",
+					"speaker": "narrator",
+					"text": "Both originals preserved. Checks listed: display-difference correction, clock-source comparison, custody trail. Independence documented per record. The time-order contradiction stands."
+				},
+				{
+					"id": "ch4_v_7d0cb79b02",
+					"speaker": "narrator",
+					"text": "You step into the nursing station on a break. Your partner is calling."
+				},
+				{
+					"id": "ch4_v_6a83ae6cab",
+					"speaker": "narrator",
+					"text": "Partner: I know you can't say much. I just wanted to hear how you are."
+				},
+				{
+					"id": "ch4_v_4381f9ea20",
+					"speaker": "narrator",
+					"text": "The clinical worklist."
+				},
+				{
+					"id": "ch4_v_fb842b846b",
+					"speaker": "narrator",
+					"text": "You don't. The inquiry is confidential, and a personal call is not where it gets worked out."
+				},
+				{
+					"id": "ch4_v_d7ec0333fb",
+					"speaker": "narrator",
+					"text": "You say it's been a hard week and leave it at that. It helps more than you expected."
+				},
+				{
+					"id": "ch4_v_e4583480b8",
+					"speaker": "narrator",
+					"text": "You keep it short. A promise to call later, and back to work."
+				},
+				{
+					"id": "ch4_v_8cf2c06b30",
+					"speaker": "narrator",
+					"text": "You say you'd rather not talk about work, and that you'll be home on time. They take it well."
+				},
+				{
+					"id": "ch4_v_c23ca8045b",
+					"speaker": "narrator",
+					"text": "You step into the nursing station on a break. A friend is calling."
+				},
+				{
+					"id": "ch4_v_a087ac5ce0",
+					"speaker": "narrator",
+					"text": "Friend: You've gone quiet on us. Everything all right?"
+				},
+				{
+					"id": "ch4_v_60584216cb",
+					"speaker": "narrator",
+					"text": "You step into the nursing station on a break. Family is calling."
+				},
+				{
+					"id": "ch4_v_2b4a5515f4",
+					"speaker": "narrator",
+					"text": "Family: We haven't heard from you in a few days. Just checking in."
+				},
+				{
+					"id": "ch4_v_4d987589f4",
+					"speaker": "narrator",
+					"text": "You step into the nursing station on a break. No call: the reminder you set for yourself comes up instead."
+				},
+				{
+					"id": "ch4_v_2ce683b952",
+					"speaker": "narrator",
+					"text": "Reminder (set by you): Eat something. Leave on time. You can't carry all of it."
+				},
+				{
+					"id": "ch4_v_1a2008d6fb",
+					"speaker": "narrator",
+					"text": "You don't. Inquiry details belong in the authorized record, not on your phone."
+				},
+				{
+					"id": "ch4_v_0b60b7d969",
+					"speaker": "narrator",
+					"text": "You send a short message to someone you trust. It helps more than you expected."
+				},
+				{
+					"id": "ch4_v_fc93fae588",
+					"speaker": "narrator",
+					"text": "You snooze the reminder. It will come back."
+				},
+				{
+					"id": "ch4_v_0fc51ad4a7",
+					"speaker": "narrator",
+					"text": "You decide you'll leave on time tonight, whatever is still on the list."
+				},
+				{
+					"id": "ch4_v_1590bdd134",
+					"speaker": "narrator",
+					"text": "You step into the nursing station on a break. Your phone shows only the break reminder you set at the start of the week: Eat something. Leave on time."
+				},
+				{
+					"id": "ch4_v_a11be751f7",
+					"speaker": "narrator",
+					"text": "You dismiss the reminder and get back to work."
+				},
+				{
+					"id": "ch4_v_3ecdb9a7ef",
+					"speaker": "staff_hale",
+					"text": "Facilities wants to see whether the lobby door does it again. Authorized test, continuous watch, access logs pulled before and after. You come as the person who logged it the first time."
+				},
+				{
+					"id": "ch4_v_7f8929cecf",
+					"speaker": "narrator",
+					"text": "Test pass logged: ward entry only, for this check. The lobby doors themselves stay locked."
+				},
+				{
+					"id": "ch4_v_83434dd66a",
+					"speaker": "narrator",
+					"text": "The doors are closed and latched. The team watches them continuously for the agreed interval. Nothing moves. The analyst pulls the access log and the mechanical inspection notes."
+				},
+				{
+					"id": "ch4_v_74794c9b28",
+					"speaker": "staff_hale",
+					"text": "Can the records establish there was no authorized entry between checks?"
+				},
+				{
+					"id": "ch4_v_2687f45b1f",
+					"speaker": "analyst",
+					"text": "Not yet. We'll preserve the access logs and mechanical inspection results."
+				},
+				{
+					"id": "ch4_v_cea16c4283",
+					"speaker": "narrator",
+					"text": "The lobby doors are behind the ward entry."
+				},
+				{
+					"id": "ch4_v_5687083abd",
+					"speaker": "narrator",
+					"text": "Controlled check: no movement during the watch; repeatability open; logs preserved."
+				},
+				{
+					"id": "ch4_v_d229fc3468",
+					"speaker": "narrator",
+					"text": "The second log came from the same logging system as the first, and nothing happened during the watch. Two entries from one system are not independent corroboration."
+				},
+				{
+					"id": "ch4_v_1136e7f737",
+					"speaker": "narrator",
+					"text": "Recorded: controlled watch with no door movement; an authorized entry between the original checks is not excluded; logs and inspection results preserved. Repeatability open."
+				},
+				{
+					"id": "ch4_v_597e6324ed",
+					"speaker": "staff_hale",
+					"text": "Pass back, please. The restriction stands."
+				},
+				{
+					"id": "ch4_v_6280dca161",
+					"speaker": "narrator",
+					"text": "Test pass returned. The ward entry doors are controlled access again."
+				},
+				{
+					"id": "ch4_v_d818bdb81e",
+					"speaker": "narrator",
+					"text": "Voss, Hale and Rahman around the desk."
+				},
+				{
+					"id": "ch4_v_ad839c329b",
+					"speaker": "staff_rahman",
+					"text": "Patient care must continue regardless of the investigation."
+				},
+				{
+					"id": "ch4_v_e41959b3b2",
+					"speaker": "staff_hale",
+					"text": "The site restriction stands until safety criteria are met."
+				},
+				{
+					"id": "ch4_v_e35ec3414c",
+					"speaker": "staff_voss",
+					"text": "We can meet both obligations. What we cannot do is issue a false explanation."
+				},
+				{
+					"id": "ch4_v_8d482a0518",
+					"speaker": "narrator",
+					"text": "The required safety notifications have already gone out."
+				},
+				{
+					"id": "ch4_v_fc6104a183",
+					"speaker": "staff_voss",
+					"text": "No. Notifications go out whatever we think the explanation is. They already have."
+				},
+				{
+					"id": "ch4_v_e3103b7a7e",
+					"speaker": "staff_voss",
+					"text": "Agreed. An outside team with its own instruments, under Hale's restriction."
+				},
+				{
+					"id": "ch4_v_113f5b8487",
+					"speaker": "staff_voss",
+					"text": "One briefing, three obligations: care, safety, record. I'll schedule it."
+				},
+				{
+					"id": "ch4_v_e635e7f752",
+					"speaker": "staff_voss",
+					"text": "Noted in the record under your name. The restriction and the care plan stand."
+				},
+				{
+					"id": "ch4_v_e4e710d543",
+					"speaker": "staff_hale",
+					"text": "Controlled inspection, one corridor, one straight walk out and back. Stop-and-return protocol, signed escort roster, an operations contact on the radio upstairs, and a rescue fallback if we lose contact."
+				},
+				{
+					"id": "ch4_v_e7e5ea70df",
+					"speaker": "narrator",
+					"text": "Two survey teams. Each keeps its own sheet and its own notes. Nobody copies from anybody."
+				},
+				{
+					"id": "ch4_v_8a59a01d5c",
+					"speaker": "staff_hale",
+					"text": "No. Nobody goes below without someone upstairs who can call it off."
+				},
+				{
+					"id": "ch4_v_6262297d26",
+					"speaker": "narrator",
+					"text": "Team pass logged: ward entry, maintenance and the threshold, for this inspection only. Operations contact confirmed on the radio."
+				},
+				{
+					"id": "ch4_v_e96249f95a",
+					"speaker": "narrator",
+					"text": "Beside the alcove, a damaged wall panel: a diagonal crack, and the number 17 stencilled in faded paint."
+				},
+				{
+					"id": "ch4_v_0c6c8662c0",
+					"speaker": "engineer",
+					"text": "Both teams, your own sheets. Write down what you see, not what the other team says."
+				},
+				{
+					"id": "ch4_v_dd47a4aa1b",
+					"speaker": "narrator",
+					"text": "A corridor alcove. An old radiator under a damaged wall panel."
+				},
+				{
+					"id": "ch4_v_37d6dd953d",
+					"speaker": "engineer",
+					"text": "Separate sheets. Copying makes one observation look like two."
+				},
+				{
+					"id": "ch4_v_136f2dba91",
+					"speaker": "narrator",
+					"text": "Logged twice, independently written: panel 17, diagonal crack, beside the alcove. Time noted on both sheets."
+				},
+				{
+					"id": "ch4_v_4886356979",
+					"speaker": "narrator",
+					"text": "The team walks on along the permitted corridor. Straight. No turns."
+				},
+				{
+					"id": "ch4_v_96d0879345",
+					"speaker": "narrator",
+					"text": "At the junction marker, a damaged wall panel: a diagonal crack, the number 17 in faded paint."
+				},
+				{
+					"id": "ch4_v_294caaf778",
+					"speaker": "narrator",
+					"text": "Escort: That damaged panel. We already passed it."
+				},
+				{
+					"id": "ch4_v_f33ae5d570",
+					"speaker": "player",
+					"text": "Stop. Confirm our position and use the documented return procedure."
+				},
+				{
+					"id": "ch4_v_a806787a4d",
+					"speaker": "staff_hale",
+					"text": "Suspend the test. Preserve both raw observation streams. Begin safe return."
+				},
+				{
+					"id": "ch4_v_8d0d3edf24",
+					"speaker": "narrator",
+					"text": "A wall clock, stopped. A faded junction marker on the opposite wall."
+				},
+				{
+					"id": "ch4_v_71672cbdf7",
+					"speaker": "narrator",
+					"text": "The junction marker. Panel 17 was logged here and at the alcove, on one straight walk. Recorded as observed repetition, unverified."
+				},
+				{
+					"id": "ch4_v_cd02497c50",
+					"speaker": "staff_hale",
+					"text": "No. The test is suspended. Everyone comes out now."
+				},
+				{
+					"id": "ch4_v_b47706f941",
+					"speaker": "narrator",
+					"text": "Both sheets list panel 17 twice, at two different points on one straight walk. Both still came from this one walk."
+				},
+				{
+					"id": "ch4_v_507f6653ab",
+					"speaker": "narrator",
+					"text": "The team turns and walks out the way it came. The threshold is where it should be."
+				},
+				{
+					"id": "ch4_v_2b5ee25bea",
+					"speaker": "player",
+					"text": "Hold."
+				},
+				{
+					"id": "ch4_v_896e40ad18",
+					"speaker": "narrator",
+					"text": "Everyone stops. Hale logs the stop condition and the time."
+				},
+				{
+					"id": "ch4_v_a0291ee0ee",
+					"speaker": "staff_hale",
+					"text": "Request logged. Sheets sealed as they are."
+				},
+				{
+					"id": "ch4_v_15d7559413",
+					"speaker": "narrator",
+					"text": "Hale counts the team in: himself, the engineer, the escort, both survey teams, you. Everyone accounted for."
+				},
+				{
+					"id": "ch4_v_b11f2c68cd",
+					"speaker": "staff_hale",
+					"text": "Test suspended. Both sheets go to the record as written."
+				},
+				{
+					"id": "ch4_v_08a625aa81",
+					"speaker": "staff_hale",
+					"text": "No. One walk was authorized. Any repeat needs its own approval and its own instruments."
+				},
+				{
+					"id": "ch4_v_bc0674bc22",
+					"speaker": "narrator",
+					"text": "Team pass returned. Ward entry, maintenance and threshold access withdrawn. Raw sheets preserved."
+				},
+				{
+					"id": "ch4_v_f4537c811c",
+					"speaker": "narrator",
+					"text": "Voss has both survey sheets on the desk, unaltered."
+				},
+				{
+					"id": "ch4_v_0c3a4c42d2",
+					"speaker": "staff_voss",
+					"text": "Whatever the final explanation, we won't make the discrepancy disappear by changing the wording."
+				},
+				{
+					"id": "ch4_v_08be2f99b9",
+					"speaker": "narrator",
+					"text": "None of this goes in a patient's chart."
+				},
+				{
+					"id": "ch4_v_c2a69ed581",
+					"speaker": "staff_voss",
+					"text": "Two sheets from one walk is an observed repetition. It isn't an independent result. The record says what we can show."
+				},
+				{
+					"id": "ch4_v_7a02356973",
+					"speaker": "staff_voss",
+					"text": "Filed. Observed repetition, unverified. Both sheets attached as written."
+				},
+				{
+					"id": "ch4_v_3c53cca4e6",
+					"speaker": "staff_hale",
+					"text": "Area remains restricted. The original observations stay intact."
+				},
+				{
+					"id": "ch4_v_3b09b2ca9c",
+					"speaker": "staff_voss",
+					"text": "Then the last question is how we keep oversight, inquiry and safety in the same room."
+				},
+				{
+					"id": "ch4_v_e27fd66597",
+					"speaker": "player",
+					"text": "An outside inquiry, its own instruments, under Hale's restriction. And patients keep receiving their care without their histories becoming part of the building investigation."
+				},
+				{
+					"id": "ch4_v_89a545299d",
+					"speaker": "staff_voss",
+					"text": "Agreed."
+				},
+				{
+					"id": "ch4_v_0a9bb93c02",
+					"speaker": "player",
+					"text": "The restriction governs until the safety review says otherwise. And patients keep receiving their care without their histories becoming part of the building investigation."
+				}
+			]
+		}
+	]
+}

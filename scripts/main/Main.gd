@@ -12,6 +12,9 @@ extends Node3D
 ##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
 ##   "ehr"        EHRScreen (also opened with J)
 ##   "evidence"   EvidenceBoard (also opened with Tab)
+##   "ward_round" WardRoundScreen (from the EHR's Ward round button)
+##   "milestone"  MilestonePresenter (split-screen moment after an objective;
+##                waits until nothing else is open)
 ##   "cutscene"   CutsceneDirector (graphic-novel cutscene: approved chapter title
 ##                cards play when a chapter opens, approved chapter recaps when
 ##                a chapter is completed (drawn over its end-of-chapter panel);
@@ -21,11 +24,30 @@ extends Node3D
 ## zones are loaded, transitions) are children of Main, so they exist exactly
 ## while the playable world does.
 ##
+## Presentation state (get_presentation_state()): exactly one of TITLE,
+## PROLOGUE (a new-game or chapter-opening cutscene), GAMEPLAY, MILESTONE,
+## CHAPTER_RECAP (a chapter-complete recap) or CHAPTER_COMPLETE (the
+## end-of-chapter panel). It is derived from what is open, so there is one
+## owner of input at a time, and leaving any of them goes through
+## _update_input_mode(), which restores mouse capture, player input, the HUD
+## and the clock; cutscenes restore their own music. Changes are announced
+## on EventBus.presentation_state_changed.
+##
 ## Also registers the "world" save provider: the player transform. Door
 ## state is saved per zone by ZoneDirector ("zones").
 
 const WORLD_PROVIDER_KEY: String = "world"
 const TIME_PAUSE_REASON: String = "ui"
+const TITLE: String = "TITLE"
+const PROLOGUE: String = "PROLOGUE"
+const GAMEPLAY: String = "GAMEPLAY"
+const MILESTONE: String = "MILESTONE"
+const CHAPTER_RECAP: String = "CHAPTER_RECAP"
+const CHAPTER_COMPLETE: String = "CHAPTER_COMPLETE"
+
+var _presentation_state: String = GAMEPLAY
+## True from a chapter's completion until its end-of-chapter panel closes.
+var _chapter_complete_showing: bool = false
 
 @onready var _world: Node3D = $World
 @onready var _player: FirstPersonController = $Player
@@ -38,8 +60,9 @@ const TIME_PAUSE_REASON: String = "ui"
 @onready var _zones: ZoneDirector = $ZoneDirector
 @onready var _cutscene: CutsceneDirector = $CutsceneDirector
 @onready var _title: TitleScreen = $TitleScreen
+@onready var _milestones: MilestonePresenter = $MilestonePresenter
 ## Topmost first: Esc closes the first open one.
-@onready var _panels: Array[CanvasLayer] = [_cutscene, _info_panel, _interview, _ehr, _evidence]
+@onready var _panels: Array[CanvasLayer] = [_cutscene, _milestones, _info_panel, _interview, _ehr, _evidence]
 
 
 func _ready() -> void:
@@ -49,10 +72,28 @@ func _ready() -> void:
 	EventBus.ui_panel_closed.connect(func(_panel_id: String) -> void: _update_input_mode())
 	_pause_menu.closed.connect(_update_input_mode)
 	_title.closed.connect(_update_input_mode)
+	_title.new_game_started.connect(_on_new_game_started)
+	_title.settings_requested.connect(func() -> void: _pause_menu.open_settings_from_title())
+	EventBus.ui_panel_closed.connect(func(panel_id: String) -> void:
+		if panel_id == InfoPanel.PANEL_ID and not _cutscene.is_open:
+			_chapter_complete_showing = false
+			_update_input_mode())
+	EventBus.game_loaded.connect(func(_slot: int) -> void:
+		_chapter_complete_showing = false
+		_update_input_mode())
 	SaveManager.register_provider(WORLD_PROVIDER_KEY, self)
 	_place_at_spawn()
 	_zones.setup(_world, _player)
 	_zones.transition_finished.connect(_update_input_mode)
+	var conversation_range: ConversationRange = ConversationRange.new()
+	conversation_range.name = "ConversationRange"
+	conversation_range.target = _player
+	add_child(conversation_range)
+	var campus: CampusBackdrop = CampusBackdrop.new()
+	campus.name = "CampusBackdrop"
+	add_child(campus)
+	if "--acceptance-perf" in OS.get_cmdline_user_args():
+		add_child(AcceptancePerformance.new())
 	($AudioZoneTracker as AudioZoneTracker).target = _player
 	get_tree().auto_accept_quit = false  # Quit via _quit_gracefully (audio first).
 
@@ -151,6 +192,16 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 			_ehr.open(data)
 		EvidenceBoard.PANEL_ID:
 			_evidence.open(data)
+		ProtagonistScreen.PANEL_ID:
+			_open_optional_panel("ProtagonistScreen", "res://scenes/ui/ProtagonistScreen.tscn", data)
+		PracticeScreen.PANEL_ID:
+			_open_optional_panel("PracticeScreen", "res://scenes/ui/PracticeScreen.tscn", data)
+		CaseJournalScreen.PANEL_ID:
+			_open_optional_panel("CaseJournalScreen", "res://scenes/ui/CaseJournalScreen.tscn", data)
+		MapScreen.PANEL_ID:
+			_open_optional_panel("MapScreen", "res://scenes/ui/MapScreen.tscn", data)
+		WardRoundScreen.PANEL_ID:
+			_open_optional_panel("WardRoundScreen", "res://scenes/ui/WardRoundScreen.tscn", data)
 		CutsceneDirector.PANEL_ID:
 			var recap_data: Dictionary = data.duplicate()
 			var chapter: ChapterDirector = $ChapterDirector
@@ -164,9 +215,14 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 				recap_data["cutscene_id"] = CutsceneRegistry.chapter_complete_cutscene(latest)
 			recap_data["story_context"] = chapter.get_story_context()
 			_cutscene.open(recap_data)
+		MilestonePresenter.PANEL_ID:
+			if _is_ui_open() or _zones.in_transition:
+				return  # Stays queued; _update_input_mode() shows it once the screen is clear.
+			if not _milestones.open(data):
+				return
 		InterviewScreen.PANEL_ID:
 			var with_world: Dictionary = data.duplicate()
-			with_world["world"] = _world
+			with_world["world"] = null if bool(data.get("text_only", false)) else _world
 			_interview.open(with_world)
 		_:
 			push_warning("Main: unknown panel '%s'" % panel_id)
@@ -174,7 +230,37 @@ func _on_ui_panel_requested(panel_id: String, data: Dictionary) -> void:
 	_update_input_mode()
 
 
+func _open_optional_panel(node_name: String, scene_path: String, data: Dictionary) -> void:
+	var panel: CanvasLayer = get_node_or_null(NodePath(node_name)) as CanvasLayer
+	if panel == null:
+		var scene: PackedScene = load(scene_path) as PackedScene
+		panel = scene.instantiate() as CanvasLayer
+		add_child(panel)
+		_panels.push_front(panel)
+	panel.call("open", data)
+
+
+func get_presentation_state() -> String:
+	return _presentation_state
+
+
+func _derive_presentation_state() -> String:
+	if _title.is_open:
+		return TITLE
+	if _cutscene.is_open:
+		return CHAPTER_RECAP if _cutscene.get_trigger_kind() == "chapter_complete" else PROLOGUE
+	if _milestones.is_open:
+		return MILESTONE
+	if _chapter_complete_showing and _info_panel.is_open:
+		return CHAPTER_COMPLETE
+	return GAMEPLAY
+
+
 func _update_input_mode() -> void:
+	var state: String = _derive_presentation_state()
+	if state != _presentation_state:
+		_presentation_state = state
+		EventBus.presentation_state_changed.emit(state)
 	var ui_open: bool = _is_ui_open()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if ui_open else Input.MOUSE_MODE_CAPTURED
 	_player.set_input_enabled(not ui_open and not _zones.in_transition)
@@ -183,6 +269,9 @@ func _update_input_mode() -> void:
 		TimeManager.push_pause(TIME_PAUSE_REASON)
 	else:
 		TimeManager.pop_pause(TIME_PAUSE_REASON)
+		# A milestone that came due while something else was open plays now.
+		if _milestones.flush_pending():
+			_update_input_mode()
 
 
 func _show_content_errors() -> void:
@@ -241,8 +330,19 @@ func _on_chapter_started(chapter_id: String) -> void:
 		EventBus.ui_panel_requested.emit(CutsceneDirector.PANEL_ID, {"cutscene_id": opening})
 
 
+## New Game from the title: the approved prologue for the start chapter, if
+## the owner approved one. It writes no state; skipping it changes nothing.
+func _on_new_game_started() -> void:
+	var prologue: String = CutsceneRegistry.new_game_cutscene(ContentRegistry.get_start_chapter_id())
+	if not prologue.is_empty():
+		EventBus.ui_panel_requested.emit(CutsceneDirector.PANEL_ID, {"cutscene_id": prologue})
+	_update_input_mode()
+
+
 ## An approved recap opens over the end-of-chapter panel, which is still there when it ends.
 func _on_chapter_completed(chapter_id: String) -> void:
+	_chapter_complete_showing = true
+	_update_input_mode.call_deferred()
 	var recap: String = CutsceneRegistry.chapter_complete_cutscene(chapter_id)
 	if not recap.is_empty():
 		EventBus.ui_panel_requested.emit(CutsceneDirector.PANEL_ID, {"cutscene_id": recap})

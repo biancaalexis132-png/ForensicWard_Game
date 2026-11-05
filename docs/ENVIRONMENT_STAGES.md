@@ -10,8 +10,8 @@ Pipeline, conventions and validation: see [`ENVIRONMENT_PIPELINE.md`](ENVIRONMEN
 | 4 Security, admin and research wings | Security corridor, visitor screening, credentialing, records, medical director's office, conference room, secure interview suite, security control, surveillance, maintenance access, restricted lift lobby; research reception, research and restricted corridors, physician offices, data analysis, records archive, protocol office, assessment and observation rooms, lab support, sample storage | **Done (v1, untextured).** 4a: 13 props, 11 rooms. 4b: 8 props, 12 rooms on the research level the restricted lift serves. |
 | 5 Historic substructure | Stairwell, abandoned nursing station, former patient rooms, treatment room, medication storage, paper records archive, mechanical corridor, closed observation rooms, admin office, records vault, sealed connecting corridor | **Done (v1, untextured).** 13 props, 13 spaces on the sublevel under the maintenance hatch. |
 | 6 Ward Zero layout and anomaly states | Threshold, service corridor with the W0-B service stair, observation room, isolation cell, service store, instrument room, plant room; swappable anomaly states | **Done (v1, untextured).** 7 props, 7 rooms on the sublevel beyond the sealed corridor, styled from the owner's Ward Zero reference boards. Anomaly states are provisional pending owner review. |
-| 7 Apartment, parking, exterior | | Not started |
-| 8 Polish | Textures/UVs, LODs, lightmap UV2, trim sheets | Not started |
+| 7 Apartment, parking, exterior | Campus grounds, facade, furnished apartment | **Candidate built; owner visual/Mac review pending.** Three textured exports, editable sources, collision proxies, review cameras and provenance; campus grounds run only on the ground level. |
+| 8 Polish | Textures/UVs, LODs, lightmap UV2, trim sheets | **Initial finish pass built; full art acceptance pending.** Shared grain/roughness/normal finishes for flat architecture, preserving textured signs/cast/screens; Stage 7 exports include surface UV and UV2. Existing Stage 1–6 sources have not all been re-unwrapped or converted to trim sheets. |
 
 ## Stage 3 deliverables
 
@@ -161,3 +161,11 @@ All ten are staff-only or supervised-area items, recorded as such in the manifes
 - **Exterior windows show a preview backdrop in renders only.** Godot needs an exterior or skybox solution (Stage 7).
 - **Preview renders use Cycles on CPU with denoising.** Lighting in Godot comes from the `LIGHTMARK_*` markers and is tuned separately.
 - **Blender MCP was not available in the production session.** Assets were generated headless with Blender 5.0.1's Python module, which produces identical `.blend` and `.glb` files. The `.blend` files need Blender 5.0+ to open.
+
+## 2026-10-20 Stage 7 and finish candidate
+
+`tools/blender/build_stage7_exterior.py` creates original campus parking/planting/parked cars and distant buildings, hospital facade and furnished apartment. Sources are in `assets/blender/exterior`, exports in `assets/exports/exterior`, and images in `assets/renders/stage7`. Both the central manifest and `stage7_environment_manifest.json` record assets; the latter includes texture hashes. Authoring here used Blender **4.3.2**, not the owner's Mac 5.2.2. No MPFB or character files changed.
+
+Run `blender -b --python tools/blender/build_stage7_exterior.py -- --render` to rebuild. Surface UVs, nonoverlapping secondary lightmap UVs, original generated 256-pixel PBR textures, box collision proxies, framing cameras and markers are included. Geometry is intentionally small (under 8,000 triangles per export); no distant skinned actors, extra shadow sun, dynamic GI or new clinical/story access is introduced. Geometry visibility range is 130 m for the campus. Separate LOD meshes and a full existing-room trim-sheet rebake are not claimed.
+
+`EnvironmentFinish` supplies shared procedural finishes to eligible flat architectural materials as zones build. Already textured materials are preserved. Stable material cache keys prevent growth across repeat visits. `CampusBackdrop` hides and disables outdoor physics on research/sublevel maps, including save restoration. The facade/apartment are review assets rather than invented campaign locations; the standalone review scene never saves a campaign. See [presentation candidates](PRESENTATION_APPROVAL_PACKET.md) and [Mac checks](MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md).

@@ -19,7 +19,7 @@ static func reveal_clue(clue_id: String, provenance: String) -> bool:
 		push_error("WorldActions: unknown clue '%s' (%s)" % [clue_id, provenance])
 		return false
 	var is_new: bool = EvidenceManager.acquire_clue(clue_id, provenance)
-	EventBus.ui_panel_requested.emit("info", {"title": clue["title"], "body": ClueText.describe(clue)})
+	EventBus.ui_panel_requested.emit("info", ClueText.panel_data(clue_id))
 	if is_new:
 		EventBus.notification_requested.emit("Evidence recorded: " + clue["title"])
 	return is_new

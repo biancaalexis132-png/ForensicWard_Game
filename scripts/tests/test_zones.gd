@@ -175,7 +175,9 @@ func test_ten_lift_round_trips_free_each_level_and_keep_memory_flat() -> void:
 	var last: Dictionary = _zones().sample_performance()
 	var growth: float = last["static_memory_bytes"] - first["static_memory_bytes"]
 	check(growth < MEMORY_TOLERANCE_BYTES, "static memory grew %.2f MB over nine round trips" % (growth / 1048576.0))
-	check_eq(last["object_count"], first["object_count"], "no objects left behind by nine round trips")
+	# Fewer is fine: voice clips from earlier tests can finish and free during the loop.
+	check(last["object_count"] <= first["object_count"],
+			"no objects left behind by nine round trips (first %d, last %d)" % [first["object_count"], last["object_count"]])
 
 
 func test_every_fade_arrival_stands_on_a_floor() -> void:
@@ -264,7 +266,7 @@ func test_version2_save_from_main_migrates_doors_into_zones() -> void:
 	check(_player().global_position.distance_to(Vector3(-0.5, 0.0, -12.0)) < 0.01, "position kept")
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "re-save")
 	var saved: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SaveManager.get_slot_path(TEST_SAVE_SLOT)))
-	check_eq(int(saved["save_version"]), 3, "re-saved as version 3")
+	check_eq(int(saved["save_version"]), 4, "re-saved as version 4")
 	check(not saved["state"]["world"].has("objects"), "doors no longer saved under world")
 	check(saved["state"]["zones"]["objects"][CLINICAL]["door:door_office"]["open"], "doors saved per zone")
 

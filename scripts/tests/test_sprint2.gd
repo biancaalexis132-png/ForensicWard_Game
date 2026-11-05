@@ -6,6 +6,7 @@ extends TestCase
 ## chooses one clinically meaningful action; receives deterministic state
 ## update").
 
+const PENDING_FIXTURE_DIR: String = "user://test_pending_rule"
 const MAIN_SCENE: String = "res://scenes/main/Main.tscn"
 const ELIAS: String = "pt_elias_ward"
 
@@ -88,7 +89,9 @@ func test_j_opens_ehr_and_shows_chart_tabs() -> void:
 	check("competency restoration transfer" in _ehr().get_tab_text("Summary"), "legal status shown")
 	check("Not yet witnessed by you" in _ehr().get_tab_text("Observations"), "reports kept apart from witnessed findings")
 	check("record opened" in _ehr().get_tab_text("Audit"), "opening the chart is audited")
-	check("NOT clinically validated" in _ehr()._banner.text, "prototype banner states the review status")
+	check_eq(_ehr()._banner.text, "", "an approved record shows no review banner")
+	check(not "fictional patient" in _ehr().get_tab_text("Summary"), "no disclaimer label inside the chart")
+	check(not "APPROVED" in _ehr().get_tab_text("Summary"), "no review-status label inside the chart")
 	_press_action("ehr")
 	await runner.get_tree().process_frame
 	check(not _ehr().is_open, "J closes it again")
@@ -151,8 +154,11 @@ func test_full_mvp_loop_updates_chart_deterministically() -> void:
 func test_validated_build_refuses_pending_rule_from_ehr() -> void:
 	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
 	_open_ehr()
-	check("switched off" in _ehr()._banner.text, "validated banner")
+	check_eq(_ehr()._banner.text, "", "no banner while every order is approved")
+	_load_pending_rule_fixture()
 	_ehr().commit_action("request_medical_review")
+	check("switched off" in _ehr()._banner.text, "validated banner names the switched-off pending order")
+	_restore_content()
 	check(not PatientManager.get_state(ELIAS)["assessment"].get("medical_review_requested", false), "pending rule not applied")
 	check("Review flag" in _ehr().get_tab_text("Orders"), "refusal shown to the player")
 
@@ -236,3 +242,26 @@ func _interview() -> InterviewScreen:
 
 func _ehr() -> EHRScreen:
 	return _main.get_node("EHRScreen")
+
+
+## Loads the shipped content with the medical review rule set back to pending,
+## so rule governance stays tested now that every shipped rule is approved.
+func _load_pending_rule_fixture() -> void:
+	var problems: Array[String] = []
+	var docs: Dictionary = ContentRegistry.collect_documents(ContentRegistry.DATA_DIR, problems)
+	for rule: Dictionary in docs["clinical_rules"]["data"]["rules"]:
+		if rule["id"] == "clinical_rule_medical_review_request_v1":
+			rule["review_status"] = "PENDING_PSYCHIATRIST_REVIEW"
+	DirAccess.make_dir_recursive_absolute(PENDING_FIXTURE_DIR)
+	for key: String in docs:
+		var file: FileAccess = FileAccess.open(PENDING_FIXTURE_DIR.path_join(docs[key]["file"]), FileAccess.WRITE)
+		file.store_string(JSON.stringify(docs[key]["data"], "\t"))
+		file.close()
+	check(ContentRegistry.load_all(PENDING_FIXTURE_DIR), "pending-rule fixture validates: %s" % str(ContentRegistry.errors))
+
+
+func _restore_content() -> void:
+	for file_name: String in DirAccess.get_files_at(PENDING_FIXTURE_DIR):
+		DirAccess.remove_absolute(PENDING_FIXTURE_DIR.path_join(file_name))
+	DirAccess.remove_absolute(PENDING_FIXTURE_DIR)
+	ContentRegistry.load_all(ContentRegistry.DATA_DIR)

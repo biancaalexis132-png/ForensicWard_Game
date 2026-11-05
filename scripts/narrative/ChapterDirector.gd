@@ -94,6 +94,27 @@ func get_current_objective() -> Dictionary:
 	return {}
 
 
+## The current chapter's objectives in authored order, each with its status
+## derived from saved story state: "done", "expired", "current" or "upcoming".
+## Objective feedback reads this instead of keeping its own list.
+func get_objective_list() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	if not ContentRegistry.is_valid:
+		return result
+	var state: Dictionary = _story_state()
+	var current: String = get_current_objective().get("id", "")
+	for objective: Dictionary in _story().get("objectives", []):
+		var status: String = "upcoming"
+		if objective["id"] == current:
+			status = "current"
+		elif objective.has("expires_when") and StoryLogic.evaluate(objective["expires_when"], state):
+			status = "expired"
+		elif StoryLogic.evaluate(objective["complete_when"], state):
+			status = "done"
+		result.append({"id": objective["id"], "text": objective["text"], "status": status})
+	return result
+
+
 ## Read-only story state for other evaluators (AnomalyLedger): flags of the
 ## current chapter and every earlier one, in StoryLogic.evaluate()'s shape.
 func get_story_context() -> Dictionary:
@@ -193,12 +214,19 @@ func start_chapter(chapter_id: String) -> bool:
 ## Signs out at the handover board. Day: hand over and start the night shift.
 ## Night: complete the chapter. Returns the summary text shown to the player.
 func sign_out() -> String:
+	if not ContinuingPractice.can_close_shift():
+		EventBus.notification_requested.emit("Account for Continuing Practice follow-up before signing out.")
+		return ""
 	var story: Dictionary = _story()
 	if not story.has("sign_out"):
 		push_warning("ChapterDirector: chapter '%s' has no sign-out" % _chapter_id)
 		return ""
 	var config: Dictionary = story["sign_out"]
 	var body: String
+	var closes_chapter: bool = not has_flag(StoryLogic.CHAPTER_COMPLETE_FLAG) and TimeManager.get_shift() != "day"
+	if closes_chapter and not WardRounds.can_close_chapter(_chapter_id):
+		EventBus.notification_requested.emit(WardRounds.blocked_message(_chapter_id))
+		return ""
 	if has_flag(StoryLogic.CHAPTER_COMPLETE_FLAG):
 		body = "You have already signed out. %s is complete.\n\n%s" % [story["title"], _shift_summary()]
 	elif TimeManager.get_shift() == "day":
@@ -232,6 +260,10 @@ func _hand_over(config: Dictionary) -> String:
 	for change: Dictionary in changes:
 		TrustManager.adjust(change["staff_id"], change["axis"], float(change["delta"]), "handover")
 	var lines: PackedStringArray = ["[b]Day shift handover[/b]", "", _shift_summary(), ""]
+	var ward_round: PackedStringArray = WardRounds.handover_lines(_chapter_id)
+	if not ward_round.is_empty():
+		lines.append("\n".join(ward_round))
+		lines.append("")
 	if missing.is_empty():
 		lines.append("Handover documented for every patient on your list.")
 	else:
@@ -440,7 +472,12 @@ func _on_story_option_selected(interaction_id: String, option_id: String) -> voi
 		for option: Dictionary in interaction["options"]:
 			if option["id"] != option_id:
 				continue
+			# Ward-round patients admitted with this chapter need accepted plans first.
+			if option.get("flag", "") == StoryLogic.CHAPTER_COMPLETE_FLAG and not WardRounds.can_close_chapter(_chapter_id):
+				EventBus.notification_requested.emit(WardRounds.blocked_message(_chapter_id))
+				return
 			_active_interaction = ""
+			EventBus.story_choice_committed.emit(_chapter_id, interaction_id, option_id)
 			for access_id: String in option.get("grants_access", []):
 				TrustManager.grant_access(access_id, "story:" + interaction_id)
 			for access_id: String in option.get("revokes_access", []):

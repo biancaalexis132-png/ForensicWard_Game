@@ -33,6 +33,7 @@ def load(path):
 OWNER_APPROVED_CAMPAIGN = {
     **{f"cs_ch0{n}_title": "chapter_start" for n in (2, 3, 4, 5)},
     **{f"cs_ch0{n}_static_gn": "chapter_complete" for n in (1, 2, 3, 4, 5)},
+    "cs_ch01_prologue": "new_game",  # Owner approved 2026-10-21.
 }
 
 

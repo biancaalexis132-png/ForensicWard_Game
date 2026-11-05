@@ -1,0 +1,1269 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch2",
+	"generated_by": "tools/audio/extract_voice_lines.py",
+	"_note": "Generated. Do not edit: change the authored text in data/ and re-run the tool, then generate_voice.py.",
+	"speakers": {
+		"analyst": "Analyst",
+		"narrator": "",
+		"player": "You",
+		"pt_mara_ellis": "Mara",
+		"staff_bennett": "Nurse Bennett",
+		"staff_facilities_tech": "Technician",
+		"staff_hale": "Hale",
+		"staff_voss": "Dr Voss"
+	},
+	"scenes": [
+		{
+			"id": "voice_ch2_authored_text",
+			"location": "CH2 in-game panels and interviews",
+			"lines": [
+				{
+					"id": "ch2_v_82b919d475",
+					"speaker": "player",
+					"text": "I'm here to assess your health and hear your account. The records question can be documented separately."
+				},
+				{
+					"id": "ch2_v_b297f7c223",
+					"speaker": "pt_mara_ellis",
+					"text": "Are you here to examine me or tell me I'm wrong? ... Then please actually look at what I brought."
+				},
+				{
+					"id": "ch2_v_0112ade4ec",
+					"speaker": "pt_mara_ellis",
+					"text": "(She places two copies on the table.) October twelfth. October fourteenth. Same person. My aunt, Lillian. Different dates."
+				},
+				{
+					"id": "ch2_v_94cc2bf70f",
+					"speaker": "player",
+					"text": "It sounds as though you've had to repeat yourself. Where would you like to begin?"
+				},
+				{
+					"id": "ch2_v_fa73ffa444",
+					"speaker": "pt_mara_ellis",
+					"text": "With the pages people keep dismissing."
+				},
+				{
+					"id": "ch2_v_b3b08c81fc",
+					"speaker": "player",
+					"text": "My role is clinical care. I won't promise an administrative finding, but I can document your concerns accurately."
+				},
+				{
+					"id": "ch2_v_2d74097e83",
+					"speaker": "pt_mara_ellis",
+					"text": "That's more than most people have told me."
+				},
+				{
+					"id": "ch2_v_533ceae01e",
+					"speaker": "player",
+					"text": "Where did each copy originate?"
+				},
+				{
+					"id": "ch2_v_33bb597d68",
+					"speaker": "pt_mara_ellis",
+					"text": "One was a paper record, the other a later archive copy. I worked in records. I know mistakes happen. I also know a question is different from an accusation."
+				},
+				{
+					"id": "ch2_v_ffbc340374",
+					"speaker": "player",
+					"text": "What do you think could explain it?"
+				},
+				{
+					"id": "ch2_v_e92feee071",
+					"speaker": "pt_mara_ellis",
+					"text": "I don't know. It might be an error. I want somebody to check instead of deciding what kind of person I am for asking."
+				},
+				{
+					"id": "ch2_v_e4c54b2b06",
+					"speaker": "player",
+					"text": "How much sleep are you getting? How do you feel the next day?"
+				},
+				{
+					"id": "ch2_v_d49dc22936",
+					"speaker": "pt_mara_ellis",
+					"text": "Four or five hours. I'm exhausted. I try to stop checking the documents, then I think of something else I missed."
+				},
+				{
+					"id": "ch2_v_42b467571c",
+					"speaker": "player",
+					"text": "An earlier note mentions a mood disorder. Can we discuss what was happening during that period?"
+				},
+				{
+					"id": "ch2_v_77622c54ed",
+					"speaker": "pt_mara_ellis",
+					"text": "I've had difficult periods. I'm not saying I'm never unwell. I'm saying the pages still say what they say."
+				},
+				{
+					"id": "ch2_v_6d5bf9cc3c",
+					"speaker": "player",
+					"text": "What other explanations have you considered for the date conflict?"
+				},
+				{
+					"id": "ch2_v_1e617c1f67",
+					"speaker": "pt_mara_ellis",
+					"text": "Copying mistakes. Bad indexing. Someone might have entered something later. I don't know which."
+				},
+				{
+					"id": "ch2_v_7b4f54e390",
+					"speaker": "player",
+					"text": "When the stress feels overwhelming, have you thought about suicide, hurting yourself or somebody else?"
+				},
+				{
+					"id": "ch2_v_8df912d541",
+					"speaker": "pt_mara_ellis",
+					"text": "I've felt hopeless in the past. I'm not thinking about hurting myself now."
+				},
+				{
+					"id": "ch2_v_a63df79106",
+					"speaker": "player",
+					"text": "Who might know how your sleep and daily routine have changed? We can discuss what information might be requested and shared."
+				},
+				{
+					"id": "ch2_v_12eb49a450",
+					"speaker": "pt_mara_ellis",
+					"text": "My sister, Dana. I don't want her to think I'm being accused of anything."
+				},
+				{
+					"id": "ch2_v_a85a45b47e",
+					"speaker": "narrator",
+					"text": "(You explain that the purpose and applicable consent will be clarified before anyone contacts her.)"
+				},
+				{
+					"id": "ch2_v_c77698db23",
+					"speaker": "player",
+					"text": "If the dates differ, it would establish something about the records. Your assessment still depends on your history, examination and reliable information."
+				},
+				{
+					"id": "ch2_v_e76f466a56",
+					"speaker": "pt_mara_ellis",
+					"text": "I can live with that. Please keep those separate."
+				},
+				{
+					"id": "ch2_v_27fa7bc3b1",
+					"speaker": "player",
+					"text": "Before you go, there are a few more things I'd like to ask."
+				},
+				{
+					"id": "ch2_v_9e28d614c4",
+					"speaker": "pt_mara_ellis",
+					"text": "All right. Go ahead."
+				},
+				{
+					"id": "ch2_v_25a8288bad",
+					"speaker": "staff_bennett",
+					"text": "Go home, Doctor. It'll still be unreconciled tomorrow."
+				},
+				{
+					"id": "ch2_v_234dbce3fb",
+					"speaker": "staff_hale",
+					"text": "Pass is back on my board. What you saw at the lobby is in the log as you wrote it."
+				},
+				{
+					"id": "ch2_v_6107802bf8",
+					"speaker": "staff_hale",
+					"text": "Escort's waiting at the ward entry. Lobby doors only. Nothing past them."
+				},
+				{
+					"id": "ch2_v_e65ac58b06",
+					"speaker": "staff_facilities_tech",
+					"text": "I've told you what I heard. I didn't see anything, and I'd rather that's how it's written."
+				},
+				{
+					"id": "ch2_v_d6861d9fc7",
+					"speaker": "staff_facilities_tech",
+					"text": "Security said you might want a word about the shutdown. I'll tell you what I can."
+				},
+				{
+					"id": "ch2_v_569ec6f01c",
+					"speaker": "staff_hale",
+					"text": "Your request is logged. Any inspection still needs authorization, Facilities, a safe route and a reason to enter. None of that is in place."
+				},
+				{
+					"id": "ch2_v_8bc484ac9f",
+					"speaker": "staff_hale",
+					"text": "Doctor. Records said you'd have questions about W0-B. Ask them properly and I'll answer what I can."
+				},
+				{
+					"id": "ch2_v_48dc11bc7b",
+					"speaker": "staff_bennett",
+					"text": "Morning, Doctor. The W0-B access ticket is still with Information Security. The useful news is that we have patients to see. I can show you the reports, but do not take my summary as your examination. Keep the clinical work separate from the audit request."
+				},
+				{
+					"id": "ch2_v_a5a6c1e75e",
+					"speaker": "staff_voss",
+					"text": "The follow-up is in writing. Records still has your source request, Information Security has the credential question, and the clinical work stays with you and the nursing team."
+				},
+				{
+					"id": "ch2_v_9cd3758cfb",
+					"speaker": "staff_voss",
+					"text": "Doctor. A private word, please, before this becomes a corridor rumour."
+				},
+				{
+					"id": "ch2_v_d15df2e691",
+					"speaker": "staff_voss",
+					"text": "Morning, Doctor. Clinical work first. Once your records memo is with Naomi, come and find me."
+				},
+				{
+					"id": "ch2_v_8f3047f758",
+					"speaker": "narrator",
+					"text": "Outstanding clinical review still requires an appropriate handoff."
+				},
+				{
+					"id": "ch2_v_46ca0f741b",
+					"speaker": "narrator",
+					"text": "Your phone buzzes as you collect your things at the nursing station. Whatever it is, nothing from today's work goes into the reply: no patient, no record, no ward."
+				},
+				{
+					"id": "ch2_v_355df72b81",
+					"speaker": "narrator",
+					"text": "Nothing new on the board."
+				},
+				{
+					"id": "ch2_v_3bb0af8b44",
+					"speaker": "narrator",
+					"text": "You stop before you send it. A personal message is not the place for records, patients or the inquiry, and nothing from today is yours to share."
+				},
+				{
+					"id": "ch2_v_7946b713b0",
+					"speaker": "narrator",
+					"text": "Partner: Long one? Call me when you're out. Dinner's waiting either way."
+				},
+				{
+					"id": "ch2_v_5617b7220b",
+					"speaker": "player",
+					"text": "Leaving now. Can't talk about the day, but I'm glad you're there."
+				},
+				{
+					"id": "ch2_v_b2f0006f24",
+					"speaker": "narrator",
+					"text": "Friend: Still alive in there? Drinks this week, no shop talk."
+				},
+				{
+					"id": "ch2_v_468127e1fb",
+					"speaker": "player",
+					"text": "Still alive. Drinks sound good. No shop talk is a promise."
+				},
+				{
+					"id": "ch2_v_eaa3139611",
+					"speaker": "narrator",
+					"text": "Family: Just checking you got home all right. Ring when you can."
+				},
+				{
+					"id": "ch2_v_6b92b2f98e",
+					"speaker": "player",
+					"text": "Heading home now. I'll ring tomorrow."
+				},
+				{
+					"id": "ch2_v_4d2e668624",
+					"speaker": "narrator",
+					"text": "Reminder (set by you): Leave work at work. Write tomorrow's list, then stop."
+				},
+				{
+					"id": "ch2_v_0b8273955f",
+					"speaker": "narrator",
+					"text": "You write three lines for tomorrow, then put the phone away."
+				},
+				{
+					"id": "ch2_v_ced08fb21b",
+					"speaker": "narrator",
+					"text": "You put the phone in your pocket. It can wait until you're home."
+				},
+				{
+					"id": "ch2_v_33f9136c8c",
+					"speaker": "narrator",
+					"text": "You sign out at the staff entrance. The shift is over."
+				},
+				{
+					"id": "ch2_v_c8c5e8dfe4",
+					"speaker": "narrator",
+					"text": "You head home. The screen fades out."
+				},
+				{
+					"id": "ch2_v_2391c72ef1",
+					"speaker": "narrator",
+					"text": "End of Chapter 2: The Missing Hours\nOn record: audit inconsistencies, source disagreement, an unobserved door movement and an uncertain witness recollection. W0-B remains locked; any inspection needs proper authorization."
+				},
+				{
+					"id": "ch2_v_dd087cd541",
+					"speaker": "narrator",
+					"text": "Clinical work remains the priority. Review the existing EHR and retain responsibility for outstanding assessment and follow-up. The administrative audit is a separate work item. This handoff does not replace examination or establish new findings."
+				},
+				{
+					"id": "ch2_v_190e761a2f",
+					"speaker": "narrator",
+					"text": "Begin the new shift with Naomi before accepting outstanding work."
+				},
+				{
+					"id": "ch2_v_0316f33153",
+					"speaker": "narrator",
+					"text": "You retain responsibility for the outstanding clinical review and follow-up. No clinical task is marked completed. The records discrepancy can be investigated separately."
+				},
+				{
+					"id": "ch2_v_9cad577258",
+					"speaker": "narrator",
+					"text": "Two representations of a maintenance entry display a four-minute discrepancy. One export repeats a minute. The raw time zone, clock source and sort order have not been verified. This is a reported records discrepancy; it does not establish missing time."
+				},
+				{
+					"id": "ch2_v_439100cd8f",
+					"speaker": "narrator",
+					"text": "Confirm who owns the outstanding clinical review at the handover board before pursuing the audit."
+				},
+				{
+					"id": "ch2_v_57c2a2b901",
+					"speaker": "narrator",
+					"text": "The initial mismatch is recorded as unresolved. Continue the source-clock review at this worksheet."
+				},
+				{
+					"id": "ch2_v_e6a01a5c44",
+					"speaker": "narrator",
+					"text": "Comparison recorded as unresolved. Request the authorized source-system export and preservation of the originals before drawing conclusions."
+				},
+				{
+					"id": "ch2_v_380701e9e7",
+					"speaker": "narrator",
+					"text": "Request preservation of the original records and an authorized source-system export. Ask for the raw offsets, clock source and sort order. Making a request does not grant access or authenticate a record."
+				},
+				{
+					"id": "ch2_v_b3464c6913",
+					"speaker": "narrator",
+					"text": "Record the comparison as unresolved in Records before requesting source material."
+				},
+				{
+					"id": "ch2_v_6ba24da4b8",
+					"speaker": "narrator",
+					"text": "The preservation and export request is submitted. Receipt, custody and source independence still need verification."
+				},
+				{
+					"id": "ch2_v_86f83ce218",
+					"speaker": "narrator",
+					"text": "Request submitted for authorized Records review. Source access and reconciliation remain pending. The originals must be retained; no independent corroboration or loss of time is established."
+				},
+				{
+					"id": "ch2_v_4e1bd78463",
+					"speaker": "staff_bennett",
+					"text": "We have patients to see. Keep the clinical work moving while Records checks the source material."
+				},
+				{
+					"id": "ch2_v_2f12f0a4a4",
+					"speaker": "narrator",
+					"text": "The audit request remains unresolved. You retain the outstanding clinical work."
+				},
+				{
+					"id": "ch2_v_e3a70ddb57",
+					"speaker": "narrator",
+					"text": "The source request is not yet recorded. Clinical review remains separate from the audit."
+				},
+				{
+					"id": "ch2_v_4b860054b8",
+					"speaker": "narrator",
+					"text": "Clinical review remains assigned separately from the unresolved records inquiry."
+				},
+				{
+					"id": "ch2_v_3202c36832",
+					"speaker": "narrator",
+					"text": "Handoff acknowledged. Clinical review remains assigned to you, and the source-export request remains with Records. Continue routine care while the source material is reconciled."
+				},
+				{
+					"id": "ch2_v_18da98f624",
+					"speaker": "narrator",
+					"text": "Reported comparison\nTwo representations display a four-minute difference; an export repeats a minute."
+				},
+				{
+					"id": "ch2_v_0ecd6ddc93",
+					"speaker": "narrator",
+					"text": "Available clock metadata\nRaw time-zone offset: unverified.\nSource clock and synchronization authority: unverified.\nNo authorized raw export has been received in this review."
+				},
+				{
+					"id": "ch2_v_d40a41cf38",
+					"speaker": "narrator",
+					"text": "What correction can this comparison support?"
+				},
+				{
+					"id": "ch2_v_ece8665ac6",
+					"speaker": "narrator",
+					"text": "Complete the current records-review objective first. Clinical review remains a separate responsibility."
+				},
+				{
+					"id": "ch2_v_4719d22798",
+					"speaker": "narrator",
+					"text": "Clock authority and raw offsets remain unverified. Continue with the export-order review at this worksheet."
+				},
+				{
+					"id": "ch2_v_77e025c4e1",
+					"speaker": "narrator",
+					"text": "A displayed difference alone does not establish a clock correction. The source offsets and clock authority are still unverified. Retain the original representations and review the missing metadata."
+				},
+				{
+					"id": "ch2_v_a60e87580f",
+					"speaker": "narrator",
+					"text": "Clock review recorded: no correction can be justified yet. Raw offsets, clock authority and synchronization history remain requested. The displayed mismatch remains unresolved."
+				},
+				{
+					"id": "ch2_v_4b537a942f",
+					"speaker": "narrator",
+					"text": "Reported export\nA minute appears more than once."
+				},
+				{
+					"id": "ch2_v_8e0bc51950",
+					"speaker": "narrator",
+					"text": "Missing information\nRaw event sequence, export sort key and transformation history have not been verified. A display row is not proof of an elapsed interval."
+				},
+				{
+					"id": "ch2_v_5ee7d18fe4",
+					"speaker": "narrator",
+					"text": "How should the repeated minute be recorded?"
+				},
+				{
+					"id": "ch2_v_4137f7e5ee",
+					"speaker": "narrator",
+					"text": "Clock and export-order gaps are recorded. Review source dependencies at the office records-request workstation."
+				},
+				{
+					"id": "ch2_v_1ebd05f278",
+					"speaker": "narrator",
+					"text": "That conclusion exceeds the available source material. Repeated display values can only be recorded as a discrepancy while ordering and transformation history remain unverified."
+				},
+				{
+					"id": "ch2_v_8258b5c843",
+					"speaker": "narrator",
+					"text": "Export-order review recorded. Preserve the original representation and request its sort key, raw event sequence and transformation history. Do not reorder or overwrite the original."
+				},
+				{
+					"id": "ch2_v_9002d473fe",
+					"speaker": "narrator",
+					"text": "Current material\nThe two displayed representations have not been traced to independently acquired originals. Source extraction, clock dependencies and transformation lineage remain unverified."
+				},
+				{
+					"id": "ch2_v_c033796ab5",
+					"speaker": "narrator",
+					"text": "Would receiving another copy establish independent corroboration?"
+				},
+				{
+					"id": "ch2_v_97e187fd1f",
+					"speaker": "narrator",
+					"text": "Source independence remains unestablished. Check the preservation request at this workstation."
+				},
+				{
+					"id": "ch2_v_627b71e685",
+					"speaker": "narrator",
+					"text": "A copy can preserve or reproduce a source; it does not by itself establish independence. Shared originals, clocks and export pipelines still need to be checked. No evidence status has been promoted."
+				},
+				{
+					"id": "ch2_v_c51369e614",
+					"speaker": "narrator",
+					"text": "Dependency review recorded: source independence remains unestablished. Request original capture, clock authority, extraction history and shared dependencies before counting corroboration."
+				},
+				{
+					"id": "ch2_v_a0e86c16db",
+					"speaker": "narrator",
+					"text": "Request status\nPreservation and an authorized source-system export have been requested."
+				},
+				{
+					"id": "ch2_v_f22c3c89db",
+					"speaker": "narrator",
+					"text": "Outstanding confirmation\nNo original receipt, immutable checksum or custody acknowledgment is supplied by the current comparison. A request is not confirmation that preservation occurred."
+				},
+				{
+					"id": "ch2_v_683a5e1cb7",
+					"speaker": "narrator",
+					"text": "How should the request be tracked?"
+				},
+				{
+					"id": "ch2_v_dd3103a1a7",
+					"speaker": "narrator",
+					"text": "Preservation confirmation, raw export receipt and custody remain outstanding. Return to the Records worksheet to scope the follow-up memo."
+				},
+				{
+					"id": "ch2_v_13101819f5",
+					"speaker": "narrator",
+					"text": "Sending the request does not confirm custody or preservation. Keep confirmation outstanding and retain the request without claiming receipt of an original."
+				},
+				{
+					"id": "ch2_v_e5255da0c3",
+					"speaker": "narrator",
+					"text": "Preservation follow-up recorded. Request confirmation of original receipt, unchanged source bytes/checksum and custody history from authorized Records staff. Receipt and preservation remain unconfirmed."
+				},
+				{
+					"id": "ch2_v_7860de0228",
+					"speaker": "narrator",
+					"text": "Reported\nFour-minute displayed mismatch; repeated minute in an export."
+				},
+				{
+					"id": "ch2_v_d79bb3cff0",
+					"speaker": "narrator",
+					"text": "Still unknown\nClock authority and offsets; raw event ordering; extraction lineage and shared dependencies; original receipt, checksum and custody confirmation."
+				},
+				{
+					"id": "ch2_v_72276bed22",
+					"speaker": "narrator",
+					"text": "Standing\nDiscrepancy unresolved. No proven loss of time, independent corroboration or patient finding. Preserve the original representations and keep clinical documentation separate."
+				},
+				{
+					"id": "ch2_v_c4988c84b5",
+					"speaker": "narrator",
+					"text": "Choose the emphasis for the next authorized follow-up. Both requests retain all outstanding source questions."
+				},
+				{
+					"id": "ch2_v_446694a131",
+					"speaker": "narrator",
+					"text": "The unresolved memo retains the reported mismatch and all missing source questions. An authorized technical follow-up is requested; original receipt, preservation and reconciliation remain pending. No independent corroboration or missing-time conclusion is recorded."
+				},
+				{
+					"id": "ch2_v_f8797efa45",
+					"speaker": "narrator",
+					"text": "Unresolved memo recorded with clock-authority/offset verification prioritized. Records must also address ordering, lineage, custody and preservation. Source receipt and any reconciliation remain pending. Return to Naomi to acknowledge the outstanding work."
+				},
+				{
+					"id": "ch2_v_8a69a58bf5",
+					"speaker": "narrator",
+					"text": "Unresolved memo recorded with source-lineage/custody verification prioritized. Records must also address clock authority, offsets, ordering and preservation. Source receipt and any reconciliation remain pending. Return to Naomi to acknowledge the outstanding work."
+				},
+				{
+					"id": "ch2_v_d4abede45c",
+					"speaker": "staff_bennett",
+					"text": "Keep the records questions with the authorized review. The clinical work still needs its own follow-up."
+				},
+				{
+					"id": "ch2_v_44b4d5810e",
+					"speaker": "narrator",
+					"text": "The comparison remains unresolved. Source receipt, clock verification and preservation confirmation remain outstanding. Your clinical responsibilities have not been marked completed by this inquiry."
+				},
+				{
+					"id": "ch2_v_33cde93c1b",
+					"speaker": "narrator",
+					"text": "Records-review handoff acknowledged. The unresolved memo and authorized follow-up remain recorded. Continue clinical work separately; source material and technical reconciliation are still outstanding."
+				},
+				{
+					"id": "ch2_v_3bd0c0ec6f",
+					"speaker": "narrator",
+					"text": "Voss steps aside where the corridor is quiet."
+				},
+				{
+					"id": "ch2_v_b611c46f65",
+					"speaker": "staff_voss",
+					"text": "An incomplete entry can become an allegation very quickly. I'm not asking you to ignore it. I'm asking you to tell me what was actually established."
+				},
+				{
+					"id": "ch2_v_88f76a74c5",
+					"speaker": "narrator",
+					"text": "On record\nA transfer request to W0-B was logged under a staff credential marked inactive. The requester was not identified.\nA four-minute displayed mismatch and a repeated minute in a maintenance export are recorded as unresolved. Your source request is pending with Records."
+				},
+				{
+					"id": "ch2_v_2bd9ccf863",
+					"speaker": "narrator",
+					"text": "What do you tell her?"
+				},
+				{
+					"id": "ch2_v_a0371204de",
+					"speaker": "narrator",
+					"text": "Dr Voss wants the records memo acknowledged with Naomi first. Clinical work remains a separate responsibility."
+				},
+				{
+					"id": "ch2_v_8a31f68f9f",
+					"speaker": "staff_voss",
+					"text": "Who? The audit shows a credential, not a person. Write that someone did it on purpose and you have made an allegation the record does not support. Tell me what was established."
+				},
+				{
+					"id": "ch2_v_4c42ef72b6",
+					"speaker": "staff_voss",
+					"text": "Records has not verified the clock source or the export order. A displayed mismatch is a discrepancy, not a missing interval. What do you actually have?"
+				},
+				{
+					"id": "ch2_v_9aab902648",
+					"speaker": "player",
+					"text": "An inactive credential appears in an archived transfer-request audit. It doesn't identify the person who used it. The export mismatch is reported and unresolved; clock authority, ordering, lineage and preservation are unverified."
+				},
+				{
+					"id": "ch2_v_5d4694e131",
+					"speaker": "staff_voss",
+					"text": "Good. Document patient-safety concerns separately from information-security concerns. They have different owners."
+				},
+				{
+					"id": "ch2_v_754092e2d5",
+					"speaker": "narrator",
+					"text": "Factual scope recorded. Talk to Voss again about what the follow-up still needs."
+				},
+				{
+					"id": "ch2_v_0f3fb52ed2",
+					"speaker": "staff_voss",
+					"text": "Then separate the owners. What does the follow-up still need, and who has to authorize it?"
+				},
+				{
+					"id": "ch2_v_caac1dcc0b",
+					"speaker": "narrator",
+					"text": "Factual scope\nInactive credential in a transfer-request audit; user not identified. Export discrepancy unresolved; source request pending with Records."
+				},
+				{
+					"id": "ch2_v_c71936877e",
+					"speaker": "narrator",
+					"text": "Your current authority\nAttending clinical access only. No credential-audit authority, no source-system access and no authorization for W0-B."
+				},
+				{
+					"id": "ch2_v_bf421d6ca9",
+					"speaker": "staff_voss",
+					"text": "No. W0-B is Security's door, and any inspection needs their authorization and an escort. A records question is not a reason to open a sealed ward. Your access is unchanged."
+				},
+				{
+					"id": "ch2_v_1e541135fe",
+					"speaker": "staff_voss",
+					"text": "That isn't mine to hand out, and it shouldn't be yours to take. Records holds the source export; Information Security holds the credential audit. Your request stays with them."
+				},
+				{
+					"id": "ch2_v_14ac8c2b99",
+					"speaker": "narrator",
+					"text": "Missing permissions recorded:\nInformation Security: audit of the inactive credential and who could use it.\nRecords: the pending preservation and source-export request, with clock and ordering metadata.\nSecurity: any question about W0-B access policy. No inspection is authorized.\nClinical follow-up stays with you and the nursing team."
+				},
+				{
+					"id": "ch2_v_0369f0eb10",
+					"speaker": "staff_voss",
+					"text": "That is a list I can send to people who can act on it. Now tell me what you want to happen next."
+				},
+				{
+					"id": "ch2_v_d1370dd35e",
+					"speaker": "staff_voss",
+					"text": "What do you want to happen next? Pick something I can authorize today."
+				},
+				{
+					"id": "ch2_v_daeaca34ab",
+					"speaker": "narrator",
+					"text": "Still pending\nRecords source request, preservation confirmation and reconciliation. Information Security credential audit. No new clinical finding has been documented in this review."
+				},
+				{
+					"id": "ch2_v_3e1e72ea43",
+					"speaker": "staff_voss",
+					"text": "On what finding? Nothing in this review documents a new risk to a patient. If your clinical assessment identifies one, escalate it through clinical channels at once and I will back you. It does not ride on an audit memo. Choose a follow-up the record supports."
+				},
+				{
+					"id": "ch2_v_804499d6fb",
+					"speaker": "staff_voss",
+					"text": "Reasonable. I'll send you the incident-escalation procedure and copy the Records and Information Security leads. Your source request stays open with Records; nothing is closed by this."
+				},
+				{
+					"id": "ch2_v_c176e47cfa",
+					"speaker": "narrator",
+					"text": "Follow-up recorded: written process requested. The records discrepancy and the credential audit remain unresolved."
+				},
+				{
+					"id": "ch2_v_569609703e",
+					"speaker": "staff_voss",
+					"text": "I'd rather Records finished its own work first. But a neutral second review is a fair request, and I'll put it to the quality committee in writing. It does not replace your pending request."
+				},
+				{
+					"id": "ch2_v_75d5870143",
+					"speaker": "narrator",
+					"text": "Follow-up recorded: independent reconciliation proposed. The source request, preservation confirmation and credential audit remain pending."
+				},
+				{
+					"id": "ch2_v_29ba5ec975",
+					"speaker": "narrator",
+					"text": "Request\nMara Ellis asks for two copies of her aunt Lillian Ellis's 1988 record to be checked: a paper record dated October 12 and a later archive copy dated October 14."
+				},
+				{
+					"id": "ch2_v_fc856319cc",
+					"speaker": "narrator",
+					"text": "Separation\nThis is an administrative records question. It is not part of the hospital's W0-B inquiry, and Mara's clinical assessment stays in the EHR."
+				},
+				{
+					"id": "ch2_v_8339146af2",
+					"speaker": "narrator",
+					"text": "How should it be sent?"
+				},
+				{
+					"id": "ch2_v_1a7b5aa06d",
+					"speaker": "narrator",
+					"text": "Document Mara's assessment in the EHR first. Her records question is referred separately."
+				},
+				{
+					"id": "ch2_v_e55fca692b",
+					"speaker": "narrator",
+					"text": "Mara's date question is with Records, separate from her clinical record. No finding about the copies has been made."
+				},
+				{
+					"id": "ch2_v_f3280b1e7a",
+					"speaker": "narrator",
+					"text": "Records does not need her clinical details to compare two copies. Send only what the question requires; her assessment stays confidential in the EHR."
+				},
+				{
+					"id": "ch2_v_2fe1047a67",
+					"speaker": "narrator",
+					"text": "Mara is a patient with her own question, not a source for the hospital's inquiry. Nothing links her aunt's record to W0-B. Refer it on its own."
+				},
+				{
+					"id": "ch2_v_f3cad19bb7",
+					"speaker": "narrator",
+					"text": "Referral sent to the authorized Records office: two copies, two dates, origin of each copy to be checked. No finding about the records is made, and nothing in Mara's clinical assessment changes. Her follow-up (sleep and function support, safety follow-up, legal-role clarification, medication reconciliation) stays with the clinical team."
+				},
+				{
+					"id": "ch2_v_23b45b9187",
+					"speaker": "narrator",
+					"text": "The Records analyst has the worksheet open."
+				},
+				{
+					"id": "ch2_v_eded46ed65",
+					"speaker": "analyst",
+					"text": "The familiar explanations aren't glamorous. They're also where we have to start."
+				},
+				{
+					"id": "ch2_v_8f9f77526e",
+					"speaker": "narrator",
+					"text": "Candidates\nClock skew between the console and the export: could explain the four-minute display difference.\nMigrated location codes: could explain why an entry is labelled with an old designation.\nExport sorting: could explain the repeated minute.\nIdentifier collision: could explain an entry attached to the wrong record."
+				},
+				{
+					"id": "ch2_v_92e0cf3230",
+					"speaker": "narrator",
+					"text": "Status\nNone has been tested against source material; no source packet has been received."
+				},
+				{
+					"id": "ch2_v_986c5be764",
+					"speaker": "player",
+					"text": "And when they don't account for every line?"
+				},
+				{
+					"id": "ch2_v_d8ebd3e8e5",
+					"speaker": "narrator",
+					"text": "Complete the current objective first. The records discrepancy remains unresolved."
+				},
+				{
+					"id": "ch2_v_5562397bb9",
+					"speaker": "narrator",
+					"text": "Four candidate explanations are logged as untested. Choose the next check with the analyst at this worksheet."
+				},
+				{
+					"id": "ch2_v_ac567b9817",
+					"speaker": "analyst",
+					"text": "Skew might cover the four minutes. It doesn't touch the repeated row, and we haven't checked a single source clock yet. One candidate isn't an answer."
+				},
+				{
+					"id": "ch2_v_93ad1933bf",
+					"speaker": "analyst",
+					"text": "Unexplained means unexplained. Contradictory timestamps are a records problem until a source shows otherwise. That isn't evidence of anything else."
+				},
+				{
+					"id": "ch2_v_d42659b990",
+					"speaker": "analyst",
+					"text": "We preserve the mismatch and keep checking."
+				},
+				{
+					"id": "ch2_v_8e81ded588",
+					"speaker": "narrator",
+					"text": "Candidates logged: clock skew, migrated location codes, export sorting, identifier collision. Each may explain part of the discrepancy; none is confirmed. The discrepancy stays unresolved."
+				},
+				{
+					"id": "ch2_v_e5915ec0cb",
+					"speaker": "analyst",
+					"text": "I can start one of these properly this week. Which first?"
+				},
+				{
+					"id": "ch2_v_fa350f5574",
+					"speaker": "narrator",
+					"text": "Still open\nAll four candidates; clock authority and offsets; raw ordering; source lineage; preservation confirmation."
+				},
+				{
+					"id": "ch2_v_41f20fdb59",
+					"speaker": "narrator",
+					"text": "Log the candidate explanations first."
+				},
+				{
+					"id": "ch2_v_c8261b520b",
+					"speaker": "narrator",
+					"text": "The next check is recorded. The discrepancy and all four candidate explanations remain open until source material is received and reviewed."
+				},
+				{
+					"id": "ch2_v_5101bf87fc",
+					"speaker": "analyst",
+					"text": "Not on what we have. A migration might explain the label, not the timing. Closing it now would be deciding the answer first."
+				},
+				{
+					"id": "ch2_v_108d1ec74a",
+					"speaker": "narrator",
+					"text": "Next check recorded: source extraction requested through Records' authorized process. It tests clock skew and export sorting once received. Nothing is received yet; every candidate stays open."
+				},
+				{
+					"id": "ch2_v_e12bc1b40d",
+					"speaker": "narrator",
+					"text": "Next check recorded: identifier crosswalk between legacy and current codes. It tests migrated location codes and identifier collision. Clock and ordering questions stay open."
+				},
+				{
+					"id": "ch2_v_2e2fd01cd9",
+					"speaker": "narrator",
+					"text": "Next check recorded: neutral second review requested. A reviewer outside the team re-checks the candidates and the method. No candidate is confirmed in the meantime."
+				},
+				{
+					"id": "ch2_v_79c40221d7",
+					"speaker": "staff_hale",
+					"text": "The historical label isn't an operational ward assignment. And the clinical transfer system isn't the security badge system."
+				},
+				{
+					"id": "ch2_v_89436c7b6d",
+					"speaker": "narrator",
+					"text": "What do you ask him?"
+				},
+				{
+					"id": "ch2_v_fded22fe29",
+					"speaker": "narrator",
+					"text": "Hale is not here yet."
+				},
+				{
+					"id": "ch2_v_7f21f61313",
+					"speaker": "staff_hale",
+					"text": "That door has a control list. Curiosity isn't on it. Your access is unchanged."
+				},
+				{
+					"id": "ch2_v_33b7616b92",
+					"speaker": "staff_hale",
+					"text": "A request in the transfer system isn't a door event. Nothing you've shown me says that door opened. Ask me what you actually need to know."
+				},
+				{
+					"id": "ch2_v_c3080ed86e",
+					"speaker": "player",
+					"text": "I'm asking how the restricted designation appeared in a live request."
+				},
+				{
+					"id": "ch2_v_4ffe499ddd",
+					"speaker": "staff_hale",
+					"text": "Appropriate question. The answer needs an authorized audit, not an unauthorized inspection."
+				},
+				{
+					"id": "ch2_v_2692b95cff",
+					"speaker": "player",
+					"text": "What would a legitimate inspection require?"
+				},
+				{
+					"id": "ch2_v_3a7f721ede",
+					"speaker": "staff_hale",
+					"text": "Authorization, Facilities, a safe route, and a reason to enter."
+				},
+				{
+					"id": "ch2_v_b84c67d257",
+					"speaker": "narrator",
+					"text": "Question recorded. Ask Hale for one permitted follow-up."
+				},
+				{
+					"id": "ch2_v_34b6a970d3",
+					"speaker": "staff_hale",
+					"text": "I can do one of these without anyone breaking policy. Pick."
+				},
+				{
+					"id": "ch2_v_f701640931",
+					"speaker": "narrator",
+					"text": "Not available\nBadge access, escort or inspection of W0-B. No authorization exists."
+				},
+				{
+					"id": "ch2_v_7ecbce6900",
+					"speaker": "narrator",
+					"text": "Ask Hale about the designation first."
+				},
+				{
+					"id": "ch2_v_fe86ef8c42",
+					"speaker": "staff_hale",
+					"text": "No. Not today and not on my word alone. An inspection needs authorization, Facilities and a safe route first. Choose something I can actually do."
+				},
+				{
+					"id": "ch2_v_07366eed93",
+					"speaker": "staff_hale",
+					"text": "Security won't act on a transfer to a non-operational designation while the audit runs. Whether the request put a patient at risk is a clinical question; that review is yours."
+				},
+				{
+					"id": "ch2_v_d513d20a57",
+					"speaker": "narrator",
+					"text": "Follow-up recorded: clinical risk check requested. No patient is moved and no access changes."
+				},
+				{
+					"id": "ch2_v_195634b907",
+					"speaker": "staff_hale",
+					"text": "You'll get the summary the policy allows: what was logged and when, not the raw badge data. It won't name anyone the audit hasn't."
+				},
+				{
+					"id": "ch2_v_e559f17047",
+					"speaker": "narrator",
+					"text": "Follow-up recorded: permitted report summary requested. The credential audit stays with Information Security."
+				},
+				{
+					"id": "ch2_v_2f082f4f22",
+					"speaker": "staff_hale",
+					"text": "Facilities keeps those. I'll ask them to release what's archived to you through Records. Plans aren't permission to go anywhere."
+				},
+				{
+					"id": "ch2_v_c697650264",
+					"speaker": "narrator",
+					"text": "Follow-up recorded: archived facilities plans requested. No route or access is authorized."
+				},
+				{
+					"id": "ch2_v_8ff4b8d2cb",
+					"speaker": "staff_facilities_tech",
+					"text": "I heard the old lift bell. Could've been the test cycle. Sound carries strangely through the pipes."
+				},
+				{
+					"id": "ch2_v_26f41fda8b",
+					"speaker": "narrator",
+					"text": "What do you ask?"
+				},
+				{
+					"id": "ch2_v_e4af9652e5",
+					"speaker": "narrator",
+					"text": "The technician is busy."
+				},
+				{
+					"id": "ch2_v_d19e3ef134",
+					"speaker": "staff_facilities_tech",
+					"text": "I didn't say that. I heard a bell. If you write it that way you're writing something I never saw."
+				},
+				{
+					"id": "ch2_v_d5851d56d2",
+					"speaker": "narrator",
+					"text": "That question suggested an answer. Ask it again without one."
+				},
+				{
+					"id": "ch2_v_0f91fac34d",
+					"speaker": "staff_facilities_tech",
+					"text": "No. I wouldn't say I did."
+				},
+				{
+					"id": "ch2_v_40b107bdde",
+					"speaker": "narrator",
+					"text": "Recorded as reported: heard what sounded like the old lift bell during a scheduled shutdown; possibly the test cycle; did not see anyone use the lift. This is witness memory, not an observation of movement."
+				},
+				{
+					"id": "ch2_v_9bb48c07c9",
+					"speaker": "staff_facilities_tech",
+					"text": "Anything else? I've got closers to finish."
+				},
+				{
+					"id": "ch2_v_c2c7a5ed1e",
+					"speaker": "narrator",
+					"text": "On record\nHeard a bell during a scheduled shutdown; did not see the lift used; timing not checked."
+				},
+				{
+					"id": "ch2_v_40ec61fd9d",
+					"speaker": "narrator",
+					"text": "Ask what the technician noticed first."
+				},
+				{
+					"id": "ch2_v_9777f05e13",
+					"speaker": "narrator",
+					"text": "Nobody saw the lift move. A remembered bell can't be written up as movement. Choose a follow-up that checks it."
+				},
+				{
+					"id": "ch2_v_20d40ccfc0",
+					"speaker": "staff_facilities_tech",
+					"text": "Facilities logs every test cycle. I'll send you the work-order numbers for that shift."
+				},
+				{
+					"id": "ch2_v_3b456cf4c2",
+					"speaker": "narrator",
+					"text": "Follow-up recorded: confirm scheduled work orders. The bell may match a test; nothing is concluded yet."
+				},
+				{
+					"id": "ch2_v_9985cf5d0f",
+					"speaker": "narrator",
+					"text": "Follow-up recorded: the statement stands in the technician's own words, including \"could've been the test cycle\" and \"I wouldn't say I did\". No inference is added."
+				},
+				{
+					"id": "ch2_v_c523361681",
+					"speaker": "staff_facilities_tech",
+					"text": "Late in the shift. I didn't look at a clock."
+				},
+				{
+					"id": "ch2_v_ff7c764b44",
+					"speaker": "narrator",
+					"text": "Follow-up recorded: timing to be checked against shift and work-order records. No time is assigned from memory."
+				},
+				{
+					"id": "ch2_v_feab0e2b3d",
+					"speaker": "staff_hale",
+					"text": "You want eyes on the lift lobby. I can send an escort to the lobby doors with you. Not into the lobby, not the lift, not the hatch, and nowhere near W0-B."
+				},
+				{
+					"id": "ch2_v_704b973bc3",
+					"speaker": "narrator",
+					"text": "Hale is busy."
+				},
+				{
+					"id": "ch2_v_27e282d301",
+					"speaker": "staff_hale",
+					"text": "No. There's no authorization, no Facilities sign-off and no clinical reason to enter. The pass covers the lobby doors and nothing past them."
+				},
+				{
+					"id": "ch2_v_cceeed7acd",
+					"speaker": "staff_hale",
+					"text": "Escorted pass logged against this inspection. The ward entry doors will open for you. Bring the pass back to me when you're done."
+				},
+				{
+					"id": "ch2_v_111c10e5c5",
+					"speaker": "narrator",
+					"text": "Scope recorded: lobby doors only, with an escort. Lift, service hatch and W0-B remain locked."
+				},
+				{
+					"id": "ch2_v_cdd31c1336",
+					"speaker": "narrator",
+					"text": "The double doors to the restricted lift lobby are shut. The latch is engaged and the reader shows locked."
+				},
+				{
+					"id": "ch2_v_41d0ddca04",
+					"speaker": "narrator",
+					"text": "The escort stands beside you."
+				},
+				{
+					"id": "ch2_v_4e1f3574fe",
+					"speaker": "narrator",
+					"text": "The lobby doors are behind the ward entry. You have no reason or pass to inspect them."
+				},
+				{
+					"id": "ch2_v_4e2c077efa",
+					"speaker": "narrator",
+					"text": "Escort: Not on this pass, Doctor. We look; we don't go in."
+				},
+				{
+					"id": "ch2_v_971c57aaa9",
+					"speaker": "narrator",
+					"text": "The doors stay shut."
+				},
+				{
+					"id": "ch2_v_a511d6b4aa",
+					"speaker": "narrator",
+					"text": "Noted: lobby doors closed, latch engaged, reader locked."
+				},
+				{
+					"id": "ch2_v_ca4a0299e7",
+					"speaker": "narrator",
+					"text": "The escort's radio goes. Facilities wants the maintenance door checked. You both step along the corridor to look at it, and for a minute neither of you is watching the lobby."
+				},
+				{
+					"id": "ch2_v_9405e68a84",
+					"speaker": "narrator",
+					"text": "When you turn back, the right-hand lobby door stands ajar by a few centimetres. Nobody passed you in the corridor that you saw."
+				},
+				{
+					"id": "ch2_v_166aed0744",
+					"speaker": "narrator",
+					"text": "Escort: Someone could have used the maintenance route."
+				},
+				{
+					"id": "ch2_v_a7613470b0",
+					"speaker": "player",
+					"text": "Then let's check the approved work orders before concluding anything."
+				},
+				{
+					"id": "ch2_v_726afefab9",
+					"speaker": "narrator",
+					"text": "The escort did not watch the doors continuously, and neither did you."
+				},
+				{
+					"id": "ch2_v_d57aa1d457",
+					"speaker": "narrator",
+					"text": "Note the doors' state first."
+				},
+				{
+					"id": "ch2_v_6ce9f5148c",
+					"speaker": "narrator",
+					"text": "Lobby doors: observation and follow-up recorded. Return the pass to Hale."
+				},
+				{
+					"id": "ch2_v_71571e4e3c",
+					"speaker": "narrator",
+					"text": "Escort: Not on this pass. If someone's in there, Security handles it."
+				},
+				{
+					"id": "ch2_v_b60b432043",
+					"speaker": "narrator",
+					"text": "You stay in the corridor."
+				},
+				{
+					"id": "ch2_v_6a0c593e1e",
+					"speaker": "narrator",
+					"text": "Nobody saw the doors opened. A latch that failed, a pressure change or a person are all possible. Record what was observed, not who did it."
+				},
+				{
+					"id": "ch2_v_1526338645",
+					"speaker": "narrator",
+					"text": "Documented: doors closed and latched at first check; ajar on return; the escort and you did not watch them continuously in between. No cause is recorded."
+				},
+				{
+					"id": "ch2_v_cb472c7087",
+					"speaker": "narrator",
+					"text": "Escort: Closing them now and calling it in."
+				},
+				{
+					"id": "ch2_v_b32d9ffe39",
+					"speaker": "narrator",
+					"text": "The doors are pushed shut and the latch engages. Security has the report: found ajar during an escorted check, cause unknown."
+				},
+				{
+					"id": "ch2_v_025d159609",
+					"speaker": "narrator",
+					"text": "Request recorded: Facilities to check the lobby door latch and the corridor ventilation pressure. The doors were found ajar after an unwatched interval; no cause is assumed."
+				},
+				{
+					"id": "ch2_v_e2077e9705",
+					"speaker": "staff_hale",
+					"text": "Well?"
+				},
+				{
+					"id": "ch2_v_92aa101d59",
+					"speaker": "staff_hale",
+					"text": "The pass was for one inspection. Any follow-up gets its own request."
+				},
+				{
+					"id": "ch2_v_3c322746a4",
+					"speaker": "narrator",
+					"text": "Hale reads your note and signs the pass back in."
+				},
+				{
+					"id": "ch2_v_acd159da59",
+					"speaker": "staff_hale",
+					"text": "Closed, then ajar, nobody watching in between. That's what goes in the log."
+				},
+				{
+					"id": "ch2_v_aaf21a3b1a",
+					"speaker": "narrator",
+					"text": "The ward entry doors are controlled access again."
+				},
+				{
+					"id": "ch2_v_77b14691e9",
+					"speaker": "narrator",
+					"text": "Two archived export representations of the same access event disagree about its date. The time-zone provenance of each is still being reconciled. Neither version is shown to be the original."
+				},
+				{
+					"id": "ch2_v_01d066efa1",
+					"speaker": "narrator",
+					"text": "Mara Ellis also raised a date question about her records. Where does this belong?"
+				},
+				{
+					"id": "ch2_v_571304ecc5",
+					"speaker": "narrator",
+					"text": "Nothing new at the worksheet yet."
+				},
+				{
+					"id": "ch2_v_2ac30fb7cf",
+					"speaker": "narrator",
+					"text": "Her note documents her care. An export date conflict is not a clinical finding and does not belong in her record. Her note stays as written and confidential."
+				},
+				{
+					"id": "ch2_v_2abeaf1879",
+					"speaker": "narrator",
+					"text": "A disagreement between two system exports is not a psychiatric symptom. Nothing about it is hers."
+				},
+				{
+					"id": "ch2_v_0da71b46be",
+					"speaker": "narrator",
+					"text": "Records technician: Then we preserve the original versions as they were received."
+				},
+				{
+					"id": "ch2_v_0bdc0700d9",
+					"speaker": "narrator",
+					"text": "Recorded in the incident record: two export representations disagree on the access-event date; time-zone provenance unreconciled. Mara's clinical note is unchanged and kept separate."
+				},
+				{
+					"id": "ch2_v_bfa47d1998",
+					"speaker": "narrator",
+					"text": "Incident record\nTwo export versions; dates disagree; time-zone provenance unreconciled; originals as received."
+				},
+				{
+					"id": "ch2_v_28caf48ab8",
+					"speaker": "narrator",
+					"text": "How should it be handled?"
+				},
+				{
+					"id": "ch2_v_ffed06b360",
+					"speaker": "narrator",
+					"text": "Decide where the date conflict belongs first."
+				},
+				{
+					"id": "ch2_v_47b7f0af38",
+					"speaker": "narrator",
+					"text": "Incident record: two export versions disagree on the date; handling recorded; originals unchanged."
+				},
+				{
+					"id": "ch2_v_8675b555e4",
+					"speaker": "narrator",
+					"text": "Records technician: We don't edit originals. A corrected copy would be a third version, not an answer."
+				},
+				{
+					"id": "ch2_v_884961216f",
+					"speaker": "narrator",
+					"text": "Nothing is changed."
+				},
+				{
+					"id": "ch2_v_8ff725b376",
+					"speaker": "narrator",
+					"text": "Escalation requested through the audit process. Both versions stay as received; no date is chosen."
+				},
+				{
+					"id": "ch2_v_3da4bb162e",
+					"speaker": "narrator",
+					"text": "Both versions are preserved separately with their provenance. Neither is treated as corroborating the other."
+				},
+				{
+					"id": "ch2_v_3f3872d262",
+					"speaker": "narrator",
+					"text": "Independent technical review requested. Until it reports, the date stays unresolved."
+				},
+				{
+					"id": "ch2_v_da806e0920",
+					"speaker": "narrator",
+					"text": "The analyst's note is attached to the worksheet."
+				},
+				{
+					"id": "ch2_v_27489e0333",
+					"speaker": "analyst",
+					"text": "I can show you where the clocks differ. I can't reconstruct this interval responsibly from these records alone."
+				},
+				{
+					"id": "ch2_v_4d1497e9da",
+					"speaker": "narrator",
+					"text": "Part of the mismatch is accounted for by clock differences between systems. The rest of the reported interval is not."
+				},
+				{
+					"id": "ch2_v_7943633a11",
+					"speaker": "narrator",
+					"text": "The analyst only accounts for part of it. Writing the rest off as skew claims more than the records show."
+				},
+				{
+					"id": "ch2_v_54df9c9968",
+					"speaker": "narrator",
+					"text": "Unreconciled is not missing. The records don't establish that any time was lost; they establish that they can't be reconciled yet."
+				},
+				{
+					"id": "ch2_v_e3d2759e4a",
+					"speaker": "narrator",
+					"text": "Report recorded: part of the timing mismatch is explained by clock differences; the remainder of the reported interval cannot be reconstructed from the available records. Source, preservation and audit requests remain open."
+				},
+				{
+					"id": "ch2_v_b1e70fc30a",
+					"speaker": "narrator",
+					"text": "Bennett is pulling on her coat."
+				},
+				{
+					"id": "ch2_v_8d87e9107d",
+					"speaker": "staff_bennett",
+					"text": "Any luck?"
+				},
+				{
+					"id": "ch2_v_46b79287c7",
+					"speaker": "narrator",
+					"text": "Bennett is busy."
+				},
+				{
+					"id": "ch2_v_4d4a38a331",
+					"speaker": "staff_bennett",
+					"text": "Did you? Or did you find records that don't agree?"
+				},
+				{
+					"id": "ch2_v_c67676f3b7",
+					"speaker": "narrator",
+					"text": "You haven't found anything that was lost. Tell her what you actually have."
+				},
+				{
+					"id": "ch2_v_1a01c8841b",
+					"speaker": "staff_bennett",
+					"text": "Then you're doing what you're supposed to. Don't decide the answer first."
+				},
+				{
+					"id": "ch2_v_829daf3d70",
+					"speaker": "narrator",
+					"text": "She heads for the staff entrance."
+				}
+			]
+		}
+	]
+}

@@ -4,7 +4,7 @@
 	"title": "Chapter 4: The Official Record",
 	"provisional": false,
 	"clinical_review_status": "PENDING",
-	"notes": "Revised CH04 (The Official Record). Proposed dialogue pending narrative review. Scenes 01, 02, 03 and 05: Voss's meeting keeps the transfer audit and the spatial survey as separate incident files; the junior summary's 'confirmed mapping error' is corrected with the first version kept; Rahman states the clinical boundary; an outside reviewer finds a time-order contradiction that cannot be removed without excluding an original. Scene 04 (optional, owner asked for the content gaps to be filled 2026-10-19): Mara's follow-up in Interview Room A after Rahman's boundary and before the door check, using the screenplay lines only; her care continues and nothing goes into the incident record. New clinical wording, pending the executive producer's review. Scene 06 (optional): a personal call at the nursing station after the paper trail, from the contact chosen at the end of Chapter 2 (partner, friend, family, own reminder, or someone close for older saves); accept support, keep it short or set a boundary; no patient or inquiry detail is shared. The Scene 09 corridor-loop reveal waits for the owner's approval of its effect. Scenes 07-08 (Door-state replication attempt, Institutional disagreement): a controlled, continuously watched check of the lift lobby doors; nothing happens during the watch, and the result cannot exclude an authorized entry between the original checks, so repeatability stays open (no 'corroborated' from repeated logs). Voss, Hale and Rahman agree patient care continues and the restriction stands; the player proposes external verification, a coordinated briefing or documented dissent; safety notifications happen regardless.",
+	"notes": "Revised CH04 (The Official Record). Proposed dialogue pending narrative review. Scenes 01, 02, 03 and 05: Voss's meeting keeps the transfer audit and the spatial survey as separate incident files; the junior summary's 'confirmed mapping error' is corrected with the first version kept; Rahman states the clinical boundary; an outside reviewer finds a time-order contradiction that cannot be removed without excluding an original. Scene 04 (optional, owner asked for the content gaps to be filled 2026-10-19): Mara's follow-up in Interview Room A after Rahman's boundary and before the door check, using the screenplay lines only; her care continues and nothing goes into the incident record. The executive producer approved this dialogue exactly as shown on 2026-10-19, including the insomnia, anxiety, daily functioning and follow-up wording. Scene 06 (optional): a personal call at the nursing station after the paper trail, from the contact chosen at the end of Chapter 2 (partner, friend, family, own reminder, or, when the player left the message or the save predates it, only a neutral break reminder so no relationship is assumed); accept support, keep it short or set a boundary; no patient or inquiry detail is shared. The Scene 09 corridor-loop reveal waits for the owner's approval of its effect. Scenes 07-08 (Door-state replication attempt, Institutional disagreement): a controlled, continuously watched check of the lift lobby doors; nothing happens during the watch, and the result cannot exclude an authorized entry between the original checks, so repeatability stays open (no 'corroborated' from repeated logs). Voss, Hale and Rahman agree patient care continues and the restriction stands; the player proposes external verification, a coordinated briefing or documented dissent; safety notifications happen regardless.",
 	"objectives": [
 		{
 			"id": "obj_ch4_meeting",
@@ -630,8 +630,8 @@
 		{
 			"id": "interaction_ch4_call_other",
 			"interactable_id": "NS_NoticeBoard",
-			"title": "Personal call",
-			"body": "You step into the nursing station on a break. Someone close to you is calling.\n\nCaller: Haven't heard from you in a while. How are you holding up?",
+			"title": "A break",
+			"body": "You step into the nursing station on a break. Your phone shows only the break reminder you set at the start of the week: Eat something. Leave on time.",
 			"when": {
 				"all": [
 					{
@@ -672,26 +672,26 @@
 			"options": [
 				{
 					"id": "overshare",
-					"label": "Tell them about the corridor",
-					"response": "You don't. The inquiry is confidential, and a personal call is not where it gets worked out."
+					"label": "Write the corridor into your own notes app",
+					"response": "You don't. Inquiry details belong in the authorized record, not on your phone."
 				},
 				{
 					"id": "support",
-					"label": "Let them help: say it's been a hard week",
+					"label": "Message someone you trust: say it's been a hard week",
 					"flag": "ch4_call_support",
-					"response": "You say it's been a hard week and leave it at that. It helps more than you expected."
+					"response": "You send a short message to someone you trust. It helps more than you expected."
 				},
 				{
 					"id": "short",
-					"label": "Keep it short: say you're fine and you'll call later",
+					"label": "Dismiss it and get back to work",
 					"flag": "ch4_call_short",
-					"response": "You keep it short. A promise to call later, and back to work."
+					"response": "You dismiss the reminder and get back to work."
 				},
 				{
 					"id": "boundary",
-					"label": "Set a boundary: work stays at work",
+					"label": "Follow it: leave on time tonight",
 					"flag": "ch4_call_boundary",
-					"response": "You say you'd rather not talk about work, and that you'll be home on time. They take it well."
+					"response": "You decide you'll leave on time tonight, whatever is still on the list."
 				}
 			],
 			"unavailable_body": "The clinical worklist.",

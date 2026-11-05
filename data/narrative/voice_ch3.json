@@ -1,0 +1,652 @@
+{
+	"schema_version": "0.1",
+	"chapter": "ch3",
+	"generated_by": "tools/audio/extract_voice_lines.py",
+	"_note": "Generated. Do not edit: change the authored text in data/ and re-run the tool, then generate_voice.py.",
+	"speakers": {
+		"engineer": "Engineer",
+		"narrator": "",
+		"player": "You",
+		"staff_bennett": "Nurse Bennett",
+		"staff_hale": "Hale",
+		"staff_voss": "Dr Voss"
+	},
+	"scenes": [
+		{
+			"id": "voice_ch3_authored_text",
+			"location": "CH3 in-game panels and interviews",
+			"lines": [
+				{
+					"id": "ch3_v_6cfa46b531",
+					"speaker": "staff_voss",
+					"text": "The report says what it can. That's the point of it."
+				},
+				{
+					"id": "ch3_v_344d18b42f",
+					"speaker": "staff_bennett",
+					"text": "Your notifications are in the EHR. The survey can wait for a safe handoff."
+				},
+				{
+					"id": "ch3_v_d1dc17de40",
+					"speaker": "staff_hale",
+					"text": "Further access is suspended until Facilities signs off. That includes you, Doctor."
+				},
+				{
+					"id": "ch3_v_c47318c2e2",
+					"speaker": "staff_hale",
+					"text": "Ward entry, maintenance room, hatch. We meet you at the bottom of the stair."
+				},
+				{
+					"id": "ch3_v_9da06ee744",
+					"speaker": "staff_hale",
+					"text": "Stay with the team, keep to the marked route, and we all come back the way we went in."
+				},
+				{
+					"id": "ch3_v_ab80f48082",
+					"speaker": "staff_hale",
+					"text": "Briefing's when your ward is covered, Doctor. Not before."
+				},
+				{
+					"id": "ch3_v_3108e35788",
+					"speaker": "staff_hale",
+					"text": "Maps are on the desk when you're ready."
+				},
+				{
+					"id": "ch3_v_f75a4cd09b",
+					"speaker": "staff_bennett",
+					"text": "Your patients are covered. Go read your old floor plans."
+				},
+				{
+					"id": "ch3_v_f7e1eb0efd",
+					"speaker": "staff_bennett",
+					"text": "You've got an inspection briefing. Apparently your day job now includes reading old floor plans."
+				},
+				{
+					"id": "ch3_v_7494f2bc5e",
+					"speaker": "narrator",
+					"text": "The notice: Security and Facilities will inspect the historic-access discrepancy. You attend as clinical liaison for the transfer workflow. Clinical coverage must be in place before departure."
+				},
+				{
+					"id": "ch3_v_7739049b1b",
+					"speaker": "staff_bennett",
+					"text": "The ward doctor has your list and I'm on until handover. Anything urgent goes to them, not to you underground."
+				},
+				{
+					"id": "ch3_v_a673f16c1b",
+					"speaker": "narrator",
+					"text": "Clinical coverage confirmed."
+				},
+				{
+					"id": "ch3_v_4e95a0d308",
+					"speaker": "narrator",
+					"text": "The summary lists what Chapter 2 left open: an inactive credential in the transfer-request audit, export versions that disagree on a date, an unwatched door found ajar and a witness who heard but did not see. Nothing in it is resolved."
+				},
+				{
+					"id": "ch3_v_766af470ac",
+					"speaker": "staff_bennett",
+					"text": "Good. We'd hate to lose another psychiatrist to Facilities."
+				},
+				{
+					"id": "ch3_v_0a721017c8",
+					"speaker": "narrator",
+					"text": "Scope recorded: you attend for the transfer-workflow question only. The building survey belongs to Security and Facilities."
+				},
+				{
+					"id": "ch3_v_e2e5cfefa3",
+					"speaker": "staff_bennett",
+					"text": "No. Nobody leaves this ward uncovered, inspection or not."
+				},
+				{
+					"id": "ch3_v_e45c851e8d",
+					"speaker": "narrator",
+					"text": "Hale has the current and historic maps side by side. A Facilities engineer has marked the approved areas, the radio channel and the stop conditions."
+				},
+				{
+					"id": "ch3_v_0a987b9ee7",
+					"speaker": "staff_hale",
+					"text": "This is an authorized inspection, not a tour. Nobody enters alone; nobody opens an uncleared door."
+				},
+				{
+					"id": "ch3_v_8d9e0729b5",
+					"speaker": "engineer",
+					"text": "The old drawings weren't consistently revised. We'll establish what exists before we draw conclusions."
+				},
+				{
+					"id": "ch3_v_8b359a48fd",
+					"speaker": "narrator",
+					"text": "Hale is waiting for your ward to be covered."
+				},
+				{
+					"id": "ch3_v_6d42c1dbc2",
+					"speaker": "staff_hale",
+					"text": "Whether an obsolete code is still being routed through patient-transfer software. The building survey is ours."
+				},
+				{
+					"id": "ch3_v_6e0b7b1e6c",
+					"speaker": "staff_hale",
+					"text": "Read the first line again. Nobody enters alone."
+				},
+				{
+					"id": "ch3_v_80a2e3f89b",
+					"speaker": "narrator",
+					"text": "Boundaries reviewed: marked route only; stop on any loss of contact, unsafe air or structure; return by the entry sequence logged on the way in."
+				},
+				{
+					"id": "ch3_v_70b6b3ca7e",
+					"speaker": "staff_hale",
+					"text": "Entry approval and the Facilities life-safety check are signed. We go down together from the service lift."
+				},
+				{
+					"id": "ch3_v_dae668d28f",
+					"speaker": "staff_hale",
+					"text": "Coverage confirmed, approval signed, life-safety check done. We go down through the maintenance hatch in the security wing. Facilities has the key; you're on the team pass."
+				},
+				{
+					"id": "ch3_v_cdfd2da7eb",
+					"speaker": "narrator",
+					"text": "Team pass logged: ward entry and maintenance access for this inspection only. The restricted lift, W0-B and every uncleared door stay locked."
+				},
+				{
+					"id": "ch3_v_6dfe924d96",
+					"speaker": "narrator",
+					"text": "The engineer logs the time and level at the stair foot. Motor noise from the plant, administrative labels, a maintenance inspection tag dated last month."
+				},
+				{
+					"id": "ch3_v_7eda5fb359",
+					"speaker": "engineer",
+					"text": "Renovations changed the levels. The old plan's 'ground' isn't our current ground."
+				},
+				{
+					"id": "ch3_v_30d22b5def",
+					"speaker": "narrator",
+					"text": "A stairwell fuse board, isolated and tagged."
+				},
+				{
+					"id": "ch3_v_368669a173",
+					"speaker": "narrator",
+					"text": "Inspection log: level datums differ between plan editions; no conclusion drawn."
+				},
+				{
+					"id": "ch3_v_71baf9ff8e",
+					"speaker": "engineer",
+					"text": "It's a drawing convention, not a fault. Write down what's different, not what it means."
+				},
+				{
+					"id": "ch3_v_1df097e9ab",
+					"speaker": "engineer",
+					"text": "Exactly."
+				},
+				{
+					"id": "ch3_v_9e99bbe679",
+					"speaker": "narrator",
+					"text": "Logged: current and historic level datums differ; no conclusion drawn."
+				},
+				{
+					"id": "ch3_v_efc7e9506d",
+					"speaker": "narrator",
+					"text": "The engineer tests the isolated circuit and the air at the end of the sealed corridor. Hale radios control."
+				},
+				{
+					"id": "ch3_v_098b70a6da",
+					"speaker": "staff_hale",
+					"text": "This area isn't in clinical service. Keep within the marked route."
+				},
+				{
+					"id": "ch3_v_0a3cef81be",
+					"speaker": "narrator",
+					"text": "An isolated circuit board. Facilities will check it."
+				},
+				{
+					"id": "ch3_v_aaef7801cb",
+					"speaker": "narrator",
+					"text": "Clearance logged: circuit isolated, air and structure checked, threshold opened for the authorized team."
+				},
+				{
+					"id": "ch3_v_cb97af124d",
+					"speaker": "staff_hale",
+					"text": "Nobody goes past this board until Facilities says so. Stay with us."
+				},
+				{
+					"id": "ch3_v_5c96b49ab9",
+					"speaker": "engineer",
+					"text": "Circuit isolated, air's fine, structure's sound. Opening the end now."
+				},
+				{
+					"id": "ch3_v_1c3226911a",
+					"speaker": "narrator",
+					"text": "The infill at the end of the sealed corridor is taken down along a marked line. Behind it, a threshold room."
+				},
+				{
+					"id": "ch3_v_c18609cfa1",
+					"speaker": "narrator",
+					"text": "Heavy doorframes, faded institutional paint, empty fixtures. A stencil reads LOWER LEVEL B. An enamel plate is fixed beside the inner door."
+				},
+				{
+					"id": "ch3_v_1cbfd0bd5e",
+					"speaker": "player",
+					"text": "Was this designated W0-B?"
+				},
+				{
+					"id": "ch3_v_d6f346b440",
+					"speaker": "engineer",
+					"text": "The archival plan says so. We'll verify physical markers."
+				},
+				{
+					"id": "ch3_v_b57c4162e0",
+					"speaker": "narrator",
+					"text": "An enamel plate beside a closed inner door."
+				},
+				{
+					"id": "ch3_v_cc67747280",
+					"speaker": "narrator",
+					"text": "Entry documented: plans compared, signage checked, condition recorded, return route verified."
+				},
+				{
+					"id": "ch3_v_52c426ddf5",
+					"speaker": "narrator",
+					"text": "The historic plan shows this threshold and a corridor beyond; the current map shows nothing below the sealed corridor. Logged as a plan-edition difference."
+				},
+				{
+					"id": "ch3_v_da34bf6f2d",
+					"speaker": "narrator",
+					"text": "Stencils read LOWER LEVEL B and SERVICE B. The plate's wording matches the archival plan's room schedule. No sign uses the W0-B code itself; the designation remains the plan's."
+				},
+				{
+					"id": "ch3_v_f47f60c39f",
+					"speaker": "narrator",
+					"text": "Documented with the time: inner door closed, frame intact, dust undisturbed except along the team's marked line, one radiator, one lamp working."
+				},
+				{
+					"id": "ch3_v_e867b33757",
+					"speaker": "narrator",
+					"text": "Hale walks it with you: threshold, opened infill, sealed corridor, mechanical corridor, stair. One route, physically continuous, marked."
+				},
+				{
+					"id": "ch3_v_de4e297bca",
+					"speaker": "narrator",
+					"text": "An old observation log lies on the desk."
+				},
+				{
+					"id": "ch3_v_03bcf0543f",
+					"speaker": "staff_hale",
+					"text": "Not ours to read. Historic patient records go to Records under its own authority, not into an inspection notebook."
+				},
+				{
+					"id": "ch3_v_9c64e106eb",
+					"speaker": "narrator",
+					"text": "An old observation log."
+				},
+				{
+					"id": "ch3_v_14997629a9",
+					"speaker": "staff_hale",
+					"text": "No. Leave it where it is. If it matters, Records will request it properly."
+				},
+				{
+					"id": "ch3_v_1962c6a17e",
+					"speaker": "narrator",
+					"text": "A shallow wall alcove beside a radiator. The engineer holds the historic plan against it."
+				},
+				{
+					"id": "ch3_v_f86c0f2b3e",
+					"speaker": "engineer",
+					"text": "This alcove should be one bay earlier, according to this drawing."
+				},
+				{
+					"id": "ch3_v_a3668b8f73",
+					"speaker": "player",
+					"text": "Could there have been a renovation?"
+				},
+				{
+					"id": "ch3_v_4de5affd8e",
+					"speaker": "engineer",
+					"text": "Yes. Or the drawing is inaccurate. Let's annotate the reference points."
+				},
+				{
+					"id": "ch3_v_4b4f235feb",
+					"speaker": "narrator",
+					"text": "A shallow alcove beside a radiator."
+				},
+				{
+					"id": "ch3_v_6de4f384a7",
+					"speaker": "narrator",
+					"text": "Alcove: one plan edition differs by one bay; recorded without a cause."
+				},
+				{
+					"id": "ch3_v_c1c6e78595",
+					"speaker": "engineer",
+					"text": "We don't know it moved. We know one drawing puts it a bay earlier. Pick a way to record that."
+				},
+				{
+					"id": "ch3_v_73b1c439da",
+					"speaker": "narrator",
+					"text": "Two later editions agree with what is built; the oldest puts it one bay earlier. Annotated with the reference points. Cause unknown."
+				},
+				{
+					"id": "ch3_v_5cbd5482bd",
+					"speaker": "engineer",
+					"text": "I'll add it to the survey request with measured reference points. Until then it's a drawing discrepancy."
+				},
+				{
+					"id": "ch3_v_988b683ec0",
+					"speaker": "narrator",
+					"text": "Logged as found: built position and one plan edition differ by one bay. Renovation and drawing error both remain possible."
+				},
+				{
+					"id": "ch3_v_a94a3f3cc0",
+					"speaker": "narrator",
+					"text": "Heading back, a faded junction marker looks like one you logged on the way in. The corridor is straight. The written route note is ambiguous."
+				},
+				{
+					"id": "ch3_v_143c87f3af",
+					"speaker": "engineer",
+					"text": "I thought we'd already passed that damaged ceiling tile."
+				},
+				{
+					"id": "ch3_v_9e53217f66",
+					"speaker": "narrator",
+					"text": "A wall clock, stopped. A faded marker on the opposite wall."
+				},
+				{
+					"id": "ch3_v_58895efcbb",
+					"speaker": "staff_hale",
+					"text": "Nobody's saying that. The corridor is straight. We stop and confirm the route before anyone draws a conclusion."
+				},
+				{
+					"id": "ch3_v_a6fc998c7c",
+					"speaker": "staff_hale",
+					"text": "We're not moving until we confirm the route. Stay together."
+				},
+				{
+					"id": "ch3_v_6ddd244949",
+					"speaker": "narrator",
+					"text": "The team holds at the authorized point. Inspection paused for a route check."
+				},
+				{
+					"id": "ch3_v_176a19b58d",
+					"speaker": "staff_hale",
+					"text": "Dispatch, confirm the last authorized door event and our safe return route."
+				},
+				{
+					"id": "ch3_v_3feaccd3eb",
+					"speaker": "narrator",
+					"text": "Dispatch: Receiving. Stand by while Facilities checks the access plan."
+				},
+				{
+					"id": "ch3_v_06f08de719",
+					"speaker": "engineer",
+					"text": "Two areas on these plans use identical labels. That could explain our notes."
+				},
+				{
+					"id": "ch3_v_83ab77b49b",
+					"speaker": "narrator",
+					"text": "A wall clock, stopped."
+				},
+				{
+					"id": "ch3_v_5a41ddc99e",
+					"speaker": "narrator",
+					"text": "Route check: ambiguity recorded as it occurred; one continuous return route confirmed with control."
+				},
+				{
+					"id": "ch3_v_01ed2d480f",
+					"speaker": "staff_hale",
+					"text": "We stay together. That's not negotiable down here."
+				},
+				{
+					"id": "ch3_v_da80c30b10",
+					"speaker": "narrator",
+					"text": "Recorded as it occurred: one marker resembles an inbound marker; two plan areas share a label; the route note is ambiguous."
+				},
+				{
+					"id": "ch3_v_1a1bc55e75",
+					"speaker": "narrator",
+					"text": "Dispatch: Route confirmed. Last authorized door event is your threshold entry. Return the way you came."
+				},
+				{
+					"id": "ch3_v_782a29a74c",
+					"speaker": "narrator",
+					"text": "One approved, physically continuous route back."
+				},
+				{
+					"id": "ch3_v_1d177f14fb",
+					"speaker": "narrator",
+					"text": "Hale counts the team in: himself, the engineer, the escort, you. Everyone accounted for."
+				},
+				{
+					"id": "ch3_v_b420291955",
+					"speaker": "staff_hale",
+					"text": "Initial inspection is over. Further access is suspended until Facilities signs off."
+				},
+				{
+					"id": "ch3_v_bb5eb88a01",
+					"speaker": "engineer",
+					"text": "I want the original notes and photographs preserved. There's a discrepancy we should survey properly."
+				},
+				{
+					"id": "ch3_v_1d9cfbc93c",
+					"speaker": "staff_hale",
+					"text": "No. Access is suspended. Any further entry gets its own approval."
+				},
+				{
+					"id": "ch3_v_0d546f576a",
+					"speaker": "narrator",
+					"text": "Team pass returned. Ward entry, maintenance and threshold access withdrawn. Original notes and photographs to be preserved for the debrief."
+				},
+				{
+					"id": "ch3_v_55c63f96d3",
+					"speaker": "narrator",
+					"text": "Hale, Facilities and you document separately. Memory, map editions, photographs and access records each keep their own provenance."
+				},
+				{
+					"id": "ch3_v_9a0f3ab4d7",
+					"speaker": "staff_hale",
+					"text": "State what you saw, not what you think it means."
+				},
+				{
+					"id": "ch3_v_e0f2e0b4c8",
+					"speaker": "engineer",
+					"text": "Similar landmarks, uncertain plan revision and one location note that doesn't reconcile yet."
+				},
+				{
+					"id": "ch3_v_6d128f04b0",
+					"speaker": "staff_hale",
+					"text": "Did you see it repeat, or did you see a marker that looked like another one? Write what you saw."
+				},
+				{
+					"id": "ch3_v_fff3d328a2",
+					"speaker": "staff_hale",
+					"text": "Separate statements. If they agree, that matters only because they were taken separately."
+				},
+				{
+					"id": "ch3_v_cd7556a794",
+					"speaker": "staff_hale",
+					"text": "Correct."
+				},
+				{
+					"id": "ch3_v_2577d1e662",
+					"speaker": "narrator",
+					"text": "Debrief recorded: similar landmarks, an uncertain plan revision, one unreconciled location note, two plan areas with the same label. Each statement under its own name."
+				},
+				{
+					"id": "ch3_v_fb03666d25",
+					"speaker": "narrator",
+					"text": "Bennett is in the middle of clinical documentation."
+				},
+				{
+					"id": "ch3_v_8cbde52870",
+					"speaker": "staff_bennett",
+					"text": "Well, you came back. Your EHR notifications didn't miss you."
+				},
+				{
+					"id": "ch3_v_96259ee150",
+					"speaker": "staff_bennett",
+					"text": "Later. Your patients first; the corridor isn't going anywhere."
+				},
+				{
+					"id": "ch3_v_907ced0975",
+					"speaker": "staff_bennett",
+					"text": "Those can wait long enough for a safe handoff."
+				},
+				{
+					"id": "ch3_v_63fc907f5f",
+					"speaker": "narrator",
+					"text": "Clinical work resumes. The inspection stays with Security and Facilities."
+				},
+				{
+					"id": "ch3_v_f0b726d2c4",
+					"speaker": "narrator",
+					"text": "Facilities proposes a controlled, nonintrusive comparison of room identifiers, floor plans, reference points and instruments, contingent on safety authorization."
+				},
+				{
+					"id": "ch3_v_4b9bd02202",
+					"speaker": "narrator",
+					"text": "Engineer (note): We need independent measurements, not another set of assumptions."
+				},
+				{
+					"id": "ch3_v_90c697cf5c",
+					"speaker": "narrator",
+					"text": "Hale (note): No repeat entry until the inspection route is cleared."
+				},
+				{
+					"id": "ch3_v_5770568fac",
+					"speaker": "narrator",
+					"text": "The records workstation."
+				},
+				{
+					"id": "ch3_v_fc1fbeccbe",
+					"speaker": "narrator",
+					"text": "Survey request: nonintrusive comparison pending safety authorization. Repeat entry suspended."
+				},
+				{
+					"id": "ch3_v_f84de77f4f",
+					"speaker": "narrator",
+					"text": "Hale's reply: No repeat entry until the route is cleared. The survey comes first."
+				},
+				{
+					"id": "ch3_v_aa19bb5a92",
+					"speaker": "engineer",
+					"text": "Two properly logged observations that cannot be reconciled by reference points, clocks or instruments. We're not there."
+				},
+				{
+					"id": "ch3_v_f95e26fb73",
+					"speaker": "narrator",
+					"text": "Survey request supported; repeat entry remains suspended."
+				},
+				{
+					"id": "ch3_v_fcab647daa",
+					"speaker": "narrator",
+					"text": "Two preliminary measurements of the same corridor section differ. They were taken with different instruments, from different reference points, at different times. Neither their reference-frame equivalence nor their independence is established."
+				},
+				{
+					"id": "ch3_v_a15ae0bd0b",
+					"speaker": "engineer",
+					"text": "These measurements don't match, but they weren't taken under identical conditions."
+				},
+				{
+					"id": "ch3_v_294a212de9",
+					"speaker": "player",
+					"text": "So we have a reason for a more controlled review, not a conclusion."
+				},
+				{
+					"id": "ch3_v_309c97a5ef",
+					"speaker": "narrator",
+					"text": "The comparison worksheet."
+				},
+				{
+					"id": "ch3_v_284120d331",
+					"speaker": "narrator",
+					"text": "Measurements: unresolved; protocol requested; area restricted."
+				},
+				{
+					"id": "ch3_v_02066cfaae",
+					"speaker": "narrator",
+					"text": "No physically impossible dimension is confirmed. Two measurements under different conditions disagree; that is all."
+				},
+				{
+					"id": "ch3_v_374ef9a513",
+					"speaker": "narrator",
+					"text": "Marked unresolved_measurement: values, instruments, reference points and times kept as taken."
+				},
+				{
+					"id": "ch3_v_56ec34d400",
+					"speaker": "narrator",
+					"text": "Protocol requested: same reference points, calibrated instruments, logged clocks, two independent teams."
+				},
+				{
+					"id": "ch3_v_26e8816d9c",
+					"speaker": "narrator",
+					"text": "Restricted status maintained. No entry until the protocol and safety authorization are in place."
+				},
+				{
+					"id": "ch3_v_f32e82add6",
+					"speaker": "narrator",
+					"text": "Voss reads the source notes before the summary."
+				},
+				{
+					"id": "ch3_v_6997c439df",
+					"speaker": "staff_voss",
+					"text": "Do not change the original measurements to make the summary read cleanly. Also don't present an unexplained difference as a discovered physical law."
+				},
+				{
+					"id": "ch3_v_84b226ca98",
+					"speaker": "staff_hale",
+					"text": "Until we establish safety, access remains restricted."
+				},
+				{
+					"id": "ch3_v_19b3e78c37",
+					"speaker": "narrator",
+					"text": "Voss is busy."
+				},
+				{
+					"id": "ch3_v_dad5952c37",
+					"speaker": "staff_voss",
+					"text": "No. The originals stand as taken. An average of two incomparable numbers is a third number nobody measured."
+				},
+				{
+					"id": "ch3_v_d46cc1dfcb",
+					"speaker": "staff_voss",
+					"text": "Good. I'll authorize an independent engineering assessment if it can be done safely."
+				},
+				{
+					"id": "ch3_v_8eab71a986",
+					"speaker": "narrator",
+					"text": "Report submitted. Access remains restricted."
+				},
+				{
+					"id": "ch3_v_2fb9cc7298",
+					"speaker": "narrator",
+					"text": "End of shift. A notice: Facilities has preserved the raw inspection images for authorized review."
+				},
+				{
+					"id": "ch3_v_86b2ff1c60",
+					"speaker": "narrator",
+					"text": "One corridor photograph seems to disagree with one edition of the plan. Its camera position, lens and the plan revision are unverified."
+				},
+				{
+					"id": "ch3_v_e25f95c49d",
+					"speaker": "narrator",
+					"text": "Photograph logged for authorized review with its unknowns."
+				},
+				{
+					"id": "ch3_v_d9f958430c",
+					"speaker": "narrator",
+					"text": "Camera position, lens and plan revision are unverified. It goes to the authorized review as it is, not as proof."
+				},
+				{
+					"id": "ch3_v_cdd935c623",
+					"speaker": "narrator",
+					"text": "Logged for authorized review: camera position, lens and plan revision unverified."
+				},
+				{
+					"id": "ch3_v_dbed14252d",
+					"speaker": "narrator",
+					"text": "End of Chapter 3: Beneath the Hospital\nOn record: plan-edition differences, an alcove one bay off one drawing, an ambiguous route note, unresolved measurements and an unannotated photograph. No loop, no changed geometry. Access restricted pending survey."
+				},
+				{
+					"id": "ch3_v_4396096a84",
+					"speaker": "player",
+					"text": "We knew the drawings might be wrong. That didn't explain why I kept wanting to look again."
+				}
+			]
+		}
+	]
+}

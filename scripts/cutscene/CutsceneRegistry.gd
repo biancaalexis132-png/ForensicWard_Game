@@ -13,7 +13,8 @@ extends RefCounted
 ## or the review scene). Only a cutscene the owner approved, with mode "campaign",
 ## may use a campaign trigger: "chapter_start" plays it when its chapter opens,
 ## "chapter_complete" when its chapter is completed (a recap, so it can show
-## reveals the chapter has already played).
+## reveals the chapter has already played), "new_game" once when a new game
+## starts in its chapter (the prologue, before the first objective).
 
 const DIRECTORY: String = "res://data/cutscenes"
 const CAMPAIGN_PATH: String = "res://data/campaign.json"
@@ -22,8 +23,8 @@ const NARRATIVE_DIR: String = "res://data/narrative"
 
 const SCHEMA_VERSION: int = 1
 const MODES: Array[String] = ["review_only", "campaign"]
-const TRIGGER_KINDS: Array[String] = ["manual_preview", "chapter_start", "chapter_complete"]
-const CAMPAIGN_TRIGGERS: Array[String] = ["chapter_start", "chapter_complete"]
+const TRIGGER_KINDS: Array[String] = ["manual_preview", "chapter_start", "chapter_complete", "new_game"]
+const CAMPAIGN_TRIGGERS: Array[String] = ["chapter_start", "chapter_complete", "new_game"]
 const TRANSITIONS: Array[String] = ["cut", "dissolve", "fade_black"]
 const FRAMES: Array[String] = ["inset", "full_bleed"]
 const AMBIENCE_MODES: Array[String] = ["keep", "duck", "stop"]
@@ -72,6 +73,11 @@ static func chapter_start_cutscene(chapter_id: String) -> String:
 ## The approved recap that plays when `chapter_id` is completed, or "" if there is none.
 static func chapter_complete_cutscene(chapter_id: String) -> String:
 	return _campaign_cutscene(chapter_id, "chapter_complete")
+
+
+## The approved prologue that plays when a new game starts in `chapter_id`, or "".
+static func new_game_cutscene(chapter_id: String) -> String:
+	return _campaign_cutscene(chapter_id, "new_game")
 
 
 static func _campaign_cutscene(chapter_id: String, kind: String) -> String:
@@ -158,7 +164,7 @@ static func validate(data: Dictionary, context: Dictionary) -> Array[String]:
 	else:
 		var campaign: bool = data.get("mode") == "campaign"
 		if campaign != (str(trigger.get("kind")) in CAMPAIGN_TRIGGERS):
-			errors.append("mode campaign goes with trigger chapter_start or chapter_complete, and review_only with manual_preview")
+			errors.append("mode campaign goes with trigger chapter_start, chapter_complete or new_game, and review_only with manual_preview")
 		if campaign and data.get("approved") != true:
 			errors.append("a campaign cutscene must be approved by the owner")
 	if data.get("fallback_action") != "restore_world":

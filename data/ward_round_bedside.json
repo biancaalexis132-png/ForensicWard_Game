@@ -1,0 +1,94 @@
+{
+	"schema_version": 1,
+	"review_status": "PENDING_OWNER_VISUAL_REVIEW",
+	"notes": "Where ward-round patients wait on the ward, and which 3D model plays each one. Staging only: no clinical, story or save data. Patients still needing a plan sit on the bed in the patient rooms, oldest admission first; when a plan is accepted the next patient takes the room. Positions are zone coordinates (metres); yaw turns the actor's -Z facing (90 faces the room door, -X). A case without a model here is seen in the EHR only. Patients whose plan was accepted in an earlier chapter, and who are due a check-in, sit on the visitor chairs in check_in.slots (oldest admission first) until you check in on them; chairs stand there whether or not anyone is sitting.",
+	"zone": "zone_clinical_wing",
+	"slots": [
+		{
+			"id": "room_01",
+			"label": "Room 01",
+			"position": [
+				3.72,
+				0.0,
+				-4.7
+			],
+			"yaw_degrees": 90.0
+		},
+		{
+			"id": "room_02",
+			"label": "Room 02",
+			"position": [
+				3.72,
+				0.0,
+				-8.7
+			],
+			"yaw_degrees": 90.0
+		}
+	],
+	"check_in": {
+		"chair_scene": "res://assets/exports/clinical/props/PROP_Chair_Visitor.glb",
+		"chair_yaw_degrees": -90.0,
+		"slots": [
+			{
+				"id": "seat_01",
+				"label": "the seats by the ward entrance",
+				"position": [
+					1.15,
+					0.0,
+					-16.4
+				],
+				"yaw_degrees": 90.0
+			},
+			{
+				"id": "seat_02",
+				"label": "the seats by the ward entrance",
+				"position": [
+					1.15,
+					0.0,
+					-17.45
+				],
+				"yaw_degrees": 90.0
+			},
+			{
+				"id": "seat_03",
+				"label": "the seats by the ward entrance",
+				"position": [
+					1.15,
+					0.0,
+					-18.5
+				],
+				"yaw_degrees": 90.0
+			}
+		]
+	},
+	"patients": {
+		"wr_ch1_ortiz": "pt_wr_ortiz",
+		"wr_ch1_natarajan": "pt_wr_natarajan",
+		"wr_ch2_kim": "pt_wr_kim",
+		"wr_ch2_lebel": "pt_wr_lebel",
+		"wr_ch3_wrobel": "pt_wr_wrobel",
+		"wr_ch3_adeyemi": "pt_wr_adeyemi",
+		"wr_ch4_petrova": "pt_wr_petrova",
+		"wr_ch4_okafor": "pt_wr_okafor",
+		"wr_ch5_delaney": "pt_wr_delaney",
+		"wr_ch5_lindqvist": "pt_wr_lindqvist",
+		"wr_ch1_hughes": "pt_wr_hughes",
+		"wr_ch1_morales": "pt_wr_morales",
+		"wr_ch2_brennan": "pt_wr_brennan",
+		"wr_ch2_kowalczyk": "pt_wr_kowalczyk",
+		"wr_ch3_achebe": "pt_wr_achebe",
+		"wr_ch3_sato": "pt_wr_sato",
+		"wr_ch4_whitaker": "pt_wr_whitaker",
+		"wr_ch4_quinn": "pt_wr_quinn",
+		"wr_ch5_osei": "pt_wr_osei",
+		"wr_ch5_farah": "pt_wr_farah",
+		"wr_ch1_haddad": "pt_wr_haddad",
+		"wr_ch2_novak": "pt_wr_novak",
+		"wr_ch2_clarke": "pt_wr_clarke",
+		"wr_ch3_brooks": "pt_wr_brooks",
+		"wr_ch3_mensah": "pt_wr_mensah",
+		"wr_ch4_doyle": "pt_wr_doyle",
+		"wr_ch4_reyes": "pt_wr_reyes",
+		"wr_ch5_bell": "pt_wr_bell"
+	}
+}

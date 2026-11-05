@@ -36,107 +36,113 @@ color = Color(0, 0, 0, 0.6)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.04
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.96
 offset_left = -300.0
-offset_top = -500.0
+offset_top = 0.0
 offset_right = 300.0
-offset_bottom = 500.0
+offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("Style_panel")
 
-[node name="Margin" type="MarginContainer" parent="Root/Panel"]
+[node name="Scroll" type="ScrollContainer" parent="Root/Panel"]
 layout_mode = 2
+horizontal_scroll_mode = 0
+follow_focus = true
+
+[node name="Margin" type="MarginContainer" parent="Root/Panel/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 24
 
-[node name="VBox" type="VBoxContainer" parent="Root/Panel/Margin"]
+[node name="VBox" type="VBoxContainer" parent="Root/Panel/Scroll/Margin"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="Root/Panel/Margin/VBox"]
+[node name="Title" type="Label" parent="Root/Panel/Scroll/Margin/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="Resume" type="Button" parent="Root/Panel/Margin/VBox"]
+[node name="Resume" type="Button" parent="Root/Panel/Scroll/Margin/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Resume  (Esc)"
 
-[node name="Save" type="Button" parent="Root/Panel/Margin/VBox"]
+[node name="Save" type="Button" parent="Root/Panel/Scroll/Margin/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Save Game"
 
-[node name="Load" type="Button" parent="Root/Panel/Margin/VBox"]
+[node name="Load" type="Button" parent="Root/Panel/Scroll/Margin/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Load Game"
 
-[node name="Status" type="Label" parent="Root/Panel/Margin/VBox"]
+[node name="Status" type="Label" parent="Root/Panel/Scroll/Margin/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.65, 0.8, 0.75, 1)
 theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 
-[node name="AccessibilityTitle" type="Label" parent="Root/Panel/Margin/VBox"]
+[node name="AccessibilityTitle" type="Label" parent="Root/Panel/Scroll/Margin/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Accessibility"
 
-[node name="Accessibility" type="VBoxContainer" parent="Root/Panel/Margin/VBox"]
+[node name="Accessibility" type="VBoxContainer" parent="Root/Panel/Scroll/Margin/VBox"]
 layout_mode = 2
 
-[node name="ReduceMotion" type="CheckBox" parent="Root/Panel/Margin/VBox/Accessibility"]
+[node name="ReduceMotion" type="CheckBox" parent="Root/Panel/Scroll/Margin/VBox/Accessibility"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Reduce motion (no head bob, doors snap)"
 
-[node name="VisualEffects" type="CheckBox" parent="Root/Panel/Margin/VBox/Accessibility"]
+[node name="VisualEffects" type="CheckBox" parent="Root/Panel/Scroll/Margin/VBox/Accessibility"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Perception distortion effects"
 
-[node name="FlashEffects" type="CheckBox" parent="Root/Panel/Margin/VBox/Accessibility"]
+[node name="FlashEffects" type="CheckBox" parent="Root/Panel/Scroll/Margin/VBox/Accessibility"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Flashing / flickering lights"
 
-[node name="Subtitles" type="CheckBox" parent="Root/Panel/Margin/VBox/Accessibility"]
+[node name="Subtitles" type="CheckBox" parent="Root/Panel/Scroll/Margin/VBox/Accessibility"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Subtitles and transcripts"
 
-[node name="RecapNarration" type="CheckBox" parent="Root/Panel/Margin/VBox/Accessibility"]
+[node name="RecapNarration" type="CheckBox" parent="Root/Panel/Scroll/Margin/VBox/Accessibility"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Narrate chapter recaps"
 
-[node name="InvertY" type="CheckBox" parent="Root/Panel/Margin/VBox/Accessibility"]
+[node name="InvertY" type="CheckBox" parent="Root/Panel/Scroll/Margin/VBox/Accessibility"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Invert mouse Y"
 
-[node name="ReduceStartlingAudio" type="CheckBox" parent="Root/Panel/Margin/VBox/Accessibility"]
+[node name="ReduceStartlingAudio" type="CheckBox" parent="Root/Panel/Scroll/Margin/VBox/Accessibility"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Reduce startling audio (softer stingers and anomalies)"
 
-[node name="Sensitivity" type="HBoxContainer" parent="Root/Panel/Margin/VBox"]
+[node name="Sensitivity" type="HBoxContainer" parent="Root/Panel/Scroll/Margin/VBox"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Root/Panel/Margin/VBox/Sensitivity"]
+[node name="Label" type="Label" parent="Root/Panel/Scroll/Margin/VBox/Sensitivity"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Mouse sensitivity"
 
-[node name="Slider" type="HSlider" parent="Root/Panel/Margin/VBox/Sensitivity"]
+[node name="Slider" type="HSlider" parent="Root/Panel/Scroll/Margin/VBox/Sensitivity"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -145,21 +151,21 @@ max_value = 0.4
 step = 0.01
 value = 0.12
 
-[node name="AudioTitle" type="Label" parent="Root/Panel/Margin/VBox"]
+[node name="AudioTitle" type="Label" parent="Root/Panel/Scroll/Margin/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Audio"
 
-[node name="Audio" type="GridContainer" parent="Root/Panel/Margin/VBox"]
+[node name="Audio" type="GridContainer" parent="Root/Panel/Scroll/Margin/VBox"]
 layout_mode = 2
 columns = 2
 
-[node name="MasterLabel" type="Label" parent="Root/Panel/Margin/VBox/Audio"]
+[node name="MasterLabel" type="Label" parent="Root/Panel/Scroll/Margin/VBox/Audio"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Master volume"
 
-[node name="Master" type="HSlider" parent="Root/Panel/Margin/VBox/Audio"]
+[node name="Master" type="HSlider" parent="Root/Panel/Scroll/Margin/VBox/Audio"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -167,12 +173,12 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="MusicLabel" type="Label" parent="Root/Panel/Margin/VBox/Audio"]
+[node name="MusicLabel" type="Label" parent="Root/Panel/Scroll/Margin/VBox/Audio"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Music"
 
-[node name="Music" type="HSlider" parent="Root/Panel/Margin/VBox/Audio"]
+[node name="Music" type="HSlider" parent="Root/Panel/Scroll/Margin/VBox/Audio"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -180,12 +186,12 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="VoiceLabel" type="Label" parent="Root/Panel/Margin/VBox/Audio"]
+[node name="VoiceLabel" type="Label" parent="Root/Panel/Scroll/Margin/VBox/Audio"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Dialogue"
 
-[node name="Voice" type="HSlider" parent="Root/Panel/Margin/VBox/Audio"]
+[node name="Voice" type="HSlider" parent="Root/Panel/Scroll/Margin/VBox/Audio"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -193,12 +199,12 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="EffectsLabel" type="Label" parent="Root/Panel/Margin/VBox/Audio"]
+[node name="EffectsLabel" type="Label" parent="Root/Panel/Scroll/Margin/VBox/Audio"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Sound effects"
 
-[node name="Effects" type="HSlider" parent="Root/Panel/Margin/VBox/Audio"]
+[node name="Effects" type="HSlider" parent="Root/Panel/Scroll/Margin/VBox/Audio"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -206,12 +212,12 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="AmbienceLabel" type="Label" parent="Root/Panel/Margin/VBox/Audio"]
+[node name="AmbienceLabel" type="Label" parent="Root/Panel/Scroll/Margin/VBox/Audio"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Ambience"
 
-[node name="Ambience" type="HSlider" parent="Root/Panel/Margin/VBox/Audio"]
+[node name="Ambience" type="HSlider" parent="Root/Panel/Scroll/Margin/VBox/Audio"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -219,7 +225,7 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="Quit" type="Button" parent="Root/Panel/Margin/VBox"]
+[node name="Quit" type="Button" parent="Root/Panel/Scroll/Margin/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Quit to Desktop"

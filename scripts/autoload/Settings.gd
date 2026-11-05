@@ -17,6 +17,12 @@ const DEFAULTS: Dictionary = {
 	"chromatic_distortion": true,
 	"flash_effects": true,     ## Flickering lights and flashes.
 	"subtitles": true,
+	"subtitle_speaker_names": true, ## Prefix subtitles with who is speaking.
+	"subtitle_background": true,    ## Dark box behind subtitles for contrast.
+	"subtitle_scale": 1.0,          ## Subtitle text size multiplier (0.8 to 1.6).
+	"objective_checklist": true,    ## Show the chapter's done and current objectives on screen.
+	"objective_banners": true,      ## "Objective complete" and "New objective" banners.
+	"objective_sound": true,        ## A quiet chime with the objective-complete banner.
 	"recap_narration": true,    ## Voice-over is optional; recap captions remain.
 	"text_scale": 1.0,
 	"perf_log": false,         ## Debug: ZoneDirector writes user://perf_log.csv around zone transitions.

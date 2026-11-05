@@ -4,7 +4,7 @@
 	"title": "Chapter 1: The Admission",
 	"provisional": false,
 	"clinical_review_status": "PENDING",
-	"notes": "Drives the playable Chapter 1 slice (GDD §12 beats 1-3, 5, 6). Objectives are shown in order; the current one is the first neither complete nor expired (day-shift objectives expire when the night shift begins). Beats fire once. Staff lines are placeholders pending narrative and clinical review. Beat 4 (second stable patient) needs a second authored patient and is not implemented.",
+	"notes": "Drives the playable Chapter 1 slice (GDD §12 beats 1-3, 5, 6). Objectives are shown in order; the current one is the first neither complete nor expired (day-shift objectives expire when the night shift begins). Beats fire once. Staff lines were covered by the owner's narrative approval on 2026-10-19; clinical status stays PENDING. Beat 4 (second stable patient) needs a second authored patient and is not implemented.",
 	"objectives": [
 		{
 			"id": "obj_meet_bennett",
@@ -164,7 +164,7 @@
 					}
 				]
 			},
-			"text": "[Placeholder] That transfer call went out under a credential that has been inactive for months. I checked the board twice. Nobody on my shift asked for it.",
+			"text": "That transfer call went out under a credential that has been inactive for months. I checked the board twice. Nobody on my shift asked for it.",
 			"verify_clue": "clue_access"
 		},
 		{
@@ -172,14 +172,14 @@
 			"when": {
 				"flag": "intercom_heard"
 			},
-			"text": "[Placeholder] Night shift is meant to be quiet. Whatever that intercom was, it isn't on my board."
+			"text": "Night shift is meant to be quiet. Whatever that intercom was, it isn't on my board."
 		},
 		{
 			"staff_id": "staff_bennett",
 			"when": {
 				"note_saved": "pt_elias_ward"
 			},
-			"text": "[Placeholder] I saw your note on Elias. Thank you. The night team will need it."
+			"text": "I saw your note on Elias. Thank you. The night team will need it."
 		}
 	],
 	"sign_out": {
@@ -206,7 +206,7 @@
 				"delta": -5
 			}
 		],
-		"undocumented_message": "[Placeholder] Nurse Bennett: \"There's nothing in the notes for Elias. The night team is going in blind.\""
+		"undocumented_message": "Nurse Bennett: \"There's nothing in the notes for Elias. The night team is going in blind.\""
 	},
 	"next_chapter": "ch2"
 }

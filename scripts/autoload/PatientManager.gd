@@ -31,7 +31,7 @@ func get_definition(patient_id: String) -> Dictionary:
 ## True once the patient's authored arrival shift has begun. Later arrivals
 ## keep state from a new game but stay off the census until then.
 func is_admitted(patient_id: String) -> bool:
-	return int(get_definition(patient_id).get("arrival_shift", 1)) <= TimeManager.get_shift_day()
+	return ContinuingPractice.is_admitted(patient_id) and int(get_definition(patient_id).get("arrival_shift", 1)) <= TimeManager.get_shift_day()
 
 
 ## A deep copy, so callers can't mutate state behind the manager's back.
@@ -116,6 +116,7 @@ func save_note(patient_id: String, findings: Array[String], considerations: Arra
 	notes.append({
 		"id": note_id,
 		"author": "player",
+		"author_name": ProtagonistProfile.display_name(),
 		"at_minutes": TimeManager.total_minutes,
 		"day": TimeManager.get_shift_day(),
 		"shift": TimeManager.get_shift(),
@@ -318,3 +319,13 @@ func reset_state() -> void:
 		return
 	for patient_id: String in ContentRegistry.get_patient_ids():
 		_state[patient_id] = _initial_state(ContentRegistry.get_patient(patient_id))
+
+
+func ensure_patient_state(patient_id: String) -> bool:
+	if _state.has(patient_id):
+		return true
+	var definition: Dictionary = get_definition(patient_id)
+	if definition.is_empty() or definition.get("clinical_review_status") != "APPROVED":
+		return false
+	_state[patient_id] = _initial_state(definition)
+	return true

@@ -1,6 +1,7 @@
 extends TestCase
 ## Title screen: hidden in tests and headless runs, New Game and Continue hand
-## control to the game, and opening it writes no game state.
+## control to the game, and opening it writes no game state. Settings, the
+## preload and the prologue are covered in test_presentation.gd.
 
 const MAIN_SCENE: String = "res://scenes/main/Main.tscn"
 
@@ -36,7 +37,12 @@ func test_new_game_starts_play() -> void:
 	title.new_game()
 	check(not title.is_open, "New Game closes the title")
 	check(not runner.get_tree().paused, "the game runs again")
+	var cutscene: CutsceneDirector = main.get_node("CutsceneDirector")
+	check(cutscene.is_open and not player.input_enabled, "the approved prologue plays first")
+	cutscene.skip()
 	check(player.input_enabled, "the player can move")
+	AudioDirector.stop_music(0.01)
+	await runner.get_tree().create_timer(0.3).timeout  # Lets the skipped prologue's audio release.
 
 
 func test_continue_needs_a_save_and_loads_it() -> void:
@@ -48,6 +54,8 @@ func test_continue_needs_a_save_and_loads_it() -> void:
 	title.close()
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "a save is written")
 	title.open()
+	while title.is_loading():  # The buttons wait for the short, bounded preload.
+		await runner.get_tree().process_frame
 	check(not title._continue_button.disabled, "Continue is on with a save")
 	title.continue_game()
 	check(not title.is_open, "Continue loads the save and closes the title")

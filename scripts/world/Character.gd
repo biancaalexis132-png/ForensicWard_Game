@@ -5,16 +5,21 @@ extends Node3D
 ##
 ## Staff: shows their authored intro line and grants any authored access
 ## (once, via TrustManager); the ChapterDirector may supply a situational
-## line. Patients: opens the cinematic InterviewScreen.
+## line. Patients: opens the cinematic InterviewScreen. Ward-round patients
+## (WardRoundBedside): opens the ward-round screen on their case.
 
-enum Kind { STAFF, PATIENT }
+enum Kind { STAFF, PATIENT, WARD_ROUND }
+
+## Every character in the world, for ConversationRange.
+const GROUP: String = "ward_characters"
 
 @export var kind: Kind = Kind.STAFF
 ## staff id (data/staff.json) or patient id (data/patients.json).
 @export var character_id: String = ""
 ## Seated on a chair that has its own collider: shorter silhouette, no body collision.
 @export var seated: bool = false
-## Optional imported visual scene. The placeholder remains available as a fallback.
+## Optional imported visual scene. The capsule stays only as a technical fallback:
+## when a catalogued model fails it is shown as a development error, not a character.
 @export var visual_scene: PackedScene
 ## Cosmetic model alignment, assigned before _ready by campaign casting.
 var visual_placement: Transform3D = Transform3D.IDENTITY
@@ -22,17 +27,29 @@ var visual_placement: Transform3D = Transform3D.IDENTITY
 ## solid and interactable) while it holds. Re-checked whenever the objective
 ## changes, which includes every load.
 var present_when: Dictionary = {}
+## Kind.WARD_ROUND only: the data/ward_rounds.json case this patient is.
+var ward_round_case_id: String = ""
 
 @onready var _interactable: Interactable = $Interactable
 @onready var _name_label: Label3D = $NameLabel
 @onready var _placeholder_mesh: MeshInstance3D = $Body/Mesh
 @onready var _visual_root: Node3D = $VisualRoot
 var _naomi_acting: NaomiActingController
+## Everyday acting for every other animated cast member (null without clips).
+var performer: CastPerformer
 var _attached_visual: Node3D
 var _visual_slot_ready: bool = false
+## Why a catalogued model could not be shown ("" when there is no fault).
+var visual_error: String = ""
+
+## Magenta reads as "broken build" at a glance; no authored character uses it.
+const MISSING_VISUAL_COLOR: Color = Color(1.0, 0.0, 0.85)
+## Development errors already announced this session (one toast per actor id).
+static var _announced_errors: Dictionary = {}
 
 
 func _ready() -> void:
+	add_to_group(GROUP)
 	_visual_slot_ready = true
 	if seated:
 		# The legacy capsule is shortened; imported humanoid scenes stay unscaled.
@@ -51,8 +68,13 @@ func _ready() -> void:
 	var display_name: String = _display_name()
 	_name_label.text = display_name
 	_interactable.prompt = ("Talk to " if kind == Kind.STAFF else "Approach ") + display_name
+	if kind == Kind.WARD_ROUND:
+		_interactable.prompt = "See %s (ward round)" % display_name
 	if visual_scene != null:
-		set_visual_scene(visual_scene)
+		if not set_visual_scene(visual_scene):
+			mark_visual_missing("model could not be attached")
+	elif not visual_error.is_empty():
+		_show_visual_error()
 	else:
 		# Review-only: off unless the game was started with --character-preview.
 		var preview: PackedScene = CharacterVisualPreview.scene_for(character_id)
@@ -87,10 +109,39 @@ func set_visual_scene(scene: PackedScene) -> bool:
 	_attached_visual = visual_root
 	_visual_root.add_child(_attached_visual)
 	_attached_visual.transform = visual_placement * _attached_visual.transform
-	CharacterAnimationRig.setup(_attached_visual)
+	var body_player: AnimationPlayer = CharacterAnimationRig.setup(_attached_visual)
+	# Naomi's own acting controller drives her clips; everyone else gets the shared one.
+	performer = null if character_id == "staff_bennett" else CastPerformer.attach(self, _attached_visual, body_player)
 	visual_scene = scene
+	visual_error = ""
+	_placeholder_mesh.material_override = null
 	_placeholder_mesh.visible = false
+	_name_label.text = _display_name()
+	_name_label.modulate = Color(0.85, 0.9, 0.9, 0.85)
 	return true
+
+
+## Records a development error for a catalogued model that failed to load.
+## Safe before or after _ready; the capsule turns magenta and is labelled.
+func mark_visual_missing(reason: String) -> void:
+	visual_error = reason
+	# A warning, not push_error: the QA runner treats engine errors as test failures.
+	push_warning("WardCharacter: DEVELOPMENT ERROR for %s: %s. Reimport assets in the Godot editor or update the checkout." % [character_id, reason])
+	if _visual_slot_ready:
+		_show_visual_error()
+
+
+func _show_visual_error() -> void:
+	var material: StandardMaterial3D = StandardMaterial3D.new()
+	material.albedo_color = MISSING_VISUAL_COLOR
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	_placeholder_mesh.material_override = material
+	_placeholder_mesh.visible = true
+	_name_label.text = "DEV ERROR: missing 3D model\n%s" % _display_name()
+	_name_label.modulate = MISSING_VISUAL_COLOR
+	if not _announced_errors.has(character_id):
+		_announced_errors[character_id] = true
+		EventBus.notification_requested.emit("Development error: %s's 3D model did not load (see the Output log)." % _display_name())
 
 
 func clear_visual_scene() -> void:
@@ -140,6 +191,8 @@ func _update_presence() -> void:
 
 
 func _display_name() -> String:
+	if kind == Kind.WARD_ROUND:
+		return str(WardRounds.get_case(ward_round_case_id).get("patient", {}).get("name", character_id))
 	var data: Dictionary = ContentRegistry.get_staff(character_id) if kind == Kind.STAFF \
 			else ContentRegistry.get_patient(character_id)
 	return data.get("name", character_id)
@@ -149,9 +202,16 @@ func _on_interacted(_interactor: Node) -> void:
 	if kind == Kind.STAFF:
 		if is_instance_valid(_naomi_acting):
 			_naomi_acting.begin_conversation()
+		elif is_instance_valid(performer):
+			performer.begin_conversation()
 		_talk_to_staff()
 	else:
-		_approach_patient()
+		if is_instance_valid(performer):
+			performer.begin_conversation()
+		if kind == Kind.WARD_ROUND:
+			EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": ward_round_case_id})
+		else:
+			_approach_patient()
 
 
 func _talk_to_staff() -> void:
@@ -160,6 +220,11 @@ func _talk_to_staff() -> void:
 	# The chapter's story data can give a situational line instead.
 	var director: Node = get_tree().get_first_node_in_group(ChapterDirector.GROUP)
 	var line: Dictionary = director.get_staff_line(character_id) if director != null else {}
+	# Talking again before anything new happens: show the intro, but do not
+	# replay a line the player has already heard (ChapterDirector records the
+	# first talk per chapter, after this handler runs).
+	var heard: bool = line.is_empty() and director != null \
+			and character_id in director.get_story_context().get("talked_to", [])
 	if not line.is_empty():
 		text = line["text"]
 		var clue_id: String = line.get("verify_clue", "")
@@ -169,7 +234,8 @@ func _talk_to_staff() -> void:
 	for access_id: String in staff.get("grants_access", []):
 		if TrustManager.grant_access(access_id, character_id):
 			EventBus.notification_requested.emit("Access granted: " + access_id.trim_prefix("access_").replace("_", " "))
-	EventBus.ui_panel_requested.emit("info", {"title": staff.get("name", character_id), "body": body})
+	EventBus.ui_panel_requested.emit("info", {"title": staff.get("name", character_id), "body": body,
+			"voice_speaker": character_id, "voiced": not heard})
 
 
 func _approach_patient() -> void:

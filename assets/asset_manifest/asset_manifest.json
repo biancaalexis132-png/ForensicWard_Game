@@ -5161,6 +5161,512 @@
         "draft"
       ]
     },
+    "Marcus_Hale_v01_draft": {
+      "path": "res://assets/exports/characters/Marcus_Hale_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "hale",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Facilities_Tech_v01_draft": {
+      "path": "res://assets/exports/characters/Facilities_Tech_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "facilities_tech",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Leila_Rahman_v01_draft": {
+      "path": "res://assets/exports/characters/Leila_Rahman_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "rahman",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Elias_Ward_v01_draft": {
+      "path": "res://assets/exports/characters/Elias_Ward_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "elias",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "Mara_Ellis_v01_draft": {
+      "path": "res://assets/exports/characters/Mara_Ellis_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "mara",
+        "character",
+        "animated",
+        "visemes",
+        "draft"
+      ]
+    },
+    "ENV_CampusGrounds": {
+      "asset_id": "ENV_CampusGrounds",
+      "asset_name": "CampusGrounds",
+      "category": "environment",
+      "source_file": "assets/blender/exterior/FW_CampusGrounds.blend",
+      "export_file": "assets/exports/exterior/ENV_CampusGrounds.glb",
+      "dimensions_m": [
+        104.0,
+        126.0,
+        7.54
+      ],
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "intended_location": "CampusGrounds",
+      "collision": "Box collider proxies (-colonly)",
+      "materials": [
+        "M_Finish_Asphalt",
+        "M_Finish_Bark",
+        "M_Finish_Brick",
+        "M_Finish_CarBlue",
+        "M_Finish_CarRed",
+        "M_Finish_Glass",
+        "M_Finish_Grass",
+        "M_Finish_Lamp",
+        "M_Finish_Leaves",
+        "M_Finish_Metal",
+        "M_Finish_Paint",
+        "M_Finish_Rubber",
+        "M_Finish_Stone"
+      ],
+      "triangles_base": 7116,
+      "markers": [
+        "CAM_CampusGrounds_Review",
+        "MARK_Campus_Entry"
+      ],
+      "implementation_notes": "Original procedural Stage 7 candidate. Surface UV and nonoverlapping secondary UV included.",
+      "status": "PENDING_OWNER_VISUAL_REVIEW",
+      "authoring_tool": "Blender 4.3.2",
+      "generator": "tools/blender/build_stage7_exterior.py",
+      "seed": 70620,
+      "license": "Original project asset; rights retained by project owner",
+      "third_party_art_inputs": [],
+      "sha256": "d761c8fb51b339b841a6957578b0f3f34ace398befb0297277b2591a9c606737"
+    },
+    "ENV_HospitalExterior": {
+      "asset_id": "ENV_HospitalExterior",
+      "asset_name": "HospitalExterior",
+      "category": "environment",
+      "source_file": "assets/blender/exterior/FW_HospitalExterior.blend",
+      "export_file": "assets/exports/exterior/ENV_HospitalExterior.glb",
+      "dimensions_m": [
+        15.0,
+        49.7,
+        8.26
+      ],
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "intended_location": "HospitalExterior",
+      "collision": "Box collider proxies (-colonly)",
+      "materials": [
+        "M_Finish_Brick",
+        "M_Finish_Glass",
+        "M_Finish_Metal",
+        "M_Finish_Stone"
+      ],
+      "triangles_base": 2788,
+      "markers": [
+        "CAM_HospitalExterior_Review",
+        "MARK_Hospital_Entrance"
+      ],
+      "implementation_notes": "Original procedural Stage 7 candidate. Surface UV and nonoverlapping secondary UV included.",
+      "status": "PENDING_OWNER_VISUAL_REVIEW",
+      "authoring_tool": "Blender 4.3.2",
+      "generator": "tools/blender/build_stage7_exterior.py",
+      "seed": 70620,
+      "license": "Original project asset; rights retained by project owner",
+      "third_party_art_inputs": [],
+      "sha256": "706fd79b41ce86c99677900ba2c141f24ca879a45362e6bc59872fdedc266bed"
+    },
+    "ENV_Apartment": {
+      "asset_id": "ENV_Apartment",
+      "asset_name": "Apartment",
+      "category": "environment",
+      "source_file": "assets/blender/exterior/FW_Apartment.blend",
+      "export_file": "assets/exports/exterior/ENV_Apartment.glb",
+      "dimensions_m": [
+        10.18,
+        8.18,
+        3.355
+      ],
+      "dimensions_axes": "Blender X (width), Y (depth), Z (height)",
+      "intended_location": "Apartment",
+      "collision": "Box collider proxies (-colonly)",
+      "materials": [
+        "M_Finish_Brick",
+        "M_Finish_Glass",
+        "M_Finish_Metal",
+        "M_Finish_Plaster",
+        "M_Finish_Sofa",
+        "M_Finish_Stone",
+        "M_Finish_Wood"
+      ],
+      "triangles_base": 704,
+      "markers": [
+        "CAM_Apartment_Review",
+        "LIGHTMARK_Apartment_Ceiling",
+        "MARK_Apartment_Entry"
+      ],
+      "implementation_notes": "Original procedural Stage 7 candidate. Surface UV and nonoverlapping secondary UV included.",
+      "status": "PENDING_OWNER_VISUAL_REVIEW",
+      "authoring_tool": "Blender 4.3.2",
+      "generator": "tools/blender/build_stage7_exterior.py",
+      "seed": 70620,
+      "license": "Original project asset; rights retained by project owner",
+      "third_party_art_inputs": [],
+      "sha256": "fd40a05e3da87c86087317583a093b62fe711c667e3b7cfa76eb341c43941cd7"
+    },
+    "Daniel_Ortiz_v01_draft": {
+      "path": "res://assets/exports/characters/Daniel_Ortiz_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "ortiz",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Priya_Natarajan_v01_draft": {
+      "path": "res://assets/exports/characters/Priya_Natarajan_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "natarajan",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Owen_Hughes_v01_draft": {
+      "path": "res://assets/exports/characters/Owen_Hughes_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "hughes",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Lucia_Morales_v01_draft": {
+      "path": "res://assets/exports/characters/Lucia_Morales_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "morales",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Harold_Kim_v01_draft": {
+      "path": "res://assets/exports/characters/Harold_Kim_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "kim",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Marguerite_Lebel_v01_draft": {
+      "path": "res://assets/exports/characters/Marguerite_Lebel_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "lebel",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Agnes_Brennan_v01_draft": {
+      "path": "res://assets/exports/characters/Agnes_Brennan_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "brennan",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Jan_Kowalczyk_v01_draft": {
+      "path": "res://assets/exports/characters/Jan_Kowalczyk_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "kowalczyk",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Chidi_Achebe_v01_draft": {
+      "path": "res://assets/exports/characters/Chidi_Achebe_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "achebe",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Samuel_Adeyemi_v01_draft": {
+      "path": "res://assets/exports/characters/Samuel_Adeyemi_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "adeyemi",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Chloe_Bell_v01_draft": {
+      "path": "res://assets/exports/characters/Chloe_Bell_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "bell",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Gerald_Brooks_v01_draft": {
+      "path": "res://assets/exports/characters/Gerald_Brooks_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "brooks",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Imogen_Clarke_v01_draft": {
+      "path": "res://assets/exports/characters/Imogen_Clarke_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "clarke",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Frank_Delaney_v01_draft": {
+      "path": "res://assets/exports/characters/Frank_Delaney_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "delaney",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Patrick_Doyle_v01_draft": {
+      "path": "res://assets/exports/characters/Patrick_Doyle_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "doyle",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Amina_Farah_v01_draft": {
+      "path": "res://assets/exports/characters/Amina_Farah_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "farah",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Nadia_Haddad_v01_draft": {
+      "path": "res://assets/exports/characters/Nadia_Haddad_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "haddad",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Grace_Lindqvist_v01_draft": {
+      "path": "res://assets/exports/characters/Grace_Lindqvist_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "lindqvist",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Abena_Mensah_v01_draft": {
+      "path": "res://assets/exports/characters/Abena_Mensah_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "mensah",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Luka_Novak_v01_draft": {
+      "path": "res://assets/exports/characters/Luka_Novak_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "novak",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Ruth_Okafor_v01_draft": {
+      "path": "res://assets/exports/characters/Ruth_Okafor_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "okafor",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Kwame_Osei_v01_draft": {
+      "path": "res://assets/exports/characters/Kwame_Osei_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "osei",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Elena_Petrova_v01_draft": {
+      "path": "res://assets/exports/characters/Elena_Petrova_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "petrova",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Maeve_Quinn_v01_draft": {
+      "path": "res://assets/exports/characters/Maeve_Quinn_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "quinn",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Tomas_Reyes_v01_draft": {
+      "path": "res://assets/exports/characters/Tomas_Reyes_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "reyes",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Kenji_Sato_v01_draft": {
+      "path": "res://assets/exports/characters/Kenji_Sato_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "sato",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Harold_Whitaker_v01_draft": {
+      "path": "res://assets/exports/characters/Harold_Whitaker_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "whitaker",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
+    "Tomasz_Wrobel_v01_draft": {
+      "path": "res://assets/exports/characters/Tomasz_Wrobel_v01_draft.glb",
+      "category": "character",
+      "tags": [
+        "wrobel",
+        "character",
+        "animated",
+        "visemes",
+        "draft",
+        "ward_round"
+      ]
+    },
     "Evelyn_Voss_v02": {
       "path": "res://assets/exports/characters/Evelyn_Voss_v02.glb",
       "category": "character",
@@ -5171,17 +5677,6 @@
         "visemes",
         "hair_cards",
         "owner_approved"
-      ]
-    },
-    "Marcus_Hale_v01_draft": {
-      "path": "res://assets/exports/characters/Marcus_Hale_v01_draft.glb",
-      "category": "character",
-      "tags": [
-        "hale",
-        "character",
-        "animated",
-        "visemes",
-        "draft"
       ]
     },
     "Marcus_Hale_v02": {
@@ -5196,17 +5691,6 @@
         "owner_approved"
       ]
     },
-    "Facilities_Tech_v01_draft": {
-      "path": "res://assets/exports/characters/Facilities_Tech_v01_draft.glb",
-      "category": "character",
-      "tags": [
-        "facilities_tech",
-        "character",
-        "animated",
-        "visemes",
-        "draft"
-      ]
-    },
     "Facilities_Tech_v02": {
       "path": "res://assets/exports/characters/Facilities_Tech_v02.glb",
       "category": "character",
@@ -5217,17 +5701,6 @@
         "visemes",
         "hair_cards",
         "owner_approved"
-      ]
-    },
-    "Leila_Rahman_v01_draft": {
-      "path": "res://assets/exports/characters/Leila_Rahman_v01_draft.glb",
-      "category": "character",
-      "tags": [
-        "rahman",
-        "character",
-        "animated",
-        "visemes",
-        "draft"
       ]
     },
     "Leila_Rahman_v02": {
@@ -5242,17 +5715,6 @@
         "owner_approved"
       ]
     },
-    "Elias_Ward_v01_draft": {
-      "path": "res://assets/exports/characters/Elias_Ward_v01_draft.glb",
-      "category": "character",
-      "tags": [
-        "elias",
-        "character",
-        "animated",
-        "visemes",
-        "draft"
-      ]
-    },
     "Elias_Ward_v02": {
       "path": "res://assets/exports/characters/Elias_Ward_v02.glb",
       "category": "character",
@@ -5263,17 +5725,6 @@
         "visemes",
         "hair_cards",
         "owner_approved"
-      ]
-    },
-    "Mara_Ellis_v01_draft": {
-      "path": "res://assets/exports/characters/Mara_Ellis_v01_draft.glb",
-      "category": "character",
-      "tags": [
-        "mara",
-        "character",
-        "animated",
-        "visemes",
-        "draft"
       ]
     },
     "Mara_Ellis_v02": {

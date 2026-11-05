@@ -22,6 +22,7 @@ Rules for stable ids across all five chapters. `ContentValidator.check_global_id
 | Observation | `obs_` | per patient (convention, not yet enforced) |
 | Zone, zone connection | `zone_`, `conn_` | yes |
 | Anomaly episode | `anom_` | yes |
+| EHR order (`data/order_catalog.json`) | `ord_` | yes |
 | Chapter | `ch<n>` | yes |
 
 Pharmacology placeholder patients (`data/patients/PT-001.json`, `PT-002.json`) use a separate upper-case scheme read only by `PharmacologyEngine`. When a story patient needs pharmacology, link it from the `pt_*` record instead of adding a second patient id (F0 C8).
@@ -75,3 +76,8 @@ Interactions: `interaction_ch2_clock_review`, `interaction_ch2_order_review`, `i
 Flags: `ch2_clock_reviewed`, `ch2_order_reviewed`, `ch2_dependencies_reviewed`, `ch2_preservation_followup`, `ch2_followup_clock_authority`, `ch2_followup_source_lineage`, `ch2_records_review_complete`.
 Feedback-only options carry no progress flag. Memo emphasis is recorded once;
 all missing source questions remain outstanding under either choice.
+
+## EHR order catalog (2026-10-19)
+
+Orders: `ord_catatonia_assessment` (wraps `evaluate_catatonia`), `ord_medical_team_review` (wraps `request_medical_review`).
+Listed as unavailable: `ord_medication`, `ord_laboratory`.

@@ -30,6 +30,9 @@ static func validate(data: Dictionary) -> Array[String]:
 			errors.append("missing visual review status: " + id)
 		if not _valid_offset(entry.get("marker_offset")):
 			errors.append("invalid marker offset: " + id)
+		var step: Variant = entry.get("walk_step_m", 0.65)
+		if not (step is float or step is int) or float(step) < 0.3 or float(step) > 1.0:
+			errors.append("walk_step_m must be between 0.3 and 1.0: " + id)
 		var overrides: Variant = entry.get("marker_offsets", {})
 		if not overrides is Dictionary:
 			errors.append("marker_offsets must be object: " + id)
@@ -47,6 +50,12 @@ static func _valid_offset(value: Variant) -> bool:
 			return false
 	return true
 
+## Metres per step of the character's walk clip (from its motion build report),
+## so a CastRoute moves it at the speed its feet are planted at.
+static func walk_step_for(character_id: String) -> float:
+	return float(load_data().get("characters", {}).get(character_id, {}).get("walk_step_m", CastRoute.DEFAULT_STEP_M))
+
+
 ## Called before adding the actor to the tree, so its animation/acting setup
 ## sees the final model during _ready. Returns its local marker offset.
 static func configure(character: WardCharacter, marker: String) -> Vector3:
@@ -56,12 +65,14 @@ static func configure(character: WardCharacter, marker: String) -> Vector3:
 	if entry.is_empty():
 		return Vector3.ZERO
 	var path: String = str(entry["scene"])
+	# A catalogued model that does not load is a build fault (stale import cache,
+	# outdated checkout), never a normal character: the actor shows it as one.
 	if not ResourceLoader.exists(path):
-		push_warning("CampaignCastVisuals: missing model for %s; using placeholder" % character.character_id)
+		character.mark_visual_missing("model not found: " + path)
 		return Vector3.ZERO
 	var scene: PackedScene = load(path) as PackedScene
 	if scene == null:
-		push_warning("CampaignCastVisuals: invalid scene for %s; using placeholder" % character.character_id)
+		character.mark_visual_missing("model did not import: " + path)
 		return Vector3.ZERO
 	character.visual_scene = scene
 	character.visual_placement = Transform3D(Basis(Vector3.UP, deg_to_rad(float(entry["model_yaw_degrees"]))), Vector3.ZERO)

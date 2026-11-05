@@ -8,7 +8,8 @@ const CATATONIA_EVENT: Dictionary = {
 	"action_id": "evaluate_catatonia", "at_minutes": 522,
 	"payload": {"finding_ids": ["obs_mutism", "obs_posturing"]},
 }
-## Still pending psychiatrist review: governance tests use it.
+## Governance tests load a fixture where this rule is pending (every shipped rule is approved).
+const PENDING_FIXTURE_DIR: String = "user://test_pending_rule"
 const MEDICAL_REVIEW_EVENT: Dictionary = {
 	"event_id": "evt_day1_medical_review", "type": "clinical_action", "patient_id": PATIENT,
 	"action_id": "request_medical_review", "at_minutes": 530, "payload": {},
@@ -41,18 +42,50 @@ func test_approved_rule_applies_in_validated_mode() -> void:
 
 
 func test_pending_rule_applies_only_non_medical_effects_in_prototype() -> void:
+	_load_pending_rule_fixture()
 	var result: Dictionary = PatientManager.commit_clinical_action(MEDICAL_REVIEW_EVENT)
 	check_eq(result["rule_ids"], ["clinical_rule_medical_review_request_v1"], "rule matched")
 	check_eq(PatientManager.get_state(PATIENT)["assessment"].get("medical_review_requested"), true, "request logged")
 	check_contains(result["review_flags"], "Unreviewed rule applied in prototype mode", "flagged for review")
+	_restore_content()
 
 
 func test_pending_rule_blocked_in_validated_mode() -> void:
+	_load_pending_rule_fixture()
 	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
 	var result: Dictionary = PatientManager.commit_clinical_action(MEDICAL_REVIEW_EVENT)
 	check(result["effects"].is_empty(), "no effects from a pending rule")
 	check(not PatientManager.get_state(PATIENT)["assessment"].has("medical_review_requested"), "state untouched")
 	check_contains(result["review_flags"], "not applied in validated build mode", "flag explains why")
+	_restore_content()
+
+
+func test_shipped_clinical_rules_are_all_approved() -> void:
+	for rule: Dictionary in ContentRegistry.get_rules():
+		check_eq(rule["review_status"], "APPROVED", "approved by the executive producer: " + rule["id"])
+
+
+## Loads the shipped content with the medical review rule set back to pending,
+## so rule governance stays tested now that every shipped rule is approved.
+func _load_pending_rule_fixture() -> void:
+	var problems: Array[String] = []
+	var docs: Dictionary = ContentRegistry.collect_documents(ContentRegistry.DATA_DIR, problems)
+	for rule: Dictionary in docs["clinical_rules"]["data"]["rules"]:
+		if rule["id"] == "clinical_rule_medical_review_request_v1":
+			rule["review_status"] = "PENDING_PSYCHIATRIST_REVIEW"
+	DirAccess.make_dir_recursive_absolute(PENDING_FIXTURE_DIR)
+	for key: String in docs:
+		var file: FileAccess = FileAccess.open(PENDING_FIXTURE_DIR.path_join(docs[key]["file"]), FileAccess.WRITE)
+		file.store_string(JSON.stringify(docs[key]["data"], "\t"))
+		file.close()
+	check(ContentRegistry.load_all(PENDING_FIXTURE_DIR), "pending-rule fixture validates: %s" % str(ContentRegistry.errors))
+
+
+func _restore_content() -> void:
+	for file_name: String in DirAccess.get_files_at(PENDING_FIXTURE_DIR):
+		DirAccess.remove_absolute(PENDING_FIXTURE_DIR.path_join(file_name))
+	DirAccess.remove_absolute(PENDING_FIXTURE_DIR)
+	ContentRegistry.load_all(ContentRegistry.DATA_DIR)
 
 
 func test_rule_needs_its_findings() -> void:

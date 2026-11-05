@@ -23,6 +23,7 @@ const MANIFEST: Dictionary = {
 	"campaign": ["campaign.json", ContentSchemas.CAMPAIGN_FILE],
 	"zones": ["zones.json", ContentSchemas.ZONES_FILE],
 	"anomalies": ["anomalies.json", ContentSchemas.ANOMALIES_FILE],
+	"order_catalog": ["order_catalog.json", ContentSchemas.ORDER_CATALOG_FILE],
 }
 ## Document keys for files the campaign names: "dialogue:<file>",
 ## "story:<chapter id>", "world:<chapter id>".
@@ -56,6 +57,8 @@ var _stories: Dictionary = {}        ## chapter id -> story
 var _zones: Dictionary = {}          ## zone id -> zone
 var _connections: Dictionary = {}    ## connection id -> connection
 var _anomalies: Dictionary = {}      ## anomalies.json (episodes, chapter caps)
+var _orders: Array = []              ## order_catalog.json orders, in authored order
+var _unavailable_orders: Array = []  ## order_catalog.json unavailable entries
 
 
 func _ready() -> void:
@@ -139,7 +142,8 @@ func get_patient_ids() -> Array[String]:
 
 
 func get_dialogue(patient_id: String) -> Dictionary:
-	return _dialogues.get(patient_id, {})
+	var practice: Dictionary = ContinuingPractice.current_dialogue(patient_id)
+	return practice if not practice.is_empty() else _dialogues.get(patient_id, {})
 
 
 func get_rules() -> Array:
@@ -157,6 +161,29 @@ func get_actions(patient_id: String) -> Array[Dictionary]:
 
 func get_action(action_id: String) -> Dictionary:
 	return _actions.get(action_id, {})
+
+
+## Catalog orders whose clinical action is offered for a patient, in authored order.
+func get_orders(patient_id: String) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for order: Dictionary in _orders:
+		if get_action(order["action_id"]).get("patient_id", "") == patient_id:
+			result.append(order)
+	return result
+
+
+func get_order(order_id: String) -> Dictionary:
+	for order: Dictionary in _orders:
+		if order["id"] == order_id:
+			return order
+	return {}
+
+
+## Orders listed as not available in this build, each with its reason.
+func get_unavailable_orders() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	result.assign(_unavailable_orders)
+	return result
 
 
 func get_clue(clue_id: String) -> Dictionary:
@@ -310,6 +337,8 @@ func _build_indexes(documents: Dictionary) -> void:
 	_zones = _index(documents["zones"]["data"]["zones"])
 	_connections = _index(documents["zones"]["data"]["connections"])
 	_anomalies = _freeze(documents["anomalies"]["data"])
+	_orders = _freeze(documents["order_catalog"]["data"]["orders"])
+	_unavailable_orders = _freeze(documents["order_catalog"]["data"]["unavailable"])
 	_dialogues = {}
 	_stories = {}
 	_worlds = {}
@@ -352,3 +381,24 @@ func _sorted(dictionary: Dictionary) -> Array[String]:
 	keys.assign(dictionary.keys())
 	keys.sort()
 	return keys
+
+
+## Boot-time registration of reviewed, immutable case content. Pending cases
+## never enter the census or the ordinary clinical registry.
+func register_practice_patient(definition: Dictionary) -> bool:
+	if not PracticeCase.new(definition).ready_for_play():
+		return false
+	var patient: Dictionary = definition["patient"]
+	var problems: Array[String] = []
+	var notices: Array[String] = []
+	ContentValidator.validate_value(patient, ContentSchemas.PATIENT, "practice.patient", problems, notices)
+	for encounter: Dictionary in definition["encounters"]:
+		ContentValidator.validate_value(encounter["dialogue"], ContentSchemas.DIALOGUE_FILE, "practice.dialogue", problems, notices)
+		if encounter["dialogue"].get("patient_id") != patient.get("id"):
+			problems.append("Practice dialogue patient does not match the dossier")
+	if not problems.is_empty():
+		return false
+	if _patients.has(patient["id"]):
+		return _patients[patient["id"]].get("clinical_review_status") == "APPROVED"
+	_patients[patient["id"]] = _freeze(patient)
+	return true

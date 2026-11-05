@@ -33,7 +33,7 @@ func start_dialogue(patient_id: String) -> bool:
 		push_warning("DialogueManager: no dialogue authored for '%s'" % patient_id)
 		return false
 	active_patient_id = patient_id
-	if not _current_state.has(patient_id):
+	if not _current_state.has(patient_id) or _find_state(dialogue, str(_current_state[patient_id])).is_empty():
 		_current_state[patient_id] = dialogue["states"][0]["id"]
 	EventBus.dialogue_started.emit(patient_id)
 	return true
@@ -153,3 +153,8 @@ func reset_state() -> void:
 	active_patient_id = ""
 	_current_state.clear()
 	_transcripts.clear()
+
+
+func is_interview_complete(patient_id: String) -> bool:
+	var state: Dictionary = _find_state(ContentRegistry.get_dialogue(patient_id), str(_current_state.get(patient_id, "")))
+	return not get_transcript(patient_id).is_empty() and not state.is_empty() and state.get("choices", []).is_empty()

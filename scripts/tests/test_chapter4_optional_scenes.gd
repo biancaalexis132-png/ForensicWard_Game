@@ -405,10 +405,32 @@ func _call_for(contact: String, expected: String) -> void:
 	check_eq(_director().get_chapter_flags("ch4"), flags, "no inquiry detail shared")
 	_close()
 	_use("NS_NoticeBoard")
-	_choose("boundary" if contact != "Your own reminder" else "leave on time")
+	_choose("boundary" if not contact in ["Your own reminder", "Leave it for now"] else "leave on time")
 	check(_director().has_flag("ch4_call_boundary"), "boundary recorded")
 	check(not _director().has_open_interaction("NS_NoticeBoard"), "the call is over")
 	check_eq(_objective(), "obj_ch4_test_pass", "the door check is next either way")
+
+
+func test_call_and_follow_up_survive_save_and_load() -> void:
+	_contact = "A message from family"
+	await _reach_mara_window()
+	check(_present(MARA), "Mara attends before saving")
+	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "save with Mara in Interview Room A")
+	SaveManager.reset_all()
+	check_eq(SaveManager.load_game(TEST_SAVE_SLOT), OK, "load")
+	await runner.get_tree().process_frame
+	check(_present(MARA) and not _present("pt_elias_ward"), "presence rebuilt from the saved flags")
+	_commit(RECORDS, "preserve them both")
+	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "save with the call waiting")
+	SaveManager.reset_all()
+	check_eq(SaveManager.load_game(TEST_SAVE_SLOT), OK, "load again")
+	await runner.get_tree().process_frame
+	check(_director().get_chapter_flags("ch2").has("ch2_contact_family"), "Chapter 2 contact survives in the archive")
+	_use("NS_NoticeBoard")
+	check("Family is calling" in _body(), "the call still matches the Chapter 2 contact")
+	_choose("hard week")
+	check(_director().has_flag("ch4_call_support"), "support recorded after load")
+	check(_present(MARA), "the follow-up stays available until the door check")
 
 
 func test_call_from_partner() -> void:
@@ -420,7 +442,7 @@ func test_reminder_to_self() -> void:
 
 
 func test_call_when_message_was_left() -> void:
-	await _call_for("Leave it for now", "Someone close to you is calling")
+	await _call_for("Leave it for now", "only the break reminder")
 
 
 func _state() -> String:

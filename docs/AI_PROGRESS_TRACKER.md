@@ -1,5 +1,93 @@
 # AI progress tracker
 
+## Mac release polish — Claude Code (cloud), 2026-11-04
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Objective banner off name tags; toasts off checklist | Done, draft PR | | `ObjectiveTracker.gd`, `HUD.gd`, `HUD.tscn` | `test_objective_feedback` (7), HUD captures | Bi checks on the Mac |
+| Objective shown once | Done, draft PR | | `HUD.gd` | `test_objective_feedback` | Bi checks on the Mac |
+| Elias shoulder seams | Done, draft PR | bpy 5.2.2 | `tuck_neckline.py`, Elias blend/GLB | GLB 199/0, before/after capture | Bi looks on the Mac |
+| Missing voice clip / cutscene overlap warnings | Investigated: test-only | | test logs | all 619 voice files present | None |
+| Standalone Mac export | Done; merged in #131; built and launched on Bi's Mac | Export templates | `export_presets.cfg`, `tools/release/export_macos.sh`, `docs/MAC_RELEASE_BUILD.md` | Mac: export PASS, launch check PASS, mac_acceptance exit 0 (game 417/0, audio 1720/0), title screen shown | Bi plays the app |
+| Hands-on Mac playthrough, listening | Waiting on Bi (app built at `~/Developer/forensicward-release/build/macos/`) | Bi's Mac | `docs/MAC_RELEASE_BUILD.md` §3 | | Bi or Remote Control |
+| Environment art pass | Not started | | | | After the Mac pass |
+
+
+## Ward-round patients on the ward — Claude Code (cloud), 2026-11-03
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Patients seated in Rooms 01/02, approach opens case, next patient arrives | Done, draft PR | #115, #114 | `scripts/world/WardRoundBedside.gd`, `data/ward_round_bedside.json` | `test_ward_round_bedside` (7), captures | Bi plays on the Mac |
+| Patient models for all 28 ward-round cases | Draft, pending owner look | cast pipeline | `tools/blender/characters/cast/pt_wr_*.json`, `assets/exports/characters/*_v01_draft.glb` | GLB 199/0; captures ch1 to ch5 | Bi reviews the look |
+| Bedside conversation (opening sets trust, questions fill the chart, debrief counts it) | Done, draft PR #120 | #119 | `WardRounds.gd`, `WardRoundScreen.gd`, `data/ward_rounds.json` `bedside` | `test_ward_round_conversation` (5), captures | Bi reviews wording; case-specific lines next |
+| Patients answer in their own words (28 cases × history and mental-state lines) | Done, draft PR #121, lines approved by Bi 2026-11-04 | #120 | `data/ward_rounds.json` `bedside_lines`, `WardRounds.bedside_line`, `WardRoundCatalog.validate_bedside_lines` | `test_ward_round_conversation` (7) | Bi reviews the lines |
+| Ponytail strand cards and hairline wisps (22 patients rebuilt) | Done, draft PR | #121 | `build_cast_member.py` (`tail_cards`, `hairline_cards`), `pt_wr_*.json`, patient GLBs | full QA, in-game capture | Bi looks at the hair |
+| Patient answers when you explain the plan (28 lines) | Done, draft PR #123, approved by Bi 2026-11-04 | #122 | `data/ward_rounds.json` `plan_response`, `WardRounds.plan_response`, `WardRoundScreen.gd` | `test_ward_round_conversation` (8) | Bi reviews the lines |
+| Check in on earlier patients in a later chapter (28 lines) | Done, draft PR #124, approved by Bi 2026-11-04 | #123 | `data/ward_rounds.json` `follow_up`, `WardRounds.follow_up`, `WardRoundScreen.gd` | `test_ward_round_conversation` (9) | Bi reviews the lines |
+| Ward round section in the day shift handover | Done, PR #125 merged into #124 branch | #124 | `WardRounds.handover_lines`, `ChapterDirector._hand_over` | `test_ward_rounds` (handover test), full QA | Bi plays a handover |
+| Earlier patients wait on chairs by the ward entrance for a check-in | Done, draft PR | main after #129 | `WardRoundBedside.gd`, `data/ward_round_bedside.json` `check_in` | `test_ward_round_bedside` (3 new), capture `ch2_check_in_*.png`, full QA 415/0 | Bi looks at the seats |
+| Patients react to the bedside opening (28 × 3 lines) | Merged (#129), approved by Bi | #128 | `data/ward_rounds.json` `opening_reactions`, `WardRounds.open_bedside`, `WardRoundCatalog.validate_opening_reactions` | `test_ward_round_conversation` (10) | Done |
+| Hair cards on 23 patients (strand strips over the cap) | Done, draft PR | #118 | `build_cast_member.py` `hair.cards` | GLB 199/0, in-game capture | Bi looks at the hair |
+| Older/greying/heavier patient looks (age marks, grey hair, receding temples, weight at any age); 15 rebuilt | Done, draft PR | #117 | `build_cast_member.py`, `pt_wr_*.json` | GLB 199/0, before/after sheet | Bi looks at the faces |
+| Case bible third wave (8 cases, referral labels, bedside assessments, wrong-for-everyone choices) | Done on #115, pending Bi's clinical review | #115 | `data/ward_rounds.json`, `WardRoundCatalog.gd` | `test_ward_rounds` | Bi reviews in the review doc |
+| Scoring, soft tests budget, debrief tab, replay (case bible) | Done, draft PR | #116 | `scripts/clinical/WardRoundScoring.gd`, `WardRoundScreen.gd` | `test_ward_round_scoring` (7), captures `assets/renders/ui/ward_round_v1/debrief*.png` | Bi tunes deductions, approves explain-plan default |
+
+## Ward rounds — Claude Code (cloud), 2026-11-03
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Ward-round catalog and judging | Done, draft PR | Bi's request | `data/ward_rounds.json`, `scripts/clinical/WardRoundCatalog.gd` | `test_ward_rounds` | Bi reviews |
+| Ward-round screen from the EHR | Done, draft PR | | `scripts/ui/WardRoundScreen.gd`, `EHRScreen.gd`, `Main.gd` | `test_ward_rounds`, captures | Bi plays |
+| Chapter gate, save/load | Done, draft PR | | `scripts/clinical/WardRounds.gd`, `ChapterDirector.gd` | `test_ward_rounds` | None |
+| First ten cases and answer keys | Approved by Bi 2026-11-03 | Bi | `data/ward_rounds.json`, `docs/clinical_review_log.md` | `test_ward_rounds` | None |
+| Ten harder second-wave cases | Pending clinical review | Bi | `data/ward_rounds.json`, review doc (Second wave) | `test_ward_rounds` | Bi approves or corrects |
+| Full QA | Done on `6bef53d` | | `tests/qa/run.py` | game 376/0, audio 1720/0, QA 19/0/0, GLB 171/0 | None |
+
+## Cast animation — Claude Code (cloud), 2026-11-03
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Walk and talk-gesture clips on six draft models | Done, draft PR #114 | Cast v01 drafts | `tools/character_animation/`, `assets/exports/characters/*_v01_draft.glb` | `test_cast_motion`, review sheets | Bi looks on Mac |
+| Shared acting (CastPerformer) | Done, draft PR #114 | | `scripts/world/CastPerformer.gd`, `Character.gd` | `test_cast_motion` | Bi plays |
+| Walking routes (technician Ch2, Hale Ch4/Ch5) | Done, draft PR #114 | | `scripts/world/CastRoute.gd`, `data/world_chapter{2,4,5}.json` | route clearance test | Bi decides on more routes |
+| Full QA | Done on `584d864` | | `tests/qa/run.py` | game 377/0, audio 1720/0, QA 19/0/0, GLB 171/0 | None |
+| Mac look and frame time | Not tested | Bi's Mac | | | Bi replays |
+
+## Owner playtest fixes — Claude Code (cloud), 2026-10-21
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Naomi opening repetition | Done, draft PR | Bi's playtest | `data/staff.json`, `scripts/world/Character.gd` | `test_playtest_voice` | Bi replays |
+| Door signs | Done, draft PR | | `scripts/world/ImportedDoor.gd`, `data/world_chapter*.json` | `test_playtest_core`, captures | Bi looks on Mac |
+| Document images | Done, draft PR; images pending review | | `scripts/ui/DocumentViewer.gd`, `assets/documents/` | `test_playtest_ui` | Bi reviews images |
+| Female/male voice | Done, draft PR; voice pending listening | | `ProtagonistProfile.gd`, `audio/voice/*/female/` | `test_playtest_voice` | Bi listens |
+| Quiet day underscore | Done, draft PR | Approved soundtrack | `audio/cues.json`, `AudioDirector.gd`, `PauseMenu.gd` | TestAudio, `test_playtest_core` | Bi listens |
+| Walk-away stops conversation | Done, draft PR | | `scripts/dialogue/ConversationRange.gd` | `test_playtest_core` | Bi replays |
+| EHR usability | Done, draft PR | | `scripts/ui/EHRScreen.gd` | `test_playtest_ui` | Bi replays |
+| Medication and lab orders | Waiting on Bi's decision | Clinical approval | `data/order_catalog.json` | | Bi decides |
+
+## Final build approvals — Claude Code (cloud), 2026-10-21
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Full QA on the final build | Done | `1a498dc` | `tests/qa/run.py` | All executed checks passed, 744 s | None |
+| Switch on owner approvals (prologue, milestone, wording, art, Jordan CP-001) | Done, draft PR | Bi's messages 2026-10-21 | see `docs/handoffs/2026-10-21_claude_final_build.md` | Full QA on `88460d6` passed, 684 s | Owner merges |
+| Mac automated QA and idle memory | Done on `1a498dc` | Remote Control | `tools/qa/mac_acceptance.py` | Exit 0; peak 976 MB | Rerun on this branch |
+| Mac visual and controls | Blocked | Screen Recording and Accessibility permission | `docs/MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md` | Not tested | Bi grants permissions |
+| Mac listening | Pending | Bi | `docs/presentation_review.html` | Not tested | Bi listens |
+
+## Player experience overhaul — Claude Code (cloud), 2026-10-20
+
+| Task | State | Dependencies | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| P1 real 3D cast, no placeholder labels, disclaimer moved | Done, draft PR #102 | PR #98 | `scripts/world/Character.gd`, `CampaignCastVisuals.gd`, `EHRScreen.gd`, `TitleScreen.gd`, `PauseMenu.gd` | Full QA 299/0, hosted CI green | Owner review, Mac look |
+| P2 voiced choices, narrated Elias, subtitle and voice settings | Done, draft #105 | #102 | `systems/audio/AudioDirector.gd`, `data/narrative/*`, `audio/voice/**` | all executed checks passed: game 308/0, audio 1612/0, QA 19/0/0, GLB 168/0, Chapter 1 sequence done | Owner approves lines and voice profiles |
+| P3 EHR order catalog | Done, draft #106 | #105 | `data/order_catalog.json`, `scripts/clinical/ClinicalOrders.gd`, `EHRScreen.gd` | `test_order_catalog.gd` 7/0 | Clinical wording review |
+| P5 objective feedback | Done, draft #107 | #106 | `scripts/ui/ObjectiveTracker.gd`, `ChapterDirector.gd`, `Settings.gd` | `test_objective_feedback.gd` 5/0 | Owner review |
+| P4/P7 title, preload, presentation states, prologue | Done, draft #108; prologue review-only | #107 | `TitleScreen.gd`, `Main.gd`, `data/cutscenes/cs_ch01_prologue.json` | `test_presentation.gd` 7/0, `test_title_screen.gd` 3/0 | Owner approves prologue |
+| P6 split-screen milestones | Done, draft #108; review-only | #107 | `scripts/ui/MilestonePresenter.gd`, `data/milestones.json` | `test_milestones.gd` 4/0 | Owner approves milestone |
+| Mac acceptance | Not run | Owner's Mac | `docs/MAC_ACCEPTANCE_PLAYER_EXPERIENCE.md` | | Owner |
+
 ## Owner approvals and content gaps — Claude Code (cloud), 2026-10-19
 
 | Task | State | Dependencies | Paths | Validation | Next action |

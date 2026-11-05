@@ -25,7 +25,11 @@ def run(command, env, expected=None, timeout=150):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--godot", default=os.environ.get("GODOT", "godot"))
+    parser.add_argument("--gameplay-timeout", type=int, default=1800,
+                        help="bounded seconds for full animated campaign scenarios (default: 1800)")
     args = parser.parse_args()
+    if args.gameplay_timeout <= 0:
+        parser.error("--gameplay-timeout must be positive")
     # Isolate Linux cache/config so save/load tests never touch real user data.
     with tempfile.TemporaryDirectory(prefix="forensic-ward-qa-") as directory:
         env = dict(os.environ, XDG_DATA_HOME=directory,
@@ -36,16 +40,18 @@ def main():
         run([sys.executable, "tests/music_ai/test_generate_music.py"], env, r"\bOK\b")
         run([args.godot, "--version"], env, r"(?m)^4\.7\.")
         base = [args.godot, "--headless", "--path", str(ROOT)]
-        run(base + ["--editor", "--import"], env)
+        # A cold import (CI) now includes every voice clip.
+        run(base + ["--editor", "--import"], env, timeout=600)
         run(base + ["res://tests/TestPharmacology.tscn"], env, r"PASSED: 0 failure\(s\)")
         run(base + ["res://tests/qa/TestQA.tscn"], env,
             r"QA_RESULT passed=[1-9][0-9]* failed=0 skipped=0")
         run(base + ["-s", "res://tools/godot/validate_glb_imports.gd"], env,
             r"GLB VALIDATION PASSED: [1-9][0-9]* assets checked, 0 failure\(s\)")
-        # Campaign fixtures now instantiate the normal skinned 3D cast. Keep
-        # every scenario/error check; allow CPU-only runners time to load it.
+        # Campaign fixtures now instantiate the normal skinned 3D cast, and
+        # voiced panels play real clips. Keep every scenario/error check;
+        # allow CPU-only runners time for both.
         run(base + ["res://scripts/tests/TestRunner.tscn"], env,
-            r"(?m)^PASSED: [1-9][0-9]* passed, 0 failed", timeout=420)
+            r"(?m)^PASSED: [1-9][0-9]* passed, 0 failed", timeout=args.gameplay_timeout)
         run(base + ["--quit-after", "60"], env, r"\[The Forensic Ward\] Boot OK")
         run(base + ["res://tests/audio/TestAudio.tscn"], env, r"AUDIO_RESULT passed=[1-9][0-9]* failed=0")
         run(base + ["res://scenes/audio/Ch1AudioSequence.tscn", "--", "--exit-when-done"], env,
