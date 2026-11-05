@@ -7,8 +7,9 @@
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
 | Case file, map, staff remember, transitions, performances, room sound, ending record, handoff docs | Merged (#137, #139, #140, #142, #143, #145, #146, #147) | | | full QA, CI on main `b757c45` | Bi plays on the Mac |
-| Objective marker on the map | Draft PR | | `CaseFile.objective_target`, `FloorPlan._objective`, `SpatialMap._draw_star`, `MapScreen.describe` | `test_map_readability` (5), `test_case_file` (9), full QA | Bi looks on the Mac |
-| Lighting and materials baseline | Not started | | | | Next |
+| Objective marker on the map | Merged (#148) | | `CaseFile.objective_target`, `FloorPlan._objective`, `SpatialMap._draw_star`, `MapScreen.describe` | `test_map_readability` (5), `test_case_file` (9), full QA | Bi looks on the Mac |
+| Lighting and materials baseline | Draft PR | | `Chapter1Ward.tscn` environment, `EnvironmentFinish.painted_albedo`, `tools/godot/capture_atmosphere.gd` | `test_environment_finish` (4), full suite 474/0 | Bi looks on the Mac |
+| Per-room light tuning, environmental detail | Not started | Bi's look at the baseline | | | Next |
 
 ## Make the game more compelling (Bi's roadmap) — Claude Code (cloud), 2026-11-05
 

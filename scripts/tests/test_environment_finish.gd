@@ -58,3 +58,23 @@ func test_exterior_visibility_and_collision_follow_real_saved_level() -> void:
 	await wait_physics_frames(2)
 	check(campus.visible, "new game restores ground exterior")
 	main.free()
+
+func test_wall_paint_is_never_brighter_than_real_paint() -> void:
+	var bright: Color = Color(0.95, 0.94, 0.9)
+	var capped: Color = EnvironmentFinish.painted_albedo(bright)
+	check(absf(capped.get_luminance() - EnvironmentFinish.MAX_PAINT_LUMINANCE) < 0.01, "near-white paint is brought down to the cap")
+	check(capped.r > capped.b, "and keeps its warm hue")
+	var green: Color = Color(0.45, 0.62, 0.52)
+	check_eq(EnvironmentFinish.painted_albedo(green), green, "mid-tone paint is left alone")
+	var root: Node3D = (load("res://assets/exports/clinical/env/ENV_ClinicalCorridor_20m.glb") as PackedScene).instantiate()
+	EnvironmentFinish.apply(root)
+	var finished: int = 0
+	for node: Node in root.find_children("*", "MeshInstance3D", true, false):
+		for surface: int in node.mesh.get_surface_count():
+			var material: StandardMaterial3D = node.get_surface_override_material(surface) as StandardMaterial3D
+			if material != null:
+				finished += 1
+				check(material.albedo_color.get_luminance() <= EnvironmentFinish.MAX_PAINT_LUMINANCE + 0.001,
+						"%s stays at or below the paint cap" % material.resource_name)
+	check(finished > 0, "the corridor has finished surfaces")
+	root.free()

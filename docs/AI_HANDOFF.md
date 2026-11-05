@@ -688,6 +688,12 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 
 ## Log
 
+### 2026-11-05 evening — Claude Code — lighting and materials baseline
+
+- #148 (objective star) merged. Branch `claude/lighting-baseline` from `main`: Chapter 1 environment exposure 0.92 and contrast 1.06 (filmic kept; ACES tried and made ceilings near-black); `EnvironmentFinish.painted_albedo` caps flat wall paint at luminance 0.7 so near-white walls stop glowing; `tools/godot/CaptureAtmosphere.tscn` captures each room (`--rooms=`, `--tag=`).
+- Tests: `test_environment_finish` 4/0; full game suite 474/0, no ERROR lines. Captures are Compatibility renderer only (no Vulkan here); the Mac runs Forward+ with SSAO, so Bi must judge it there. Before/after: `/mnt/project-files/atmosphere/`.
+- Next: per-room light tuning (patient rooms read dim), environmental detail.
+
 ### 2026-11-05 afternoon — Claude Code — objective star on the map
 
 - All eight roadmap and helper PRs (#139 to #147) merged; main `b757c45` CI green. The handoff-doc conflicts came from every PR editing the same five docs; GitHub ignores `merge=union`. From now on only one open PR at a time edits them.
