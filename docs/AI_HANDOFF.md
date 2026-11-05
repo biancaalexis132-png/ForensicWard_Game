@@ -21,6 +21,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
 | Cast v02 hair and clothing (Voss, Hale, Rahman, technician, Elias, Mara) | `claude/cast-hair-clothing` (draft PR to `main`) | Claude Code (cloud) | last commit on the branch | `tools/blender/characters/{cast_hair_cards.py,cast_garment_detail.py}`, `build_cast_member.py` (`hair.layered_cards` path only), six cast configs, `*_v02` assets/profiles/reports, `add_motion_clips.py` (version-derived names), `data/character_visuals.json` (six cast entries) | Full QA passed; approved by Bi 2026-11-05, ready for Bi to merge (PR #136) |
+| Elias meds and labs draft (pending Bi's clinical review) | `claude/meds-labs-draft` (draft PR to `main`) | Claude Code (cloud) | see PR | `data/clinical_workups/*`, `scripts/clinical/ClinicalWorkup.gd`, `ClinicalOrders.result_for`, `scripts/tests/test_clinical_workup.gd` | Draft; locked in every build until approved. The "Flesh out the Elias encounter" session owns the encounter UI and `data/elias_encounter.json` |
 | Animated cinematic pilot | `codex/cinematic-naomi-pilot` (draft PR #133) | Codex | `9109088a8a1df9d917c29c5245a60fe011109ceb` | New `scripts/cinematic/`, `scenes/cinematic/`, `data/cinematics/`, `tools/cinematic/`, cinematic review docs/screenshots | Standalone voiced Naomi preview; refined framing/lighting; Mac and campaign integration pending |
 | Mac release polish (HUD layout, Elias neckline, Mac export) | `claude/mac-release-polish` (draft PR to `main`) | Claude Code (cloud) | `7e59789` | `scripts/ui/{HUD,ObjectiveTracker}.gd`, `scenes/ui/HUD.tscn`, `scripts/tests/{TestRunner,test_objective_feedback}.gd`, `export_presets.cfg`, `.gitignore`, `project.godot` (one rendering setting), Elias `.blend`/GLB and motion report, `tools/character_animation/tuck_neckline.py`, `tools/release/export_macos.sh`, `tools/godot/capture_objective_hud.gd`, `docs/MAC_RELEASE_BUILD.md` | PR #131 merged; packaged app built and launched on Bi's Mac; waiting on Bi's playthrough |
 | Earlier patients wait on chairs for a check-in | `claude/ward-round-check-in-seats` (draft PR to `main`) | Claude Code (cloud) | last commit on the branch | `scripts/world/WardRoundBedside.gd`, `data/ward_round_bedside.json` `check_in`, `test_ward_round_bedside.gd`, `tools/godot/capture_ward_bedside.gd` | Full QA; staging pending Bi's look |
@@ -626,6 +627,14 @@ Copy this block to the top of the log and fill every field. Write "none" rather 
 - Six cast models rebuilt as v02: layered hair cards (`hair.layered_cards`, kept apart from the patients' `hair.cards`), garment trims and fold maps; walk and gesture clips added with `add_motion_clips.py`; Elias's sweatshirt neckline tucked. The game loads v02 (owner approved visual, 2026-10-19).
 - Tests: full headless QA: game 417/0, GLB 205/0, audio 1720/0, QA 19/0/0, boot OK, CH1_SEQUENCE_DONE (62.2 s), exit 0. Mac not run.
 - Resume: `docs/handoffs/2026-11-05_claude_cast_v02.md`.
+
+### 2026-11-05 — Claude Code — Elias medication and lab work-up draft
+
+- Branch `claude/meds-labs-draft` from `main` `fbd1544` (draft PR to `main`, not stacked).
+- `data/clinical_workups/elias_ward.json`: Elias's labs, medications and interventions in ward-round case form, PENDING_PSYCHIATRIST_REVIEW. Follows approved Okafor; adds UDS and collateral (required), neuro and physical exam (helpful). No doses or numbers.
+- `scripts/clinical/ClinicalWorkup.gd`: validates against the ward-round catalogs; returns no result or verdict unless file and case are APPROVED, in every build mode. `ClinicalOrders.result_for` reads an order's `workup_lab`.
+- Approved order wording in `data/order_catalog.json` left unchanged. Review doc for Bi: https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm. Logged pending in `docs/clinical_review_log.md`.
+- Next: Bi approves or edits; then the encounter session wires bedside items to these lab ids and plan keys. See `docs/handoffs/2026-11-05_claude_meds_labs_draft.md`.
 
 ### 2026-11-03 night — Claude Code — ward-round bedside conversation
 
