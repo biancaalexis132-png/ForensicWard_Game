@@ -1,5 +1,12 @@
 # AI session handoff
 
+## Claude Code "Make the game more compelling" (Bi's seven-point roadmap) — 2026-11-05
+
+- Objective: work through Bi's roadmap in small PRs from `main` (no stacking). Point 1 (Elias) and Mac presentation fixes belong to other threads.
+- PRs: #137 case file, #139 map, #140 staff remember choices, #142 transitions, #143 performances, `claude/room-sound` (this branch).
+- Next: lighting and materials baseline; after #137 merges, the objective marker on the map and the approved ending paragraph.
+- Constraints: no new clinical or story wording without Bi's approval; never merge; never run git on the SSK drive. Audio mix is untested on the Mac. Last updated 2026-11-05.
+
 ## Claude Code cast v02 hair and clothing — 2026-11-05
 
 - Objective: Bi's "Create completed cast models. Improve hair and clothing." Branch `claude/cast-hair-clothing` (draft PR to `main`), with `main` `b1c3e63` merged in.

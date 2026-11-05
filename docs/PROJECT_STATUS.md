@@ -28,6 +28,8 @@
 
 # Project status
 
+**Directional room sound (Claude Code, 2026-11-05; draft PR, not merged):** `claude/room-sound` from `main` `8a4466f`. Ceiling lights hum and workstations whir from where they are; the hum stops in the historical wing and Ward Zero. Not heard on the Mac.
+
 **Packaged Mac app (2026-11-04):** PR #131 is merged. On Bi's MacBook Air the standalone app exports, passes its launch check and the automated Mac QA (game 417/0, audio 1720/0), and opens on the title screen without the editor. The hands-on playthrough, three endings and listening pass are still with Bi (`docs/MAC_RELEASE_BUILD.md` §3).
 
 **Mac release polish (Claude Code, 2026-11-04; draft PR, not merged):** `claude/mac-release-polish` at `7e59789`, from `main`. The objective banner no longer covers character name tags, the current objective shows once, Elias's shoulder seams are closed, and the repository can now build a standalone macOS app (`tools/release/export_macos.sh`, `docs/MAC_RELEASE_BUILD.md`). Full QA passed (game 413/0, audio 1720/0). The Mac app was built in the container but has not been run on a Mac.

@@ -228,6 +228,7 @@
 			"duration_seconds": 209.135,
 			"ids": [
 				"mus_waiting_room",
+				"ward_underscore",
 				"hospital_ordinary"
 			],
 			"integration_status": "integrated",
@@ -270,6 +271,21 @@
 			"review_status": "pending_listening_review",
 			"sha256": "4981caa6e0a3b62a3309a22752b8dd990fdb7c3529b04106f2cc204a11f40c9e",
 			"source": "Procedural synthesis, tools/audio/synth_sfx.py walla (seed 5701): Kokoro walla lines from data/narrative/walla.json overlapped, panned, low-passed at 1.1 kHz and reverberated; 4 s seamless loop crossfade"
+		},
+		{
+			"file": "audio/ambience/amb_fixture_hum_loop.ogg",
+			"category": "ambience",
+			"duration_seconds": 20.0,
+			"ids": [
+				"amb_fixture_hum"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "positional, at ceiling lights near the player (RoomSounds)",
+			"notes": "Seamless 20 s mono loop for an AudioStreamPlayer3D",
+			"review_status": "pending_listening_review",
+			"sha256": "1dd8e8dedac2a1b5e8adc2d81e5a1d6b9cc15739f933c0d82f3fd6e2b009726f",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py fixture_hum (seed 2101): 120 Hz ballast harmonics, clipped coil buzz, high hiss, two starter ticks; 2 s equal-power loop crossfade; mono"
 		},
 		{
 			"file": "audio/ambience/amb_historic_intercom_static_loop.ogg",
@@ -315,6 +331,21 @@
 			"review_status": "pending_listening_review",
 			"sha256": "290ea28266408c442e573f22bbdf1eb04d3671b52ab4516ad867333d93c4cbe4",
 			"source": "Procedural synthesis, tools/audio/synth_sfx.py ward_zero (seed 6101): low room tone, drafts, beating 50/50.4 Hz hum, drips and pipe ticks in a long reverb; seamless loop"
+		},
+		{
+			"file": "audio/ambience/amb_workstation_fan_loop.ogg",
+			"category": "ambience",
+			"duration_seconds": 20.0,
+			"ids": [
+				"amb_workstation_fan"
+			],
+			"integration_status": "integrated",
+			"license": "Original work owned by The Forensic Ward project; no third-party samples",
+			"location": "positional, at EHR workstations near the player (RoomSounds)",
+			"notes": "Seamless 20 s mono loop for an AudioStreamPlayer3D",
+			"review_status": "pending_listening_review",
+			"sha256": "4aa0569895101c08c64f5c6792ddd8249d3629bf78bbaa2850b3a2d051ad68d6",
+			"source": "Procedural synthesis, tools/audio/synth_sfx.py workstation_fan (seed 2102): band-passed pink-noise fan air, 247/494 Hz blade tone, faint 9.1 kHz coil whine, drive seeks; 2 s equal-power loop crossfade; mono"
 		},
 		{
 			"file": "audio/music/mus_transition_unease_01.ogg",

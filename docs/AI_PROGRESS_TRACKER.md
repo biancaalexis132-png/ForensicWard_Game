@@ -1,5 +1,14 @@
 # AI progress tracker
 
+## Make the game more compelling (Bi's roadmap) — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Case file, map, staff remember, transitions, performances | Draft PRs #137, #139, #140, #142, #143 | | | full QA, CI | Bi |
+| Directional room sound | Draft PR | | `RoomSounds.gd`, `data/room_sounds.json` | `test_room_sounds` (3), full QA | Bi listens on the Mac |
+| Lighting and materials baseline | Not started | | | | Next |
+| Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
+
 ## Cast v02 hair and clothing — Claude Code (cloud), 2026-11-05
 
 | Task | State | Depends on | Paths | Validation | Next action |
