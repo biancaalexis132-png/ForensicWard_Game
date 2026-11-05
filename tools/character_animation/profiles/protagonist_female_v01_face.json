@@ -1,0 +1,29 @@
+{
+  "character_id": "protagonist_female",
+  "display_name": "Psychiatrist (female)",
+  "version": "v01_face",
+  "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+  "source_blend": "build/cast/Psychiatrist_Female_v01_anim.blend",
+  "objects": {
+    "rig": "Psychiatrist_Female_Rig",
+    "face_mesh": "Psychiatrist_Female_Body",
+    "eye_l": "PsyF_Eye_L",
+    "eye_r": "PsyF_Eye_R"
+  },
+  "face_source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v07.blend",
+    "body": "Naomi_Bennett_Body",
+    "base_blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "base_body": "Naomi_Bennett_Body"
+  },
+  "target_base": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "body": "Naomi_Bennett_Body",
+    "cast_config": "tools/blender/characters/cast/protagonist_female.json"
+  },
+  "outputs": {
+    "blend": "build/cast/Psychiatrist_Female_v01_face.blend",
+    "glb": "build/cast/Psychiatrist_Female_v01_face.glb",
+    "report": "tools/character_animation/reports/protagonist_female_v01_face_report.json"
+  }
+}

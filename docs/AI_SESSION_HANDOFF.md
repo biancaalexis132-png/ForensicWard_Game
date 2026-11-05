@@ -1,5 +1,7 @@
 # AI session handoff
 
+## Claude Code Elias bedside encounter — 2026-11-05
+
 ## Claude Code "Make the game more compelling" (Bi's seven-point roadmap) — 2026-11-05
 
 - Objective: work through Bi's roadmap in small PRs from `main` (no stacking). Point 1 (Elias) and Mac presentation fixes belong to other threads.
@@ -23,6 +25,12 @@
 
 ## Claude Code Mac playtest fixes — 2026-11-05
 
+- Objective: flesh out the Elias encounter from Bi's playtest (exam shown, full history, 1:1 sitter, orders from the encounter, background staff). Branch `claude/elias-encounter` (draft PR to `main`), from `main` `144e609`.
+- Done: encounter data, EncounterManager autoload, EncounterScreen, EncounterStage with ExamPoseModifier IK, six draft models (male/female psychiatrist, sitter, two nurses, housekeeper), background staff routes, split-screen milestone withdrawn. Test results in `docs/handoffs/2026-11-05_claude_elias_encounter.md`.
+- Clinical content approved by Bi 2026-11-05 ("approve"; questions left as drafted). Pending Bi: look at the models and poses on the Mac; merge. Voice clips for the new lines need the local Kokoro setup.
+- Next exact step: answer review comments on PR #138; voice the new lines with the local Kokoro setup. Last updated 2026-11-05.
+
+## Claude Code Mac playtest fixes — 2026-11-05
 - Objective: fix the smaller findings from Bi's first play of the packaged Mac app. Branch `claude/mac-playtest-fixes` at `6df47bd` plus this docs commit (draft PR to `main`).
 - Done: Naomi turns and acts; pronouns pick the voice; Voss walks out after the talk (`CastExit`); ward-round patients must be seen on the ward first; title theme from launch and the corridor bed (the "rain") lowered; quit no longer timer-based. Full QA on `6df47bd` (this branch with `main` `fbd1544` merged): game **422/0**, audio **1720/0**, QA **19/0/0**, GLB **199/0**, pharmacology 0 failures, CH1_SEQUENCE_DONE 62.3 s, no ERROR lines, exit 0.
 - Pending Bi: merge; then a Mac rebuild and hand check (Remote Control or Bi). Elias redesign and background staff: separate thread.

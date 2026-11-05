@@ -433,7 +433,12 @@ const WORLD_FILE: Dictionary = {
 						"points": {"type": "array", "items": {"type": "array", "items": {"type": "number"}, "min_items": 2}, "min_items": 1},
 					}, "optional": {
 						"pause_seconds": {"type": "array", "items": {"type": "number"}, "min_items": 2},
+						## pause_gestures: clip names played at each stop (a nurse writing, a housekeeper wiping).
+						"pause_gestures": _STRINGS,
 					}},
+					## at: zone-local [x, z] floor point for background staff; marker then only names the zone.
+					"at": {"type": "array", "items": {"type": "number"}, "min_items": 2},
+					"yaw_degrees": {"type": "number"},
 					## exit_after_talk: the character walks out after a conversation (CastExit), cosmetic only.
 					"exit_after_talk": {"type": "object", "required": {
 						"points": {"type": "array", "items": {"type": "array", "items": {"type": "number"}, "min_items": 2}, "min_items": 1},
