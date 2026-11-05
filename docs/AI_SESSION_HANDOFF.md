@@ -1,5 +1,12 @@
 # AI session handoff
 
+## Claude Code Mac playtest fixes — 2026-11-05
+
+- Objective: fix the smaller findings from Bi's first play of the packaged Mac app. Branch `claude/mac-playtest-fixes` at `6df47bd` plus this docs commit (draft PR to `main`).
+- Done: Naomi turns and acts; pronouns pick the voice; Voss walks out after the talk (`CastExit`); ward-round patients must be seen on the ward first; title theme from launch and the corridor bed (the "rain") lowered; quit no longer timer-based. Full QA on `6df47bd` (this branch with `main` `fbd1544` merged): game **422/0**, audio **1720/0**, QA **19/0/0**, GLB **199/0**, pharmacology 0 failures, CH1_SEQUENCE_DONE 62.3 s, no ERROR lines, exit 0.
+- Pending Bi: merge; then a Mac rebuild and hand check (Remote Control or Bi). Elias redesign and background staff: separate thread.
+- Next exact step: on the Mac, `~/Developer/forensicward-release`, check out the branch (or `main`), `tools/release/export_macos.sh`, open the app, check the items in `docs/handoffs/2026-11-05_claude_mac_playtest_fixes.md`. Never git on the SSK drive. Last updated 2026-11-05.
+
 ## Claude Code Mac release polish — 2026-11-04
 
 - Update (evening): PR #131 merged by Bi into `main` (`144e609`). Mac run 2026-11-04 (Bi's MacBook Air M1, Godot 4.7.2.stable.official.ed1daf0bf, fresh clone `~/Developer/forensicward-release` at `c96f5f2`, same code as `main` `144e609`; nothing on the SSK drive): `tools/release/export_macos.sh` PASS (4.7.2 templates SHA-512 OK, ad-hoc signature valid, app 741 MB, LAUNCH_CHECK PASS, 0 ERROR lines); `tools/qa/mac_acceptance.py` exit 0 (QA 19/0/0, GLB 199/0, game 417/0, audio 1720/0, pharmacology 0 failures, Python tests passed, Chapter 1 sequence done); the packaged app opened from Finder-equivalent `open` and showed the title screen (New Game, Customize, Continue greyed, Settings, Quit, Ready.). App at `/Users/bi/Developer/forensicward-release/build/macos/The Forensic Ward.app`. Hands-on playthrough, endings and listening: NOT TESTED, waiting on Bi.
