@@ -45,6 +45,24 @@ func test_new_game_starts_play() -> void:
 	await runner.get_tree().create_timer(0.3).timeout  # Lets the skipped prologue's audio release.
 
 
+func test_the_main_theme_plays_under_the_title_from_the_start() -> void:
+	var main: Node = await _main()
+	var title: TitleScreen = main.get_node("TitleScreen")
+	title.open()
+	check_eq(AudioDirector.get_music_context(), TitleScreen.MUSIC_CONTEXT, "the title starts the main-menu music")
+	var music: AudioStreamPlayer = AudioDirector.get_active_music()
+	check(music != null and music.playing and music.stream.resource_path.ends_with("music_main_theme.ogg"),
+			"the main theme is playing")
+	check_eq(AudioDirector.process_mode, Node.PROCESS_MODE_ALWAYS, "and keeps playing while the title pauses the game")
+	await runner.get_tree().create_timer(0.3).timeout
+	check(music.playing and not music.stream_paused, "it is still playing a moment later, under the paused game")
+	title.close()
+	check(AudioDirector.get_music_context() != TitleScreen.MUSIC_CONTEXT, "closing the title hands the music back")
+	check_eq(AudioDirector.process_mode, Node.PROCESS_MODE_INHERIT, "and the audio pauses with the game again")
+	AudioDirector.stop_music(0.01)
+	await runner.get_tree().create_timer(0.1).timeout
+
+
 func test_continue_needs_a_save_and_loads_it() -> void:
 	var main: Node = await _main()
 	var title: TitleScreen = main.get_node("TitleScreen")

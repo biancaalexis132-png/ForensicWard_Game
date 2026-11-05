@@ -274,6 +274,8 @@ func _build_characters(root: Node3D, zone_id: String, entries: Array) -> void:
 			if route != null:
 				for gesture: Variant in entry["route"].get("pause_gestures", []):
 					route.pause_gestures.append(StringName(str(gesture)))
+		if entry.has("exit_after_talk"):
+			CastExit.attach(character, entry["exit_after_talk"], CampaignCastVisuals.walk_step_for(character.character_id))
 		_characters[character.character_id] = character
 
 
