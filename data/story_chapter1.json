@@ -41,7 +41,7 @@
 		},
 		{
 			"id": "obj_act",
-			"text": "Choose a clinical action for Elias in the EHR (Orders).",
+			"text": "Decide on Elias's orders: at the bedside in Interview Room A, or in the EHR (Orders).",
 			"complete_when": {
 				"action_committed": "pt_elias_ward"
 			},

@@ -209,6 +209,10 @@ static func check_references(documents: Dictionary) -> Array[String]:
 						valid = valid and is_finite(value) and (value > 0.0 and value <= 2.0 if field == "size" else absf(value) <= 100.0)
 					if not valid:
 						errors.append("[%s] characters[%d].interaction_box.%s: expected three finite coordinates (size > 0 and <= 2 m; center within 100 m)." % [file, i, field])
+			if character.has("at"):
+				var at: Variant = character["at"]
+				if not at is Array or at.size() != 2 or not at.all(func(v: Variant) -> bool: return (v is float or v is int) and absf(float(v)) <= 100.0):
+					errors.append("[%s] characters[%d].at: expected a zone-local [x, z] floor point within 100 m." % [file, i])
 			if character.has("route"):
 				if bool(character.get("seated", false)):
 					errors.append("[%s] characters[%d].route: a seated character cannot walk a route." % [file, i])
