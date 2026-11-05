@@ -177,6 +177,9 @@ func _campaign_end_panel(response: String) -> Dictionary:
 	for line: Dictionary in end["lines"]:
 		if StoryLogic.evaluate(line["when"], _story_state()):
 			lines.append("• " + str(line["text"]))
+	var record: String = CaseFile.record_summary(self)
+	if not record.is_empty():
+		lines.append_array(["", record])
 	return {"title": end["title"], "body": "\n".join(lines)}
 
 

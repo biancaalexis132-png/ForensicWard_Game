@@ -25,6 +25,14 @@ static var _entries: Array = []
 static var _loaded: bool = false
 
 
+## Section D lines of the approved review sheet, shown under "Your record".
+const RECORD_MORE_OPEN: String = "You left more questions open than you closed, and every one of them is written down. That's what lets someone else pick them up."
+const RECORD_MORE_SETTLED: String = "Most of what you recorded will stand up to a second reader. The rest is marked for what it is."
+const RECORD_EVERY_CARE_STEP: String = "No patient waited on this investigation. That was a choice, and you made it every time."
+## D3: coverage confirmed in Chapters 3 and 5, and care escalated in Chapter 5.
+const EVERY_CARE_STEP: Array = [["ch3", "ch3_coverage_confirmed"], ["ch5", "ch5_brief_coverage"], ["ch5", "ch5_care_escalated"]]
+
+
 ## The authored entries (data/case_file.json), loaded once.
 static func entries() -> Array:
 	if not _loaded:
@@ -93,6 +101,35 @@ static func noted(director: ChapterDirector) -> Array[Dictionary]:
 						"flag": flag, "status": entry["status"], "text": entry["text"],
 						"source": str(interaction["title"]), "choice": str(option["label"])})
 	return result
+
+
+## The closing paragraph of the end-of-campaign panel, built from the case file
+## (approved by Bi 2026-11-05, review sheet section D). "" with nothing noted.
+static func record_summary(director: ChapterDirector) -> String:
+	var notes: Array[Dictionary] = noted(director)
+	if notes.is_empty():
+		return ""
+	var counts: Dictionary = {"established": 0, "open": 0, "care": 0}
+	for note: Dictionary in notes:
+		counts[note["status"]] = int(counts.get(note["status"], 0)) + 1
+	var lines: Array[String] = ["Your record: %s, %s, %s." % [
+		_count(counts["established"], "finding preserved as found", "findings preserved as found"),
+		_count(counts["open"], "question left honestly open", "questions left honestly open"),
+		_count(counts["care"], "care decision that kept patients first", "care decisions that kept patients first")]]
+	if counts["open"] > counts["established"]:
+		lines.append(RECORD_MORE_OPEN)
+	elif counts["established"] > counts["open"]:
+		lines.append(RECORD_MORE_SETTLED)
+	var all_care: bool = true
+	for step: Array in EVERY_CARE_STEP:
+		all_care = all_care and str(step[1]) in director.get_chapter_flags(str(step[0]))
+	if all_care:
+		lines.append(RECORD_EVERY_CARE_STEP)
+	return "\n\n".join(lines)
+
+
+static func _count(value: int, one: String, many: String) -> String:
+	return "%d %s" % [value, one if value == 1 else many]
 
 
 ## Where the current objective happens ("With Naomi Bennett", "At Records
