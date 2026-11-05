@@ -1,0 +1,29 @@
+{
+  "character_id": "protagonist_male",
+  "display_name": "Psychiatrist (male)",
+  "version": "v01_face",
+  "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
+  "source_blend": "build/cast/Psychiatrist_Male_v01_anim.blend",
+  "objects": {
+    "rig": "Psychiatrist_Male_Rig",
+    "face_mesh": "Psychiatrist_Male_Body",
+    "eye_l": "PsyM_Eye_L",
+    "eye_r": "PsyM_Eye_R"
+  },
+  "face_source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v07.blend",
+    "body": "Naomi_Bennett_Body",
+    "base_blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "base_body": "Naomi_Bennett_Body"
+  },
+  "target_base": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v01.blend",
+    "body": "Naomi_Bennett_Body",
+    "cast_config": "tools/blender/characters/cast/protagonist_male.json"
+  },
+  "outputs": {
+    "blend": "build/cast/Psychiatrist_Male_v01_face.blend",
+    "glb": "build/cast/Psychiatrist_Male_v01_face.glb",
+    "report": "tools/character_animation/reports/protagonist_male_v01_face_report.json"
+  }
+}
