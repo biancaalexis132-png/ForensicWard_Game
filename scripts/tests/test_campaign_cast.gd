@@ -43,7 +43,8 @@ func test_all_five_chapters_use_real_cast_without_preview_arguments() -> void:
 			check_eq(visual.get_child_count(), 1, "%s %s has one imported model" % [chapter, id])
 			check(not (actor.get_node("Body/Mesh") as MeshInstance3D).visible, "capsule is fallback only")
 			check_eq(actor.visual_scene.resource_path, data["characters"][id]["scene"], "correct cast asset")
-			check_eq(str(actor.get_meta("visual_review_status")), "PENDING_OWNER_VISUAL_REVIEW", "integration never invents visual approval")
+			check_eq(str(actor.get_meta("visual_review_status")), str(data["characters"][id]["review_status"]), "integration carries the catalogue's visual status")
+			check_eq(str(actor.get_meta("visual_review_status")), "OWNER_APPROVED_VISUAL", "owner approved all cast models on 2026-10-19")
 			if visual.get_child_count() != 1:
 				continue
 			var model: Node3D = visual.get_child(0)
@@ -72,7 +73,7 @@ func test_model_choice_does_not_enter_saves_and_survives_zone_reload() -> void:
 	check_eq(SaveManager.capture_state(), before, "cosmetic model removal changes no saved gameplay state")
 	check_eq(SaveManager.save_game(TEST_SAVE_SLOT), OK, "real save with campaign models")
 	var saved: String = FileAccess.get_file_as_string(SaveManager.get_slot_path(TEST_SAVE_SLOT))
-	check(not "v01_draft" in saved and not "Naomi_Bennett_v07" in saved, "model paths and approvals stay outside save schema")
+	check(not "v01_draft" in saved and not "_v02.glb" in saved and not "Naomi_Bennett_v07" in saved, "model paths and approvals stay outside save schema")
 	check_eq(SaveManager.load_game(TEST_SAVE_SLOT), OK, "real save restores campaign")
 	world.unload_zone(world.start_zone_id)
 	await runner.get_tree().process_frame

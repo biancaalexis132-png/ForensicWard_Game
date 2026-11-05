@@ -2,6 +2,15 @@
 
 ## Claude Code Elias bedside encounter — 2026-11-05
 
+## Claude Code cast v02 hair and clothing — 2026-11-05
+
+- Objective: Bi's "Create completed cast models. Improve hair and clothing." Branch `claude/cast-hair-clothing` (draft PR to `main`), with `main` `b1c3e63` merged in.
+- Done: six v02 models (finer layered hair cards, garment trims, fold maps), main's walk and gesture clips added, Elias neckline tucked, game switched to v02. Tests: full headless QA: game 417/0, GLB 205/0, audio 1720/0, QA 19/0/0, boot OK, CH1_SEQUENCE_DONE (62.2 s), exit 0. Mac not run.
+- Approved by Bi on 2026-11-05 ("approve"); PR #136 is ready for review. Pending Bi: merge. Earlier ask was to look at the review sheets (`/mnt/project-files/cast_v02/`, `assets/renders/characters/*_v02_*.png`) and in game on the Mac; merge the PR.
+- Next exact step: none until Bi reviews. If Elias's far shoulder still shows a dark sliver, rerun `tuck_neckline.py` with a larger `--band-m`, then `add_motion_clips.py`. See `docs/handoffs/2026-11-05_claude_cast_v02.md`. Last updated 2026-11-05 01:50 UTC.
+
+## Claude Code Mac playtest fixes — 2026-11-05
+
 - Objective: flesh out the Elias encounter from Bi's playtest (exam shown, full history, 1:1 sitter, orders from the encounter, background staff). Branch `claude/elias-encounter` (draft PR to `main`), from `main` `144e609`.
 - Done: encounter data, EncounterManager autoload, EncounterScreen, EncounterStage with ExamPoseModifier IK, six draft models (male/female psychiatrist, sitter, two nurses, housekeeper), background staff routes, split-screen milestone withdrawn. Test results in `docs/handoffs/2026-11-05_claude_elias_encounter.md`.
 - Clinical content approved by Bi 2026-11-05 ("approve"; questions left as drafted). Pending Bi: look at the models and poses on the Mac; merge. Voice clips for the new lines need the local Kokoro setup.
