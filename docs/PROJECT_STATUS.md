@@ -28,7 +28,6 @@
 
 # Project status
 
-**Directional room sound (Claude Code, 2026-11-05; draft PR, not merged):** `claude/room-sound` from `main` `8a4466f`. Ceiling lights hum and workstations whir from where they are; the hum stops in the historical wing and Ward Zero. Not heard on the Mac.
 **Map readability (Claude Code, 2026-11-05; draft PR, not merged):** `claude/map-readability` from `main` `b1c3e63`. M opens the map; rooms are named beside the plan, your room is highlighted, staff and story patients show as named dots, with a drawn legend and a "You are in / On this floor" line. Not tested on the Mac.
 **Elias bedside encounter (Claude Code, 2026-11-05; draft PR, not merged):** `claude/elias-encounter`, from `main`. Approaching Elias opens a bedside encounter: the player's psychiatrist walks over and performs the examination, a 1:1 sitter answers a full history, and orders are given in the room (placing the real EHR orders), with Bennett challenging an antipsychotic and a lorazepam reassessment later in the shift. Background staff walk and work on the Chapter 1 ward. Bi approved the clinical content on 2026-11-05; new lines are not voiced. Not tested on the Mac.
 
