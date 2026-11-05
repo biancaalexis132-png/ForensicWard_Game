@@ -2,6 +2,7 @@
 
 ## Claude Code Mac playtest fixes — 2026-11-05
 
+- Update: PR #135 merged. Mac rebuild 2026-11-05 (Bi's MacBook Air, `~/Developer/forensicward-release` at `182f1b3` = `main` with PR #135; nothing on the SSK drive): `tools/release/export_macos.sh` exit 0, LAUNCH_CHECK PASS, app 746 MB, ad-hoc signature valid, 0 ERROR lines (the 10 AnimationLibrary lines did not appear). Quit request on the title: process gone in 0.51 s (macOS Quit event, not the Cmd-Q keystroke). Title theme by ear, Voss exit, Naomi turning, ward-round gate: NOT TESTED (game window behind the browser; no safe way to send keys). Bi to play `build/macos/The Forensic Ward.app`.
 - Objective: fix the smaller findings from Bi's first play of the packaged Mac app. Branch `claude/mac-playtest-fixes` at `6df47bd` plus this docs commit (draft PR to `main`).
 - Done: Naomi turns and acts; pronouns pick the voice; Voss walks out after the talk (`CastExit`); ward-round patients must be seen on the ward first; title theme from launch and the corridor bed (the "rain") lowered; quit no longer timer-based. Full QA on `6df47bd` (this branch with `main` `fbd1544` merged): game **422/0**, audio **1720/0**, QA **19/0/0**, GLB **199/0**, pharmacology 0 failures, CH1_SEQUENCE_DONE 62.3 s, no ERROR lines, exit 0.
 - Pending Bi: merge; then a Mac rebuild and hand check (Remote Control or Bi). Elias redesign and background staff: separate thread.
