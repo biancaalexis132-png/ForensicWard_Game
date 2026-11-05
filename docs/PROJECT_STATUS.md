@@ -28,6 +28,11 @@
 
 # Project status
 
+**Staff remember earlier choices (Claude Code, 2026-11-05; draft PR, not merged):** `claude/staff-remember-choices` from `main` `b1c3e63`. Staff can open their first reply in a chapter with one line about an earlier choice, once. 17 lines approved by Bi (2026-11-05) and switched on, shown as text until voiced. Not tested on the Mac.
+**Smooth transitions (Claude Code, 2026-11-05; draft PR, not merged):** `claude/smooth-transitions` from `main` `b1c3e63`. Screens, the pause menu, new dialogue text and subtitles ease in instead of popping; reduce motion turns it off. Not tested on the Mac.
+**Conversation performances (Claude Code, 2026-11-05; draft PR, not merged):** `claude/conversation-performances` from `main` `4ff8219`. Staff and patients other than Naomi now show their own speaking and listening faces, look at whoever is talking, glance away naturally while they speak, and staff take a short beat before replying to your choices. Patients stay neutral (no averted eyes or pauses). Not tested on the Mac.
+**Directional room sound (Claude Code, 2026-11-05; draft PR, not merged):** `claude/room-sound` from `main` `8a4466f`. Ceiling lights hum and workstations whir from where they are; the hum stops in the historical wing and Ward Zero. Not heard on the Mac.
+**Ending reflects the player's record (Claude Code, 2026-11-05; draft PR, not merged):** `claude/ending-record` from `main` `851a713`. The end-of-campaign panel closes with the player's record from the case file (findings preserved, questions left open, care decisions) and Bi's approved closing lines. Not seen on the Mac.
 **Map readability (Claude Code, 2026-11-05; draft PR, not merged):** `claude/map-readability` from `main` `b1c3e63`. M opens the map; rooms are named beside the plan, your room is highlighted, staff and story patients show as named dots, with a drawn legend and a "You are in / On this floor" line. Not tested on the Mac.
 **Elias bedside encounter (Claude Code, 2026-11-05; draft PR, not merged):** `claude/elias-encounter`, from `main`. Approaching Elias opens a bedside encounter: the player's psychiatrist walks over and performs the examination, a 1:1 sitter answers a full history, and orders are given in the room (placing the real EHR orders), with Bennett challenging an antipsychotic and a lorazepam reassessment later in the shift. Background staff walk and work on the Chapter 1 ward. Bi approved the clinical content on 2026-11-05; new lines are not voiced. Not tested on the Mac.
 
@@ -146,7 +151,7 @@ Status meanings:
 
 Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (approved by the owner on 2026-10-17). Owner decisions that amend the GDD: `docs/design/GDD_AMENDMENTS.md`. Id rules: `docs/ID_REGISTRY.md`.
 
-**Elias medication and lab work-up drafted (Claude Code, 2026-11-05; draft PR, not merged):** `claude/meds-labs-draft`. Elias's labs and medication choices are written in ward-round form for Bi's clinical review (https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm). They are locked in every build until Bi approves them, and they never change his story. Not tested on the Mac.
+**Elias medication and lab work-up (Claude Code, 2026-11-05; #134 merged, approved by Bi 2026-11-05; approval in draft PR `claude/meds-labs-approved`):** `claude/meds-labs-draft`. Elias's labs and medication choices are written in ward-round form for Bi's clinical review (https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm). They are locked in every build until Bi approves them, and they never change his story. Not tested on the Mac.
 
 ## Pull requests
 
