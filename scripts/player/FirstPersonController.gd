@@ -115,6 +115,7 @@ func _set_focus(target: Interactable) -> void:
 		return
 	_focused = target
 	EventBus.interaction_focus_changed.emit(target.get_prompt() if target != null else "")
+	EventBus.interaction_target_changed.emit(target)
 
 
 ## Re-announces the prompt (e.g. after a door opens and its prompt changes).

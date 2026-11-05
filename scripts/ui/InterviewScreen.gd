@@ -223,7 +223,9 @@ func _set_name_tag_visible(shown: bool) -> void:
 	if _world == null:
 		return
 	var tag: Node3D = _world.find_child("Character_" + patient_id, true, false)
-	if tag != null and tag.has_node("NameLabel"):
+	if tag is WardCharacter:
+		(tag as WardCharacter).name_tag_suppressed = not shown
+	elif tag != null and tag.has_node("NameLabel"):
 		(tag.get_node("NameLabel") as Node3D).visible = shown
 
 

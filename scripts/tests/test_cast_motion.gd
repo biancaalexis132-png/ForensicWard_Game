@@ -321,6 +321,20 @@ func test_voss_walks_out_of_the_office_after_the_talk_and_is_back_on_load() -> v
 	camera.free()
 
 
+func test_name_tag_shows_only_while_the_player_looks_at_the_character() -> void:
+	var voss: WardCharacter = _spawn("staff_voss", false)
+	check(not voss.is_name_tag_shown(), "no floating name while nobody looks at her")
+	EventBus.interaction_target_changed.emit(voss.get_node("Interactable"))
+	check(voss.is_name_tag_shown(), "the name shows while the player looks at her")
+	voss.name_tag_suppressed = true
+	check(not voss.is_name_tag_shown(), "a screen that already shows the name hides it")
+	voss.name_tag_suppressed = false
+	EventBus.interaction_target_changed.emit(null)
+	check(not voss.is_name_tag_shown(), "and it goes when the player looks away")
+	voss.mark_visual_missing("test")
+	check(voss.is_name_tag_shown(), "a development error always shows")
+
+
 # --------------------------------------------------------------------------- helpers
 
 func _planned_gestures() -> Array:

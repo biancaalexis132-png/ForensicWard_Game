@@ -42,6 +42,14 @@ var _visual_slot_ready: bool = false
 ## Why a catalogued model could not be shown ("" when there is no fault).
 var visual_error: String = ""
 var _away: bool = false
+## The floating name shows only while the player looks at this character (Bi,
+## 2026-11-05), or always when it reports a development error.
+var _looked_at: bool = false
+## Set while a screen already shows the name (the interview title).
+var name_tag_suppressed: bool = false:
+	set(value):
+		name_tag_suppressed = value
+		_update_name_tag()
 
 ## Magenta reads as "broken build" at a glance; no authored character uses it.
 const MISSING_VISUAL_COLOR: Color = Color(1.0, 0.0, 0.85)
@@ -60,6 +68,7 @@ func _ready() -> void:
 		_name_label.position.y = 1.55
 	_interactable.interactable_id = "character:" + character_id
 	_interactable.interacted.connect(_on_interacted)
+	EventBus.interaction_target_changed.connect(_on_interaction_target_changed)
 	if not present_when.is_empty():
 		EventBus.objective_changed.connect(_update_presence.unbind(2))
 		# Optional scenes set flags without moving the objective.
@@ -86,6 +95,7 @@ func _ready() -> void:
 		_naomi_acting.name = "NaomiActingController"
 		_naomi_acting.actor_root = self
 		add_child(_naomi_acting)
+	_update_name_tag()
 
 
 func set_visual_scene(scene: PackedScene) -> bool:
@@ -144,6 +154,7 @@ func _show_visual_error() -> void:
 	_placeholder_mesh.visible = true
 	_name_label.text = "DEV ERROR: missing 3D model\n%s" % _display_name()
 	_name_label.modulate = MISSING_VISUAL_COLOR
+	_update_name_tag()
 	if not _announced_errors.has(character_id):
 		_announced_errors[character_id] = true
 		EventBus.notification_requested.emit("Development error: %s's 3D model did not load (see the Output log)." % _display_name())
@@ -171,6 +182,21 @@ func _remove_attached_visual() -> void:
 			_visual_root.remove_child(_attached_visual)
 		_attached_visual.queue_free()
 	_attached_visual = null
+
+
+func _on_interaction_target_changed(target: Node) -> void:
+	_looked_at = target != null and target == _interactable
+	_update_name_tag()
+
+
+func is_name_tag_shown() -> bool:
+	return _name_label != null and _name_label.visible
+
+
+func _update_name_tag() -> void:
+	if _name_label == null:
+		return
+	_name_label.visible = not visual_error.is_empty() or (_looked_at and not name_tag_suppressed)
 
 
 func is_present() -> bool:
