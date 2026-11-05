@@ -39,7 +39,7 @@
 
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Naomi faces you and moves | Mac FAIL from behind; full turn in PR #144 | | `CastPerformer.gd`, `Character.gd` | `test_cast_motion` | Mac look |
+| Naomi faces you and moves | Merged; Mac PASS at `424a513` | | `CastPerformer.gd`, `Character.gd` | `test_cast_motion` | Mac look |
 | Psychiatrist performs the exam on screen | Done, draft PR | cast pipeline | `EncounterStage.gd`, `ExamPoseModifier.gd`, protagonist models | `test_elias_encounter`, captures | Bi looks on the Mac |
 | Full history through a 1:1 sitter | Done, draft PR; content approved 2026-11-05 | | `data/elias_encounter.json`, Tom Adler model | `test_elias_encounter` | Bi answers the review sheet |
 | Orders from the encounter; split screen withdrawn | Done, draft PR; content approved 2026-11-05 | | `EncounterManager.gd`, `EncounterScreen.gd`, `data/milestones.json` | `test_elias_encounter`, `test_milestones` | Reconcile lab text with the meds/labs thread when it lands |
@@ -54,7 +54,7 @@
 | Title music; rain over music | Done, draft PR | | `TitleScreen.gd`, `audio/cues.json` | `test_title_screen`, `TestAudio` 1720/0 | Mac listen |
 | Cmd-Q | Merged (#135); Mac quit event 0.51 s | | `Main.gd` | quit probe 10 ms while paused; Mac quit event PASS | Bi presses Cmd-Q once |
 | Full QA | Passed on `6df47bd` | | | game 422/0, audio 1720/0, QA 19/0/0, GLB 199/0 | |
-| Name tags only when looked at | Done, PR #144 | | `Character.gd`, `FirstPersonController.gd`, `EventBus.gd`, `InterviewScreen.gd` | `test_cast_motion` | Mac look |
+| Name tags only when looked at | Merged; Mac PASS at `424a513` | | `Character.gd`, `FirstPersonController.gd`, `EventBus.gd`, `InterviewScreen.gd` | `test_cast_motion` | Mac look |
 | Mac rebuild | Done at `182f1b3`: export PASS, 746 MB, 0 ERROR | | `build/macos/` | LAUNCH_CHECK PASS | Bi plays: title theme, Voss, Naomi, ward-round gate |
 
 ## Elias meds and labs draft — Claude Code (cloud), 2026-11-05
