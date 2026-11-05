@@ -53,13 +53,16 @@ func _ready() -> void:
 		edit.custom_minimum_size.x = 470
 		grid.add_child(edit)
 		_fields[field] = edit
-		edit.text_changed.connect(func(value: String) -> void: _draft[field] = value)
+		edit.text_changed.connect(func(value: String) -> void:
+			_draft[field] = value
+			if field == "pronouns":
+				_follow_pronouns(value))
 	_name_field = _fields["name"]
 	# Gender sets the psychiatrist's voice; free-text pronouns stay a separate field.
 	var catalog_fields: Dictionary = {"gender": "genders", "professional_interest": "professional_interests", "acceptance_reason": "acceptance_reasons", "relationship": "relationships", "skin_tone": "skin_tones", "hair_color": "hair_colors", "hair_style": "hair_styles", "outfit": "outfits"}
 	for field: String in catalog_fields:
 		var label: Label = Label.new()
-		label.text = field.capitalize()
+		label.text = "Voice (gender)" if field == "gender" else field.capitalize()
 		grid.add_child(label)
 		var select: OptionButton = OptionButton.new()
 		for id: String in ProtagonistProfile.options[catalog_fields[field]]:
@@ -104,6 +107,21 @@ func open(_data: Dictionary = {}) -> void:
 func _refresh_portrait() -> void:
 	_portrait.draft = _draft.duplicate(true)
 	_portrait.queue_redraw()
+
+## Typing she/her or he/him picks the matching voice, so the voice follows the
+## character without a second step. The Voice choice can still be changed after.
+func _follow_pronouns(pronouns: String) -> void:
+	var first: String = pronouns.strip_edges().to_lower().get_slice("/", 0).strip_edges()
+	var gender: String = {"she": "female", "her": "female", "he": "male", "him": "male"}.get(first, "")
+	if gender.is_empty() or _draft.get("gender") == gender:
+		return
+	_draft["gender"] = gender
+	var select: OptionButton = _fields["gender"]
+	for index: int in select.item_count:
+		if select.get_item_metadata(index) == gender:
+			select.select(index)
+	_refresh_portrait()
+
 
 func confirm() -> void:
 	if ProtagonistProfile.apply_draft(_draft):

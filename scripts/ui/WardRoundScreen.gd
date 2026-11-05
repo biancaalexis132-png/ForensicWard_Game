@@ -13,6 +13,9 @@ extends CanvasLayer
 ## Below the tabs, always in view: the attending's reply and Submit to attending.
 ## Once a plan is accepted the reply adds the debrief (WardRoundScoring), and
 ## Replay case starts the patient again for a better score.
+## A patient who waits on the ward in 3D (data/ward_round_bedside.json) must be
+## seen there first: until the player has approached them, the EHR shows where
+## they are and keeps the bedside, labs and plan locked.
 ## The screen owns only the unsent plan; everything else is in WardRounds.
 ## Button handlers are public so tests drive the same paths a player does.
 
@@ -43,10 +46,13 @@ var _review: RichTextLabel
 var _submit: Button
 var _replay: Button
 var _close_button: Button
+## Case id -> character id for the patients who wait on the ward in 3D.
+var _ward_models: Dictionary = {}
 
 
 func _ready() -> void:
 	layer = 9
+	_ward_models = WardRoundBedside.load_data().get("patients", {})
 	_build()
 	visible = false
 	WardRounds.case_changed.connect(func(_id: String) -> void:
@@ -56,13 +62,15 @@ func _ready() -> void:
 
 # --- Panel protocol (Main) ---------------------------------------------------------
 
-## data: {"case_id": String (optional)}
+## data: {"case_id": String (optional), "at_bedside": bool (approached on the ward)}
 func open(data: Dictionary = {}) -> void:
 	visible = true
 	is_open = true
-	_refresh_census()
 	var ids: Array[String] = WardRounds.admitted_case_ids()
 	var wanted: String = str(data.get("case_id", ""))
+	if wanted in ids and bool(data.get("at_bedside", false)):
+		WardRounds.mark_seen(wanted)
+	_refresh_census()
 	if not wanted in ids:
 		wanted = _first_open(ids)
 	select_case(wanted)
@@ -101,12 +109,16 @@ func select_case(id: String) -> void:
 
 ## Bedside actions (buttons call these; so do tests).
 func open_bedside(opening_id: String) -> String:
+	if needs_visit(case_id):
+		return ""
 	var text: String = WardRounds.open_bedside(case_id, opening_id)
 	_after_bedside(text)
 	return text
 
 
 func ask(question_id: String) -> String:
+	if needs_visit(case_id):
+		return ""
 	var text: String = WardRounds.ask_bedside(case_id, question_id)
 	_after_bedside(text)
 	return text
@@ -133,6 +145,8 @@ func show_tab(tab_name: String) -> void:
 
 
 func order_lab(lab_id: String) -> bool:
+	if needs_visit(case_id):
+		return false
 	if not WardRounds.order_lab(case_id, lab_id):
 		return false
 	_build_labs()
@@ -175,6 +189,8 @@ func replay() -> bool:
 
 
 func submit() -> Dictionary:
+	if needs_visit(case_id):
+		return {}
 	var review: Dictionary = WardRounds.submit_plan(case_id, current_plan())
 	if not review.is_empty():
 		_build_plan()
@@ -184,6 +200,27 @@ func submit() -> Dictionary:
 			_refresh_census()
 			show_tab("Debrief")
 	return review
+
+
+## True while this patient waits on the ward and the player has not been to them.
+func needs_visit(id: String) -> bool:
+	return _ward_models.has(id) and not WardRounds.is_seen(id)
+
+
+## The notice shown in place of the bedside, labs and plan of an unseen patient.
+func visit_notice(id: String) -> String:
+	var name: String = str(WardRounds.get_case(id).get("patient", {}).get("name", "This patient"))
+	var place: String = ""
+	var bedside: WardRoundBedside = get_tree().root.find_child(WardRoundBedside.NODE_NAME, true, false) as WardRoundBedside
+	if bedside != null:
+		place = bedside.place_label_for(id)
+	var where: String = ("Go to %s on the ward and approach %s to begin." % [place, name.get_slice(" ", 0)]) if not place.is_empty() \
+			else "They are waiting for a room on the ward; see them there once a room frees up."
+	return "You have not seen %s yet. %s The labs and the plan open once you have been to the bedside." % [name, where]
+
+
+func _add_visit_notice(box: VBoxContainer) -> void:
+	box.add_child(UIStyle.label(visit_notice(case_id), SIZE_BODY, UIStyle.MUTED))
 
 
 # --- Content -----------------------------------------------------------------------
@@ -198,6 +235,8 @@ func _refresh_census() -> void:
 		var suffix: String = "  ·  %d" % best if best >= 0 else ""
 		if WardRounds.can_follow_up(id) and WardRounds.followed_up_line(id).is_empty():
 			suffix += "  ·  check in"
+		if needs_visit(id):
+			suffix += "  ·  not seen yet"
 		_census.add_item("%s %s%s" % [mark, case["patient"]["name"], suffix])
 		_census.set_item_metadata(_census.item_count - 1, id)
 		_census.set_item_custom_fg_color(_census.item_count - 1, UIStyle.GOOD if done else UIStyle.TEXT)
@@ -236,6 +275,9 @@ func _build_bedside() -> void:
 	var block: Dictionary = WardRounds.bedside()
 	if case.is_empty() or block.is_empty():
 		_bedside.add_child(UIStyle.label("No bedside conversation for this patient.", SIZE_BODY, UIStyle.MUTED))
+		return
+	if needs_visit(case_id):
+		_add_visit_notice(_bedside)
 		return
 	var editable: bool = WardRounds.is_editable(case_id)
 	var opening: String = WardRounds.bedside_opening(case_id)
@@ -308,6 +350,9 @@ func _build_labs() -> void:
 	_clear(_labs)
 	if case_id.is_empty():
 		return
+	if needs_visit(case_id):
+		_add_visit_notice(_labs)
+		return
 	var ordered: Array = WardRounds.ordered_labs(case_id)
 	var locked: bool = not WardRounds.is_editable(case_id)
 	_labs.add_child(UIStyle.label("Order what this presentation needs. Results come back straight away.", SIZE_SMALL, UIStyle.MUTED))
@@ -349,6 +394,12 @@ func _build_plan() -> void:
 	if case.is_empty():
 		_submit.disabled = true
 		_replay.visible = false
+		return
+	if needs_visit(case_id):
+		_submit.disabled = true
+		_submit.text = "See the patient first"
+		_replay.visible = false
+		_add_visit_notice(_plan)
 		return
 	var locked: bool = not WardRounds.is_editable(case_id)
 	_submit.disabled = locked
@@ -423,6 +474,9 @@ func _toggle_button(text: String) -> Button:
 
 func _show_review(review: Dictionary) -> void:
 	# Only assign text: clear() followed by the same text again leaves it blank.
+	if review.is_empty() and needs_visit(case_id):
+		_review.text = "[color=#%s]%s[/color]" % [UIStyle.MUTED.to_html(false), visit_notice(case_id)]
+		return
 	if review.is_empty():
 		var replaying: String = "Replay: the chapter stays open and your best score is kept. " if WardRounds.is_replaying(case_id) else ""
 		_review.text = "[color=#%s]%sSubmit the plan when you are ready. The attending replies straight away; you can revise and resubmit, but the debrief counts every attempt.[/color]" % [UIStyle.MUTED.to_html(false), replaying]

@@ -267,6 +267,8 @@ func _build_characters(root: Node3D, zone_id: String, entries: Array) -> void:
 			shape.global_transform = Transform3D(root.global_basis, root.to_global(Vector3(center[0], center[1], center[2])))
 		if entry.has("route"):
 			CastRoute.attach(character, entry["route"], CampaignCastVisuals.walk_step_for(character.character_id))
+		if entry.has("exit_after_talk"):
+			CastExit.attach(character, entry["exit_after_talk"], CampaignCastVisuals.walk_step_for(character.character_id))
 		_characters[character.character_id] = character
 
 
