@@ -54,6 +54,8 @@ def main() -> None:
     scene.cycles.device = "CPU"
     scene.cycles.samples = 16
     scene.cycles.use_denoising = True
+    # Layered alpha-clipped hair cards need more transparent bounces than the default 8.
+    scene.cycles.transparent_max_bounces = max(scene.cycles.transparent_max_bounces, 48)
     scene.render.resolution_percentage = 100
     cam = scene.camera
     keys = body.data.shape_keys.key_blocks
