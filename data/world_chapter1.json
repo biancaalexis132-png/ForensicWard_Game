@@ -31,8 +31,8 @@
 			"route": {"points": [[0.0, 4.0], [-0.6, 4.5]], "pause_seconds": [5.0, 9.0], "pause_gestures": ["thinking_pause", "small_acknowledgement_nod"]}},
 		{"marker": "MARK_PlayerSpawn", "kind": "staff", "character_id": "staff_bg_nurse_b", "at": [0.6, -15.4], "yaw_degrees": 0.0,
 			"route": {"points": [[0.0, 1.6], [0.4, 4.3]], "pause_seconds": [7.0, 13.0], "pause_gestures": ["explain_open_hand", "thinking_pause", "small_shrug"]}},
-		{"marker": "MARK_PlayerSpawn", "kind": "staff", "character_id": "staff_bg_housekeeping", "at": [-0.8, -6.0], "yaw_degrees": 180.0,
-			"route": {"points": [[0.0, 2.5], [0.0, 5.5], [0.2, 7.5]], "pause_seconds": [8.0, 14.0], "pause_gestures": ["thinking_pause", "small_head_shake"]}}
+		{"marker": "MARK_PlayerSpawn", "kind": "staff", "character_id": "staff_bg_housekeeping", "at": [-0.8, -7.4], "yaw_degrees": 180.0,
+			"route": {"points": [[0.0, 2.5], [0.0, 5.5], [0.2, 6.1]], "pause_seconds": [8.0, 14.0], "pause_gestures": ["thinking_pause", "small_head_shake"]}}
 	],
 	"flicker_lights": ["LIGHTMARK_Corridor_00"]
 }
