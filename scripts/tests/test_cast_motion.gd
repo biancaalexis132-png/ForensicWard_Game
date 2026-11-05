@@ -76,6 +76,19 @@ func test_naomi_keeps_her_controller_and_turns_to_the_player() -> void:
 	for i: int in 40:
 		naomi.performer._process(0.05)
 	check(rad_to_deg(naomi.rotation.y) < -30.0, "she turns toward the player when spoken to")
+	# Spoken to from behind (the player inside the nursing station): she turns round.
+	naomi.performer._engaged = false
+	naomi.rotation.y = 0.0
+	naomi.performer.set_home_yaw(0.0)
+	camera.global_position = naomi.global_position + Vector3(0.3, 1.6, 2.0)
+	naomi.performer.begin_conversation()
+	for i: int in 60:
+		naomi.performer._process(0.05)
+	var to_camera: Vector3 = camera.global_position - naomi.global_position
+	var wanted: float = atan2(-to_camera.x, -to_camera.z)
+	check(absf(wrapf(naomi.rotation.y - wanted, -PI, PI)) < deg_to_rad(10.0),
+			"spoken to from behind, she turns round to face the player (%.0f° vs %.0f°)" % [
+			rad_to_deg(naomi.rotation.y), rad_to_deg(wanted)])
 	camera.free()
 
 
@@ -281,6 +294,16 @@ func test_voss_walks_out_of_the_office_after_the_talk_and_is_back_on_load() -> v
 	camera.global_position = Vector3(30.0, 1.6, 30.0)
 	camera.make_current()
 	var home: Vector3 = voss.global_position
+	# The player standing right behind her does not hold her up; standing in her way does.
+	exit.state = CastExit.State.LEAVING
+	exit._index = 1
+	var away_from_door: Vector3 = (home - exit.points[1]).normalized()
+	camera.global_position = home + away_from_door * 0.6 + Vector3.UP * 1.6
+	check(not exit._player_too_close(), "a player behind her does not block her")
+	camera.global_position = home - away_from_door * 0.6 + Vector3.UP * 1.6
+	check(exit._player_too_close(), "a player between her and the door does")
+	exit.state = CastExit.State.HOME
+	camera.global_position = Vector3(30.0, 1.6, 30.0)
 	exit._on_interacted()
 	var saw_walking: bool = false
 	for i: int in 400:

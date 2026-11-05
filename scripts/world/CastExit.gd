@@ -219,13 +219,20 @@ func _story_needs_actor() -> bool:
 			or director.has_open_interaction("character:" + actor.character_id)
 
 
+## The player is close and in the way: ahead of the character on its way out.
+## Someone standing beside or behind them does not hold them up (a small office
+## otherwise kept Voss waiting; Mac playtest 2026-11-05).
 func _player_too_close() -> bool:
 	var camera: Camera3D = get_viewport().get_camera_3d()
 	if camera == null:
 		return false
 	var flat: Vector3 = camera.global_position - actor.global_position
 	flat.y = 0.0
-	return flat.length() < PLAYER_CLEARANCE_M
+	if flat.length() >= PLAYER_CLEARANCE_M:
+		return false
+	var ahead: Vector3 = points[_index] - actor.global_position
+	ahead.y = 0.0
+	return ahead.length() < 0.01 or flat.normalized().dot(ahead.normalized()) > 0.3
 
 
 func _stop_walking() -> void:
