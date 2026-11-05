@@ -1,0 +1,126 @@
+{
+	"schema_version": 1,
+	"patient_id": "pt_elias_ward",
+	"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+	"_note": "Medication and laboratory work-up for Elias Ward (Chapter 1), drafted by Claude Code on 2026-11-04 for the owner's clinical review, in the same form as a ward-round case (data/ward_rounds.json), whose lab, medication and intervention catalogs it uses. Clinical logic follows the owner-approved catatonia case wr_ch4_okafor; Elias-specific items are uds and collateral (required) and neuro_exam and physical_exam (helpful). No doses, no numeric values, qualitative results only. Stays switched off until the owner approves it and the change is recorded in docs/clinical_review_log.md. Ordering never changes Elias's story state.",
+	"cases": [
+		{
+			"id": "wr_ch1_elias_ward_workup",
+			"chapter": "ch1",
+			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"patient": {
+				"name": "Elias Ward",
+				"age": 29,
+				"sex": "male"
+			},
+			"presentation": {
+				"reason": "Transferred for competency restoration. Not speaking since admission, barely eating, and holding the same posture for most of the afternoon.",
+				"history": "Duration of mutism not independently verified. The transfer record gives no medication history.",
+				"mental_status": "Mute. Marked reduction in movement. Possible posturing, to be confirmed by structured bedside examination.",
+				"vitals": "Taken by nursing at 14:00; values are not in the transfer record.",
+				"current_medications": []
+			},
+			"labs": {
+				"ck": {
+					"verdict": "required",
+					"result": "Mildly raised.",
+					"flag": "abnormal",
+					"teaching": "Check CK in catatonia: it helps separate it from, and watch for, malignant catatonia and NMS."
+				},
+				"bmp": {
+					"verdict": "required",
+					"result": "Urea raised; consistent with poor oral intake.",
+					"flag": "abnormal"
+				},
+				"cbc": {
+					"verdict": "required",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"uds": {
+					"verdict": "required",
+					"result": "Negative for all substances screened.",
+					"flag": "normal",
+					"teaching": "With no reliable history, rule out substances before attributing mutism to a primary psychiatric cause."
+				},
+				"collateral": {
+					"verdict": "required",
+					"result": "Requested from the sending unit; awaiting their reply.",
+					"flag": "normal",
+					"teaching": "The transfer record gives no medication history, which matters for NMS and withdrawal."
+				},
+				"tsh": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"lft": {
+					"verdict": "helpful",
+					"result": "Within normal limits.",
+					"flag": "normal"
+				},
+				"neuro_exam": {
+					"verdict": "helpful",
+					"result": "No focal neurological signs.",
+					"flag": "normal"
+				},
+				"physical_exam": {
+					"verdict": "helpful",
+					"result": "Dry mucous membranes. No rigidity.",
+					"flag": "abnormal"
+				}
+			},
+			"options": {
+				"start:lorazepam": {
+					"verdict": "preferred",
+					"feedback": "A lorazepam challenge is first-line for catatonia and often helps quickly."
+				},
+				"start:haloperidol": {
+					"verdict": "unsafe",
+					"feedback": "High-potency antipsychotics can worsen catatonia and raise the risk of NMS."
+				},
+				"start:risperidone": {
+					"verdict": "not_indicated",
+					"feedback": "Defer antipsychotics until the catatonia is treated."
+				},
+				"start:olanzapine": {
+					"verdict": "not_indicated",
+					"feedback": "Defer antipsychotics until the catatonia is treated."
+				},
+				"start:quetiapine": {
+					"verdict": "not_indicated",
+					"feedback": "Defer antipsychotics until the catatonia is treated."
+				},
+				"start:aripiprazole": {
+					"verdict": "not_indicated",
+					"feedback": "Defer antipsychotics until the catatonia is treated."
+				},
+				"start:lithium": {
+					"verdict": "not_indicated",
+					"feedback": "Not while he is barely eating or drinking."
+				},
+				"int:nutrition_hydration": {
+					"verdict": "required",
+					"feedback": "Poor oral intake needs fluid and nutrition support with the medical team."
+				},
+				"int:ect_referral": {
+					"verdict": "acceptable",
+					"feedback": "Appropriate if lorazepam does not work, or sooner if catatonia becomes malignant."
+				},
+				"int:close_observation": {
+					"verdict": "acceptable",
+					"feedback": "Reasonable for safety and fluid monitoring."
+				}
+			},
+			"requires_one_of": [
+				[
+					"start:lorazepam"
+				],
+				[
+					"int:nutrition_hydration"
+				]
+			],
+			"teaching": "Catatonia with an unverified history: start a lorazepam challenge, avoid high-potency antipsychotics, check CK, hydration and substances, and get collateral on his medications."
+		}
+	]
+}
