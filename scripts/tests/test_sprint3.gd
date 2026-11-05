@@ -60,7 +60,10 @@ func test_objectives_follow_the_clinical_loop() -> void:
 func test_tab_opens_board_and_esc_closes_it() -> void:
 	_press("journal")
 	await runner.get_tree().process_frame
-	check(_board().is_open, "Tab opens the evidence board")
+	check(_main.has_node("CaseFileScreen") and _main.get_node("CaseFileScreen").is_open, "Tab opens the case file")
+	_main.get_node("CaseFileScreen").open_other(EvidenceBoard.PANEL_ID)
+	await runner.get_tree().process_frame
+	check(_board().is_open, "the case file leads to the evidence board")
 	check(not _player().input_enabled, "player frozen")
 	_press("pause")
 	await runner.get_tree().process_frame
