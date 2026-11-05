@@ -97,7 +97,8 @@ func test_location_and_day_night() -> void:
 	await wait(0.4)
 	check(day_player.playing and day_player.stream.resource_path.ends_with("amb_corridor_day_loop.ogg"), "corridor day ambience plays")
 	check(day_player.stream.get("loop") == true, "ambience stream loops")
-	check(absf(day_player.volume_db) < 0.5, "day ambience faded in to 0 dB")
+	# The corridor bed sits at -6 dB so the music is not buried (playtest 2026-11-04).
+	check(absf(day_player.volume_db - -6.0) < 0.5, "day ambience faded in to its -6 dB cue level")
 	var position_before: float = day_player.get_playback_position()
 	await wait(0.3)
 	check(day_player.get_playback_position() > position_before, "ambience playback advances")

@@ -48,6 +48,12 @@ var _preload_time: float = 0.0
 var _preloaded: Array[Resource] = []
 
 
+## The main theme plays under the title from the moment it opens (audio/cues.json).
+const MUSIC_CONTEXT: String = "main_menu"
+
+var _audio_mode_before: int = Node.PROCESS_MODE_INHERIT
+
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	layer = 30
@@ -70,6 +76,10 @@ func open() -> void:
 	visible = true
 	is_open = true
 	get_tree().paused = true
+	# The title pauses the game; the music must keep playing (and fading) under it.
+	_audio_mode_before = AudioDirector.process_mode
+	AudioDirector.process_mode = Node.PROCESS_MODE_ALWAYS
+	AudioDirector.start_music_context(MUSIC_CONTEXT)
 	start_preload(preload_paths())
 	_update_buttons()
 
@@ -149,6 +159,7 @@ func _update_buttons() -> void:
 func _exit_tree() -> void:
 	if is_open:
 		get_tree().paused = false
+		_release_music()
 	_finish_preload()
 
 
@@ -167,7 +178,15 @@ func close() -> void:
 	is_open = false
 	_finish_preload()
 	get_tree().paused = false
+	_release_music()
 	closed.emit()
+
+
+## Hands the music back: a prologue started behind the title keeps playing,
+## otherwise the location's music fades in.
+func _release_music() -> void:
+	AudioDirector.process_mode = _audio_mode_before as Node.ProcessMode
+	AudioDirector.end_music_context(MUSIC_CONTEXT)
 
 
 func new_game() -> void:
