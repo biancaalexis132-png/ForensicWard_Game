@@ -1,5 +1,9 @@
 extends TestCase
 ## Real campaign casting, rather than command-line model previews.
+
+## Added with the Elias bedside encounter (2026-11-05), after the owner's 2026-10-19 cast approval.
+const ENCOUNTER_STAFF_2026_11_05: Array[String] = ["staff_sitter_adler", "staff_bg_nurse_a", "staff_bg_nurse_b", "staff_bg_housekeeping"]
+
 var _main: Node = null
 
 func before_each() -> void:
@@ -44,7 +48,11 @@ func test_all_five_chapters_use_real_cast_without_preview_arguments() -> void:
 			check(not (actor.get_node("Body/Mesh") as MeshInstance3D).visible, "capsule is fallback only")
 			check_eq(actor.visual_scene.resource_path, data["characters"][id]["scene"], "correct cast asset")
 			check_eq(str(actor.get_meta("visual_review_status")), str(data["characters"][id]["review_status"]), "integration carries the catalogue's visual status")
-			check_eq(str(actor.get_meta("visual_review_status")), "OWNER_APPROVED_VISUAL", "owner approved all cast models on 2026-10-19")
+			if id in ENCOUNTER_STAFF_2026_11_05:
+				# Elias's sitter and the background staff came after that approval and wait on the owner's look.
+				check_eq(str(actor.get_meta("visual_review_status")), "PENDING_OWNER_VISUAL_REVIEW", "%s is not approved by default" % id)
+			else:
+				check_eq(str(actor.get_meta("visual_review_status")), "OWNER_APPROVED_VISUAL", "owner approved all cast models on 2026-10-19")
 			if visual.get_child_count() != 1:
 				continue
 			var model: Node3D = visual.get_child(0)
