@@ -54,7 +54,7 @@ SLEEVE_RADIUS_M = 0.075
 def parse_args() -> argparse.Namespace:
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:]
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    parser.add_argument("--profile", required=True, help="The character's _v01_draft profile")
+    parser.add_argument("--profile", required=True, help="The character's finished profile (_v01_draft or _v02)")
     parser.add_argument("--report-dir", default="tools/character_animation/reports")
     return parser.parse_args(argv)
 
@@ -224,7 +224,9 @@ def main() -> None:
     meshes = [body] + [o for o in bpy.data.objects if o.type == "MESH" and o.parent == rig and o is not body]
 
     # The anim profile carries the role map and the character frame.
-    anim_profile_path = profile_path.with_name(profile_path.name.replace("_v01_draft.json", "_v01_anim.json"))
+    # <id>_v01_draft.json pairs with <id>_v01_anim.json, <id>_v02.json with <id>_v02_anim.json.
+    base_version = str(profile["version"]).removesuffix("_draft")
+    anim_profile_path = profile_path.with_name(f"{profile['character_id']}_{base_version}_anim.json")
     anim_profile = json.loads(anim_profile_path.read_text(encoding="utf-8"))
     frame = builder.CharacterFrame(anim_profile)
     bones = bone_roles(anim_profile["bones"], rig)
@@ -275,7 +277,7 @@ def main() -> None:
         "production_status": profile["production_status"],
         "approved": False,
     }
-    out = ROOT / args.report_dir / f"{profile['character_id']}_v01_draft_motion_report.json"
+    out = ROOT / args.report_dir / f"{profile['character_id']}_{profile['version']}_motion_report.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(f"MOTION {profile['character_id']} OK: +{len(inventory)} clips "

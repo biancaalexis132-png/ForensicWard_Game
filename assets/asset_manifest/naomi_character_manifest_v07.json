@@ -3,7 +3,7 @@
   "character_id": "staff_bennett",
   "version": "v07",
   "production_status": "ANIMATION_DEVELOPMENT_PENDING_OWNER_REVIEW",
-  "approved": false,
+  "approved": true,
   "builder": "tools/character_animation/refine_character.py",
   "profile": "tools/character_animation/profiles/staff_bennett_v07.json",
   "profile_sha256": "e1e0bd47a70bf77e7368cd9f1a090f108539fa29cbdb0f782b4e2e53bd0ff5ec",
@@ -90,5 +90,12 @@
     "catalogue": "data/character_visuals.json",
     "guide": "docs/CAMPAIGN_CAST_INTEGRATION.md",
     "authorisation": "Owner explicitly requested remaining 3D character integration for Chapters 1\u20135 after narration delivery; no visual or clinical approval inferred."
+  },
+  "approval": {
+    "approved": true,
+    "by": "Bi (project owner)",
+    "date": "2026-10-19",
+    "quote": "I approve all cast models",
+    "where": "project thread"
   }
 }

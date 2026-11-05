@@ -32,7 +32,9 @@ func test_arguments_select_only_known_candidates() -> void:
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=pt_nobody,staff_bennett:v99"])),
 			{}, "unknown characters and versions are refused")
 	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_voss,staff_hale"])),
-			{"staff_voss": "v01_draft", "staff_hale": "v01_draft"}, "draft cast models can be previewed together")
+			{"staff_voss": "v02", "staff_hale": "v02"}, "cast models default to v02 and can be previewed together")
+	check_eq(CharacterVisualPreview.parse_args(PackedStringArray(["--character-preview=staff_voss:v01_draft"])),
+			{"staff_voss": "v01_draft"}, "the v01 draft stays available for comparison")
 	for version: String in ["v01", "v02", "v03", "v04", "v04_local", "v05", "v05_mpfb", "v06", "v06_mpfb", "v07"]:
 		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path("staff_bennett", version)),
 				"Naomi %s GLB is imported" % version)
@@ -42,7 +44,9 @@ func test_cast_drafts_attach_with_shared_clips_and_face_morphs() -> void:
 	for id: String in ["staff_voss", "staff_hale", "staff_rahman", "staff_facilities_tech", "pt_elias_ward",
 			"pt_mara_ellis"]:
 		var version: String = str(CharacterVisualPreview.DEFAULT_VERSION[id])
-		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path(id, version)), "%s draft GLB is imported" % id)
+		check_eq(version, "v02", "%s defaults to the owner-approved v02" % id)
+		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path(id, version)), "%s v02 GLB is imported" % id)
+		check(ResourceLoader.exists(CharacterVisualPreview.candidate_path(id, "v01_draft")), "%s v01 draft is kept" % id)
 		CharacterVisualPreview.set_requests({id: version})
 		var character: WardCharacter = _spawn_character(id)
 		var visual_root: Node3D = character.get_node("VisualRoot")
