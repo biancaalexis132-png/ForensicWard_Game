@@ -37,7 +37,7 @@
 - Objective: draft Elias's medication and lab orders for Bi's clinical sign-off, switched off until approved.
 - Branch `claude/meds-labs-draft` from `main` `fbd1544`; draft PR to `main`.
 - Done: work-up data, locked loader `ClinicalWorkup`, `ClinicalOrders.result_for`, test `test_clinical_workup` (4/0), review log row, review doc https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm.
-- Update 2026-11-05 08:03 UTC: Bi approved ("approve") and merged #134. `claude/meds-labs-approved` marks it APPROVED. Open questions unanswered; defaults stand.
+- Pending Bi: approve the work-up and answer the open questions (story effect of a lorazepam response, vitals values, doses, CK level).
 - Next exact step: on approval, set both review statuses in `data/clinical_workups/elias_ward.json` to APPROVED, add the approved row to `docs/clinical_review_log.md`, flip the expectations in `test_clinical_workup`, and send the encounter session the go-ahead. Last updated 2026-11-05.
 
 ## Claude Code Mac release polish — 2026-11-04

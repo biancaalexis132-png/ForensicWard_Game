@@ -146,7 +146,7 @@ Status meanings:
 
 Architecture and plan for all five chapters: `docs/F0_FOUNDATION_AUDIT.md` (approved by the owner on 2026-10-17). Owner decisions that amend the GDD: `docs/design/GDD_AMENDMENTS.md`. Id rules: `docs/ID_REGISTRY.md`.
 
-**Elias medication and lab work-up (Claude Code, 2026-11-05; #134 merged, approved by Bi 2026-11-05; approval in draft PR `claude/meds-labs-approved`):** `claude/meds-labs-draft`. Elias's labs and medication choices are written in ward-round form for Bi's clinical review (https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm). They are locked in every build until Bi approves them, and they never change his story. Not tested on the Mac.
+**Elias medication and lab work-up drafted (Claude Code, 2026-11-05; draft PR, not merged):** `claude/meds-labs-draft`. Elias's labs and medication choices are written in ward-round form for Bi's clinical review (https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm). They are locked in every build until Bi approves them, and they never change his story. Not tested on the Mac.
 
 ## Pull requests
 
