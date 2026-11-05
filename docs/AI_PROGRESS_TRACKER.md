@@ -11,6 +11,13 @@
 | Ending reflects evidence, uncertainty, care | Not started | | `campaign_end`, `ChapterDirector` | | After acknowledgements |
 | Performances, atmosphere, transitions | Not started | | | | Later PRs |
 
+## Elias meds and labs draft — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Elias work-up (labs, medications, interventions) | Draft, pending Bi's clinical review | approved ward-round catalogs, Okafor case | `data/clinical_workups/elias_ward.json` | `test_clinical_workup` (4/0) | Bi reviews https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm |
+| Locked loader and order results | Done, draft PR | | `scripts/clinical/ClinicalWorkup.gd`, `ClinicalOrders.result_for` | `test_clinical_workup` | Encounter session wires it after approval |
+
 ## Mac release polish — Claude Code (cloud), 2026-11-04
 
 | Task | State | Depends on | Paths | Validation | Next action |
