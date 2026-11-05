@@ -1,0 +1,38 @@
+{
+  "character_id": "staff_rahman",
+  "display_name": "Leila Rahman",
+  "version": "v02_face",
+  "production_status": "OWNER_APPROVED",
+  "source_blend": "build/cast/Leila_Rahman_v02_anim.blend",
+  "objects": {
+    "rig": "Leila_Rahman_Rig",
+    "face_mesh": "Leila_Rahman_Body",
+    "eye_l": "Rahman_Eye_L",
+    "eye_r": "Rahman_Eye_R"
+  },
+  "face_source": {
+    "blend": "assets/blender/characters/Naomi_Bennett_v07.blend",
+    "body": "Naomi_Bennett_Body",
+    "base_blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "base_body": "Naomi_Bennett_Body"
+  },
+  "target_base": {
+    "blend": "assets/blender/characters/Naomi_Bennett_Base_v02.blend",
+    "body": "Naomi_Bennett_Body",
+    "cast_config": "tools/blender/characters/cast/staff_rahman.json"
+  },
+  "outputs": {
+    "blend": "build/cast/Leila_Rahman_v02_face.blend",
+    "glb": "build/cast/Leila_Rahman_v02_face.glb",
+    "report": "tools/character_animation/reports/staff_rahman_v02_face_report.json"
+  },
+  "approved": true,
+  "approval": {
+    "approved": true,
+    "by": "Bi (project owner)",
+    "date": "2026-10-19",
+    "quote": "I approve all cast models",
+    "where": "ForensicWard project thread",
+    "scope": "Likeness, body, age, colours and outfit design of the v01 draft; v02 improves hair and clothing quality only."
+  }
+}
