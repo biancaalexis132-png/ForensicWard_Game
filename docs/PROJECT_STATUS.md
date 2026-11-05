@@ -30,6 +30,8 @@
 
 **Staff remember earlier choices (Claude Code, 2026-11-05; draft PR, not merged):** `claude/staff-remember-choices` from `main` `b1c3e63`. Staff can open their first reply in a chapter with one line about an earlier choice, once. 17 lines approved by Bi (2026-11-05) and switched on, shown as text until voiced. Not tested on the Mac.
 
+**Case file on Tab (Claude Code, 2026-11-05; draft PR, not merged):** `claude/case-file` from `main` `b1c3e63`. Tab opens a case file showing the current objective and where it happens, notes from recorded story choices marked established, still open or care (verbatim approved text), and the evidence with open alternative explanations; the HUD objective shows its place. Not tested on the Mac.
+
 **Packaged Mac app (2026-11-04):** PR #131 is merged. On Bi's MacBook Air the standalone app exports, passes its launch check and the automated Mac QA (game 417/0, audio 1720/0), and opens on the title screen without the editor. The hands-on playthrough, three endings and listening pass are still with Bi (`docs/MAC_RELEASE_BUILD.md` §3).
 
 **Mac release polish (Claude Code, 2026-11-04; draft PR, not merged):** `claude/mac-release-polish` at `7e59789`, from `main`. The objective banner no longer covers character name tags, the current objective shows once, Elias's shoulder seams are closed, and the repository can now build a standalone macOS app (`tools/release/export_macos.sh`, `docs/MAC_RELEASE_BUILD.md`). Full QA passed (game 413/0, audio 1720/0). The Mac app was built in the container but has not been run on a Mac.

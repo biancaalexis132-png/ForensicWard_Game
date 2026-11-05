@@ -9,6 +9,11 @@
 | Staff remember earlier choices (17 lines) | Draft PR; lines approved 2026-11-05 | | `data/acknowledgements.json`, `Acknowledgements.gd` | `test_acknowledgements` (4), full QA | Bi looks on the Mac |
 | Ending paragraph from the case file | Not started | #137 merged, Bi's approval (section D) | `ChapterDirector._campaign_end_panel` | | After #137 |
 | Objective marker on the map | Not started | #137 merged | `SpatialMap.gd` | | After #137 |
+
+| Case file on Tab: objective and place, notes, evidence | Done, draft PR | | `CaseFile.gd`, `CaseFileScreen.gd`, `data/case_file.json` | `test_case_file` (7), full QA, captures | Bi looks on the Mac |
+| Map readability and objective marker | Not started | | `SpatialMap.gd`, `FloorPlan.gd`, `MapScreen.gd` | | Next PR |
+| Staff acknowledge earlier choices | Not started | Bi's approval of new lines | story staff_lines | | Review sheet to Bi |
+| Ending reflects evidence, uncertainty, care | Not started | | `campaign_end`, `ChapterDirector` | | After acknowledgements |
 | Performances, atmosphere, transitions | Not started | | | | Later PRs |
 
 ## Cast v02 hair and clothing — Claude Code (cloud), 2026-11-05
