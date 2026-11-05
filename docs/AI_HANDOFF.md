@@ -20,6 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Map readability (labels, you-are-here, people, M key) | `claude/map-readability` (draft PR to `main`) | Claude Code (cloud) | see Log | `scripts/ui/{SpatialMap,FloorPlan,MapScreen}.gd`, `scenes/ui/MapScreen.tscn`, `test_map_readability.gd`, capture tool; small edits to `Main.gd` (M), `PauseMenu.gd` (label), `project.godot` (map action) | Full QA; waiting on Bi |
 | Animated cinematic pilot | `codex/cinematic-naomi-pilot` (draft PR #133) | Codex | `9109088a8a1df9d917c29c5245a60fe011109ceb` | New `scripts/cinematic/`, `scenes/cinematic/`, `data/cinematics/`, `tools/cinematic/`, cinematic review docs/screenshots | Standalone voiced Naomi preview; refined framing/lighting; Mac and campaign integration pending |
 | Mac release polish (HUD layout, Elias neckline, Mac export) | `claude/mac-release-polish` (draft PR to `main`) | Claude Code (cloud) | `7e59789` | `scripts/ui/{HUD,ObjectiveTracker}.gd`, `scenes/ui/HUD.tscn`, `scripts/tests/{TestRunner,test_objective_feedback}.gd`, `export_presets.cfg`, `.gitignore`, `project.godot` (one rendering setting), Elias `.blend`/GLB and motion report, `tools/character_animation/tuck_neckline.py`, `tools/release/export_macos.sh`, `tools/godot/capture_objective_hud.gd`, `docs/MAC_RELEASE_BUILD.md` | PR #131 merged; packaged app built and launched on Bi's Mac; waiting on Bi's playthrough |
 | Earlier patients wait on chairs for a check-in | `claude/ward-round-check-in-seats` (draft PR to `main`) | Claude Code (cloud) | last commit on the branch | `scripts/world/WardRoundBedside.gd`, `data/ward_round_bedside.json` `check_in`, `test_ward_round_bedside.gd`, `tools/godot/capture_ward_bedside.gd` | Full QA; staging pending Bi's look |
@@ -60,6 +61,12 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 2 opening | `codex/chapter2-opening` | Codex cloud | `d4fead70db995b21d2de921d222d51eccd75ac72` | `data/story_chapter2.json`, `world_chapter2.json`, campaign/continuation; ChapterDirector, InfoPanel, schemas/validator, AuthoredWorld, ImportedInteractable, small Main/EventBus changes; opening tests and dedicated handoff | First playable slice complete; full QA passed. Narrative/clinical review pending; no Mara/early reveal. |
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
+
+### 2026-11-05 · Claude Code · Map readability (roadmap point 6)
+
+- Branch `claude/map-readability` from `main` `b1c3e63`. M toggles the map; rooms named beside the plan, your room highlighted, staff/story patients as named dots, drawn legend, "You are in / On this floor" line. See `docs/handoffs/2026-11-05_claude_map_readability.md`.
+- Tests: `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64` on the branch code: exit 0, game 420/0 (new `test_map_readability` 3/0), audio 1720/0, QA 19/0/0, GLB 199/0. Not run on the Mac.
+- Next: objective marker on the map after #137 (case file) merges.
 
 ### 2026-11-04 · Codex · Animated Naomi cinematic pilot and refinement
 

@@ -1,5 +1,16 @@
 # AI progress tracker
 
+## Make the game more compelling (Bi's roadmap) — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Case file on Tab | Done, draft PR #137 | | `CaseFile.gd`, `CaseFileScreen.gd`, `data/case_file.json` | `test_case_file` (7), full QA | Bi looks on the Mac |
+| Map readability: room names, you-are-here, people, M key | Done, draft PR | | `SpatialMap.gd`, `FloorPlan.gd`, `MapScreen.gd` | `test_map_readability` (3), full QA, before/after captures | Bi looks on the Mac |
+| Objective marker on the map | Not started | #137 merged | `SpatialMap.gd`, `CaseFile.gd` | | After #137 |
+| Staff acknowledge earlier choices | Not started | Bi's approval of new lines | story staff_lines | | Review sheet to Bi |
+| Ending reflects evidence, uncertainty, care | Not started | | `campaign_end`, `ChapterDirector` | | After acknowledgements |
+| Performances, atmosphere, transitions | Not started | | | | Later PRs |
+
 ## Mac release polish — Claude Code (cloud), 2026-11-04
 
 | Task | State | Depends on | Paths | Validation | Next action |

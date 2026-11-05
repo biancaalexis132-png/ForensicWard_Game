@@ -12,6 +12,7 @@ extends Node3D
 ##   "interview"  InterviewScreen (cinematic interview; gets the world's cameras)
 ##   "ehr"        EHRScreen (also opened with J)
 ##   "evidence"   EvidenceBoard (also opened with Tab)
+##   "map"        MapScreen (also opened with M, or from the pause menu)
 ##   "ward_round" WardRoundScreen (from the EHR's Ward round button)
 ##   "milestone"  MilestonePresenter (split-screen moment after an objective;
 ##                waits until nothing else is open)
@@ -154,6 +155,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		_ehr.close()
 	elif event.is_action_pressed("ehr") and not _is_ui_open():
 		_on_ui_panel_requested(EHRScreen.PANEL_ID, {})
+	elif event.is_action_pressed("map") and _top_panel() != null and _top_panel().name == "MapScreen":
+		_top_panel().call("close")
+		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("map") and not _is_ui_open():
+		_on_ui_panel_requested(MapScreen.PANEL_ID, {})
+		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("journal") and _top_panel() == _evidence:
 		_evidence.close()
 		get_viewport().set_input_as_handled()
