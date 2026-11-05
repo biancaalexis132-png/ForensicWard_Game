@@ -159,13 +159,16 @@ func test_missing_clip_falls_back_to_a_timed_subtitle() -> void:
 # --- Staff and story panels ---------------------------------------------------------
 
 func test_talking_to_staff_plays_their_own_voice() -> void:
-	var bennett: WardCharacter = (_main.get_node("World") as AuthoredWorld).get_character("staff_bennett")
-	(bennett.get_node("Interactable") as Interactable).interact(_player())
+	# Dr. Voss: her intro is voiced from the panel. (Naomi's first talk starts her
+	# voiced handover instead, so the panel reads her intro: test_playtest_voice.)
+	var voss: WardCharacter = (_main.get_node("World") as AuthoredWorld).get_character("staff_voss")
+	(voss.get_node("Interactable") as Interactable).interact(_player())
 	await _frames(3)
 	var info: InfoPanel = _main.get_node("InfoPanel")
 	check(info.is_open, "panel open")
-	var expected: String = AudioDirector.find_line("staff_bennett", ContentRegistry.get_staff("staff_bennett")["intro_line"])
-	check(_subtitles.any(func(s: Dictionary) -> bool: return s["line_id"] == expected), "Bennett speaks her line")
+	var expected: String = AudioDirector.find_line("staff_voss", ContentRegistry.get_staff("staff_voss")["intro_line"])
+	check(not expected.is_empty() and _subtitles.any(func(s: Dictionary) -> bool: return s["line_id"] == expected),
+			"Voss speaks her line")
 	info.skip_line()
 	await _frames(3)
 	info.close()
