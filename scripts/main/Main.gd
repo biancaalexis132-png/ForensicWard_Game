@@ -14,6 +14,7 @@ extends Node3D
 ##   "ehr"        EHRScreen (also opened with J)
 ##   "case_file"  CaseFileScreen (opened with Tab): objective, notes, evidence
 ##   "evidence"   EvidenceBoard (from the case file's Evidence board button)
+##   "map"        MapScreen (also opened with M, or from the pause menu)
 ##   "ward_round" WardRoundScreen (from the EHR's Ward round button)
 ##   "milestone"  MilestonePresenter (split-screen moment after an objective;
 ##                waits until nothing else is open)
@@ -178,6 +179,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		_ehr.close()
 	elif event.is_action_pressed("ehr") and not _is_ui_open():
 		_on_ui_panel_requested(EHRScreen.PANEL_ID, {})
+	elif event.is_action_pressed("map") and _top_panel() != null and _top_panel().name == "MapScreen":
+		_top_panel().call("close")
+		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("map") and not _is_ui_open():
+		_on_ui_panel_requested(MapScreen.PANEL_ID, {})
+		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("journal") and _top_panel() != null \
 			and (_top_panel() == _evidence or _top_panel().name == "CaseFileScreen"):
 		_top_panel().call("close")

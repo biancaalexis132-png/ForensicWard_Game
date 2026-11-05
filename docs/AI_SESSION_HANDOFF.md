@@ -10,6 +10,9 @@
 - Constraints: no new clinical or story wording without Bi's approval; never merge; never run git on the SSK drive. Audio mix is untested on the Mac. Last updated 2026-11-05.
 
 - Objective: work through Bi's roadmap in small PRs from `main` (no stacking). Point 1 (first 15 minutes, Elias) and Mac presentation fixes belong to other threads.
+- Done: `claude/case-file` (#137, Tab case file) and `claude/map-readability` (draft PR: M map with room names, you-are-here and people). See `docs/handoffs/2026-11-05_claude_*.md`.
+- Order of the remaining PRs: objective marker on the map (after #137 merges); staff acknowledge earlier choices (new lines need Bi's approval through a review sheet); ending tied to evidence kept, uncertainties and care; performances in key conversations; atmosphere baseline; dialogue/subtitle/menu transitions.
+
 - Done: `claude/case-file` (draft PR): Tab opens the case file (objective and place, recorded notes as established / still open / care, evidence). See `docs/handoffs/2026-11-05_claude_case_file.md`.
 - Order of the remaining PRs: (2) map readability and objective marker; (3) staff acknowledge earlier choices: new lines need Bi's approval through a review sheet; (4) ending tied to evidence kept, uncertainties and care; (5) performances in key conversations; (6) atmosphere baseline; (7) dialogue/subtitle/menu transitions.
 - Constraints: no new clinical or story wording without Bi's approval; never merge; never run git on the SSK drive. Last updated 2026-11-05.
