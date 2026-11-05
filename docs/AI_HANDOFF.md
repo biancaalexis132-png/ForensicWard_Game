@@ -65,6 +65,10 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+
+### 2026-11-05 · Claude Code · Union merge for the shared handoff docs
+
+- Branch `claude/handoff-docs-union` from `main`. `.gitattributes` marks `docs/AI_HANDOFF.md`, `docs/AI_SESSION_HANDOFF.md`, `docs/AI_PROGRESS_TRACKER.md`, `docs/PROJECT_STATUS.md` and `docs/clinical_review_log.md` `merge=union`, so local and CLI merges keep both branches' entries instead of conflicting. Checked with a local two-branch merge. Whether GitHub's own conflict check honours it is to be confirmed on the next open PR after this merges.
 ### 2026-11-05 · Claude Code · Case file on Tab (roadmap point 2)
 
 - Branch `claude/case-file` from `main` `b1c3e63`. Tab opens a case file: current objective and where it happens, notes from recorded choices (established, still open, care; verbatim from approved responses, enforced by `CaseFile.validate()`), evidence and open alternative explanations; buttons to the evidence board and clinical journal. HUD objective gains a place line. See `docs/handoffs/2026-11-05_claude_case_file.md`.

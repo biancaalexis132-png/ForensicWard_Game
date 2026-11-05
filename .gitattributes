@@ -11,3 +11,12 @@
 audio/masters/** filter=lfs diff=lfs merge=lfs -text
 audio/music_ai/**/*.ogg filter=lfs diff=lfs merge=lfs -text
 *.flac filter=lfs diff=lfs merge=lfs -text
+# Shared handoff and status docs: every branch adds its own entry near the top,
+# so two branches always touch the same lines. Union merge keeps both sides
+# instead of conflicting. Review the merged order by eye; entries never need
+# to be removed by a merge.
+docs/AI_HANDOFF.md merge=union
+docs/AI_SESSION_HANDOFF.md merge=union
+docs/AI_PROGRESS_TRACKER.md merge=union
+docs/PROJECT_STATUS.md merge=union
+docs/clinical_review_log.md merge=union
