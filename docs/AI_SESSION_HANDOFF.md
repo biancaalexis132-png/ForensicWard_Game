@@ -1,5 +1,13 @@
 # AI session handoff
 
+## Claude Code Elias meds and labs draft — 2026-11-05
+
+- Objective: draft Elias's medication and lab orders for Bi's clinical sign-off, switched off until approved.
+- Branch `claude/meds-labs-draft` from `main` `fbd1544`; draft PR to `main`.
+- Done: work-up data, locked loader `ClinicalWorkup`, `ClinicalOrders.result_for`, test `test_clinical_workup` (4/0), review log row, review doc https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm.
+- Pending Bi: approve the work-up and answer the open questions (story effect of a lorazepam response, vitals values, doses, CK level).
+- Next exact step: on approval, set both review statuses in `data/clinical_workups/elias_ward.json` to APPROVED, add the approved row to `docs/clinical_review_log.md`, flip the expectations in `test_clinical_workup`, and send the encounter session the go-ahead. Last updated 2026-11-05.
+
 ## Claude Code Mac release polish — 2026-11-04
 
 - Update (evening): PR #131 merged by Bi into `main` (`144e609`). Mac run 2026-11-04 (Bi's MacBook Air M1, Godot 4.7.2.stable.official.ed1daf0bf, fresh clone `~/Developer/forensicward-release` at `c96f5f2`, same code as `main` `144e609`; nothing on the SSK drive): `tools/release/export_macos.sh` PASS (4.7.2 templates SHA-512 OK, ad-hoc signature valid, app 741 MB, LAUNCH_CHECK PASS, 0 ERROR lines); `tools/qa/mac_acceptance.py` exit 0 (QA 19/0/0, GLB 199/0, game 417/0, audio 1720/0, pharmacology 0 failures, Python tests passed, Chapter 1 sequence done); the packaged app opened from Finder-equivalent `open` and showed the title screen (New Game, Customize, Continue greyed, Settings, Quit, Ready.). App at `/Users/bi/Developer/forensicward-release/build/macos/The Forensic Ward.app`. Hands-on playthrough, endings and listening: NOT TESTED, waiting on Bi.
