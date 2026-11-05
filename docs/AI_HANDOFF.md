@@ -20,7 +20,6 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Staff remember earlier choices | `claude/staff-remember-choices` (draft PR to `main`) | Claude Code (cloud) | see Log | `data/acknowledgements.json`, `scripts/narrative/Acknowledgements.gd`, `test_acknowledgements.gd`; 5 lines in `Character.gd` | Lines approved by Bi 2026-11-05 |
 | Map readability (labels, you-are-here, people, M key) | `claude/map-readability` (draft PR to `main`) | Claude Code (cloud) | see Log | `scripts/ui/{SpatialMap,FloorPlan,MapScreen}.gd`, `scenes/ui/MapScreen.tscn`, `test_map_readability.gd`, capture tool; small edits to `Main.gd` (M), `PauseMenu.gd` (label), `project.godot` (map action) | Full QA; waiting on Bi |
 | Elias bedside encounter (exam, full history, sitter, orders at the bedside, background staff) | `claude/elias-encounter` (draft PR to `main`) | Claude Code (cloud) | see Log | `data/elias_encounter.json`, five Elias observations in `data/patients.json`, `scripts/encounter/**`, `scripts/ui/EncounterScreen.gd`, `scenes/ui/EncounterScreen.tscn`, one autoload line in `project.godot`, one branch in `Main.gd`, `AuthoredWorld.gd`/`CastRoute.gd` (`at`, `yaw_degrees`, `pause_gestures`), content schema/validator, `data/{staff,character_visuals,world_chapter1,milestones,story_chapter1}.json`, six new cast configs and models, `tools/encounter/**`, capture tool, `test_elias_encounter.gd` and small edits to four older tests | Full QA recorded in Log; clinical content pending Bi |
 | Case file on Tab (objectives, notes, evidence) | `claude/case-file` (draft PR to `main`) | Claude Code (cloud) | see Log | `data/case_file.json`, `scripts/narrative/CaseFile.gd`, `scripts/ui/CaseFileScreen.gd`, `scenes/ui/CaseFileScreen.tscn`, `test_case_file.gd`, capture tool; small edits to `Main.gd` (Tab), `ObjectiveTracker.gd` (place line), `test_sprint3.gd` | Full QA; waiting on Bi |
@@ -68,11 +67,6 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
-### 2026-11-05 · Claude Code · Staff remember earlier choices (roadmap point 3)
-
-- Branch `claude/staff-remember-choices` from `main` `b1c3e63`. A staff member's first reply in a chapter can open with one line about an earlier choice, once, saved by its own provider (not story flags). 17 lines in `data/acknowledgements.json`, approved by Bi on 2026-11-05 and switched on (text only until voiced). See `docs/handoffs/2026-11-05_claude_staff_remember_choices.md`.
-- Tests: `python3 tests/qa/run.py --godot Godot_v4.7-stable_linux.x86_64` on the branch code: exit 0, game 421/0 (new `test_acknowledgements` 4/0), audio 1754/0 (17 new voiced clips), QA 19/0/0, GLB 199/0. Not run on the Mac.
-- Next: voice the approved lines; ending paragraph (approved) after #137.
 ### 2026-11-05 · Claude Code · Map readability (roadmap point 6)
 
 - Branch `claude/map-readability` from `main` `b1c3e63`. M toggles the map; rooms named beside the plan, your room highlighted, staff/story patients as named dots, drawn legend, "You are in / On this floor" line. See `docs/handoffs/2026-11-05_claude_map_readability.md`.

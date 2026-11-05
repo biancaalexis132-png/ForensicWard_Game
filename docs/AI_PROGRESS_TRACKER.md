@@ -6,11 +6,6 @@
 
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
-| Case file on Tab | Draft PR #137 | | `CaseFile.gd`, `CaseFileScreen.gd` | full QA | Bi looks on the Mac |
-| Map readability | Draft PR | | `SpatialMap.gd`, `FloorPlan.gd` | full QA | Bi looks on the Mac |
-| Staff remember earlier choices (17 lines) | Draft PR; lines approved 2026-11-05 | | `data/acknowledgements.json`, `Acknowledgements.gd` | `test_acknowledgements` (4), full QA | Bi looks on the Mac |
-| Ending paragraph from the case file | Not started | #137 merged, Bi's approval (section D) | `ChapterDirector._campaign_end_panel` | | After #137 |
-| Objective marker on the map | Not started | #137 merged | `SpatialMap.gd` | | After #137 |
 | Case file on Tab | Done, draft PR #137 | | `CaseFile.gd`, `CaseFileScreen.gd`, `data/case_file.json` | `test_case_file` (7), full QA | Bi looks on the Mac |
 | Map readability: room names, you-are-here, people, M key | Done, draft PR | | `SpatialMap.gd`, `FloorPlan.gd`, `MapScreen.gd` | `test_map_readability` (3), full QA, before/after captures | Bi looks on the Mac |
 | Objective marker on the map | Not started | #137 merged | `SpatialMap.gd`, `CaseFile.gd` | | After #137 |
