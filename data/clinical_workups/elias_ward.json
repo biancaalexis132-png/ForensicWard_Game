@@ -1,53 +1,55 @@
 {
 	"schema_version": 1,
 	"patient_id": "pt_elias_ward",
-	"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
-	"_note": "Medication and laboratory work-up for Elias Ward (Chapter 1), drafted by Claude Code on 2026-11-04 for the owner's clinical review, in the same form as a ward-round case (data/ward_rounds.json), whose lab, medication and intervention catalogs it uses. Clinical logic follows the owner-approved catatonia case wr_ch4_okafor; Elias-specific items are uds and collateral (required) and neuro_exam and physical_exam (helpful). No doses, no numeric values, qualitative results only. Stays switched off until the owner approves it and the change is recorded in docs/clinical_review_log.md. Ordering never changes Elias's story state.",
+	"clinical_review_status": "APPROVED",
+	"_note": "Medication and laboratory work-up for Elias Ward (Chapter 1), in ward-round case form using the ward-round catalogs. Approved by the owner on 2026-11-05 (docs/clinical_review_log.md). Aligned on 2026-11-05, at the owner's request (\"have it agree in the most logical way\"), with the owner-approved bedside encounter (data/elias_encounter.json): its history, vitals, lab results and order verdicts are the source of truth here. The lorazepam response is shown by the encounter; this work-up has no story effect of its own and shows no dose.",
 	"cases": [
 		{
 			"id": "wr_ch1_elias_ward_workup",
 			"chapter": "ch1",
-			"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+			"clinical_review_status": "APPROVED",
 			"patient": {
 				"name": "Elias Ward",
 				"age": 29,
 				"sex": "male"
 			},
 			"presentation": {
-				"reason": "Transferred for competency restoration. Not speaking since admission, barely eating, and holding the same posture for most of the afternoon.",
-				"history": "Duration of mutism not independently verified. The transfer record gives no medication history.",
-				"mental_status": "Mute. Marked reduction in movement. Possible posturing, to be confirmed by structured bedside examination.",
-				"vitals": "Taken by nursing at 14:00; values are not in the transfer record.",
+				"reason": "Transferred for competency restoration. Stopped speaking four days before transfer; barely drinking, not eating, and lying in one position for hours.",
+				"history": "Withdrawn for about a week, then mute. Haloperidol 5 mg intramuscular twice, six and five days before transfer, for agitation; no regular medication since and no benzodiazepine given. One admission at 24 with psychosis. Daily cannabis and weekend alcohol before arrest; in custody six weeks. No urine since yesterday afternoon.",
+				"mental_status": "Mute, with no reliable nonverbal reply. Marked reduction in movement; posturing to be confirmed by structured bedside examination.",
+				"vitals": "07:30: T 37.6 °C, HR 108, BP 142/88, RR 18, SpO2 98% on air. On arrival: T 37.2 °C, HR 96.",
 				"current_medications": []
 			},
 			"labs": {
 				"ck": {
 					"verdict": "required",
-					"result": "Mildly raised.",
+					"result": "1,150 U/L (raised).",
 					"flag": "abnormal",
-					"teaching": "Check CK in catatonia: it helps separate it from, and watch for, malignant catatonia and NMS."
+					"teaching": "Needed with recent haloperidol, a rising temperature and pulse, and immobility: a raised CK supports neuroleptic malignant syndrome or muscle breakdown."
 				},
 				"bmp": {
 					"verdict": "required",
-					"result": "Urea raised; consistent with poor oral intake.",
-					"flag": "abnormal"
+					"result": "Sodium 147 mmol/L (slightly raised), urea raised, creatinine at the upper limit of normal, potassium and glucose normal: consistent with dehydration.",
+					"flag": "abnormal",
+					"teaching": "Dehydration and poor intake: check sodium and kidney function."
 				},
 				"cbc": {
 					"verdict": "required",
-					"result": "Within normal limits.",
-					"flag": "normal"
+					"result": "White cell count 11.2 (slightly raised); otherwise normal.",
+					"flag": "abnormal",
+					"teaching": "Infection and a raised white count belong in the differential of a rising temperature."
 				},
 				"uds": {
-					"verdict": "required",
-					"result": "Negative for all substances screened.",
+					"verdict": "helpful",
+					"result": "Negative.",
 					"flag": "normal",
-					"teaching": "With no reliable history, rule out substances before attributing mutism to a primary psychiatric cause."
+					"teaching": "Low yield after six weeks in custody, but reasonable in an unexplained change."
 				},
 				"collateral": {
-					"verdict": "required",
-					"result": "Requested from the sending unit; awaiting their reply.",
+					"verdict": "helpful",
+					"result": "Call to his sister Claire requested; awaiting her reply.",
 					"flag": "normal",
-					"teaching": "The transfer record gives no medication history, which matters for NMS and withdrawal."
+					"teaching": "She knows his baseline and the onset better than any packet."
 				},
 				"tsh": {
 					"verdict": "helpful",
@@ -61,39 +63,44 @@
 				},
 				"neuro_exam": {
 					"verdict": "helpful",
-					"result": "No focal neurological signs.",
+					"result": "No lead-pipe rigidity or cogwheeling. No ankle clonus; reflexes normal. No grasp reflex.",
 					"flag": "normal"
 				},
 				"physical_exam": {
 					"verdict": "helpful",
-					"result": "Dry mucous membranes. No rigidity.",
+					"result": "Dry mucous membranes. Lay in one position overnight without turning.",
+					"flag": "abnormal"
+				},
+				"urinalysis": {
+					"verdict": "helpful",
+					"result": "Concentrated (high specific gravity); no infection.",
 					"flag": "abnormal"
 				}
 			},
 			"options": {
 				"start:lorazepam": {
 					"verdict": "preferred",
-					"feedback": "A lorazepam challenge is first-line for catatonia and often helps quickly."
+					"feedback": "First-line for suspected catatonia, and a good response supports the diagnosis. Re-examine afterwards with the same steps."
 				},
 				"start:haloperidol": {
 					"verdict": "unsafe",
-					"feedback": "High-potency antipsychotics can worsen catatonia and raise the risk of NMS."
+					"feedback": "Antipsychotics can worsen catatonia and precipitate neuroleptic malignant syndrome, and he already has a rising pulse and temperature after recent haloperidol. Hold antipsychotics until catatonia and NMS are assessed."
 				},
 				"start:risperidone": {
-					"verdict": "not_indicated",
-					"feedback": "Defer antipsychotics until the catatonia is treated."
+					"verdict": "unsafe",
+					"feedback": "The same risk as any antipsychotic here: hold until catatonia and NMS are assessed."
 				},
 				"start:olanzapine": {
-					"verdict": "not_indicated",
-					"feedback": "Defer antipsychotics until the catatonia is treated."
+					"verdict": "unsafe",
+					"feedback": "The same risk as any antipsychotic here: hold until catatonia and NMS are assessed."
 				},
 				"start:quetiapine": {
-					"verdict": "not_indicated",
-					"feedback": "Defer antipsychotics until the catatonia is treated."
+					"verdict": "unsafe",
+					"feedback": "The same risk as any antipsychotic here: hold until catatonia and NMS are assessed."
 				},
 				"start:aripiprazole": {
-					"verdict": "not_indicated",
-					"feedback": "Defer antipsychotics until the catatonia is treated."
+					"verdict": "unsafe",
+					"feedback": "The same risk as any antipsychotic here: hold until catatonia and NMS are assessed."
 				},
 				"start:lithium": {
 					"verdict": "not_indicated",
@@ -101,15 +108,15 @@
 				},
 				"int:nutrition_hydration": {
 					"verdict": "required",
-					"feedback": "Poor oral intake needs fluid and nutrition support with the medical team."
+					"feedback": "Poor intake and no urine since yesterday afternoon: he needs fluid support and his fluid balance measured, with the medical team."
 				},
 				"int:ect_referral": {
 					"verdict": "acceptable",
-					"feedback": "Appropriate if lorazepam does not work, or sooner if catatonia becomes malignant."
+					"feedback": "ECT is the treatment for catatonia that does not respond to lorazepam, or for malignant catatonia. Start with a lorazepam challenge and medical workup."
 				},
 				"int:close_observation": {
-					"verdict": "acceptable",
-					"feedback": "Reasonable for safety and fluid monitoring."
+					"verdict": "required",
+					"feedback": "He cannot eat, drink or ask for help on his own. Continue 1:1 observation with hourly vital signs and temperature."
 				}
 			},
 			"requires_one_of": [
@@ -120,7 +127,7 @@
 					"int:nutrition_hydration"
 				]
 			],
-			"teaching": "Catatonia with an unverified history: start a lorazepam challenge, avoid high-potency antipsychotics, check CK, hydration and substances, and get collateral on his medications."
+			"teaching": "Catatonia after recent haloperidol, with a rising pulse and temperature: start a lorazepam challenge and re-examine, hold all antipsychotics, check CK, electrolytes and blood count for NMS and dehydration, and get the medical team to see him."
 		}
 	]
 }
