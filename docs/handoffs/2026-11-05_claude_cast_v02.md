@@ -65,8 +65,12 @@ The review sheets were rendered before steps 6 and 7. Those steps change only El
 
 See the AI_HANDOFF log entry for the full QA result on the final commit. The Mac was not run.
 
+## Owner approval
+
+Bi approved PR #136 in the project thread on 2026-11-05 08:02 UTC ("approve"). The PR was marked ready for review; Bi merges it.
+
 ## Pending / next
 
-- Bi looks at the v02 review sheets in the game on the Mac.
+- Bi merges PR #136.
 - A thin dark sliver can still show on Elias's far shoulder at a 3/4 angle. A larger `--band-m` would close it if Bi notices it.
 - The hair is game-ready alpha-scissor cards, not strand simulation. Further realism would need hand-authored hair textures.
