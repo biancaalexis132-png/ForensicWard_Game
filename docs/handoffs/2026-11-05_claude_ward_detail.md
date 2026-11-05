@@ -8,7 +8,7 @@ This note lives here, not in the shared handoff docs, because draft PR #149 (lig
 - `data/set_dressing.json` and `scripts/world/SetDressing.gd`: cosmetic props placed in a zone after it is built (`AuthoredWorld.build_zone`). There is no interaction, wording or save state, and nothing goes on the floor.
 - Clinical corridor: a hand-gel dispenser beside each of the six doors, an AED cabinet (west wall, between the office and nursing station doors), a notice board with blank notes (west wall, opposite the interview room), an intercom speaker by the entry, and two ceiling camera domes.
 - Placements avoid the nursing-station and patient-room observation windows. The wall face is about x ±1.45 to ±1.5.
-- `tools/godot/CaptureAtmosphere.tscn` (the same tool as #149) gains `--view=x,z,yaw_deg`.
+- Captures were made with #149's `CaptureAtmosphere` tool plus a local `--view=x,z,yaw_deg` option, which is not in this PR (it would conflict with #149).
 
 ## Tests
 - `test_set_dressing` (2): data valid; every prop placed, off the floor, inside the wing, clear of doors, not interactive; no state change.
