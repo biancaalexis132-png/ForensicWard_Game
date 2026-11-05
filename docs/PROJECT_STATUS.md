@@ -28,6 +28,8 @@
 
 # Project status
 
+**Elias bedside encounter (Claude Code, 2026-11-05; draft PR, not merged):** `claude/elias-encounter`, from `main`. Approaching Elias opens a bedside encounter: the player's psychiatrist walks over and performs the examination, a 1:1 sitter answers a full history, and orders are given in the room (placing the real EHR orders), with Bennett challenging an antipsychotic and a lorazepam reassessment later in the shift. Background staff walk and work on the Chapter 1 ward. Bi approved the clinical content on 2026-11-05; new lines are not voiced. Not tested on the Mac.
+
 **Case file on Tab (Claude Code, 2026-11-05; draft PR, not merged):** `claude/case-file` from `main` `b1c3e63`. Tab opens a case file showing the current objective and where it happens, notes from recorded story choices marked established, still open or care (verbatim approved text), and the evidence with open alternative explanations; the HUD objective shows its place. Not tested on the Mac.
 
 **Packaged Mac app (2026-11-04):** PR #131 is merged. On Bi's MacBook Air the standalone app exports, passes its launch check and the automated Mac QA (game 417/0, audio 1720/0), and opens on the title screen without the editor. The hands-on playthrough, three endings and listening pass are still with Bi (`docs/MAC_RELEASE_BUILD.md` §3).
