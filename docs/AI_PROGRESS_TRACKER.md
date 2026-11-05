@@ -12,6 +12,12 @@
 | Ending paragraph, objective marker | Not started | #137 merged | | | After #137 |
 | Atmosphere baseline | Not started | | | | Next |
 
+| Case file on Tab: objective and place, notes, evidence | Done, draft PR | | `CaseFile.gd`, `CaseFileScreen.gd`, `data/case_file.json` | `test_case_file` (7), full QA, captures | Bi looks on the Mac |
+| Map readability and objective marker | Not started | | `SpatialMap.gd`, `FloorPlan.gd`, `MapScreen.gd` | | Next PR |
+| Staff acknowledge earlier choices | Not started | Bi's approval of new lines | story staff_lines | | Review sheet to Bi |
+| Ending reflects evidence, uncertainty, care | Not started | | `campaign_end`, `ChapterDirector` | | After acknowledgements |
+| Performances, atmosphere, transitions | Not started | | | | Later PRs |
+
 ## Cast v02 hair and clothing — Claude Code (cloud), 2026-11-05
 
 | Task | State | Depends on | Paths | Validation | Next action |
