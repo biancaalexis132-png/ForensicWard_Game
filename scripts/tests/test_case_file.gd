@@ -163,3 +163,32 @@ func test_objective_place_follows_unmet_parts() -> void:
 	for flag: String in ["ch3_question_confirmed", "ch3_briefing_complete"]:
 		_director().set_flag(flag)
 	check_eq(CaseFile.objective_place(_director()), "At Stairwell fuse board (inspection log)", "then the stair")
+
+
+func test_ending_closes_with_the_players_record() -> void:
+	await runner.get_tree().process_frame
+	check_eq(CaseFile.record_summary(_director()), "", "nothing noted: no record paragraph")
+	check(_director().start_chapter("ch2"), "chapter 2 starts")
+	_director().set_flag("ch2_discrepancy_recorded")
+	_director().set_flag("ch2_witness_account_recorded")
+	check(_director().start_chapter("ch3"), "chapter 3 starts")
+	_director().set_flag("ch3_levels_noted")
+	_director().set_flag("ch3_coverage_confirmed")
+	var counts: Dictionary = {"established": 0, "open": 0, "care": 0}
+	for note: Dictionary in CaseFile.noted(_director()):
+		counts[note["status"]] += 1
+	var record: String = CaseFile.record_summary(_director())
+	check(record.begins_with("Your record: %d " % counts["established"]), "counts what the case file shows: " + record)
+	check("%d question" % counts["open"] in record and "%d care decision" % counts["care"] in record, "open questions and care decisions counted")
+	check("1 care decision that kept patients first" in record, "singular reads naturally")
+	var more_open: bool = counts["open"] > counts["established"]
+	check((CaseFile.RECORD_MORE_OPEN in record) == more_open, "the open-questions line only when more stayed open")
+	check((CaseFile.RECORD_MORE_SETTLED in record) == (counts["established"] > counts["open"]), "the settled line only when more were settled")
+	check(not CaseFile.RECORD_EVERY_CARE_STEP in record, "not every care step taken yet")
+	check(_director().start_chapter("ch5"), "chapter 5 starts")
+	_director().set_flag("ch5_brief_coverage")
+	_director().set_flag("ch5_care_escalated")
+	record = CaseFile.record_summary(_director())
+	check(CaseFile.RECORD_EVERY_CARE_STEP in record, "every care step taken: the care line joins the others")
+	var panel: Dictionary = _director()._campaign_end_panel("Closing response.")
+	check(str(panel["body"]).ends_with(record), "the end-of-campaign panel closes with the record")

@@ -4,6 +4,16 @@
 
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
+| Case file on Tab | Merged (#137) | | `CaseFile.gd` | full QA, CI | |
+| Map, staff remember, transitions, performances, room sound | Draft PRs #139, #140, #142, #143, #145 | | | full QA, CI | Bi |
+| Ending paragraph (section D) | Draft PR | #137 | `CaseFile.record_summary`, `ChapterDirector._campaign_end_panel` | `test_case_file` (8), full QA | Bi reads it |
+| Objective marker on the map | Not started | #139 merged | `SpatialMap.gd` | | After #139 |
+| Lighting and materials baseline | Not started | | | | Next |
+
+## Make the game more compelling (Bi's roadmap) — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
 | Case file on Tab: objective and place, notes, evidence | Done, draft PR | | `CaseFile.gd`, `CaseFileScreen.gd`, `data/case_file.json` | `test_case_file` (7), full QA, captures | Bi looks on the Mac |
 | Map readability and objective marker | Not started | | `SpatialMap.gd`, `FloorPlan.gd`, `MapScreen.gd` | | Next PR |
 | Staff acknowledge earlier choices | Not started | Bi's approval of new lines | story staff_lines | | Review sheet to Bi |
