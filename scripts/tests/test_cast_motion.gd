@@ -62,9 +62,21 @@ func test_idle_characters_keep_the_facing_they_are_placed_with() -> void:
 	check(absf(rad_to_deg(voss.rotation.y) - 150.0) < 0.01, "an idle character stays facing its marker")
 
 
-func test_naomi_keeps_her_own_acting_controller() -> void:
+func test_naomi_keeps_her_controller_and_turns_to_the_player() -> void:
 	var naomi: WardCharacter = _spawn("staff_bennett", false)
-	check(naomi.performer == null, "Naomi is driven by NaomiActingController, not CastPerformer")
+	check(naomi.get_node_or_null("NaomiActingController") != null, "Naomi keeps her cue-driven controller")
+	check(naomi.performer != null, "and gets the shared performer for turning and uncued talk")
+	var camera: Camera3D = Camera3D.new()
+	runner.add_child(camera)
+	camera.make_current()
+	naomi.rotation.y = 0.0
+	# The player stands to her right (+X); she faces -Z.
+	camera.global_position = naomi.global_position + Vector3(2.0, 1.6, 0.0)
+	naomi.performer.begin_conversation()
+	for i: int in 40:
+		naomi.performer._process(0.05)
+	check(rad_to_deg(naomi.rotation.y) < -30.0, "she turns toward the player when spoken to")
+	camera.free()
 
 
 func test_walk_moves_the_legs_and_swings_the_arms() -> void:
@@ -209,6 +221,81 @@ func test_authored_routes_are_clear_of_walls_and_props() -> void:
 								chapter, entry["character_id"], leg, height, side,
 								str(hit.get("collider", "")) if not hit.is_empty() else ""])
 	check(routes >= 3, "the chapters author routes (%d)" % routes)
+
+
+func test_exit_validation() -> void:
+	check_eq(CastExit.validate({"points": [[0.0, 1.0]], "door": "door_office"}), [] as Array[String], "valid exit")
+	check(not CastExit.validate({"points": []}).is_empty(), "an exit needs points")
+	check(not CastExit.validate({"points": [[0.0, 12.0]]}).is_empty(), "an exit stays near its marker")
+	check(not CastExit.validate({"points": [[0.0, 1.0]], "door": 3}).is_empty(), "a door is named by id")
+
+
+func test_voss_walks_out_of_the_office_after_the_talk_and_is_back_on_load() -> void:
+	_main = load("res://scenes/main/Main.tscn").instantiate()
+	runner.add_child(_main)
+	await runner.get_tree().process_frame
+	var world: AuthoredWorld = _main.get_node("World")
+	world.configure_chapter("ch1")
+	await runner.get_tree().physics_frame
+	await runner.get_tree().physics_frame
+	var voss: WardCharacter = world.get_character("staff_voss")
+	var exit: CastExit = voss.get_node_or_null("CastExit") as CastExit
+	check(exit != null, "Voss has her exit in Chapter 1")
+	if exit == null:
+		return
+	# The authored points: inside the office by its door, through it, then up the corridor
+	# (the office door is at x -1.5, z -5.0; the corridor is x -1.5 to 1.5).
+	var door_point: Vector3 = exit.points[1]
+	var corridor_point: Vector3 = exit.points[2]
+	var last: Vector3 = exit.points[exit.points.size() - 1]
+	check(door_point.x < -2.3 and absf(door_point.z + 5.0) < 0.2, "she stops inside the door first (%s)" % door_point)
+	check(corridor_point.x > -1.3 and corridor_point.x < 1.3 and absf(corridor_point.z + 5.0) < 0.2,
+			"then steps into the corridor (%s)" % corridor_point)
+	check(last.x > -1.3 and last.z < -6.0, "and walks off up the corridor (%s)" % last)
+	var door: ImportedDoor = world.get_door("door_office")
+	check(door != null, "the office door exists")
+	if door == null:
+		return
+	var was_open: bool = door.is_open
+	door.set_open(true, false)
+	await runner.get_tree().physics_frame
+	await runner.get_tree().physics_frame
+	var space: PhysicsDirectSpaceState3D = voss.get_world_3d().direct_space_state
+	var exclude: Array[RID] = [(voss.get_node("Body") as CollisionObject3D).get_rid()]
+	for leg: int in exit.points.size() - 1:
+		for height: float in [0.3, 1.0, 1.6]:
+			for side: float in [-0.25, 0.0, 0.25]:
+				var a: Vector3 = exit.points[leg]
+				var b: Vector3 = exit.points[leg + 1]
+				var across: Vector3 = (b - a).normalized().cross(Vector3.UP) * side
+				var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
+						a + across + Vector3.UP * height, b + across + Vector3.UP * height)
+				query.exclude = exclude
+				var hit: Dictionary = space.intersect_ray(query)
+				check(hit.is_empty(), "exit leg %d is clear at %.1f m, %.2f m aside (hit %s)" % [
+						leg, height, side, str(hit.get("collider", "")) if not hit.is_empty() else ""])
+	door.set_open(was_open, false)
+	# A camera far off, so the player is never in her way.
+	var camera: Camera3D = Camera3D.new()
+	runner.add_child(camera)
+	camera.global_position = Vector3(30.0, 1.6, 30.0)
+	camera.make_current()
+	var home: Vector3 = voss.global_position
+	exit._on_interacted()
+	var saw_walking: bool = false
+	for i: int in 400:
+		exit._physics_process(0.05)
+		saw_walking = saw_walking or (exit.performer != null and exit.performer.is_walking())
+		if exit.state == CastExit.State.AWAY:
+			break
+	check(saw_walking, "she walks, with the walk cycle")
+	check_eq(exit.state, CastExit.State.AWAY, "she reaches the corridor and steps out")
+	check(voss.is_away() and not voss.visible, "and is out of the scene")
+	check_eq(door.is_open, was_open, "the door is left as she found it")
+	EventBus.game_loaded.emit(0)
+	check_eq(exit.state, CastExit.State.HOME, "a load brings her back")
+	check(voss.visible and voss.global_position.distance_to(home) < 0.01, "at her marker")
+	camera.free()
 
 
 # --------------------------------------------------------------------------- helpers

@@ -214,6 +214,11 @@ static func check_references(documents: Dictionary) -> Array[String]:
 					errors.append("[%s] characters[%d].route: a seated character cannot walk a route." % [file, i])
 				for problem: String in CastRoute.validate(character["route"]):
 					errors.append("[%s] characters[%d].route: %s." % [file, i, problem])
+			if character.has("exit_after_talk"):
+				if bool(character.get("seated", false)):
+					errors.append("[%s] characters[%d].exit_after_talk: a seated character cannot walk out." % [file, i])
+				for problem: String in CastExit.validate(character["exit_after_talk"]):
+					errors.append("[%s] characters[%d].exit_after_talk: %s." % [file, i, problem])
 			var known: Dictionary = staff_ids if character["kind"] == "staff" else patient_ids
 			_require_known(character["character_id"], known, character["kind"], file,
 					"characters[%d].character_id" % i, errors)

@@ -109,16 +109,28 @@ func _ready() -> void:
 	print("[The Forensic Ward] Boot OK (content %s)" % ("valid" if ContentRegistry.is_valid else "INVALID"))
 
 
+## Frames the audio gets to release its streams before the engine shuts down.
+const QUIT_SETTLE_FRAMES: int = 3
+var _quitting: bool = false
+
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_quit_gracefully()
 
 
 ## Stops audio and lets the audio thread finish before quitting, so no
-## stream is still playing at shutdown.
+## stream is still playing at shutdown. Waits on frames, which arrive even while
+## the game is paused (title, pause menu) and whatever the time scale, rather
+## than on a timer. A second request (Cmd-Q pressed again) quits at once.
 func _quit_gracefully() -> void:
+	if _quitting:
+		get_tree().quit()
+		return
+	_quitting = true
 	_silence_audio()
-	await get_tree().create_timer(0.25, true).timeout
+	for i: int in QUIT_SETTLE_FRAMES:
+		await get_tree().process_frame
 	get_tree().quit()
 
 
