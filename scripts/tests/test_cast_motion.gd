@@ -76,6 +76,19 @@ func test_naomi_keeps_her_controller_and_turns_to_the_player() -> void:
 	for i: int in 40:
 		naomi.performer._process(0.05)
 	check(rad_to_deg(naomi.rotation.y) < -30.0, "she turns toward the player when spoken to")
+	# Spoken to from behind (the player inside the nursing station): she turns round.
+	naomi.performer._engaged = false
+	naomi.rotation.y = 0.0
+	naomi.performer.set_home_yaw(0.0)
+	camera.global_position = naomi.global_position + Vector3(0.3, 1.6, 2.0)
+	naomi.performer.begin_conversation()
+	for i: int in 60:
+		naomi.performer._process(0.05)
+	var to_camera: Vector3 = camera.global_position - naomi.global_position
+	var wanted: float = atan2(-to_camera.x, -to_camera.z)
+	check(absf(wrapf(naomi.rotation.y - wanted, -PI, PI)) < deg_to_rad(10.0),
+			"spoken to from behind, she turns round to face the player (%.0f° vs %.0f°)" % [
+			rad_to_deg(naomi.rotation.y), rad_to_deg(wanted)])
 	camera.free()
 
 
@@ -281,6 +294,16 @@ func test_voss_walks_out_of_the_office_after_the_talk_and_is_back_on_load() -> v
 	camera.global_position = Vector3(30.0, 1.6, 30.0)
 	camera.make_current()
 	var home: Vector3 = voss.global_position
+	# The player standing right behind her does not hold her up; standing in her way does.
+	exit.state = CastExit.State.LEAVING
+	exit._index = 1
+	var away_from_door: Vector3 = (home - exit.points[1]).normalized()
+	camera.global_position = home + away_from_door * 0.6 + Vector3.UP * 1.6
+	check(not exit._player_too_close(), "a player behind her does not block her")
+	camera.global_position = home - away_from_door * 0.6 + Vector3.UP * 1.6
+	check(exit._player_too_close(), "a player between her and the door does")
+	exit.state = CastExit.State.HOME
+	camera.global_position = Vector3(30.0, 1.6, 30.0)
 	exit._on_interacted()
 	var saw_walking: bool = false
 	for i: int in 400:
@@ -296,6 +319,20 @@ func test_voss_walks_out_of_the_office_after_the_talk_and_is_back_on_load() -> v
 	check_eq(exit.state, CastExit.State.HOME, "a load brings her back")
 	check(voss.visible and voss.global_position.distance_to(home) < 0.01, "at her marker")
 	camera.free()
+
+
+func test_name_tag_shows_only_while_the_player_looks_at_the_character() -> void:
+	var voss: WardCharacter = _spawn("staff_voss", false)
+	check(not voss.is_name_tag_shown(), "no floating name while nobody looks at her")
+	EventBus.interaction_target_changed.emit(voss.get_node("Interactable"))
+	check(voss.is_name_tag_shown(), "the name shows while the player looks at her")
+	voss.name_tag_suppressed = true
+	check(not voss.is_name_tag_shown(), "a screen that already shows the name hides it")
+	voss.name_tag_suppressed = false
+	EventBus.interaction_target_changed.emit(null)
+	check(not voss.is_name_tag_shown(), "and it goes when the player looks away")
+	voss.mark_visual_missing("test")
+	check(voss.is_name_tag_shown(), "a development error always shows")
 
 
 # --------------------------------------------------------------------------- helpers

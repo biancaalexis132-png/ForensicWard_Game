@@ -65,6 +65,24 @@ func _ready() -> void:
 func set_world_hud_visible(shown: bool) -> void:
 	_crosshair.visible = shown
 	_prompt.visible = shown
+	_place_subtitle(not shown)
+
+
+## Subtitle bottom edge: above the objective line in play; at the very bottom
+## while a panel is open, below the panel's lower edge (12% of the screen), so
+## two-line subtitles are not hidden behind it (Mac playtest 2026-11-05).
+const SUBTITLE_BOTTOM_PLAY: float = -90.0
+const SUBTITLE_BOTTOM_PANEL: float = -12.0
+
+
+func _place_subtitle(panel_open: bool) -> void:
+	var bottom: float = SUBTITLE_BOTTOM_PANEL if panel_open else SUBTITLE_BOTTOM_PLAY
+	_subtitle.offset_bottom = bottom
+	_subtitle.offset_top = bottom - 80.0
+
+
+func get_subtitle_label() -> Label:
+	return _subtitle
 
 
 func show_toast(text: String) -> void:

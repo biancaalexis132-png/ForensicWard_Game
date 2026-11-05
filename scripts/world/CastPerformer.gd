@@ -40,7 +40,9 @@ const LISTEN_RANGE_M: float = 5.0
 ## After the last line or the panel closing, they hold attention this long.
 const ATTENTION_HOLD_SECONDS: float = 3.0
 ## Standing characters turn toward the player by at most this much from home.
-const MAX_TURN_DEGREES: float = 80.0
+## A full turn: someone spoken to from behind (Naomi at her desk) turns round to
+## face you, as a person would (Mac playtest 2026-11-05; was 80).
+const MAX_TURN_DEGREES: float = 180.0
 const TURN_RATE_DEGREES: float = 150.0
 const IDLE_SWAP_SECONDS: Vector2 = Vector2(9.0, 16.0)
 

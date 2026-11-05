@@ -158,6 +158,8 @@ signal access_revoked(access_id: String)
 ## The interactable under the crosshair changed. Empty prompt = nothing focused.
 @warning_ignore("unused_signal")
 signal interaction_focus_changed(prompt: String)
+## The interactable the player is looking at now (null when none), for name tags.
+signal interaction_target_changed(target: Node)
 @warning_ignore("unused_signal")
 signal interacted(interactable_id: String)
 ## Ask Main to open a panel. panel_id: "info". data: {title, body}.
