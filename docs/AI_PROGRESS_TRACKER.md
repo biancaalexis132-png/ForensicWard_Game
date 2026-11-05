@@ -6,10 +6,17 @@
 |---|---|---|---|---|---|
 | Case file on Tab | Draft PR #137 | | `CaseFile.gd`, `CaseFileScreen.gd` | full QA | Bi looks on the Mac |
 | Map readability | Draft PR | | `SpatialMap.gd`, `FloorPlan.gd` | full QA | Bi looks on the Mac |
-| Staff remember earlier choices (17 lines) | Draft PR; lines approved 2026-11-05 | | `data/acknowledgements.json`, `Acknowledgements.gd` | `test_acknowledgements` (4), full QA | Bi approves the lines |
+| Staff remember earlier choices (17 lines) | Draft PR; lines approved 2026-11-05 | | `data/acknowledgements.json`, `Acknowledgements.gd` | `test_acknowledgements` (4), full QA | Bi looks on the Mac |
 | Ending paragraph from the case file | Not started | #137 merged, Bi's approval (section D) | `ChapterDirector._campaign_end_panel` | | After #137 |
 | Objective marker on the map | Not started | #137 merged | `SpatialMap.gd` | | After #137 |
 | Performances, atmosphere, transitions | Not started | | | | Later PRs |
+
+## Elias meds and labs draft — Claude Code (cloud), 2026-11-05
+
+| Task | State | Depends on | Paths | Validation | Next action |
+|---|---|---|---|---|---|
+| Elias work-up (labs, medications, interventions) | Draft, pending Bi's clinical review | approved ward-round catalogs, Okafor case | `data/clinical_workups/elias_ward.json` | `test_clinical_workup` (4/0) | Bi reviews https://claude.ai/artifact/8aqZx5jh5Ug2ZD8MYi1ucm |
+| Locked loader and order results | Done, draft PR | | `scripts/clinical/ClinicalWorkup.gd`, `ClinicalOrders.result_for` | `test_clinical_workup` | Encounter session wires it after approval |
 
 ## Mac release polish — Claude Code (cloud), 2026-11-04
 

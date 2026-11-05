@@ -65,3 +65,14 @@ static func is_action_approved(action: Dictionary) -> bool:
 		if rule["trigger_action"] == action.get("id", "") and rule["review_status"] != "APPROVED":
 			return false
 	return true
+
+
+## The result of a placed laboratory order, from the patient's clinical
+## work-up (ClinicalWorkup). An order names its lab with "workup_lab". Returns
+## {} for orders without one, before the order is placed, and while the
+## work-up awaits clinical review, in every build mode.
+static func result_for(patient_id: String, order: Dictionary) -> Dictionary:
+	var lab_id: String = str(order.get("workup_lab", ""))
+	if lab_id.is_empty() or history(patient_id, order).is_empty():
+		return {}
+	return ClinicalWorkup.lab_result(patient_id, lab_id)
