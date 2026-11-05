@@ -586,7 +586,15 @@ func get_voice_path(line_id: String) -> String:
 	var line: Dictionary = _lines.get(line_id, {})
 	if line.is_empty():
 		return ""
-	var variant: String = str(_voice_variants.get(line["speaker"], ""))
+	return get_voice_path_for_variant(line_id, str(_voice_variants.get(line["speaker"], "")))
+
+
+## The clip a line plays with a given variant ("" for the main voice), whatever
+## variant the speaker uses now. The character creator previews voices with it.
+func get_voice_path_for_variant(line_id: String, variant: String) -> String:
+	var line: Dictionary = _lines.get(line_id, {})
+	if line.is_empty():
+		return ""
 	if not variant.is_empty():
 		var variant_path: String = "%s/%s/%s/%s.ogg" % [VOICE_DIR, line["chapter"], variant, line_id]
 		if ResourceLoader.exists(variant_path):

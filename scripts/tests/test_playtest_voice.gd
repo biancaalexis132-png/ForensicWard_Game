@@ -65,13 +65,7 @@ func test_saves_from_before_the_choice_still_load() -> void:
 func test_profile_screen_offers_the_choice() -> void:
 	var panel: ProtagonistScreen = load("res://scenes/ui/ProtagonistScreen.tscn").instantiate()
 	runner.add_child(panel)
-	var select: OptionButton = panel._fields.get("gender") as OptionButton
-	check(select != null, "the profile screen has a gender selector")
-	if select != null:
-		var ids: Array[String] = []
-		for index: int in select.item_count:
-			ids.append(str(select.get_item_metadata(index)))
-		check_eq(ids, ["female", "male"] as Array[String], "female and male are offered")
+	check_eq(panel.option_ids("gender"), ["female", "male"] as Array[String], "female and male psychiatrists are offered")
 	check(panel._fields.get("pronouns") is LineEdit, "pronouns stay free text")
 	panel.free()
 
@@ -81,17 +75,16 @@ func test_pronouns_pick_the_matching_voice_in_the_profile_screen() -> void:
 	runner.add_child(panel)
 	panel.open()
 	var pronouns: LineEdit = panel._fields["pronouns"]
-	var select: OptionButton = panel._fields["gender"]
 	pronouns.text_changed.emit("she/her")
-	check_eq(str(select.get_item_metadata(select.selected)), "female", "she/her selects the female voice")
+	check_eq(panel.selected("gender"), "female", "she/her selects the female psychiatrist and voice")
 	panel.confirm()
 	check_eq(ProtagonistProfile.gender(), "female", "and confirming applies it")
 	check_eq(AudioDirector.get_voice_variant("player"), "female", "so the psychiatrist speaks with the female voice")
 	panel.open()
 	pronouns.text_changed.emit("He/Him")
-	check_eq(str(select.get_item_metadata(select.selected)), "male", "he/him selects the male voice")
+	check_eq(panel.selected("gender"), "male", "he/him selects the male voice")
 	pronouns.text_changed.emit("they/them")
-	check_eq(str(select.get_item_metadata(select.selected)), "male", "other pronouns leave the voice choice as it is")
+	check_eq(panel.selected("gender"), "male", "other pronouns leave the voice choice as it is")
 	panel.close()
 	panel.free()
 
