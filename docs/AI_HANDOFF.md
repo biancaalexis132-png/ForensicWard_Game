@@ -20,7 +20,6 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Ending reflects the player's record | `claude/ending-record` (draft PR to `main`) | Claude Code (cloud) | see Log | `CaseFile.record_summary` and section D constants in `scripts/narrative/CaseFile.gd`; 3 lines in `ChapterDirector._campaign_end_panel`; one test in `test_case_file.gd` | Full QA; waiting on Bi |
 | Map readability (labels, you-are-here, people, M key) | `claude/map-readability` (draft PR to `main`) | Claude Code (cloud) | see Log | `scripts/ui/{SpatialMap,FloorPlan,MapScreen}.gd`, `scenes/ui/MapScreen.tscn`, `test_map_readability.gd`, capture tool; small edits to `Main.gd` (M), `PauseMenu.gd` (label), `project.godot` (map action) | Full QA; waiting on Bi |
 | Elias bedside encounter (exam, full history, sitter, orders at the bedside, background staff) | `claude/elias-encounter` (draft PR to `main`) | Claude Code (cloud) | see Log | `data/elias_encounter.json`, five Elias observations in `data/patients.json`, `scripts/encounter/**`, `scripts/ui/EncounterScreen.gd`, `scenes/ui/EncounterScreen.tscn`, one autoload line in `project.godot`, one branch in `Main.gd`, `AuthoredWorld.gd`/`CastRoute.gd` (`at`, `yaw_degrees`, `pause_gestures`), content schema/validator, `data/{staff,character_visuals,world_chapter1,milestones,story_chapter1}.json`, six new cast configs and models, `tools/encounter/**`, capture tool, `test_elias_encounter.gd` and small edits to four older tests | Full QA recorded in Log; clinical content pending Bi |
 | Case file on Tab (objectives, notes, evidence) | `claude/case-file` (draft PR to `main`) | Claude Code (cloud) | see Log | `data/case_file.json`, `scripts/narrative/CaseFile.gd`, `scripts/ui/CaseFileScreen.gd`, `scenes/ui/CaseFileScreen.tscn`, `test_case_file.gd`, capture tool; small edits to `Main.gd` (Tab), `ObjectiveTracker.gd` (place line), `test_sprint3.gd` | Full QA; waiting on Bi |
@@ -68,12 +67,6 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
-
-### 2026-11-05 · Claude Code · Ending reflects the player's record (roadmap point 7)
-
-- Branch `claude/ending-record` from `main` `851a713` (#137 merged). The end-of-campaign panel now closes with "Your record: N findings preserved as found, M questions left honestly open, K care decisions that kept patients first.", counted from the case file, then D1 (more open than settled) or D2 (more settled than open) and D3 (coverage confirmed in Chapters 3 and 5 and care escalated in Chapter 5). Wording is section D of `acknowledgement_lines_review.md`, approved by Bi 2026-11-05 (`docs/clinical_review_log.md`); counts of one read in the singular ("1 finding preserved as found").
-- Tests: full QA passed: game tests 434/0, GLB 205/0, content and audio checks clean, Chapter 1 audio sequence done; `test_case_file` 8/0.
-- Next: Bi reads it at the end of a playthrough. Then the objective marker on the map, after #139 merges.
 ### 2026-11-05 · Claude Code · Map readability (roadmap point 6)
 
 - Branch `claude/map-readability` from `main` `b1c3e63`. M toggles the map; rooms named beside the plan, your room highlighted, staff/story patients as named dots, drawn legend, "You are in / On this floor" line. See `docs/handoffs/2026-11-05_claude_map_readability.md`.
