@@ -26,6 +26,8 @@ var actor: WardCharacter
 var performer: CastPerformer
 var points: Array[Vector3] = []
 var pause_seconds: Vector2 = Vector2(6.0, 11.0)
+## Gestures played at a stop (a nurse writing, a housekeeper wiping): one per pause.
+var pause_gestures: Array[StringName] = []
 ## Metres per step, from the motion build's report (data/character_visuals.json).
 var step_m: float = DEFAULT_STEP_M
 ## Review captures set this to 0 to film from close by.
@@ -139,6 +141,8 @@ func _physics_process(delta: float) -> void:
 func _arrive() -> void:
 	_stop_walking()
 	_wait = _rng.randf_range(pause_seconds.x, pause_seconds.y)
+	if not pause_gestures.is_empty() and performer != null:
+		performer.play_gesture(pause_gestures[_rng.randi() % pause_gestures.size()])
 	if _index == points.size() - 1:
 		_direction = -1
 	elif _index == 0:
