@@ -566,6 +566,48 @@ def ward_zero():
     write_ogg(fade(normalize_peak(stereo, -6.0), 0.5, 1.5), "audio/sfx/anomaly/sfx_w0_pressure_swell.ogg")
 
 
+# --- Positional room sources (RoomSounds places these at their sources) ----------
+
+def fixture_hum():
+    """20 s mono loop: one fluorescent fixture up close. 120 Hz ballast hum with
+    faint buzz and the odd tick of a tired starter. Placed at ceiling lights."""
+    rng = np.random.default_rng(2101)
+    length, overlap = 20.0, 2.0
+    total = seconds(length + overlap)
+    t = np.arange(total) / SR
+    jitter = 1 + 0.0015 * np.sin(2 * np.pi * 0.29 * t)
+    phase = 2 * np.pi * 120 * np.cumsum(jitter) / SR
+    hum = sum(np.sin(phase * h + rng.uniform(0, 2 * np.pi)) / h ** 1.3 for h in range(1, 18))
+    # Ballast buzz: a little clipped, so it reads as a coil and not a pure tone.
+    buzz = np.tanh(3.0 * np.sin(phase * 2)) * 0.08
+    hiss = butter(rng.standard_normal(total), "bandpass", [2500, 9000], order=2) * 0.012
+    data = butter(hum * 0.5 + buzz, "highpass", 90, order=2) + hiss
+    data *= 1 + 0.04 * np.sin(2 * np.pi * 0.11 * t)
+    ticks = np.zeros(total)
+    for at in (5.3, 13.9):
+        place(ticks, butter(rng.standard_normal(seconds(0.012)) * env_exp(seconds(0.012), 0.003), "highpass", 1800), at, 0.25)
+    data = seamless(data + ticks, length, overlap)
+    write_ogg(normalize_rms(data, -24.0, ceiling_db=-3.0), "audio/ambience/amb_fixture_hum_loop.ogg", quality=4)
+
+
+def workstation_fan():
+    """20 s mono loop: a desktop computer at arm's length. Fan whir with blade tone,
+    faint drive and coil whine. Placed at EHR workstations."""
+    rng = np.random.default_rng(2102)
+    length, overlap = 20.0, 2.0
+    total = seconds(length + overlap)
+    t = np.arange(total) / SR
+    air = butter(pink_noise(total, rng), "bandpass", [180, 2400], order=2)
+    speed = 1 + 0.01 * np.sin(2 * np.pi * 0.07 * t)
+    blade = np.sin(2 * np.pi * 247 * np.cumsum(speed) / SR) * 0.06 + np.sin(2 * np.pi * 494 * np.cumsum(speed) / SR) * 0.02
+    whine = np.sin(2 * np.pi * 9100 * t) * 0.004 * (1 + 0.5 * np.sin(2 * np.pi * 0.43 * t))
+    seeks = np.zeros(total)
+    for at in (3.2, 3.35, 11.8, 17.1):
+        place(seeks, butter(rng.standard_normal(seconds(0.02)) * env_exp(seconds(0.02), 0.006), "bandpass", [600, 3000]), at, 0.08)
+    data = seamless(air * 0.5 + blade + whine + seeks, length, overlap)
+    write_ogg(normalize_rms(data, -26.0, ceiling_db=-6.0), "audio/ambience/amb_workstation_fan_loop.ogg", quality=4)
+
+
 ASSETS = {
     "corridor": corridor_ambience_loop,
     "door": secure_door_open,
@@ -580,6 +622,8 @@ ASSETS = {
     "intercom_static": historic_intercom_static,
     "electrical": electrical,
     "ward_zero": ward_zero,
+    "fixture_hum": fixture_hum,
+    "workstation_fan": workstation_fan,
 }
 
 

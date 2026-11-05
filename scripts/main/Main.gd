@@ -101,6 +101,11 @@ func _ready() -> void:
 	if "--acceptance-perf" in OS.get_cmdline_user_args():
 		add_child(AcceptancePerformance.new())
 	($AudioZoneTracker as AudioZoneTracker).target = _player
+	var room_sounds: RoomSounds = RoomSounds.new()
+	room_sounds.name = "RoomSounds"
+	room_sounds.target = _player
+	room_sounds.world = _world as AuthoredWorld
+	add_child(room_sounds)
 	get_tree().auto_accept_quit = false  # Quit via _quit_gracefully (audio first).
 
 	if not ContentRegistry.is_valid:
@@ -148,6 +153,9 @@ func _exit_tree() -> void:
 func _silence_audio() -> void:
 	AudioDirector.stop_narration()
 	AudioDirector.stop_dialogue()
+	var room_sounds: RoomSounds = get_node_or_null("RoomSounds") as RoomSounds
+	if room_sounds != null:
+		room_sounds.stop_all()
 	AudioDirector.stop_ambience(0.01)
 	AudioDirector.stop_music(0.01)
 	for player: Node in AudioDirector.find_children("*", "", true, false):

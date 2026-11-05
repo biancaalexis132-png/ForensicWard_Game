@@ -199,6 +199,20 @@
 			"stream": "res://assets/creative_references/Music/Ready_For_Godot/music_main_theme_variant2.ogg",
 			"bus": "Music",
 			"volume_db": -5.7
+		},
+		"amb_fixture_hum": {
+			"stream": "res://audio/ambience/amb_fixture_hum_loop.ogg",
+			"bus": "SFX",
+			"loop": true,
+			"max_distance": 7.0,
+			"unit_size": 1.2
+		},
+		"amb_workstation_fan": {
+			"stream": "res://audio/ambience/amb_workstation_fan_loop.ogg",
+			"bus": "SFX",
+			"loop": true,
+			"max_distance": 4.0,
+			"unit_size": 0.8
 		}
 	},
 	"music_states": {

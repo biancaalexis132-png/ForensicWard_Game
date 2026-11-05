@@ -1,0 +1,12 @@
+{
+	"schema_version": 1,
+	"notes": "Positional room sound (RoomSounds): small looping sources placed where they come from, so ordinary spaces have a convincing, directional baseline. Only the nearest few play. Locations listed in silent_locations get none: in the historical wing and Ward Zero the fixtures stop humming, so their absence is part of what changes. Cosmetic only.",
+	"max_active": 8,
+	"update_seconds": 0.5,
+	"fade_seconds": 1.2,
+	"silent_locations": ["historical_wing", "ward_zero"],
+	"sources": {
+		"ceiling_light": {"cue": "amb_fixture_hum", "volume_db": -20.0, "pitch_spread": 0.012},
+		"workstation": {"cue": "amb_workstation_fan", "volume_db": -16.0, "pitch_spread": 0.03}
+	}
+}
