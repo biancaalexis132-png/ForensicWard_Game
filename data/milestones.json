@@ -5,7 +5,8 @@
 		{
 			"id": "ms_ch1_first_assessment",
 			"chapter_id": "ch1",
-			"approved": true,
+			"approved": false,
+			"withdrawn": "Owner playtest 2026-11-04: the split screen after placing Elias's orders felt abrupt. Orders are now given at the bedside (data/elias_encounter.json). Preview still works with --milestone-preview.",
 			"after_objective": "obj_act",
 			"duration_seconds": 7.0,
 			"left": {"texture": "res://assets/cutscenes/ch01_pilot/p03_office_desk.png", "caption_objective": "obj_document"},

@@ -248,6 +248,10 @@ func _build_characters(root: Node3D, zone_id: String, entries: Array) -> void:
 		var visual_offset: Vector3 = CampaignCastVisuals.configure(character, str(entry["marker"]))
 		root.add_child(character)
 		var xf: Transform3D = marker.global_transform
+		if entry.get("at") is Array and entry["at"].size() == 2:
+			# Background staff stand at a zone-local floor point; the marker only names the zone.
+			var spot: Vector3 = root.to_global(Vector3(float(entry["at"][0]), 0.0, float(entry["at"][1])))
+			xf = Transform3D(root.global_basis * Basis(Vector3.UP, deg_to_rad(float(entry.get("yaw_degrees", 0.0)))), spot)
 		# Seat markers sit at seat height; characters stand on the floor plane.
 		character.global_transform = Transform3D(xf.basis.orthonormalized(), Vector3(xf.origin.x, 0.0, xf.origin.z)) \
 				* Transform3D(Basis.IDENTITY, visual_offset)
@@ -266,7 +270,10 @@ func _build_characters(root: Node3D, zone_id: String, entries: Array) -> void:
 			interaction.add_child(shape)
 			shape.global_transform = Transform3D(root.global_basis, root.to_global(Vector3(center[0], center[1], center[2])))
 		if entry.has("route"):
-			CastRoute.attach(character, entry["route"], CampaignCastVisuals.walk_step_for(character.character_id))
+			var route: CastRoute = CastRoute.attach(character, entry["route"], CampaignCastVisuals.walk_step_for(character.character_id))
+			if route != null:
+				for gesture: Variant in entry["route"].get("pause_gestures", []):
+					route.pause_gestures.append(StringName(str(gesture)))
 		_characters[character.character_id] = character
 
 

@@ -25,7 +25,14 @@
 	"characters": [
 		{"marker": "MARK_Character_DrVoss", "kind": "staff", "character_id": "staff_voss"},
 		{"marker": "MARK_Character_NurseBennett", "kind": "staff", "character_id": "staff_bennett", "interaction_box": {"center": [-1.25, 1.65, -11.0], "size": [0.2, 0.6, 1.4]}},
-		{"marker": "MARK_Seat_Patient", "kind": "patient", "character_id": "pt_elias_ward", "seated": true}
+		{"marker": "MARK_Seat_Patient", "kind": "patient", "character_id": "pt_elias_ward", "seated": true},
+		{"marker": "MARK_Standing_Staff_Door", "kind": "staff", "character_id": "staff_sitter_adler"},
+		{"marker": "MARK_PlayerSpawn", "kind": "staff", "character_id": "staff_bg_nurse_a", "at": [0.7, -13.0], "yaw_degrees": 0.0,
+			"route": {"points": [[0.0, 7.5], [-0.6, 8.0]], "pause_seconds": [5.0, 9.0], "pause_gestures": ["thinking_pause", "small_acknowledgement_nod"]}},
+		{"marker": "MARK_PlayerSpawn", "kind": "staff", "character_id": "staff_bg_nurse_b", "at": [-3.4, -9.0], "yaw_degrees": 0.0,
+			"route": {"points": [[0.0, -2.4], [-1.0, -1.6]], "pause_seconds": [7.0, 13.0], "pause_gestures": ["explain_open_hand", "thinking_pause", "small_shrug"]}},
+		{"marker": "MARK_PlayerSpawn", "kind": "staff", "character_id": "staff_bg_housekeeping", "at": [-0.8, -6.0], "yaw_degrees": 180.0,
+			"route": {"points": [[0.0, 2.5], [0.0, 5.5], [0.2, 7.5]], "pause_seconds": [8.0, 14.0], "pause_gestures": ["thinking_pause", "small_head_shake"]}}
 	],
 	"flicker_lights": ["LIGHTMARK_Corridor_00"]
 }

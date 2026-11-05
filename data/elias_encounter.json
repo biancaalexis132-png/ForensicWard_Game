@@ -1,0 +1,433 @@
+{
+	"schema_version": "0.1",
+	"patient_id": "pt_elias_ward",
+	"clinical_review_status": "PENDING_PSYCHIATRIST_REVIEW",
+	"_note": "The full Elias Ward encounter in Interview Room A (owner playtest 2026-11-04): introduction, a full history taken from Elias and, where he cannot answer, from his 1:1 sitter and the transfer packet, a physical and catatonia examination the psychiatrist performs on screen, and verbal orders given at the bedside that are logged to the EHR. Every patient fact, finding, result, verdict and outcome below is fictional and PENDING the psychiatrist's review; nothing here is approved medical logic. Elias does not speak until the lorazepam reassessment: his non-responses are shown by his model (stillness, fixed gaze), not narrated. The 'shown' text is the on-screen transcript caption only and is never voiced. Line ids are stable: never reuse an id for different wording.",
+	"source": "Original writing for The Forensic Ward. Catatonia examination steps are original summaries of the signs screened by the Bush-Francis Catatonia Rating Scale (Bush G, Fink M, Petrides G, Dowling F, Francis A. Catatonia. I. Rating scale and standardized examination. Acta Psychiatr Scand 1996;93:129-136); no scale text is reproduced. Scene structure follows docs/design/screenplays/ForensicWard_Five_Chapter_Screenplay/chapters/CH1_ELIAS_WARD_COMPLETE_SOURCE_DRAFT.md Scenes 6-8.",
+	"informant": {
+		"id": "staff_sitter_adler",
+		"name": "Tom Adler",
+		"role": "Mental health technician, Elias's 1:1 sitter",
+		"intro": "Seated by the door on a 1:1 observation since Elias arrived at 01:40. Has the transfer packet and the nursing flowsheet on a clipboard."
+	},
+	"sections": [
+		{"id": "open", "label": "Introduction"},
+		{"id": "history", "label": "History"},
+		{"id": "exam", "label": "Examination"},
+		{"id": "plan", "label": "Orders"}
+	],
+	"history_domains": [
+		{"id": "hpi", "label": "Presenting complaint and course"},
+		{"id": "intake", "label": "Eating, drinking and output"},
+		{"id": "sleep", "label": "Sleep and overnight behaviour"},
+		{"id": "medications", "label": "Medications and allergies"},
+		{"id": "psych_history", "label": "Past psychiatric history"},
+		{"id": "medical_history", "label": "Medical history"},
+		{"id": "substances", "label": "Alcohol and drugs"},
+		{"id": "family", "label": "Family history"},
+		{"id": "social", "label": "Social and legal history"},
+		{"id": "risk", "label": "Risk to self and others"}
+	],
+	"steps": [
+		{
+			"id": "open_introduce",
+			"section": "open",
+			"label": "Introduce yourself to Elias",
+			"player": "Good morning, Mr. Ward. I'm one of the psychiatrists here at Ashcroft. Is it all right if I sit down with you for a while?",
+			"performs": "sit_across",
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "no_response", "shown": "No response. His eyes stay on a point on the far wall."},
+				{"speaker": "staff_sitter_adler", "text": "Morning, Doctor. I'm Tom, I'm on his one-to-one. He's been like this since he came up from admissions at twenty to two."}
+			]
+		},
+		{
+			"id": "open_reassure",
+			"section": "open",
+			"label": "Tell Elias what will happen",
+			"player": "You don't have to answer anything right away, Elias. I'll ask some questions, and Tom will help me with what he knows. Before I examine you I'll tell you each step first.",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "no_response", "shown": "No response. He has not blinked while you were speaking."}
+			],
+			"rapport_delta": 1
+		},
+		{
+			"id": "hx_pain",
+			"section": "history",
+			"domain": "hpi",
+			"label": "Ask about pain (nod or squeeze my hand)",
+			"player": "Elias, are you in any pain? If it's hard to talk, you can nod, or squeeze my hand.",
+			"requires": ["open_introduce"],
+			"performs": "offer_hand",
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "no_response", "shown": "No nod. His hand stays limp in yours and does not squeeze."}
+			],
+			"records_facts": ["fact_no_nonverbal_reply"]
+		},
+		{
+			"id": "hx_onset",
+			"section": "history",
+			"domain": "hpi",
+			"label": "Ask when this started",
+			"player": "Elias, when did you stop feeling like talking? ... Tom, what does the packet say about when this started?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "no_response", "shown": "No response."},
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "Jail medical wrote that he was withdrawn and staying in his cell for about a week. Then he stopped talking altogether, four days before the transfer. That's from the packet. Nobody here has seen him any other way."}
+			],
+			"records_facts": ["fact_onset", "fact_course"]
+		},
+		{
+			"id": "hx_intake",
+			"section": "history",
+			"domain": "intake",
+			"label": "Ask about food and fluids",
+			"player": "Elias, have you been able to eat or drink anything today? ... Tom, how much has he taken?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "no_response", "shown": "No response."},
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "A few sips of water at breakfast, when I held the cup to his lips. Then he just held it in his mouth. Nothing to eat since he got here. Night staff charted about a quarter of a cup overnight."}
+			],
+			"records_facts": ["fact_intake"],
+			"records_observations": ["obs_mutism"]
+		},
+		{
+			"id": "hx_output",
+			"section": "history",
+			"domain": "intake",
+			"label": "Ask about urine and bowels",
+			"player": "Tom, has he passed urine since he arrived? Any bowel movement?",
+			"requires": ["hx_intake"],
+			"beats": [
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "No urine charted since he arrived. The transport note says he last went yesterday afternoon at the jail. No bowel movement on our chart at all."}
+			],
+			"records_facts": ["fact_output"]
+		},
+		{
+			"id": "hx_sleep",
+			"section": "history",
+			"domain": "sleep",
+			"label": "Ask about sleep and the night",
+			"player": "Tom, how was he overnight? Did he sleep?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "staff_sitter_adler", "text": "Hard to say. He lay on top of the covers in the same position from about three until they got him up at seven. Eyes open most of the times I checked. He didn't turn over once."}
+			],
+			"records_facts": ["fact_sleep"]
+		},
+		{
+			"id": "hx_medications",
+			"section": "history",
+			"domain": "medications",
+			"label": "Ask about medications given",
+			"player": "Tom, what medication has he had, here or at the jail? Anything in the last two weeks?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "Nothing since he's been here. The jail medication record shows haloperidol injections twice, six days and five days before transfer, for agitation. Five milligrams each time, it says. Nothing regular after that. No lorazepam."}
+			],
+			"records_facts": ["fact_haloperidol"]
+		},
+		{
+			"id": "hx_allergies",
+			"section": "history",
+			"domain": "medications",
+			"label": "Ask about allergies",
+			"player": "Elias, are you allergic to any medicines? ... Tom, any allergies recorded?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "no_response", "shown": "No response."},
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "No known drug allergies, on both the jail record and our admission sheet."}
+			],
+			"records_facts": ["fact_allergies"]
+		},
+		{
+			"id": "hx_psych",
+			"section": "history",
+			"domain": "psych_history",
+			"label": "Ask about past psychiatric history",
+			"player": "Elias, have you been in hospital for your mental health before? ... Tom, does the packet mention it?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "no_response", "shown": "No response."},
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "One admission when he was twenty-four, for psychosis. Discharged on an antipsychotic, and the note says he stopped it within a few months. Nothing about an episode like this one."}
+			],
+			"records_facts": ["fact_psych_history"]
+		},
+		{
+			"id": "hx_medical",
+			"section": "history",
+			"domain": "medical_history",
+			"label": "Ask about medical history",
+			"player": "Tom, any medical problems? Seizures, head injury, anything he's treated for?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "Nothing recorded. No seizures or head injury on the jail intake form. They didn't do any blood tests that I can see."}
+			],
+			"records_facts": ["fact_medical_history"]
+		},
+		{
+			"id": "hx_substances",
+			"section": "history",
+			"domain": "substances",
+			"label": "Ask about alcohol and drugs",
+			"player": "Elias, do you drink, or use any drugs? ... Tom, what's on the intake form?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "no_response", "shown": "No response."},
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "Daily cannabis before his arrest, he told them. Alcohol at weekends. His urine screen at jail intake was positive for cannabis only. That was six weeks ago, and he's been inside since."}
+			],
+			"records_facts": ["fact_substances"]
+		},
+		{
+			"id": "hx_family",
+			"section": "history",
+			"domain": "family",
+			"label": "Ask about family history and contacts",
+			"player": "Tom, is there any family history in the packet? Who's his next of kin?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "No family history recorded. His sister, Claire, is listed as next of kin, with a phone number. He was living with her before the arrest. Funny thing: when I said her name this morning, he looked at me. Just for a second."}
+			],
+			"records_facts": ["fact_family", "fact_sister_glance"]
+		},
+		{
+			"id": "hx_social",
+			"section": "history",
+			"domain": "social",
+			"label": "Ask about work, home and the legal situation",
+			"player": "Tom, what do we know about his life before, and why he's here?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "Worked at a warehouse until last spring, then lived with his sister. The court found him not competent to stand trial and sent him for competency restoration. That's all the packet says about the charge."}
+			],
+			"records_facts": ["fact_social", "fact_legal"]
+		},
+		{
+			"id": "hx_risk",
+			"section": "history",
+			"domain": "risk",
+			"label": "Ask about self-harm and aggression",
+			"player": "Elias, have you had any thoughts of hurting yourself or anyone else? ... Tom, any self-harm or aggression since he came in?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "no_response", "shown": "No response."},
+				{"speaker": "staff_sitter_adler", "text": "None here. He hasn't tried to hurt himself or anyone. He barely moves. The agitation the jail injected him for was before he went quiet."}
+			],
+			"records_facts": ["fact_risk_observed", "fact_risk_unassessable"]
+		},
+		{
+			"id": "hx_vitals",
+			"section": "history",
+			"domain": "intake",
+			"label": "Ask for his vital signs",
+			"player": "Tom, what were his last observations?",
+			"requires": ["open_introduce"],
+			"beats": [
+				{"speaker": "staff_sitter_adler", "act": "read_clipboard", "text": "At half seven: temperature thirty-seven point six, pulse one hundred and eight, blood pressure one forty-two over eighty-eight, breathing eighteen, oxygen ninety-eight percent on air. On arrival it was thirty-seven point two and ninety-six."}
+			],
+			"records_facts": ["fact_vitals_trend"]
+		},
+		{
+			"id": "ex_observe",
+			"section": "exam",
+			"label": "Stand back and observe for a minute",
+			"player": "I'm just going to watch for a minute, Elias. You don't need to do anything.",
+			"requires": ["open_introduce"],
+			"performs": "observe",
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "still", "shown": "For a full minute he does not move. His gaze stays fixed and he blinks only twice. His hands lie in his lap exactly as they were."}
+			],
+			"records_observations": ["obs_immobility", "obs_staring"]
+		},
+		{
+			"id": "ex_pulse",
+			"section": "exam",
+			"label": "Take his pulse",
+			"player": "Elias, I'm going to hold your wrist to feel your pulse.",
+			"requires": ["open_introduce"],
+			"performs": "exam_pulse",
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "still", "shown": "Pulse about 110, regular. His skin is warm and slightly damp."}
+			],
+			"records_observations": ["obs_tachycardia"]
+		},
+		{
+			"id": "ex_mouth",
+			"section": "exam",
+			"label": "Look at his mouth and hydration",
+			"player": "I'm going to look at your lips and mouth with this light, Elias.",
+			"requires": ["open_introduce"],
+			"performs": "exam_penlight",
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "still", "shown": "Lips cracked and the inside of his mouth is dry. He does not open his mouth when asked, but does not resist."}
+			],
+			"records_observations": ["obs_dry_mucosa"]
+		},
+		{
+			"id": "ex_pupils",
+			"section": "exam",
+			"label": "Check his pupils",
+			"player": "Now I'll shine the light in each eye, briefly.",
+			"requires": ["ex_mouth"],
+			"performs": "exam_penlight",
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "still", "shown": "Pupils equal and react to light. No nystagmus. He blinks at the light but his gaze returns to the wall."}
+			]
+		},
+		{
+			"id": "ex_echopraxia",
+			"section": "exam",
+			"label": "Scratch your head in an exaggerated way (imitation)",
+			"player": "Elias, watch me for a moment.",
+			"requires": ["open_introduce"],
+			"performs": "exam_scratch_head",
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "still", "shown": "He does not copy the movement."}
+			],
+			"records_facts": ["fact_no_echopraxia"]
+		},
+		{
+			"id": "ex_arm_raise",
+			"section": "exam",
+			"label": "Lift his arm and let go (posturing)",
+			"player": "I'm going to lift your right arm, Elias, and then let it go.",
+			"requires": ["open_introduce"],
+			"performs": "exam_lift_arm",
+			"patient_performs": "arm_hold_raised",
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "arm_hold_raised", "shown": "When you let go, his arm stays where you left it, at shoulder height, for over a minute, until you lower it."}
+			],
+			"records_observations": ["obs_posturing"]
+		},
+		{
+			"id": "ex_tone",
+			"section": "exam",
+			"label": "Bend and straighten his elbow (tone)",
+			"player": "Now I'll bend and straighten your elbow a few times.",
+			"requires": ["open_introduce"],
+			"performs": "exam_flex_elbow",
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "still", "shown": "Slight, even resistance, like bending soft wax; the arm stays in each position you leave it. No lead-pipe rigidity and no cogwheeling."}
+			],
+			"records_observations": ["obs_waxy_flexibility"],
+			"records_facts": ["fact_no_rigidity"]
+		},
+		{
+			"id": "ex_grasp",
+			"section": "exam",
+			"label": "Stroke his palm (grasp reflex)",
+			"player": "I'm going to stroke the palm of your hand.",
+			"requires": ["open_introduce"],
+			"performs": "exam_palm",
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "still", "shown": "No grasp."}
+			],
+			"records_facts": ["fact_no_grasp"]
+		},
+		{
+			"id": "ex_clonus",
+			"section": "exam",
+			"label": "Check his ankles for clonus",
+			"player": "Last thing, Elias. I'm going to flex each foot up quickly.",
+			"requires": ["open_introduce"],
+			"performs": "exam_ankle",
+			"beats": [
+				{"speaker": "pt_elias_ward", "act": "still", "shown": "No clonus at either ankle. Reflexes are normal."}
+			],
+			"records_facts": ["fact_no_clonus"]
+		}
+	],
+	"history_facts": {
+		"fact_no_nonverbal_reply": {"domain": "hpi", "text": "No verbal or reliable nonverbal reply to questions (no nod, no hand squeeze). Pain cannot be documented as absent.", "source": "physician_observation", "reliability": "clinician observation, single interview", "verified": true},
+		"fact_onset": {"domain": "hpi", "text": "Withdrawn and staying in his cell for about a week, then stopped speaking four days before transfer.", "source": "transfer_packet", "reliability": "transfer documents, not independently verified", "verified": false},
+		"fact_course": {"domain": "hpi", "text": "No one at Ashcroft has seen him speak or move normally.", "source": "sitter_report", "reliability": "1:1 sitter report", "verified": false},
+		"fact_intake": {"domain": "intake", "text": "Sips of water only when the cup is held to his lips; no food since arrival; about a quarter cup of fluid overnight.", "source": "sitter_report", "reliability": "1:1 sitter and nursing flowsheet", "verified": false},
+		"fact_output": {"domain": "intake", "text": "No urine charted since arrival; last voided yesterday afternoon per transport note. No bowel movement charted.", "source": "nursing_flowsheet", "reliability": "nursing flowsheet and transport note", "verified": false},
+		"fact_sleep": {"domain": "sleep", "text": "Lay in one position from 03:00 to 07:00 without turning; eyes open at most checks. Sleep uncertain.", "source": "sitter_report", "reliability": "night observation record", "verified": false},
+		"fact_haloperidol": {"domain": "medications", "text": "Haloperidol 5 mg intramuscular twice, six and five days before transfer, for agitation. No regular medication since. No benzodiazepine given.", "source": "transfer_packet", "reliability": "jail medication administration record", "verified": false},
+		"fact_allergies": {"domain": "medications", "text": "No known drug allergies.", "source": "transfer_packet", "reliability": "jail record and admission sheet agree", "verified": false},
+		"fact_psych_history": {"domain": "psych_history", "text": "One admission at 24 with psychosis; discharged on an antipsychotic, stopped within months. No previous episode like this recorded.", "source": "transfer_packet", "reliability": "transfer documents", "verified": false},
+		"fact_medical_history": {"domain": "medical_history", "text": "No medical history, seizures or head injury recorded. No blood tests in the packet.", "source": "transfer_packet", "reliability": "jail intake form", "verified": false},
+		"fact_substances": {"domain": "substances", "text": "Daily cannabis and weekend alcohol before arrest (self-report at jail intake); urine drug screen six weeks ago positive for cannabis only. In custody since.", "source": "transfer_packet", "reliability": "jail intake form", "verified": false},
+		"fact_family": {"domain": "family", "text": "No family history recorded. Sister Claire is next of kin; he lived with her before the arrest.", "source": "transfer_packet", "reliability": "transfer documents", "verified": false},
+		"fact_sister_glance": {"domain": "family", "text": "Briefly looked toward the sitter when his sister's name was said.", "source": "sitter_report", "reliability": "1:1 sitter report, single observation", "verified": false},
+		"fact_social": {"domain": "social", "text": "Warehouse worker until last spring; living with his sister before arrest.", "source": "transfer_packet", "reliability": "transfer documents", "verified": false},
+		"fact_legal": {"domain": "social", "text": "Found not competent to stand trial; transferred for competency restoration.", "source": "transfer_packet", "reliability": "court order in transfer packet", "verified": false},
+		"fact_risk_observed": {"domain": "risk", "text": "No self-harm or aggression observed since arrival. Agitation treated at the jail preceded the mutism.", "source": "sitter_report", "reliability": "1:1 observation record", "verified": false},
+		"fact_risk_unassessable": {"domain": "risk", "text": "Suicidal and violent thoughts could not be assessed: no reply. Not documented as absent.", "source": "physician_observation", "reliability": "clinician observation", "verified": true},
+		"fact_vitals_trend": {"domain": "intake", "text": "07:30: T 37.6 °C, HR 108, BP 142/88, RR 18, SpO2 98% on air. On arrival: T 37.2 °C, HR 96.", "source": "nursing_flowsheet", "reliability": "nursing observations", "verified": false},
+		"fact_no_echopraxia": {"domain": "exam", "text": "No imitation of the examiner's movements.", "source": "physician_observation", "reliability": "clinician examination", "verified": true},
+		"fact_no_rigidity": {"domain": "exam", "text": "No lead-pipe rigidity or cogwheeling.", "source": "physician_observation", "reliability": "clinician examination", "verified": true},
+		"fact_no_grasp": {"domain": "exam", "text": "No grasp reflex.", "source": "physician_observation", "reliability": "clinician examination", "verified": true},
+		"fact_no_clonus": {"domain": "exam", "text": "No ankle clonus; reflexes normal.", "source": "physician_observation", "reliability": "clinician examination", "verified": true}
+	},
+	"orders": {
+		"intro": "Tell Tom and the charge nurse what you want done. Pick the orders, then give them. Each one is written to the EHR.",
+		"groups": [
+			{"id": "monitoring", "label": "Nursing and monitoring"},
+			{"id": "tests", "label": "Tests"},
+			{"id": "medication", "label": "Medication"},
+			{"id": "referral", "label": "Referrals and contacts"}
+		],
+		"items": [
+			{"id": "eo_obs_frequent", "group": "monitoring", "label": "Vital signs with temperature every hour for now", "verdict": "required", "feedback": "His pulse and temperature are rising after recent haloperidol. Frequent observations catch autonomic instability early."},
+			{"id": "eo_fluid_chart", "group": "monitoring", "label": "Fluid intake and output chart", "verdict": "required", "feedback": "Poor intake and no urine since yesterday afternoon: he needs his fluid balance measured, not estimated."},
+			{"id": "eo_bladder_scan", "group": "monitoring", "label": "Bladder scan", "verdict": "helpful", "feedback": "No urine for many hours could be retention as well as dehydration."},
+			{"id": "eo_continue_one_to_one", "group": "monitoring", "label": "Continue 1:1 observation", "verdict": "required", "feedback": "He cannot eat, drink or ask for help on his own. The sitter is also your best informant."},
+			{"id": "eo_pressure_care", "group": "monitoring", "label": "Pressure area care and repositioning", "verdict": "helpful", "feedback": "He did not turn over all night. Immobility brings pressure injury risk."},
+			{"id": "eo_lab_ck", "group": "tests", "label": "Creatine kinase (CK)", "verdict": "required", "lab_id": "ck", "feedback": "Needed with recent haloperidol, a rising temperature and pulse, and immobility: a raised CK supports neuroleptic malignant syndrome or muscle breakdown."},
+			{"id": "eo_lab_bmp", "group": "tests", "label": "Basic metabolic panel (sodium, potassium, renal function, glucose)", "verdict": "required", "lab_id": "bmp", "feedback": "Dehydration and poor intake: check sodium and kidney function."},
+			{"id": "eo_lab_cbc", "group": "tests", "label": "Complete blood count", "verdict": "required", "lab_id": "cbc", "feedback": "Infection and a raised white count belong in the differential of a rising temperature."},
+			{"id": "eo_lab_lft", "group": "tests", "label": "Liver function tests", "verdict": "helpful", "lab_id": "lft", "feedback": "Part of a medical workup for an altered mental state."},
+			{"id": "eo_lab_tsh", "group": "tests", "label": "Thyroid-stimulating hormone", "verdict": "helpful", "lab_id": "tsh", "feedback": "A treatable medical cause to exclude."},
+			{"id": "eo_lab_ua", "group": "tests", "label": "Urinalysis", "verdict": "helpful", "lab_id": "urinalysis", "feedback": "Concentration and infection, once he passes urine."},
+			{"id": "eo_lab_uds", "group": "tests", "label": "Urine drug screen", "verdict": "helpful", "lab_id": "uds", "feedback": "Low yield after six weeks in custody, but reasonable in an unexplained change."},
+			{"id": "eo_lorazepam_challenge", "group": "medication", "label": "Lorazepam challenge, then re-examine", "verdict": "preferred", "medication_id": "lorazepam", "feedback": "First-line for suspected catatonia, and a good response supports the diagnosis. Re-examine afterwards with the same steps."},
+			{"id": "eo_haloperidol", "group": "medication", "label": "Haloperidol for psychosis", "verdict": "unsafe", "medication_id": "haloperidol", "feedback": "Antipsychotics can worsen catatonia and precipitate neuroleptic malignant syndrome, and he already has a rising pulse and temperature after recent haloperidol. Hold antipsychotics until catatonia and NMS are assessed."},
+			{"id": "eo_olanzapine", "group": "medication", "label": "Olanzapine for psychosis", "verdict": "unsafe", "medication_id": "olanzapine", "feedback": "The same risk as any antipsychotic here: hold until catatonia and NMS are assessed."},
+			{"id": "eo_medical_review", "group": "referral", "label": "Medical team review today", "verdict": "required", "ehr_order": "ord_medical_team_review", "feedback": "Rising pulse and temperature, dehydration and recent antipsychotic exposure need a medical assessment alongside yours."},
+			{"id": "eo_vte_discussion", "group": "referral", "label": "Ask the medical team about clot prevention", "verdict": "helpful", "feedback": "Immobility in catatonia raises the risk of venous thromboembolism."},
+			{"id": "eo_collateral_sister", "group": "referral", "label": "Call his sister for collateral history (with consent, or as policy allows)", "verdict": "helpful", "feedback": "She knows his baseline and the onset better than any packet."},
+			{"id": "eo_ect_now", "group": "referral", "label": "Refer for ECT today", "verdict": "not_yet", "feedback": "ECT is the treatment for catatonia that does not respond to lorazepam, or for malignant catatonia. Start with a lorazepam challenge and medical workup."},
+			{"id": "eo_dismiss", "group": "referral", "label": "Record him as refusing to engage", "verdict": "unsafe", "feedback": "Silence and stillness are signs to explain, not a choice to record. Keep investigating."}
+		],
+		"catatonia_assessment_order": "ord_catatonia_assessment",
+		"lab_results": {
+			"ck": "1,150 U/L (raised).",
+			"bmp": "Sodium 147 mmol/L (slightly raised), urea raised, creatinine at the upper limit of normal, potassium and glucose normal: consistent with dehydration.",
+			"cbc": "White cell count 11.2 (slightly raised); otherwise normal.",
+			"lft": "Within normal limits.",
+			"tsh": "Within normal limits.",
+			"urinalysis": "Concentrated (high specific gravity); no infection.",
+			"uds": "Negative."
+		}
+	},
+	"consequences": {
+		"antipsychotic_hold": {
+			"speaker": "staff_bennett",
+			"text": "Doctor, before I draw this up: his temperature's thirty-seven six, pulse a hundred and eight, and the packet says he had haloperidol last week. Do you want to hold it until the medical team has seen him?",
+			"choices": [
+				{"id": "rescind", "label": "Hold it. Cancel the antipsychotic.", "reply": "Thank you. I'll take it off.", "trust_delta": 2},
+				{"id": "insist", "label": "Give it as ordered.", "reply": "I'm not comfortable giving it without the medical team's view. I'll document that I've held it and page them.", "trust_delta": -5, "chart_entry": "Antipsychotic order held by nursing: safety concern raised with the prescriber; medical team paged."}
+			]
+		},
+		"lorazepam_reassessment": {
+			"delay_minutes": 45,
+			"call": {"speaker": "staff_sitter_adler", "text": "Doctor? You'll want to come back and see him."},
+			"steps": [
+				{"id": "re_observe", "label": "Watch him again", "performs": "observe", "patient_performs": "look_at_player", "beats": [{"speaker": "pt_elias_ward", "act": "look_at_player", "shown": "His eyes move to you as you come in, and follow you to the chair."}]},
+				{"id": "re_drink", "label": "Offer him a drink", "player": "Elias, would you like some water?", "performs": "offer_cup", "patient_performs": "take_cup", "beats": [{"speaker": "pt_elias_ward", "act": "take_cup", "shown": "He takes the cup with both hands and drinks most of it."}, {"speaker": "pt_elias_ward", "text": "...Thank you."}]},
+				{"id": "re_arm", "label": "Lift his arm again", "player": "I'm going to lift your arm again, Elias.", "performs": "exam_lift_arm", "beats": [{"speaker": "pt_elias_ward", "act": "arm_lower", "shown": "This time his arm comes back down to his lap when you let go."}]}
+			],
+			"sitter_close": "First thing he's said since he got here."
+		}
+	},
+	"flags": {
+		"history_complete": "elias_history_complete",
+		"exam_complete": "elias_exam_complete",
+		"orders_given": "elias_orders_given",
+		"antipsychotic_ordered": "elias_antipsychotic_ordered",
+		"antipsychotic_held_by_nursing": "elias_antipsychotic_held_by_nursing",
+		"lorazepam_response_seen": "elias_lorazepam_response_seen"
+	}
+}
