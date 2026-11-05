@@ -22,7 +22,7 @@ Removed: `scripts/ui/ProfilePortrait.gd` (+ `.uid`).
 
 ## Tests
 
-`test_character_creator` 7/0 (catalogs, save/load and old saves, model and voice swap, hair/glasses/tints, borrowed hair fit, Surprise me, New Game flow). `test_playtest_voice` 8/0 and `test_presentation` 7/0 after updating them to the new screen. Full QA result: see the PR description.
+`test_character_creator` 7/0 (catalogs, save/load and old saves, model and voice swap, hair/glasses/tints, borrowed hair fit, Surprise me, New Game flow). `test_playtest_voice` 8/0 and `test_presentation` 7/0 after updating them to the new screen. Full QA (`tests/qa/run.py`, Linux headless, Godot 4.7 stable): game **480/0**, audio **1760/0**, QA **19/0/0**, GLB **211/0**, 0 ERROR lines, exit 0.
 
 Review captures (Compatibility renderer under Xvfb, not Mac evidence): `tools/godot/CaptureCharacterCreator.tscn`; copies in the project files under `character_creator/`.
 
