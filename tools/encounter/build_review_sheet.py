@@ -13,7 +13,10 @@ out = []
 w = out.append
 w("# Elias Ward encounter: clinical review sheet")
 w("")
-w(f"Status: **{data['clinical_review_status']}**. Every fact, finding, lab result, order verdict and outcome below is new, fictional, and needs your clinical approval. Mark each item approve / revise (with wording) / cut. Source: `data/elias_encounter.json`.")
+if data["clinical_review_status"] == "APPROVED":
+    w("Status: **APPROVED** by Bi on 2026-11-05, as written (see `docs/clinical_review_log.md`). Every fact, finding, lab result, order verdict and outcome below is fictional. Source: `data/elias_encounter.json`.")
+else:
+    w(f"Status: **{data['clinical_review_status']}**. Every fact, finding, lab result, order verdict and outcome below is new, fictional, and needs your clinical approval. Mark each item approve / revise (with wording) / cut. Source: `data/elias_encounter.json`.")
 w("")
 w("## How it plays")
 w("")

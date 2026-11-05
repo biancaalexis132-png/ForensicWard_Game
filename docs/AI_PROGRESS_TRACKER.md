@@ -5,8 +5,8 @@
 | Task | State | Depends on | Paths | Validation | Next action |
 |---|---|---|---|---|---|
 | Psychiatrist performs the exam on screen | Done, draft PR | cast pipeline | `EncounterStage.gd`, `ExamPoseModifier.gd`, protagonist models | `test_elias_encounter`, captures | Bi looks on the Mac |
-| Full history through a 1:1 sitter | Done, draft PR; content pending review | Bi's clinical review | `data/elias_encounter.json`, Tom Adler model | `test_elias_encounter` | Bi answers the review sheet |
-| Orders from the encounter; split screen withdrawn | Done, draft PR; content pending review | Bi | `EncounterManager.gd`, `EncounterScreen.gd`, `data/milestones.json` | `test_elias_encounter`, `test_milestones` | Reconcile lab text with the meds/labs thread when it lands |
+| Full history through a 1:1 sitter | Done, draft PR; content approved 2026-11-05 | | `data/elias_encounter.json`, Tom Adler model | `test_elias_encounter` | Bi answers the review sheet |
+| Orders from the encounter; split screen withdrawn | Done, draft PR; content approved 2026-11-05 | | `EncounterManager.gd`, `EncounterScreen.gd`, `data/milestones.json` | `test_elias_encounter`, `test_milestones` | Reconcile lab text with the meds/labs thread when it lands |
 | Background staff | Done, draft PR | | `data/world_chapter1.json`, `CastRoute.gd`, `AuthoredWorld.gd`, three models | `test_campaign_cast`, `test_cast_motion` | Bi looks on the Mac |
 | Voice clips for the new lines | Not started | local Kokoro | `audio/voice/**` | | After clinical approval |
 

@@ -4,8 +4,8 @@
 
 - Objective: flesh out the Elias encounter from Bi's playtest (exam shown, full history, 1:1 sitter, orders from the encounter, background staff). Branch `claude/elias-encounter` (draft PR to `main`), from `main` `144e609`.
 - Done: encounter data, EncounterManager autoload, EncounterScreen, EncounterStage with ExamPoseModifier IK, six draft models (male/female psychiatrist, sitter, two nurses, housekeeper), background staff routes, split-screen milestone withdrawn. Test results in `docs/handoffs/2026-11-05_claude_elias_encounter.md`.
-- Pending Bi: clinical review of all encounter content (four questions in the review sheet); look at the models and poses on the Mac. Voice clips for the new lines need the local Kokoro setup.
-- Next exact step: answer review comments on the PR; after Bi's review, apply wording changes in `data/elias_encounter.json` and mark approved items. Last updated 2026-11-05.
+- Clinical content approved by Bi 2026-11-05 ("approve"; questions left as drafted). Pending Bi: look at the models and poses on the Mac; merge. Voice clips for the new lines need the local Kokoro setup.
+- Next exact step: answer review comments on PR #138; voice the new lines with the local Kokoro setup. Last updated 2026-11-05.
 
 ## Claude Code Mac release polish — 2026-11-04
 

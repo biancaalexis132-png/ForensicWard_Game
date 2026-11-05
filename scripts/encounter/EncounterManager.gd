@@ -33,6 +33,8 @@ const ORDER_GATE_OBSERVATIONS: Array[String] = ["obs_mutism", "obs_posturing"]
 const MEDICATION_VERDICT_UNSAFE: String = "unsafe"
 
 var _definitions: Dictionary = {}  ## patient_id -> encounter definition
+## Tests of the older short interview set this so Elias opens it instead; reset_state clears it.
+var short_interview_only: bool = false
 var _state: Dictionary = {}        ## patient_id -> runtime state
 var _flagged: Dictionary = {}      ## step ids already flagged for review this run
 
@@ -110,7 +112,7 @@ func has_encounter(patient_id: String) -> bool:
 
 ## True when the encounter may play in this build (approved, or a prototype build).
 func is_playable(patient_id: String) -> bool:
-	if not _definitions.has(patient_id):
+	if short_interview_only or not _definitions.has(patient_id):
 		return false
 	var status: String = str(_definitions[patient_id]["clinical_review_status"])
 	return status == APPROVED or (status != "REJECTED" and ClinicalRules.build_mode == ClinicalRules.MODE_PROTOTYPE)
@@ -452,5 +454,6 @@ func load_save_data(data: Dictionary) -> void:
 
 
 func reset_state() -> void:
+	short_interview_only = false
 	_state.clear()
 	_flagged.clear()

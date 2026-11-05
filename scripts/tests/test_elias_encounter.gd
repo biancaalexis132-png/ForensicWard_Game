@@ -32,7 +32,7 @@ func _witness_catatonic_signs() -> void:
 func test_shipped_encounter_is_valid_and_pending_review() -> void:
 	var data: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://data/elias_encounter.json"))
 	check_eq(EncounterManager.validate(data), [] as Array[String], "valid")
-	check_eq(str(data["clinical_review_status"]), "PENDING_PSYCHIATRIST_REVIEW", "no approval is assumed")
+	check_eq(str(data["clinical_review_status"]), "APPROVED", "approved by the owner 2026-11-05")
 	var labs: Array = WardRounds.lab_catalog().map(func(l: Dictionary) -> String: return l["id"])
 	for item: Dictionary in data["orders"]["items"]:
 		if item.has("lab_id"):
@@ -128,16 +128,22 @@ func test_encounter_survives_save_and_load() -> void:
 	check_eq(EncounterManager.reassessment_state(ELIAS), "pending", "reassessment still pending")
 
 
-func test_validated_build_keeps_the_approved_interview() -> void:
+func test_validated_build_plays_only_an_approved_encounter() -> void:
 	ClinicalRules.build_mode = ClinicalRules.MODE_VALIDATED
-	check(not EncounterManager.is_playable(ELIAS), "draft encounter is off")
+	check(EncounterManager.is_playable(ELIAS), "the approved encounter plays in the validated build")
+	check(not EncounterManager.is_draft(ELIAS), "no draft badge")
+	# A pending encounter stays off in the validated build, and the short interview opens.
+	var definition: Dictionary = EncounterManager.definition(ELIAS)
+	definition["clinical_review_status"] = "PENDING_PSYCHIATRIST_REVIEW"
+	check(not EncounterManager.is_playable(ELIAS), "a pending encounter is off")
 	check(EncounterManager.perform_step(ELIAS, "open_introduce").is_empty(), "and cannot be driven")
 	_main = load(MAIN_SCENE).instantiate()
 	runner.add_child(_main)
 	await wait_physics_frames(2)
 	EventBus.ui_panel_requested.emit("interview", {"patient_id": ELIAS})
-	check((_main.get_node("InterviewScreen") as InterviewScreen).is_open, "the approved interview opens")
+	check((_main.get_node("InterviewScreen") as InterviewScreen).is_open, "the short interview opens")
 	check(_main.get_node_or_null("EncounterScreen") == null, "no encounter screen")
+	definition["clinical_review_status"] = "APPROVED"
 
 
 func test_encounter_screen_stages_the_room() -> void:

@@ -38,11 +38,11 @@ Story flags for other workstreams: `elias_history_complete`, `elias_exam_complet
 
 ## Test results
 
-Full headless QA (`tests/qa/run.py`) on the branch tip before the docs commit: game **426/0** (417 + 9 new), audio **1720/0**, QA **19/0/0**, GLB **205/0** (six new models added to `asset_manifest.json`), CH1_SEQUENCE_DONE 61.9 s, exit 0. The only ERROR-like line is the existing missing-model test fixture. Captures at 1280x720 on llvmpipe (male psychiatrist, room only): introduction, sitter reading the packet, every exam step, orders, reassessment; copies in `/mnt/project-files/elias_encounter/screens/`.
+Full headless QA (`tests/qa/run.py`), run again after the approval change (2026-11-05): game **426/0** (417 + 9 new), audio **1720/0**, QA **19/0/0**, GLB **205/0** (six new models added to `asset_manifest.json`), CH1_SEQUENCE_DONE 61.9 s, exit 0. The only ERROR-like line is the existing missing-model test fixture. Captures at 1280x720 on llvmpipe (male psychiatrist, room only): introduction, sitter reading the packet, every exam step, orders, reassessment; copies in `/mnt/project-files/elias_encounter/screens/`.
 
 ## Known limits
 
-- Clinical content is all pending Bi's review (four questions at the end of the review sheet). Nothing is marked approved.
+- Clinical content: Bi approved it as written on 2026-11-05 ("approve"); the four review-sheet questions stay as drafted. The encounter now plays in the validated build too, and the older short interview opens only for text-only requests (tests set `EncounterManager.short_interview_only`).
 - No voice clips for the new lines: they play as timed subtitles. Generating them needs the local Kokoro setup.
 - Exam poses are procedural IK over the standing clips; the psychiatrist stands (no sit clip). Ankle exam is a deep lean, not a crouch. Tuned only on Linux llvmpipe captures.
 - Protagonist recolouring multiplies the built textures; extreme choices (blond, light skin) may look flat.
