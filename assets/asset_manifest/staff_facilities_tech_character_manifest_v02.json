@@ -19,7 +19,7 @@
   "inputs": [
     {
       "path": "build/cast/Facilities_Tech_v02_face.blend",
-      "sha256": "e66e2828023fe86a05c7041585281f206d579a81b4670c24b8ef110f87e45dbe",
+      "sha256": "9978d0903648f3298d53ab20dabb6a151c70f7c62f39bfc0c3538bee5edbbac6",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -30,7 +30,7 @@
     "shoes",
     "trousers"
   ],
-  "triangle_count": 35131,
+  "triangle_count": 37405,
   "clips": [
     "idle_breathing",
     "idle_neutral",

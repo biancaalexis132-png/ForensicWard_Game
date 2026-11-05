@@ -94,8 +94,8 @@
         -0.039500001817941666,
         1.6619999408721924
       ],
-      "weighted_vertices": 16417,
-      "centroid_to_bone_m": 0.0098,
+      "weighted_vertices": 25065,
+      "centroid_to_bone_m": 0.0246,
       "bone_inside_weighted_volume": true
     },
     "clavicle_l": {
@@ -661,5 +661,5 @@
       }
     ]
   },
-  "triangles": 46467
+  "triangles": 53965
 }

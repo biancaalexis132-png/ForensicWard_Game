@@ -4,7 +4,7 @@
   "profile_sha256": "ddf9db0ed443607168102be8eef6c96ecac769d2f570091a7b70b00ff0c315a5",
   "source": {
     "path": "build/cast/Leila_Rahman_v02_face.blend",
-    "sha256": "d790ecc176a371286f04d121f297d750e790566a7783d31954101e6d2f55bf57"
+    "sha256": "0cf7160bee8abb3c44dc2946b96d6d6d4ada49809fba521292b5ed7b84c50138"
   },
   "refinements": {
     "lids": {
@@ -228,5 +228,5 @@
       }
     ]
   },
-  "triangles": 39238
+  "triangles": 46128
 }

@@ -4,7 +4,7 @@
   "profile_sha256": "28b3fec489d614a7e3c8a7b59ef9c053ac82b65d2cdad9a717d50cd7febb8be5",
   "source": {
     "path": "build/cast/Facilities_Tech_v02_face.blend",
-    "sha256": "e66e2828023fe86a05c7041585281f206d579a81b4670c24b8ef110f87e45dbe"
+    "sha256": "9978d0903648f3298d53ab20dabb6a151c70f7c62f39bfc0c3538bee5edbbac6"
   },
   "refinements": {
     "lids": {
@@ -228,5 +228,5 @@
       }
     ]
   },
-  "triangles": 35131
+  "triangles": 37405
 }

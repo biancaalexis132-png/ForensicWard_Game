@@ -4,7 +4,7 @@
   "profile_sha256": "344c97d885dff6bb716288d3d0748246f1de9ebe5ce694520e77f9d50cf4600d",
   "source": {
     "path": "build/cast/Marcus_Hale_v02_face.blend",
-    "sha256": "b7c79eadb5d15bebc31373b6b39a42f6af1194163163ac74ed0611490d8640fb"
+    "sha256": "f3b546b9403041460bd3eb2b5ae01691148c1166fa761141cb7c166fe253228d"
   },
   "refinements": {
     "lids": {
@@ -228,5 +228,5 @@
       }
     ]
   },
-  "triangles": 35307
+  "triangles": 37581
 }

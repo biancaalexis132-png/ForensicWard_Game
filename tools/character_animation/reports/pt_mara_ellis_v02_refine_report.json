@@ -4,7 +4,7 @@
   "profile_sha256": "069462f2dd42721af9c519ab0d9dc59c20a820e3c8556f447744844477e37141",
   "source": {
     "path": "build/cast/Mara_Ellis_v02_face.blend",
-    "sha256": "c0dc4ea007467dc5ef68e445660027e9baff2acefadba349938a450881afdb39"
+    "sha256": "863133bbb6cb3ae1e22aade68997a53a562d4804913b4d590ca323e5eae6d3d2"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 49306
+  "triangles": 56288
 }

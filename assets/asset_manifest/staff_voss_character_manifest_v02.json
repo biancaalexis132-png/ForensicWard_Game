@@ -19,7 +19,7 @@
   "inputs": [
     {
       "path": "build/cast/Evelyn_Voss_v02_face.blend",
-      "sha256": "9736807748bb459c369291f0bc6f0abeebf984f4ad4fdbc10b804d8a12af2990",
+      "sha256": "b2b93ed2ea8d7df97fe56cf018808f6de037b50d4227f97d2b751de5dadb04d0",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -30,7 +30,7 @@
     "shoes",
     "trousers"
   ],
-  "triangle_count": 46561,
+  "triangle_count": 54059,
   "clips": [
     "idle_breathing",
     "idle_neutral",

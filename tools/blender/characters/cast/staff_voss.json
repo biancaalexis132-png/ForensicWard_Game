@@ -92,7 +92,7 @@
     "hairline_taper_m": 0.025,
     "temple_deg": 22,
     "drop_deg": 125,
-    "cards": {}
+    "layered_cards": {}
   },
   "garments": [
     {

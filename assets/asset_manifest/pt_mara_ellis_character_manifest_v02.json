@@ -19,7 +19,7 @@
   "inputs": [
     {
       "path": "build/cast/Mara_Ellis_v02_face.blend",
-      "sha256": "c0dc4ea007467dc5ef68e445660027e9baff2acefadba349938a450881afdb39",
+      "sha256": "863133bbb6cb3ae1e22aade68997a53a562d4804913b4d590ca323e5eae6d3d2",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -29,7 +29,7 @@
     "lids",
     "shoes"
   ],
-  "triangle_count": 49306,
+  "triangle_count": 56288,
   "clips": [
     "idle_breathing",
     "idle_neutral",

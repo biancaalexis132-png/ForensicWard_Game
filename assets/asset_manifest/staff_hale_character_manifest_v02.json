@@ -19,7 +19,7 @@
   "inputs": [
     {
       "path": "build/cast/Marcus_Hale_v02_face.blend",
-      "sha256": "b7c79eadb5d15bebc31373b6b39a42f6af1194163163ac74ed0611490d8640fb",
+      "sha256": "f3b546b9403041460bd3eb2b5ae01691148c1166fa761141cb7c166fe253228d",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -30,7 +30,7 @@
     "shoes",
     "trousers"
   ],
-  "triangle_count": 35307,
+  "triangle_count": 37581,
   "clips": [
     "idle_breathing",
     "idle_neutral",

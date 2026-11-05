@@ -539,7 +539,7 @@ def build_materials(skin_image) -> dict:
                                             roughness=float(g.get("roughness", 0.45)),
                                             specular=float(g.get("specular", 0.4)))
     hair = CFG["hair"]
-    if hair.get("cards") is not None:
+    if hair.get("layered_cards") is not None:
         # v02: a dark, stripe-free scalp base under alpha-scissor hair cards.
         cfg = hair_card_config(hair)
         atlas = cards_mod.strand_atlas(hair, PREFIX + "Hair_Strands_BaseColor", int(cfg["atlas_size"]),
@@ -1496,7 +1496,7 @@ def paint_hairline(body, cap, image: bpy.types.Image, spec: dict) -> int:
 def hair_card_config(spec: dict) -> dict:
     cfg = dict(cards_mod.STYLE_DEFAULTS[spec["style"]])
     cfg.update({"seed": 3, "atlas_size": 1024})
-    cfg.update(spec.get("cards") or {})
+    cfg.update(spec.get("layered_cards") or {})
     return cfg
 
 
@@ -1618,7 +1618,7 @@ def build_hair_cards(body, rig, mats) -> list[bpy.types.Object]:
 
 def build_hair(body, rig, mats) -> list[bpy.types.Object]:
     spec = CFG["hair"]
-    if spec.get("cards") is not None:
+    if spec.get("layered_cards") is not None:
         return build_hair_cards(body, rig, mats)
     centre, head_w, top_z = head_frame(body)
     tree = BVHTree.FromObject(body, bpy.context.evaluated_depsgraph_get())

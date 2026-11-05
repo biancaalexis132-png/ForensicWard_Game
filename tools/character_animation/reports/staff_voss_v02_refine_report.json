@@ -4,7 +4,7 @@
   "profile_sha256": "9a049b393999ef99516732c289e33e8975318b6dbf6ee6d1d190d3d9a9d0df46",
   "source": {
     "path": "build/cast/Evelyn_Voss_v02_face.blend",
-    "sha256": "9736807748bb459c369291f0bc6f0abeebf984f4ad4fdbc10b804d8a12af2990"
+    "sha256": "b2b93ed2ea8d7df97fe56cf018808f6de037b50d4227f97d2b751de5dadb04d0"
   },
   "refinements": {
     "lids": {
@@ -228,5 +228,5 @@
       }
     ]
   },
-  "triangles": 46561
+  "triangles": 54059
 }

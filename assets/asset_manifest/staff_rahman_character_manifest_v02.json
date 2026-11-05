@@ -19,7 +19,7 @@
   "inputs": [
     {
       "path": "build/cast/Leila_Rahman_v02_face.blend",
-      "sha256": "d790ecc176a371286f04d121f297d750e790566a7783d31954101e6d2f55bf57",
+      "sha256": "0cf7160bee8abb3c44dc2946b96d6d6d4ada49809fba521292b5ed7b84c50138",
       "used": "finished character: rig, clips and face morphs kept; see refinements"
     }
   ],
@@ -30,7 +30,7 @@
     "shoes",
     "trousers"
   ],
-  "triangle_count": 39238,
+  "triangle_count": 46128,
   "clips": [
     "idle_breathing",
     "idle_neutral",

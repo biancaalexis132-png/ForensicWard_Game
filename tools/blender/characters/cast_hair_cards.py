@@ -15,9 +15,9 @@ side, root at v=0, tip at v=1). The alpha goes through a Round node, which the
 glTF exporter writes as ``alphaMode: MASK`` (alpha scissor in Godot). Everything
 is generated here from the cast config; nothing is downloaded.
 
-Config (``hair.cards``, all optional; defaults per style in ``STYLE_DEFAULTS``)::
+Config (``hair.layered_cards``, all optional; defaults per style in ``STYLE_DEFAULTS``)::
 
-    "cards": {"count": 420, "length_m": [0.025, 0.045], "width_m": [0.010, 0.015],
+    "layered_cards": {"count": 1000, "length_m": [0.025, 0.045], "width_m": [0.006, 0.0095],
               "segments": 3, "lift_m": 0.004, "flyaways": 24, "seed": 3,
               "atlas_size": 1024, "base_offset_m": 0.0012}
 """
@@ -32,18 +32,18 @@ from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 
 # Long combed cards map their first ROOT_M metres to the texture's root fade.
-ROOT_M = 0.009
-ROOT_V = 0.15
+ROOT_M = 0.022
+ROOT_V = 0.3
 
 STYLE_DEFAULTS = {
-    "crop": {"count": 720, "length_m": [0.024, 0.042], "width_m": [0.008, 0.012], "segments": 3,
-             "lift_m": 0.002, "flyaways": 0, "base_offset_m": 0.0016, "step_m": 0.012},
-    "chignon": {"count": 460, "length_m": [0.30, 0.30], "width_m": [0.012, 0.018], "segments": 0,
-                "lift_m": 0.0, "flyaways": 26, "base_offset_m": 0.0012, "step_m": 0.016,
-                "bun_cards": 48, "tail_cards": 0},
-    "ponytail": {"count": 460, "length_m": [0.30, 0.30], "width_m": [0.012, 0.018], "segments": 0,
-                 "lift_m": 0.0, "flyaways": 22, "base_offset_m": 0.0012, "step_m": 0.016,
-                 "bun_cards": 0, "tail_cards": 40},
+    "crop": {"count": 1100, "length_m": [0.024, 0.042], "width_m": [0.0055, 0.0085], "segments": 3,
+             "lift_m": 0.0006, "flyaways": 0, "base_offset_m": 0.0016, "step_m": 0.012},
+    "chignon": {"count": 1000, "length_m": [0.30, 0.30], "width_m": [0.006, 0.0095], "segments": 0,
+                "lift_m": 0.0, "flyaways": 0, "base_offset_m": 0.0012, "step_m": 0.016,
+                "bun_cards": 110, "tail_cards": 0},
+    "ponytail": {"count": 1000, "length_m": [0.30, 0.30], "width_m": [0.006, 0.0095], "segments": 0,
+                 "lift_m": 0.0, "flyaways": 0, "base_offset_m": 0.0012, "step_m": 0.016,
+                 "bun_cards": 0, "tail_cards": 72},
 }
 
 
@@ -76,7 +76,7 @@ def strand_atlas(spec: dict, name: str, size: int, seed: int) -> bpy.types.Image
         xs = np.arange(cw)
         # Background colour (never seen through the clip, but keeps mips from fringing dark).
         rgb[:, x0:x0 + cw] = base * 0.9
-        n_strands = int(cw * 1.1)
+        n_strands = int(cw * 1.8)
         clumps = rng.integers(5, 9)
         centres = np.sort(rng.uniform(0.08, 0.92, clumps)) * cw
         for _s in range(n_strands):
@@ -88,20 +88,22 @@ def strand_atlas(spec: dict, name: str, size: int, seed: int) -> bpy.types.Image
             # Strands start and end at different heights so neither end of a card shows a line.
             # Column 2 is the hairline variant: a few strands right at the root, denser above.
             # Every root fade ends by v = ROOT_V, which cards map to their first ROOT_M metres.
-            start = rng.uniform(0.0, 0.07) if c != 2 else rng.uniform(0.0, 0.12)
+            # Starts are staggered over the whole root band, so a card's root never reads as an edge.
+            start = rng.uniform(0.0, ROOT_V * 0.85) ** 1.3 / (ROOT_V * 0.85) ** 0.3 if c != 2 \
+                else rng.uniform(0.0, 0.12)
             length = min(1.0 - start, rng.uniform(0.5, 1.0) if c != 3 else rng.uniform(0.4, 0.8))
             amp = rng.uniform(0.0, cw * 0.012)
             freq = rng.uniform(3.0, 9.0)
             phase = rng.uniform(0, math.tau)
             drift = rng.normal(0, cw * 0.025)
-            width_px = rng.uniform(0.9, 2.1)
+            width_px = rng.uniform(0.9, 1.7)
             is_grey = rng.random() < grey_fraction
-            tone = rng.uniform(0.86, 1.1)
+            tone = rng.uniform(0.94, 1.05)
             colour = (grey if is_grey else base) * tone
             cx = sx + amp * np.sin(v * freq * math.pi + phase) + drift * v  # per row
             d = np.abs(xs[None, :] - cx[:, None])
             prof = np.clip(1.0 - (d - width_px * 0.5) / 0.9, 0.0, 1.0)
-            along = np.clip((v - start) / (0.07 if c != 2 else 0.025), 0, 1) * np.clip((start + length - v) / (0.3 * length), 0, 1)
+            along = np.clip((v - start) / (0.06 if c != 2 else 0.025), 0, 1) * np.clip((start + length - v) / (0.3 * length), 0, 1)
             a = prof * along[:, None]
             # Root darker (shadowed by the hair above), tip a little lighter.
             shade = (0.9 + 0.12 * np.clip(v, 0, 1))[:, None, None]
@@ -423,13 +425,16 @@ def scalp_cards(body, cap, centre: Vector, top_z: float, spec: dict, cfg: dict, 
         if style == "crop":
             vol = vol_side + (vol_top - vol_side) * up
             lift = float(cfg["lift_m"]) * rng.uniform(0.5, 1.2) * (0.4 + 0.6 * up)
-            h = 0.0004 + layer * 0.0008 + vol * 0.4 * t + lift * t ** 1.5
+            h = 0.0004 + layer * 0.0005 + vol * 0.25 * t + lift * t ** 1.5
         else:
-            # Combed back: hugs the scalp, a little fuller over the crown, flat at the tie.
-            arc = np.sin(np.pi * t)
-            h = 0.0009 + layer * 0.0009 + (vol_side + (vol_top - vol_side) * up) * 0.35 * arc
+            # Combed back: every card lies in one shell over the scalp base (which already carries
+            # the crown volume), in one of three thin layers. A per-card arc made each root dip
+            # under the cards around it and stand up again, which read as shingles from the front.
+            arc_len = np.concatenate([[0.0], np.cumsum(np.linalg.norm(np.diff(res, axis=0), axis=1))])
+            ramp = np.clip(arc_len / 0.015, 0.0, 1.0)
+            h = 0.0005 + (0.0003 + layer * 0.0007) * ramp
         pos = scalp.lift(res, nn, h)
-        w = rng.uniform(wmin, wmax) * (1.0 - 0.35 * t if style == "crop" else 1.0 - 0.45 * t ** 2)
+        w = rng.uniform(wmin, wmax) * (1.0 - 0.6 * t if style == "crop" else 1.0 - 0.45 * t ** 2)
         card = {"points": pos, "normals": nn, "widths": w, "column": int(rng.choice([0, 1, 3])),
                 "v_end": 1.0 if style == "crop" else rng.uniform(0.85, 1.0)}
         card["root_m"] = ROOT_M if style != "crop" else min(ROOT_M * 0.6, 0.3 * float(np.linalg.norm(
@@ -498,9 +503,9 @@ def scalp_cards(body, cap, centre: Vector, top_z: float, spec: dict, cfg: dict, 
             res = resample(pts, 5)
             nn = np.array([scalp.project(Vector(p.tolist()))[1][:] for p in res])
             t = np.linspace(0, 1, len(res))
-            h = 0.0025 + 0.006 * np.sin(np.pi * t * 0.8) * rng.uniform(0.6, 1.2)
+            h = 0.0015 + 0.0028 * np.sin(np.pi * t * 0.8) * rng.uniform(0.6, 1.1)
             cards.append({"points": scalp.lift(res, nn, h), "normals": nn,
-                          "widths": rng.uniform(0.004, 0.007) * (1 - 0.5 * t), "column": 3, "v_end": 0.9})
+                          "widths": rng.uniform(0.003, 0.005) * (1 - 0.5 * t), "column": 3, "v_end": 0.9})
     return cards
 
 
@@ -531,7 +536,7 @@ def bun_cards(centre: Vector, axis: Vector, radii, count: int, rng) -> list[dict
             nrm = (e1 * g.x + out * g.y + e2 * g.z).normalized()
             pts.append(p[:])
             nrms.append(nrm[:])
-            widths.append(rng.uniform(0.016, 0.024) * (0.6 + 0.4 * s))
+            widths.append(rng.uniform(0.008, 0.013) * (0.6 + 0.4 * s))
         cards.append({"points": np.array(pts), "normals": np.array(nrms), "widths": np.array(widths),
                       "column": int(rng.choice([0, 1])), "v_end": rng.uniform(0.85, 1.0)})
     for k in range(count - count // 2):
@@ -552,7 +557,7 @@ def bun_cards(centre: Vector, axis: Vector, radii, count: int, rng) -> list[dict
             nrm = (e1 * g.x + out * g.y + e2 * g.z).normalized()
             pts.append(p[:])
             nrms.append(nrm[:])
-            widths.append(rng.uniform(0.014, 0.02) * (1 - 0.3 * (i / (n - 1)) ** 2))
+            widths.append(rng.uniform(0.008, 0.012) * (1 - 0.3 * (i / (n - 1)) ** 2))
         cards.append({"points": np.array(pts), "normals": np.array(nrms), "widths": np.array(widths),
                       "column": rng.integers(0, 3), "v_end": rng.uniform(0.8, 1.0)})
     return cards
@@ -583,7 +588,7 @@ def tail_cards(axis_pts: list[Vector], radii: list[float], count: int, rng) -> l
             p = Vector(a[i].tolist()) + radial * (r + wob)
             pts.append(p[:])
             nrms.append(radial[:])
-            widths.append(max(0.005, math.tau * r / count * 2.6) * (1 - 0.25 * s))
+            widths.append(max(0.004, math.tau * r / count * 2.4) * (1 - 0.25 * s))
         cards.append({"points": np.array(pts), "normals": np.array(nrms), "widths": np.array(widths),
                       "column": rng.integers(0, 4), "v_end": 1.0})
     return cards

@@ -4,7 +4,7 @@
   "profile_sha256": "e1575fa76e2423031f5602e51819c44a41cec5e6a8a4b1ae24145ac8693fea8e",
   "source": {
     "path": "build/cast/Elias_Ward_v02_face.blend",
-    "sha256": "7db9f1af62d705f4af3ee4d6046ed6081d311aa94fa8d09d058a47ec46a3c8e2"
+    "sha256": "a83d6a7df6464fbe847f4e49ec3897934360a0a77258bd75796af9b191f42689"
   },
   "refinements": {
     "lids": {
@@ -211,5 +211,5 @@
       }
     ]
   },
-  "triangles": 38582
+  "triangles": 40862
 }

@@ -88,7 +88,7 @@
     "volume_top_m": 0.0045,
     "volume_side_m": 0.0012,
     "fringe_m": 0.008,
-    "cards": {}
+    "layered_cards": {}
   },
   "garments": [
     {
