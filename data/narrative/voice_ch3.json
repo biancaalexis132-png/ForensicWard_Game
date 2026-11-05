@@ -645,6 +645,46 @@
 					"id": "ch3_v_4396096a84",
 					"speaker": "player",
 					"text": "We knew the drawings might be wrong. That didn't explain why I kept wanting to look again."
+				},
+				{
+					"id": "ch3_v_19e4776c81",
+					"speaker": "staff_hale",
+					"text": "You asked whether anyone was at risk before you asked anything else. That's why you're on this team."
+				},
+				{
+					"id": "ch3_v_2912bfafd9",
+					"speaker": "staff_hale",
+					"text": "You asked for the summary you were allowed, not the raw log. Requests like that I can say yes to."
+				},
+				{
+					"id": "ch3_v_343272cfe2",
+					"speaker": "staff_hale",
+					"text": "The archived plans you asked about are on the desk. Read them before we go anywhere."
+				},
+				{
+					"id": "ch3_v_09ee6935a9",
+					"speaker": "staff_voss",
+					"text": "You wanted the process in writing. After today, I think you'll be glad you did."
+				},
+				{
+					"id": "ch3_v_1bde4a4a9c",
+					"speaker": "staff_voss",
+					"text": "Your independent reconciliation request is still open. It may matter more after today."
+				},
+				{
+					"id": "ch3_v_4fa93ec8e5",
+					"speaker": "staff_bennett",
+					"text": "I read your lobby note. You didn't pretend you'd watched those doors. Good."
+				},
+				{
+					"id": "ch3_v_ef32fddc69",
+					"speaker": "staff_bennett",
+					"text": "Security says you had the lobby doors shut and reported. Quietly done. Thank you."
+				},
+				{
+					"id": "ch3_v_37eacda8d3",
+					"speaker": "staff_bennett",
+					"text": "Facilities have your latch request on their board. They grumbled, which means they read it."
 				}
 			]
 		}

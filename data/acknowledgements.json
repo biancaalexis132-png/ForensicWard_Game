@@ -1,0 +1,244 @@
+{
+	"schema_version": "1.0",
+	"notes": "Staff remember earlier choices: the first time the player talks to this staff member in this chapter, the line opens their reply, once (recorded as a story flag named by the id). Lines play only when approved is true. All 17 approved by Bi on 2026-11-05 (\"approved continue\"). Review sheet: /mnt/project-files/consequences/acknowledgement_lines_review.md (review_ref).",
+	"acknowledgements": [
+		{
+			"id": "ack_ch2_hale_clinical_risk_check",
+			"review_ref": "A1",
+			"chapter": "ch3",
+			"staff_id": "staff_hale",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch2",
+					"flag": "ch2_hale_clinical_risk_check"
+				}
+			},
+			"text": "You asked whether anyone was at risk before you asked anything else. That's why you're on this team.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch2_hale_report_summary",
+			"review_ref": "A2",
+			"chapter": "ch3",
+			"staff_id": "staff_hale",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch2",
+					"flag": "ch2_hale_report_summary"
+				}
+			},
+			"text": "You asked for the summary you were allowed, not the raw log. Requests like that I can say yes to.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch2_hale_facilities_plans",
+			"review_ref": "A3",
+			"chapter": "ch3",
+			"staff_id": "staff_hale",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch2",
+					"flag": "ch2_hale_facilities_plans"
+				}
+			},
+			"text": "The archived plans you asked about are on the desk. Read them before we go anywhere.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch2_voss_followup_written_process",
+			"review_ref": "A4",
+			"chapter": "ch3",
+			"staff_id": "staff_voss",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch2",
+					"flag": "ch2_voss_followup_written_process"
+				}
+			},
+			"text": "You wanted the process in writing. After today, I think you'll be glad you did.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch2_voss_followup_independent_review",
+			"review_ref": "A5",
+			"chapter": "ch3",
+			"staff_id": "staff_voss",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch2",
+					"flag": "ch2_voss_followup_independent_review"
+				}
+			},
+			"text": "Your independent reconciliation request is still open. It may matter more after today.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch2_lobby_state_documented",
+			"review_ref": "A6",
+			"chapter": "ch3",
+			"staff_id": "staff_bennett",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch2",
+					"flag": "ch2_lobby_state_documented"
+				}
+			},
+			"text": "I read your lobby note. You didn't pretend you'd watched those doors. Good.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch2_lobby_area_secured",
+			"review_ref": "A7",
+			"chapter": "ch3",
+			"staff_id": "staff_bennett",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch2",
+					"flag": "ch2_lobby_area_secured"
+				}
+			},
+			"text": "Security says you had the lobby doors shut and reported. Quietly done. Thank you.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch2_lobby_latch_assessment",
+			"review_ref": "A8",
+			"chapter": "ch3",
+			"staff_id": "staff_bennett",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch2",
+					"flag": "ch2_lobby_latch_assessment"
+				}
+			},
+			"text": "Facilities have your latch request on their board. They grumbled, which means they read it.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch3_alcove_survey_requested",
+			"review_ref": "B1",
+			"chapter": "ch4",
+			"staff_id": "staff_hale",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch3",
+					"flag": "ch3_alcove_survey_requested"
+				}
+			},
+			"text": "Your survey request is why the review has measurements to argue about, not opinions.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch3_alcove_discrepancy_preserved",
+			"review_ref": "B2",
+			"chapter": "ch4",
+			"staff_id": "staff_voss",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch3",
+					"flag": "ch3_alcove_discrepancy_preserved"
+				}
+			},
+			"text": "You logged the alcove as found and left the cause open. That line has survived every draft.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch3_alcove_plans_compared",
+			"review_ref": "B3",
+			"chapter": "ch4",
+			"staff_id": "staff_voss",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch3",
+					"flag": "ch3_alcove_plans_compared"
+				}
+			},
+			"text": "You checked the other plan editions before you said anything. Keep doing that.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch4_disagreement_dissent",
+			"review_ref": "C1",
+			"chapter": "ch5",
+			"staff_id": "staff_rahman",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch4",
+					"flag": "ch4_disagreement_dissent"
+				}
+			},
+			"text": "Your dissent is still in the file. I read it before I agreed to cover today.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch4_disagreement_briefing",
+			"review_ref": "C2",
+			"chapter": "ch5",
+			"staff_id": "staff_voss",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch4",
+					"flag": "ch4_disagreement_briefing"
+				}
+			},
+			"text": "One briefing, three obligations. It's held so far. Let's keep it that way today.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch4_disagreement_external",
+			"review_ref": "C3",
+			"chapter": "ch5",
+			"staff_id": "staff_hale",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch4",
+					"flag": "ch4_disagreement_external"
+				}
+			},
+			"text": "You wanted outside eyes on this. Whatever we find today goes to them first.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch4_call_support",
+			"review_ref": "C4",
+			"chapter": "ch5",
+			"staff_id": "staff_bennett",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch4",
+					"flag": "ch4_call_support"
+				}
+			},
+			"text": "You look like you slept. Whatever you did, keep doing it.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch4_call_short",
+			"review_ref": "C5",
+			"chapter": "ch5",
+			"staff_id": "staff_bennett",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch4",
+					"flag": "ch4_call_short"
+				}
+			},
+			"text": "You look like you didn't. Coffee's fresh. Nobody here will tell you to take a break, so I will.",
+			"approved": true
+		},
+		{
+			"id": "ack_ch4_call_boundary",
+			"review_ref": "C6",
+			"chapter": "ch5",
+			"staff_id": "staff_bennett",
+			"when": {
+				"chapter_flag": {
+					"chapter": "ch4",
+					"flag": "ch4_call_boundary"
+				}
+			},
+			"text": "You left on time last night. Good. Do it again.",
+			"approved": true
+		}
+	]
+}

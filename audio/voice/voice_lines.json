@@ -2489,6 +2489,14 @@
 		"fx": "dialogue",
 		"source_hash": "467669007000e08e916a942b7b9782a90afb2b6c"
 	},
+	"ch3_v_09ee6935a9": {
+		"path": "audio/voice/ch3/ch3_v_09ee6935a9.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "33d7970068a7ffe91bc3e5040b779a74286f7d50"
+	},
 	"ch3_v_0a3cef81be": {
 		"path": "audio/voice/ch3/ch3_v_0a3cef81be.ogg",
 		"speaker": "narrator",
@@ -2561,6 +2569,14 @@
 		"fx": "narration",
 		"source_hash": "9f2f62b89b10578a9254fa03360ce7d09ddbb728"
 	},
+	"ch3_v_19e4776c81": {
+		"path": "audio/voice/ch3/ch3_v_19e4776c81.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "a46654dca589c2ab56fc6cba805a816b73fcce01"
+	},
 	"ch3_v_1a1bc55e75": {
 		"path": "audio/voice/ch3/ch3_v_1a1bc55e75.ogg",
 		"speaker": "narrator",
@@ -2568,6 +2584,14 @@
 		"speed": 0.92,
 		"fx": "narration",
 		"source_hash": "7480b79c66657cb6c43678360a173139746ec64d"
+	},
+	"ch3_v_1bde4a4a9c": {
+		"path": "audio/voice/ch3/ch3_v_1bde4a4a9c.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "4839763c2604bb73b31023557b8226210a153809"
 	},
 	"ch3_v_1c3226911a": {
 		"path": "audio/voice/ch3/ch3_v_1c3226911a.ogg",
@@ -2642,6 +2666,14 @@
 		"fx": "narration",
 		"source_hash": "dcf63c49073ca9b5e241408cb1c146cc07f75fc7"
 	},
+	"ch3_v_2912bfafd9": {
+		"path": "audio/voice/ch3/ch3_v_2912bfafd9.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "79faecbf0a31b381f461ef71a53a1f81d7e3a9e2"
+	},
 	"ch3_v_294a212de9": {
 		"path": "audio/voice/ch3/ch3_v_294a212de9.ogg",
 		"speaker": "player",
@@ -2691,6 +2723,14 @@
 		"fx": "dialogue",
 		"source_hash": "3bf382069117393fe78eb567552f868a4e624528"
 	},
+	"ch3_v_343272cfe2": {
+		"path": "audio/voice/ch3/ch3_v_343272cfe2.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "db8eca7c8c15ee96de427068209b556b2de48777"
+	},
 	"ch3_v_344d18b42f": {
 		"path": "audio/voice/ch3/ch3_v_344d18b42f.ogg",
 		"speaker": "staff_bennett",
@@ -2714,6 +2754,14 @@
 		"speed": 0.92,
 		"fx": "narration",
 		"source_hash": "460c49e9d4d4f0c36a27647de0a60e8d847e26d8"
+	},
+	"ch3_v_37eacda8d3": {
+		"path": "audio/voice/ch3/ch3_v_37eacda8d3.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "89cb82079ea3c92b541d0c782e93dab4cf353598"
 	},
 	"ch3_v_3feaccd3eb": {
 		"path": "audio/voice/ch3/ch3_v_3feaccd3eb.ogg",
@@ -2771,6 +2819,14 @@
 		"speed": 0.92,
 		"fx": "narration",
 		"source_hash": "8ca1f3d6869909ac1b75851f39064945da9276d6"
+	},
+	"ch3_v_4fa93ec8e5": {
+		"path": "audio/voice/ch3/ch3_v_4fa93ec8e5.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "39f7d2c576ab5ff60ce6b2b0b450e09f0cb6511b"
 	},
 	"ch3_v_52c426ddf5": {
 		"path": "audio/voice/ch3/ch3_v_52c426ddf5.ogg",
@@ -3389,6 +3445,14 @@
 		"fx": "narration",
 		"source_hash": "076be11201d2b4ab808a8387995f1cd17734c198"
 	},
+	"ch3_v_ef32fddc69": {
+		"path": "audio/voice/ch3/ch3_v_ef32fddc69.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "0bc0ef14a49013113ab83748bcc0ef764f925a9b"
+	},
 	"ch3_v_efc7e9506d": {
 		"path": "audio/voice/ch3/ch3_v_efc7e9506d.ogg",
 		"speaker": "narrator",
@@ -3727,6 +3791,14 @@
 		"fx": "narration",
 		"source_hash": "13294fc121ff59cd3e6b9e9c96d2a11f6455073e"
 	},
+	"ch4_v_3709818266": {
+		"path": "audio/voice/ch4/ch4_v_3709818266.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "87557bfe56b0729b51e67d22b984f598b291f94e"
+	},
 	"ch4_v_37d6dd953d": {
 		"path": "audio/voice/ch4/ch4_v_37d6dd953d.ogg",
 		"speaker": "engineer",
@@ -3902,6 +3974,14 @@
 		"speed": 0.94,
 		"fx": "dialogue",
 		"source_hash": "a6c1c782a6dd9d86fd75286fee88ce370006703c"
+	},
+	"ch4_v_66f3c8ffd4": {
+		"path": "audio/voice/ch4/ch4_v_66f3c8ffd4.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "07f6bf172714dfd58673a4df4a489c5cc5706cec"
 	},
 	"ch4_v_6a83ae6cab": {
 		"path": "audio/voice/ch4/ch4_v_6a83ae6cab.ogg",
@@ -4103,6 +4183,14 @@
 		"speed": 0.92,
 		"fx": "narration",
 		"source_hash": "988dd5e5f0beb6d435602ef6d00b75db6c30a340"
+	},
+	"ch4_v_a65e0983c9": {
+		"path": "audio/voice/ch4/ch4_v_a65e0983c9.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "4a427c9e568243a6498dfd915d18d47ca59ade2e"
 	},
 	"ch4_v_a806787a4d": {
 		"path": "audio/voice/ch4/ch4_v_a806787a4d.ogg",
@@ -4435,6 +4523,14 @@
 		"fx": "narration",
 		"source_hash": "7f9ffd2ec35f59f520344bf8f93db203f2f9cd52"
 	},
+	"ch5_v_03ae69bbee": {
+		"path": "audio/voice/ch5/ch5_v_03ae69bbee.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "5cf1671fdeac085e35a07bb338280415cd5e4aec"
+	},
 	"ch5_v_0cd6994cd9": {
 		"path": "audio/voice/ch5/ch5_v_0cd6994cd9.ogg",
 		"speaker": "staff_hale",
@@ -4580,6 +4676,14 @@
 		"speed": 0.92,
 		"fx": "narration",
 		"source_hash": "8cb2eadfbc52f9bc1e8e325d6bdb04b6f64ee2bb"
+	},
+	"ch5_v_2e4bbbd222": {
+		"path": "audio/voice/ch5/ch5_v_2e4bbbd222.ogg",
+		"speaker": "staff_hale",
+		"voice": "am_onyx",
+		"speed": 0.94,
+		"fx": "dialogue",
+		"source_hash": "f6ea87351c8dffbb67f4ce1b72206f4d8d46e752"
 	},
 	"ch5_v_30a101ac81": {
 		"path": "audio/voice/ch5/ch5_v_30a101ac81.ogg",
@@ -4987,6 +5091,14 @@
 		"fx": "dialogue",
 		"source_hash": "45eacdb12db4fe0e13d864a6e921767a85ad2d36"
 	},
+	"ch5_v_9adbf752d0": {
+		"path": "audio/voice/ch5/ch5_v_9adbf752d0.ogg",
+		"speaker": "staff_voss",
+		"voice": "bf_emma",
+		"speed": 0.92,
+		"fx": "dialogue",
+		"source_hash": "560225d8ae54b16c494ea501cebe592b1caa3a57"
+	},
 	"ch5_v_9d256c2fe4": {
 		"path": "audio/voice/ch5/ch5_v_9d256c2fe4.ogg",
 		"speaker": "pt_mara_ellis",
@@ -5084,6 +5196,14 @@
 		"fx": "dialogue",
 		"source_hash": "db9b95377012dc2f18d6001e4f3717b8c6644c11"
 	},
+	"ch5_v_c19032a852": {
+		"path": "audio/voice/ch5/ch5_v_c19032a852.ogg",
+		"speaker": "staff_rahman",
+		"voice": "af_aoede",
+		"speed": 1.02,
+		"fx": "dialogue",
+		"source_hash": "20f6dc5c885c05b799fa96fab0b356a07abda48e"
+	},
 	"ch5_v_c640918a0f": {
 		"path": "audio/voice/ch5/ch5_v_c640918a0f.ogg",
 		"speaker": "staff_rahman",
@@ -5155,6 +5275,14 @@
 		"speed": 0.92,
 		"fx": "narration",
 		"source_hash": "7d7a2a16bb782ba3377f9c930d19f00e5279d0e6"
+	},
+	"ch5_v_db6aeb645c": {
+		"path": "audio/voice/ch5/ch5_v_db6aeb645c.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "48b722df1fe6a70310f0c1ea728416330e92dd9b"
 	},
 	"ch5_v_dc0d516c3e": {
 		"path": "audio/voice/ch5/ch5_v_dc0d516c3e.ogg",
@@ -5228,6 +5356,14 @@
 		"speed": 0.92,
 		"fx": "narration",
 		"source_hash": "9ca11868d3000813134f4aa916855540298aa2c5"
+	},
+	"ch5_v_ee82ff0ae7": {
+		"path": "audio/voice/ch5/ch5_v_ee82ff0ae7.ogg",
+		"speaker": "staff_bennett",
+		"voice": "af_sarah",
+		"speed": 1.0,
+		"fx": "dialogue",
+		"source_hash": "45e406832b8d6e7589a506c5c8a63682c419134e"
 	},
 	"ch5_v_ee9604b2d4": {
 		"path": "audio/voice/ch5/ch5_v_ee9604b2d4.ogg",

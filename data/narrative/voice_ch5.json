@@ -508,6 +508,36 @@
 					"id": "ch5_v_ace36ae65d",
 					"speaker": "narrator",
 					"text": "Patient care never waited on the investigation."
+				},
+				{
+					"id": "ch5_v_c19032a852",
+					"speaker": "staff_rahman",
+					"text": "Your dissent is still in the file. I read it before I agreed to cover today."
+				},
+				{
+					"id": "ch5_v_9adbf752d0",
+					"speaker": "staff_voss",
+					"text": "One briefing, three obligations. It's held so far. Let's keep it that way today."
+				},
+				{
+					"id": "ch5_v_2e4bbbd222",
+					"speaker": "staff_hale",
+					"text": "You wanted outside eyes on this. Whatever we find today goes to them first."
+				},
+				{
+					"id": "ch5_v_db6aeb645c",
+					"speaker": "staff_bennett",
+					"text": "You look like you slept. Whatever you did, keep doing it."
+				},
+				{
+					"id": "ch5_v_03ae69bbee",
+					"speaker": "staff_bennett",
+					"text": "You look like you didn't. Coffee's fresh. Nobody here will tell you to take a break, so I will."
+				},
+				{
+					"id": "ch5_v_ee82ff0ae7",
+					"speaker": "staff_bennett",
+					"text": "You left on time last night. Good. Do it again."
 				}
 			]
 		}

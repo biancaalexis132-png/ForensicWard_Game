@@ -278,6 +278,11 @@ func _talk_to_staff() -> void:
 		var clue_id: String = line.get("verify_clue", "")
 		if not clue_id.is_empty() and EvidenceManager.add_verification(clue_id, "staff_testimony:" + character_id):
 			EventBus.notification_requested.emit("Corroborated: " + ContentRegistry.get_clue(clue_id)["title"])
+	# A staff member who remembers an earlier choice says so first, once.
+	var remembered: String = Acknowledgements.take(director as ChapterDirector, character_id)
+	if not remembered.is_empty():
+		text = remembered + "\n\n" + text
+		heard = false
 	var body: String = "[i]%s[/i]\n\n%s" % [staff.get("role", ""), text]
 	for access_id: String in staff.get("grants_access", []):
 		if TrustManager.grant_access(access_id, character_id):

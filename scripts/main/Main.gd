@@ -87,6 +87,7 @@ func _ready() -> void:
 		_chapter_complete_showing = false
 		_update_input_mode())
 	SaveManager.register_provider(WORLD_PROVIDER_KEY, self)
+	Acknowledgements.register()
 	_place_at_spawn()
 	_zones.setup(_world, _player)
 	_zones.transition_finished.connect(_update_input_mode)

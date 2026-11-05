@@ -228,6 +228,7 @@
 			"duration_seconds": 209.135,
 			"ids": [
 				"mus_waiting_room",
+				"ward_underscore",
 				"hospital_ordinary"
 			],
 			"integration_status": "integrated",
@@ -6274,6 +6275,22 @@
 			"text": "This area isn't in clinical service. Keep within the marked route."
 		},
 		{
+			"file": "audio/voice/ch3/ch3_v_09ee6935a9.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.629,
+			"ids": [
+				"ch3_v_09ee6935a9"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "bc792d2fd37b69bf8aeb571ca0ac9f9354e437bf3580a318438c5bf2368e8719",
+			"source": "Kokoro TTS voice 'bf_emma' speed 0.92, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_voss",
+			"text": "You wanted the process in writing. After today, I think you'll be glad you did."
+		},
+		{
 			"file": "audio/voice/ch3/ch3_v_0a3cef81be.ogg",
 			"category": "narration",
 			"duration_seconds": 3.577,
@@ -6418,6 +6435,22 @@
 			"text": "Voss is busy."
 		},
 		{
+			"file": "audio/voice/ch3/ch3_v_19e4776c81.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.085,
+			"ids": [
+				"ch3_v_19e4776c81"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "b2ed66cf6af3fed1424ff372781720f02cd8f3025ad664c00f843143a244b634",
+			"source": "Kokoro TTS voice 'am_onyx' speed 0.94, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_hale",
+			"text": "You asked whether anyone was at risk before you asked anything else. That's why you're on this team."
+		},
+		{
 			"file": "audio/voice/ch3/ch3_v_1a1bc55e75.ogg",
 			"category": "narration",
 			"duration_seconds": 6.695,
@@ -6432,6 +6465,22 @@
 			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
 			"speaker": "narrator",
 			"text": "Dispatch: Route confirmed. Last authorized door event is your threshold entry. Return the way you came."
+		},
+		{
+			"file": "audio/voice/ch3/ch3_v_1bde4a4a9c.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.461,
+			"ids": [
+				"ch3_v_1bde4a4a9c"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "7a52e7839933c93577a0de2286d091aac82ba44dee8377c00a0a9dfe6b27f0d0",
+			"source": "Kokoro TTS voice 'bf_emma' speed 0.92, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_voss",
+			"text": "Your independent reconciliation request is still open. It may matter more after today."
 		},
 		{
 			"file": "audio/voice/ch3/ch3_v_1c3226911a.ogg",
@@ -6562,6 +6611,22 @@
 			"text": "Measurements: unresolved; protocol requested; area restricted."
 		},
 		{
+			"file": "audio/voice/ch3/ch3_v_2912bfafd9.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.411,
+			"ids": [
+				"ch3_v_2912bfafd9"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "4bb4df067708041a6338ef71d1ee626fd64d3f4b9dd0a3276e5c40541d0f4799",
+			"source": "Kokoro TTS voice 'am_onyx' speed 0.94, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_hale",
+			"text": "You asked for the summary you were allowed, not the raw log. Requests like that I can say yes to."
+		},
+		{
 			"file": "audio/voice/ch3/ch3_v_294a212de9.ogg",
 			"category": "dialogue",
 			"duration_seconds": 3.635,
@@ -6642,6 +6707,22 @@
 			"text": "Maps are on the desk when you're ready."
 		},
 		{
+			"file": "audio/voice/ch3/ch3_v_343272cfe2.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.652,
+			"ids": [
+				"ch3_v_343272cfe2"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "0eaa6dc48f0df5806d085eaa1c7b9292e346a45a3fb3544b798d2a95561d63fb",
+			"source": "Kokoro TTS voice 'am_onyx' speed 0.94, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_hale",
+			"text": "The archived plans you asked about are on the desk. Read them before we go anywhere."
+		},
+		{
 			"file": "audio/voice/ch3/ch3_v_344d18b42f.ogg",
 			"category": "dialogue",
 			"duration_seconds": 4.8,
@@ -6688,6 +6769,22 @@
 			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
 			"speaker": "narrator",
 			"text": "Marked unresolved_measurement: values, instruments, reference points and times kept as taken."
+		},
+		{
+			"file": "audio/voice/ch3/ch3_v_37eacda8d3.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.928,
+			"ids": [
+				"ch3_v_37eacda8d3"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "a55ec165715c11ff4630c90f632508c057a84946e21e9dd2856a2e847041c882",
+			"source": "Kokoro TTS voice 'af_sarah' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_bennett",
+			"text": "Facilities have your latch request on their board. They grumbled, which means they read it."
 		},
 		{
 			"file": "audio/voice/ch3/ch3_v_3feaccd3eb.ogg",
@@ -6784,6 +6881,22 @@
 			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
 			"speaker": "narrator",
 			"text": "The summary lists what Chapter 2 left open: an inactive credential in the transfer-request audit, export versions that disagree on a date, an unwatched door found ajar and a witness who heard but did not see. Nothing in it is resolved."
+		},
+		{
+			"file": "audio/voice/ch3/ch3_v_4fa93ec8e5.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.011,
+			"ids": [
+				"ch3_v_4fa93ec8e5"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "fb5e207cd39b46fa3e191a5bfe60aac440bf6799e18c79ed0279dac509a192c9",
+			"source": "Kokoro TTS voice 'af_sarah' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_bennett",
+			"text": "I read your lobby note. You didn't pretend you'd watched those doors. Good."
 		},
 		{
 			"file": "audio/voice/ch3/ch3_v_52c426ddf5.ogg",
@@ -8002,6 +8115,22 @@
 			"text": "Hale walks it with you: threshold, opened infill, sealed corridor, mechanical corridor, stair. One route, physically continuous, marked."
 		},
 		{
+			"file": "audio/voice/ch3/ch3_v_ef32fddc69.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.843,
+			"ids": [
+				"ch3_v_ef32fddc69"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH3 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "90d218af3361b9a27415646a9c03c57941eaf398715a8fc9d69112a32df3d5d8",
+			"source": "Kokoro TTS voice 'af_sarah' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_bennett",
+			"text": "Security says you had the lobby doors shut and reported. Quietly done. Thank you."
+		},
+		{
 			"file": "audio/voice/ch3/ch3_v_efc7e9506d.ogg",
 			"category": "narration",
 			"duration_seconds": 6.992,
@@ -8710,6 +8839,22 @@
 			"text": "Reminder (set by you): Eat something. Leave on time. You can't carry all of it."
 		},
 		{
+			"file": "audio/voice/ch4/ch4_v_3709818266.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.224,
+			"ids": [
+				"ch4_v_3709818266"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH4 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "12a8cff313aa683f8e80cbc0191fb8ced76278ea0f7df5a123890b508a1255f4",
+			"source": "Kokoro TTS voice 'bf_emma' speed 0.92, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_voss",
+			"text": "You checked the other plan editions before you said anything. Keep doing that."
+		},
+		{
 			"file": "audio/voice/ch4/ch4_v_37d6dd953d.ogg",
 			"category": "dialogue",
 			"duration_seconds": 3.507,
@@ -9060,6 +9205,22 @@
 			"source": "Kokoro TTS voice 'am_onyx' speed 0.94, fx 'dialogue' (tools/audio/generate_voice.py)",
 			"speaker": "staff_hale",
 			"text": "Then we agree. The restriction stays until the safety review signs off."
+		},
+		{
+			"file": "audio/voice/ch4/ch4_v_66f3c8ffd4.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.903,
+			"ids": [
+				"ch4_v_66f3c8ffd4"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH4 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "913a9a2f17d790c2318ff58a72a573fa83439b29f27fbae8deb32d3ca5a647dd",
+			"source": "Kokoro TTS voice 'am_onyx' speed 0.94, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_hale",
+			"text": "Your survey request is why the review has measurements to argue about, not opinions."
 		},
 		{
 			"file": "audio/voice/ch4/ch4_v_6a83ae6cab.ogg",
@@ -9444,6 +9605,22 @@
 			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
 			"speaker": "narrator",
 			"text": "You dismiss the reminder and get back to work."
+		},
+		{
+			"file": "audio/voice/ch4/ch4_v_a65e0983c9.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.525,
+			"ids": [
+				"ch4_v_a65e0983c9"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH4 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "77b6e12d3dd9fe06b6b56980fa4122603ce56c896103d67ac3660e7d9ed067af",
+			"source": "Kokoro TTS voice 'bf_emma' speed 0.92, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_voss",
+			"text": "You logged the alcove as found and left the cause open. That line has survived every draft."
 		},
 		{
 			"file": "audio/voice/ch4/ch4_v_a806787a4d.ogg",
@@ -10156,6 +10333,22 @@
 			"text": "Hale reads the inspection authorization: staffing, the escorted route, radio contact, exit procedure."
 		},
 		{
+			"file": "audio/voice/ch5/ch5_v_03ae69bbee.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.099,
+			"ids": [
+				"ch5_v_03ae69bbee"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "68068088b84e18fb03822365e60604f17f68c58ffc0b406fecd30f29b44d8f8e",
+			"source": "Kokoro TTS voice 'af_sarah' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_bennett",
+			"text": "You look like you didn't. Coffee's fresh. Nobody here will tell you to take a break, so I will."
+		},
+		{
 			"file": "audio/voice/ch5/ch5_v_0cd6994cd9.ogg",
 			"category": "dialogue",
 			"duration_seconds": 3.136,
@@ -10410,6 +10603,22 @@
 			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
 			"speaker": "narrator",
 			"text": "All three safeguards are mandatory: originals preserved, return procedure verified, clinical coverage confirmed."
+		},
+		{
+			"file": "audio/voice/ch5/ch5_v_2e4bbbd222.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.761,
+			"ids": [
+				"ch5_v_2e4bbbd222"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "9d373a15543e1c50c0261e6625252f9c7d519431d9205034e70d1fe5571e3b1d",
+			"source": "Kokoro TTS voice 'am_onyx' speed 0.94, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_hale",
+			"text": "You wanted outside eyes on this. Whatever we find today goes to them first."
 		},
 		{
 			"file": "audio/voice/ch5/ch5_v_30a101ac81.ogg",
@@ -11116,6 +11325,22 @@
 			"text": "A patient has questions about the plan, and we've got an outstanding follow-up before evening handoff."
 		},
 		{
+			"file": "audio/voice/ch5/ch5_v_9adbf752d0.ogg",
+			"category": "dialogue",
+			"duration_seconds": 5.12,
+			"ids": [
+				"ch5_v_9adbf752d0"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "932dd713012bf4d82cef9623f97383752374e49e4b11eda751245f3ebc210ff6",
+			"source": "Kokoro TTS voice 'bf_emma' speed 0.92, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_voss",
+			"text": "One briefing, three obligations. It's held so far. Let's keep it that way today."
+		},
+		{
 			"file": "audio/voice/ch5/ch5_v_9d256c2fe4.ogg",
 			"category": "dialogue",
 			"duration_seconds": 5.397,
@@ -11292,6 +11517,22 @@
 			"text": "Morning, Doctor. Ready for rounds?"
 		},
 		{
+			"file": "audio/voice/ch5/ch5_v_c19032a852.ogg",
+			"category": "dialogue",
+			"duration_seconds": 4.245,
+			"ids": [
+				"ch5_v_c19032a852"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "98273a1b7cd97937d58027896b273db5938a0389a3f788bdf89ac276a522678a",
+			"source": "Kokoro TTS voice 'af_aoede' speed 1.02, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_rahman",
+			"text": "Your dissent is still in the file. I read it before I agreed to cover today."
+		},
+		{
 			"file": "audio/voice/ch5/ch5_v_c640918a0f.ogg",
 			"category": "dialogue",
 			"duration_seconds": 2.091,
@@ -11436,6 +11677,22 @@
 			"text": "Archival gaps and proven misconduct filed under separate headings. Nothing moved between them without evidence."
 		},
 		{
+			"file": "audio/voice/ch5/ch5_v_db6aeb645c.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.901,
+			"ids": [
+				"ch5_v_db6aeb645c"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "469619734b04bfd0f85928c1ddfd7a3430fca75a7d8761023bf697ce199701ab",
+			"source": "Kokoro TTS voice 'af_sarah' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_bennett",
+			"text": "You look like you slept. Whatever you did, keep doing it."
+		},
+		{
 			"file": "audio/voice/ch5/ch5_v_dc0d516c3e.ogg",
 			"category": "dialogue",
 			"duration_seconds": 2.046,
@@ -11562,6 +11819,22 @@
 			"source": "Piper 'en_US-ljspeech-high' via Sherpa-ONNX (owner-approved narrator voice) speed 0.92, fx 'narration' (tools/audio/generate_voice.py)",
 			"speaker": "narrator",
 			"text": "Four files on the worksheet: original recordings, technical measurements, physical marker logs, and an exported summary."
+		},
+		{
+			"file": "audio/voice/ch5/ch5_v_ee82ff0ae7.ogg",
+			"category": "dialogue",
+			"duration_seconds": 2.688,
+			"ids": [
+				"ch5_v_ee82ff0ae7"
+			],
+			"integration_status": "integrated",
+			"license": "Generated offline with Kokoro-82M v1.0 (Apache-2.0) via kokoro-onnx (MIT); phonemized at generation time by espeak-ng (GPL-3.0, bundled by espeakng-loader), which is not distributed with the game. Stock synthetic voice, not cloned from a real person.",
+			"location": "CH5 in-game panels and interviews",
+			"review_status": "pending_listening_review",
+			"sha256": "e04486219cd187e826cdbb0515b8f41c395f89d3021e2f79391c9fb0e4273932",
+			"source": "Kokoro TTS voice 'af_sarah' speed 1.0, fx 'dialogue' (tools/audio/generate_voice.py)",
+			"speaker": "staff_bennett",
+			"text": "You left on time last night. Good. Do it again."
 		},
 		{
 			"file": "audio/voice/ch5/ch5_v_ee9604b2d4.ogg",
