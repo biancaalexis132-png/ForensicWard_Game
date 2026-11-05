@@ -1,6 +1,6 @@
 {
 	"schema_version": "0.1",
-	"_note": "Audio cue sheet read by systems/audio/AudioDirector.gd. Cues name streams; locations pick ambience and room acoustics per shift; events map explicit narrative event IDs to timed audio actions. Anomaly audio is only ever started by an event listed here, never by the player's Objectivity or bleed stage. Cues with 'streams' list several takes; AudioDirector plays a random one with slight pitch and volume variation. A location shift may add a 'detail' ambience layered over its base bed. Music contexts (main menu, cinematic, emotional scenes, patient follow-up, oversight, the Ward Zero temporal echo, the final revelation, the finale motif, credits) take over the music while active and stack, newest first; ending one returns to the context below it or to the location's music state. A context can stop or duck the ambience bed. Music cues that are not native loops repeat by 'loop_crossfade' (tail crossfades into a fresh start) or by 'tail_fade' plus 'repeat_after' (fade out, rest in silence, play again); otherwise they play once. Soundtrack volume_db values bring each track to about -20 LUFS integrated (the narrative bed sits 6 dB lower under ambience) without altering the recordings in assets/audio/music or assets/creative_references/Music/Ready_For_Godot (the waiting-room bed also sits about 6 dB lower). The Ward Zero temporal echo (mus_temporal_fracture) is only ever started by the explicit w0_temporal_echo_begin event, never by a location.",
+	"_note": "Audio cue sheet read by systems/audio/AudioDirector.gd. Cues name streams; locations pick ambience and room acoustics per shift; events map explicit narrative event IDs to timed audio actions. Anomaly audio is only ever started by an event listed here, never by the player's Objectivity or bleed stage. Cues with 'streams' list several takes; AudioDirector plays a random one with slight pitch and volume variation. A location shift may add a 'detail' ambience layered over its base bed. Music contexts (main menu, cinematic, emotional scenes, patient follow-up, oversight, the Ward Zero temporal echo, the final revelation, the finale motif, credits) take over the music while active and stack, newest first; ending one returns to the context below it or to the location's music state. A context can stop or duck the ambience bed. Music cues that are not native loops repeat by 'loop_crossfade' (tail crossfades into a fresh start) or by 'tail_fade' plus 'repeat_after' (fade out, rest in silence, play again); otherwise they play once. Soundtrack volume_db values bring each track to about -20 LUFS integrated (the narrative bed sits 6 dB lower under ambience) without altering the recordings in assets/audio/music or assets/creative_references/Music/Ready_For_Godot (the waiting-room bed also sits about 6 dB lower). Playtest 2026-11-04: the corridor and reception day beds were lowered and low-passed at 7 kHz (about 6 dB more room for the music), because the broadband corridor bed read as rain and buried the music. The Ward Zero temporal echo (mus_temporal_fracture) is only ever started by the explicit w0_temporal_echo_begin event, never by a location.",
 	"cues": {
 		"amb_corridor_day": {
 			"stream": "res://audio/ambience/amb_corridor_day_loop.ogg",
@@ -280,8 +280,8 @@
 		"corridor": {
 			"day": {
 				"ambience": "amb_corridor_day",
-				"volume_db": 0.0,
-				"lowpass_hz": 20000.0,
+				"volume_db": -6.0,
+				"lowpass_hz": 7000.0,
 				"detail": "amb_distant_staff",
 				"detail_volume_db": -14.0,
 				"music_state": "ward_underscore"
@@ -364,8 +364,8 @@
 		"reception": {
 			"day": {
 				"ambience": "amb_corridor_day",
-				"volume_db": -4.0,
-				"lowpass_hz": 12000.0,
+				"volume_db": -8.0,
+				"lowpass_hz": 7000.0,
 				"detail": "amb_distant_staff",
 				"detail_volume_db": -10.0,
 				"music_state": "hospital_ordinary"
