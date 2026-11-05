@@ -3,7 +3,7 @@
   "character_id": "staff_voss",
   "version": "v01_draft",
   "production_status": "DRAFT_MODEL_PENDING_OWNER_REVIEW",
-  "approved": false,
+  "approved": true,
   "builder": "tools/character_animation/refine_character.py",
   "profile": "tools/character_animation/profiles/staff_voss_v01_draft.json",
   "profile_sha256": "c244c43feade28fdc931f73229ba2d3f658a4a0a7104819b22b9f242ad540578",
@@ -89,5 +89,12 @@
     "catalogue": "data/character_visuals.json",
     "guide": "docs/CAMPAIGN_CAST_INTEGRATION.md",
     "authorisation": "Owner explicitly requested remaining 3D character integration for Chapters 1\u20135 after narration delivery; no visual or clinical approval inferred."
+  },
+  "approval": {
+    "approved": true,
+    "by": "Bi (project owner)",
+    "date": "2026-10-19",
+    "quote": "I approve all cast models",
+    "where": "project thread"
   }
 }
