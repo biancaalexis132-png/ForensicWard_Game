@@ -135,7 +135,8 @@ func test_debrief_shows_after_acceptance_and_replay_keeps_the_chapter_open() -> 
 	var id: String = "wr_ch1_ortiz"
 	var case: Dictionary = WardRounds.get_case(id)
 	var solved: Dictionary = SOLVER._solve(case)
-	EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": id})
+	# Approached on the ward (a patient there is seen before the plan opens).
+	EventBus.ui_panel_requested.emit(WardRoundScreen.PANEL_ID, {"case_id": id, "at_bedside": true})
 	var screen: WardRoundScreen = _main.get_node("WardRoundScreen")
 	check_eq(screen.case_id, id, "Ortiz open")
 	var meter: Label = screen.find_child("Budget", true, false)

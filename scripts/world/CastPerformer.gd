@@ -1,7 +1,6 @@
 class_name CastPerformer
 extends Node
-## Everyday acting for cast members other than Naomi (who has NaomiActingController):
-## they greet the player, turn toward them, talk with small hand gestures while
+## Everyday acting for the cast: they greet the player, turn toward them, talk with small hand gestures while
 ## their voiced lines play, listen while someone else speaks, vary their idle, and
 ## walk when a CastRoute asks them to.
 ##
@@ -9,6 +8,10 @@ extends Node
 ## clinical or save state. Choices are seeded from the character id and line id,
 ## so the same lines give the same gestures. Works on any model built to the cast
 ## animation standard; clips a model lacks are simply skipped.
+##
+## Naomi also has NaomiActingController, which acts her authored handover lines
+## from cue data; while it is acting a line (`body_busy` returns true) this node
+## leaves her body and gestures alone and only turns her toward the player.
 ##
 ## Clip names come from tools/character_animation/clip_library.json and
 ## clip_library_motion.json (see CHARACTER_ANIMATION_STANDARD.md).
@@ -47,6 +50,8 @@ var gesture_player: AnimationPlayer
 var seated: bool = false
 ## Face and eyes in conversation (null when the model has neither).
 var conversation: ConversationPerformance = null
+## Returns true while another controller is acting the body (Naomi's cue lines).
+var body_busy: Callable = Callable()
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _speaking_line: String = ""
@@ -170,7 +175,8 @@ func _on_subtitle_shown(line_id: String, _speaker_name: String, _text: String, s
 		_speaking_until = _clock + maxf(seconds, 0.5)
 		_engaged = true
 		_attention_until = _speaking_until + ATTENTION_HOLD_SECONDS
-		_plan_talk_gestures(line_id, seconds)
+		if not _body_busy():
+			_plan_talk_gestures(line_id, seconds)
 	elif _engaged or (_player_distance() <= LISTEN_RANGE_M and not speaker.is_empty()):
 		# Someone else is talking near them: they listen.
 		_engaged = true
@@ -246,13 +252,13 @@ func _run_pending_gestures() -> void:
 	if _pending_gestures.is_empty() or _clock < float(_pending_gestures[0]["at"]):
 		return
 	var next: Dictionary = _pending_gestures.pop_front()
-	if gesture_player != null and gesture_player.is_playing():
+	if _body_busy() or (gesture_player != null and gesture_player.is_playing()):
 		return  # Never cut a gesture short.
 	play_gesture(StringName(next["gesture"]))
 
 
 func _update_body() -> void:
-	if _walking or body_player == null:
+	if _walking or body_player == null or _body_busy():
 		return
 	var clip: StringName
 	if not _speaking_line.is_empty() and body_player.has_animation(TALK_CLIP):
@@ -266,7 +272,7 @@ func _update_body() -> void:
 
 
 func _update_idle(delta: float) -> void:
-	if _walking or _engaged:
+	if _walking or _engaged or _body_busy():
 		return
 	_until_idle_swap -= delta
 	if _until_idle_swap > 0.0:
@@ -316,6 +322,10 @@ func _update_turn(delta: float) -> void:
 	var step: float = deg_to_rad(TURN_RATE_DEGREES) * delta
 	# Eases in over the last 20 degrees so the turn settles instead of stopping dead.
 	actor.rotation.y = current + clampf(diff, -step, step) * maxf(smoothstep(0.0, 0.35, absf(diff)), 0.15)
+
+
+func _body_busy() -> bool:
+	return body_busy.is_valid() and bool(body_busy.call())
 
 
 func _player_distance() -> float:

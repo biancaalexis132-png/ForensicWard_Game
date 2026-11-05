@@ -127,7 +127,7 @@ func blocked_message(chapter_id: String) -> String:
 	var names: Array[String] = []
 	for id: String in open_case_ids(chapter_id):
 		names.append(_cases[id]["patient"]["name"])
-	return "Ward round first: %s still need%s an accepted plan (EHR, Ward round)." % [
+	return "Ward round first: %s still need%s an accepted plan. See them on the ward, then EHR, Ward round." % [
 			" and ".join(names), "s" if names.size() == 1 else ""]
 
 
@@ -173,6 +173,23 @@ func bedside_repaired(case_id: String) -> bool:
 
 ## True when a chart field is known: there is no bedside block, or the
 ## question that reveals it was asked with enough trust.
+## Records that the player has been to this patient on the ward (approached
+## them in the 3D world). The EHR keeps a patient's plan locked until then.
+func mark_seen(case_id: String) -> void:
+	if not _cases.has(case_id) or is_seen(case_id):
+		return
+	_entry(case_id)["seen"] = true
+	case_changed.emit(case_id)
+
+
+## True once the player has met the patient: approached them on the ward, or
+## already talked at the bedside or worked on the case (older saves).
+func is_seen(case_id: String) -> bool:
+	var entry: Dictionary = _state.get(case_id, {})
+	return bool(entry.get("seen", false)) or not str(entry.get("opening", "")).is_empty() \
+			or int(entry.get("attempts", 0)) > 0 or status(case_id) == STATUS_ACCEPTED
+
+
 func is_revealed(case_id: String, field: String) -> bool:
 	if bedside().is_empty():
 		return true
@@ -458,6 +475,8 @@ func validate_save_data(data: Variant) -> bool:
 			return false
 		if entry.has("followed_up") and not entry["followed_up"] is bool:
 			return false
+		if entry.has("seen") and not entry["seen"] is bool:
+			return false
 	return true
 
 
@@ -475,7 +494,8 @@ func load_save_data(data: Dictionary) -> void:
 				"best": int(entry.get("best", -1)), "opening": str(entry.get("opening", "")),
 				"asked": entry.get("asked", []).duplicate(), "revealed": entry.get("revealed", []).duplicate(),
 				"repaired": bool(entry.get("repaired", false)),
-				"followed_up": bool(entry.get("followed_up", false))}
+				"followed_up": bool(entry.get("followed_up", false)),
+				"seen": bool(entry.get("seen", false))}
 
 
 func reset_state() -> void:
@@ -488,7 +508,7 @@ func _entry(case_id: String) -> Dictionary:
 	if not _state.has(case_id):
 		_state[case_id] = {"labs": [], "plan": [], "status": STATUS_OPEN, "attempts": 0,
 				"history": [], "replaying": false, "best": -1,
-				"opening": "", "asked": [], "revealed": [], "repaired": false, "followed_up": false}
+				"opening": "", "asked": [], "revealed": [], "repaired": false, "followed_up": false, "seen": false}
 	return _state[case_id]
 
 
