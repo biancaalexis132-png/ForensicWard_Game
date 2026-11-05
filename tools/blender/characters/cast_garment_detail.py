@@ -41,7 +41,7 @@ def _smooth(x):
 
 def garment_shell(v3, name: str, body, face_mask: np.ndarray, offset_fn, smooth_iterations: int,
                   thickness: float, material, before_thicken=None, decimate_ratio: float | None = None,
-                  hang: dict | None = None):
+                  hang: dict | None = None, group_names: list[str] | None = None):
     """build_naomi_v03.shell_from_faces, also returning the shell's open edges (ordered loops).
 
     The loops are taken after the shell is pushed out and before it is thickened,
@@ -52,6 +52,10 @@ def garment_shell(v3, name: str, body, face_mask: np.ndarray, offset_fn, smooth_
     bpy.context.scene.collection.objects.link(obj)
     obj.matrix_world = body.matrix_world
     obj.modifiers.clear()
+    # Name the inherited skin weights, so the garment remembers which of its
+    # vertices came from the arms (sleeves) and which from the torso.
+    for gname in (group_names if group_names is not None else [g.name for g in body.vertex_groups]):
+        obj.vertex_groups.new(name=gname)
     bm = bmesh.new()
     bm.from_mesh(mesh)
     bm.faces.ensure_lookup_table()

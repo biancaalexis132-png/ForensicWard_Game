@@ -726,7 +726,8 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
                     return inner(p) + max(0.0, p.z - nz) * flare
             obj, loops = detail_mod.garment_shell(v3, PREFIX + g["name"], proxy, mask, fn, int(g.get("smooth", 40)),
                                                   float(g.get("thickness_m", 0.0022)), mats[g["name"]],
-                                                  decimate_ratio=detail_ratio(g), hang=hang_spec(g, body))
+                                                  decimate_ratio=detail_ratio(g), hang=hang_spec(g, body),
+                                                  group_names=[vg.name for vg in body.vertex_groups])
             shell_loops[g["name"]] = loops
             covered |= reg.interior(mask, float(g.get("skin_margin_m", 0.04)))
         elif kind == "trousers":
@@ -811,6 +812,83 @@ def build_clothing(body, rig, mats) -> tuple[list[bpy.types.Object], dict]:
         v3.parent_to_rig(obj, rig)
     bpy.data.objects.remove(proxy, do_unlink=True)
     return objs, {"covered_faces": int(covered.sum()), "garment_detail": details}
+
+
+def weight_source_without(source, prefixes: tuple, bone_names: set) -> bpy.types.Object:
+    """A copy of the weight source without the faces whose vertices are mostly the given bones'."""
+    obj = source.copy()
+    obj.data = source.data.copy()
+    bpy.context.scene.collection.objects.link(obj)
+    names = {g.index: g.name for g in obj.vertex_groups}
+    bones = {i for i, n in names.items() if n.startswith(prefixes)}
+    drop = set()
+    for v in obj.data.vertices:
+        total = sum(g.weight for g in v.groups if names[g.group] in bone_names)
+        part = sum(g.weight for g in v.groups if g.group in bones)
+        if total > 0 and part / total > 0.5:
+            drop.add(v.index)
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    bm.verts.ensure_lookup_table()
+    bmesh.ops.delete(bm, geom=[bm.verts[i] for i in drop], context="VERTS")
+    bm.to_mesh(obj.data)
+    bm.free()
+    return obj
+
+
+def blend_top_weights(obj, no_hands, no_arms, bone_names: set) -> None:
+    """Sleeves follow the arms; the body of a top never does.
+
+    A jacket's hem and pocket flaps hang beside the forearm, so nearest-surface
+    weights would make them follow a gesture. Each vertex keeps the share of arm
+    weight it inherited from the body vertex it was cut from (trims take their
+    nearest garment vertex's share) and mixes the two transfers by it.
+    """
+    arm_groups = {g.index for g in obj.vertex_groups if g.name.startswith(ARM_PREFIXES)}
+    bone_groups = {g.index for g in obj.vertex_groups if g.name in bone_names}
+    n = len(obj.data.vertices)
+    share = np.full(n, -1.0)
+    for v in obj.data.vertices:
+        total = sum(g.weight for g in v.groups if g.group in bone_groups)
+        if total > 1e-6:
+            share[v.index] = sum(g.weight for g in v.groups if g.group in arm_groups) / total
+    known = np.where(share >= 0)[0]
+    if len(known):
+        tree = KDTree(len(known))
+        for j, i in enumerate(known):
+            tree.insert(obj.data.vertices[i].co, j)
+        tree.balance()
+        for i in np.where(share < 0)[0]:
+            share[i] = share[known[tree.find(obj.data.vertices[i].co)[1]]]
+    else:
+        share[:] = 1.0
+    share = np.clip((share - 0.15) / 0.5, 0.0, 1.0)
+    torso = obj.copy()
+    torso.data = obj.data.copy()
+    bpy.context.scene.collection.objects.link(torso)
+    v3.copy_weights_from(torso, no_arms)
+    v3.copy_weights_from(obj, no_hands)
+    tnames = {g.index: g.name for g in torso.vertex_groups}
+    for v in obj.data.vertices:
+        a = share[v.index]
+        mixed = {}
+        for g in v.groups:
+            if g.group in bone_groups or obj.vertex_groups[g.group].name in bone_names:
+                mixed[obj.vertex_groups[g.group].name] = a * g.weight
+        for g in torso.data.vertices[v.index].groups:
+            name = tnames[g.group]
+            if name in bone_names:
+                mixed[name] = mixed.get(name, 0.0) + (1.0 - a) * g.weight
+        for name in bone_names:
+            if name in obj.vertex_groups:
+                obj.vertex_groups[name].remove([v.index])
+        for name, w in mixed.items():
+            if w > 1e-4:
+                if name not in obj.vertex_groups:
+                    obj.vertex_groups.new(name=name)
+                obj.vertex_groups[name].add([v.index], w, "REPLACE")
+    bpy.data.objects.remove(torso, do_unlink=True)
+    print(f"  {obj.name}: arm share mean {share.mean():.2f} ({int((share > 0.5).sum())} sleeve vertices)")
 
 
 def hang_spec(g: dict, body) -> dict | None:
@@ -1831,10 +1909,22 @@ def main() -> None:
     clothing, cloth_info = build_clothing(body, rig, mats)
     by_name = {o.name[len(PREFIX):]: o for o in clothing}
     kinds = {g["kind"]: g["name"] for g in CFG["garments"]}
+    # Hands rest against the thighs and hips; a garment taking its weights from the
+    # nearest body surface there would follow the fingers in a gesture. Trousers,
+    # belts and shoes never take arm weights; tops keep the arms (sleeves) but not the hands.
+    bone_names = {b.name for b in rig.data.bones}
+    no_hands = weight_source_without(weight_source, ARM_PREFIXES[2:], bone_names)
+    no_arms = weight_source_without(weight_source, ARM_PREFIXES, bone_names)
+    legwear = {PREFIX + g["name"] for g in CFG["garments"] if g["kind"] in ("trousers", "belt", "shoes")}
     for obj in clothing:
         if not obj.get("cast_detail"):
             v3.project_fabric_uvs(obj)
-        v3.copy_weights_from(obj, weight_source)
+        if obj.name in legwear:
+            v3.copy_weights_from(obj, no_arms)
+        else:
+            blend_top_weights(obj, no_hands, no_arms, bone_names)
+    for src in (no_hands, no_arms):
+        bpy.data.objects.remove(src, do_unlink=True)
     extras = []
     if CFG.get("badge"):
         extras.append(build_badge(rig, by_name[CFG["badge"]["on"]], mats))

@@ -1,0 +1,95 @@
+{
+  "asset_id": "CHR_FacilitiesTechnician_v02",
+  "character_id": "staff_facilities_tech",
+  "version": "v02",
+  "production_status": "OWNER_APPROVED",
+  "approved": true,
+  "approval": {
+    "approved": true,
+    "by": "Bi (project owner)",
+    "date": "2026-10-19",
+    "quote": "I approve all cast models",
+    "where": "ForensicWard project thread",
+    "scope": "Likeness, body, age, colours and outfit design of the v01 draft; v02 improves hair and clothing quality only."
+  },
+  "builder": "tools/character_animation/refine_character.py",
+  "profile": "tools/character_animation/profiles/staff_facilities_tech_v02.json",
+  "profile_sha256": "28b3fec489d614a7e3c8a7b59ef9c053ac82b65d2cdad9a717d50cd7febb8be5",
+  "blender_version": "5.2.2 LTS",
+  "inputs": [
+    {
+      "path": "build/cast/Facilities_Tech_v02_face.blend",
+      "sha256": "e66e2828023fe86a05c7041585281f206d579a81b4670c24b8ef110f87e45dbe",
+      "used": "finished character: rig, clips and face morphs kept; see refinements"
+    }
+  ],
+  "external_assets": [],
+  "licence": "Inherits the source character's provenance and licence (original work plus MPFB2 CC0 face targets).",
+  "generated": [
+    "lids",
+    "shoes",
+    "trousers"
+  ],
+  "triangle_count": 35131,
+  "clips": [
+    "idle_breathing",
+    "idle_neutral",
+    "listen_neutral",
+    "restrained_chart_indication",
+    "return_to_workstation",
+    "small_acknowledgement_nod",
+    "small_greeting_nod",
+    "stand_conversational",
+    "subtle_workstation_indication",
+    "turn_from_workstation"
+  ],
+  "morph_targets": [
+    "attentive",
+    "blink",
+    "blink_L",
+    "blink_R",
+    "calm_professional",
+    "concerned_restrained",
+    "focused",
+    "mouth_open",
+    "professionally_serious",
+    "viseme_aa_02",
+    "viseme_aa_ah_ax_01",
+    "viseme_ao_03",
+    "viseme_aw_09",
+    "viseme_ay_11",
+    "viseme_d_t_n_19",
+    "viseme_er_05",
+    "viseme_ey_eh_uh_04",
+    "viseme_f_v_18",
+    "viseme_h_12",
+    "viseme_k_g_ng_20",
+    "viseme_l_14",
+    "viseme_ow_08",
+    "viseme_oy_10",
+    "viseme_p_b_m_21",
+    "viseme_r_13",
+    "viseme_s_z_15",
+    "viseme_sh_ch_jh_zh_16",
+    "viseme_sil_00",
+    "viseme_th_dh_17",
+    "viseme_w_uw_07",
+    "viseme_y_iy_ih_ix_06",
+    "warm_subtle"
+  ],
+  "outputs": {
+    "blend": "assets/blender/characters/Facilities_Tech_v02.blend",
+    "glb": "assets/exports/characters/Facilities_Tech_v02.glb",
+    "report": "tools/character_animation/reports/staff_facilities_tech_v02_refine_report.json",
+    "renders": [
+      "assets/renders/characters/Facilities_Technician_v02_refine_sheet.png"
+    ]
+  },
+  "known_limitations": [
+    "v02 approved by the owner (Bi, 2026-10-19) and used in normal gameplay; the v01 draft files are kept for comparison.",
+    "Hair is alpha-scissor cards over a darker scalp base, not groomed strands; no hair physics, and cards are rigid to the head (a ponytail bends with spine_03 only).",
+    "Clothing is an offset shell with modelled trims and buttons; folds are baked into a normal map, not simulated, and do not change with pose.",
+    "Not measured on the target Mac.",
+    "Polo collar is the shirt shell rising up the neck, with a ribbed trim and a two-button placket."
+  ]
+}

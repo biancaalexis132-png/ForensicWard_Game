@@ -62,11 +62,12 @@
     "report": "tools/character_animation/reports/staff_voss_v02_refine_report.json"
   },
   "known_limitations": [
-    "Draft model for owner review; not canon and not wired to gameplay.",
-    "Blazer is an offset shell with an open front; no lapels, buttons or pockets.",
-    "Hair is a scalp shell with a strand texture and a modelled chignon, not groomed strands.",
-    "Glasses are frames only (no lens geometry).",
-    "Not measured on the target Mac."
+    "v02 approved by the owner (Bi, 2026-10-19) and used in normal gameplay; the v01 draft files are kept for comparison.",
+    "Hair is alpha-scissor cards over a darker scalp base, not groomed strands; no hair physics, and cards are rigid to the head (a ponytail bends with spine_03 only).",
+    "Clothing is an offset shell with modelled trims and buttons; folds are baked into a normal map, not simulated, and do not change with pose.",
+    "Not measured on the target Mac.",
+    "Blazer lapels are a raised band on the shell, not a separately rolled collar; no back vent.",
+    "Glasses lenses are thin transparent sheets (no refraction)."
   ],
   "approved": true,
   "approval": {
