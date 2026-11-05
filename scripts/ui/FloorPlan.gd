@@ -7,7 +7,8 @@ static func snapshot(world: AuthoredWorld, player: Node3D, zones: ZoneDirector) 
 	var zone: Dictionary = ContentRegistry.get_zone(zone_id)
 	var result: Dictionary = {"zone_id": zone_id, "title": zone.get("title", ""),
 			"level": zone.get("level", ""), "floors": [], "doors": [], "stations": [],
-			"player": Vector2(player.global_position.x, player.global_position.z), "yaw": player.global_rotation.y}
+			"player": Vector2(player.global_position.x, player.global_position.z), "yaw": player.global_rotation.y,
+			"people": [], "here": ""}
 	var root: Node3D = world.get_zone_root(zone_id)
 	if root == null:
 		return result
@@ -36,4 +37,34 @@ static func snapshot(world: AuthoredWorld, player: Node3D, zones: ZoneDirector) 
 	for station: Node in root.find_children("*", "Node3D", true, false):
 		if "Terminal_EHR" in str(station.name):
 			result["stations"].append(Vector2(station.global_position.x, station.global_position.z))
+	result["here"] = room_at(result["floors"], result["player"])
+	# Staff and story patients standing in this floor's rooms (ward-round
+	# patients are many and stay in their rooms, so they are left off).
+	var ids: Array[String] = ContentRegistry.get_staff_ids()
+	ids.append_array(ContentRegistry.get_patient_ids())
+	for character_id: String in ids:
+		var actor: WardCharacter = world.get_character(character_id)
+		if actor == null or not actor.is_visible_in_tree():
+			continue
+		var at: Vector2 = Vector2(actor.global_position.x, actor.global_position.z)
+		var room: String = room_at(result["floors"], at)
+		if room.is_empty():
+			continue
+		var data: Dictionary = ContentRegistry.get_staff(character_id)
+		if data.is_empty():
+			data = ContentRegistry.get_patient(character_id)
+		result["people"].append({"id": character_id, "name": str(data.get("name", character_id)), "position": at, "room": room})
 	return result
+
+
+## The smallest room containing the point ("" when none does): rooms off a
+## corridor overlap its bounds, and the room is the more useful answer.
+static func room_at(floors: Array, point: Vector2) -> String:
+	var best: String = ""
+	var best_area: float = INF
+	for floor: Dictionary in floors:
+		var rect: Rect2 = floor["rect"]
+		if rect.grow(0.05).has_point(point) and rect.get_area() < best_area:
+			best = floor["label"]
+			best_area = rect.get_area()
+	return best
