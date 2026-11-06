@@ -56,17 +56,15 @@ FW_TEST_FILTER=set_dressing XDG_DATA_HOME=/workspace/work/nursing-detail/focused
 ```
 
 **4 passed / 0 failed**, exit 0. `git diff --check` clean.
-Full standard QA is running on this checkpoint; final results belong in the
-newest `docs/AI_HANDOFF.md` entry.
+Full standard QA on this checkpoint passed: exit 0, gameplay **485/0**, smoke **19/0/0**, GLB **211/0**, audio **1760/0**, all Python checks pass, pharmacology zero failures and Chapter 1 sequence **62.0 s**. Exact command/results are in the newest `docs/AI_HANDOFF.md` entry.
 
 ## Review and next steps
 
 Before/after and reverse screenshots use the existing capture tool, Godot 4.7,
 960×540, Linux Xorg dummy / Mesa llvmpipe Compatibility, Dummy audio. They are
-placement review, not Mac / Forward+ acceptance. Captures/manifests will be
-published under `docs/environment_review/abandoned_nursing_station/`.
+placement review, not Mac / Forward+ acceptance. Captures/manifests are published under `docs/environment_review/abandoned_nursing_station/`.
 
-Next: finish full QA, inspect/publish all views, then owner reviews #153 on Mac,
+All three views were inspected. Next: owner reviews #153 on Mac,
 especially fixture mounting and access to the counter/night report. New placement
 changes stay in `data/set_dressing.json`; existing clinical and story approval
 states remain untouched. No Mac export or SSK transfer was performed.

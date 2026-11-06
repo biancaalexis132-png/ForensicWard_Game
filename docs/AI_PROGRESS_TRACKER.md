@@ -1,5 +1,11 @@
 # AI progress tracker
 
+## Abandoned nursing station complete — Codex, 2026-11-06
+
+- Draft #153 now contains thirteen clinical/historic fixtures. Runtime `473ee81`, pushed review `1916874`; later changes are review/docs only. Full local QA **game 485/0, smoke 19/0/0, GLB 211/0, audio 1760/0**, Python/pharmacology pass, Chapter 1 sequence complete. Focused **4/0**. Current hosted CI pending at last observation; previous `8a3e7ef` hosted PASS verified.
+- Station before/after/reverse evidence and manifest: `docs/environment_review/abandoned_nursing_station/README.md`. Original census board/night report, furniture and metadata preserved; new mesh footprints checked clear. All new visuals pending owner Mac review. No new clinical/story/approval, collision, light/sound or save behavior.
+- Next: Mac review/placement feedback and outstanding voice-start, transition and ending checks (`docs/MAC_RELEASE_BUILD.md`). No unfinished source function, Mac export or SSK transfer. Newest `AI_HANDOFF.md` entry supersedes older task/status rows.
+
 ## Codex historic-wing continuation complete — 2026-11-06
 
 - Draft #153 now covers ten clinical/historic wall placements. Runtime `59ae7f9`, pushed review `4fff016`; subsequent commits are review/docs only. Full local QA **game 484/0, smoke 19/0/0, GLB 211/0, audio 1760/0**, Python/pharmacology checks pass and Chapter 1 sequence completes. Focused lifecycle/placement tests **3/0**. Exact command/checkpoints in newest `AI_HANDOFF.md` entry; current hosted CI pending at last observation.
