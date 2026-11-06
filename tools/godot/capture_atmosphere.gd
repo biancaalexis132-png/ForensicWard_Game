@@ -1,17 +1,21 @@
 extends Node
-## Review captures of the Chapter 1 clinical wing for the lighting and
+## Review captures of an explicitly selected zone for the lighting and
 ## materials baseline: one eye-level view per room, HUD hidden. Windowed
 ## Compatibility-renderer capture; not Mac acceptance.
 ##
 ##   Godot --path . --rendering-method gl_compatibility --audio-driver Dummy \
 ##       --resolution 1280x720 res://tools/godot/CaptureAtmosphere.tscn -- --output-dir=/absolute/dir [--tag=after] [--rooms=clinical_corridor,nursing_station]
 ## Writes atmosphere_<tag>_<room>.png.
+## Optional --zone=zone_historic_sublevel selects a review floor without
+## changing campaign access. --reverse captures the opposite end of each room.
 
 
 func _ready() -> void:
 	var output_dir: String = "user://"
 	var tag: String = "now"
 	var rooms: PackedStringArray = []
+	var zone_id: String = "zone_clinical_wing"
+	var reverse: bool = false
 	for argument: String in OS.get_cmdline_user_args():
 		if argument.begins_with("--output-dir="):
 			output_dir = argument.trim_prefix("--output-dir=")
@@ -19,6 +23,10 @@ func _ready() -> void:
 			tag = argument.trim_prefix("--tag=")
 		elif argument.begins_with("--rooms="):
 			rooms = argument.trim_prefix("--rooms=").split(",")
+		elif argument.begins_with("--zone="):
+			zone_id = argument.trim_prefix("--zone=")
+		elif argument == "--reverse":
+			reverse = true
 	Settings.persist = false
 	SaveManager.reset_all()
 	var main: Node = load("res://scenes/main/Main.tscn").instantiate()
@@ -29,7 +37,21 @@ func _ready() -> void:
 		(layer as CanvasLayer).visible = false
 	var player: FirstPersonController = main.get_node("Player")
 	player.set_input_enabled(false)
-	var plan: Dictionary = FloorPlan.snapshot(main.get_node("World"), player, main.get_node("ZoneDirector"))
+	var world: AuthoredWorld = main.get_node("World")
+	var zones: ZoneDirector = main.get_node("ZoneDirector")
+	if ContentRegistry.get_zone(zone_id).is_empty():
+		push_error("Unknown review zone: " + zone_id)
+		main.free()
+		get_tree().quit(1)
+		return
+	# Review-only setup: never expose a second level beside the requested floor.
+	zones.set_process(false)
+	if zone_id != zones.current_zone_id:
+		for loaded_zone: String in world.get_zone_ids():
+			world.unload_zone(loaded_zone)
+		world.build_zone(zone_id, AuthoredWorld.load_zone_scenes(zone_id))
+		zones.current_zone_id = zone_id
+	var plan: Dictionary = FloorPlan.snapshot(world, player, zones)
 	for floor: Dictionary in plan["floors"]:
 		if not rooms.is_empty() and not str(floor["label"]).to_snake_case() in rooms:
 			continue
@@ -38,6 +60,9 @@ func _ready() -> void:
 		# Stand near one end of the room and look along it.
 		var at: Vector2 = rect.get_center() + (Vector2(-rect.size.x * 0.35, 0) if long_x else Vector2(0, rect.size.y * 0.35))
 		var yaw: float = -PI / 2.0 if long_x else 0.0
+		if reverse:
+			at = rect.get_center() * 2.0 - at
+			yaw += PI
 		player.place(Vector3(at.x, player.global_position.y, at.y), yaw, -0.08)
 		await _frames(6)
 		await _save(output_dir, "atmosphere_%s_%s.png" % [tag, str(floor["label"]).to_snake_case()])

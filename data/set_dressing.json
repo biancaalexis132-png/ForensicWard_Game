@@ -112,6 +112,164 @@
 					-15.5
 				],
 				"facing": "south"
+			},
+			{
+				"id": "office_acoustic_north",
+				"scene": "res://assets/exports/clinical/props/PROP_Acoustic_Panel.glb",
+				"at": [
+					-4.9,
+					1.55,
+					-5.9
+				],
+				"facing": "south",
+				"room": "Psychiatrist office",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "office_acoustic_east",
+				"scene": "res://assets/exports/clinical/props/PROP_Acoustic_Panel.glb",
+				"at": [
+					-1.6,
+					1.65,
+					-3.0
+				],
+				"facing": "west",
+				"room": "Psychiatrist office",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "office_gel_inside",
+				"scene": "res://assets/exports/clinical/props/PROP_Dispenser_HandGel.glb",
+				"at": [
+					-1.6,
+					1.2,
+					-4.1
+				],
+				"facing": "west",
+				"room": "Psychiatrist office",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "nursing_vent_high",
+				"scene": "res://assets/exports/clinical/props/PROP_Vent_Grille_Wall.glb",
+				"at": [
+					-4.9,
+					2.6,
+					-10.0
+				],
+				"facing": "east",
+				"room": "Nursing station",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "nursing_intercom",
+				"scene": "res://assets/exports/clinical/props/PROP_Intercom_Speaker.glb",
+				"at": [
+					-2.25,
+					2.3,
+					-11.9
+				],
+				"facing": "south",
+				"room": "Nursing station",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			}
+		],
+		"zone_historic_sublevel": [
+			{
+				"id": "historic_fuse_entry",
+				"scene": "res://assets/exports/historic/props/PROP_Panel_Fuse_Historic.glb",
+				"at": [
+					-1.394,
+					1.35,
+					-20.7
+				],
+				"facing": "east",
+				"room": "Historic corridor",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_fuse_lift",
+				"scene": "res://assets/exports/historic/props/PROP_Panel_Fuse_Historic.glb",
+				"at": [
+					-1.394,
+					1.35,
+					-42.5
+				],
+				"facing": "east",
+				"room": "Historic corridor",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_vent_east",
+				"scene": "res://assets/exports/clinical/props/PROP_Vent_Grille_Wall.glb",
+				"at": [
+					1.394,
+					2.4,
+					-27.2
+				],
+				"facing": "west",
+				"room": "Historic corridor",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_vent_west",
+				"scene": "res://assets/exports/clinical/props/PROP_Vent_Grille_Wall.glb",
+				"at": [
+					-1.394,
+					2.4,
+					-35.5
+				],
+				"facing": "east",
+				"room": "Historic corridor",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_office_board",
+				"scene": "res://assets/exports/clinical/props/PROP_NoticeBoard.glb",
+				"at": [
+					-1.607,
+					1.7,
+					-24.8
+				],
+				"facing": "west",
+				"room": "Disused admin office",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_nursing_service_pipes",
+				"scene": "res://assets/exports/security/props/PROP_Pipes_Wall_2m.glb",
+				"at": [
+					-5.894,
+					2.45,
+					-37.5
+				],
+				"facing": "east",
+				"room": "Abandoned nursing station",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_nursing_vent",
+				"scene": "res://assets/exports/clinical/props/PROP_Vent_Grille_Wall.glb",
+				"at": [
+					-1.607,
+					2.55,
+					-35.5
+				],
+				"facing": "west",
+				"room": "Abandoned nursing station",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_nursing_fuse_board",
+				"scene": "res://assets/exports/historic/props/PROP_Panel_Fuse_Historic.glb",
+				"at": [
+					-2.6,
+					1.35,
+					-34.107
+				],
+				"facing": "north",
+				"room": "Abandoned nursing station",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
 			}
 		]
 	}

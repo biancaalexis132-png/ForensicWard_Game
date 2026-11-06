@@ -1,0 +1,38 @@
+{
+  "source": "Original in-engine renders of existing project assets; central asset manifest provenance applies.",
+  "tool_commit": "59ae7f9",
+  "tool": "tools/godot/CaptureAtmosphere.tscn",
+  "before_content_commit": "5033d533e4c8e0f889f97512784abd5ac848411b",
+  "after_content_commit": "59ae7f9",
+  "settings": {
+    "engine": "Godot 4.7 stable standard",
+    "renderer": "Compatibility",
+    "platform": "Linux Xorg dummy / Mesa llvmpipe",
+    "resolution": [
+      960,
+      540
+    ],
+    "audio": "Dummy",
+    "zone": "zone_historic_sublevel",
+    "rooms": [
+      "historic_corridor_24m",
+      "disused_admin_office"
+    ]
+  },
+  "review_status": "PENDING_OWNER_VISUAL_REVIEW; not Mac or Forward+ acceptance",
+  "files": {
+    "atmosphere_after_disused_admin_office.png": "7aece602dcb91b4390126633615140bd1301c4ae3e8fdf55ec122697816fa1e2",
+    "atmosphere_after_historic_corridor_24m.png": "46d08f17d190b3c67900f3dd9800cac18573699dd8e083fb36e328c42a30091f",
+    "atmosphere_before_disused_admin_office.png": "3e5d35f01ba0d1e3be21ed4b0bf16574397fa85633c5090dcdfdeea9a7c4c29f",
+    "atmosphere_before_historic_corridor_24m.png": "a1f08482dd049f8bb78f3b60e1232b63d54f0a64f78ad4b334a947fec6a7fabc",
+    "atmosphere_reverse_historic_corridor_24m.png": "cd7b6c0d2762594ed5bbeab00cb4cc6ede4014d7543cbd7c10f021743e2118e3"
+  },
+  "additional_view": {
+    "file": "atmosphere_reverse_historic_corridor_24m.png",
+    "arguments": [
+      "--zone=zone_historic_sublevel",
+      "--rooms=historic_corridor_24m",
+      "--reverse"
+    ]
+  }
+}

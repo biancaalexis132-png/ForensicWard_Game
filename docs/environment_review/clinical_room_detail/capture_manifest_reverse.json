@@ -1,0 +1,24 @@
+{
+  "source": "Original in-engine render of existing project assets",
+  "tool": "tools/godot/CaptureAtmosphere.tscn",
+  "runtime_commit": "59ae7f9",
+  "settings": {
+    "engine": "Godot 4.7 stable",
+    "renderer": "Compatibility",
+    "platform": "Linux Xorg dummy / Mesa llvmpipe",
+    "resolution": [
+      960,
+      540
+    ],
+    "audio": "Dummy",
+    "zone": "zone_clinical_wing",
+    "rooms": [
+      "psychiatrist_office"
+    ],
+    "reverse": true
+  },
+  "review_status": "PENDING_OWNER_VISUAL_REVIEW; not Mac acceptance",
+  "files": {
+    "atmosphere_reverse_psychiatrist_office.png": "3ef118bd2126df500f80f1c961040f6d1e0cf908e84f6154eca00ac01c41586a"
+  }
+}

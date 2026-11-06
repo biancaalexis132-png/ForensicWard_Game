@@ -1,5 +1,23 @@
 # AI session handoff
 
+## Abandoned nursing station complete — Codex, 2026-11-06
+
+- Draft #153 now contains thirteen clinical/historic fixtures. Runtime `473ee81`, pushed review `1916874`; later changes are review/docs only. Full local QA **game 485/0, smoke 19/0/0, GLB 211/0, audio 1760/0**, Python/pharmacology pass, Chapter 1 sequence complete. Focused **4/0**. Current hosted CI pending at last observation; previous `8a3e7ef` hosted PASS verified.
+- Station before/after/reverse evidence and manifest: `docs/environment_review/abandoned_nursing_station/README.md`. Original census board/night report, furniture and metadata preserved; new mesh footprints checked clear. All new visuals pending owner Mac review. No new clinical/story/approval, collision, light/sound or save behavior.
+- Next: Mac review/placement feedback and outstanding voice-start, transition and ending checks (`docs/MAC_RELEASE_BUILD.md`). No unfinished source function, Mac export or SSK transfer. Newest `AI_HANDOFF.md` entry supersedes older task/status rows.
+
+## Codex historic-wing continuation complete — 2026-11-06
+
+- Draft #153 now covers ten clinical/historic wall placements. Runtime `59ae7f9`, pushed review `4fff016`; subsequent commits are review/docs only. Full local QA **game 484/0, smoke 19/0/0, GLB 211/0, audio 1760/0**, Python/pharmacology checks pass and Chapter 1 sequence completes. Focused lifecycle/placement tests **3/0**. Exact command/checkpoints in newest `AI_HANDOFF.md` entry; current hosted CI pending at last observation.
+- Historic before/after and reverse captures, plus the missing north clinical-office panel view, are published under `docs/environment_review/`. All new placements remain `PENDING_OWNER_VISUAL_REVIEW`; “continue” is not approval. No clinical/story, collision, light/sound or save behavior changes.
+- Next: owner Mac review and requested placement fixes in `data/set_dressing.json`; further historic room work must preserve existing gated story objects. No Mac export or SSK transfer. This entry supersedes older rows describing these tasks as unstarted.
+
+## Codex clinical room detail — 2026-11-06
+
+- Verified GitHub main `5199b50`: lighting #149, Mac results #150, corridor detail #151 and character creator #152 are merged. Older rows below that call them open or not started are historical.
+- Office and nursing-station detail now built in draft PR #153 (`codex/clinical-room-detail`): five cosmetic placements using existing assets, four review captures with provenance. Runtime `9f82ff6`, pushed review `e162361`; full local QA game 483/0, smoke 19/0/0, GLB 211/0, audio 1760/0 and Chapter 1 sequence complete. Exact command/checkpoints in the latest `AI_HANDOFF.md` entry. Mac review pending; no hosted CI PASS claimed.
+- Next: owner reviews the room placements on Mac; historical-wing detail follows. No new clinical/story content or save changes. Only #153 edits shared handoff docs in this continuation.
+
 ## Claude Code Elias bedside encounter — 2026-11-05
 
 ## Claude Code "Make the game more compelling" (Bi's seven-point roadmap) — 2026-11-05
