@@ -11,9 +11,10 @@ Compatibility. **Not Mac / Forward+ acceptance.** Source/provenance and hashes:
 ![Office after](atmosphere_after_psychiatrist_office.png)
 
 The east-wall acoustic panel and gel dispenser keep clear of the door and
-bookcase. The north-wall panel is outside this camera view; its placement was
-checked against the source room layout and automated containment/door checks,
-and still needs owner visual review.
+bookcase. The north-wall panel is outside this original camera view. The additional
+[reverse view](atmosphere_reverse_psychiatrist_office.png) now shows it beside the
+filing cabinet and window ([capture provenance](capture_manifest_reverse.json)).
+It remains pending owner visual review.
 
 ## Nursing station
 
