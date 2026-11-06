@@ -173,6 +173,68 @@
 				"room": "Nursing station",
 				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
 			}
+		],
+		"zone_historic_sublevel": [
+			{
+				"id": "historic_fuse_entry",
+				"scene": "res://assets/exports/historic/props/PROP_Panel_Fuse_Historic.glb",
+				"at": [
+					-1.394,
+					1.35,
+					-20.7
+				],
+				"facing": "east",
+				"room": "Historic corridor",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_fuse_lift",
+				"scene": "res://assets/exports/historic/props/PROP_Panel_Fuse_Historic.glb",
+				"at": [
+					-1.394,
+					1.35,
+					-42.5
+				],
+				"facing": "east",
+				"room": "Historic corridor",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_vent_east",
+				"scene": "res://assets/exports/clinical/props/PROP_Vent_Grille_Wall.glb",
+				"at": [
+					1.394,
+					2.4,
+					-27.2
+				],
+				"facing": "west",
+				"room": "Historic corridor",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_vent_west",
+				"scene": "res://assets/exports/clinical/props/PROP_Vent_Grille_Wall.glb",
+				"at": [
+					-1.394,
+					2.4,
+					-35.5
+				],
+				"facing": "east",
+				"room": "Historic corridor",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_office_board",
+				"scene": "res://assets/exports/clinical/props/PROP_NoticeBoard.glb",
+				"at": [
+					-1.607,
+					1.7,
+					-24.8
+				],
+				"facing": "west",
+				"room": "Disused admin office",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			}
 		]
 	}
 }
