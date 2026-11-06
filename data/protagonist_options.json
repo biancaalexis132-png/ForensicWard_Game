@@ -29,24 +29,51 @@
 		"family": "Family"
 	},
 	"skin_tones": {
+		"porcelain": "#f1cfb6",
 		"light": "#e7ba99",
 		"medium": "#bd8863",
-		"deep": "#684734"
+		"tan": "#a06e4b",
+		"brown": "#7f5439",
+		"deep": "#684734",
+		"ebony": "#4a3226"
 	},
 	"hair_colors": {
 		"black": "#252220",
+		"dark_brown": "#3b2a1e",
 		"brown": "#60432e",
+		"auburn": "#7a3b22",
+		"copper": "#a5542c",
+		"blond": "#c9ab68",
 		"grey": "#acaaa4",
-		"blond": "#c9ab68"
+		"silver": "#d3d2cf"
+	},
+	"hair_styles": {
+		"short": "Short crop",
+		"long": "Long, tied back",
+		"swept": "Swept back and pinned",
+		"none": "Shaved or no hair"
 	},
 	"outfits": {
 		"navy": "#263d56",
+		"charcoal": "#474c51",
+		"black": "#1f2124",
 		"teal": "#2e6568",
-		"charcoal": "#474c51"
+		"khaki": "#8a7b5c",
+		"burgundy": "#5a2630"
 	},
-	"hair_styles": {
-		"short": "Short",
-		"long": "Long",
-		"none": "No hair"
+	"tops": {
+		"white": "#d6dade",
+		"sky": "#a9c4dc",
+		"sage": "#a9bba0",
+		"lilac": "#b7a8c9",
+		"sand": "#d2c09f",
+		"slate": "#5b6670",
+		"plum": "#6c3f5a"
+	},
+	"glasses": {
+		"none": "No glasses",
+		"round": "Round frames",
+		"rectangular": "Rectangular frames",
+		"bold": "Bold dark frames"
 	}
 }

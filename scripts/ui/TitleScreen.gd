@@ -151,6 +151,10 @@ func _update_buttons() -> void:
 	var has_save: bool = SaveManager.has_save(save_slot)
 	_new_button.disabled = waiting
 	_continue_button.disabled = waiting or not has_save
+	# Leave focus alone while a screen over the title (the character creator) has it.
+	var owner: Control = get_viewport().gui_get_focus_owner()
+	if owner != null and not is_ancestor_of(owner):
+		return
 	if not waiting and not _continue_button.has_focus() and not _new_button.has_focus() and not _settings_button.has_focus():
 		(_continue_button if has_save else _new_button).grab_focus()
 
@@ -187,6 +191,13 @@ func close() -> void:
 func _release_music() -> void:
 	AudioDirector.process_mode = _audio_mode_before as Node.ProcessMode
 	AudioDirector.end_music_context(MUSIC_CONTEXT)
+
+
+## New Game: choose and dress the psychiatrist first; the shift starts from there.
+func choose_psychiatrist() -> void:
+	if not is_open:
+		return
+	EventBus.ui_panel_requested.emit(ProtagonistScreen.PANEL_ID, {"mode": "new_game", "on_confirm": new_game})
 
 
 func new_game() -> void:
@@ -241,8 +252,7 @@ func _build() -> void:
 	var gap := Control.new()
 	gap.custom_minimum_size = Vector2(0, 36)
 	column.add_child(gap)
-	_new_button = _button(column, "New Game", new_game)
-	_button(column, "Customize new psychiatrist", func() -> void: EventBus.ui_panel_requested.emit("protagonist", {}))
+	_new_button = _button(column, "New Game", choose_psychiatrist)
 	_continue_button = _button(column, "Continue", continue_game)
 	_settings_button = _button(column, "Settings", func() -> void: settings_requested.emit())
 	_button(column, "Quit", func() -> void:

@@ -7,7 +7,10 @@ const DEFAULT_GENDER: String = "male"
 ## Profile field -> its catalog in data/protagonist_options.json.
 const CATALOG_FIELDS: Dictionary = {"gender": "genders", "professional_interest": "professional_interests",
 		"acceptance_reason": "acceptance_reasons", "relationship": "relationships", "skin_tone": "skin_tones",
-		"hair_color": "hair_colors", "hair_style": "hair_styles", "outfit": "outfits"}
+		"hair_color": "hair_colors", "hair_style": "hair_styles", "outfit": "outfits", "top": "tops", "glasses": "glasses"}
+
+## Fields added after the first profile version. Older saves lack them and load with these.
+const LATER_DEFAULTS: Dictionary = {"gender": DEFAULT_GENDER, "top": "white", "glasses": "none"}
 
 var _profile: Dictionary = default_data()
 var options: Dictionary = {}
@@ -15,7 +18,7 @@ var options: Dictionary = {}
 static func default_data() -> Dictionary:
 	return {"profile_version": 1, "configured": false, "professional_role": "psychiatrist", "name": "",
 		"pronouns": "", "gender": DEFAULT_GENDER, "professional_interest": "none", "acceptance_reason": "none", "relationship": "none",
-		"personal_history": "", "skin_tone": "medium", "hair_color": "brown", "hair_style": "short", "outfit": "navy", "choices": []}
+		"personal_history": "", "skin_tone": "medium", "hair_color": "brown", "hair_style": "short", "outfit": "navy", "top": "white", "glasses": "none", "choices": []}
 
 func _ready() -> void:
 	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://data/protagonist_options.json"))
@@ -42,9 +45,10 @@ func validate_save_data(data: Variant) -> bool:
 		return false
 	if not data.get("configured") is bool or not data.get("choices") is Array:
 		return false
-	# Optional: saves from before the voice choice have no gender.
-	if data.has("gender") and not data["gender"] is String:
-		return false
+	# Optional: saves from before the voice and style choices lack these.
+	for key: String in LATER_DEFAULTS:
+		if data.has(key) and not data[key] is String:
+			return false
 	for key: String in ["name", "pronouns", "personal_history", "professional_interest", "acceptance_reason", "relationship", "skin_tone", "hair_color", "hair_style", "outfit"]:
 		if not data.get(key) is String:
 			return false
@@ -71,7 +75,8 @@ func apply_draft(draft: Dictionary) -> bool:
 	candidate["choices"] = _profile["choices"].duplicate(true)
 	if not validate_save_data(candidate):
 		return false
-	candidate["gender"] = str(candidate.get("gender", DEFAULT_GENDER))
+	for key: String in LATER_DEFAULTS:
+		candidate[key] = str(candidate.get(key, LATER_DEFAULTS[key]))
 	for key: String in CATALOG_FIELDS:
 		var catalog_key: String = CATALOG_FIELDS[key]
 		if not options.get(catalog_key, {}).has(candidate[key]):
@@ -98,8 +103,9 @@ func load_save_data(data: Dictionary) -> void:
 	if validate_save_data(data):
 		_profile = data.duplicate(true)
 		_profile["profile_version"] = int(_profile["profile_version"])
-		if not options.get("genders", {}).has(_profile.get("gender")):
-			_profile["gender"] = DEFAULT_GENDER
+		for key: String in LATER_DEFAULTS:
+			if not options.get(CATALOG_FIELDS[key], {}).has(_profile.get(key)):
+				_profile[key] = LATER_DEFAULTS[key]
 		for choice: Dictionary in _profile["choices"]:
 			choice["at_minutes"] = int(choice["at_minutes"])
 		EventBus.protagonist_profile_changed.emit()

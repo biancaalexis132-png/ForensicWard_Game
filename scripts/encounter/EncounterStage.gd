@@ -16,10 +16,6 @@ const SHOT_ESTABLISHING: String = "CAM_IR_Establishing"
 const SHOT_ON_SITTER: String = "CAM_IR_OTS_OnPsychiatrist"
 const TALK_GESTURES: Array[StringName] = [&"explain_open_hand", &"small_acknowledgement_nod", &"thinking_pause"]
 const WALK_SPEED_M_S: float = 1.0
-## Built model colours (tools/blender/characters/cast/protagonist_*.json).
-const BUILT_SKIN: Color = Color("#B98463")
-const BUILT_HAIR: Color = Color("#60432E")
-const BUILT_OUTFIT: Color = Color("#263D56")
 
 var patient: Node3D = null
 var sitter: Node3D = null
@@ -285,35 +281,7 @@ func _spawn_doctor(at: Vector3) -> void:
 
 
 func _apply_profile_colours(character: Node3D) -> void:
-	var profile: Dictionary = ProtagonistProfile.get_profile()
-	var options: Dictionary = ProtagonistProfile.options
-	var skin: Color = Color(str(options.get("skin_tones", {}).get(profile.get("skin_tone", ""), BUILT_SKIN.to_html())))
-	var hair: Color = Color(str(options.get("hair_colors", {}).get(profile.get("hair_color", ""), BUILT_HAIR.to_html())))
-	var outfit: Color = Color(str(options.get("outfits", {}).get(profile.get("outfit", ""), BUILT_OUTFIT.to_html())))
-	for mesh: MeshInstance3D in character.find_children("*", "MeshInstance3D", true, false):
-		var tint: Color = Color.WHITE
-		var mesh_name: String = mesh.name.to_lower()
-		if mesh_name.ends_with("_body"):
-			tint = _ratio(skin, BUILT_SKIN)
-		elif mesh_name.ends_with("_hair"):
-			if str(profile.get("hair_style", "")) == "none":
-				mesh.visible = false
-			tint = _ratio(hair, BUILT_HAIR)
-		elif mesh_name.ends_with("_trousers"):
-			tint = _ratio(outfit, BUILT_OUTFIT)
-		if tint == Color.WHITE or mesh.mesh == null:
-			continue
-		for surface: int in mesh.mesh.get_surface_count():
-			var material: StandardMaterial3D = mesh.get_active_material(surface) as StandardMaterial3D
-			if material == null:
-				continue
-			var copy: StandardMaterial3D = material.duplicate() as StandardMaterial3D
-			copy.albedo_color = material.albedo_color * tint
-			mesh.set_surface_override_material(surface, copy)
-
-
-static func _ratio(wanted: Color, built: Color) -> Color:
-	return Color(wanted.r / maxf(built.r, 0.02), wanted.g / maxf(built.g, 0.02), wanted.b / maxf(built.b, 0.02))
+	ProtagonistAppearance.apply(character, ProtagonistProfile.get_profile(), ProtagonistProfile.options)
 
 
 func _attach_modifier(actor: Node3D) -> ExamPoseModifier:
