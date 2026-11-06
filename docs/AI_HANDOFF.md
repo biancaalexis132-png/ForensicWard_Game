@@ -20,7 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Clinical room detail | `codex/clinical-room-detail` | Codex | `4fff016` review; `59ae7f9` runtime | `data/set_dressing.json`, set-dressing test, capture tool, room/historic review and handoff docs | Draft #153; full local QA 484/0; Mac visual review pending |
+| Clinical room detail | `codex/clinical-room-detail` | Codex | `8a3e7ef` starting review; `473ee81` runtime | `data/set_dressing.json`, set-dressing test, capture tool, room/historic review and handoff docs | Draft #153; nursing-station continuation, full QA running; Mac visual review pending |
 | Staff remember earlier choices | `claude/staff-remember-choices` (draft PR to `main`) | Claude Code (cloud) | see Log | `data/acknowledgements.json`, `scripts/narrative/Acknowledgements.gd`, `test_acknowledgements.gd`; 5 lines in `Character.gd` | Lines approved by Bi 2026-11-05 |
 | Elias meds and labs (approved by Bi 2026-11-05) | `claude/meds-labs-approved` (draft PR to `main`; #134 merged) | Claude Code (cloud) | see PR | `data/clinical_workups/*`, `scripts/clinical/ClinicalWorkup.gd`, `ClinicalOrders.result_for`, `scripts/tests/test_clinical_workup.gd` | Draft; locked in every build until approved. The "Flesh out the Elias encounter" session owns the encounter UI and `data/elias_encounter.json` |
 | Smooth panel, menu and subtitle transitions | `claude/smooth-transitions` (draft PR to `main`) | Claude Code (cloud) | see Log | `scripts/ui/UITransition.gd`, `test_ui_transitions.gd`; small edits to `Main.gd` (`_open_panel` split, fade), `InfoPanel.gd`, `HUD.gd` | Full QA; waiting on Bi |
@@ -75,6 +75,14 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+
+### 2026-11-06 · Codex · Abandoned nursing-station continuation checkpoint
+
+- Continuing the same environment workstream in draft #153 on `codex/clinical-room-detail`. Main `5199b50`, starting branch head `8a3e7ef` verified on origin; only its completion-doc commit followed recorded `4fff016`. No PR reviews/comments. Hosted `validate` on `8a3e7ef` is now confirmed PASS (17m53s, run 42288214044). Resumed focused baseline **3/0**, matching prior handoff; full baseline not repeated.
+- Latest pushed runtime `473ee81`: high service pipes, a wall grille and a historic fuse board in the abandoned nursing station. All `PENDING_OWNER_VISUAL_REVIEW`, using existing assets. No source scene, clinical/story, collision, light/sound, save or access changes. This same continuation still owns `data/set_dressing.json`, `scripts/tests/test_set_dressing.gd`, review files and shared handoff docs; no other workstream's files are touched.
+- New source-preservation/spatial test compares eight existing station nodes' transforms and metadata with the original GLB and checks every new fixture's mesh stays inside the room, clear of furniture and story objects. Existing streaming/progression tests remain. Executed focused command: `FW_TEST_FILTER=set_dressing XDG_DATA_HOME=/workspace/work/nursing-detail/focused-user /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64 --headless --path . res://scripts/tests/TestRunner.tscn`: **4 passed / 0 failed**, exit 0. `git diff --check` clean. Full standard QA on `473ee81` is running; no final full PASS claimed yet.
+- Before/after views completed; reverse view running. All Linux Compatibility, 960×540; Mac acceptance remains pending. Details/provenance/coordinates: `docs/handoffs/2026-11-06_codex_abandoned_nursing_station.md`. Scratch: `/workspace/work/nursing-detail/`; no new runtime dependency, unfinished function or source export.
+- Next: finish standard QA and reverse review, publish evidence/update #153, then owner Mac review. “Continue” is not visual or clinical approval. No Mac or SSK operation.
 
 ### 2026-11-06 · Codex · Historic-wing dressing and review complete
 
