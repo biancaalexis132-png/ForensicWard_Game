@@ -1,5 +1,11 @@
 # AI progress tracker
 
+## Codex clinical room detail — 2026-11-06
+
+- Verified GitHub main `5199b50`: lighting #149, Mac results #150, corridor detail #151 and character creator #152 are merged. Older rows below that call them open or not started are historical.
+- Office and nursing-station detail now built in draft PR #153 (`codex/clinical-room-detail`): five cosmetic placements using existing assets, four review captures with provenance. Runtime `9f82ff6`, pushed review `e162361`; full local QA game 483/0, smoke 19/0/0, GLB 211/0, audio 1760/0 and Chapter 1 sequence complete. Exact command/checkpoints in the latest `AI_HANDOFF.md` entry. Mac review pending; no hosted CI PASS claimed.
+- Next: owner reviews the room placements on Mac; historical-wing detail follows. No new clinical/story content or save changes. Only #153 edits shared handoff docs in this continuation.
+
 ## Elias bedside encounter — Claude Code (cloud), 2026-11-05
 
 ## Make the game more compelling (Bi's roadmap) — Claude Code (cloud), 2026-11-05

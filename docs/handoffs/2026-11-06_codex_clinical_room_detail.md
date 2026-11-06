@@ -36,7 +36,7 @@ and procedural functions in `tools/blender/fw_assets.py`. No new third-party
 content, asset export, texture, licence dependency, or LFS pattern is introduced.
 Placement was checked against `build_stage2_chapter1.py`'s room/furniture layout.
 
-Review screenshots are original in-engine captures, made with the existing
+Review screenshots in `docs/environment_review/clinical_room_detail/` are original in-engine captures, made with the existing
 `tools/godot/CaptureAtmosphere.tscn`, Godot 4.7 stable, Linux Xorg dummy display,
 Mesa llvmpipe Compatibility renderer, 1280×720, Dummy audio. Before uses main
 `5199b50`; after uses the data change in this branch. These are placement review,
@@ -46,7 +46,7 @@ not Forward+/Metal or Mac acceptance. No image generation or editing is involved
 
 Baseline standard runner: gameplay **483/0**, smoke **19/0/0**, GLB **211/0**.
 This supersedes the older #152 handoff's 480 gameplay count after combined merges.
-Final full-run results are recorded in `docs/AI_HANDOFF.md` when complete.
+Final standard runner on runtime `9f82ff6`: exit 0, gameplay **483/0**, smoke **19/0/0**, GLB **211/0**, audio **1760/0**, pharmacology zero failures, all Python checks passed, Chapter 1 sequence **62.0 s**, no ERROR lines. Full details are recorded in `docs/AI_HANDOFF.md`. Subsequent commits add only review images and documentation.
 The existing `test_set_dressing` checks all listed placements, room membership,
 door clearance, non-interactivity, and unchanged save state.
 
