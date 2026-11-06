@@ -66,10 +66,10 @@ commands/settings and SHA-256 hashes.
 
 Runtime checkpoint: `59ae7f9` (pushed and verified). Focused placement tests:
 **3 passed / 0 failed**, including the new historical-floor lifecycle test.
-Full standard QA on that checkpoint is running; final results belong in the
-newest `docs/AI_HANDOFF.md` entry. Existing clinical-room runtime is unchanged.
+Full standard QA on that checkpoint: exit 0, gameplay **484/0**, smoke **19/0/0**, GLB **211/0**, audio **1760/0**, all Python checks pass, pharmacology zero failures and Chapter 1 sequence **62.1 s**. Exact command/results are in the newest `docs/AI_HANDOFF.md` entry. Existing clinical-room runtime is unchanged.
 
-Next: finish full QA and inspect/publish the after captures, then owner reviews
-both floors on Mac. Continue room-by-room cosmetic polish after review while
+Before/after and reverse views are published in `docs/environment_review/historic_detail/`; the reverse clinical-office view is in `docs/environment_review/clinical_room_detail/`.
+
+Next: owner reviews both floors on Mac. Continue room-by-room cosmetic polish after review while
 preserving the existing gated historical story objects. No Mac export or SSK
 transfer was performed.

@@ -1,5 +1,11 @@
 # AI session handoff
 
+## Codex historic-wing continuation complete — 2026-11-06
+
+- Draft #153 now covers ten clinical/historic wall placements. Runtime `59ae7f9`, pushed review `4fff016`; subsequent commits are review/docs only. Full local QA **game 484/0, smoke 19/0/0, GLB 211/0, audio 1760/0**, Python/pharmacology checks pass and Chapter 1 sequence completes. Focused lifecycle/placement tests **3/0**. Exact command/checkpoints in newest `AI_HANDOFF.md` entry; current hosted CI pending at last observation.
+- Historic before/after and reverse captures, plus the missing north clinical-office panel view, are published under `docs/environment_review/`. All new placements remain `PENDING_OWNER_VISUAL_REVIEW`; “continue” is not approval. No clinical/story, collision, light/sound or save behavior changes.
+- Next: owner Mac review and requested placement fixes in `data/set_dressing.json`; further historic room work must preserve existing gated story objects. No Mac export or SSK transfer. This entry supersedes older rows describing these tasks as unstarted.
+
 ## Codex clinical room detail — 2026-11-06
 
 - Verified GitHub main `5199b50`: lighting #149, Mac results #150, corridor detail #151 and character creator #152 are merged. Older rows below that call them open or not started are historical.
