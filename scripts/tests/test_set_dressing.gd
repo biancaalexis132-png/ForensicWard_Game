@@ -88,3 +88,48 @@ func test_historic_dressing_follows_zone_lifecycle_without_revealing_it() -> voi
 	check(not world.has_zone(zone_id), "historic props unload with their zone")
 	root = world.build_zone(zone_id, AuthoredWorld.load_zone_scenes(zone_id))
 	check_eq(root.get_node("SetDressing").get_child_count(), expected, "streaming back restores one copy of each prop")
+
+
+func test_historic_nursing_dressing_preserves_story_objects_and_furniture() -> void:
+	await runner.get_tree().process_frame
+	var world: AuthoredWorld = _main.get_node("World")
+	var root: Node3D = world.build_zone("zone_historic_sublevel", AuthoredWorld.load_zone_scenes("zone_historic_sublevel"))
+	var source: Node3D = load("res://assets/exports/historic/env/ENV_AbandonedNursingStation.glb").instantiate() as Node3D
+	var holder: Node = root.get_node_or_null("SetDressing")
+	check(holder != null, "historic dressing is present")
+	if holder == null:
+		source.free()
+		return
+	var room_bounds: Rect2 = Rect2(-6.0, -40.0, 4.5, 6.0)
+	var protected_bounds: Array[AABB] = []
+	for node_name: String in ["NS_Board_Census", "NS_Document_NightReport", "NS_Clock_Stopped", "NS_Desk", "NS_Counter", "NS_InstrumentCabinet", "NS_CardIndex_Patients", "NS_Radiator"]:
+		var reference: Node3D = source.find_child(node_name, true, false) as Node3D
+		var actual: Node3D = root.find_child(node_name, true, false) as Node3D
+		check(reference != null and actual != null, "%s remains present" % node_name)
+		if reference == null or actual == null:
+			continue
+		check_eq(actual.transform, reference.transform, "%s keeps its authored placement" % node_name)
+		for key: StringName in reference.get_meta_list():
+			check_eq(actual.get_meta(key, null), reference.get_meta(key), "%s preserves metadata %s" % [node_name, key])
+		protected_bounds.append_array(_mesh_bounds(actual))
+	var station_count: int = 0
+	for prop: Node3D in holder.get_children():
+		if not str(prop.name).begins_with("Dressing_historic_nursing_"):
+			continue
+		station_count += 1
+		for box: AABB in _mesh_bounds(prop):
+			var footprint: Rect2 = Rect2(Vector2(box.position.x, box.position.z), Vector2(box.size.x, box.size.z))
+			check(room_bounds.encloses(footprint), "%s fits entirely inside the station" % prop.name)
+			for protected_box: AABB in protected_bounds:
+				check(not box.intersects(protected_box), "%s keeps clear of authored furniture and story objects" % prop.name)
+	check(station_count > 0, "the station has new authored fixtures")
+	source.free()
+
+
+func _mesh_bounds(root: Node3D) -> Array[AABB]:
+	var result: Array[AABB] = []
+	if root is MeshInstance3D:
+		result.append(root.global_transform * (root as MeshInstance3D).get_aabb())
+	for mesh: MeshInstance3D in root.find_children("*", "MeshInstance3D", true, false):
+		result.append(mesh.global_transform * mesh.get_aabb())
+	return result

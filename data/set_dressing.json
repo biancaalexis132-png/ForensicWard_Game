@@ -234,6 +234,42 @@
 				"facing": "west",
 				"room": "Disused admin office",
 				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_nursing_service_pipes",
+				"scene": "res://assets/exports/security/props/PROP_Pipes_Wall_2m.glb",
+				"at": [
+					-5.894,
+					2.45,
+					-37.5
+				],
+				"facing": "east",
+				"room": "Abandoned nursing station",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_nursing_vent",
+				"scene": "res://assets/exports/clinical/props/PROP_Vent_Grille_Wall.glb",
+				"at": [
+					-1.607,
+					2.55,
+					-35.5
+				],
+				"facing": "west",
+				"room": "Abandoned nursing station",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "historic_nursing_fuse_board",
+				"scene": "res://assets/exports/historic/props/PROP_Panel_Fuse_Historic.glb",
+				"at": [
+					-2.6,
+					1.35,
+					-34.107
+				],
+				"facing": "north",
+				"room": "Abandoned nursing station",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
 			}
 		]
 	}
