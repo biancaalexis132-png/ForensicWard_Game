@@ -3,6 +3,8 @@ extends RefCounted
 ## Shared procedural finishes for previously flat environment materials.
 ## Textured cast, labels, screens and glass are preserved. Cache keys are stable
 ## across zone unload/reload, so material instances cannot accumulate per visit.
+const MAX_PAINT_LUMINANCE: float = 0.7
+
 static var _materials: Dictionary = {}
 static var _grain: Texture2D
 static var _roughness: Texture2D
@@ -31,6 +33,7 @@ static func apply(root: Node) -> void:
 			var key: String = "%s:%s:%s:%s" % [name, original.albedo_color.to_html(), original.metallic, original.roughness]
 			if not _materials.has(key):
 				var material: StandardMaterial3D = original.duplicate() as StandardMaterial3D
+				material.albedo_color = painted_albedo(original.albedo_color)
 				material.albedo_texture = _grain
 				material.roughness_texture = _roughness
 				material.roughness_texture_channel = BaseMaterial3D.TEXTURE_CHANNEL_RED
@@ -43,6 +46,18 @@ static func apply(root: Node) -> void:
 				material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 				_materials[key] = material
 			mesh.set_surface_override_material(surface, _materials[key])
+
+## Real wall paint reflects at most about three quarters of the light; near-white
+## authored paints read as glowing under the ward fluorescents. Keeps the hue,
+## caps the brightness at MAX_PAINT_LUMINANCE.
+static func painted_albedo(color: Color) -> Color:
+	var luminance: float = color.get_luminance()
+	if luminance <= MAX_PAINT_LUMINANCE:
+		return color
+	var scaled: Color = color * (MAX_PAINT_LUMINANCE / luminance)
+	scaled.a = color.a
+	return scaled
+
 
 static func material_count() -> int:
 	return _materials.size()
