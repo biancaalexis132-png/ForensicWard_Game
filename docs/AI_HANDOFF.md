@@ -20,7 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
-| Clinical room detail | `codex/clinical-room-detail` | Codex | `e162361` review; `9f82ff6` runtime | `data/set_dressing.json`, room review captures, handoff/status docs | Draft #153; full QA passes; Mac visual review pending |
+| Clinical room detail | `codex/clinical-room-detail` | Codex | `e162361` review; `9f82ff6` runtime | `data/set_dressing.json`, set-dressing test, capture tool, room/historic review and handoff docs | Draft #153; historic continuation; final QA running; Mac visual review pending |
 | Staff remember earlier choices | `claude/staff-remember-choices` (draft PR to `main`) | Claude Code (cloud) | see Log | `data/acknowledgements.json`, `scripts/narrative/Acknowledgements.gd`, `test_acknowledgements.gd`; 5 lines in `Character.gd` | Lines approved by Bi 2026-11-05 |
 | Elias meds and labs (approved by Bi 2026-11-05) | `claude/meds-labs-approved` (draft PR to `main`; #134 merged) | Claude Code (cloud) | see PR | `data/clinical_workups/*`, `scripts/clinical/ClinicalWorkup.gd`, `ClinicalOrders.result_for`, `scripts/tests/test_clinical_workup.gd` | Draft; locked in every build until approved. The "Flesh out the Elias encounter" session owns the encounter UI and `data/elias_encounter.json` |
 | Smooth panel, menu and subtitle transitions | `claude/smooth-transitions` (draft PR to `main`) | Claude Code (cloud) | see Log | `scripts/ui/UITransition.gd`, `test_ui_transitions.gd`; small edits to `Main.gd` (`_open_panel` split, fade), `InfoPanel.gd`, `HUD.gd` | Full QA; waiting on Bi |
@@ -75,6 +75,14 @@ One row per branch that someone is working on. Claim the folders or files you wi
 | Chapter 1 location continuity | `codex/chapter1-zone-continuity` (draft PR #68) | Codex cloud | `49d68bdfbcbf43c47352dd7cb8c0507cad453377` | `scripts/narrative/ChapterDirector.gd`, `scripts/world/ZoneDirector.gd`, `scripts/tests/test_zones.gd`, dedicated handoff | Complete; full QA passed. Independent of viseme PR #67. |
 | Explicit Naomi v06 review preview | `codex/naomi-v06-review-preview` | Codex cloud | `ca8b689166e69fcb4cf97aab2d621789be04ac54` | `scripts/world/CharacterVisualPreview.gd`, `scripts/tests/test_character_preview.gd`, dedicated preview handoff | Owner confirmed other sessions stopped; adds explicit choices, preserves default v05. Independent of source audit PR #65. |
 
+
+### 2026-11-06 · Codex · Historic-wing continuation checkpoint
+
+- Owner said “continue”; expanding the same environment workstream in draft #153 on `codex/clinical-room-detail`, not merging or marking visual assets approved. Claimed files now also include `scripts/tests/test_set_dressing.gd`, `tools/godot/capture_atmosphere.gd`, historic review images/manifest and the dedicated historic handoff. Existing clinical data and shared docs remain owned by this same continuation; no parallel integration is required.
+- Starting GitHub head `5033d53` verified; only a docs commit followed recorded `e162361`. Hosted `validate` on `5033d53` is now confirmed PASS (16m27s, run 42278410813). Main remains `5199b50`; no PR reviews/comments. Resumed focused baseline **2/0**, matching prior results. No unnecessary second full baseline run.
+- Latest verified pushed runtime `59ae7f9`: five historic wall props in `data/set_dressing.json` (two original historic fuse panels, two grilles, blank notices in the disused office), capture-tool zone/reverse options, one regression covering no early reveal, door/ceiling clearance, no collisions/interactions, unchanged care/progression, current-floor map and streaming lifecycle. Focused `FW_TEST_FILTER=set_dressing XDG_DATA_HOME=/workspace/work/historic-detail/focused-user /workspace/.tools/godot-4.7/Godot_v4.7-stable_linux.x86_64 --headless --path . res://scripts/tests/TestRunner.tscn`: **3 passed / 0 failed**, exit 0. `git diff --check` clean.
+- Full standard QA and after captures running. No final full PASS claimed at this checkpoint. All new placements remain `PENDING_OWNER_VISUAL_REVIEW`. Details/provenance: `docs/handoffs/2026-11-06_codex_historic_detail.md`. Scratch only: `/workspace/work/historic-detail/`. No new runtime dependency, unfinished function, clinical content, story clue, asset export, Mac or SSK operation.
+- Next: finish full QA, inspect after captures, update #153's final scope/title and record completion; owner Mac review follows.
 
 ### 2026-11-06 · Codex · Clinical room detail complete, final QA
 
