@@ -112,6 +112,66 @@
 					-15.5
 				],
 				"facing": "south"
+			},
+			{
+				"id": "office_acoustic_north",
+				"scene": "res://assets/exports/clinical/props/PROP_Acoustic_Panel.glb",
+				"at": [
+					-4.9,
+					1.55,
+					-5.9
+				],
+				"facing": "south",
+				"room": "Psychiatrist office",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "office_acoustic_east",
+				"scene": "res://assets/exports/clinical/props/PROP_Acoustic_Panel.glb",
+				"at": [
+					-1.6,
+					1.65,
+					-3.0
+				],
+				"facing": "west",
+				"room": "Psychiatrist office",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "office_gel_inside",
+				"scene": "res://assets/exports/clinical/props/PROP_Dispenser_HandGel.glb",
+				"at": [
+					-1.6,
+					1.2,
+					-4.1
+				],
+				"facing": "west",
+				"room": "Psychiatrist office",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "nursing_vent_high",
+				"scene": "res://assets/exports/clinical/props/PROP_Vent_Grille_Wall.glb",
+				"at": [
+					-4.9,
+					2.6,
+					-10.0
+				],
+				"facing": "east",
+				"room": "Nursing station",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
+			},
+			{
+				"id": "nursing_intercom",
+				"scene": "res://assets/exports/clinical/props/PROP_Intercom_Speaker.glb",
+				"at": [
+					-2.25,
+					2.3,
+					-11.9
+				],
+				"facing": "south",
+				"room": "Nursing station",
+				"review_status": "PENDING_OWNER_VISUAL_REVIEW"
 			}
 		]
 	}

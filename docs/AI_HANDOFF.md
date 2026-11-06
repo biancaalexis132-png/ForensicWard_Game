@@ -20,6 +20,7 @@ One row per branch that someone is working on. Claim the folders or files you wi
 
 | Workstream | Branch | Agent / session | Latest verified commit | Claimed files | State |
 |---|---|---|---|---|---|
+| Clinical room detail | `codex/clinical-room-detail` | Codex | main `5199b50` baseline; final checkpoint in log | `data/set_dressing.json`, room review captures, handoff/status docs | Five cosmetic placements; Mac visual review pending |
 | Staff remember earlier choices | `claude/staff-remember-choices` (draft PR to `main`) | Claude Code (cloud) | see Log | `data/acknowledgements.json`, `scripts/narrative/Acknowledgements.gd`, `test_acknowledgements.gd`; 5 lines in `Character.gd` | Lines approved by Bi 2026-11-05 |
 | Elias meds and labs (approved by Bi 2026-11-05) | `claude/meds-labs-approved` (draft PR to `main`; #134 merged) | Claude Code (cloud) | see PR | `data/clinical_workups/*`, `scripts/clinical/ClinicalWorkup.gd`, `ClinicalOrders.result_for`, `scripts/tests/test_clinical_workup.gd` | Draft; locked in every build until approved. The "Flesh out the Elias encounter" session owns the encounter UI and `data/elias_encounter.json` |
 | Smooth panel, menu and subtitle transitions | `claude/smooth-transitions` (draft PR to `main`) | Claude Code (cloud) | see Log | `scripts/ui/UITransition.gd`, `test_ui_transitions.gd`; small edits to `Main.gd` (`_open_panel` split, fade), `InfoPanel.gd`, `HUD.gd` | Full QA; waiting on Bi |
