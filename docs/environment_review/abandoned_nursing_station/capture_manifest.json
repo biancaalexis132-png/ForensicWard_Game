@@ -1,0 +1,28 @@
+{
+  "source": "Original in-engine renders of existing project assets. Source/ licence provenance remains in assets/asset_manifest/asset_manifest.json.",
+  "tool": "tools/godot/CaptureAtmosphere.tscn",
+  "tool_commit": "473ee81",
+  "before_content_commit": "8a3e7ef00bbd9e1e64b43a4dad69cf90746d2304",
+  "after_content_commit": "473ee81",
+  "settings": {
+    "engine": "Godot 4.7 stable standard",
+    "renderer": "Compatibility",
+    "platform": "Linux Xorg dummy / Mesa llvmpipe",
+    "resolution": [
+      960,
+      540
+    ],
+    "audio": "Dummy",
+    "zone": "zone_historic_sublevel",
+    "rooms": [
+      "abandoned_nursing_station"
+    ],
+    "reverse_file": "atmosphere_reverse_abandoned_nursing_station.png"
+  },
+  "review_status": "PENDING_OWNER_VISUAL_REVIEW; not Mac / Forward+ acceptance",
+  "files": {
+    "atmosphere_after_abandoned_nursing_station.png": "1338fba7dfc070eba9eca13bffeed3bc2246865cb903f60d395a62418a41d70f",
+    "atmosphere_before_abandoned_nursing_station.png": "b9649d5d50045bb3fbe32c99d7c737e7d7e345ed93bccf21b870f67ac6062fe4",
+    "atmosphere_reverse_abandoned_nursing_station.png": "ff1a401a75e3a10ca517d4826ec030759e383f1cfa10f180b77c9e0e1c2a38f8"
+  }
+}
